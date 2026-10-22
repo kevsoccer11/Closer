@@ -1,46 +1,45 @@
-const CACHE_NAME = 'closer-pwa-v4';
+const CACHE_NAME = 'closer-pwa-v8';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './manifest.json',
-    './cards.json',
     './css/styles.css',
-    './js/firebase-config.js',
-    './js/app.js'
+    './js/app.js',
+    './js/firebase-config.js'
 ];
 
-// Install Event: Cache Assets
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(cache => {
-            console.log('[Closer PWA] Caching App Assets');
+        caches.open(CACHE_NAME).then((cache) => {
+            console.log('[ServiceWorker] Pre-caching App Shell');
             return cache.addAll(ASSETS_TO_CACHE);
-        })
+        }).then(() => self.skipWaiting())
     );
-    self.skipWaiting();
 });
 
-// Activate Event: Clear Stale Cache
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then(keys => {
+        caches.keys().then((keyList) => {
             return Promise.all(
-                keys.map(key => {
+                keyList.map((key) => {
                     if (key !== CACHE_NAME) {
-                        console.log('[Closer PWA] Removing Old Cache:', key);
+                        console.log('[ServiceWorker] Removing old cache:', key);
                         return caches.delete(key);
                     }
                 })
             );
-        })
+        }).then(() => self.clients.claim())
     );
-    self.clients.claim();
 });
 
-// Fetch Event: Cache First with Network Fallback
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
+    // Only intercept same-origin requests; leave external CDNs to the browser
+    if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
+
     event.respondWith(
-        caches.match(event.request).then(cachedResponse => {
+        caches.match(event.request).then((cachedResponse) => {
             if (cachedResponse) {
                 return cachedResponse;
             }
