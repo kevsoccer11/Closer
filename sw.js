@@ -37,8 +37,14 @@ self.addEventListener('activate', event => {
     self.clients.claim();
 });
 
-// Fetch Event: Cache First with Network Fallback
+// Fetch Event: Bypass external CDNs & serve local cache/network safely
 self.addEventListener('fetch', event => {
+    // 1. Ignore non-GET requests and cross-origin external requests (unpkg, Firebase, fonts)
+    if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+        return; // Let the browser handle external requests natively
+    }
+
+    // 2. Local asset caching strategy
     event.respondWith(
         caches.match(event.request).then(cachedResponse => {
             if (cachedResponse) {
