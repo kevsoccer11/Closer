@@ -38,23 +38,39 @@ const CONTEXT_RULES = {
 
 async function initDatabase() {
     console.log("Initializing database...");
-    try {
-        // 1. Try loading from cards.json relative file
-        const response = await fetch('./cards.json');
-        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
-        const data = await response.json();
-        masterDatabase = [...(data.cards || []), ...customUserCards];
-        console.log(`Loaded ${masterDatabase.length} cards from cards.json`);
-    } catch (err) {
-        console.warn("Local cards.json fetch failed. Activating built-in fallback deck.", err);
-        // 2. Immediate fallback array so the deck NEVER stays empty
-        masterDatabase = [
-            { id: 'sec-fb1', module: 'sexuality', category: 'Past History', intensity: 1, prompt: 'What was a moment early in our relationship that made your heart race?', contextType: 'story' },
-            { id: 'sec-fb2', module: 'sexuality', category: 'Spicy Dares', intensity: 2, prompt: 'Give your partner a slow 60-second back massage right now.', contextType: 'action' },
-            { id: 'life-fb1', module: 'life', category: 'Shared Goals', intensity: 1, prompt: 'What is one trip or experience you want us to plan in the next 12 months?', contextType: 'alignment' },
-            { id: 'secret-fb1', module: 'secrets', category: 'Desires', intensity: 3, prompt: 'What is a secret fantasy you have thought about but never spoken out loud?', contextType: 'consent' },
-            ...customUserCards
-        ];
+
+    // 1. First attempt to fetch live deck from Firebase
+    if (typeof db !== 'undefined' && db) {
+        try {
+            const snapshot = await db.ref('cards').once('value');
+            const remoteData = snapshot.val();
+            if (remoteData) {
+                masterDatabase = Array.isArray(remoteData) ? remoteData.filter(Boolean) : Object.values(remoteData);
+                console.log(`Loaded ${masterDatabase.length} cards from Firebase Database`);
+            }
+        } catch (e) {
+            console.warn("Firebase cards read error:", e);
+        }
+    }
+
+    // 2. Fallback to cards.json if Firebase was empty or unreachable
+    if (masterDatabase.length === 0) {
+        try {
+            const response = await fetch('./cards.json');
+            if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
+            const data = await response.json();
+            masterDatabase = [...(data.cards || []), ...customUserCards];
+            console.log(`Loaded ${masterDatabase.length} cards from cards.json`);
+        } catch (err) {
+            console.warn("Local cards.json fetch failed. Activating built-in fallback deck.", err);
+            masterDatabase = [
+                { id: 'sec-fb1', module: 'sexuality', category: 'Past History', intensity: 1, prompt: 'What was a moment early in our relationship that made your heart race?', contextType: 'story' },
+                { id: 'sec-fb2', module: 'sexuality', category: 'Spicy Dares', intensity: 2, prompt: 'Give your partner a slow 60-second back massage right now.', contextType: 'action' },
+                { id: 'life-fb1', module: 'life', category: 'Shared Goals', intensity: 1, prompt: 'What is one trip or experience you want us to plan in the next 12 months?', contextType: 'alignment' },
+                { id: 'secret-fb1', module: 'secrets', category: 'Desires', intensity: 3, prompt: 'What is a secret fantasy you have thought about but never spoken out loud?', contextType: 'consent' },
+                ...customUserCards
+            ];
+        }
     }
 
     rebuildUnspentDeck();
@@ -119,7 +135,11 @@ function renderCard(card) {
     }).length;
 
     const counter = document.getElementById('deckCounter');
-    if (counter) counter.innerText = `Card ${totalInFilter - unspentDeck.length} of ${totalInFilter}`;
+    if (counter) {
+        const currentCardIndex = totalInFilter - unspentDeck.length;
+        counter.innerText = `Card ${currentCardIndex > 0 ? currentCardIndex : 1} of ${totalInFilter}`;
+    }
+
     renderResponseControls(card);
 }
 
@@ -140,15 +160,29 @@ function renderResponseControls(card) {
     });
 }
 
+// Modal Toggle Handlers
+function openAddCardModal() {
+    const modal = document.getElementById('customCardModal');
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeAddCardModal() {
+    const modal = document.getElementById('customCardModal');
+    if (modal) modal.classList.add('hidden');
+}
+
 // Event Listeners Setup
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Card container tap flip
     const cardContainer = document.getElementById('cardContainer');
     if (cardContainer) {
         cardContainer.onclick = () => drawNextCard();
     }
 
+    // 2. Module navigation tabs
     document.querySelectorAll('.module-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', (e) => {
+            e.stopPropagation();
             document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             activeModule = tab.dataset.module;
@@ -156,6 +190,87 @@ document.addEventListener('DOMContentLoaded', () => {
             drawNextCard();
         });
     });
+
+    // 3. Intensity level buttons
+    document.querySelectorAll('.intensity-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeIntensity = btn.dataset.level;
+            rebuildUnspentDeck();
+            drawNextCard();
+        });
+    });
+
+    // 4. Modal listeners for Add Question
+    const openModalBtn = document.getElementById('openAddCardModal');
+    if (openModalBtn) openModalBtn.onclick = (e) => { e.stopPropagation(); openAddCardModal(); };
+
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    if (closeModalBtn) closeModalBtn.onclick = (e) => { e.stopPropagation(); closeAddCardModal(); };
+
+    const saveCardBtn = document.getElementById('saveCustomCardBtn');
+    if (saveCardBtn) {
+        saveCardBtn.onclick = async (e) => {
+            e.stopPropagation();
+            const mod = document.getElementById('customModule').value;
+            const cat = document.getElementById('customCategory').value || 'Custom Questions';
+            const intensity = parseInt(document.getElementById('customIntensity').value) || 1;
+            const promptText = document.getElementById('customPrompt').value.trim();
+
+            if (!promptText) {
+                alert("Please enter a question prompt!");
+                return;
+            }
+
+            const cardId = 'custom-' + Date.now();
+            const newCard = {
+                id: cardId,
+                module: mod,
+                category: cat,
+                intensity: intensity,
+                prompt: promptText,
+                contextType: mod === 'secrets' ? 'consent' : (mod === 'sexuality' ? 'action' : 'story')
+            };
+
+            // Save to Firebase Realtime Database
+            if (typeof db !== 'undefined' && db) {
+                try {
+                    await db.ref('cards/' + cardId).set(newCard);
+                    console.log("Saved to Firebase!");
+                } catch (err) {
+                    console.error("Firebase write error:", err);
+                }
+            }
+
+            customUserCards.push(newCard);
+            masterDatabase.push(newCard);
+            localStorage.setItem('closer_custom_cards', JSON.stringify(customUserCards));
+
+            document.getElementById('customPrompt').value = '';
+            closeAddCardModal();
+            activeModule = mod;
+
+            // Switch tab UI to match new card's module
+            document.querySelectorAll('.module-tab').forEach(t => {
+                t.classList.toggle('active', t.dataset.module === mod);
+            });
+
+            rebuildUnspentDeck();
+            drawNextCard();
+        };
+    }
+
+    // 5. Shuffle button
+    const shuffleBtn = document.getElementById('shuffleAllBtn');
+    if (shuffleBtn) {
+        shuffleBtn.onclick = (e) => {
+            e.stopPropagation();
+            rebuildUnspentDeck();
+            drawNextCard();
+        };
+    }
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
     initDatabase();
