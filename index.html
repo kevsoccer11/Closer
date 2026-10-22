@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Closer: Couples Connection & Intimacy Game</title>
+
+    <!-- PWA & Mobile Web Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#08080a">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Closer">
+    <link rel="apple-touch-icon" href="https://img.icons8.com/isometric-line/180/rose.png">
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@lucide/web@latest"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Firebase Modular SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+
+    <!-- Ambient Ambient Glow Background -->
+    <div class="ambient-bg" id="ambientBg"></div>
+
+    <!-- App Header -->
+    <header>
+        <div class="top-bar">
+            <div class="app-title"><i data-lucide="heart" class="brand-heart"></i> Closer</div>
+            <div class="header-actions">
+                <button class="icon-btn" id="pairPartnerBtn" title="Pair Partner (Realtime Room)"><i
+                        data-lucide="radio"></i></button>
+                <button class="icon-btn" id="userProfileBtn" title="User Profile"><i data-lucide="user"></i></button>
+                <button class="icon-btn" id="journalDrawerBtn" title="Date Night Journal"><i
+                        data-lucide="book-heart"></i></button>
+                <button class="icon-btn" id="favsDrawerBtn" title="Favorites"><i data-lucide="bookmark"></i></button>
+                <button class="icon-btn" id="toolsDrawerBtn" title="Tools & Database"><i
+                        data-lucide="sliders"></i></button>
+            </div>
+        </div>
+
+        <!-- 3-Module Navigation -->
+        <div class="module-nav">
+            <button class="module-tab active" data-module="sexuality"><i data-lucide="flame" size="16"></i>
+                Sexuality</button>
+            <button class="module-tab" data-module="life"><i data-lucide="compass" size="16"></i> Life</button>
+            <button class="module-tab" data-module="secrets"><i data-lucide="key-round" size="16"></i> Secrets</button>
+        </div>
+
+        <!-- Intensity Slider Bar -->
+        <div class="intensity-bar" id="intensityBar">
+            <button class="intensity-btn active" data-level="all">All Levels</button>
+            <button class="intensity-btn" data-level="1">Mild (Lvl 1)</button>
+            <button class="intensity-btn" data-level="2">Moderate (Lvl 2)</button>
+            <button class="intensity-btn" data-level="3">Wild (Lvl 3)</button>
+        </div>
+
+        <!-- Actions Row -->
+        <div class="action-row">
+            <button class="shuffle-all-btn" id="shuffleAllBtn"><i data-lucide="shuffle"></i> Shuffle All</button>
+            <button class="add-card-btn" id="openAddCardModal"><i data-lucide="plus-circle"></i> Add Question</button>
+        </div>
+    </header>
+
+    <!-- Interactive Card Stage -->
+    <main>
+        <div class="card-container" id="cardContainer">
+            <div class="card-header">
+                <span class="card-badge" id="cardCategory">Loading Deck...</span>
+                <div class="card-actions">
+                    <button class="card-action-btn" id="journalCardBtn" title="Save Memory"><i
+                            data-lucide="pen-line"></i></button>
+                    <button class="card-action-btn" id="favCardBtn" title="Bookmark"><i
+                            data-lucide="bookmark"></i></button>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <p class="card-prompt" id="cardPrompt">Connecting to Closer deck...</p>
+
+                <!-- Action Card Countdown Timer -->
+                <div class="timer-bar hidden" id="actionTimerBar">
+                    <div>
+                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Action Timer</span>
+                        <span class="timer-display" id="timerClock">01:00</span>
+                    </div>
+                    <button class="timer-btn" id="timerToggleBtn">Start</button>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <span id="deckCounter">Card 0 of 0</span>
+                <span class="tap-hint"><i data-lucide="touch-portal"></i> Tap card to flip</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Response Controls -->
+    <div class="response-section">
+        <div class="response-bar" id="responseBar"></div>
+    </div>
+
+    <!-- Universal Drawer & Overlay -->
+    <div class="overlay" id="drawerOverlay"></div>
+
+    <div class="drawer" id="toolsDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title" id="drawerTitle">Tools</h3>
+            <button class="icon-btn" id="closeDrawerBtn"><i data-lucide="x"></i></button>
+        </div>
+        <div class="drawer-content" id="drawerContent"></div>
+    </div>
+
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration for PWA Support -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Closer Service Worker active:', reg.scope))
+                    .catch(err => console.warn('Service Worker registration failed:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
