@@ -57,9 +57,15 @@
             <button class="module-tab active" data-module="sexuality" type="button" aria-pressed="true"><i data-lucide="flame" aria-hidden="true"></i><span>Flame &amp; Passion</span></button>
             <button class="module-tab" data-module="life" type="button" aria-pressed="false"><i data-lucide="compass" aria-hidden="true"></i><span>Deep Connection</span></button>
             <button class="module-tab" data-module="secrets" type="button" aria-pressed="false"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
+            <button class="module-tab" data-module="explicit" type="button" aria-pressed="false"><i data-lucide="shield-alert" aria-hidden="true"></i><span>Explicit · 18+</span></button>
         </div>
 
     </header>
+
+    <aside class="explicit-content-notice hidden" id="explicitContentNotice" aria-label="Adults-only content notice">
+        <strong>Adults only · 18+</strong>
+        <p>These direct questions are invitations to talk, never instructions or obligations. Get a clear, enthusiastic yes before trying anything; either partner can pause or pass at any time. Explicit cards stay on this device and are not synced to your partner.</p>
+    </aside>
 
     <!-- Card Stage -->
     <main>
@@ -210,6 +216,16 @@
             <div class="modal-actions">
                 <button id="closeModalBtn" class="btn-secondary" type="button">Cancel</button>
                 <button id="saveCustomCardBtn" class="btn-primary" type="button">Save card</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-overlay hidden" id="explicitAgeGate">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="explicitAgeGateTitle" aria-describedby="explicitAgeGateDescription">
+            <h3 id="explicitAgeGateTitle">Explicit section · Adults only</h3>
+            <p id="explicitAgeGateDescription">This section contains direct sexual questions intended only for adults 18 and older. Confirm that you are 18 or older to continue. This is an age self-attestation, not identity verification. Every activity requires a clear, mutual yes; either person may stop or pass at any time.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="cancelExplicitAccessBtn" type="button">Go back</button>
+                <button class="btn-primary" id="confirmExplicitAccessBtn" type="button">I am 18 or older · Continue</button>
             </div>
         </div>
     </div>

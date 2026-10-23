@@ -12,6 +12,7 @@ let activeModule = 'sexuality';
 let activeIntensity = 'all';
 let activePromptStyle = 'all';
 let activeGameMode = 'classic';
+const EXPLICIT_AGE_CONFIRMATION_KEY = 'closer_explicit_age_confirmed';
 let compareFirstModules = ['sexuality'];
 let compareFirstLevels = ['1', '2', '3'];
 let compareFirstRoundId = null;
@@ -294,7 +295,7 @@ function drawNextCard(isRemoteUpdate = false) {
     renderCard(currentCard);
     updateCompareFirstControls();
 
-    if (typeof window.roomRef !== 'undefined' && window.roomRef && !isRemoteUpdate) {
+    if (typeof window.roomRef !== 'undefined' && window.roomRef && !isRemoteUpdate && currentCard.module !== 'explicit') {
         window.roomRef.child('activeCard').set(currentCard);
     }
 }
@@ -318,6 +319,28 @@ function updateCompareFirstControls() {
 function isCompareFirstSessionActive() {
     return activeGameMode === 'compare-first'
         || Boolean(currentCard?.compareFirst || currentCard?.compareFirstComplete);
+}
+
+function hasExplicitAgeConfirmation() {
+    return localStorage.getItem(EXPLICIT_AGE_CONFIRMATION_KEY) === 'true';
+}
+
+function selectModule(module) {
+    document.querySelectorAll('.module-tab').forEach(tab => {
+        const isActive = tab.dataset.module === module;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', String(isActive));
+    });
+    activeModule = module;
+    activeIntensity = 'all';
+    document.querySelectorAll('.intensity-btn').forEach(button => {
+        const isActive = button.dataset.level === 'all';
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+    });
+    updateSectionView();
+    rebuildUnspentDeck();
+    drawNextCard();
 }
 
 function enterCompareFirstModeFromCard(card) {
@@ -1368,6 +1391,7 @@ function renderWildRevealEntries() {
 
 function updateSectionView() {
     const isWild = activeModule === 'secrets';
+    const isExplicit = activeModule === 'explicit';
     document.body.dataset.module = activeModule;
     updateIntensityLabels();
     document.getElementById('cardContainer')?.classList.toggle('hidden', isWild);
@@ -1375,12 +1399,15 @@ function updateSectionView() {
     document.getElementById('appStatus')?.classList.toggle('hidden', isWild);
     document.getElementById('cardActionStatus')?.classList.toggle('hidden', isWild);
     document.getElementById('wildUnspokenPanel')?.classList.toggle('hidden', !isWild);
+    document.getElementById('explicitContentNotice')?.classList.toggle('hidden', !isExplicit);
     if (isWild) renderWildRevealEntries();
 }
 
 function updateIntensityLabels(module = activeModule) {
     const labels = module === 'sexuality'
         ? ['Flirty', 'Sensual', 'Steamy']
+        : module === 'explicit'
+            ? ['Warm-up', 'Direct', 'Detailed']
         : ['Mild', 'Moderate', 'Wild'];
 
     document.querySelectorAll('.intensity-btn[data-level]').forEach(button => {
@@ -1588,6 +1615,7 @@ function connectToRoom(roomCode, role) {
 
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
+        if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
         if (remoteCard && (!currentCard
             || remoteCard.id !== currentCard.id
             || remoteCard.roundId !== currentCard.roundId)) {
@@ -1629,7 +1657,7 @@ async function createRoom() {
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
     if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
     connectToRoom(roomCode, 'host');
-    if (currentCard) await window.roomRef.child('activeCard').set(currentCard);
+    if (currentCard && currentCard.module !== 'explicit') await window.roomRef.child('activeCard').set(currentCard);
     setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
     renderPairManagement();
 }
@@ -2048,15 +2076,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 setCardActionStatus('Only the host can control the Compare First session.');
                 return;
             }
+            const selectedModule = tab.dataset.module;
+            if (selectedModule === 'explicit' && !hasExplicitAgeConfirmation()) {
+                document.getElementById('explicitAgeGate')?.classList.remove('hidden');
+                return;
+            }
             if (activeGameMode === 'compare-first') exitCompareFirstMode();
-            document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelectorAll('.module-tab').forEach(t => t.setAttribute('aria-pressed', String(t === tab)));
-            activeModule = tab.dataset.module;
-            rebuildUnspentDeck();
-            drawNextCard();
-            updateSectionView();
+            selectModule(selectedModule);
         };
+    });
+
+    document.getElementById('confirmExplicitAccessBtn')?.addEventListener('click', () => {
+        localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
+        document.getElementById('explicitAgeGate')?.classList.add('hidden');
+        selectModule('explicit');
+    });
+    document.getElementById('cancelExplicitAccessBtn')?.addEventListener('click', () => {
+        document.getElementById('explicitAgeGate')?.classList.add('hidden');
     });
 
     // 10. Intensity Level Filter Buttons

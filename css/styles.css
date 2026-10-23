@@ -26,6 +26,13 @@ body[data-module="secrets"] {
     --primary-border: rgba(139, 92, 246, 0.34);
 }
 
+body[data-module="explicit"] {
+    --primary: #dc2626;
+    --primary-glow: rgba(220, 38, 38, 0.34);
+    --primary-soft: rgba(220, 38, 38, 0.15);
+    --primary-border: rgba(220, 38, 38, 0.34);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -113,6 +120,28 @@ header {
     border-radius: 12px;
     padding: 4px;
     gap: 4px;
+}
+
+.explicit-content-notice {
+    width: 100%;
+    max-width: 560px;
+    margin: 4px 0 8px;
+    padding: 12px 20px;
+    border-top: 1px solid var(--primary-border);
+    border-bottom: 1px solid var(--primary-border);
+    background: var(--primary-soft);
+}
+
+.explicit-content-notice strong {
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.explicit-content-notice p {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    line-height: 1.45;
 }
 
 .module-tab {
