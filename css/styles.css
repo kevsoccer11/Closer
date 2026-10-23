@@ -43,7 +43,7 @@ body {
     align-items: center;
     overflow-x: hidden;
     position: relative;
-    padding-bottom: 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
 }
 
 .ambient-bg {
@@ -61,7 +61,7 @@ body {
 header {
     width: 100%;
     max-width: 560px;
-    padding: 16px 20px 8px 20px;
+    padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 8px;
     display: flex;
     flex-direction: column;
     gap: 12px;
