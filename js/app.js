@@ -38,6 +38,15 @@ let partnerCardsListElement = null;
 let processingPartnerCardKeys = new Set();
 let pairManagementContainer = null;
 let pendingJoinRequestRef = null;
+let cardAnswerListeners = [];
+let cardAnswerSeatListener = null;
+let cardAnswerSetupKey = null;
+let cardAnswerRoomRef = null;
+let cardAnswerCard = null;
+let cardAnswerOwnUid = null;
+let cardAnswerPartnerUid = null;
+let cardAnswerOwn = null;
+let cardAnswerPartner = null;
 
 async function initDatabase() {
     console.log("Initializing database...");
@@ -245,7 +254,7 @@ function drawNextCard(isRemoteUpdate = false) {
         return;
     }
 
-    currentCard = unspentDeck.pop();
+    currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId() };
     renderCard(currentCard);
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) nextCardBtn.disabled = false;
@@ -269,6 +278,7 @@ function renderCard(card) {
     const prompt = document.getElementById('cardPrompt');
     if (badge) badge.innerText = card.category || 'General';
     if (prompt) prompt.innerText = card.prompt;
+    renderCardAnswerPanel(card);
 
     const favBtn = document.getElementById('favCardBtn');
     if (favBtn) favBtn.classList.toggle('active', favoriteIds.includes(card.id));
@@ -281,6 +291,209 @@ function renderCard(card) {
 
     setCommunityActions(card);
     renderModeTimer();
+}
+
+function createCardRoundId() {
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function detachCardAnswerListeners() {
+    cardAnswerListeners.forEach(({ ref, handler }) => ref.off('value', handler));
+    cardAnswerListeners = [];
+    if (cardAnswerSeatListener && window.roomRef) {
+        window.roomRef.child('members/partner').off('value', cardAnswerSeatListener);
+        cardAnswerSeatListener = null;
+    }
+}
+
+function validCardAnswer(answer, card) {
+    return answer
+        && answer.roundId === card.roundId
+        && Number.isInteger(answer.optionIndex)
+        && answer.optionIndex >= 0
+        && answer.optionIndex < card.options.length;
+}
+
+function updateCardAnswerComparison() {
+    const panel = document.getElementById('cardAnswerPanel');
+    const optionsContainer = document.getElementById('cardAnswerOptions');
+    const submitButton = document.getElementById('submitCardAnswer');
+    const status = document.getElementById('cardAnswerStatus');
+    const comparison = document.getElementById('cardAnswerComparison');
+    if (!panel || !optionsContainer || !submitButton || !status || !comparison || !cardAnswerCard) return;
+
+    const selectedRadio = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
+    optionsContainer.querySelectorAll('input[name="cardAnswer"]').forEach((radio, index) => {
+        radio.checked = cardAnswerOwn
+            ? index === cardAnswerOwn.optionIndex
+            : selectedRadio?.value === String(index);
+        radio.disabled = Boolean(cardAnswerOwn) || !cardAnswerOwnUid || !cardAnswerPartnerUid;
+    });
+    submitButton.disabled = Boolean(cardAnswerOwn) || !cardAnswerOwnUid || !cardAnswerPartnerUid;
+    comparison.replaceChildren();
+    comparison.classList.toggle('hidden', !cardAnswerOwn || !cardAnswerPartner);
+
+    if (cardAnswerOwn && cardAnswerPartner) {
+        const matched = cardAnswerOwn.optionIndex === cardAnswerPartner.optionIndex;
+        const heading = document.createElement('strong');
+        heading.className = matched ? 'answer-match' : 'answer-difference';
+        heading.textContent = matched ? 'You agree!' : 'Different answers';
+        const ownAnswer = document.createElement('p');
+        const partnerAnswer = document.createElement('p');
+        const ownLabel = cardAnswerOwnUid === cardAnswerRoomRef?.hostUid ? 'Host' : 'You';
+        const partnerLabel = cardAnswerPartnerUid === cardAnswerRoomRef?.hostUid ? 'Host' : 'Partner';
+        ownAnswer.textContent = `${ownLabel}: ${cardAnswerCard.options[cardAnswerOwn.optionIndex]}`;
+        partnerAnswer.textContent = `${partnerLabel}: ${cardAnswerCard.options[cardAnswerPartner.optionIndex]}`;
+        comparison.append(heading, ownAnswer, partnerAnswer);
+        status.textContent = 'Both answers are in. Talk about what you chose.';
+    } else if (cardAnswerOwn) {
+        status.textContent = 'Answer submitted privately. Your choices will show together after your partner answers.';
+    } else if (!cardAnswerOwnUid) {
+        status.textContent = 'Connect to a host-approved room with your partner to compare answers.';
+    } else if (!cardAnswerPartnerUid) {
+        status.textContent = 'Waiting for your partner to join the room.';
+    } else {
+        status.textContent = 'Choose an answer. It stays hidden from your partner until both of you submit.';
+    }
+}
+
+function attachPartnerAnswerListener() {
+    if (!cardAnswerOwn || !cardAnswerPartnerUid || !cardAnswerRoomRef?.ref || !cardAnswerCard) return;
+    const partnerAnswerRef = cardAnswerRoomRef.ref.child(`answers/current/${cardAnswerPartnerUid}`);
+    const handler = snapshot => {
+        const answer = snapshot.val();
+        cardAnswerPartner = validCardAnswer(answer, cardAnswerCard) ? answer : null;
+        updateCardAnswerComparison();
+    };
+    partnerAnswerRef.on('value', handler, error => {
+        console.error('Could not read the partner answer:', error);
+        const status = document.getElementById('cardAnswerStatus');
+        if (status) status.textContent = 'Could not load your partner’s answer. Check the room access rules.';
+    });
+    cardAnswerListeners.push({ ref: partnerAnswerRef, handler });
+}
+
+async function setupCardAnswerRoom(card, retry = false) {
+    if (!window.roomRef || !card.roundId || !window.firebase) {
+        updateCardAnswerComparison();
+        return;
+    }
+    const setupKey = `${window.currentRoomCode}:${card.roundId}`;
+    if (!retry && cardAnswerSetupKey === setupKey) return;
+    detachCardAnswerListeners();
+    cardAnswerSetupKey = setupKey;
+    cardAnswerRoomRef = {
+        ref: window.roomRef,
+        hostUid: null
+    };
+    cardAnswerCard = card;
+    cardAnswerOwnUid = null;
+    cardAnswerPartnerUid = null;
+    cardAnswerOwn = null;
+    cardAnswerPartner = null;
+    updateCardAnswerComparison();
+
+    try {
+        const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
+        if (!user || window.roomRef !== cardAnswerRoomRef.ref) return;
+        const [hostSnapshot, partnerSnapshot] = await Promise.all([
+            cardAnswerRoomRef.ref.child('members/host').once('value'),
+            cardAnswerRoomRef.ref.child('members/partner').once('value')
+        ]);
+        const hostUid = hostSnapshot.val();
+        const partnerUid = partnerSnapshot.val();
+        if (hostUid !== user.uid && partnerUid !== user.uid) return;
+        cardAnswerRoomRef.hostUid = hostUid;
+        cardAnswerOwnUid = user.uid;
+        cardAnswerPartnerUid = user.uid === hostUid ? partnerUid : hostUid;
+        if (!cardAnswerPartnerUid) {
+            cardAnswerSeatListener = snapshot => {
+                if (snapshot.val() && currentCard?.roundId === card.roundId) {
+                    setupCardAnswerRoom(card, true);
+                }
+            };
+            cardAnswerRoomRef.ref.child('members/partner').on('value', cardAnswerSeatListener);
+            updateCardAnswerComparison();
+            return;
+        }
+
+        const ownAnswerRef = cardAnswerRoomRef.ref.child(`answers/current/${user.uid}`);
+        const ownHandler = snapshot => {
+            const answer = snapshot.val();
+            cardAnswerOwn = validCardAnswer(answer, card) ? answer : null;
+            if (cardAnswerOwn) attachPartnerAnswerListener();
+            updateCardAnswerComparison();
+        };
+        ownAnswerRef.on('value', ownHandler, error => {
+            console.error('Could not load your answer:', error);
+            const status = document.getElementById('cardAnswerStatus');
+            if (status) status.textContent = 'Could not load your answer. Check the room access rules.';
+        });
+        cardAnswerListeners.push({ ref: ownAnswerRef, handler: ownHandler });
+    } catch (error) {
+        console.error('Could not set up paired answer comparison:', error);
+        const status = document.getElementById('cardAnswerStatus');
+        if (status) status.textContent = `Could not set up answer comparison: ${error.message}`;
+    }
+}
+
+function renderCardAnswerPanel(card) {
+    const panel = document.getElementById('cardAnswerPanel');
+    const optionsContainer = document.getElementById('cardAnswerOptions');
+    const submitButton = document.getElementById('submitCardAnswer');
+    if (!panel || !optionsContainer || !submitButton) return;
+    if (!Array.isArray(card.options) || card.options.length < 2) {
+        panel.classList.add('hidden');
+        detachCardAnswerListeners();
+        cardAnswerSetupKey = null;
+        cardAnswerCard = null;
+        return;
+    }
+
+    panel.classList.remove('hidden');
+    if (cardAnswerCard?.roundId !== card.roundId) {
+        detachCardAnswerListeners();
+        cardAnswerSetupKey = null;
+        cardAnswerCard = card;
+        cardAnswerOwnUid = null;
+        cardAnswerPartnerUid = null;
+        cardAnswerOwn = null;
+        cardAnswerPartner = null;
+        const legend = document.createElement('legend');
+        legend.textContent = 'Choose one answer';
+        optionsContainer.replaceChildren(legend);
+        card.options.forEach((option, index) => {
+            const label = document.createElement('label');
+            label.className = 'card-answer-option';
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'cardAnswer';
+            radio.value = String(index);
+            const text = document.createElement('span');
+            text.textContent = option;
+            label.append(radio, text);
+            optionsContainer.appendChild(label);
+        });
+        submitButton.onclick = async () => {
+            const selected = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
+            if (!selected || !cardAnswerOwnUid || !cardAnswerPartnerUid || !cardAnswerRoomRef?.ref) return;
+            submitButton.disabled = true;
+            try {
+                await cardAnswerRoomRef.ref.child(`answers/current/${cardAnswerOwnUid}`).set({
+                    roundId: card.roundId,
+                    optionIndex: Number(selected.value),
+                    submittedAt: Date.now()
+                });
+            } catch (error) {
+                console.error('Could not submit the answer:', error);
+                const status = document.getElementById('cardAnswerStatus');
+                if (status) status.textContent = `Could not submit your answer: ${error.message}`;
+                submitButton.disabled = false;
+            }
+        };
+        setupCardAnswerRoom(card);
+    }
+    updateCardAnswerComparison();
 }
 
 // Drawer & Modal Controller Functions
@@ -565,7 +778,12 @@ async function receivePartnerCard(snapshot, roomRef) {
             || card.prompt.trim().length === 0
             || card.prompt.length > 280
             || ![1, 2, 3].includes(Number(card.intensity))
-            || !['question', 'activity'].includes(card.promptStyle)) {
+            || !['question', 'activity'].includes(card.promptStyle)
+            || (card.options !== undefined && (!Array.isArray(card.options)
+                || card.options.length < 2
+                || card.options.length > 6
+                || card.options.some(option => typeof option !== 'string' || !option.trim() || option.length > 120)))
+            || (card.contextType === 'poll') !== Array.isArray(card.options)) {
             throw new Error('The received card has invalid fields.');
         }
         const localId = `partner-${snapshot.key}`;
@@ -577,7 +795,8 @@ async function receivePartnerCard(snapshot, roomRef) {
                 intensity: Number(card.intensity),
                 prompt: card.prompt,
                 promptStyle: card.promptStyle,
-                contextType: card.promptStyle === 'activity' ? 'action' : 'story',
+                contextType: card.contextType === 'poll' ? 'poll' : card.promptStyle === 'activity' ? 'action' : 'story',
+                ...(Array.isArray(card.options) ? { options: card.options } : {}),
                 receivedAt: record.createdAt || new Date().toISOString()
             });
             localStorage.setItem('closer_partner_cards', JSON.stringify(partnerCards));
@@ -1039,6 +1258,14 @@ function setPairStatus(message) {
 }
 
 function detachRoomAccessListeners() {
+    detachCardAnswerListeners();
+    cardAnswerSetupKey = null;
+    cardAnswerRoomRef = null;
+    cardAnswerCard = null;
+    cardAnswerOwnUid = null;
+    cardAnswerPartnerUid = null;
+    cardAnswerOwn = null;
+    cardAnswerPartner = null;
     if (sharedRevealListener) {
         sharedRevealListener.ref.off('child_added', sharedRevealListener.handler);
         sharedRevealListener = null;
@@ -1076,7 +1303,9 @@ function connectToRoom(roomCode, role) {
 
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
-        if (remoteCard && (!currentCard || remoteCard.id !== currentCard.id)) {
+        if (remoteCard && (!currentCard
+            || remoteCard.id !== currentCard.id
+            || remoteCard.roundId !== currentCard.roundId)) {
             currentCard = remoteCard;
             renderCard(currentCard);
         }
@@ -1097,6 +1326,7 @@ function connectToRoom(roomCode, role) {
 
     updatePrivateShareUi();
     renderWildRevealEntries();
+    if (currentCard) renderCard(currentCard);
 }
 
 function generateRoomCode() {
@@ -1114,6 +1344,7 @@ async function createRoom() {
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
     if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
     connectToRoom(roomCode, 'host');
+    if (currentCard) await window.roomRef.child('activeCard').set(currentCard);
     setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
     renderPairManagement();
 }
@@ -1147,6 +1378,7 @@ async function requestRoomAccess(roomCode) {
     window.currentRoomCode = roomCode;
     window.currentRoomRole = 'requesting';
     window.roomRef = null;
+    if (currentCard) renderCard(currentCard);
     updatePrivateShareUi();
     const requestRef = roomRef.child(`joinRequests/${user.uid}`);
     pendingJoinRequestRef = requestRef;
@@ -1197,7 +1429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.getElementById('cardContainer');
     if (cardContainer) {
         cardContainer.onclick = (event) => {
-            if (event.target.closest('button')) return;
+            if (event.target.closest('button, input, label, select, textarea')) return;
             advanceCard();
         };
     }
@@ -1566,6 +1798,18 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCustomIntensityLabels(activeModule);
     }
 
+    const customAnswerFormat = document.getElementById('customAnswerFormat');
+    const customOptionsField = document.getElementById('customOptionsField');
+    const customPromptStyle = document.getElementById('customPromptStyle');
+    if (customAnswerFormat && customOptionsField && customPromptStyle) {
+        customAnswerFormat.onchange = () => {
+            const isMultipleChoice = customAnswerFormat.value === 'multiple-choice';
+            customOptionsField.classList.toggle('hidden', !isMultipleChoice);
+            if (isMultipleChoice) customPromptStyle.value = 'question';
+            customPromptStyle.disabled = isMultipleChoice;
+        };
+    }
+
     // 13. Save Custom Card
     const saveCardBtn = document.getElementById('saveCustomCardBtn');
     if (saveCardBtn) {
@@ -1575,7 +1819,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const cat = document.getElementById('customCategory').value || 'Custom Questions';
             const intensity = parseInt(document.getElementById('customIntensity').value) || 1;
             const promptText = document.getElementById('customPrompt').value.trim();
-            const promptStyle = document.getElementById('customPromptStyle').value;
+            const isMultipleChoice = document.getElementById('customAnswerFormat').value === 'multiple-choice';
+            const promptStyle = isMultipleChoice ? 'question' : document.getElementById('customPromptStyle').value;
+            const options = isMultipleChoice
+                ? document.getElementById('customOptions').value.split('\n').map(option => option.trim()).filter(Boolean)
+                : null;
             const publishMode = document.querySelector('input[name="publishMode"]:checked').value;
 
             if (!promptText) {
@@ -1588,6 +1836,18 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (promptText.length > 280) {
                 setPublishStatus('Cards must be 280 characters or fewer.');
+                return;
+            }
+            if (isMultipleChoice && (options.length < 2 || options.length > 6)) {
+                setPublishStatus('Enter between 2 and 6 answer choices, one per line.');
+                return;
+            }
+            if (isMultipleChoice && options.some(option => option.length > 120)) {
+                setPublishStatus('Each answer choice must be 120 characters or fewer.');
+                return;
+            }
+            if (isMultipleChoice && new Set(options.map(option => option.toLocaleLowerCase())).size !== options.length) {
+                setPublishStatus('Answer choices must be unique.');
                 return;
             }
 
@@ -1632,7 +1892,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 intensity: intensity,
                 prompt: promptText,
                 promptStyle,
-                contextType: promptStyle === 'activity' ? 'action' : (mod === 'secrets' ? 'consent' : 'story'),
+                contextType: isMultipleChoice ? 'poll' : promptStyle === 'activity' ? 'action' : (mod === 'secrets' ? 'consent' : 'story'),
+                ...(isMultipleChoice ? { options } : {}),
                 visibility: publishMode === 'community' ? 'community' : publishMode === 'partner' ? 'partner' : 'private',
                 ...(authorId ? { createdBy: authorId } : {})
             };
@@ -1669,6 +1930,10 @@ document.addEventListener('DOMContentLoaded', () => {
             masterDatabase.push(newCard);
             document.getElementById('customCategory').value = '';
             document.getElementById('customPrompt').value = '';
+            document.getElementById('customOptions').value = '';
+            document.getElementById('customAnswerFormat').value = 'open';
+            document.getElementById('customOptionsField').classList.add('hidden');
+            document.getElementById('customPromptStyle').disabled = false;
             document.getElementById('gameModeSelect').value = 'classic';
             activeGameMode = 'classic';
             renderModeTimer();

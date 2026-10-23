@@ -77,6 +77,12 @@
 
             <div class="card-body">
                 <p class="card-prompt" id="cardPrompt" aria-live="polite" aria-atomic="true">Connecting to Closer deck...</p>
+                <section class="card-answer-panel hidden" id="cardAnswerPanel" aria-label="Multiple-choice answer">
+                    <fieldset id="cardAnswerOptions"></fieldset>
+                    <button class="btn-primary" id="submitCardAnswer" type="button">Submit answer</button>
+                    <p class="card-answer-status" id="cardAnswerStatus" role="status" aria-live="polite"></p>
+                    <div class="card-answer-comparison hidden" id="cardAnswerComparison" aria-live="polite"></div>
+                </section>
 
                 <div class="timer-bar hidden" id="actionTimerBar">
                     <div>
@@ -164,6 +170,18 @@
 
                 <label for="customPrompt">Card</label>
                 <textarea id="customPrompt" placeholder="Write your question or activity..." rows="4" maxlength="280"></textarea>
+
+                <label for="customAnswerFormat">Answer format</label>
+                <select id="customAnswerFormat">
+                    <option value="open">Open response</option>
+                    <option value="multiple-choice">Multiple choice</option>
+                </select>
+
+                <div id="customOptionsField" class="custom-options-field hidden">
+                    <label for="customOptions">Answer choices</label>
+                    <textarea id="customOptions" placeholder="One choice per line, 2–6 choices" rows="4" maxlength="800"></textarea>
+                    <p class="publish-note">Partners can submit a choice privately and compare after both answer.</p>
+                </div>
 
                 <label for="customPromptStyle">Card Type</label>
                 <select id="customPromptStyle">

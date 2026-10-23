@@ -6,7 +6,7 @@
       ".read": true,
       "$cardId": {
         ".write": "auth != null && newData.exists() && newData.child('visibility').val() === 'community' && newData.child('createdBy').val() === auth.uid",
-        ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy'])",
+        ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy']) && ((newData.child('contextType').val() === 'poll' && newData.child('options').exists()) || (newData.child('contextType').val() !== 'poll' && !newData.child('options').exists()))",
         "id": {
           ".validate": "newData.isString() && newData.val() === $cardId"
         },
@@ -26,7 +26,13 @@
           ".validate": "newData.val() === 'question' || newData.val() === 'activity'"
         },
         "contextType": {
-          ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent'"
+          ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent' || newData.val() === 'poll'"
+        },
+        "options": {
+          ".validate": "newData.hasChildren(['0', '1'])",
+          "$optionIndex": {
+            ".validate": "$optionIndex.matches(/^[0-5]$/) && newData.isString() && newData.val().length > 0 && newData.val().length <= 120"
+          }
         },
         "visibility": {
           ".validate": "newData.val() === 'community'"
@@ -107,6 +113,27 @@
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
         },
+        "answers": {
+          "current": {
+            "$uid": {
+              ".read": "auth != null && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()) && (auth.uid === $uid || (root.child('rooms').child($roomCode).child('answers/current').child(auth.uid).child('roundId').val() === root.child('rooms').child($roomCode).child('activeCard/roundId').val() && data.child('roundId').val() === root.child('rooms').child($roomCode).child('activeCard/roundId').val()))",
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === $uid && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()) && newData.child('roundId').val() === root.child('rooms').child($roomCode).child('activeCard/roundId').val()",
+              ".validate": "newData.hasChildren(['roundId', 'optionIndex', 'submittedAt']) && newData.child('roundId').isString() && newData.child('optionIndex').isNumber() && newData.child('optionIndex').val() % 1 === 0 && newData.child('optionIndex').val() >= 0 && newData.child('optionIndex').val() < 6 && ((newData.child('optionIndex').val() === 0 && root.child('rooms').child($roomCode).child('activeCard/options/0').exists()) || (newData.child('optionIndex').val() === 1 && root.child('rooms').child($roomCode).child('activeCard/options/1').exists()) || (newData.child('optionIndex').val() === 2 && root.child('rooms').child($roomCode).child('activeCard/options/2').exists()) || (newData.child('optionIndex').val() === 3 && root.child('rooms').child($roomCode).child('activeCard/options/3').exists()) || (newData.child('optionIndex').val() === 4 && root.child('rooms').child($roomCode).child('activeCard/options/4').exists()) || (newData.child('optionIndex').val() === 5 && root.child('rooms').child($roomCode).child('activeCard/options/5').exists())) && newData.child('submittedAt').isNumber()",
+              "roundId": {
+                ".validate": "newData.isString() && newData.val().length <= 80"
+              },
+              "optionIndex": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() < 6"
+              },
+              "submittedAt": {
+                ".validate": "newData.isNumber()"
+              },
+              "$other": {
+                ".validate": false
+              }
+            }
+          }
+        },
         "sharedCards": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           "$cardId": {
@@ -120,7 +147,7 @@
               ".validate": "newData.isString() && newData.val().length <= 40"
             },
             "card": {
-              ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy'])",
+              ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy']) && ((newData.child('contextType').val() === 'poll' && newData.child('options').exists()) || (newData.child('contextType').val() !== 'poll' && !newData.child('options').exists()))",
               "id": {
                 ".validate": "newData.isString() && newData.val().length <= 80"
               },
@@ -140,7 +167,13 @@
                 ".validate": "newData.val() === 'question' || newData.val() === 'activity'"
               },
               "contextType": {
-                ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent'"
+                ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent' || newData.val() === 'poll'"
+              },
+              "options": {
+                ".validate": "newData.hasChildren(['0', '1'])",
+                "$optionIndex": {
+                  ".validate": "$optionIndex.matches(/^[0-5]$/) && newData.isString() && newData.val().length > 0 && newData.val().length <= 120"
+                }
               },
               "visibility": {
                 ".validate": "newData.val() === 'partner'"
