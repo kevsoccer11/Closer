@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Closer: Couples Connection & Intimacy Game</title>
 
     <!-- PWA Meta Tags -->
@@ -40,108 +39,210 @@
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <div class="app-title"><i data-lucide="heart" class="brand-heart"></i> Closer</div>
+            <h1 class="app-title"><i data-lucide="heart" class="brand-heart" aria-hidden="true"></i> Closer</h1>
             <div class="header-actions">
-                <button class="icon-btn" id="pairPartnerBtn" title="Pair Partner (Realtime Room)"><i
-                        data-lucide="radio"></i></button>
-                <button class="icon-btn" id="userProfileBtn" title="User Profile"><i data-lucide="user"></i></button>
-                <button class="icon-btn" id="journalDrawerBtn" title="Date Night Journal"><i
-                        data-lucide="book-heart"></i></button>
-                <button class="icon-btn" id="favsDrawerBtn" title="Favorites"><i data-lucide="bookmark"></i></button>
-                <button class="icon-btn" id="toolsDrawerBtn" title="Tools & Database"><i
-                        data-lucide="sliders"></i></button>
+                <button class="icon-btn" id="pairPartnerBtn" type="button" aria-label="Pair with partner" title="Pair with partner"><i
+                        data-lucide="radio" aria-hidden="true"></i></button>
+                <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><i data-lucide="user" aria-hidden="true"></i></button>
+                <button class="icon-btn" id="journalDrawerBtn" type="button" aria-label="Date night journal" title="Date night journal"><i
+                        data-lucide="book-heart" aria-hidden="true"></i></button>
+                <button class="icon-btn" id="favsDrawerBtn" type="button" aria-label="Favorites" title="Favorites"><i data-lucide="bookmark" aria-hidden="true"></i></button>
+                <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><i
+                        data-lucide="settings" aria-hidden="true"></i></button>
             </div>
         </div>
 
         <!-- Module Navigation -->
         <div class="module-nav">
-            <button class="module-tab active" data-module="sexuality"><i data-lucide="flame"></i> Sexuality</button>
-            <button class="module-tab" data-module="life"><i data-lucide="compass"></i> Life</button>
-            <button class="module-tab" data-module="secrets"><i data-lucide="key-round"></i> Secrets</button>
+            <button class="module-tab active" data-module="sexuality" type="button" aria-pressed="true"><i data-lucide="flame" aria-hidden="true"></i><span>Flame &amp; Passion</span></button>
+            <button class="module-tab" data-module="life" type="button" aria-pressed="false"><i data-lucide="compass" aria-hidden="true"></i><span>Deep Connection</span></button>
+            <button class="module-tab" data-module="secrets" type="button" aria-pressed="false"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
         </div>
 
-        <!-- Intensity Selector -->
-        <div class="intensity-bar" id="intensityBar">
-            <button class="intensity-btn active" data-level="all">All Levels</button>
-            <button class="intensity-btn" data-level="1">Mild (Lvl 1)</button>
-            <button class="intensity-btn" data-level="2">Moderate (Lvl 2)</button>
-            <button class="intensity-btn" data-level="3">Wild (Lvl 3)</button>
-        </div>
-
-        <!-- Actions Row -->
-        <div class="action-row">
-            <button class="shuffle-all-btn" id="shuffleAllBtn"><i data-lucide="shuffle"></i> Shuffle All</button>
-            <button class="add-card-btn" id="openAddCardModal"><i data-lucide="plus-circle"></i> Add Question</button>
-        </div>
     </header>
 
     <!-- Card Stage -->
     <main>
-        <div class="card-container" id="cardContainer">
+        <article class="card-container" id="cardContainer" aria-label="Question card. Tap or click the card to see the next question.">
             <div class="card-header">
                 <span class="card-badge" id="cardCategory">Loading Deck...</span>
+                <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
                 <div class="card-actions">
-                    <button class="card-action-btn" id="favCardBtn" title="Bookmark"><i
-                            data-lucide="bookmark"></i></button>
+                    <button class="card-action-btn community-vote-btn hidden" id="communityVoteBtn" type="button" aria-label="Upvote community question" aria-pressed="false"><i data-lucide="thumbs-up" aria-hidden="true"></i><span id="communityVoteCount">0</span></button>
+                    <button class="card-action-btn report-card-btn hidden" id="reportCardBtn" type="button" aria-label="Report community question" title="Report community question"><i data-lucide="flag" aria-hidden="true"></i></button>
+                    <button class="card-action-btn" id="favCardBtn" type="button" title="Save question" aria-label="Save question" aria-pressed="false"><i
+                            data-lucide="bookmark" aria-hidden="true"></i></button>
                 </div>
             </div>
 
             <div class="card-body">
-                <p class="card-prompt" id="cardPrompt">Connecting to Closer deck...</p>
+                <p class="card-prompt" id="cardPrompt" aria-live="polite" aria-atomic="true">Connecting to Closer deck...</p>
 
                 <div class="timer-bar hidden" id="actionTimerBar">
                     <div>
-                        <span style="font-size:0.75rem; color:var(--text-muted); display:block;">Action Timer</span>
-                        <span class="timer-display" id="timerClock">01:00</span>
+                        <span class="timer-label" id="timerLabel">Timer</span>
+                        <span class="timer-display" id="timerClock" aria-live="polite">00:30</span>
                     </div>
-                    <button class="timer-btn" id="timerToggleBtn">Start</button>
+                    <button class="timer-btn" id="timerToggleBtn" type="button">Start</button>
                 </div>
             </div>
 
             <div class="card-footer">
-                <span id="deckCounter">Card 0 of 0</span>
-                <span class="tap-hint"><i data-lucide="touch-portal"></i> Tap card for next</span>
+                <span class="tap-hint">Tap card for next question</span>
+                <span class="skip-hint">Skip anything, no explanation needed</span>
             </div>
-        </div>
+        </article>
+        <p class="app-status" id="appStatus" role="status" aria-live="polite"></p>
+        <p class="app-status hidden" id="cardActionStatus" role="status" aria-live="polite"></p>
+        <section class="wild-panel hidden" id="wildUnspokenPanel" aria-labelledby="wildPanelTitle">
+            <div class="wild-panel-header">
+                <span class="wild-panel-icon" aria-hidden="true"><i data-lucide="lock-keyhole"></i></span>
+                <h2 id="wildPanelTitle">Wild &amp; Unspoken</h2>
+                <p>A private space for a secret, fantasy, or something you have been wanting to say.</p>
+            </div>
+            <section class="private-share-setup" aria-labelledby="privateShareTitle">
+                <h3 id="privateShareTitle">Encrypted partner sharing</h3>
+                <p>Pair both devices using the Pair button, then exchange a sharing key with your partner through a separate trusted channel. The room carries encrypted text only.</p>
+                <label for="privateShareKey">Shared encryption key</label>
+                <input id="privateShareKey" type="password" autocomplete="off" spellcheck="false" placeholder="Generate a key or paste your partner’s key">
+                <div class="private-share-key-actions">
+                    <button id="generatePrivateShareKey" type="button">Generate key</button>
+                    <button id="usePrivateShareKey" type="button">Use key</button>
+                    <button id="copyPrivateShareKey" type="button" disabled>Copy key</button>
+                    <button id="togglePrivateShareKey" type="button" aria-pressed="false">Show key</button>
+                </div>
+                <p class="private-share-note">Share this key separately from the room code. Anyone with both the room access and key can read shared entries. The key is kept only for this browser tab.</p>
+                <p id="privateShareStatus" class="private-reveal-status" role="status" aria-live="polite"></p>
+            </section>
+            <form id="privateRevealForm" class="private-reveal-form">
+                <label for="privateRevealType">What would you like to share?</label>
+                <select id="privateRevealType" required>
+                    <option value="Secret">A secret</option>
+                    <option value="Fantasy">A fantasy</option>
+                    <option value="Something unspoken">Something unspoken</option>
+                </select>
+                <label for="privateRevealText">Write it in your own words</label>
+                <textarea id="privateRevealText" maxlength="1000" rows="5" placeholder="Take your time. You can choose when to reveal it." required></textarea>
+                <p class="private-reveal-note">Saved only in this browser on this device. It is not shared or published. Anyone with access to this browser may be able to read saved entries.</p>
+                <button class="btn-primary" type="submit">Save privately</button>
+                <p id="privateRevealStatus" class="private-reveal-status" role="status" aria-live="polite"></p>
+            </form>
+            <div class="private-reveal-list" id="privateRevealList" aria-live="polite"></div>
+            <section class="shared-reveal-section" aria-labelledby="sharedRevealTitle">
+                <h3 id="sharedRevealTitle">Shared by your partner</h3>
+                <div id="sharedRevealList" class="private-reveal-list" aria-live="polite">
+                    <p class="private-reveal-empty">Partner entries will appear here after you connect to the same room and use the same sharing key.</p>
+                </div>
+            </section>
+        </section>
     </main>
 
-    <!-- Response Section -->
     <div class="response-section">
-        <div class="response-bar" id="responseBar"></div>
+        <button class="next-question-btn" id="nextCardBtn" type="button">Skip question</button>
     </div>
 
     <!-- Custom Question Modal -->
     <div class="modal-overlay hidden" id="customCardModal">
-        <div class="modal-card">
-            <h3>Add Custom Question</h3>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="customModalTitle">
+            <h3 id="customModalTitle">Add a Card</h3>
             <div class="modal-form">
-                <label>Target Module</label>
+                <label for="customModule">Target Module</label>
                 <select id="customModule">
-                    <option value="sexuality">Sexuality & Intimacy</option>
-                    <option value="life">Life & Future</option>
-                    <option value="secrets">Secrets & Desires</option>
+                    <option value="sexuality">Flame &amp; Passion</option>
+                    <option value="life">Deep Connection</option>
                 </select>
 
-                <label>Category Name</label>
-                <input type="text" id="customCategory" placeholder="e.g. Past History, Desires" />
+                <label for="customCategory">Category Name</label>
+                <input type="text" id="customCategory" placeholder="e.g. Past History, Desires" maxlength="50" />
 
-                <label>Intensity Level</label>
+                <label for="customIntensity">Intensity Level</label>
                 <select id="customIntensity">
                     <option value="1">Level 1 - Mild</option>
                     <option value="2">Level 2 - Moderate</option>
                     <option value="3">Level 3 - Wild</option>
                 </select>
 
-                <label>Question Prompt</label>
-                <textarea id="customPrompt" placeholder="Type your prompt or question here..." rows="4"></textarea>
+                <label for="customPrompt">Card</label>
+                <textarea id="customPrompt" placeholder="Write your question or activity..." rows="4" maxlength="280"></textarea>
+
+                <label for="customPromptStyle">Card Type</label>
+                <select id="customPromptStyle">
+                    <option value="question">Question to answer</option>
+                    <option value="activity">Activity to try</option>
+                </select>
+
+                <fieldset class="publish-options">
+                    <legend>Who can see this card?</legend>
+                    <label><input type="radio" name="publishMode" value="private" checked> Keep in my deck · this device</label>
+                    <label><input type="radio" name="publishMode" value="partner"> Share with my partner · paired room only</label>
+                    <label><input type="radio" name="publishMode" value="community"> Share with everyone · Global Deck</label>
+                    <p class="publish-note">Cards kept on this device stay out of your partner’s saved deck, but the active card is visible in a paired room. Partner-shared card text is sent to the paired room and may be readable by anyone with room database access. Global cards are public and may be reviewed if reported.</p>
+                </fieldset>
+                <p id="publishStatus" class="publish-status" role="status" aria-live="polite"></p>
             </div>
             <div class="modal-actions">
-                <button id="closeModalBtn" class="btn-secondary">Cancel</button>
-                <button id="saveCustomCardBtn" class="btn-primary">Save to Database</button>
+                <button id="closeModalBtn" class="btn-secondary" type="button">Cancel</button>
+                <button id="saveCustomCardBtn" class="btn-primary" type="button">Save card</button>
             </div>
         </div>
     </div>
+    <!-- Universal Drawer & Backdrop Overlay -->
+    <div class="overlay hidden" id="drawerOverlay"></div>
 
+    <div class="drawer hidden" id="appDrawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title" id="drawerTitle">Menu</h3>
+            <button class="icon-btn" id="closeDrawerBtn" type="button" aria-label="Close menu"><i data-lucide="x" aria-hidden="true"></i></button>
+        </div>
+        <div class="drawer-content" id="drawerContent">
+            <details class="deck-options hidden" id="deckOptions">
+                <summary>
+                    <span>Deck &amp; game options</span>
+                    <span class="question-type-summary" id="questionTypeSummary">All question types</span>
+                </summary>
+                <div class="deck-options-content">
+                    <div class="filter-group" role="group" aria-label="Question type">
+                        <span class="filter-label">Question type</span>
+                        <div class="prompt-style-bar" id="promptStyleBar">
+                            <button class="prompt-style-btn active" data-prompt-style="all" type="button" aria-pressed="true">All</button>
+                            <button class="prompt-style-btn" data-prompt-style="question" type="button" aria-pressed="false">Questions to answer</button>
+                            <button class="prompt-style-btn" data-prompt-style="activity" type="button" aria-pressed="false">Activities to try</button>
+                        </div>
+                        <p class="filter-confirmation" id="questionTypeConfirmation" role="status" aria-live="polite"></p>
+                    </div>
+                    <div class="mode-controls">
+                        <label for="gameModeSelect">Game mode</label>
+                        <select id="gameModeSelect">
+                            <option value="classic">Classic</option>
+                            <option value="deep">Deep talk · Level 3 + reflection timer</option>
+                        </select>
+                        <button class="turn-toggle" id="pickTurnBtn" type="button">Who answers first?</button>
+                        <span id="turnPickerResult" class="turn-picker-result" role="status" aria-live="polite"></span>
+                    </div>
+                    <div class="intensity-bar" id="intensityBar">
+                        <button class="intensity-btn active" data-level="all" type="button" aria-pressed="true">All Levels</button>
+                        <button class="intensity-btn" data-level="1" type="button" aria-pressed="false">Mild</button>
+                        <button class="intensity-btn" data-level="2" type="button" aria-pressed="false">Moderate</button>
+                        <button class="intensity-btn" data-level="3" type="button" aria-pressed="false">Wild</button>
+                    </div>
+                    <div class="action-row">
+                        <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle All</button>
+                        <button class="add-card-btn" id="openAddCardModal" type="button"><i data-lucide="plus-circle" aria-hidden="true"></i> Add Card</button>
+                    </div>
+                    <div class="session-controls">
+                        <p>Take turns answering, if you like. Either of you can pass without explaining.</p>
+                        <button class="turn-toggle" id="turnModeBtn" type="button" aria-pressed="false">Turn-taking off</button>
+                    </div>
+                </div>
+            </details>
+            <section id="partnerCardsSection" class="partner-cards-section hidden" aria-labelledby="partnerCardsTitle">
+                <h3 id="partnerCardsTitle">Cards from your partner</h3>
+                <p class="partner-cards-note">Cards your partner explicitly shared to this paired room. They are not part of the Global Deck.</p>
+                <div id="partnerCardsList" class="partner-cards-list" aria-live="polite"></div>
+            </section>
+            <!-- Dynamic Drawer Content Renders Here -->
+        </div>
+    </div>
     <!-- Project Scripts -->
     <script src="js/firebase-config.js"></script>
     <script src="js/app.js"></script>

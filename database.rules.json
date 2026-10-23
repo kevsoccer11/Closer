@@ -1,0 +1,189 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "cards": {
+      ".read": true,
+      "$cardId": {
+        ".write": "auth != null && newData.exists() && newData.child('visibility').val() === 'community' && newData.child('createdBy').val() === auth.uid",
+        ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy'])",
+        "id": {
+          ".validate": "newData.isString() && newData.val() === $cardId"
+        },
+        "module": {
+          ".validate": "newData.val() === 'sexuality' || newData.val() === 'life'"
+        },
+        "category": {
+          ".validate": "newData.isString() && newData.val().length <= 50"
+        },
+        "intensity": {
+          ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3"
+        },
+        "prompt": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 280"
+        },
+        "promptStyle": {
+          ".validate": "newData.val() === 'question' || newData.val() === 'activity'"
+        },
+        "contextType": {
+          ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent'"
+        },
+        "visibility": {
+          ".validate": "newData.val() === 'community'"
+        },
+        "createdBy": {
+          ".validate": "auth != null && newData.val() === auth.uid"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    },
+    "cardVotes": {
+      "$cardId": {
+        ".read": "auth != null",
+        "$uid": {
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.val() === true"
+        }
+      }
+    },
+    "cardReports": {
+      "$cardId": {
+        "$uid": {
+          ".read": "auth != null && auth.token.moderator === true",
+          ".write": "auth != null && auth.uid === $uid",
+          ".validate": "newData.hasChildren(['reason', 'createdAt'])",
+          "reason": {
+            ".validate": "newData.val() === 'community-report'"
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber()"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
+      }
+    },
+    "rooms": {
+      "$roomCode": {
+        "members": {
+          "host": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/)",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && !data.exists() && newData.val() === auth.uid",
+            ".validate": "newData.isString()"
+          },
+          "partner": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/)",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && root.child('rooms').child($roomCode).child('members/host').val() === auth.uid && !data.exists() && newData.isString() && root.child('rooms').child($roomCode).child('joinRequests').child(newData.val()).child('status').val() === 'pending'",
+            ".validate": "newData.isString()"
+          }
+        },
+        "joinRequests": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && root.child('rooms').child($roomCode).child('members/host').val() === auth.uid",
+          "$requestUid": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === $requestUid || root.child('rooms').child($roomCode).child('members/host').val() === auth.uid)",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && ((auth.uid === $requestUid && root.child('rooms').child($roomCode).child('members/host').exists() && root.child('rooms').child($roomCode).child('members/partner').val() === null && (!data.exists() || data.child('status').val() === 'denied') && newData.child('requesterUid').val() === auth.uid && newData.child('status').val() === 'pending') || (root.child('rooms').child($roomCode).child('members/host').val() === auth.uid && data.child('status').val() === 'pending' && (newData.child('status').val() === 'approved' || newData.child('status').val() === 'denied')))",
+            ".validate": "newData.hasChildren(['requesterUid', 'status', 'requestedAt']) && newData.child('requesterUid').val() === $requestUid && (newData.child('status').val() === 'pending' || newData.child('status').val() === 'approved' || newData.child('status').val() === 'denied') && newData.child('requestedAt').isNumber() && (!newData.child('resolvedAt').exists() || newData.child('resolvedAt').isNumber())",
+            "requesterUid": {
+              ".validate": "newData.isString()"
+            },
+            "status": {
+              ".validate": "newData.val() === 'pending' || newData.val() === 'approved' || newData.val() === 'denied'"
+            },
+            "requestedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "resolvedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "activeCard": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
+        },
+        "sharedCards": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "$cardId": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()) && (!newData.exists() || newData.child('senderUid').val() === auth.uid)",
+            ".validate": "newData.hasChildren(['senderUid', 'card', 'createdAt']) && newData.child('senderUid').val() === auth.uid && newData.child('createdAt').isString()",
+            "senderUid": {
+              ".validate": "newData.isString()"
+            },
+            "createdAt": {
+              ".validate": "newData.isString() && newData.val().length <= 40"
+            },
+            "card": {
+              ".validate": "newData.hasChildren(['id', 'module', 'category', 'intensity', 'prompt', 'promptStyle', 'contextType', 'visibility', 'createdBy'])",
+              "id": {
+                ".validate": "newData.isString() && newData.val().length <= 80"
+              },
+              "module": {
+                ".validate": "newData.val() === 'sexuality' || newData.val() === 'life'"
+              },
+              "category": {
+                ".validate": "newData.isString() && newData.val().length <= 50"
+              },
+              "intensity": {
+                ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3"
+              },
+              "prompt": {
+                ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 280"
+              },
+              "promptStyle": {
+                ".validate": "newData.val() === 'question' || newData.val() === 'activity'"
+              },
+              "contextType": {
+                ".validate": "newData.val() === 'story' || newData.val() === 'action' || newData.val() === 'consent'"
+              },
+              "visibility": {
+                ".validate": "newData.val() === 'partner'"
+              },
+              "createdBy": {
+                ".validate": "newData.val() === auth.uid"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "sharedReveals": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "$messageId": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()) && (!newData.exists() || newData.child('senderUid').val() === auth.uid)",
+            ".validate": "newData.hasChildren(['senderUid', 'senderClientId', 'iv', 'ciphertext', 'createdAt']) && newData.child('senderUid').val() === auth.uid",
+            "senderUid": {
+              ".validate": "newData.isString()"
+            },
+            "senderClientId": {
+              ".validate": "newData.isString() && newData.val().length <= 80"
+            },
+            "iv": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 32"
+            },
+            "ciphertext": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 6000"
+            },
+            "createdAt": {
+              ".validate": "newData.isString() && newData.val().length <= 40"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

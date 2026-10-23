@@ -1,8 +1,9 @@
-const CACHE_NAME = 'closer-pwa-v8';
+const CACHE_NAME = 'closer-pwa-v18';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './manifest.json',
+    './cards.json',
     './css/styles.css',
     './js/app.js',
     './js/firebase-config.js'
@@ -11,7 +12,7 @@ const ASSETS_TO_CACHE = [
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('[ServiceWorker] Pre-caching App Shell');
+            console.log('[ServiceWorker] Caching App Shell');
             return cache.addAll(ASSETS_TO_CACHE);
         }).then(() => self.skipWaiting())
     );
@@ -23,7 +24,7 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 keyList.map((key) => {
                     if (key !== CACHE_NAME) {
-                        console.log('[ServiceWorker] Removing old cache:', key);
+                        console.log('[ServiceWorker] Clearing old cache:', key);
                         return caches.delete(key);
                     }
                 })
@@ -33,7 +34,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    // Only intercept same-origin requests; leave external CDNs to the browser
+    // Only handle local relative requests; bypass third-party CDNs (Lucide, Firebase, Google Fonts)
     if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
         return;
     }
