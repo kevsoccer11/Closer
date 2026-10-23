@@ -510,6 +510,69 @@ main {
     color: var(--text-main);
 }
 
+.compare-first-setup,
+.compare-first-complete {
+    display: grid;
+    gap: 12px;
+    width: min(100%, 38rem);
+    margin-top: 18px;
+    text-align: left;
+}
+
+.compare-first-setup h3,
+.compare-first-complete h2 {
+    font-size: 1rem;
+}
+
+.compare-first-setup fieldset {
+    display: grid;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+}
+
+.compare-first-setup legend {
+    padding: 0 4px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.compare-first-setup fieldset label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.compare-first-setup input {
+    accent-color: var(--primary);
+}
+
+.compare-first-setup > p,
+.compare-first-complete > p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.compare-first-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.compare-first-actions button {
+    flex: 1 1 180px;
+}
+
+.mode-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .turn-indicator {
     margin-left: auto;
     color: var(--primary);

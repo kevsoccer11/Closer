@@ -83,6 +83,15 @@
                     <p class="card-answer-status" id="cardAnswerStatus" role="status" aria-live="polite"></p>
                     <div class="card-answer-comparison hidden" id="cardAnswerComparison" aria-live="polite"></div>
                 </section>
+                <section class="compare-first-complete hidden" id="compareFirstComplete" aria-labelledby="compareFirstCompleteTitle">
+                    <h2 id="compareFirstCompleteTitle">Poll round complete</h2>
+                    <p id="compareFirstCompleteMessage"></p>
+                    <div class="compare-first-actions">
+                        <button class="btn-secondary" id="answerMorePollsBtn" type="button">Answer another poll round</button>
+                        <button class="btn-primary" id="continueRegularCardsBtn" type="button">Continue to regular cards</button>
+                    </div>
+                    <p class="card-answer-status" id="compareFirstHostNote"></p>
+                </section>
 
                 <div class="timer-bar hidden" id="actionTimerBar">
                     <div>
@@ -233,7 +242,25 @@
                         <select id="gameModeSelect">
                             <option value="classic">Classic</option>
                             <option value="deep">Deep talk · Level 3 + reflection timer</option>
+                            <option value="compare-first">Compare First · Multiple-choice before regular cards</option>
                         </select>
+                        <section id="compareFirstSetup" class="compare-first-setup hidden" aria-labelledby="compareFirstSetupTitle">
+                            <h3 id="compareFirstSetupTitle">Choose your poll round</h3>
+                            <fieldset>
+                                <legend>Modules</legend>
+                                <label><input type="checkbox" name="compareFirstModule" value="sexuality" checked> Flame &amp; Passion</label>
+                                <label><input type="checkbox" name="compareFirstModule" value="life"> Deep Connection</label>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Levels</legend>
+                                <label><input type="checkbox" name="compareFirstLevel" value="1" checked> Flirty / Mild</label>
+                                <label><input type="checkbox" name="compareFirstLevel" value="2" checked> Sensual / Moderate</label>
+                                <label><input type="checkbox" name="compareFirstLevel" value="3" checked> Steamy / Wild</label>
+                            </fieldset>
+                            <p>Requires an approved paired room. Answer up to 50 multiple-choice cards together, compare after both submit, and discuss each before moving on.</p>
+                            <button class="btn-primary" id="startCompareFirstBtn" type="button">Start Compare First</button>
+                            <p class="card-answer-status" id="compareFirstSetupStatus" role="status" aria-live="polite"></p>
+                        </section>
                         <button class="turn-toggle" id="pickTurnBtn" type="button">Who answers first?</button>
                         <span id="turnPickerResult" class="turn-picker-result" role="status" aria-live="polite"></span>
                     </div>

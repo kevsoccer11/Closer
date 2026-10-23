@@ -12,6 +12,12 @@ let activeModule = 'sexuality';
 let activeIntensity = 'all';
 let activePromptStyle = 'all';
 let activeGameMode = 'classic';
+let compareFirstModules = ['sexuality'];
+let compareFirstLevels = ['1', '2', '3'];
+let compareFirstRoundId = null;
+let compareFirstRoundIndex = 0;
+let compareFirstRoundTotal = 0;
+let compareFirstRestoreState = null;
 let turnTakingEnabled = false;
 let activeTurn = 0;
 let pickedAnswerer = null;
@@ -109,11 +115,14 @@ async function initDatabase() {
 }
 
 function rebuildUnspentDeck() {
-    const weightedCards = getFilteredCards().flatMap(card => {
-        if (card.visibility !== 'community') return [card];
-        const extraCopies = Math.min(3, Math.floor((communityVoteCounts[card.id] || 0) / 3));
-        return Array.from({ length: 1 + extraCopies }, () => card);
-    });
+    const filteredCards = getFilteredCards();
+    const weightedCards = activeGameMode === 'compare-first'
+        ? filteredCards
+        : filteredCards.flatMap(card => {
+            if (card.visibility !== 'community') return [card];
+            const extraCopies = Math.min(3, Math.floor((communityVoteCounts[card.id] || 0) / 3));
+            return Array.from({ length: 1 + extraCopies }, () => card);
+        });
     for (let i = weightedCards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [weightedCards[i], weightedCards[j]] = [weightedCards[j], weightedCards[i]];
@@ -123,13 +132,19 @@ function rebuildUnspentDeck() {
 
 function getFilteredCards() {
     return masterDatabase.filter(card => {
-        const matchesModule = activeModule === 'all' || card.module === activeModule;
+        const matchesCompareFirst = activeGameMode === 'compare-first';
+        const matchesModule = matchesCompareFirst
+            ? compareFirstModules.includes(card.module)
+            : activeModule === 'all' || card.module === activeModule;
         const intensity = String(card.intensity);
         const matchesMode = activeGameMode !== 'deep' || intensity === '3';
-        const matchesIntensity = activeIntensity === 'all' || intensity === String(activeIntensity);
+        const matchesIntensity = matchesCompareFirst
+            ? compareFirstLevels.includes(intensity)
+            : activeIntensity === 'all' || intensity === String(activeIntensity);
         const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
-        const matchesPromptStyle = activePromptStyle === 'all' || promptStyle === activePromptStyle;
-        return matchesModule && matchesMode && matchesIntensity && matchesPromptStyle;
+        const matchesPromptStyle = matchesCompareFirst || activePromptStyle === 'all' || promptStyle === activePromptStyle;
+        return matchesModule && matchesMode && matchesIntensity && matchesPromptStyle
+            && (!matchesCompareFirst || (Array.isArray(card.options) && card.options.length >= 2));
     });
 }
 
@@ -201,7 +216,7 @@ function renderModeTimer(reset = true) {
     if (!timerBar) return;
     stopModeTimer();
 
-    if (activeGameMode === 'classic') {
+    if (activeGameMode === 'classic' || activeGameMode === 'compare-first') {
         timerBar.classList.add('hidden');
         return;
     }
@@ -238,8 +253,16 @@ function updateQuestionTypeSelection(style, announce = false) {
 }
 
 function drawNextCard(isRemoteUpdate = false) {
-    if (unspentDeck.length === 0) rebuildUnspentDeck();
+    if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host' && !isRemoteUpdate) {
+        setCardActionStatus('Only the host can advance the Compare First session.');
+        return;
+    }
+    if (activeGameMode !== 'compare-first' && unspentDeck.length === 0) rebuildUnspentDeck();
     if (unspentDeck.length === 0) {
+        if (activeGameMode === 'compare-first' && compareFirstRoundIndex > 0) {
+            completeCompareFirstRound();
+            return;
+        }
         currentCard = null;
         const badge = document.getElementById('cardCategory');
         const prompt = document.getElementById('cardPrompt');
@@ -251,20 +274,264 @@ function drawNextCard(isRemoteUpdate = false) {
         document.getElementById('actionTimerBar')?.classList.add('hidden');
         document.getElementById('communityVoteBtn')?.classList.add('hidden');
         document.getElementById('reportCardBtn')?.classList.add('hidden');
+        if (activeGameMode === 'compare-first') {
+            const setupStatus = document.getElementById('compareFirstSetupStatus');
+            if (setupStatus) setupStatus.textContent = 'No multiple-choice cards match those module and level filters.';
+        }
         return;
     }
 
     currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId() };
+    if (activeGameMode === 'compare-first') {
+        compareFirstRoundIndex += 1;
+        currentCard.compareFirst = true;
+        currentCard.compareFirstRoundId = compareFirstRoundId;
+        currentCard.compareFirstIndex = compareFirstRoundIndex;
+        currentCard.compareFirstTotal = compareFirstRoundTotal;
+        currentCard.compareFirstModules = compareFirstModules;
+        currentCard.compareFirstLevels = compareFirstLevels;
+    }
     renderCard(currentCard);
-    const nextCardBtn = document.getElementById('nextCardBtn');
-    if (nextCardBtn) nextCardBtn.disabled = false;
+    updateCompareFirstControls();
 
     if (typeof window.roomRef !== 'undefined' && window.roomRef && !isRemoteUpdate) {
         window.roomRef.child('activeCard').set(currentCard);
     }
 }
 
+function updateCompareFirstControls() {
+    const nextCardBtn = document.getElementById('nextCardBtn');
+    if (!nextCardBtn) return;
+    if (!currentCard?.compareFirst) {
+        nextCardBtn.textContent = 'Skip question';
+        nextCardBtn.disabled = !currentCard;
+        return;
+    }
+    const isHost = window.currentRoomRole === 'host';
+    const answersSubmitted = Boolean(cardAnswerOwn && cardAnswerPartner);
+    nextCardBtn.textContent = currentCard.compareFirstIndex >= currentCard.compareFirstTotal
+        ? 'Finish poll round'
+        : `Next poll · ${currentCard.compareFirstIndex}/${currentCard.compareFirstTotal}`;
+    nextCardBtn.disabled = !isHost || !answersSubmitted;
+}
+
+function isCompareFirstSessionActive() {
+    return activeGameMode === 'compare-first'
+        || Boolean(currentCard?.compareFirst || currentCard?.compareFirstComplete);
+}
+
+function enterCompareFirstModeFromCard(card) {
+    compareFirstRestoreState ||= {
+        module: activeModule,
+        intensity: activeIntensity,
+        promptStyle: activePromptStyle
+    };
+    activeGameMode = 'compare-first';
+    compareFirstModules = Array.isArray(card.compareFirstModules)
+        ? card.compareFirstModules
+        : [card.module];
+    compareFirstLevels = Array.isArray(card.compareFirstLevels)
+        ? card.compareFirstLevels.map(String)
+        : [String(card.intensity)];
+    compareFirstRoundId = card.compareFirstRoundId || compareFirstRoundId;
+    compareFirstRoundIndex = card.compareFirstIndex || card.compareFirstTotal || 1;
+    compareFirstRoundTotal = card.compareFirstTotal || 50;
+    activeModule = compareFirstModules[0] || card.module;
+    activePromptStyle = 'all';
+    document.querySelectorAll('.module-tab').forEach(tab => {
+        const isActive = tab.dataset.module === activeModule;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', String(isActive));
+    });
+    updateQuestionTypeSelection('all');
+    updateSectionView();
+    const gameModeSelect = document.getElementById('gameModeSelect');
+    if (gameModeSelect) gameModeSelect.value = 'compare-first';
+    renderModeTimer();
+}
+
+function exitCompareFirstMode() {
+    if (compareFirstRestoreState) {
+        activeModule = compareFirstRestoreState.module;
+        activeIntensity = compareFirstRestoreState.intensity;
+        activePromptStyle = compareFirstRestoreState.promptStyle;
+        compareFirstRestoreState = null;
+        document.querySelectorAll('.module-tab').forEach(tab => {
+            const isActive = tab.dataset.module === activeModule;
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-pressed', String(isActive));
+        });
+        document.querySelectorAll('.intensity-btn').forEach(button => {
+            const isActive = button.dataset.level === activeIntensity;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+        updateQuestionTypeSelection(activePromptStyle);
+        updateSectionView();
+    }
+    activeGameMode = 'classic';
+    compareFirstRoundId = null;
+    compareFirstRoundIndex = 0;
+    compareFirstRoundTotal = 0;
+    document.getElementById('compareFirstComplete')?.classList.add('hidden');
+    const gameModeSelect = document.getElementById('gameModeSelect');
+    if (gameModeSelect) gameModeSelect.value = 'classic';
+    renderModeTimer();
+}
+
+async function startCompareFirstSession() {
+    const status = document.getElementById('compareFirstSetupStatus');
+    const modules = [...document.querySelectorAll('input[name="compareFirstModule"]:checked')].map(input => input.value);
+    const levels = [...document.querySelectorAll('input[name="compareFirstLevel"]:checked')].map(input => input.value);
+    if (modules.length === 0 || levels.length === 0) {
+        if (status) status.textContent = 'Choose at least one module and one level.';
+        return;
+    }
+    if (!window.roomRef || window.currentRoomRole !== 'host') {
+        if (status) status.textContent = 'Connect to your partner and create a room as host before starting Compare First.';
+        return;
+    }
+
+    try {
+        const partnerSnapshot = await window.roomRef.child('members/partner').once('value');
+        if (!partnerSnapshot.val()) {
+            if (status) status.textContent = 'Your partner must join the room before you start the poll round.';
+            return;
+        }
+    } catch (error) {
+        console.error('Could not verify the paired room:', error);
+        if (status) status.textContent = `Could not check room membership: ${error.message}`;
+        return;
+    }
+
+    compareFirstRestoreState = {
+        module: activeModule,
+        intensity: activeIntensity,
+        promptStyle: activePromptStyle
+    };
+    compareFirstModules = modules;
+    compareFirstLevels = levels;
+    compareFirstRoundId = createCardRoundId();
+    compareFirstRoundIndex = 0;
+    activeGameMode = 'compare-first';
+    activeModule = modules[0];
+    activePromptStyle = 'all';
+    document.querySelectorAll('.module-tab').forEach(tab => {
+        const isActive = tab.dataset.module === activeModule;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-pressed', String(isActive));
+    });
+    updateQuestionTypeSelection('all');
+    updateSectionView();
+    renderModeTimer();
+    rebuildUnspentDeck();
+    compareFirstRoundTotal = Math.min(50, unspentDeck.length);
+    if (compareFirstRoundTotal === 0) {
+        exitCompareFirstMode();
+        rebuildUnspentDeck();
+        drawNextCard();
+        if (status) status.textContent = 'No multiple-choice cards match those module and level choices.';
+        return;
+    }
+    document.getElementById('gameModeSelect').value = 'compare-first';
+    document.getElementById('compareFirstSetup').classList.add('hidden');
+    if (status) status.textContent = '';
+    setCardActionStatus(`Compare First started: ${compareFirstRoundTotal} polls. Compare and discuss each answer before continuing.`);
+    drawNextCard();
+    closeDrawer();
+}
+
+function renderCompareFirstComplete(card) {
+    const answerPanel = document.getElementById('cardAnswerPanel');
+    const completePanel = document.getElementById('compareFirstComplete');
+    const message = document.getElementById('compareFirstCompleteMessage');
+    const hostNote = document.getElementById('compareFirstHostNote');
+    if (!completePanel || !message || !hostNote) return;
+    detachCardAnswerListeners();
+    cardAnswerCard = null;
+    cardAnswerOwn = null;
+    cardAnswerPartner = null;
+    answerPanel?.classList.add('hidden');
+    completePanel.classList.remove('hidden');
+    setCardActionStatus('');
+    document.getElementById('cardCategory').textContent = 'Compare First';
+    document.getElementById('cardPrompt').textContent = 'You completed your multiple-choice round.';
+    message.textContent = `${card.compareFirstTotal} polls completed. Take a moment to discuss your answers, then decide whether to answer more polls or move into the regular cards.`;
+    const isHost = window.currentRoomRole === 'host';
+    document.getElementById('answerMorePollsBtn').disabled = !isHost;
+    document.getElementById('continueRegularCardsBtn').disabled = !isHost;
+    hostNote.textContent = isHost
+        ? 'The host chooses when to continue.'
+        : 'Discuss the results with your partner. The host chooses when to continue.';
+    const nextCardBtn = document.getElementById('nextCardBtn');
+    if (nextCardBtn) {
+        nextCardBtn.disabled = true;
+        nextCardBtn.textContent = 'Poll round complete';
+    }
+    const gameModeSelect = document.getElementById('gameModeSelect');
+    if (gameModeSelect) gameModeSelect.value = 'compare-first';
+}
+
+function completeCompareFirstRound() {
+    if (window.currentRoomRole !== 'host' || !currentCard?.compareFirst) return;
+    const completeCard = {
+        id: `compare-first-complete-${compareFirstRoundId}`,
+        module: currentCard.module,
+        category: 'Compare First',
+        intensity: currentCard.intensity,
+        prompt: 'You completed your multiple-choice round.',
+        promptStyle: 'question',
+        compareFirstComplete: true,
+        compareFirstRoundId,
+        compareFirstTotal: compareFirstRoundIndex,
+        compareFirstModules,
+        compareFirstLevels,
+        roundId: createCardRoundId()
+    };
+    currentCard = completeCard;
+    renderCompareFirstComplete(completeCard);
+    window.roomRef.child('activeCard').set(completeCard).catch(error => {
+        console.error('Could not sync the completed poll round:', error);
+        setCardActionStatus(`Poll round completed, but room sync failed: ${error.message}`);
+    });
+}
+
+function answerMoreCompareFirstPolls() {
+    if (window.currentRoomRole !== 'host') return;
+    if (unspentDeck.length === 0) rebuildUnspentDeck();
+    compareFirstRoundId = createCardRoundId();
+    compareFirstRoundIndex = 0;
+    compareFirstRoundTotal = Math.min(50, unspentDeck.length);
+    if (compareFirstRoundTotal === 0) {
+        setCardActionStatus('No more multiple-choice cards match this selection.');
+        return;
+    }
+    drawNextCard();
+}
+
+function continueToRegularCards() {
+    if (window.currentRoomRole !== 'host') return;
+    exitCompareFirstMode();
+    document.getElementById('compareFirstSetup')?.classList.add('hidden');
+    rebuildUnspentDeck();
+    drawNextCard();
+}
+
 function advanceCard() {
+    if (currentCard?.compareFirst) {
+        if (window.currentRoomRole !== 'host') {
+            setCardActionStatus('The host advances the poll round after you have both submitted and discussed this card.');
+            return;
+        }
+        if (!cardAnswerOwn || !cardAnswerPartner) {
+            setCardActionStatus('Wait until both partners submit an answer before continuing to the next poll.');
+            return;
+        }
+        if (currentCard.compareFirstIndex >= currentCard.compareFirstTotal) {
+            completeCompareFirstRound();
+            return;
+        }
+    }
     if (pickedAnswerer === 'Partner A') activeTurn = 0;
     if (pickedAnswerer === 'Partner B') activeTurn = 1;
     pickedAnswerer = null;
@@ -273,6 +540,17 @@ function advanceCard() {
 }
 
 function renderCard(card) {
+    if (card.compareFirstComplete) {
+        enterCompareFirstModeFromCard(card);
+        renderCompareFirstComplete(card);
+        return;
+    }
+    if (card.compareFirst && activeGameMode !== 'compare-first') {
+        enterCompareFirstModeFromCard(card);
+    } else if (!card.compareFirst && activeGameMode === 'compare-first') {
+        exitCompareFirstMode();
+    }
+    document.getElementById('compareFirstComplete')?.classList.add('hidden');
     setCardActionStatus('');
     const badge = document.getElementById('cardCategory');
     const prompt = document.getElementById('cardPrompt');
@@ -291,6 +569,7 @@ function renderCard(card) {
 
     setCommunityActions(card);
     renderModeTimer();
+    updateCompareFirstControls();
 }
 
 function createCardRoundId() {
@@ -355,6 +634,7 @@ function updateCardAnswerComparison() {
     } else {
         status.textContent = 'Choose an answer. It stays hidden from your partner until both of you submit.';
     }
+    updateCompareFirstControls();
 }
 
 function attachPartnerAnswerListener() {
@@ -1435,6 +1715,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cardContainer) {
         cardContainer.onclick = (event) => {
             if (event.target.closest('button, input, label, select, textarea')) return;
+            if (isCompareFirstSessionActive()) return;
             advanceCard();
         };
     }
@@ -1447,6 +1728,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameModeSelect = document.getElementById('gameModeSelect');
     if (gameModeSelect) {
         gameModeSelect.onchange = () => {
+            const compareSetup = document.getElementById('compareFirstSetup');
+            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+                gameModeSelect.value = 'compare-first';
+                setCardActionStatus('Only the host can control the Compare First session.');
+                return;
+            }
+            if (gameModeSelect.value === 'compare-first') {
+                const selectedModules = activeModule === 'life'
+                    ? ['life']
+                    : activeModule === 'sexuality'
+                        ? ['sexuality']
+                        : ['sexuality', 'life'];
+                document.querySelectorAll('input[name="compareFirstModule"]').forEach(input => {
+                    input.checked = selectedModules.includes(input.value);
+                });
+                document.querySelectorAll('input[name="compareFirstLevel"]').forEach(input => {
+                    input.checked = activeIntensity === 'all' || activeIntensity === input.value;
+                });
+                compareSetup.classList.remove('hidden');
+                return;
+            }
+            compareSetup.classList.add('hidden');
+            if (activeGameMode === 'compare-first') exitCompareFirstMode();
             activeGameMode = gameModeSelect.value;
             activeIntensity = 'all';
             document.querySelectorAll('.intensity-btn').forEach(btn => {
@@ -1459,6 +1763,10 @@ document.addEventListener('DOMContentLoaded', () => {
             drawNextCard();
         };
     }
+
+    document.getElementById('startCompareFirstBtn').onclick = startCompareFirstSession;
+    document.getElementById('answerMorePollsBtn').onclick = answerMoreCompareFirstPolls;
+    document.getElementById('continueRegularCardsBtn').onclick = continueToRegularCards;
 
     const pickTurnBtn = document.getElementById('pickTurnBtn');
     if (pickTurnBtn) {
@@ -1736,6 +2044,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.module-tab').forEach(tab => {
         tab.onclick = (e) => {
             e.stopPropagation();
+            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+                setCardActionStatus('Only the host can control the Compare First session.');
+                return;
+            }
+            if (activeGameMode === 'compare-first') exitCompareFirstMode();
             document.querySelectorAll('.module-tab').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             document.querySelectorAll('.module-tab').forEach(t => t.setAttribute('aria-pressed', String(t === tab)));
@@ -1750,6 +2063,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.intensity-btn').forEach(btn => {
         btn.onclick = (e) => {
             e.stopPropagation();
+            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+                setCardActionStatus('Only the host can control the Compare First session.');
+                return;
+            }
+            if (activeGameMode === 'compare-first') exitCompareFirstMode();
             document.querySelectorAll('.intensity-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             document.querySelectorAll('.intensity-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
@@ -1768,6 +2086,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.prompt-style-btn').forEach(btn => {
         btn.onclick = (e) => {
             e.stopPropagation();
+            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+                setCardActionStatus('Only the host can control the Compare First session.');
+                return;
+            }
+            if (activeGameMode === 'compare-first') exitCompareFirstMode();
             document.querySelectorAll('.prompt-style-btn').forEach(styleBtn => {
                 const isActive = styleBtn === btn;
                 styleBtn.classList.toggle('active', isActive);
@@ -1784,6 +2107,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const openModalBtn = document.getElementById('openAddCardModal');
     if (openModalBtn) openModalBtn.onclick = (e) => {
         e.stopPropagation();
+        if (isCompareFirstSessionActive()) {
+            setCardActionStatus('Finish the poll round or continue to regular cards before adding a card.');
+            return;
+        }
         const customModuleSelect = document.getElementById('customModule');
         if (customModuleSelect) {
             customModuleSelect.value = activeModule === 'life' ? 'life' : 'sexuality';
@@ -1977,6 +2304,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shuffleBtn) {
         shuffleBtn.onclick = (e) => {
             e.stopPropagation();
+            if (isCompareFirstSessionActive()) {
+                setCardActionStatus('Finish the poll round or continue to regular cards before shuffling.');
+                return;
+            }
             rebuildUnspentDeck();
             drawNextCard();
         };
