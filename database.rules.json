@@ -86,6 +86,38 @@
             ".validate": "newData.isString()"
           }
         },
+        "playerNames": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "host": {
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.hasChildren(['name', 'icon']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('name').val().length <= 24 && (newData.child('icon').val() === '❤️' || newData.child('icon').val() === '⭐' || newData.child('icon').val() === '🌙' || newData.child('icon').val() === '☀️' || newData.child('icon').val() === '🔥' || newData.child('icon').val() === '🌿' || newData.child('icon').val() === '🪐' || newData.child('icon').val() === '🦊' || newData.child('icon').val() === '🐻' || newData.child('icon').val() === '🦋')",
+            "name": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 24"
+            },
+            "icon": {
+              ".validate": "newData.val() === '❤️' || newData.val() === '⭐' || newData.val() === '🌙' || newData.val() === '☀️' || newData.val() === '🔥' || newData.val() === '🌿' || newData.val() === '🪐' || newData.val() === '🦊' || newData.val() === '🐻' || newData.val() === '🦋'"
+            },
+            "$other": {
+              ".validate": false
+            }
+          },
+          "partner": {
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()",
+            ".validate": "newData.hasChildren(['name', 'icon']) && newData.child('name').isString() && newData.child('name').val().length > 0 && newData.child('name').val().length <= 24 && (newData.child('icon').val() === '❤️' || newData.child('icon').val() === '⭐' || newData.child('icon').val() === '🌙' || newData.child('icon').val() === '☀️' || newData.child('icon').val() === '🔥' || newData.child('icon').val() === '🌿' || newData.child('icon').val() === '🪐' || newData.child('icon').val() === '🦊' || newData.child('icon').val() === '🐻' || newData.child('icon').val() === '🦋')",
+            "name": {
+              ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 24"
+            },
+            "icon": {
+              ".validate": "newData.val() === '❤️' || newData.val() === '⭐' || newData.val() === '🌙' || newData.val() === '☀️' || newData.val() === '🔥' || newData.val() === '🌿' || newData.val() === '🪐' || newData.val() === '🦊' || newData.val() === '🐻' || newData.val() === '🦋'"
+            },
+            "$other": {
+              ".validate": false
+            }
+          },
+          "$other": {
+            ".validate": false
+          }
+        },
         "joinRequests": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && root.child('rooms').child($roomCode).child('members/host').val() === auth.uid",
           "$requestUid": {

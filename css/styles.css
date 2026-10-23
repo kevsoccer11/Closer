@@ -144,6 +144,40 @@ header {
     line-height: 1.45;
 }
 
+.player-identity-form {
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+}
+
+.player-identity-form h4 {
+    margin-bottom: 4px;
+    color: var(--text-main);
+}
+
+.player-identity-form label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.player-identity-form input,
+.player-identity-form select {
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: #17171e;
+    color: var(--text-main);
+    font: inherit;
+}
+
+.player-identity-form input:disabled,
+.player-identity-form select:disabled {
+    opacity: 0.65;
+}
+
 .module-tab {
     flex: 1;
     min-width: 0;

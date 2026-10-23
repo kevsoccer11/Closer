@@ -13,6 +13,21 @@ let activeIntensity = 'all';
 let activePromptStyle = 'all';
 let activeGameMode = 'classic';
 const EXPLICIT_AGE_CONFIRMATION_KEY = 'closer_explicit_age_confirmed';
+const PLAYER_ONE_NAME_KEY = 'closer_player_one';
+const PLAYER_TWO_NAME_KEY = 'closer_player_two';
+const PLAYER_ICONS = ['❤️', '⭐', '🌙', '☀️', '🔥', '🌿', '🪐', '🦊', '🐻', '🦋'];
+let playerNames = {
+    host: {
+        name: localStorage.getItem(`${PLAYER_ONE_NAME_KEY}_name`) || 'Player 1',
+        icon: localStorage.getItem(`${PLAYER_ONE_NAME_KEY}_icon`) || '❤️'
+    },
+    partner: {
+        name: localStorage.getItem(`${PLAYER_TWO_NAME_KEY}_name`) || 'Player 2',
+        icon: localStorage.getItem(`${PLAYER_TWO_NAME_KEY}_icon`) || '⭐'
+    }
+};
+let roomDisplayNames = {};
+let playerNamesListener = null;
 let compareFirstModules = ['sexuality'];
 let compareFirstLevels = ['1', '2', '3'];
 let compareFirstRoundId = null;
@@ -22,6 +37,7 @@ let compareFirstRestoreState = null;
 let turnTakingEnabled = false;
 let activeTurn = 0;
 let pickedAnswerer = null;
+let pickedAnswererIndex = null;
 let usingStarterDeck = false;
 let communityVoteCounts = {};
 let myCommunityVotes = new Set();
@@ -325,6 +341,33 @@ function hasExplicitAgeConfirmation() {
     return localStorage.getItem(EXPLICIT_AGE_CONFIRMATION_KEY) === 'true';
 }
 
+function getPlayerIdentifier(index) {
+    const role = index === 0 ? 'host' : 'partner';
+    const identity = window.currentRoomRole ? roomDisplayNames[role] : playerNames[role];
+    const name = identity?.name || (window.currentRoomRole ? (role === 'host' ? 'Host' : 'Partner') : `Player ${index + 1}`);
+    const icon = PLAYER_ICONS.includes(identity?.icon) ? identity.icon : playerNames[role].icon;
+    return `${icon} ${name}`;
+}
+
+function savePlayerIdentity(index, name, icon) {
+    const role = index === 0 ? 'host' : 'partner';
+    const localName = name.trim().replace(/\s+/g, ' ').slice(0, 24) || `Player ${index + 1}`;
+    const localIdentity = { name: localName, icon: PLAYER_ICONS.includes(icon) ? icon : PLAYER_ICONS[index] };
+    playerNames[role] = localIdentity;
+    const storageKey = index === 0 ? PLAYER_ONE_NAME_KEY : PLAYER_TWO_NAME_KEY;
+    localStorage.setItem(`${storageKey}_name`, localIdentity.name);
+    localStorage.setItem(`${storageKey}_icon`, localIdentity.icon);
+    if (currentCard) renderCard(currentCard);
+
+    if (window.roomRef && window.currentRoomRole === role) {
+        window.roomRef.child(`playerNames/${role}`).set(localIdentity).catch(error => {
+            console.error('Could not sync your player identity:', error);
+            const status = document.getElementById('playerIdentityStatus');
+            if (status) status.textContent = `Saved on this device, but could not sync to the room: ${error.message}`;
+        });
+    }
+}
+
 function selectModule(module) {
     document.querySelectorAll('.module-tab').forEach(tab => {
         const isActive = tab.dataset.module === module;
@@ -555,9 +598,9 @@ function advanceCard() {
             return;
         }
     }
-    if (pickedAnswerer === 'Partner A') activeTurn = 0;
-    if (pickedAnswerer === 'Partner B') activeTurn = 1;
+    if (pickedAnswererIndex !== null) activeTurn = pickedAnswererIndex;
     pickedAnswerer = null;
+    pickedAnswererIndex = null;
     if (turnTakingEnabled && currentCard) activeTurn = activeTurn === 0 ? 1 : 0;
     drawNextCard();
 }
@@ -586,7 +629,12 @@ function renderCard(card) {
     if (favBtn) favBtn.setAttribute('aria-pressed', String(favoriteIds.includes(card.id)));
     const turnIndicator = document.getElementById('turnIndicator');
     if (turnIndicator) {
-        turnIndicator.textContent = pickedAnswerer || `Partner ${activeTurn + 1} answers`;
+        const pickedLabel = pickedAnswerer === 'both'
+            ? 'Both answer'
+            : pickedAnswerer === 'selected'
+                ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
+                : null;
+        turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
         turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
     }
 
@@ -642,8 +690,8 @@ function updateCardAnswerComparison() {
         heading.textContent = matched ? 'You agree!' : 'Different answers';
         const ownAnswer = document.createElement('p');
         const partnerAnswer = document.createElement('p');
-        const ownLabel = cardAnswerOwnUid === cardAnswerRoomRef?.hostUid ? 'Host' : 'You';
-        const partnerLabel = cardAnswerPartnerUid === cardAnswerRoomRef?.hostUid ? 'Host' : 'Partner';
+        const ownLabel = getPlayerIdentifier(cardAnswerOwnUid === cardAnswerRoomRef?.hostUid ? 0 : 1);
+        const partnerLabel = getPlayerIdentifier(cardAnswerPartnerUid === cardAnswerRoomRef?.hostUid ? 0 : 1);
         ownAnswer.textContent = `${ownLabel}: ${cardAnswerCard.options[cardAnswerOwn.optionIndex]}`;
         partnerAnswer.textContent = `${partnerLabel}: ${cardAnswerCard.options[cardAnswerPartner.optionIndex]}`;
         comparison.append(heading, ownAnswer, partnerAnswer);
@@ -1590,6 +1638,10 @@ function detachRoomAccessListeners() {
         window.roomRef.child('activeCard').off('value', activeCardSyncListener);
         activeCardSyncListener = null;
     }
+    if (playerNamesListener && window.roomRef) {
+        window.roomRef.child('playerNames').off('value', playerNamesListener);
+        playerNamesListener = null;
+    }
     if (partnerSeatListener && window.roomRef) {
         window.roomRef.child('members/partner').off('value', partnerSeatListener);
         partnerSeatListener = null;
@@ -1612,6 +1664,26 @@ function connectToRoom(roomCode, role) {
     window.currentRoomRole = role;
     localStorage.setItem('closer_room_code', roomCode);
     window.roomRef = window.db.ref(`rooms/${roomCode}`);
+    roomDisplayNames = {};
+    playerNamesListener = snapshot => {
+        roomDisplayNames = snapshot.val() || {};
+        if (currentCard) renderCard(currentCard);
+    };
+    window.roomRef.child('playerNames').on('value', playerNamesListener, error => {
+        console.error('Could not load room player names:', error);
+        setCardActionStatus('Could not load player names. Check the room access rules.');
+    });
+    const currentUser = window.firebase?.auth().currentUser;
+    if (currentUser) {
+        const identityRef = window.roomRef.child(`playerNames/${role}`);
+        identityRef.once('value').then(snapshot => {
+            if (snapshot.exists()) return;
+            return identityRef.set(playerNames[role]);
+        }).catch(error => {
+            console.error('Could not save the room player identity:', error);
+            setCardActionStatus(`Your identifier is saved on this device but could not sync to the room: ${error.message}`);
+        });
+    }
 
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
@@ -1799,14 +1871,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const pickTurnBtn = document.getElementById('pickTurnBtn');
     if (pickTurnBtn) {
         pickTurnBtn.onclick = () => {
-            const choices = ['Partner A', 'Partner B', 'Both'];
-            pickedAnswerer = choices[Math.floor(Math.random() * choices.length)];
-            activeTurn = pickedAnswerer === 'Partner B' ? 1 : 0;
+            const choices = [0, 1, 2];
+            const selected = choices[Math.floor(Math.random() * choices.length)];
+            activeTurn = selected === 1 ? 1 : 0;
+            pickedAnswererIndex = selected === 2 ? null : selected;
+            pickedAnswerer = selected === 2 ? 'both' : 'selected';
             const result = document.getElementById('turnPickerResult');
-            if (result) result.textContent = `${pickedAnswerer} answers first`;
+            const answererLabel = selected === 2 ? 'Both answer' : `${getPlayerIdentifier(activeTurn)} answers first`;
+            if (result) result.textContent = answererLabel;
             const indicator = document.getElementById('turnIndicator');
             if (indicator) {
-                indicator.textContent = `${pickedAnswerer} answers`;
+                indicator.textContent = answererLabel;
                 indicator.classList.remove('hidden');
             }
         };
@@ -1896,7 +1971,7 @@ document.addEventListener('DOMContentLoaded', () => {
             turnModeBtn.textContent = turnTakingEnabled ? 'Turn-taking on' : 'Turn-taking off';
             const turnIndicator = document.getElementById('turnIndicator');
             if (turnIndicator) turnIndicator.classList.toggle('hidden', !turnTakingEnabled);
-            if (turnTakingEnabled && turnIndicator) turnIndicator.textContent = 'Partner 1 answers';
+            if (turnTakingEnabled && turnIndicator) turnIndicator.textContent = `${getPlayerIdentifier(0)} answers`;
         };
     }
 
@@ -2003,6 +2078,50 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
             openDrawer('Profile Stats', html);
+            const content = document.getElementById('drawerContent');
+            const paired = Boolean(window.currentRoomRole);
+            const ownIndex = window.currentRoomRole === 'partner' ? 1 : 0;
+            const identityForm = document.createElement('form');
+            identityForm.className = 'player-identity-form';
+            identityForm.innerHTML = `
+                <h4>Player identifiers</h4>
+                <label for="playerOneName">${paired ? 'Host name' : 'Player 1 name'}</label>
+                <input id="playerOneName" type="text" maxlength="24" autocomplete="nickname">
+                <label for="playerOneIcon">${paired ? 'Host icon' : 'Player 1 icon'}</label>
+                <select id="playerOneIcon">${PLAYER_ICONS.map(icon => `<option value="${icon}">${icon}</option>`).join('')}</select>
+                <label for="playerTwoName">${paired ? 'Partner name' : 'Player 2 name'}</label>
+                <input id="playerTwoName" type="text" maxlength="24" autocomplete="nickname">
+                <label for="playerTwoIcon">${paired ? 'Partner icon' : 'Player 2 icon'}</label>
+                <select id="playerTwoIcon">${PLAYER_ICONS.map(icon => `<option value="${icon}">${icon}</option>`).join('')}</select>
+                <p class="publish-note">${paired ? 'Your name and icon sync to your partner. Only you can change your own identifier.' : 'Names and icons stay on this device. In a paired room, each person sets their own identifier.'}</p>
+                <button class="btn-primary" type="submit">Save identifiers</button>
+                <p id="playerIdentityStatus" class="publish-status" role="status" aria-live="polite"></p>
+            `;
+            for (const [index, role] of ['host', 'partner'].entries()) {
+                const inputSuffix = index === 0 ? 'One' : 'Two';
+                const nameInput = identityForm.querySelector(`#player${inputSuffix}Name`);
+                const iconSelect = identityForm.querySelector(`#player${inputSuffix}Icon`);
+                const identity = paired ? roomDisplayNames[role] || playerNames[role] : playerNames[role];
+                nameInput.value = identity.name;
+                iconSelect.value = identity.icon;
+                if (paired && index !== ownIndex) {
+                    nameInput.disabled = true;
+                    iconSelect.disabled = true;
+                }
+            }
+            identityForm.onsubmit = event => {
+                event.preventDefault();
+                const status = identityForm.querySelector('#playerIdentityStatus');
+                if (paired) {
+                    const index = ownIndex + 1;
+                    savePlayerIdentity(ownIndex, identityForm.querySelector(`#player${index}Name`).value, identityForm.querySelector(`#player${index}Icon`).value);
+                } else {
+                    savePlayerIdentity(0, identityForm.querySelector('#playerOneName').value, identityForm.querySelector('#playerOneIcon').value);
+                    savePlayerIdentity(1, identityForm.querySelector('#playerTwoName').value, identityForm.querySelector('#playerTwoIcon').value);
+                }
+                if (status) status.textContent = 'Identifiers saved.';
+            };
+            content.appendChild(identityForm);
         };
     }
 
