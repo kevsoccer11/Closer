@@ -1146,15 +1146,20 @@ function renderPairManagement() {
     pairManagementContainer.replaceChildren();
     const roomStatus = document.createElement('div');
     roomStatus.className = 'drawer-item';
+    roomStatus.setAttribute('role', 'status');
+    roomStatus.setAttribute('aria-live', 'polite');
     const statusText = document.createElement('p');
-    const roleLabels = {
-        host: 'Host',
-        partner: 'Partner',
-        requesting: 'Request pending'
-    };
-    statusText.textContent = window.currentRoomCode && roleLabels[window.currentRoomRole]
-        ? `${window.currentRoomRole === 'requesting' ? 'Requesting access to' : 'Connected to'} room ${window.currentRoomCode} · ${roleLabels[window.currentRoomRole]}`
-        : 'Not connected to a room.';
+    if (!window.currentRoomCode) {
+        statusText.textContent = 'Not connected to a room.';
+    } else if (window.currentRoomRole === 'host') {
+        statusText.textContent = `Room created and ready · Host · ${window.currentRoomCode}`;
+    } else if (window.currentRoomRole === 'partner') {
+        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner`;
+    } else if (window.currentRoomRole === 'requesting') {
+        statusText.textContent = `Request pending · Room ${window.currentRoomCode}`;
+    } else {
+        statusText.textContent = 'Not connected to a room.';
+    }
     roomStatus.appendChild(statusText);
     pairManagementContainer.appendChild(roomStatus);
 
