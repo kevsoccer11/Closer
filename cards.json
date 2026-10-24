@@ -34099,6 +34099,4506 @@
       "prompt": "How could we celebrate small progress with local history? What would you hope to understand better?",
       "contextType": "discovery",
       "promptStyle": "question"
-    }
+    },
+     {
+    "id": "explicit-0871",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What messages about sex did you grow up hearing at home — was it openly discussed or completely off-limits?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0872",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did you first learn where babies come from, and who told you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0873",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your school sex education actually cover — and what did you have to figure out on your own?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0874",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Was there a moment your parents caught you with something you had to explain?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0875",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the most awkward conversation about sex you ever had with a family member?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0876",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your family's attitude toward physical affection teach you about touch?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0877",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Growing up, was sex framed as something sacred, shameful, or never mentioned — and how did that shape you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0878",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was the first racy movie scene or magazine you remember seeing, and where were you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0879",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What myth about sex did you believe embarrassingly long before learning the truth?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0880",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something you were taught to feel ashamed about that you've since unlearned?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0881",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did your friends in middle school or high school talk about sex — and how did that compare to your reality?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0882",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Did your upbringing make intimacy feel safe or risky, and when did you first notice that?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0883",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Was there a conversation about 'the talk' that went hilariously wrong in your house?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0884",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's the first thing about your body you were teased about, and does it still echo?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0885",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did your cultural or religious background frame desire — as natural, dangerous, or something to control?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0886",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's a rule about dating or romance from your household that you now find ridiculous?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0887",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Who was your first real source of honest information about sex — a friend, a book, the internet?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0888",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did purity culture or 'waiting' messaging — if you had it — leave behind in you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0889",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Have you ever felt guilt right after a perfectly good intimate moment — where do you think it came from?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0890",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was buying contraception for the first time like for you — smooth or mortifying?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0891",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When did you first realize your desires were normal and not something to hide?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0892",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 3,
+    "prompt": "What part of your sexuality have you never fully made peace with your upbringing about?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0893",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Did you ever overhear your parents or relatives talking about intimacy in a way that stuck with you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0894",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the funniest thing a younger sibling or cousin once asked you that you had to answer carefully?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0895",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What double standard did you notice growing up — things allowed for one gender but not the other?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0896",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was the environment like at sleepovers or summer camps — what did kids actually talk about?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0897",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something you believed about your own body for years because of a careless comment someone made?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0898",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How comfortable was your family with nudity, and did that affect your comfort now?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0899",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the worst dating advice an elder in your family ever gave you?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0900",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When did you first understand what attraction felt like — and did you know what to call it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0901",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Did you grow up seeing healthy relationships modeled, and what did you decide to copy or reject?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0902",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a lesson about love or sex from your upbringing that you're actively unlearning right now?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0903",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's the first song, book, or movie that made you feel something you didn't have words for yet?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0904",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Who taught you about consent — formally, by example, or the hard way?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0905",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's a euphemism your family used for anything intimate that you still laugh about?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0906",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What questions about sex did you have as a teenager that you never dared ask anyone?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0907",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When was the first time you felt shame about curiosity itself — not about anything you'd done?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0908",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did the adults around you treat your first crush — teasing, supportive, or dismissive?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0909",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your first heartbreak teach you about vulnerability that you carried into intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0910",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 3,
+    "prompt": "Is there a part of your past self you'd want your partner to understand before judging your desires?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0911",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's the first thing you learned about sex that genuinely surprised you?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0912",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did your view of what 'normal' sex looks like change from your teens to now?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0913",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the most ridiculous thing a school, church, or program taught you about intimacy?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0914",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Did you have an adult you could ask anything — and if not, who do you wish it had been?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0915",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was it like the first time you talked about sex seriously with a partner instead of joking about it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0916",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's an experience from your early explorations you've never described out loud because of how you were raised?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0917",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What messages about sex did you absorb from movies and TV that real life later disproved?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0918",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Was there a moment when your parents or guardians trusted you with real honesty about intimacy — or one where they absolutely didn't?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0919",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's one belief about your own sexuality that took you a decade to correct?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0920",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Have you ever apologized to yourself for the way you treated your younger self's curiosity?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0921",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your family consider 'appropriate' for a first date, and how did that compare with reality?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0922",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the most awkward thing a parent ever said about your relationship that you remember word for word?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0923",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How differently do you talk about sex now compared to how it was talked about in your childhood home?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0924",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was your introduction to the internet's version of sex education — and what did you have to unlearn?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0925",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something you once hid from your family about your dating life that you're still a little protective of?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0926",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Which of your parents' relationship patterns have you caught yourself repeating?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0927",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Who was the first person who made you feel like your questions about sex were legitimate?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0928",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 3,
+    "prompt": "What did your upbringing teach you about saying no — and about hearing no?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0929",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Did your education ever mention pleasure at all, or only risk — and what did that leave you to figure out?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0930",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was your first experience of realizing adults were not being honest with you about intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0931",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What word or phrase from your upbringing for anything intimate still makes you cringe today?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0932",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something you only learned about your own body well into adulthood that shocked you?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0933",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a message from your past that still whispers to you in vulnerable moments, even now?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0934",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "If you could rewrite one sentence from your sex education, what would it be replaced with?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0935",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Was there a teacher, coach, or mentor who handled a sex-related topic with unusual honesty and earned your trust?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0936",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What part of your sexual history do you narrate differently depending on who's listening — and why?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0937",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your community consider scandalous when you were young that no one blinks at now?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0938",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When did you first realize that everyone was guessing their way through intimacy — not just you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0939",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a moment from your past you replay with tenderness instead of the shame you used to feel?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0940",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did your upbringing treat privacy — and did secrecy feel safe or dangerous to you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0941",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the strangest home remedy or superstition about sex or bodies you were taught as fact?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0942",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was your parents' reaction to your first relationship — and how did it shape what you shared with them after?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0943",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's one thing you learned about intimacy from a source nobody would guess — a novel, a podcast, an unexpected person?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0944",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Looking back, what question do you wish someone had asked teenage you about your feelings?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0945",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something about your desires that you've only recently been able to say without lowering your voice?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0946",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did your household handle boundaries — did privacy get respected, and what did that teach you about consent?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0947",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 3,
+    "prompt": "What's a part of your story that you've never shared with a partner because of how you were taught to judge people?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0948",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What tradition around relationships in your family — meeting the parents, waiting, chaperones — felt meaningful to you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0949",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the most outdated piece of 'wisdom' about sex that an older relative insists is still true?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0950",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What was your first encounter with the idea that intimacy could be about connection and not just biology?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0951",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When did you last feel a flicker of old shame during intimacy — and did you name it or let it pass?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0952",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something about your partner's upbringing you're curious to understand better because of your own?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0953",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Who was the first couple whose relationship you admired, and what did you take from them?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0954",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a belief about your own sexuality you held at twenty that you can't believe now?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0955",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How has your definition of 'a good upbringing' for these conversations changed over time?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0956",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's the hardest thing about your sexual past to say out loud — not because it's wrong, but because of who taught you the words?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0957",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 3,
+    "prompt": "What would you want to teach the next generation about sex and shame that nobody taught you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0958",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a moment from your early dating life you now see with completely different eyes?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0959",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your friends' first experiences sound like when they told them — and how did their stories shape your expectations?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0960",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 1,
+    "prompt": "What's the most embarrassing thing your parents ever found in your room as a teenager?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0961",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How was divorce, infidelity, or single life talked about in your house — with fear, pity, or openness?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0962",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a nickname or comment about your body from childhood that you still carry with you?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0963",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What did your first conversation about protection with a partner actually sound like — awkward, easy, or skipped entirely?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0964",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "Do you think you were given a healthy model of masculinity or femininity — and what would you change about it?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0965",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "When did you last feel like your curiosity was judged — and did it make you retreat or push harder?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0966",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's a moment when a partner's openness about sex surprised you because of how different it was from your upbringing?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0967",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "How did you learn what a healthy relationship even looked like — trial and error, or a good example?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0968",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What topic about intimacy did no adult ever prepare you for that you wished they had?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0969",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What's something you've only told your partner — and what made them safe to tell?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0970",
+    "module": "explicit",
+    "category": "Upbringing, Shame & Sex Ed",
+    "intensity": 2,
+    "prompt": "What tradition or ritual around intimacy, if any, would you want to invent that neither of our families had?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0971",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would genuinely count as crossing a line to you — flirty DMs, secret lunches with an ex, keeping things hidden?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0972",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "When it comes to liking or commenting on other people's posts, where does comfortable end and uncomfortable begin?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0973",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever felt a flash of jealousy about someone in my past — and what did you do with it?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0974",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's your honest reaction when your partner gets visibly flirted with in front of you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0975",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the difference between privacy and secrecy in a relationship, in your mind?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0976",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Is staying close friends with an ex something that works for you, or something that would wear at you?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0977",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever compared yourself to someone from your partner's past — and how did you handle the feeling?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0978",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's our shared definition of flirting — where does friendly end and flirty begin?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0979",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the most jealous you've ever been in a relationship, and what did it teach you about yourself?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0980",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about us discussing attractive people we notice — honest, off-limits, or somewhere in between?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0981",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If one of us felt a pull toward someone else, would you want to hear about it early, late, or never?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0982",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What did past betrayal — yours or someone else's — teach you about how you protect yourself now?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0983",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What are your honest feelings about porn in a relationship — fine, complicated, or a hard boundary?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0984",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's your deepest fear about being replaced or compared — and has anything ever touched that nerve?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0985",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What level of friendship with coworkers is fine — shared lunches, drinks after work, one-on-one texting?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0986",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever checked a partner's phone — and what would you do if you had the chance now?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0987",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would you want us to agree on before either of us travels alone or goes out without the other?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0988",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "When you feel jealous, do you process it alone first or bring it straight to your partner — and which would you prefer from me?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0989",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If you suspected something, would you ask directly or watch quietly — and is that the person you want to be?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0990",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What counts as emotional cheating to you — venting, bonding, fantasizing, or something else?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0991",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Has anyone ever made you feel like you had to earn their loyalty — and how did that land?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0992",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How much of each other's pasts do we want to know — full honesty, broad strokes, or only what matters?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0993",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's a boundary a past partner crossed that you'll never let anyone cross again?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0994",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would need to happen for trust to be rebuilt if it were ever broken — or is some damage beyond repair?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0995",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Are there words, jokes, or nicknames that are reserved only for us — things that would hurt if shared with others?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0996",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Do you ever worry that your partner's imagination is somewhere you can't follow — and how do you talk about that?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0997",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about your partner having friends they've had history with — comfortable with conditions, or always a little uneasy?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0998",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What did your family teach you about loyalty — and how does it match what you actually believe?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0999",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If an ex reached out to you tomorrow, what would you do — and would you tell me?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1000",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Should we have an agreement about drinking without each other in certain settings — what feels right?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1001",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's your reaction to the phrase 'just talking' — reassurance or red flag?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1002",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What does honesty about attraction look like for us — disclosure, discretion, or don't-ask-don't-tell?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1003",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever been the one who crossed a line — and what did owning it or hiding it cost you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1004",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you tell the difference between intuition and insecurity when something feels off?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1005",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Would you rather your partner share a risky attraction to be transparent, or manage it privately if they never act on it?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1006",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's our policy on secrets — is anything truly yours alone, and where does that line sit?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1007",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What kind of reassurance actually helps when jealousy hits — words, touch, time, or proof?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1008",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about separate trips, separate nights out, separate hobbies — where's the line between healthy space and distance?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1009",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What was a moment someone earned your trust back — or showed you they never would?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1010",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Is jealousy ever useful information, in your view — or always noise to be managed?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1011",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If one of us wanted to spend time with someone the other found threatening, how would we negotiate it?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1012",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever kept a small secret to protect your partner's feelings — and would you handle it the same way now?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1013",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What promises have we made to each other that matter more than any other?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1014",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about your partner joking about others' attractiveness — fine, or a small sting every time?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1015",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Tell me about a time you felt chosen in front of other people — and why it mattered so much.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1016",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What did past relationships teach you about whether people can really change after breaking trust?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1017",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Do you believe in deal-breakers that are absolute, or does context always matter — and what are your absolutes?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1018",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the story you sometimes tell yourself about your partner's past — and how much of it is actually true?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1019",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If your partner could be tempted by something but never act, would you want to know about the temptation itself?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1020",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do we want to handle attention from others — mentioned freely, downplayed, or shut down immediately?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1021",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the most loyal thing anyone has ever done for you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1022",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Do you think transparency about everything is realistic — or is a little editing human and okay?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1023",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What about your partner's behavior online — replies, DMs, likes — would you want to know about or never think about?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1024",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's your relationship with your own flirting — is it innocent fun to you, or something you keep on a leash?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1025",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If you found out your partner had a private conversation about our relationship with someone else, how would you feel?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1026",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How should we handle a friend who doesn't respect our relationship — individual friendships or a shared decision?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1027",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever been accused of something you didn't do in a relationship — and what did that feel like?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1028",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "When you imagine your partner's loyalty, what image convinces you it's solid?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1029",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Is there anyone from your past you'd feel guilty being around now — even with nothing to hide?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1030",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the boundary around sharing our relationship problems with friends — who's allowed to know what?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1031",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Would you rather be with someone transparent who occasionally stumbles, or someone guarded who never reveals anything?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1032",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If one of us gets closer to a new friend, how much should the other know about that friendship as it grows?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1033",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's a moment you defended your partner or your relationship to someone else — and would you do it again?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1034",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What old wound gets reopened most easily — being doubted, being compared, or being left out?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1035",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about looking at each other's phones — full open-door policy, or respected privacy?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1036",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What does faithfulness mean to you beyond the physical — what does a faithful mind and heart do every day?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1037",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If your partner needed reassurance during an insecure season, what would you want them to ask you for?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1038",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Which of our current boundaries would you like to revisit and talk through again?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1039",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever had a friendship quietly become something more in your head — and how did you handle it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1040",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the most fragile you've ever felt in a relationship — and did you show it or hide it?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1041",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How should we handle attention from exes — polite distance, total silence, or case-by-case?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1042",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Does knowing your partner could leave — that they choose to stay every day — make you feel anxious or grateful?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1043",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would 'total honesty about attraction' actually look like in practice for us — and is it worth trying?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1044",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's your stance on double dates with single friends, nights out, and settings where flirting tends to happen?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1045",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Is there something small you've hidden from a partner — not because it was wrong, but because you couldn't predict their reaction?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1046",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the biggest thing you've ever forgiven — and did the forgiveness hold?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1047",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Should we ever set rules we don't fully believe in just to comfort each other — or only agreements we mean?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1048",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "When you think about what your partner might do in a tempting situation, what do you honestly expect — and why?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1049",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What has your partner done that made you feel safer than anyone ever has?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1050",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What behavior from others triggers your protective instincts most — lingering touch, inside jokes, secret references?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1051",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do we handle the topic of each other's 'types' — before each other, and whether we match them?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1052",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever been someone's secret — and what did staying hidden teach you about what you deserve?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1053",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If your partner admitted an intrusive thought about someone else — a dream, a flash, a curiosity — would you want to hear it?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1054",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about your partner sharing stories about us with their friends — what's shareable and what's sacred?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1055",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Do you trust your own reactions when jealous — or do you second-guess yourself into silence?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1056",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the question about loyalty you've never asked because you were afraid of any answer?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1057",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What ritual, habit, or small promise would make you feel chosen every single week?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1058",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If we ever disagree about where a boundary sits, how do we decide — whose comfort wins, and when?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1059",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's a moment you almost let suspicion ruin something good — and what stopped you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1060",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would you say is the strongest foundation of our trust — and what could quietly erode it if we ignored it?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1061",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What should happen if either of us starts feeling more like roommates than partners — what's our early-warning plan?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1062",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's a compliment about your loyalty or character you've received that you've never forgotten?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1063",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What would you need to feel believed if you ever raised a concern about someone in my life?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1064",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "Have you ever had to set a boundary with someone who kept testing it — and what finally worked?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1065",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What does jealousy feel like in your body — and how long does it usually take to pass?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1066",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "How do you feel about the idea of us having friends of any gender — is trust automatic or earned case by case?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1067",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "If your partner needed to hear 'you're my choice' on a regular schedule, would you say it daily, weekly, or when prompted?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1068",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What's the moment you knew your current partner would never deliberately hurt you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1069",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What information about your day should always be shared — and what's genuinely okay to leave out?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1070",
+    "module": "explicit",
+    "category": "Fidelity, Jealousy & Boundaries",
+    "intensity": 2,
+    "prompt": "What does your partner do that quietly says 'I'm not going anywhere' better than words ever could?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1071",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Would you say your desire usually sparks instantly or builds slowly in response to closeness — and has it always been that way?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1072",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When one of us wants intimacy and the other isn't feeling it, what response makes rejection easiest to take?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1073",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the longest dry spell you've experienced in a relationship — and what finally broke it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1074",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you ever say yes when you mean 'maybe' — and what would make honesty feel safer?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1075",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How do you feel about scheduling intimacy — does a calendar kill the mood or protect it from exhaustion?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1076",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did a stressful season of life teach you about how stress affects your desire?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1077",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When your partner initiates and you're not in the mood, what do you worry they'll think?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1078",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Has your libido changed noticeably over the years — and do you grieve the old version or accept the new one?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1079",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's our signal for 'not tonight, but soon' that doesn't feel like rejection?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1080",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the most surprising thing that rekindled your desire after a flat period?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1081",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you feel more desired when your partner initiates — or when you do and they respond eagerly?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1082",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How much of your desire is physical hunger versus emotional connection — and which one runs low first?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1083",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If we went through a season of very low intimacy, how long before we'd need to talk about it openly?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1084",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did the end of the honeymoon phase feel like for you — panic, relief, or a slow shift?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1085",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever felt undesired for a long stretch — and did you name it out loud or wait to be noticed?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1086",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What counts as intimacy on days when sex isn't happening — what keeps the connection alive for you?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1087",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you experience desire more like a fire that needs feeding or a wave that comes and goes?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1088",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What was intimacy like during the busiest, most exhausting period of your life?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1089",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How do you feel about quickies as a compromise — genuine connection or a reminder of what's missing?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1090",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever felt pressure to perform interest you didn't feel — and what did that cost you?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1091",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Which do you miss more when we're in a slow season — the physical act or being wanted?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1092",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If one of us wanted intimacy more often than the other, what compromise could actually work long-term?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1093",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's a moment a partner handled your 'no' so gracefully it made you feel more attracted to them?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1094",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When your desire drops, do you tend to blame your body, your stress, or the relationship — and is that fair?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1095",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Would you rather have frequent low-key affection or rarer intense passion — and does our current balance match your answer?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1096",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did new parenthood or other life transitions do to your intimacy rhythm — expected or a shock?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1097",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever worried that a mismatch in desire could break us — and what reassures you it won't?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1098",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the most creative thing you and a partner did to stay connected during a drained, exhausted season?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1099",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Should we have a regular check-in about intimacy — monthly, whenever needed, or is that too clinical?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1100",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you notice your desire responding to hormones, seasons, sleep, or workload — what moves the needle most?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1101",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If your partner's desire visibly decreased, would you rather know the honest reason even if it stung?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1102",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Tell me about a time when intimacy went from routine to electric again — what changed?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1103",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What role does anticipation play for you — would a planned day of build-up excite you or feel like pressure?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1104",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever kept score of how often we each initiate — and what did the tally do to your feelings?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1105",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How do you recharge your sense of sensuality when life has flattened everything else?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1106",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "On low-energy nights, what's the minimum gesture that still counts as connection for each of us?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1107",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What was the first time in a relationship you felt truly seen during a slump — and what did your partner do?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1108",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you ever fake enthusiasm to protect the mood — and what would a perfect honest moment look like instead?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1109",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Which season of your life had your highest desire — and what was true about that season that isn't now?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1110",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How should we handle it when one of us travels or works away — what keeps desire alive across distance?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1111",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What does rejection feel like to you physically — and what repair helps it fade fastest?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1112",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever been surprised by your own desire returning after you'd assumed it was gone?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1113",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What would you want the other to do during a long low-libido season — give space, stay close, or initiate gently anyway?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1114",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you think of desire as something that happens to you or something you participate in building?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1115",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How many nights of 'not tonight' in a row before you start feeling disconnected — and do you want your partner to know that number?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1116",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did you learn about intimacy from a period of long distance — what worked and what faded?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1117",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Would you trade quantity for intensity — and where do you honestly think our current balance sits?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1118",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever hidden how attracted you still are because showing it felt risky during a dry spell?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1119",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's your relationship with morning desire versus late-night desire — and do we actually know each other's rhythms?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1120",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the sweetest way a partner ever let you know they were missing intimacy without pressuring you?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1121",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If one of us hits a season of zero desire — illness, medication, grief — what agreement would protect us?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1122",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When you initiate, what answer hurts less — 'not tonight' with a reason, or 'not tonight' with a rain check?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1123",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How has your definition of a 'good sex life' changed since your twenties?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1124",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What habit could we start this week that would protect our connection from a busy month?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1125",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever mistaken exhaustion for lost attraction — and what helped you tell them apart?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1126",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's your fear about growing older together and desire changing — and what would comfort that fear?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1127",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When you're touched lovingly on a day you don't want sex, does it soothe you or build quiet pressure?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1128",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do we know each other's honest ideal frequency — not the polite answer, the real one?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1129",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What was intimacy like for you during a period of grief or depression — absent, needed, or complicated?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1130",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Would you rather your partner honestly said 'my body isn't cooperating lately' or stayed quiet and hoped?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1131",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you feel desire more for a person or for a feeling — and does that explain any of our patterns?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1132",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If your desire returns before mine does after a dry spell, how would you want me to respond to your patience?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1133",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Tell me about a time when simply being desired — not even touched — changed your whole week.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1134",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever resented a partner over a desire mismatch — and what did you do with the resentment?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1135",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the difference for you between maintenance intimacy and genuine hunger — and is one more valuable than the other?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1136",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Does your desire need novelty, or does deep familiarity do it — and has that changed over time?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1137",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the most romantic thing a partner did during a season when sex wasn't happening at all?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1138",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If you knew your partner was saying yes out of obligation, would you want them to stop — even if it meant less?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1139",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Should we promise each other that a slow season is never a silent verdict on the relationship?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1140",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What would you want to hear from me during a season when you feel sexually invisible?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1141",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did your body teach you about desire after a big change — illness, medication, surgery, or age?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1142",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How do you personally tell the difference between needing space and needing closeness?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1143",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If our rhythms only overlap at certain times of day, how should we design our life around that honestly?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1144",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever felt relieved when your partner said 'not tonight' — and what did that relief tell you?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1145",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the boldest thing you did to restart desire after a long pause — and did it work?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1146",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What role does feeling appreciated around the house play in your desire — is chore equity an intimacy issue for you?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1147",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the sentence about desire you've never said out loud but need your partner to understand?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1148",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How should we handle it if one of us wants to work on increasing their own desire — support, patience, professional help?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1149",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Tell me about the moment you first felt like a desirable person again after a hard chapter.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1150",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Would you rather be desired intensely sometimes or warmly and steadily always — and does our reality match that?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1151",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What did your parents' generation never talk about that we now have to figure out on our own?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1152",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If we ever go through a truly sexless season, what other forms of intimacy would we promise to never drop?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1153",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "When desire fades, what does your inner critic say about it — and what would you rather it said?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1154",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's the most understanding response you ever received to a 'not tonight'?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1155",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do we both know what counts as initiation for the other — a look, a touch, a text, a question?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1156",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Has a mismatch ever taught you something valuable about love that easy chemistry never could?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1157",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's your honest ratio of times you've wanted intimacy but not signaled it — and why did you stay quiet?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1158",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What season of our relationship do you want to get back to — or are you more excited for the season we haven't had yet?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1159",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's one thing we could promise each other about desire that would make you feel safer than ever?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1160",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If desire is a fire, what kindling does ours run on — and what currently dampens it?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1161",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever worried the mismatch was about you specifically — and what finally quieted that voice?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1162",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's a moment we stayed physically close through a hard season that you still draw strength from?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1163",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "If one of us has a higher desire week, what's the playbook — humor it off, address it, or let it breathe?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1164",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Do you believe long-term couples naturally drift apart physically — or that drifting is a choice?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1165",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What would you want to know if I ever started feeling undesired — the truth immediately, or gently later?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1166",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What's your honest take on desire-enhancing aids — therapy, lifestyle changes, or medication — would you consider them if needed?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1167",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What season taught you that intimacy and self-worth are not the same thing?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1168",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "Have you ever felt your desire was used as a measure of the relationship — and what did that pressure do?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1169",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "How should we celebrate the good seasons so they carry us through the slower ones?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1170",
+    "module": "explicit",
+    "category": "Libido, Mismatch & Life Phases",
+    "intensity": 2,
+    "prompt": "What has our current season of desire taught you about me that you didn't know before?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1171",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Is there a part of your body you used to hide during intimacy that you don't anymore — and what changed?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1172",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's your honest relationship with the lights during intimacy — on, off, or depends on the mood?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1173",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Have you ever had an insecurity crash the party right in the middle of a good moment — and did you say so?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1174",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What compliment about your body has stuck with you the longest — and who said it?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1175",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What did growing up around mirrors, photos, or comments teach you about your own appearance?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1176",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Which body part are you quickest to criticize in yourself — and what would it take to make peace with it?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1177",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "When your partner compliments your body, which kind lands hardest — about looks, touch, or what it can do?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1178",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Was there a moment you felt completely comfortable being seen naked for the first time with someone?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1179",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you ever avoid certain positions or angles because of how you think you look — and would you tell me which ones?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1180",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a physical feature of yours you've slowly grown to actually like?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1181",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How much of your body confidence depends on your partner's reaction — honestly?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1182",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Have you ever compared your body to an ex of your partner's — and what did you do with that thought?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1183",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the most healing thing anyone ever said about your body?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1184",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Would you rather be admired for how you look or how you move — and do you feel you get enough of either?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1185",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What happens inside you when your partner sees you fully in daylight?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1186",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's something your body did during intimacy that surprised you — in a good way?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1187",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How did your body change after your hardest year — and how did you treat it afterward?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1188",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Is there a piece of clothing you avoid wearing because of how it makes you feel exposed?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1189",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a moment your partner's desire for you completely overrode your insecurity?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1190",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "When I compliment your body, do you believe me immediately — and what would make it easier to believe?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1191",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the cruelest thing you've ever thought about your own body — and are you ready to retire that thought?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1192",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What physical ability are you quietly proud of that nobody else notices?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1193",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How has the way you want to be touched changed as your relationship with your body changed?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1194",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Have you ever postponed intimacy until you felt you 'looked better' — and what was that wait really about?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1195",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's your favorite photograph of yourself — and why that one?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1196",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you want more admiration of your body in everyday moments — and how would it best be delivered?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1197",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's it like for you to be watched during intimacy — arousing, unnerving, or both?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1198",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a change your body went through that you expected to mourn but ended up embracing?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1199",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Whose voice is in your head when you criticize your body — yours, or someone from your past?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1200",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the bravest thing you've done with your body — pregnancy, surgery, competition, recovery?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1201",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you feel like you dress for yourself, for me, or for whoever's watching — and are you happy with that answer?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1202",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If your partner could only see one thing about you — your confidence or your insecurity — which would you show?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1203",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "When do you feel most at home in your own skin — dancing, swimming, undressing, being held?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1204",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What did a doctor, trainer, or stranger once say about your body that you never shook off?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1205",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a moment you caught yourself in a mirror mid-laugh and actually liked what you saw?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1206",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you treat your body like a home or like an ongoing project — and what would 'home' feel like?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1207",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How much do you want your partner to notice effort — gym progress, grooming, a new outfit — and say so?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1208",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Is there a part of your body you'd want touched more but never ask — and why the silence?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1209",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What compliment would land better than any generic one — and have I ever accidentally found it?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1210",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Have you ever cried about your body — and was anyone there to see it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1211",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Would you ever want your partner to photograph you — and if so, on what terms?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1212",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the story you tell about your body in your head — and how much of it is even true?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1213",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a body feature you used to be teased for that you now consider a strength?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1214",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How do you feel about aging in front of someone who sees you every day?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1215",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the most confident you've ever felt undressing — what made that night different?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1216",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you ever stop yourself from fully letting go during intimacy because of how you might look or sound?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1217",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What role do you want touch to play on the days you feel your worst about your body?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1218",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the most surprising compliment you've received about your body — and did you believe it?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1219",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Does intimacy raise or quiet your body image thoughts — and what does that tell us?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1220",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What would it take for you to believe that your partner's attraction isn't in spite of your body?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1221",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Tell me about a moment of pure, unselfconscious physical fun — dancing, wrestling, swimming — you remember fondly.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1222",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Should we make a habit of naming what we love about each other's bodies — and does that feel nourishing or awkward?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1223",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's an insecurity you carry into every new bedroom that you'd love to finally set down?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1224",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's one thing about your body that only your partner has ever noticed?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1225",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How did your body image change in your most loving relationship versus your least?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1226",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the first time you remember choosing an outfit to feel powerful rather than to hide?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1227",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "When you're having an ugly day, what's the last thing you want to hear — and what's the first?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1228",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How comfortable are you being sensual in front of a mirror — curious to try, indifferent, or a hard pass?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1229",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What does your body do when you feel genuinely safe — and how often do you feel that way?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1230",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What compliment about your appearance have you carried for years without telling the giver what it meant?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1231",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you think your partner's body image worries are about you — and what would reassure you they're not?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1232",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a part of yourself you present confidently in public but feel fragile about in private?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1233",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a moment your body pleasantly surprised you during intimacy?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1234",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If your partner could rewire one belief you hold about your own body, which should they pick?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1235",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the most liberated you've ever felt physically — where, when, and with whom?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1236",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you ever fear that your partner's eyes are cataloging your flaws — and can I tell you they're not?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1237",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What relationship did you have with scale numbers, sizes, or measurements — and what's it like today?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1238",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's an unexpected feature your partner loves that you never thought twice about?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1239",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "On days your confidence is high, how do you want me to celebrate it — and on low days, how should I protect it?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1240",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a sound or expression you make during intimacy that you've felt self-conscious about?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1241",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What did a postpartum, post-surgery, or post-change body teach you about your own resilience?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1242",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Is the version of your body you're waiting for actually coming — or is accepting the current one the real work?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1243",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the kindest thing you've ever said to your own body — and would you say it again tonight?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1244",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How would you feel about a regular ritual of naming one thing we love about each other's bodies each week?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1245",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What would you do differently in bed if you knew — really knew — that every part of you was wanted?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1246",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a moment your partner made you feel beautiful without saying a single word?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1247",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Whose beauty standards did you inherit — and whose are you ready to stop carrying?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1248",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What compliment pattern makes you glow — unexpected in the moment, planned, or written down?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1249",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Have you ever apologized for your body during intimacy — and would you take that apology back now?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1250",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Would you want your partner to tell you when they notice your insecurity affecting intimacy — or wait for you to bring it up?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1251",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a moment you surprised yourself by feeling proud of your body mid-act?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1252",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What has your body allowed you to give your partner that you're grateful for?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1253",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If your body could talk, what would it thank you for this year — and what would it ask you to stop?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1254",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the fear that shows up right before you undress — and how often does it actually come true?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1255",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's one promise your partner could make about your body that you'd want to hear out loud?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1256",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What was the first time you felt admired for exactly who you are, exactly as you look?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1257",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you extend to your own body the same generosity you'd extend to a lover's?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1258",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What part of your body are you learning to thank instead of fix — and how's it going?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1259",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What would full body confidence look like for you — and what's one step toward it this month?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1260",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If we ever have a bad-body-image week in this relationship, what should the other partner's job be?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1261",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's the most beautiful thing your body has ever done, in your eyes?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1262",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's something your body has survived that you want your partner to understand, not just know about?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1263",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Which compliments bounce off you because you've heard them too often — and which never get old?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1264",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If either of us struggles with body image in old age, what promise would we want on record now?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1265",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's one feature your partner loves that you still can't see yourself — want to try seeing it tonight?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1266",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "How did being loved change the way you walk, dress, or carry yourself — did anyone ever notice?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1267",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "When has your body felt like an ally instead of an enemy — and what were you doing?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1268",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "What's a scar, mark, or line on your body with a story you've never told me?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1269",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "Do you want to be teased lovingly about your body quirks, or protected from all teasing — where's the line?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1270",
+    "module": "explicit",
+    "category": "Body Image & Vulnerability",
+    "intensity": 2,
+    "prompt": "If you could say one sentence back in time to your most self-conscious younger self, what would it be?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1271",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What did sex education about health and safety actually teach you, and what do you wish it had covered?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1272",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Have you ever faked feeling fine physically during intimacy because you didn't want to disappoint me?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1273",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "When was the last time you felt physically self-conscious during sex, and what caused it?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1274",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is the funniest accidental injury or awkward mishap either of us has had during intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1275",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "If one of us was dealing with a health issue that affected sex, how would you want us to talk about it?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1276",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Have you ever had a moment where your body just didn't cooperate, and how did you handle it emotionally?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1277",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Do you find it easy or hard to tell me when something physically hurts or feels uncomfortable?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1278",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "How did your teenage years shape the way you think about your sexual health today?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1279",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is the most awkward physical reaction your body has ever had during a romantic moment?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1280",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "If you were embarrassed about a health issue affecting our intimacy, what would help you open up to me?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1281",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is something about your body's responses that surprised you the first time you noticed it?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1282",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is one sexual health question you were always too shy to ask anyone?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1283",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Have you ever worried that a physical limitation would make you less attractive to me?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1284",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "When one of us is too exhausted for intimacy but still wants closeness, what should our default move be?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1285",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is the sickest or most run-down you've ever been while we still tried to keep the romance alive?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1286",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever experienced pain during sex that you pushed through rather than mention in the moment?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1287",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Is there any position or act we do regularly that is physically uncomfortable for you that you haven't told me about?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1288",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How would you want me to react if you told me mid-intimacy that something was hurting?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1289",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How should we handle it when one of us wants intimacy but the other's body isn't cooperating that day?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1290",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever had a medical situation or procedure that changed your experience of intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1291",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What have you learned about your body's physical limits that our intimate life should account for?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1292",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever felt pressure to perform when you really weren't feeling up to it?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1293",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How do you think stress has physically shown up in your desire or stamina lately?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1294",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Do you feel like you can pause or stop things mid-session without disappointing me?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1295",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "If I ever seemed to be struggling physically and hiding it, how would you want me to bring it up?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1296",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is the most distracting physical ailment you've ever tried to have sex through?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1297",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Would you rather reschedule intimacy when you're unwell, or trade it for low-key physical closeness?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1298",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever blamed yourself when your body didn't respond the way you wanted it to?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1299",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is one change in your body as you've gotten older that you're still adjusting to?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1300",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever had an embarrassing health moment in the bedroom that we can laugh about now?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1301",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What does it mean to you that I never make you feel broken when your body doesn't cooperate?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1302",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Do you ever hide how tired or sore you really are to keep an intimate moment going?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1303",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How did your first experiences of sexual awkwardness shape how you handle physical mishaps now?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1304",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "If intimacy started hurting or feeling wrong for either of us, what is our agreed plan of action?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1305",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is the most memorable time we had to improvise because someone's body or health threw a wrench in the plans?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1306",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Have you ever felt like you had to prove something physically that you weren't actually capable of?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1307",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "When was the last time one of us took care of the other during or after a painful intimate moment?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1308",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is something about hormones, energy, or aging you have become curious about for us to learn together?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1309",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What physical self-care can we each commit to so that our intimate life stays comfortable and satisfying?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1310",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever quietly worried that a health issue might permanently change our sex life?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1311",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "If you ever felt physically inadequate or broken, would you tell me first or hide it? Why?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1312",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "How would we stay connected if one of us faced a long-term condition that limited physical intimacy?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1313",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Is there a moment when your body's response embarrassed you so much you almost shut down emotionally?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1314",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is the hardest physical challenge to intimacy we have ever worked through as a couple?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1315",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever hidden a health concern because you were afraid it would make me see you differently?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1316",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "When your confidence in your body has been at its lowest, what did you most need from me?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1317",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Do you trust that we can talk about anything physical, even the awkward or scary stuff, without judgment?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1318",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is one thing you've noticed about how pain or discomfort affects your desire that I should know?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1319",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever pushed through intimacy out of obligation when your body was begging you to stop?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1320",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is the most vulnerable you've ever felt about your body during a sexual experience with me?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1321",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "If medication, energy, or health changes ever shifted your desire, how would you want us to adapt?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1322",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What physical insecurity do you hope I never notice, even though you suspect I might?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1323",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "If either of us ever needed a doctor's help for an intimate health issue, how would we handle that as a team?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1324",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever compared your current physical performance to your past self and felt like you lost?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1325",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Tell me about a time when slowing down for your health actually made intimacy better.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1326",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "How do you handle the moments when your body and your mind want two different things?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1327",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What part of your body's changes over time scares you most, and how can I support you through it?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1328",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Would you rather I ask directly when I sense something physical is off, or wait for you to bring it up?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1329",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is our plan for keeping desire and connection alive during periods of illness, stress, or exhaustion?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1330",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is one conversation about sexual health we have been avoiding that we should finally have?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1331",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever felt that I was silently disappointed by a night when your body couldn't keep up?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1332",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is the bravest thing either of us has done in facing a physical or health challenge to our intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1333",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "When was the last time you felt truly seen and accepted despite a physical limitation?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1334",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "If your ability or desire changed suddenly tomorrow, do you believe we would still find our way? Why?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1335",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What does sexual confidence mean to you now compared to when we first met?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1336",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "How can we build a version of intimacy that works even on our worst physical days?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1337",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever hidden discomfort to protect my ego, and what would you do differently now?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1338",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is the most important lesson a health scare or setback has taught you about intimacy?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1339",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What fear about your body's future do you carry that you haven't spoken out loud yet?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1340",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is one way we can celebrate what our bodies can do instead of mourning what they can't?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1341",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Do you believe we check in with each other's physical comfort often enough during sex? What would you change?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1342",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "If one of us needed to pause our sex life for recovery, how would we keep closeness alive meanwhile?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1343",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Describe a time when being honest about a physical issue actually brought us closer.",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1344",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is your go-to comfort ritual when your body needs rest but your heart wants affection?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1345",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "When you're under the weather, do you prefer to be left alone or babied with affection?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1346",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Should we have a signal for when one of us wants closeness but definitely not sex?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1347",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is the most physically graceful way one of us has ever handled an awkward bedroom fail?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1348",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Do you feel comfortable laughing together when our bodies do embarrassing things during sex?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1349",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What is one low-energy way to stay physically connected that we haven't tried enough?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1350",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "How much of your sexual confidence today comes from feeling healthy versus feeling loved?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1351",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "What was the first time you realized intimacy doesn't have to be athletic to be amazing?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1352",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "Is there a compliment about your body that you never believe but wish you could?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1353",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 1,
+    "prompt": "When you're having a rough body day, what is the kindest thing I could possibly do?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1354",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is the most romantic thing we've done together that required zero physical stamina?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1355",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How do we decide together when to push through fatigue versus when to postpone intimacy?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1356",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What have you learned about recovery and rest that our intimate routine should respect?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1357",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Do you ever fake energy or enthusiasm during intimacy to keep the mood alive?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1358",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What physical change have you noticed recently that you're still deciding how you feel about?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1359",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "If something suddenly felt wrong in your body during sex, would you speak up immediately or after?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1360",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "How do you think your relationship with physical touch has evolved with your health over the years?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1361",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is the sweetest moment we've shared that came out of an accident, illness, or setback?",
+    "contextType": "story",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1362",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Should we schedule restorative, low-pressure intimacy nights alongside our adventurous ones?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1363",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What is one myth about bodies and sex you had to unlearn for your own peace of mind?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1364",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "Are there things you avoid trying physically because you worry about how your body might fail you?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1365",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 2,
+    "prompt": "What would make you feel completely safe telling me about any intimate health worry in the future?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1366",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Have you ever grieved a version of your sexual self that you can't get back?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1367",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What promise do you want from me about how we face physical changes together as we age?",
+    "contextType": "trust",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1368",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What agreements do we want to make now about intimacy during illness, treatment, or recovery?",
+    "contextType": "alignment",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1369",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "What is the one thing you'd want me to know instantly if your health ever changed overnight?",
+    "contextType": "honesty",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-1370",
+    "module": "explicit",
+    "category": "Health, Pain & Performance",
+    "intensity": 3,
+    "prompt": "Looking back, what moment best proves that our intimacy survives every physical curveball?",
+    "contextType": "story",
+    "promptStyle": "question"
+  }
   ]
 }
