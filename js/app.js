@@ -12,6 +12,12 @@ let activeModule = 'sexuality';
 let activeIntensity = 'all';
 let activePromptStyle = 'all';
 let activeGameMode = 'classic';
+let activeModules = ['sexuality'];
+let activeTopics = null;
+let includeQuestions = true;
+let includeActivities = true;
+let includeMultipleChoice = true;
+let warmUpEnabled = false;
 const EXPLICIT_AGE_CONFIRMATION_KEY = 'closer_explicit_age_confirmed';
 const PLAYER_ONE_NAME_KEY = 'closer_player_one';
 const PLAYER_TWO_NAME_KEY = 'closer_player_two';
@@ -34,7 +40,7 @@ let compareFirstRoundId = null;
 let compareFirstRoundIndex = 0;
 let compareFirstRoundTotal = 0;
 let compareFirstRestoreState = null;
-let turnTakingEnabled = false;
+let turnTakingEnabled = true;
 let activeTurn = 0;
 let pickedAnswerer = null;
 let pickedAnswererIndex = null;
@@ -70,6 +76,9 @@ let cardAnswerOwnUid = null;
 let cardAnswerPartnerUid = null;
 let cardAnswerOwn = null;
 let cardAnswerPartner = null;
+let localAnswerRoundId = null;
+let localAnswerIndices = [null, null];
+let localAnswerPhase = 'choose';
 
 async function initDatabase() {
     console.log("Initializing database...");
@@ -117,6 +126,10 @@ async function initDatabase() {
 
     rebuildUnspentDeck();
     drawNextCard();
+    updateRoundSummary();
+    const roundSummaryButton = document.getElementById('roundSummaryBtn');
+    if (roundSummaryButton) roundSummaryButton.disabled = false;
+    if (!document.getElementById('roundBuilderModal')?.classList.contains('hidden')) renderRoundTopics();
     const appStatus = document.getElementById('appStatus');
     if (appStatus) {
         const statusMessages = [];
@@ -152,17 +165,183 @@ function getFilteredCards() {
         const matchesCompareFirst = activeGameMode === 'compare-first';
         const matchesModule = matchesCompareFirst
             ? compareFirstModules.includes(card.module)
-            : activeModule === 'all' || card.module === activeModule;
+            : activeModules.includes(card.module);
         const intensity = String(card.intensity);
         const matchesMode = activeGameMode !== 'deep' || intensity === '3';
         const matchesIntensity = matchesCompareFirst
             ? compareFirstLevels.includes(intensity)
             : activeIntensity === 'all' || intensity === String(activeIntensity);
         const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
-        const matchesPromptStyle = matchesCompareFirst || activePromptStyle === 'all' || promptStyle === activePromptStyle;
+        const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
+        const matchesPromptStyle = matchesCompareFirst
+            || (isMultipleChoice ? includeMultipleChoice : promptStyle === 'activity' ? includeActivities : includeQuestions);
+        const matchesTopic = matchesCompareFirst || activeTopics === null
+            || activeTopics.includes(`${card.module}::${card.category || 'General'}`);
         return matchesModule && matchesMode && matchesIntensity && matchesPromptStyle
-            && (!matchesCompareFirst || (Array.isArray(card.options) && card.options.length >= 2));
+            && matchesTopic
+            && (!matchesCompareFirst || isMultipleChoice);
     });
+}
+
+function getRoundBuilderSelection() {
+    const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(input => input.value);
+    const topics = [...document.querySelectorAll('#roundTopics input[type="checkbox"]:checked')].map(input => input.value);
+    const allTopics = document.querySelectorAll('#roundTopics input[type="checkbox"]').length;
+    return {
+        modules,
+        topics: topics.length === allTopics ? null : topics,
+        intensity: document.querySelector('input[name="roundIntensity"]:checked')?.value || 'all',
+        questions: Boolean(document.getElementById('includeQuestions')?.checked),
+        activities: Boolean(document.getElementById('includeActivities')?.checked),
+        multipleChoice: Boolean(document.getElementById('includeMultipleChoice')?.checked)
+    };
+}
+
+function getCardsForRoundSelection(selection) {
+    return masterDatabase.filter(card => {
+        if (!selection.modules.includes(card.module)) return false;
+        if (selection.intensity !== 'all' && String(card.intensity) !== selection.intensity) return false;
+        if (selection.topics !== null && !selection.topics.includes(`${card.module}::${card.category || 'General'}`)) return false;
+        const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
+        if (isMultipleChoice) return selection.multipleChoice;
+        const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
+        return promptStyle === 'activity' ? selection.activities : selection.questions;
+    });
+}
+
+function renderRoundTopics() {
+    const container = document.getElementById('roundTopics');
+    if (!container) return;
+    const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(input => input.value);
+    const topics = [...new Set(masterDatabase
+        .filter(card => modules.includes(card.module))
+        .map(card => `${card.module}::${card.category || 'General'}`))]
+        .sort((a, b) => a.split('::')[1].localeCompare(b.split('::')[1]));
+    container.replaceChildren();
+    topics.forEach(topic => {
+        const [module, category] = topic.split('::');
+        const label = document.createElement('label');
+        label.className = 'round-topic-option';
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.value = topic;
+        input.checked = activeTopics === null || activeTopics.includes(topic);
+        const text = document.createElement('span');
+        text.textContent = `${category} · ${module === 'sexuality' ? 'Flame & Passion' : module === 'life' ? 'Deep Connection' : 'Explicit'}`;
+        label.append(input, text);
+        container.appendChild(label);
+    });
+    updateRoundMatchCount();
+}
+
+function updateRoundMatchCount() {
+    const output = document.getElementById('roundMatchCount');
+    const startButton = document.getElementById('startRoundBtn');
+    const startLightButton = document.getElementById('startLightRoundBtn');
+    if (!output) return;
+    const selection = getRoundBuilderSelection();
+    const count = getCardsForRoundSelection(selection).length;
+    output.textContent = `${count} ${count === 1 ? 'card' : 'cards'} match this round.`;
+    if (startButton) startButton.disabled = count === 0;
+    if (startLightButton) {
+        const lightSelection = { ...selection, intensity: '1' };
+        const lightCount = getCardsForRoundSelection(lightSelection).length;
+        startLightButton.disabled = lightCount === 0;
+        startLightButton.title = lightCount ? `${lightCount} lighter cards to start` : 'No mild cards match these choices';
+    }
+}
+
+function updateRoundSummary() {
+    const summary = document.getElementById('roundSummaryText');
+    if (!summary) return;
+    if (activeModules.length === 1 && activeModules[0] === 'secrets') {
+        summary.textContent = 'Private entries · Not part of a question round';
+        return;
+    }
+    const deckNames = {
+        sexuality: 'Flame & Passion',
+        life: 'Deep Connection',
+        explicit: 'Explicit'
+    };
+    const deckSummary = activeModules.length === 3
+        ? 'All decks'
+        : activeModules.map(module => deckNames[module]).join(' + ') || 'No decks';
+    const topicSummary = activeTopics === null
+        ? 'All topics'
+        : `${activeTopics.length} ${activeTopics.length === 1 ? 'topic' : 'topics'}`;
+    const levelSummary = activeIntensity === 'all'
+        ? 'All levels'
+        : `${activeIntensity === '1' ? 'Mild' : activeIntensity === '2' ? 'Moderate' : 'Wild'}`;
+    summary.textContent = `${deckSummary} · ${topicSummary} · ${levelSummary}`;
+}
+
+function updateActiveModulePresentation() {
+    activeModule = activeModules.length === 1 ? activeModules[0] : 'all';
+    document.body.dataset.module = activeModules.length === 1 ? activeModules[0] : 'sexuality';
+    updateIntensityLabels(activeModule);
+    updateSectionView();
+    updateRoundSummary();
+}
+
+function applyRoundSelection(selection, startLight = false) {
+    if (selection.modules.length === 0) {
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = 'Choose at least one deck to start.';
+        return false;
+    }
+    activeModules = selection.modules;
+    activeTopics = selection.topics;
+    activeIntensity = startLight ? '1' : selection.intensity;
+    includeQuestions = selection.questions;
+    includeActivities = selection.activities;
+    includeMultipleChoice = selection.multipleChoice;
+    activeTurn = 0;
+    pickedAnswerer = null;
+    pickedAnswererIndex = null;
+    activePromptStyle = includeQuestions && includeActivities
+        ? 'all'
+        : includeActivities ? 'activity' : 'question';
+    warmUpEnabled = startLight;
+    if (activeGameMode === 'compare-first') exitCompareFirstMode();
+    if (activeGameMode === 'deep') {
+        activeGameMode = 'classic';
+        document.getElementById('gameModeSelect').value = 'classic';
+    }
+    document.querySelectorAll('.intensity-btn').forEach(button => {
+        const selected = button.dataset.level === activeIntensity;
+        button.classList.toggle('active', selected);
+        button.setAttribute('aria-pressed', String(selected));
+    });
+    updateQuestionTypeSelection(activePromptStyle, false, false);
+    updateActiveModulePresentation();
+    rebuildUnspentDeck();
+    updateRoundSummary();
+    drawNextCard();
+    closeRoundBuilder();
+    return true;
+}
+
+function openRoundBuilder() {
+    const modal = document.getElementById('roundBuilderModal');
+    if (!modal) return;
+    document.querySelectorAll('input[name="roundDeck"]').forEach(input => {
+        input.checked = activeModules.includes(input.value);
+    });
+    const intensity = document.querySelector(`input[name="roundIntensity"][value="${activeIntensity}"]`);
+    if (intensity) intensity.checked = true;
+    document.getElementById('includeQuestions').checked = includeQuestions;
+    document.getElementById('includeActivities').checked = includeActivities;
+    document.getElementById('includeMultipleChoice').checked = includeMultipleChoice;
+    const status = document.getElementById('roundBuilderStatus');
+    if (status) status.textContent = '';
+    renderRoundTopics();
+    document.querySelector('.round-builder-content').scrollTop = 0;
+    modal.classList.remove('hidden');
+    document.getElementById('closeRoundBuilderBtn')?.focus();
+}
+
+function closeRoundBuilder() {
+    document.getElementById('roundBuilderModal')?.classList.add('hidden');
 }
 
 async function loadCommunityVotes() {
@@ -252,8 +431,20 @@ function formatTimer(seconds) {
     return `${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`;
 }
 
-function updateQuestionTypeSelection(style, announce = false) {
+function updateQuestionTypeSelection(style, announce = false, syncTypes = true) {
     activePromptStyle = style;
+    if (syncTypes) {
+        includeQuestions = style !== 'activity';
+        includeActivities = style !== 'question';
+    }
+    const questionToggle = document.getElementById('includeQuestions');
+    const activityToggle = document.getElementById('includeActivities');
+    const multipleChoiceToggle = document.getElementById('includeMultipleChoice');
+    if (questionToggle) questionToggle.checked = includeQuestions;
+    if (activityToggle) activityToggle.checked = includeActivities;
+    if (multipleChoiceToggle) multipleChoiceToggle.checked = includeMultipleChoice;
+    const settingsMultipleChoiceToggle = document.getElementById('settingsIncludeMultipleChoice');
+    if (settingsMultipleChoiceToggle) settingsMultipleChoiceToggle.checked = includeMultipleChoice;
     const labels = {
         all: 'All question types',
         question: 'Questions to answer',
@@ -264,9 +455,10 @@ function updateQuestionTypeSelection(style, announce = false) {
         btn.classList.toggle('active', isActive);
         btn.setAttribute('aria-pressed', String(isActive));
     });
-    document.getElementById('questionTypeSummary').textContent = labels[style];
+    const questionTypeSummary = document.getElementById('questionTypeSummary');
+    if (questionTypeSummary) questionTypeSummary.textContent = labels[style];
     const confirmation = document.getElementById('questionTypeConfirmation');
-    confirmation.textContent = announce ? `${labels[style]} selected.` : '';
+    if (confirmation) confirmation.textContent = announce ? `${labels[style]} selected.` : '';
 }
 
 function drawNextCard(isRemoteUpdate = false) {
@@ -274,7 +466,27 @@ function drawNextCard(isRemoteUpdate = false) {
         setCardActionStatus('Only the host can advance the Compare First session.');
         return;
     }
-    if (activeGameMode !== 'compare-first' && unspentDeck.length === 0) rebuildUnspentDeck();
+    if (activeGameMode !== 'compare-first' && unspentDeck.length === 0 && warmUpEnabled) {
+        let nextLevel = Number(activeIntensity) + 1;
+        while (nextLevel <= 3 && unspentDeck.length === 0) {
+            activeIntensity = String(nextLevel);
+            rebuildUnspentDeck();
+            nextLevel += 1;
+        }
+        if (unspentDeck.length === 0) {
+            warmUpEnabled = false;
+            activeIntensity = '3';
+            rebuildUnspentDeck();
+        }
+        document.querySelectorAll('.intensity-btn').forEach(button => {
+            const selected = button.dataset.level === activeIntensity;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+        updateRoundSummary();
+    } else if (activeGameMode !== 'compare-first' && unspentDeck.length === 0) {
+        rebuildUnspentDeck();
+    }
     if (unspentDeck.length === 0) {
         if (activeGameMode === 'compare-first' && compareFirstRoundIndex > 0) {
             completeCompareFirstRound();
@@ -287,6 +499,9 @@ function drawNextCard(isRemoteUpdate = false) {
         if (prompt) prompt.innerText = 'Try changing your deck filters to find a question.';
         const nextCardBtn = document.getElementById('nextCardBtn');
         if (nextCardBtn) nextCardBtn.disabled = true;
+        const passCardBtn = document.getElementById('passCardBtn');
+        if (passCardBtn) passCardBtn.disabled = true;
+        document.getElementById('warmUpNextBtn')?.classList.add('hidden');
         stopModeTimer();
         document.getElementById('actionTimerBar')?.classList.add('hidden');
         document.getElementById('communityVoteBtn')?.classList.add('hidden');
@@ -298,7 +513,7 @@ function drawNextCard(isRemoteUpdate = false) {
         return;
     }
 
-    currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId() };
+    currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId(), turnIndex: activeTurn };
     if (activeGameMode === 'compare-first') {
         compareFirstRoundIndex += 1;
         currentCard.compareFirst = true;
@@ -318,11 +533,20 @@ function drawNextCard(isRemoteUpdate = false) {
 
 function updateCompareFirstControls() {
     const nextCardBtn = document.getElementById('nextCardBtn');
+    const passCardBtn = document.getElementById('passCardBtn');
     if (!nextCardBtn) return;
     if (!currentCard?.compareFirst) {
-        nextCardBtn.textContent = 'Skip question';
+        nextCardBtn.textContent = 'Next question';
         nextCardBtn.disabled = !currentCard;
+        if (passCardBtn) {
+            passCardBtn.classList.remove('hidden');
+            passCardBtn.disabled = !currentCard;
+        }
         return;
+    }
+    if (passCardBtn) {
+        passCardBtn.classList.add('hidden');
+        passCardBtn.disabled = true;
     }
     const isHost = window.currentRoomRole === 'host';
     const answersSubmitted = Boolean(cardAnswerOwn && cardAnswerPartner);
@@ -369,6 +593,14 @@ function savePlayerIdentity(index, name, icon) {
 }
 
 function selectModule(module) {
+    if (module === 'secrets') {
+        activeModule = module;
+        updateSectionView();
+        return;
+    }
+    activeModules = [module];
+    activeTopics = null;
+    updateActiveModulePresentation();
     document.querySelectorAll('.module-tab').forEach(tab => {
         const isActive = tab.dataset.module === module;
         tab.classList.toggle('active', isActive);
@@ -382,6 +614,7 @@ function selectModule(module) {
         button.setAttribute('aria-pressed', String(isActive));
     });
     updateSectionView();
+    updateRoundSummary();
     rebuildUnspentDeck();
     drawNextCard();
 }
@@ -616,6 +849,7 @@ function renderCard(card) {
     } else if (!card.compareFirst && activeGameMode === 'compare-first') {
         exitCompareFirstMode();
     }
+    if (Number.isInteger(card.turnIndex) && [0, 1].includes(card.turnIndex)) activeTurn = card.turnIndex;
     document.getElementById('compareFirstComplete')?.classList.add('hidden');
     setCardActionStatus('');
     const badge = document.getElementById('cardCategory');
@@ -637,6 +871,8 @@ function renderCard(card) {
         turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
         turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
     }
+    const warmUpNextBtn = document.getElementById('warmUpNextBtn');
+    if (warmUpNextBtn) warmUpNextBtn.classList.toggle('hidden', !warmUpEnabled || Number(activeIntensity) >= 3);
 
     setCommunityActions(card);
     renderModeTimer();
@@ -798,11 +1034,27 @@ function renderCardAnswerPanel(card) {
         detachCardAnswerListeners();
         cardAnswerSetupKey = null;
         cardAnswerCard = null;
+        localAnswerRoundId = null;
         return;
     }
 
     panel.classList.remove('hidden');
-    if (cardAnswerCard?.roundId !== card.roundId) {
+    if (!window.roomRef) {
+        detachCardAnswerListeners();
+        cardAnswerSetupKey = null;
+        cardAnswerCard = card;
+        if (localAnswerRoundId !== card.roundId) {
+            localAnswerRoundId = card.roundId;
+            localAnswerIndices = [null, null];
+            localAnswerPhase = 'choose';
+        }
+        renderLocalCardAnswers(card, optionsContainer, submitButton, document.getElementById('cardAnswerStatus'), document.getElementById('cardAnswerComparison'));
+        return;
+    }
+    const pairedSetupKey = `${window.currentRoomCode}:${card.roundId}`;
+    optionsContainer.classList.remove('hidden');
+    submitButton.classList.remove('hidden');
+    if (cardAnswerCard?.roundId !== card.roundId || cardAnswerSetupKey !== pairedSetupKey) {
         detachCardAnswerListeners();
         cardAnswerSetupKey = null;
         cardAnswerCard = card;
@@ -845,6 +1097,73 @@ function renderCardAnswerPanel(card) {
         setupCardAnswerRoom(card);
     }
     updateCardAnswerComparison();
+}
+
+function renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison) {
+    if (!status || !comparison) return;
+    optionsContainer.replaceChildren();
+    comparison.replaceChildren();
+    comparison.classList.add('hidden');
+    submitButton.classList.remove('hidden');
+    submitButton.disabled = false;
+    const legend = document.createElement('legend');
+    optionsContainer.appendChild(legend);
+
+    if (localAnswerPhase === 'handoff') {
+        legend.textContent = 'Answer saved privately';
+        submitButton.textContent = `Pass the phone to ${getPlayerIdentifier(1)}`;
+        status.textContent = `Your choice is hidden. Hand over the phone, then let ${getPlayerIdentifier(1)} tap to continue.`;
+        submitButton.onclick = () => {
+            localAnswerPhase = 'choose';
+            renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison);
+        };
+        return;
+    }
+
+    if (localAnswerPhase === 'reveal') {
+        const heading = document.createElement('strong');
+        heading.textContent = localAnswerIndices[0] === localAnswerIndices[1] ? 'You picked the same answer!' : 'You picked different answers';
+        const firstAnswer = document.createElement('p');
+        firstAnswer.textContent = `${getPlayerIdentifier(0)}: ${card.options[localAnswerIndices[0]]}`;
+        const secondAnswer = document.createElement('p');
+        secondAnswer.textContent = `${getPlayerIdentifier(1)}: ${card.options[localAnswerIndices[1]]}`;
+        comparison.append(heading, firstAnswer, secondAnswer);
+        comparison.classList.remove('hidden');
+        optionsContainer.classList.add('hidden');
+        submitButton.classList.add('hidden');
+        status.textContent = 'Both answers are in. Talk about what you chose.';
+        return;
+    }
+
+    optionsContainer.classList.remove('hidden');
+    const activePlayer = localAnswerIndices[0] === null ? 0 : 1;
+    legend.textContent = `${getPlayerIdentifier(activePlayer)}, choose privately`;
+    card.options.forEach((option, index) => {
+        const label = document.createElement('label');
+        label.className = 'card-answer-option';
+        const radio = document.createElement('input');
+        radio.type = 'radio';
+        radio.name = 'cardAnswer';
+        radio.value = String(index);
+        const text = document.createElement('span');
+        text.textContent = option;
+        label.append(radio, text);
+        optionsContainer.appendChild(label);
+    });
+    submitButton.textContent = `Lock in ${getPlayerIdentifier(activePlayer)}’s answer`;
+    status.textContent = activePlayer === 0
+        ? 'Your answer stays hidden when you hand the phone to your partner.'
+        : 'Your partner’s answer is still hidden. Lock in yours to reveal both.';
+    submitButton.onclick = () => {
+        const selected = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
+        if (!selected) {
+            status.textContent = 'Choose an answer before locking it in.';
+            return;
+        }
+        localAnswerIndices[activePlayer] = Number(selected.value);
+        localAnswerPhase = activePlayer === 0 ? 'handoff' : 'reveal';
+        renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison);
+    };
 }
 
 // Drawer & Modal Controller Functions
@@ -1077,10 +1396,13 @@ function renderPartnerCards() {
         useButton.type = 'button';
         useButton.textContent = 'Use this card';
         useButton.onclick = () => {
-            activeModule = card.module;
+            activeModules = [card.module];
+            activeTopics = null;
+            updateActiveModulePresentation();
             activeGameMode = 'classic';
             activeIntensity = 'all';
-            activePromptStyle = 'all';
+            includeMultipleChoice = true;
+            warmUpEnabled = false;
             document.querySelectorAll('.module-tab').forEach(tab => {
                 const isActive = tab.dataset.module === activeModule;
                 tab.classList.toggle('active', isActive);
@@ -1094,7 +1416,7 @@ function renderPartnerCards() {
             });
             updateQuestionTypeSelection('all');
             renderModeTimer();
-            updateSectionView();
+            updateRoundSummary();
             rebuildUnspentDeck();
             unspentDeck.push(card);
             closeDrawer();
@@ -1439,8 +1761,8 @@ function renderWildRevealEntries() {
 
 function updateSectionView() {
     const isWild = activeModule === 'secrets';
-    const isExplicit = activeModule === 'explicit';
-    document.body.dataset.module = activeModule;
+    const isExplicit = !isWild && activeModules.includes('explicit');
+    document.body.dataset.module = isWild ? 'secrets' : activeModules.length === 1 ? activeModules[0] : 'sexuality';
     updateIntensityLabels();
     document.getElementById('cardContainer')?.classList.toggle('hidden', isWild);
     document.querySelector('.response-section')?.classList.toggle('hidden', isWild);
@@ -1810,20 +2132,77 @@ document.addEventListener('DOMContentLoaded', () => {
     deckOptionsElement = document.getElementById('deckOptions');
     partnerCardsSectionElement = document.getElementById('partnerCardsSection');
     partnerCardsListElement = document.getElementById('partnerCardsList');
-    // 1. Advance from the card or skip button
-    const cardContainer = document.getElementById('cardContainer');
-    if (cardContainer) {
-        cardContainer.onclick = (event) => {
-            if (event.target.closest('button, input, label, select, textarea')) return;
-            if (isCompareFirstSessionActive()) return;
-            advanceCard();
-        };
-    }
-
+    // 1. Advance cards with the explicit controls to avoid accidental skips.
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) {
         nextCardBtn.onclick = () => advanceCard();
     }
+    document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard());
+    document.getElementById('warmUpNextBtn')?.addEventListener('click', () => {
+        if (!warmUpEnabled || Number(activeIntensity) >= 3) return;
+        activeIntensity = String(Number(activeIntensity) + 1);
+        document.querySelectorAll('.intensity-btn').forEach(button => {
+            const selected = button.dataset.level === activeIntensity;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+        updateRoundSummary();
+        rebuildUnspentDeck();
+        drawNextCard();
+    });
+
+    document.getElementById('roundSummaryBtn')?.addEventListener('click', openRoundBuilder);
+    document.getElementById('wildUnspokenBtn')?.addEventListener('click', () => {
+        if (activeGameMode === 'compare-first') exitCompareFirstMode();
+        selectModule('secrets');
+    });
+    document.getElementById('closeRoundBuilderBtn')?.addEventListener('click', closeRoundBuilder);
+    document.getElementById('roundBuilderModal')?.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeRoundBuilder();
+            document.getElementById('roundSummaryBtn')?.focus();
+        }
+    });
+    document.getElementById('roundBuilderModal')?.addEventListener('click', event => {
+        if (event.target === event.currentTarget) closeRoundBuilder();
+    });
+    document.getElementById('selectAllTopicsBtn')?.addEventListener('click', () => {
+        document.querySelectorAll('#roundTopics input[type="checkbox"]').forEach(input => { input.checked = true; });
+        updateRoundMatchCount();
+    });
+    document.getElementById('clearTopicsBtn')?.addEventListener('click', () => {
+        document.querySelectorAll('#roundTopics input[type="checkbox"]').forEach(input => { input.checked = false; });
+        updateRoundMatchCount();
+    });
+    document.getElementById('roundBuilderModal')?.addEventListener('change', event => {
+        const target = event.target;
+        if (target.matches('input[name="roundDeck"]')) {
+            if (target.value === 'explicit' && target.checked && !hasExplicitAgeConfirmation()) {
+                target.checked = false;
+                document.getElementById('explicitAgeGate')?.classList.remove('hidden');
+                return;
+            }
+            activeTopics = null;
+            renderRoundTopics();
+        } else if (target.matches('#roundTopics input[type="checkbox"], input[name="roundIntensity"], #includeQuestions, #includeActivities, #includeMultipleChoice')) {
+            updateRoundMatchCount();
+        }
+    });
+    document.getElementById('settingsIncludeMultipleChoice')?.addEventListener('change', event => {
+        includeMultipleChoice = event.currentTarget.checked;
+        const builderToggle = document.getElementById('includeMultipleChoice');
+        if (builderToggle) builderToggle.checked = includeMultipleChoice;
+        warmUpEnabled = false;
+        updateRoundSummary();
+        rebuildUnspentDeck();
+        drawNextCard();
+    });
+    document.getElementById('startRoundBtn')?.addEventListener('click', () => {
+        applyRoundSelection(getRoundBuilderSelection());
+    });
+    document.getElementById('startLightRoundBtn')?.addEventListener('click', () => {
+        applyRoundSelection(getRoundBuilderSelection(), true);
+    });
 
     const gameModeSelect = document.getElementById('gameModeSelect');
     if (gameModeSelect) {
@@ -2150,11 +2529,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toolsBtn) {
         toolsBtn.onclick = () => {
             const html = `
-                <div class="drawer-item">
-                    <p><strong>Database Status</strong></p>
-                    <p style="margin-top:4px;">Total Cards in Master Deck: <strong>${masterDatabase.length}</strong></p>
-                </div>
-                <button id="resetAppBtn" class="btn-secondary" style="color:#ef4444; border-color:rgba(239,68,68,0.4); padding:10px; border-radius:10px;">Reset Local Storage Data</button>
+                <details class="settings-tree-group">
+                    <summary>Players &amp; partner</summary>
+                    <div class="settings-tree-content">
+                        <button class="settings-link" id="settingsProfileBtn" type="button">Names and icons</button>
+                        <button class="settings-link" id="settingsPartnerBtn" type="button">Connect another device</button>
+                    </div>
+                </details>
+                <details class="settings-tree-group">
+                    <summary>Privacy &amp; comfort</summary>
+                    <div class="settings-tree-content">
+                        <p class="settings-help-copy">You can pass any card without explaining. Explicit cards stay on this device and are not synced to your partner. Saved entries and favorites are stored in this browser.</p>
+                        <button id="resetAppBtn" class="btn-secondary reset-local-data-btn" type="button">Clear local app data</button>
+                    </div>
+                </details>
+                <details class="settings-tree-group">
+                    <summary>Help &amp; about</summary>
+                    <div class="settings-tree-content">
+                        <p class="settings-help-copy">Take turns, answer together, or simply talk through a question. There is no timer or required answer in a relaxed round.</p>
+                        <p class="settings-help-copy">Deck includes ${masterDatabase.length.toLocaleString()} available cards on this device.</p>
+                        <button class="settings-link" id="settingsFavoritesBtn" type="button">Saved questions</button>
+                        <button class="settings-link" id="settingsJournalBtn" type="button">Date night journal</button>
+                    </div>
+                </details>
             `;
             openDrawer('Settings', html);
             const content = document.getElementById('drawerContent');
@@ -2168,10 +2565,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderPartnerCards();
             }
 
+            const openHeaderPanel = (sourceId) => {
+                closeDrawer();
+                document.getElementById(sourceId)?.click();
+            };
+            document.getElementById('settingsProfileBtn').onclick = () => openHeaderPanel('userProfileBtn');
+            document.getElementById('settingsPartnerBtn').onclick = () => openHeaderPanel('pairPartnerBtn');
+            document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
+            document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
+
             const resetBtn = document.getElementById('resetAppBtn');
             if (resetBtn) {
                 resetBtn.onclick = () => {
-                    if (confirm("Are you sure you want to reset local custom cards and favorites?")) {
+                    if (confirm("This clears saved questions, favorites, names and icons, journal entries, private entries, and room details from this browser. Continue?")) {
                         localStorage.clear();
                         location.reload();
                     }
@@ -2208,6 +2614,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('confirmExplicitAccessBtn')?.addEventListener('click', () => {
         localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
         document.getElementById('explicitAgeGate')?.classList.add('hidden');
+        const deckCheckbox = document.querySelector('input[name="roundDeck"][value="explicit"]');
+        if (deckCheckbox && !document.getElementById('roundBuilderModal')?.classList.contains('hidden')) {
+            deckCheckbox.checked = true;
+            activeTopics = null;
+            renderRoundTopics();
+            return;
+        }
         selectModule('explicit');
     });
     document.getElementById('cancelExplicitAccessBtn')?.addEventListener('click', () => {
@@ -2227,6 +2640,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             document.querySelectorAll('.intensity-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
             activeIntensity = btn.dataset.level;
+            warmUpEnabled = false;
             if (activeGameMode === 'deep' && activeIntensity !== 'all' && activeIntensity !== '3') {
                 activeGameMode = 'classic';
                 document.getElementById('gameModeSelect').value = activeGameMode;
@@ -2253,6 +2667,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const selectedStyle = btn.dataset.promptStyle;
             updateQuestionTypeSelection(selectedStyle, true);
+            warmUpEnabled = false;
+            updateRoundSummary();
             rebuildUnspentDeck();
             drawNextCard();
         };

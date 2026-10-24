@@ -52,15 +52,16 @@
             </div>
         </div>
 
-        <!-- Module Navigation -->
-        <div class="module-nav">
-            <button class="module-tab active" data-module="sexuality" type="button" aria-pressed="true"><i data-lucide="flame" aria-hidden="true"></i><span>Flame &amp; Passion</span></button>
-            <button class="module-tab" data-module="life" type="button" aria-pressed="false"><i data-lucide="compass" aria-hidden="true"></i><span>Deep Connection</span></button>
-            <button class="module-tab" data-module="secrets" type="button" aria-pressed="false"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
-            <button class="module-tab" data-module="explicit" type="button" aria-pressed="false"><i data-lucide="shield-alert" aria-hidden="true"></i><span>Explicit · 18+</span></button>
-        </div>
-
     </header>
+
+    <div class="round-toolbar">
+        <button class="round-summary-button" id="roundSummaryBtn" type="button" aria-haspopup="dialog" aria-controls="roundBuilderModal" disabled>
+            <span class="round-summary-label">Your round</span>
+            <span id="roundSummaryText">Flame &amp; Passion · All topics · All levels</span>
+            <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
+        </button>
+        <button class="private-space-button" id="wildUnspokenBtn" type="button"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
+    </div>
 
     <aside class="explicit-content-notice hidden" id="explicitContentNotice" aria-label="Adults-only content notice">
         <strong>Adults only · 18+</strong>
@@ -69,7 +70,7 @@
 
     <!-- Card Stage -->
     <main>
-        <article class="card-container" id="cardContainer" aria-label="Question card. Tap or click the card to see the next question.">
+        <article class="card-container" id="cardContainer" aria-label="Question card">
             <div class="card-header">
                 <span class="card-badge" id="cardCategory">Loading Deck...</span>
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
@@ -109,8 +110,8 @@
             </div>
 
             <div class="card-footer">
-                <span class="tap-hint">Tap card for next question</span>
-                <span class="skip-hint">Skip anything, no explanation needed</span>
+                <span class="tap-hint">Take your time. There’s no rush.</span>
+                <span class="skip-hint">Either of you can pass anytime.</span>
             </div>
         </article>
         <p class="app-status" id="appStatus" role="status" aria-live="polite"></p>
@@ -159,7 +160,59 @@
     </main>
 
     <div class="response-section">
-        <button class="next-question-btn" id="nextCardBtn" type="button">Skip question</button>
+        <button class="next-question-btn" id="nextCardBtn" type="button">Next question</button>
+        <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
+        <button class="warm-up-next-btn hidden" id="warmUpNextBtn" type="button">Go a little deeper</button>
+    </div>
+
+    <div class="modal-overlay hidden" id="roundBuilderModal">
+        <section class="modal-card round-builder-card" role="dialog" aria-modal="true" aria-labelledby="roundBuilderTitle">
+            <div class="round-builder-heading">
+                <div>
+                    <h2 id="roundBuilderTitle">Build a round</h2>
+                    <p>Pick what feels right tonight. You can change it anytime.</p>
+                </div>
+                <button class="icon-btn" id="closeRoundBuilderBtn" type="button" aria-label="Close round builder"><i data-lucide="x" aria-hidden="true"></i></button>
+            </div>
+            <div class="round-builder-content">
+                <p class="round-builder-hint">Start light begins with mild cards. When you’re ready, move deeper at your own pace; the round also steps up after you’ve used the current level.</p>
+                <fieldset class="round-builder-group">
+                    <legend>Choose your decks</legend>
+                    <label><input type="checkbox" name="roundDeck" value="sexuality" checked> Flame &amp; Passion</label>
+                    <label><input type="checkbox" name="roundDeck" value="life"> Deep Connection</label>
+                    <label><input type="checkbox" name="roundDeck" value="explicit"> Explicit · 18+</label>
+                </fieldset>
+                <fieldset class="round-builder-group">
+                    <legend>Choose topics</legend>
+                    <div class="round-topic-actions">
+                        <button class="text-button" id="selectAllTopicsBtn" type="button">Select all</button>
+                        <button class="text-button" id="clearTopicsBtn" type="button">Clear</button>
+                    </div>
+                    <div class="round-topics" id="roundTopics"></div>
+                </fieldset>
+                <fieldset class="round-builder-group">
+                    <legend>Intensity</legend>
+                    <div class="round-builder-choices">
+                        <label><input type="radio" name="roundIntensity" value="all" checked> All levels</label>
+                        <label><input type="radio" name="roundIntensity" value="1"> Mild</label>
+                        <label><input type="radio" name="roundIntensity" value="2"> Moderate</label>
+                        <label><input type="radio" name="roundIntensity" value="3"> Wild</label>
+                    </div>
+                </fieldset>
+                <fieldset class="round-builder-group">
+                    <legend>Include</legend>
+                    <label><input type="checkbox" id="includeQuestions" checked> Conversation questions</label>
+                    <label><input type="checkbox" id="includeActivities" checked> Activities</label>
+                    <label><input type="checkbox" id="includeMultipleChoice" checked> Multiple choice</label>
+                </fieldset>
+                <p class="round-match-count" id="roundMatchCount" aria-live="polite">Loading available cards…</p>
+            </div>
+            <div class="modal-actions round-builder-actions">
+                <button class="btn-secondary" id="startLightRoundBtn" type="button">Start light</button>
+                <button class="btn-primary" id="startRoundBtn" type="button">Start this round</button>
+            </div>
+            <p class="round-builder-status" id="roundBuilderStatus" role="status" aria-live="polite"></p>
+        </section>
     </div>
 
     <!-- Custom Question Modal -->
@@ -240,60 +293,71 @@
         <div class="drawer-content" id="drawerContent">
             <details class="deck-options hidden" id="deckOptions">
                 <summary>
-                    <span>Deck &amp; game options</span>
+                    <span>Round settings</span>
                     <span class="question-type-summary" id="questionTypeSummary">All question types</span>
                 </summary>
                 <div class="deck-options-content">
-                    <div class="filter-group" role="group" aria-label="Question type">
-                        <span class="filter-label">Question type</span>
-                        <div class="prompt-style-bar" id="promptStyleBar">
-                            <button class="prompt-style-btn active" data-prompt-style="all" type="button" aria-pressed="true">All</button>
-                            <button class="prompt-style-btn" data-prompt-style="question" type="button" aria-pressed="false">Questions to answer</button>
-                            <button class="prompt-style-btn" data-prompt-style="activity" type="button" aria-pressed="false">Activities to try</button>
+                    <details class="settings-tree-group" open>
+                        <summary>Play</summary>
+                        <div class="settings-tree-content">
+                            <div class="mode-controls">
+                                <label for="gameModeSelect">Conversation style</label>
+                                <select id="gameModeSelect">
+                                    <option value="classic">Relaxed conversation</option>
+                                    <option value="deep">Deep talk · Level 3 + reflection timer</option>
+                                    <option value="compare-first">Compare answers · Paired room activity</option>
+                                </select>
+                                <section id="compareFirstSetup" class="compare-first-setup hidden" aria-labelledby="compareFirstSetupTitle">
+                                    <h3 id="compareFirstSetupTitle">Choose your poll round</h3>
+                                    <fieldset>
+                                        <legend>Modules</legend>
+                                        <label><input type="checkbox" name="compareFirstModule" value="sexuality" checked> Flame &amp; Passion</label>
+                                        <label><input type="checkbox" name="compareFirstModule" value="life"> Deep Connection</label>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>Levels</legend>
+                                        <label><input type="checkbox" name="compareFirstLevel" value="1" checked> Flirty / Mild</label>
+                                        <label><input type="checkbox" name="compareFirstLevel" value="2" checked> Sensual / Moderate</label>
+                                        <label><input type="checkbox" name="compareFirstLevel" value="3" checked> Steamy / Wild</label>
+                                    </fieldset>
+                                    <p>Optional paired-room activity: answer polls privately, then compare and talk about them.</p>
+                                    <button class="btn-primary" id="startCompareFirstBtn" type="button">Start answer-comparison activity</button>
+                                    <p class="card-answer-status" id="compareFirstSetupStatus" role="status" aria-live="polite"></p>
+                                </section>
+                            </div>
+                            <div class="session-controls">
+                                <p>Take turns answering if you like. Passing is always okay.</p>
+                                <button class="turn-toggle" id="turnModeBtn" type="button" aria-pressed="true">Turn-taking on</button>
+                                <button class="turn-toggle" id="pickTurnBtn" type="button">Pick who starts</button>
+                                <span id="turnPickerResult" class="turn-picker-result" role="status" aria-live="polite"></span>
+                            </div>
                         </div>
-                        <p class="filter-confirmation" id="questionTypeConfirmation" role="status" aria-live="polite"></p>
-                    </div>
-                    <div class="mode-controls">
-                        <label for="gameModeSelect">Game mode</label>
-                        <select id="gameModeSelect">
-                            <option value="classic">Classic</option>
-                            <option value="deep">Deep talk · Level 3 + reflection timer</option>
-                            <option value="compare-first">Compare First · Multiple-choice before regular cards</option>
-                        </select>
-                        <section id="compareFirstSetup" class="compare-first-setup hidden" aria-labelledby="compareFirstSetupTitle">
-                            <h3 id="compareFirstSetupTitle">Choose your poll round</h3>
-                            <fieldset>
-                                <legend>Modules</legend>
-                                <label><input type="checkbox" name="compareFirstModule" value="sexuality" checked> Flame &amp; Passion</label>
-                                <label><input type="checkbox" name="compareFirstModule" value="life"> Deep Connection</label>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Levels</legend>
-                                <label><input type="checkbox" name="compareFirstLevel" value="1" checked> Flirty / Mild</label>
-                                <label><input type="checkbox" name="compareFirstLevel" value="2" checked> Sensual / Moderate</label>
-                                <label><input type="checkbox" name="compareFirstLevel" value="3" checked> Steamy / Wild</label>
-                            </fieldset>
-                            <p>Requires an approved paired room. Answer up to 50 multiple-choice cards together, compare after both submit, and discuss each before moving on.</p>
-                            <button class="btn-primary" id="startCompareFirstBtn" type="button">Start Compare First</button>
-                            <p class="card-answer-status" id="compareFirstSetupStatus" role="status" aria-live="polite"></p>
-                        </section>
-                        <button class="turn-toggle" id="pickTurnBtn" type="button">Who answers first?</button>
-                        <span id="turnPickerResult" class="turn-picker-result" role="status" aria-live="polite"></span>
-                    </div>
-                    <div class="intensity-bar" id="intensityBar">
-                        <button class="intensity-btn active" data-level="all" type="button" aria-pressed="true">All Levels</button>
-                        <button class="intensity-btn" data-level="1" type="button" aria-pressed="false">Mild</button>
-                        <button class="intensity-btn" data-level="2" type="button" aria-pressed="false">Moderate</button>
-                        <button class="intensity-btn" data-level="3" type="button" aria-pressed="false">Wild</button>
-                    </div>
-                    <div class="action-row">
-                        <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle All</button>
-                        <button class="add-card-btn" id="openAddCardModal" type="button"><i data-lucide="plus-circle" aria-hidden="true"></i> Add Card</button>
-                    </div>
-                    <div class="session-controls">
-                        <p>Take turns answering, if you like. Either of you can pass without explaining.</p>
-                        <button class="turn-toggle" id="turnModeBtn" type="button" aria-pressed="false">Turn-taking off</button>
-                    </div>
+                    </details>
+                    <details class="settings-tree-group">
+                        <summary>Questions &amp; decks</summary>
+                        <div class="settings-tree-content">
+                            <div class="filter-group" role="group" aria-label="Question type">
+                                <span class="filter-label">Question type</span>
+                                <div class="prompt-style-bar" id="promptStyleBar">
+                                    <button class="prompt-style-btn active" data-prompt-style="all" type="button" aria-pressed="true">All</button>
+                                    <button class="prompt-style-btn" data-prompt-style="question" type="button" aria-pressed="false">Questions to answer</button>
+                                    <button class="prompt-style-btn" data-prompt-style="activity" type="button" aria-pressed="false">Activities to try</button>
+                                </div>
+                                <label class="include-card-type"><input type="checkbox" id="settingsIncludeMultipleChoice" checked> Include multiple-choice cards</label>
+                                <p class="filter-confirmation" id="questionTypeConfirmation" role="status" aria-live="polite"></p>
+                            </div>
+                            <div class="intensity-bar" id="intensityBar">
+                                <button class="intensity-btn active" data-level="all" type="button" aria-pressed="true">All Levels</button>
+                                <button class="intensity-btn" data-level="1" type="button" aria-pressed="false">Mild</button>
+                                <button class="intensity-btn" data-level="2" type="button" aria-pressed="false">Moderate</button>
+                                <button class="intensity-btn" data-level="3" type="button" aria-pressed="false">Wild</button>
+                            </div>
+                            <div class="action-row">
+                                <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle this round</button>
+                                <button class="add-card-btn" id="openAddCardModal" type="button"><i data-lucide="plus-circle" aria-hidden="true"></i> Add a question</button>
+                            </div>
+                        </div>
+                    </details>
                 </div>
             </details>
             <section id="partnerCardsSection" class="partner-cards-section hidden" aria-labelledby="partnerCardsTitle">
