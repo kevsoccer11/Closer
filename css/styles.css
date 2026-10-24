@@ -932,6 +932,15 @@ main {
     max-width: 520px;
     max-height: min(92vh, 900px);
     gap: 14px;
+    overflow: hidden;
+}
+
+.round-builder-footer {
+    flex: 0 0 auto;
+    display: grid;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--card-border);
 }
 
 .round-builder-heading {
@@ -954,9 +963,13 @@ main {
 }
 
 .round-builder-content {
+    flex: 1 1 auto;
+    min-height: 0;
     display: grid;
     gap: 14px;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     padding: 2px;
 }
 
@@ -1039,9 +1052,13 @@ main {
     line-height: 1.4;
 }
 
+.round-match-count {
+    margin: 0;
+}
+
 .round-builder-actions {
     display: grid;
-    grid-template-columns: minmax(100px, 0.7fr) minmax(150px, 1.3fr);
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
 }
 
 .round-builder-actions button {
@@ -1679,6 +1696,28 @@ textarea:focus-visible {
         white-space: normal;
     }
 
+}
+
+@media (max-width: 600px) {
+    .modal-overlay#roundBuilderModal {
+        align-items: stretch;
+        padding: env(safe-area-inset-top) 0 0;
+    }
+
+    .modal-card.round-builder-card {
+        width: 100%;
+        max-width: none;
+        height: calc(100vh - env(safe-area-inset-top));
+        height: calc(100dvh - env(safe-area-inset-top));
+        max-height: none;
+        padding: 16px 16px calc(12px + env(safe-area-inset-bottom));
+        gap: 10px;
+        border-radius: 18px 18px 0 0;
+    }
+
+    .round-builder-content {
+        gap: 10px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -205,13 +205,15 @@
                     <label><input type="checkbox" id="includeActivities" checked> Activities</label>
                     <label><input type="checkbox" id="includeMultipleChoice" checked> Multiple choice</label>
                 </fieldset>
+            </div>
+            <div class="round-builder-footer">
                 <p class="round-match-count" id="roundMatchCount" aria-live="polite">Loading available cards…</p>
+                <div class="modal-actions round-builder-actions">
+                    <button class="btn-secondary" id="startLightRoundBtn" type="button">Start light</button>
+                    <button class="btn-primary" id="startRoundBtn" type="button">Start this round</button>
+                </div>
+                <p class="round-builder-status" id="roundBuilderStatus" role="status" aria-live="polite"></p>
             </div>
-            <div class="modal-actions round-builder-actions">
-                <button class="btn-secondary" id="startLightRoundBtn" type="button">Start light</button>
-                <button class="btn-primary" id="startRoundBtn" type="button">Start this round</button>
-            </div>
-            <p class="round-builder-status" id="roundBuilderStatus" role="status" aria-live="polite"></p>
         </section>
     </div>
 
