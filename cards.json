@@ -26954,5 +26954,1427 @@
       "contextType": "consent",
       "promptStyle": "question"
     }
+  {
+    "id": "explicit-0501",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 2,
+    "prompt": "What’s an intimacy or romantic boundary you used to hold in the past that completely shifted or expanded over time?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0502",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 3,
+    "prompt": "What’s an intimate act or technique you used to think you’d hate, but ended up surprisingly loving once you actually experienced it?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0503",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 3,
+    "prompt": "Was there a fantasy or scene you tried out in the past that fell completely flat or ended up being hilarious in execution?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0504",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 4,
+    "prompt": "What is the single most adventurous or wild intimate experience from your past that you still secretly think back to sometimes?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0505",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 2,
+    "prompt": "Looking back at what worked best in the past, what was a specific style of touch or habit that always reliably turned you on?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0506",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 4,
+    "prompt": "Is there a location or environment you’ve hooked up in before that gave you a total rush because of the risk or atmosphere?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0507",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 3,
+    "prompt": "What’s a piece of bedroom insight or a preference you discovered in the past that you’re really glad you brought into your current life?",
+    "contextType": "growth",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0508",
+    "module": "explicit",
+    "category": "Past Experiences",
+    "intensity": 3,
+    "prompt": "Was there ever a moment in your past where a spontaneous change of plans led to a surprisingly passionate night?",
+    "contextType": "spontaneity",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0509",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "What’s the most unexpected, weird, or risky location you’ve ever masturbated—or attempted to masturbate—in?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0510",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s the strangest, totally random, or unexpected thing that ever accidentally turned you on or made you cum?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0511",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What is the funniest or most awkward thing that has ever gone wrong mid-act during a sexual experience?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0512",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s a popular intimate act or trend that a lot of people hype up, but you personally really dislike or find a complete turn-off?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0513",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Have you ever tried an unusual toy, object, or solo technique that you immediately regretted or laughed about afterward?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0514",
+    "module": "explicit",
+    "category": "Fantasy & Mindset",
+    "intensity": 4,
+    "prompt": "When you masturbate on your own, what kind of mental scenario or memory usually gets you over the finish line fastest?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0515",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "Have you ever had a near-miss getting caught during a solo session or intimate moment that got your heart racing?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0516",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "What was an intimate experiment or position you tried in the past that turned out to be way more physically exhausting or awkward than exciting?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0517",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s an immediate mood-killer or sensory turn-off for you when trying to get into an intimate mindset?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0518",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "How often do you like to indulge in solo play, and is it usually about stress relief, routine, or pure desire?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0519",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "What’s a secret habit or routine you have when you masturbate that you’ve never mentioned out loud to anyone?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0520",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "What was the absolute most reckless or high-risk place you ever tried to sneak in a quick solo session?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0521",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Have you ever bought a solo toy that was so intense or unusual you were actually intimidated to try it the first time?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0522",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 2,
+    "prompt": "What is your ultimate setup for a solo night—lighting, music, visuals, or complete silence and pitch black?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0523",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "What’s a specific fantasy or visual that almost guarantees a fast orgasm when you’re on your own?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0524",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Have you ever tried edge-control or edging while solo playing, and how intense was the result when you finally let go?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0525",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 2,
+    "prompt": "When was the last time you masturbated simply because you were bored or couldn't sleep rather than being genuinely horny?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0526",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "What’s the strangest item or household object you ever used out of curiosity during early self-exploration?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0527",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "Have you ever masturbated while in the same room as someone else without them realizing what you were doing?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0528",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "How do you feel about watching your partner masturbate live or having them watch you solo play?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0529",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "What is an unexpected sound, whisper, or noise that instantly triggers intense arousal for you?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0530",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s a non-sexual situation or environment that somehow made you feel unexpectedly aroused?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0531",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "What’s an unusual body part or zone outside the usual areas that turns out to be extremely sensitive for you?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0532",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 5,
+    "prompt": "What was the absolute most intense orgasm you’ve ever had in your life, and what specifically triggered it?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0533",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "Has a smell, perfume, or scent ever instantly made you want to drop everything and get intimate?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0534",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "What’s a type of clothing or fabric texture against your skin that secretly drives you wild?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0535",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s a psychological trigger—like power, praise, or vulnerability—that speeds up your arousal more than physical touch?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0536",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "Is there a specific pace or cadence of motion that reliably pushes you right over the edge?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0537",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s the oddest sensory contrast—like ice, heat, or vibration—that surprisingly elevated your pleasure?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0538",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "Have you ever had an intense climax triggered entirely by dirty talk or mental imagery alone without touch?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0539",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What is the weirdest or most random noise you or a partner accidentally made right at the moment of climax?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0540",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever had a physical mishap mid-act—like a muscle cramp or falling off furniture—that completely halted the mood?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0541",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s a piece of dirty talk you tried to deliver in the past that came out so wrong you both died laughing?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0542",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What’s the worst music or background noise playlist that ever accidentally ruined an intimate scene?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0543",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "Have you ever been interrupted by a pet, family member, or delivery driver during an intimate moment?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0544",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What’s a piece of clothing or lingerie that proved way too complicated to get off, killing the initial momentum?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0545",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What was the most disastrous attempt at incorporating food, chocolate, or whipped cream into bedroom play?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0546",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever accidentally called out something ridiculous or mispronounced something in the heat of passion?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0547",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s a position you saw in media or adult content that you tried to replicate and realized was anatomically impossible?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0548",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What’s a funny story involving lubrication or massage oil gone wrong on sheets or floors?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0549",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s an immediate verbal turn-off or phrase that instantly pulls you out of a romantic mindset?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0550",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s an intimate style or technique that feels okay physically, but mentally leaves you completely bored?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0551",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s a grooming, hygiene, or sensory habit that is an absolute non-negotiable red flag before intimacy?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0552",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s a widely popular fantasy or trope that you secretly find completely unappealing or bizarre?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0553",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "How do you feel when someone moves too fast versus too slow—which one is a bigger turn-off for you?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0554",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s a mistake people often make when trying to do dirty talk that instantly ruins the mood?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0555",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What is an instant mood-killer that happens during foreplay that makes you want to stop entirely?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0556",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "Have you ever tried a popular sex toy that you felt was completely overhyped or genuinely uncomfortable?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0557",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s a boundary or hard 'no' you discovered in the past that you now communicate upfront?",
+    "contextType": "consent",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0558",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s an intimate setting or environment—like water or public spaces—that sounds hot in theory but sucks in reality?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0559",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "What was a physical challenge or endurance experiment you tried in the past that stretched your limits?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0560",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 3,
+    "prompt": "Have you ever tried restraint or light bondage in the past, and what was your immediate reaction to losing control?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0561",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "What’s an outdoor or public spot where you once hooked up that you’d never dare attempt today?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0562",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 3,
+    "prompt": "Have you ever tried temperature play with ice cubes or warm wax, and did you enjoy the sensation?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0563",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "What was the most spontaneous quickie you ever had in a location where you could have easily been caught?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0564",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 3,
+    "prompt": "Have you ever experimented with mirror play or watching the action from a different angle?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0565",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "Was there an intimate act you tried purely to please someone else that you ended up loving for yourself?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0566",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 3,
+    "prompt": "Have you ever experimented with blindfolds or sensory deprivation, and how did it change your touch sensitivity?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0567",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 4,
+    "prompt": "What’s a role-play or alter-ego scenario you tried in the past that was surprisingly intense or immersive?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0568",
+    "module": "explicit",
+    "category": "Past Experiments",
+    "intensity": 3,
+    "prompt": "What’s a romantic memory involving rain, late nights, or travel that set the benchmark for mood and atmosphere?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0569",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 3,
+    "prompt": "What’s a secret fantasy you’ve carried around for years that you’ve been hesitant or nervous to voice?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0570",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 4,
+    "prompt": "If we were at a party and wanted to sneak off into a private room for 10 minutes, how would you initiate it?",
+    "contextType": "spontaneity",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0571",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 3,
+    "prompt": "What’s a vacation destination or hotel setting you want to visit purely because of how romantic and intimate it looks?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0572",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 5,
+    "prompt": "If you could design a tailored scene for us with zero taboos or judgment, what would be the first scene?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0573",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 3,
+    "prompt": "What’s a power dynamic—like taking complete control or surrendering control—that you find sexually intriguing?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0574",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 4,
+    "prompt": "What’s a scenario involving flirtatious texting or buildup throughout a workday that would drive you crazy by tonight?",
+    "contextType": "anticipation",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0575",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 3,
+    "prompt": "Is there a movie scene, book chapter, or artwork that accurately represents your personal idea of passion?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0576",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 4,
+    "prompt": "How do you feel about incorporating more explicit talk or describing what you want in real time during intimacy?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0577",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 3,
+    "prompt": "What’s a costume, outfit, or aesthetic you’ve secretly wanted your partner to wear in the bedroom?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0578",
+    "module": "explicit",
+    "category": "Fantasies & Desires",
+    "intensity": 4,
+    "prompt": "If we had a completely uninterrupted 48 hours in a secluded cabin, what’s something adventurous we’d try?",
+    "contextType": "spontaneity",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0579",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 2,
+    "prompt": "What’s a specific spot on your neck, back, or shoulders that instantly makes you melt when touched?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0580",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 3,
+    "prompt": "Do you prefer long, slow, teasing foreplay that lasts for hours or sudden, intense, spontaneous passion?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0581",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 3,
+    "prompt": "What’s your favorite way to be woken up when it comes to morning physical affection?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0582",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 2,
+    "prompt": "How do you feel about public displays of subtle affection—like a hand on your thigh under a restaurant table?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0583",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 3,
+    "prompt": "What’s a type of kiss—soft and slow, deep and intense, or biting—that gets your heart racing fastest?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0584",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 4,
+    "prompt": "What’s a technique during oral pleasure that you discovered in the past that takes things to another level?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0585",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 2,
+    "prompt": "What’s your opinion on intimate massage—do you prefer giving or receiving when setting the mood?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0586",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 3,
+    "prompt": "What’s a subtle physical cue you give when you want physical attention without saying it verbally?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0587",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 4,
+    "prompt": "How do you feel about scratch marks, hair pulling, or light physical intensity during passionate moments?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0588",
+    "module": "explicit",
+    "category": "Physical Touch & Foreplay",
+    "intensity": 3,
+    "prompt": "What’s a non-sexual gesture—like holding your face or brushing hair back—that feels deeply sensual to you?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0589",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "What is your ideal atmosphere right after a passionate encounter—quiet holding, talking, or getting food?",
+    "contextType": "consent",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0590",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 1,
+    "prompt": "What makes you feel most valued and appreciated after we’ve had an intense emotional or physical connection?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0591",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "How do you feel about taking a shower or bath together immediately after an intimate session?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0592",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "What’s a sign that you need some quiet solo recovery time versus immediate skin-to-skin cuddling after intimacy?",
+    "contextType": "consent",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0593",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 1,
+    "prompt": "What’s a sweet or funny compliment someone gave you right after sex that made you feel amazing?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0594",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "How do you like to re-engage with normal daily tasks after an intense morning or afternoon session?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0595",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "What’s your absolute favorite post-intimacy snack or drink to recharge?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0596",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 1,
+    "prompt": "Do you enjoy debriefing about what we loved most during sex, or do you prefer staying in the quiet mood?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0597",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 2,
+    "prompt": "What’s a gesture that helps you feel emotionally safe when trying out a brand new or intense fantasy?",
+    "contextType": "consent",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0598",
+    "module": "explicit",
+    "category": "Aftercare & Connection",
+    "intensity": 1,
+    "prompt": "How does emotional connection change the physical sensations of climax for you personally?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0599",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 2,
+    "prompt": "What lighting setup makes you feel the most attractive, relaxed, and confident during intimate moments?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0600",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 3,
+    "prompt": "Have you ever tried using temperature gels or sensations, and what was your immediate reaction?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0601",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 2,
+    "prompt": "What music genre or specific artist sets the absolute ultimate bedroom vibe for you?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0602",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 3,
+    "prompt": "How do you feel about using silk sheets or specific bedding textures specifically reserved for intimate nights?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0603",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 3,
+    "prompt": "What’s a scent—like vanilla, leather, or sandalwood—that makes an environment feel instantly sexual?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0604",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 4,
+    "prompt": "How does sensory deprivation (like noise-canceling headphones or blindfolds) heighten your arousal?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0605",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 2,
+    "prompt": "Do you prefer complete warmth under heavy blankets or cool air in the room during passionate moments?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0606",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 3,
+    "prompt": "What’s an aesthetic detail in a boutique hotel room that once instantly put you in the mood?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0607",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 4,
+    "prompt": "How do you feel about incorporating mirrors on the ceiling or wall to watch during intimacy?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0608",
+    "module": "explicit",
+    "category": "Sensory & Atmosphere",
+    "intensity": 3,
+    "prompt": "What is the sensory element (sound, touch, visual, smell) that has the strongest influence over your libido?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0609",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "What’s a secret signal or code word we could use in public when one of us is feeling turned on?",
+    "contextType": "spontaneity",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0610",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "How do you prefer to give or receive gentle feedback when trying a new position that isn't quite working?",
+    "contextType": "consent",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0611",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 3,
+    "prompt": "What’s something you’ve learned about your own body over the past few years that surprised you?",
+    "contextType": "growth",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0612",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "How has your confidence level during intimate moments evolved compared to when you were younger?",
+    "contextType": "growth",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0613",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 3,
+    "prompt": "What is a compliment about your sexual technique or presence that would make you feel on top of the world?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0614",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "What’s the easiest way for us to initiate intimacy on busy weeknights without feeling pressured?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0615",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 3,
+    "prompt": "What’s a romantic memory from our past that you’d love to recreate or build upon with a new twist?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0616",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "How do you feel about taking an intimacy quiz or completing a desires checklist together?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0617",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 3,
+    "prompt": "What’s an area of our intimate life where you’d love for us to be a little more adventurous or experimental?",
+    "contextType": "growth",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0618",
+    "module": "explicit",
+    "category": "Communication & Growth",
+    "intensity": 2,
+    "prompt": "What’s one thing I do that makes you feel instantly desired and attractive?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0619",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "What is the most elaborate setup or fantasy narrative you’ve ever constructed entirely in your own head during a solo session?",
+    "contextType": "fantasy",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0620",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Have you ever tried audio-only erotica or voice clips during solo play, and how effective were they compared to visual stimuli?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0621",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "What is the longest period of time you’ve ever intentionally abstained from masturbating, and how explosive was the eventual release?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0622",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Have you ever used a toy or device during solo play that completely ruined your sensitivity for normal touch the next day?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0623",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "What’s a specific memory from your teen years that you used to rely on constantly before your catalog of fantasies expanded?",
+    "contextType": "nostalgia",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0624",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "Do you prefer quick, highly efficient solo sessions when you just need relief, or slow, drawn-out sessions where you build maximum tension?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0625",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "Have you ever masturbated in a moving vehicle—like as a passenger on a long road trip—while trying to keep it completely secret?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0626",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "What’s the weirdest thing you’ve ever used to clean up or manage the mess after finishing a solo session in a hurry?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0627",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 4,
+    "prompt": "Have you ever experimented with multi-orgasmic techniques or trying to see how many times you could climax in a single solo sitting?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0628",
+    "module": "explicit",
+    "category": "Solo Play",
+    "intensity": 3,
+    "prompt": "How has your relationship with masturbation changed from a secretive habit in youth to an open wellness practice in adulthood?",
+    "contextType": "growth",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0629",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What is an unexpected tactile sensation—like running water, wind, or friction against specific fabrics—that instantly triggers physical arousal?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0630",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 5,
+    "prompt": "What is the most bizarre or non-sexual object that you once discovered could give you an intense physical orgasm if used right?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0631",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "Have you ever experienced involuntary full-body spasms or shaking from an orgasm so intense it felt overwhelming?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0632",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "What kind of vocal tone or breathing pattern from someone else acts as an immediate physical trigger for you?",
+    "contextType": "sensory",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0633",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s a psychological trigger—like being told you’re forbidden from doing something—that makes your libido skyrocket?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0634",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "Is there a specific time of day or physiological state where your body is naturally hyper-sensitive and ready for pleasure?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0635",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s the most unusual place on your body where a light caress or breath of air sends electric shocks straight to your groin?",
+    "contextType": "discovery",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0636",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "Have you ever had an orgasm triggered purely by intense emotional vulnerability or feeling deeply seen and safe?",
+    "contextType": "vulnerability",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0637",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 4,
+    "prompt": "What’s a specific type of friction or pressure curve that you’ve learned is the absolute key to your pleasure?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0638",
+    "module": "explicit",
+    "category": "Pleasure Triggers",
+    "intensity": 3,
+    "prompt": "Has an accidental brush against someone in a crowded public space ever given you an instantaneous jolt of excitement?",
+    "contextType": "thrill",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0639",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s the funniest or most ridiculous excuse you’ve ever had to make up when someone knocked on the door mid-act?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0640",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever had a hilarious wardrobe malfunction right when you were trying to look your absolute most seductive?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0641",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s the most awkward sound a mattress, bed frame, or piece of furniture has ever made during an intense moment?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0642",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever tried to watch something explicit on a screen and accidentally cast it to the wrong device in the house?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0643",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s a funny mishap involving a sex toy running out of batteries or breaking down at the absolute worst possible second?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0644",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever tried a romantic gesture like lighting candles that ended up setting off the smoke detector?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0645",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s the most ridiculous text message autocorrect error you’ve ever sent while trying to be flirty or suggestive?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0646",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "Have you ever laughed so hard during an intimate moment that it completely derailed the session into a giggling fit?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0647",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 3,
+    "prompt": "What’s a clumsy moment where someone tried to be smooth and sexy by jumping on a bed and completely missed or tripped?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0648",
+    "module": "explicit",
+    "category": "Humor & Blunders",
+    "intensity": 2,
+    "prompt": "What’s a funny memory of trying to sneak around quietly in a shared house and stepping on something painful in the dark?",
+    "contextType": "humor",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0649",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What is a specific sexual position that is universally loved by most people, but you find completely uncomfortable and unappealing?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0650",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s a pet peeve regarding hygiene or touch that will instantly make you lose all interest in getting intimate?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0651",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s a type of dirty talk that feels so unnatural, cringeworthy, or forced that it completely ruins the vibe for you?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0652",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "How do you feel about heavy amounts of perfume, cologne, or scented lotions during intimate skin-to-skin contact?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0653",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s a trend in modern adult entertainment or hookup culture that you secretly think is entirely overrated?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0654",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What is an immediate mood-killer when someone tries to initiate sex while you are stressed, tired, or focused on work?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0655",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "Have you ever tried using edible products or flavored lubricants that turned out to have a chemical taste you completely hated?",
+    "contextType": "trial",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0656",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "What’s a type of background music that would be an absolute disaster to have playing during a romantic evening?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0657",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 3,
+    "prompt": "What’s a physical habit or nervous tic someone can have during intimacy that you find distracting or annoying?",
+    "contextType": "preference",
+    "promptStyle": "question"
+  },
+  {
+    "id": "explicit-0658",
+    "module": "explicit",
+    "category": "Turn-Offs & Dislikes",
+    "intensity": 2,
+    "prompt": "How do you feel about prolonged eye contact during intense moments—does it feel deeply connected or uncomfortably intense?",
+    "contextType": "reflection",
+    "promptStyle": "question"
+  }
   ]
   }
