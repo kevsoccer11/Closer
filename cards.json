@@ -28622,7 +28622,7 @@
       "module": "explicit",
       "category": "Past Experiments",
       "intensity": 3,
-      "prompt": "Is there a specific fantasy or act you tried once in a past relationship that you want to reinvent or fix with me?",
+      "prompt": "Is there a fantasy or act you have tried before that you would like to revisit, reinvent, or explore differently with me?",
       "contextType": "nostalgia",
       "promptStyle": "question"
     },
@@ -28991,7 +28991,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "TRUTH: What is an intense sexual realization you had during an encounter with an ex that completely altered how you approach your own pleasure today?",
+      "prompt": "TRUTH: What sexual realization or experience has shaped how you understand your own pleasure today?",
       "contextType": "story",
       "promptStyle": "question"
     },
@@ -34301,8 +34301,8 @@
     },
     {
       "id": "explicit-0874",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "Was there a moment your parents caught you with something you had to explain?",
       "contextType": "story",
@@ -34355,8 +34355,8 @@
     },
     {
       "id": "explicit-0880",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's something you were taught to feel ashamed about that you've since unlearned?",
       "contextType": "vulnerability",
@@ -34409,8 +34409,8 @@
     },
     {
       "id": "explicit-0886",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 1,
       "prompt": "What's a rule about dating or romance from your household that you now find ridiculous?",
       "contextType": "humor",
@@ -34490,8 +34490,8 @@
     },
     {
       "id": "explicit-0895",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What double standard did you notice growing up — things allowed for one gender but not the other?",
       "contextType": "reflection",
@@ -34499,8 +34499,8 @@
     },
     {
       "id": "explicit-0896",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What was the environment like at sleepovers or summer camps — what did kids actually talk about?",
       "contextType": "story",
@@ -34526,8 +34526,8 @@
     },
     {
       "id": "explicit-0899",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 1,
       "prompt": "What's the worst dating advice an elder in your family ever gave you?",
       "contextType": "humor",
@@ -34544,8 +34544,8 @@
     },
     {
       "id": "explicit-0901",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "Did you grow up seeing healthy relationships modeled, and what did you decide to copy or reject?",
       "contextType": "reflection",
@@ -34553,8 +34553,8 @@
     },
     {
       "id": "explicit-0902",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's a lesson about love or sex from your upbringing that you're actively unlearning right now?",
       "contextType": "vulnerability",
@@ -34562,8 +34562,8 @@
     },
     {
       "id": "explicit-0903",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What's the first song, book, or movie that made you feel something you didn't have words for yet?",
       "contextType": "story",
@@ -34598,8 +34598,8 @@
     },
     {
       "id": "explicit-0907",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "When was the first time you felt shame about curiosity itself — not about anything you'd done?",
       "contextType": "vulnerability",
@@ -34607,8 +34607,8 @@
     },
     {
       "id": "explicit-0908",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "How did the adults around you treat your first crush — teasing, supportive, or dismissive?",
       "contextType": "reflection",
@@ -34616,8 +34616,8 @@
     },
     {
       "id": "explicit-0909",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What did your first heartbreak teach you about vulnerability that you carried into intimacy?",
       "contextType": "story",
@@ -34661,8 +34661,8 @@
     },
     {
       "id": "explicit-0914",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "Did you have an adult you could ask anything — and if not, who do you wish it had been?",
       "contextType": "reflection",
@@ -34724,8 +34724,8 @@
     },
     {
       "id": "explicit-0921",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What did your family consider 'appropriate' for a first date, and how did that compare with reality?",
       "contextType": "story",
@@ -34733,8 +34733,8 @@
     },
     {
       "id": "explicit-0922",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 1,
       "prompt": "What's the most awkward thing a parent ever said about your relationship that you remember word for word?",
       "contextType": "humor",
@@ -34760,8 +34760,8 @@
     },
     {
       "id": "explicit-0925",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What's something you once hid from your family about your dating life that you're still a little protective of?",
       "contextType": "vulnerability",
@@ -34769,8 +34769,8 @@
     },
     {
       "id": "explicit-0926",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "Which of your parents' relationship patterns have you caught yourself repeating?",
       "contextType": "reflection",
@@ -34832,8 +34832,8 @@
     },
     {
       "id": "explicit-0933",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's a message from your past that still whispers to you in vulnerable moments, even now?",
       "contextType": "vulnerability",
@@ -34868,8 +34868,8 @@
     },
     {
       "id": "explicit-0937",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What did your community consider scandalous when you were young that no one blinks at now?",
       "contextType": "reflection",
@@ -34886,8 +34886,8 @@
     },
     {
       "id": "explicit-0939",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's a moment from your past you replay with tenderness instead of the shame you used to feel?",
       "contextType": "vulnerability",
@@ -34895,8 +34895,8 @@
     },
     {
       "id": "explicit-0940",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "How did your upbringing treat privacy — and did secrecy feel safe or dangerous to you?",
       "contextType": "reflection",
@@ -34913,8 +34913,8 @@
     },
     {
       "id": "explicit-0942",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What was your parents' reaction to your first relationship — and how did it shape what you shared with them after?",
       "contextType": "story",
@@ -34931,8 +34931,8 @@
     },
     {
       "id": "explicit-0944",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "Looking back, what question do you wish someone had asked teenage you about your feelings?",
       "contextType": "reflection",
@@ -34967,8 +34967,8 @@
     },
     {
       "id": "explicit-0948",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What tradition around relationships in your family — meeting the parents, waiting, chaperones — felt meaningful to you?",
       "contextType": "reflection",
@@ -35003,8 +35003,8 @@
     },
     {
       "id": "explicit-0952",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's something about your partner's upbringing you're curious to understand better because of your own?",
       "contextType": "reflection",
@@ -35012,8 +35012,8 @@
     },
     {
       "id": "explicit-0953",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "Who was the first couple whose relationship you admired, and what did you take from them?",
       "contextType": "story",
@@ -35030,8 +35030,8 @@
     },
     {
       "id": "explicit-0955",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "How has your definition of 'a good upbringing' for these conversations changed over time?",
       "contextType": "reflection",
@@ -35057,8 +35057,8 @@
     },
     {
       "id": "explicit-0958",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "What's a moment from your early dating life you now see with completely different eyes?",
       "contextType": "story",
@@ -35075,8 +35075,8 @@
     },
     {
       "id": "explicit-0960",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 1,
       "prompt": "What's the most embarrassing thing your parents ever found in your room as a teenager?",
       "contextType": "humor",
@@ -35084,8 +35084,8 @@
     },
     {
       "id": "explicit-0961",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Growing Up & Firsts",
       "intensity": 2,
       "prompt": "How was divorce, infidelity, or single life talked about in your house — with fear, pity, or openness?",
       "contextType": "reflection",
@@ -35111,8 +35111,8 @@
     },
     {
       "id": "explicit-0964",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "Do you think you were given a healthy model of masculinity or femininity — and what would you change about it?",
       "contextType": "reflection",
@@ -35138,8 +35138,8 @@
     },
     {
       "id": "explicit-0967",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "How did you learn what a healthy relationship even looked like — trial and error, or a good example?",
       "contextType": "story",
@@ -35156,8 +35156,8 @@
     },
     {
       "id": "explicit-0969",
-      "module": "explicit",
-      "category": "Upbringing, Shame & Sex Ed",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What's something you've only told your partner — and what made them safe to tell?",
       "contextType": "vulnerability",
@@ -35177,7 +35177,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "What would genuinely count as crossing a line to you — flirty DMs, secret lunches with an ex, keeping things hidden?",
+      "prompt": "What kinds of private interactions or hidden communication would feel like crossing a line in our relationship?",
       "contextType": "alignment",
       "promptStyle": "question"
     },
@@ -35222,7 +35222,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Is staying close friends with an ex something that works for you, or something that would wear at you?",
+      "prompt": "What helps you feel secure and respected when either of us has close friendships outside the relationship?",
       "contextType": "alignment",
       "promptStyle": "question"
     },
@@ -35429,7 +35429,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "If an ex reached out to you tomorrow, what would you do — and would you tell me?",
+      "prompt": "What kinds of unexpected messages or contact would you want us to communicate openly about?",
       "contextType": "trust",
       "promptStyle": "question"
     },
@@ -35582,7 +35582,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "What did past relationships teach you about whether people can really change after breaking trust?",
+      "prompt": "What have you learned about whether trust can be rebuilt after someone breaks it?",
       "contextType": "reflection",
       "promptStyle": "question"
     },
@@ -37076,7 +37076,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever compared your body to an ex of your partner's — and what did you do with that thought?",
+      "prompt": "Have you ever compared your body to someone else’s, and what helped you work through that thought?",
       "contextType": "vulnerability",
       "promptStyle": "question"
     },
@@ -41054,7 +41054,7 @@
       "module": "life",
       "category": "Friends & Social Life",
       "intensity": 1,
-      "prompt": "What boundaries help you feel comfortable when an ex-partner remains part of a wider social circle?",
+      "prompt": "What helps you feel comfortable when our social circles overlap with people from different parts of our lives?",
       "contextType": "discovery",
       "promptStyle": "question"
     },
@@ -42548,7 +42548,7 @@
       "module": "life",
       "category": "Friends & Social Life",
       "intensity": 1,
-      "prompt": "How do you feel about maintaining close friendships with former partners?",
+      "prompt": "How do you maintain healthy friendships while protecting the time, trust, and connection in your relationship?",
       "contextType": "discovery",
       "promptStyle": "question"
     },
@@ -47950,6 +47950,4776 @@
       "intensity": 1,
       "prompt": "Which would you rather do this month? A) Visit somewhere nearby B) Host friends C) Start a small project D) Have a screen-free day",
       "contextType": "poll",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0001",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What tiny, harmless thing do you take way too seriously?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0002",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our couple mascot be, and what would its name be?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0003",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which completely useless talent would you love to master?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0004",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If our relationship had a blooper reel, what scene would make the final cut?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0005",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What food combination would you defend even if everyone judged you?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0006",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you put in a museum dedicated to our relationship?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0007",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would accidentally become famous, and for what?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0008",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What silly rule would you add to our home for one day?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0009",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we switched routines for a day, what would surprise you most?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0010",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your most irrational but entertaining opinion?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0011",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which game would reveal the most about our competitive sides?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0012",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What fictional character would be the worst roommate for us?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0013",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we had a signature handshake, what absolutely must be in it?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0014",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our friends say is our funniest shared habit?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0015",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What ordinary task could we turn into a ridiculous competition?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0016",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us is more likely to laugh at the worst possible moment?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0017",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you name a boat we bought on an impulse?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0018",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we opened a tiny shop together, what would we sell?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0019",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a small thing you do that deserves an award?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0020",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would be more easily distracted on a road trip?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0021",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would be the funniest theme for a holiday we invented?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0022",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What song would play during a dramatic slow-motion entrance by you?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0023",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we were contestants on a game show, what would be our weak spot?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0024",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a silly belief you held as a child?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0025",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What harmless prank would make both of us laugh?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0026",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which household object best matches your personality today?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0027",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we had to cook using only three ingredients, what would you choose?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0028",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our couple slogan be if it had to fit on a mug?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0029",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would last longer without checking a phone?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0030",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What tiny luxury would you add to make an ordinary Tuesday feel fancy?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0031",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the weirdest thing you find oddly satisfying?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0032",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If our pets or future pets could review us, what would they complain about?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0033",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you choose as our annual completely unnecessary tradition?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0034",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would be worse at keeping a surprise party secret?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0035",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you put in a time capsule for us to open in ten years?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0036",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we could instantly become experts at one party trick, which one?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0037",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your funniest theory about why people do a common everyday thing?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0038",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of our differences makes life more entertaining?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0039",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What ridiculous award would you give me this week?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0040",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you do if we had an unexpected day off and no responsibilities?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0041",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would make the better tour guide for our neighborhood?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0042",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is something you would happily be a beginner at with me?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0043",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we made a two-person trivia team, what category would each of us own?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0044",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would be the most chaotic thing for us to assemble together?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0045",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your favorite way to turn a boring wait into a game?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0046",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If our relationship were a snack, what would it be and why?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0047",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which one of us would accidentally adopt a strange new hobby?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0048",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is one low-cost adventure we should try just for the story?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0049",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you choose for a no-plans evening: snacks, a walk, a game, or a surprise?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0050",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a funny thing you hope we never become too grown-up to do?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0051",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of look from me makes you feel instantly noticed?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0052",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What compliment from me would still make you blush?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0053",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "When do you feel most attractive around me?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0054",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is your favorite way for me to show that I'm thinking about you?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0055",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of playful teasing feels fun rather than annoying?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0056",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What little gesture makes an ordinary moment feel romantic?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0057",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make a date feel exciting even if we stayed close to home?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0058",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Which is more your style: direct flirting or subtle hints?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0059",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of message from me would brighten a busy day?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0060",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What do you find charming that other people might overlook?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0061",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is something I do without realizing that you find attractive?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0062",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of kiss suits a happy reunion after a long day?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0063",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What helps you shift from busy mode into couple time?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0064",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would your ideal spontaneous date look like?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0065",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of attention makes you feel chosen rather than simply noticed?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0066",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of small romantic detail makes a date feel thoughtfully planned for you?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0067",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What outfit or style makes you feel especially confident?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0068",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes eye contact feel intimate to you?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0069",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What romantic gesture would feel personal instead of overly grand?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0070",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one way we could flirt more during everyday routines?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0071",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of dancing would you want us to try together?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0072",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a conversation feel charged with chemistry for you?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0073",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a small sign that tells you I want to be close to you?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0074",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Would you rather receive a sweet note, a bold compliment, or a surprise plan?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0075",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of date would bring out your playful side?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0076",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What memory of us still gives you butterflies?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0077",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a subtle way I could let you know you have my attention?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0078",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of affectionate touch feels comforting in public?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0079",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is your favorite balance of romance and silliness?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0080",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make a first-date-style night together feel fresh again?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0081",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What quality in me has become more attractive as you've known me longer?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0082",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is something new you'd enjoy dressing up for together?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0083",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What sort of romantic surprise would suit your personality?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0084",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel pursued in a way you genuinely enjoy?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0085",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of pet name feels sweet to you, if any?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0086",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a song that could get you in a romantic mood?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0087",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel most connected to me across a crowded room?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0088",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would be your ideal way to end a really good date?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0089",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What playful challenge could we give each other on our next outing?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0090",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What do you wish I knew about how you like to receive compliments?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0091",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a romantic detail you notice that others might miss?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0092",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of flirting makes you laugh and feel wanted at the same time?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0093",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make an ordinary goodbye more affectionate?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0094",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one thing we could do to keep dates feeling intentional?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0095",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What helps you feel confident initiating affection?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0096",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a romantic scene from a movie that you would actually enjoy recreating?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0097",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What do you find more attractive: confidence, kindness, humor, or curiosity?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0098",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make you feel especially appreciated after a tiring day?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0099",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a new way we could make time for just the two of us?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0100",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one thing about our chemistry that feels uniquely ours?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0101",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What makes you feel genuinely understood when words are hard to find?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0102",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of support is most useful when you're overwhelmed: listening, advice, help, or space?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0103",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a value you hope guides our decisions as a couple?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0104",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What part of your upbringing do you understand differently now?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0105",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does a peaceful home feel like to you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0106",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What dream would you like us to make a practical plan for?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0107",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "When you feel distant, what helps you reconnect?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0108",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does a meaningful apology look like to you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0109",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you wish people understood about the way you handle stress?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0110",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of future change feels exciting and a little intimidating?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0111",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one responsibility you would like us to share differently?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0112",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What makes it easier for you to admit you are wrong?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0113",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you prefer to revisit a disagreement after we've cooled down?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0114",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What personal goal would you like more encouragement with?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0115",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does being a team mean during a difficult season?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0116",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is something you are learning about yourself lately?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0117",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How can I tell when you need comfort rather than solutions?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0118",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of family tradition would you like to create or continue?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0119",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does financial security mean to you beyond a number?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0120",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What conversation about our future deserves more time?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0121",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What helps you feel safe enough to be honest with me?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0122",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a boundary that helps you stay emotionally well?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0123",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How would you like us to handle seasons when one person has less energy?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0124",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of life would feel successful even if it looked ordinary to others?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0125",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What are you proud of that you rarely give yourself credit for?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0126",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you need from me when plans change unexpectedly?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0127",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does quality time look like when neither of us has much energy?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0128",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one belief you have changed your mind about over time?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0129",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would you like us to learn together in the next year?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0130",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you like to celebrate progress that other people might not notice?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0131",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What makes a home feel welcoming to you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0132",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would help us talk about money with less tension?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0133",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of support do you want during a major life transition?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0134",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is something you want to protect time for as life gets busier?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0135",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does forgiveness mean to you, and what does it not mean?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0136",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What helps you feel respected during a disagreement?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0137",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What part of your identity do you want more room to express?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0138",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How should we decide when a compromise feels fair to both of us?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0139",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does growing together look like without losing our individuality?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0140",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one ordinary thing about our life that you deeply appreciate?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0141",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you hope our relationship teaches the people around us?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0142",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would make it easier to ask me for help?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0143",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you want us to respond when one of us feels left out?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0144",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a fear about the future that becomes smaller when we discuss it?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0145",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of memories do you want us to make more often?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0146",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does rest look like when you truly allow yourself to slow down?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0147",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one practical way we could make daily life fairer?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0148",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you want to be able to count on me for?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0149",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is something about your inner world you would like me to ask about more?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0150",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would a really good ordinary year together include?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0151",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel comfortable talking about sex before we become intimate?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0152",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you prefer to let me know that something feels especially good?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0153",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of check-in feels natural during sex without interrupting the moment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0154",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel free to say no or pause during sexual activity?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0155",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make discussing sexual desires feel less awkward for you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0156",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you like a partner to initiate sex when the timing might not be obvious?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0157",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of touch would you like me to ask about before trying?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0158",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we communicate if one of us wants to slow down during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0159",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel wanted without feeling pressured to have sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0160",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make talking about sexual pleasure feel more collaborative?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0161",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What is one sexual preference you would like us to understand better about each other?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0162",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like us to talk about differences in sexual desire?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0163",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What makes aftercare or affection after sex meaningful to you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0164",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of verbal feedback do you enjoy during sex, if any?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0165",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we make room for curiosity about sex without assuming we must try everything?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0166",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you bring up a sexual boundary with confidence?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0167",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you want us to handle it if a sexual experiment doesn't feel right?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0168",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of atmosphere helps you feel relaxed and present during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0169",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What is a way to initiate intimacy that feels inviting rather than demanding?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0170",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would you like me to understand about your pace for sexual exploration?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0171",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How should we check that a new sexual activity feels good for both of us?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0172",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of sexual conversation is easier outside the bedroom than in the moment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0173",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel respected when you share a sexual fantasy?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0174",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we make talking about safer sex feel straightforward and comfortable?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0175",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does enthusiastic consent look and sound like to you during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0176",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of affection helps you reconnect if sex doesn't happen after one of us initiates?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0177",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like us to talk about privacy around intimate photos or messages?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0178",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make a conversation about contraception or STI testing feel supportive?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0179",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel comfortable asking for a change during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0180",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you prefer to communicate when you're interested in sex but tired?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0181",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of sexual compliment feels affirming rather than performative?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0182",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we talk about sexual frequency without making either person feel blamed?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0183",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help us discuss fantasies while keeping clear boundaries?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0184",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you want us to respond if one of us feels self-conscious during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0185",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What makes a sexual yes feel freely chosen for you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0186",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of playful, consensual intimacy would you feel comfortable discussing trying?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0187",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How should we talk about using toys or other sexual aids, if we're curious?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0188",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What is important to you when discussing sex after a long or stressful day?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0189",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we make sure neither of us treats sex as an obligation?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0190",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you feel comfortable stopping sexual activity at any point?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0191",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you like to talk about what you enjoyed after sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0192",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of sexual initiation feels best when we're already cuddling?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0193",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would you want us to agree on before exploring a new sexual activity?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0194",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we handle a difference in comfort level around a sexual idea?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0195",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What makes a sexual boundary feel heard and respected?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0196",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you feel confident sharing a fantasy without expecting it to happen?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0197",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we talk about pain or discomfort during sex without embarrassment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0198",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What is one way we could make sexual communication more positive?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0199",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like us to reconnect if an intimate moment feels awkward?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0200",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel emotionally and physically ready for sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0201",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick one for tonight: a spontaneous walk, a snack tasting, or a two-person game. Why?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0202",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give me two date ideas: one under ten dollars and one completely over the top.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0203",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather plan every detail of a trip or choose the destination and improvise?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0204",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a theme for our next date: nostalgic, outdoorsy, fancy, or ridiculous.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0205",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Rate your ideal weekend from restful to adventurous and explain your score.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0206",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns naming three things we'd pack for a surprise day trip. What is your first pick?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0207",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather learn a dance together, cook a new dish, or try an escape room?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0208",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make a two-item bucket list for us: one easy win and one bold adventure.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0209",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Which challenge would you choose: no phones for an evening, trying a new hobby, or cooking without a recipe?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0210",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Guess what I would choose for a perfect rainy day, then let me reveal the answer.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0211",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a superpower for our next shared adventure and explain how we'd use it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0212",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Build a dream day together: you pick the morning, I pick the afternoon, and we choose the evening together.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0213",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather revisit a favorite place or explore somewhere neither of us knows?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0214",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Name three songs for a playlist called 'Us on a good day.'",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0215",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose one skill we could learn in a month and decide how to celebrate finishing.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0216",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give me a would-you-rather question that reveals something funny about you.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0217",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a fictional world for a weekend getaway. What would we do first?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0218",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns choosing one ingredient for a mystery meal. What ingredient are you adding?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0219",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a memory for a photo-caption contest. What would your caption say?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0220",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather exchange handwritten notes, voice messages, or tiny surprise gifts for a week?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0221",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a local place we've never visited and pitch it to me in thirty seconds.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0222",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give our next date a silly title and tell me what the trailer would show.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0223",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a category for a quick trivia duel: music, food, travel, or childhood memories.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0224",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather have a monthly adventure budget or a monthly stay-in-and-treat-ourselves budget?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0225",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Name a small challenge we can complete together before the weekend ends.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0226",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose one thing to make a tradition: a weekly question, a monthly outing, or an annual trip.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0227",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make up a three-round quiz about yourself and see what I can guess correctly.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0228",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a mystery envelope: a compliment, a challenge, or a date idea. What do you hope is inside?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0229",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather swap playlists, swap hobbies for an afternoon, or swap who plans the date?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0230",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a photo from your camera roll that tells a story I might not know.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0231",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give me three clues about a place you'd love to visit and let me guess it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0232",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Plan a mini celebration for an ordinary achievement. What are the rules?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0233",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a theme for a home-based date: café, cinema, game show, or travel night.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0234",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose one question each that we must answer in under a minute. What is yours?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0235",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather create a shared wish list, a shared playlist, or a shared scrapbook?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0236",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a point system for noticing thoughtful things we do for each other this week.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0237",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a surprise for the other person with a strict five-dollar limit.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0238",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a decade for a themed date and decide what we would wear, eat, and listen to.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0239",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Name one thing to try once, one thing to do weekly, and one thing to save for a special occasion.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0240",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a tiny adventure based on a coin flip: heads means outside, tails means we stay in.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0241",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make a two-person awards ceremony with categories for kindness, humor, and creativity.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0242",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a topic we each know little about and take turns sharing one thing we learn.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0243",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a no-spending date challenge and explain how we'd make it memorable.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0244",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Would you rather answer a silly question, a romantic question, or a surprising question next?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0245",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give each other a playful dare that is kind, comfortable, and easy to decline.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0246",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a memory and retell it from the other person's point of view.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0247",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a random household item and invent a date-night game using it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0248",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a three-song soundtrack for the different moods of our relationship.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0249",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a small thing to celebrate about us today, then plan a tiny way to mark it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass-0250",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns asking a question neither of you has asked before; what topic do you choose?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0001",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What completely ordinary task do you perform like you're in a championship final?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0002",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If our relationship had a warning label, what would the funny version say?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0003",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which snack best represents your personality, and why?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0004",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What tiny luxury makes you feel absurdly rich?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0005",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What fictional world would be fun for us to visit for one weekend?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0006",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What harmless hill are you willing to die on?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0007",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our signature handshake include?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0008",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of my habits would make the funniest sitcom subplot?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0009",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we opened a wildly impractical business together, what would we sell?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0010",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you name a boat we absolutely should not be trusted to operate?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0011",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which game show would reveal the most about us as a team?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0012",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What household object would you nominate as our unofficial mascot?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0013",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your most oddly specific pet peeve?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0014",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would your personal entrance music be on a normal Tuesday?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0015",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What snack would you happily eat at a time most people would find unreasonable?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0016",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we swapped jobs for a day, what would surprise you most?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0017",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is something you are confidently bad at?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0018",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which small inconvenience turns you into a dramatic storyteller?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0019",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our couple-themed holiday celebrate?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0020",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the funniest misunderstanding you've had because you assumed you knew what someone meant?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0021",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of us would be more likely to accidentally become locally famous, and for what?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0022",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a completely useless skill you would love to master?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0023",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If your mood today were weather, what forecast would you give it?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0024",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would you put in a museum exhibit about your childhood?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0025",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What trend would you bring back for one week just for the chaos?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0026",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which animal has an energy most similar to yours before coffee or breakfast?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0027",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your go-to move when you want to make yourself laugh?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0028",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we had to create a two-person talent show act tonight, what would we do?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0029",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What everyday thing feels unnecessarily complicated to you?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0030",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the silliest thing you believed for far too long?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0031",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which fictional character would be a terrible roommate for us?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0032",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would our team name be for a pub quiz?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0033",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the most unusual compliment someone could give you that you'd secretly love?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0034",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we could outsource one minor life task forever, what would you choose?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0035",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which of your opinions gets stronger the hungrier you are?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0036",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would be the title of a documentary about your most chaotic day?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0037",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is something you enjoy that sounds boring when you explain it?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0038",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the most creative excuse you've used to leave an event early?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0039",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If we designed a ridiculous award ceremony for each other, what award would you win?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0040",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a sound that instantly improves your mood?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0041",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which three items would you bring to a very low-stakes survival challenge?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0042",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What would your childhood self find funniest about adult you?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0043",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is one silly rule you'd add to make chores more entertaining?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0044",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is the strangest thing you have ever collected or wanted to collect?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0045",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "If our week had blooper reels, which moment would make the final cut?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0046",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a small thing you do that deserves more applause than it gets?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0047",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "Which fictional duo best matches our energy on a road trip?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0048",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is a ridiculous competition you think we could take very seriously?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0049",
+      "module": "life",
+      "category": "Fun & Playful Discovery",
+      "intensity": 1,
+      "prompt": "What is your favorite way to be playfully teased without feeling picked on?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0050",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of look from me can change your mood in a second?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0051",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of compliment stays with you long after you hear it?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0052",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What little sign tells you I'm trying to get your attention?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0053",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a date feel like a date rather than just two people running errands?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0054",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Which kind of flirting feels most natural to you: words, touch, humor, or eye contact?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0055",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a romantic gesture that works best when nobody else sees it?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0056",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make an ordinary goodbye feel more memorable?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0057",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of anticipation makes a plan exciting without making it stressful?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0058",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What song would you quietly dedicate to the mood between us?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0059",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What do you notice first when you are especially drawn to someone?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0060",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a small way I could make you feel pursued in a good way?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0061",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Which setting brings out your most confident, charming self?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0062",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of affectionate nickname would make you smile rather than cringe?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0063",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a kiss feel thoughtful instead of automatic?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0064",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a nonverbal way you like to show that you're interested?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0065",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of date lets you feel both relaxed and attractive?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0066",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is something I wear that you especially enjoy seeing me in?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0067",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel like we have our own little world in a crowded room?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0068",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What type of surprise feels romantic to you and what type feels inconvenient?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0069",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is your favorite kind of lingering moment before a date ends?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0070",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes playful banter feel connecting instead of competitive?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0071",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a small ritual that could become our signature romantic thing?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0072",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel wanted without needing a big declaration?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0073",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a subtle way to make a regular evening feel a little seductive?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0074",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Which memory of us would make a good scene in a romantic comedy?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0075",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of affection helps you feel close when we're around other people?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0076",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would your ideal no-occasion romantic gesture look like?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0077",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel appreciated for your appearance without reducing you to it?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0078",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of message would make you grin if it arrived in the middle of a busy day?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0079",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a playful challenge you'd enjoy doing on a date together?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0080",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a shared glance feel like an inside joke?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0081",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one thing about my personality that you find especially magnetic?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0082",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "How do you like someone to show they're listening when you're telling a story?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0083",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a romantic cliché you secretly enjoy?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0084",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is your favorite way to build excitement for time together?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0085",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of atmosphere helps you relax into affection?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0086",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would make a spontaneous date feel fun rather than disruptive?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0087",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one way we could make compliments more specific and sincere?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0088",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes you feel comfortable initiating affection?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0089",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of shared adventure would bring out our playful side?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0090",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a small detail that makes you feel remembered?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0091",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a reunion after time apart feel especially sweet?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0092",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of dancing would you actually enjoy doing together?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0093",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of affection do you appreciate most when you're tired?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0094",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What makes flirting feel fun even after you've known someone for years?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0095",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a low-pressure way for us to create more romantic moments?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0096",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What would you want the vibe of our perfect evening together to be?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0097",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of confidence do you find attractive in a partner?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0098",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What is one way I make you feel special that I might not realize?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0099",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What part of your life feels most like it is changing right now?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0100",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "When do you find it hardest to ask for help?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0101",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "Which value do you hope our everyday choices reflect?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0102",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of support helps when you are disappointed in yourself?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0103",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a lesson you learned later than you wish you had?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0104",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you know when you have had enough time alone?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0105",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does a good apology need to include for you to believe it?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0106",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What family tradition would you like to keep, adapt, or leave behind?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0107",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a dream you have put aside that still matters to you?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0108",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you prefer to make a difficult decision when there is no perfect option?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0109",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What makes you feel respected during a disagreement?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0110",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of future change excites you and worries you at the same time?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0111",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one belief you have softened or changed as you've grown?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0112",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How can we tell when a problem needs a solution versus just a listening ear?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0113",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What responsibility do you carry that others may not notice?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0114",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What helps you feel like yourself when life gets busy?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0115",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does being a good teammate look like during an ordinary week?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0116",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a boundary that helps you show up more generously?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0117",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What part of growing older do you feel curious about?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0118",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of friendship do you want to make more room for?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0119",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is something you want to learn before the next major chapter of life?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0120",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does a meaningful success look like if nobody applauds it?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0121",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "When have you felt proud of how you handled a hard moment?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0122",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What makes you feel emotionally safe enough to be honest?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0123",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would you like us to protect from getting crowded out by responsibilities?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0124",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you prefer to revisit a disagreement after you've both calmed down?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0125",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does a fair division of effort look like to you at home?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0126",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one way your upbringing shaped how you express care?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0127",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What topic do you want us to get better at discussing without defensiveness?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0128",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does feeling understood look like in practical terms?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0129",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would you like our relationship to make easier about being yourself?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0130",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How do you notice that you are nearing burnout?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0131",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What kind of help feels supportive rather than controlling?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0132",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you want to be remembered for by the people closest to you?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0133",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does commitment mean to you in a season when life feels unromantic?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0134",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is a small shared goal that would make the next month feel purposeful?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0135",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one thing you need more permission to do for yourself?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0136",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "How should we handle it when one of us grows or changes in an unexpected direction?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0137",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does generosity look like when both people are tired?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0138",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "Which part of your identity do you want to keep exploring?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0139",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one way we could make hard weeks gentler for each other?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0140",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What do you hope we never stop being curious about in one another?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0141",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is something you want to celebrate about the life you're building now?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0142",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What does repair look like after one of us has been careless with the other's feelings?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0143",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What would you like our relationship to teach the people who see us together?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0144",
+      "module": "life",
+      "category": "Deep Connection & Shared Life",
+      "intensity": 2,
+      "prompt": "What is one question you wish people asked you more often?",
+      "contextType": "connection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0145",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kinds of touch do you most enjoy during foreplay?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0146",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like a partner to check in with you during sex without breaking the mood?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0147",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does enthusiastic consent look and sound like to you in an intimate moment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0148",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "Which kinds of kissing would you like more of in our sex life?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0149",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What makes it easier for you to talk about sexual pleasure openly?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0150",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you communicate that you want to slow down during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0151",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you prefer to discuss contraception or STI testing before sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0152",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kinds of sexual compliments feel good and genuine to you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0153",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel present rather than distracted during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0154",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What is one sexual boundary you want a partner to understand clearly?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0155",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like us to talk about differences in desire without either person feeling blamed?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0156",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What makes aftercare feel caring and reassuring for you after sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0157",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you bring up a sexual preference you feel shy about?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0158",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we make it easy for either of us to pause or stop sexual activity?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0159",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of setting helps you feel relaxed enough to enjoy sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0160",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you like to communicate what feels pleasurable while it is happening?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0161",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would you want us to agree on before trying a new sexual activity?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0162",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel confident about your body during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0163",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How should we handle it if one of us wants sex and the other does not?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0164",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kinds of touch do you prefer to be asked about before trying?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0165",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does a satisfying sexual connection mean to you besides orgasm?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0166",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How comfortable are you talking about sexual health, and what would make it easier?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0167",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make a conversation about fantasies feel safe and pressure-free?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0168",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you want us to handle laughter or awkward moments during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0169",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you distinguish a curious maybe from a genuine yes?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0170",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would you like your partner to know about your preferred pace during intimacy?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0171",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we check whether a new sexual idea still feels good once we begin?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0172",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of feedback helps you feel appreciated rather than evaluated sexually?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0173",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does privacy around our sex life mean to you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0174",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make it easier to say no to a sexual idea without worrying about disappointment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0175",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you prefer to reconnect if one of us feels emotionally distant after sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0176",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kinds of sensual touch feel good when sex is not the goal?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0177",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help us talk about changes in libido with kindness?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0178",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What do you consider a good way to initiate sex that leaves room for a no?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0179",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How should we talk about discomfort or pain during sexual activity in the moment?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0180",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of sexual exploration would you be interested in discussing without committing to try it?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0181",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How do you like to communicate when you want more or less intensity during sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0182",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would make a sexual check-in feel natural for us?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0183",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does being attentive to a partner's pleasure look like to you?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0184",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What sexual health topic should partners be able to discuss without shame?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0185",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How would you like us to revisit an intimate experience that felt uncomfortable?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0186",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel emotionally connected before sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0187",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What helps you feel cared for after a vulnerable sexual conversation?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0188",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What kind of verbal communication during sex do you enjoy?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0189",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How can we keep sexual experimentation mutual instead of one-sided?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0190",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would help you feel comfortable discussing preferred frequency of sex?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0191",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What does respect for consent look like when plans or feelings change midway?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0192",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "What would you like us to understand about each other's sexual turn-ons and turn-offs?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0193",
+      "module": "explicit",
+      "category": "Explicit Sexual Communication & Exploration",
+      "intensity": 3,
+      "prompt": "How could we make talking about sex feel like teamwork rather than a performance review?",
+      "contextType": "intimacy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0194",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns describing our ideal Saturday using only five words each; where do your versions differ?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0195",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a random color and invent a date that includes it in three ways.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0196",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give each other a two-minute tour of an object you own and the story behind it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0197",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a menu for a restaurant that serves only foods tied to our memories.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0198",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each name a place nearby you have never explored; choose one for a future mini-adventure.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0199",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Draw a map of our perfect day together and compare the routes.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0200",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a song for each: our first chapter, our current chapter, and our next chapter.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0201",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns pitching a date idea with a tiny budget and a ridiculous theme.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0202",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Describe our relationship as a board game: what are the rules and the bonus points?",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0203",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a three-question quiz about your own preferences and see whether your partner guesses right.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0204",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose an everyday chore and invent a scoring system that makes it less boring.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0205",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Give each other a mystery compliment, then guess what quality it describes.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0206",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each choose one photo from your phone and tell the story behind a detail the other may have missed.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0207",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a new tradition for the first rainy day of each season.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0208",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Describe your perfect day off as a movie trailer voice-over.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0209",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a cuisine neither of you cooks often and plan a low-pressure tasting night.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0210",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make a two-person bucket list with one free idea, one adventurous idea, and one cozy idea.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0211",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each name a tiny local adventure that could fit into an hour.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0212",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a fictional holiday that celebrates something ordinary you both enjoy.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0213",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns designing a dream room for the other person with no budget limit.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0214",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make a playlist with one song for each mood you want more of this month.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0215",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each invent a harmless award for something the other did recently.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0216",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a memory and list five details you each remember differently.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0217",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a secret signal that means 'I need a little fun right now.'",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0218",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Design a date night where phones are away but the activities are not expensive.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0219",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns giving a 30-second sales pitch for your favorite comfort food.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0220",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a couple's bingo card for things that happen on a typical week.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0221",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Pick a household object and create a fictional backstory for how it ended up with you.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0222",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each describe a skill you could teach the other in ten minutes.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0223",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Build a dream weekend using only three activities and one meal out.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0224",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns choosing a theme for a photo you should capture together this month.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0225",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a two-person trivia round about places, music, and foods you both love.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0226",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose one routine and brainstorm a playful upgrade for it.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0227",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a friendly competition you can finish before dinner.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0228",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each suggest a book, film, or show the other might enjoy and explain the match.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0229",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a shared list of ten small things that reliably improve a day.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0230",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Plan a pretend vacation with one strict rule: you must leave space for doing nothing.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0231",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns describing the perfect surprise that costs no money.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0232",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose three objects nearby that represent your current life stage and explain why.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0233",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a mini award for the most underrated thing your partner contributes.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0234",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each pick a new thing to taste, hear, or see together in the next two weeks.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0235",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Make a two-person challenge to notice one funny thing each day for a week.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0236",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a date that would delight your younger selves and adapt it for who you are now.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0237",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose a familiar place and imagine what your ideal version of it would include.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0238",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Create a silly handshake for when you both finish a difficult week.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0239",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Each choose one small habit you'd like to try together for seven days.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0240",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Invent a couple's quiz category based on the most unexpected things you know about each other.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0241",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Plan a no-pressure evening with three possible activities and decide in the moment.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0242",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Take turns finishing the sentence 'A tiny adventure I'd enjoy with you is…'",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "qualitypass2-0243",
+      "module": "life",
+      "category": "Fresh Formats & Couple Games",
+      "intensity": 1,
+      "prompt": "Choose one thing you learned about each other recently and turn it into an inside joke.",
+      "contextType": "game",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-001",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "Who was your first crush, and what was it about them that caught your attention?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-002",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "Did you ever have a crush that your friends figured out before you were ready to admit it?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-003",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What did you think having a boyfriend or girlfriend would be like before you experienced it?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-004",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What is the sweetest or funniest thing you did as a kid to get someone’s attention?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-005",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What do you remember most clearly about the first time someone told you they liked you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-006",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What did your first experience of liking someone teach you about yourself?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-007",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "Did you ever write a note, pass a message, or make a playlist for someone you liked? What happened?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-008",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What would surprise your younger self about the way you experience love today?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-009",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What song, smell, or place takes you straight back to being a teenager?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-010",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What did you need most from the people around you during your first heartbreak?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-011",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "If you could give your younger self one kind sentence after their first heartbreak, what would it be?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-012",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What small thing felt like the end of the world when you were young but seems funny now?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-013",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What childhood fashion choice or hairstyle deserves a loving roast today?",
+      "contextType": "playful",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-014",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What family story gets told about you that makes you laugh and cringe at the same time?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-015",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What is the funniest thing you believed as a child and repeated as if it were a fact?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-016",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "Did you ever get caught doing something harmless but deeply embarrassing as a kid? What happened?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-017",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What was your most memorable school-day mishap?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-018",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What nickname from childhood would you happily retire forever?",
+      "contextType": "playful",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-019",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 1,
+      "prompt": "What was your most dramatic childhood misunderstanding?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-020",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What is a childhood memory that becomes funnier every time you tell it?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-021",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What did adults misunderstand about you when you were a child?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-022",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "What part of your childhood personality is still very much part of you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-023",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is something you believed for years before one moment made you see it differently?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-024",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "When did a lesson finally click for you after you had heard it many times?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-025",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What experience made you realize you had grown up more than you thought?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-026",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is one opinion you changed after listening to someone whose life was different from yours?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-027",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "Can you remember a small moment when you suddenly understood a parent, caregiver, or older relative better?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-028",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What did you once take personally that you now understand in a more generous way?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-029",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is a lesson you only understood after making the mistake yourself?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-030",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What moment changed how you define success?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-031",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is something about yourself you realized only after someone else pointed it out?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-032",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What piece of advice seemed useless when you were younger but makes sense now?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-033",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "When did you realize you were allowed to want something different from what others expected of you?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-034",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What ordinary experience taught you an unexpectedly big lesson?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-035",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is one belief you have let go of that made your life feel lighter?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-036",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What is something about me that you understood more clearly after a small moment we shared?",
+      "contextType": "couple",
+      "promptStyle": "question"
+    },
+    {
+      "id": "firsts-lightbulb-037",
+      "module": "life",
+      "category": "Lightbulb Moments",
+      "intensity": 2,
+      "prompt": "What have we learned about each other that would have surprised us when we first met?",
+      "contextType": "couple",
       "promptStyle": "question"
     }
   ]
