@@ -194,7 +194,7 @@
         <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
         <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
         <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next question</span></button>
-        <button class="warm-up-next-btn hidden" id="warmUpNextBtn" type="button">Go a little deeper</button>
+        <!-- warm-up removed -->
     </div>
 
     <div class="modal-overlay hidden" id="roundBuilderModal">
@@ -209,18 +209,29 @@
             <div class="round-packs">
                 <label for="roundPackSelect" class="round-pack-label">Quick pack:</label>
                 <select id="roundPackSelect" class="round-pack-select">
-                    <option value="">Custom</option>
-                    <option value="first-date">First date</option>
-                    <option value="after-fight">After a fight</option>
-                    <option value="travel-night">Travel night</option>
-                    <option value="deep-talk">Deep talk</option>
-                    <option value="kinky-explorative">Kinky & explorative</option>
-                    <option value="reconnection">Reconnection</option>
-                    <option value="long-distance">Long-distance</option>
-                    <option value="new-parents">New parents</option>
-                    <option value="playful">Playful</option>
-                    <option value="aftercare">Aftercare</option>
+                    <optgroup label="All">
+                        <option value="">Custom</option>
+                    </optgroup>
+                    <optgroup label="Flame & Passion">
+                        <option value="playful">Playful</option>
+                    </optgroup>
+                    <optgroup label="Deep Connection">
+                        <option value="deep-talk">Deep talk</option>
+                        <option value="first-date">First date</option>
+                        <option value="long-distance">Long-distance</option>
+                        <option value="new-parents">New parents</option>
+                        <option value="reconnection">Reconnection</option>
+                    </optgroup>
+                    <optgroup label="Explicit">
+                        <option value="aftercare">Aftercare</option>
+                        <option value="kinky-explorative">Kinky & explorative</option>
+                    </optgroup>
+                    <optgroup label="Mixed">
+                        <option value="after-fight">After a fight</option>
+                        <option value="travel-night">Travel night</option>
+                    </optgroup>
                 </select>
+                <button id="quickGameBtn" type="button" class="round-pack-btn">Quick game</button>
             </div>
             <div class="round-builder-content">
                 <p class="round-builder-hint">Start light begins with mild cards. When you’re ready, move deeper at your own pace; the round also steps up after you’ve used the current level.</p>
@@ -238,14 +249,15 @@
                     </div>
                     <div class="round-topics" id="roundTopics"></div>
                 </fieldset>
-                <fieldset class="round-builder-group" id="roundIntensityGroup">
-                    <legend>Intensity</legend>
+                <!-- intensity removed -->
+<fieldset class="round-builder-group" id="roundMoodGroup">
+                    <legend>Mood</legend>
                     <div class="round-builder-choices">
-                        <label><input type="radio" name="roundIntensity" value="all" checked> All levels</label>
-                        <label><input type="radio" name="roundIntensity" value="1"> Mild</label>
-                        <label><input type="radio" name="roundIntensity" value="2"> Moderate</label>
-                        <label><input type="radio" name="roundIntensity" value="3"> Wild</label>
-                                <label><input type="radio" name="roundIntensity" value="4"> Most intense</label>
+                        <label><input type="radio" name="roundMood" value="all" checked> All moods</label>
+                        <label><input type="radio" name="roundMood" value="playful"> Playful</label>
+                        <label><input type="radio" name="roundMood" value="deep"> Deep</label>
+                        <label><input type="radio" name="roundMood" value="romantic"> Romantic</label>
+                        <label><input type="radio" name="roundMood" value="spicy"> Spicy</label>
                     </div>
                 </fieldset>
                 <fieldset class="round-builder-group">
@@ -410,12 +422,13 @@
                                 <label class="include-card-type"><input type="checkbox" id="settingsIncludeMultipleChoice" checked> Include multiple-choice cards</label>
                                 <p class="filter-confirmation" id="questionTypeConfirmation" role="status" aria-live="polite"></p>
                             </div>
-                            <div class="intensity-bar" id="intensityBar">
-                                <button class="intensity-btn active" data-level="all" type="button" aria-pressed="true">All Levels</button>
-                                <button class="intensity-btn" data-level="1" type="button" aria-pressed="false">Mild</button>
-                                <button class="intensity-btn" data-level="2" type="button" aria-pressed="false">Moderate</button>
-                                <button class="intensity-btn" data-level="3" type="button" aria-pressed="false">Wild</button>
-                                <button class="intensity-btn" data-level="4" type="button" aria-pressed="false">Most intense</button>
+                            <!-- intensity removed -->
+                            <div class="mood-bar" id="moodBar">
+                                <button class="mood-btn active" data-mood="all" type="button" aria-pressed="true">All moods</button>
+                                <button class="mood-btn" data-mood="playful" type="button" aria-pressed="false">Playful</button>
+                                <button class="mood-btn" data-mood="deep" type="button" aria-pressed="false">Deep</button>
+                                <button class="mood-btn" data-mood="romantic" type="button" aria-pressed="false">Romantic</button>
+                                <button class="mood-btn" data-mood="spicy" type="button" aria-pressed="false">Spicy</button>
                             </div>
                             <div class="action-row">
                                 <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle this round</button>

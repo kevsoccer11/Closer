@@ -86,6 +86,7 @@ let lastSyncedAt = null;
 let undoState = null;
 let playedCardIds = new Set(JSON.parse(localStorage.getItem('closer_played_cards') || '[]'));
 let favoritesOnly = false;
+let activeMood = 'all';
 let browseMode = false;
 let customDecks = JSON.parse(localStorage.getItem('closer_custom_decks') || '[]');
 let activeDeckId = localStorage.getItem('closer_active_deck') || null;

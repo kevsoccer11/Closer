@@ -1,5 +1,7 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    // Apply saved theme.
+    if (localStorage.getItem('closer_theme') === 'light') document.body.classList.add('light-theme');
     const offlineBanner = document.getElementById('offlineBanner');
     const updateOffline = () => {
         if (!offlineBanner) return;
@@ -18,6 +20,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard(true));
     document.getElementById('undoBtn')?.addEventListener('click', undoCard);
+    const quickGameBtn = document.getElementById('quickGameBtn');
+    if (quickGameBtn) {
+        quickGameBtn.onclick = () => {
+            const select = document.getElementById('roundPackSelect');
+            const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(i => i.value);
+            const intensity = document.querySelector('input[name="roundIntensity"]:checked')?.value || 'all';
+            const packsMeta = {
+                'playful': { modules: ['sexuality','life'], intensity: '1' },
+                'first-date': { modules: ['life'], intensity: '1' },
+                'reconnection': { modules: ['life'], intensity: 'all' },
+                'long-distance': { modules: ['life'], intensity: 'all' },
+                'new-parents': { modules: ['life'], intensity: 'all' },
+                'deep-talk': { modules: ['life','sexuality'], intensity: '3' },
+                'kinky-explorative': { modules: ['explicit'], intensity: 'all' },
+                'aftercare': { modules: ['explicit','sexuality'], intensity: '2' },
+                'after-fight': { modules: ['life'], intensity: 'all' },
+                'travel-night': { modules: ['life'], intensity: 'all' }
+            };
+            let options = [...select.options].filter(o => o.value);
+            options = options.filter(o => {
+                const meta = packsMeta[o.value];
+                if (!meta) return true;
+                const moduleOk = modules.length === 0 || meta.modules.every(m => modules.includes(m));
+                const intensityOk = true; // intensity filter removed
+                return moduleOk && intensityOk;
+            });
+            if (options.length === 0) {
+                showToast('No packs match your current filters.');
+                return;
+            }
+            const pick = options[Math.floor(Math.random() * options.length)].value;
+            select.value = pick;
+            applyPack(pick);
+            closeRoundBuilder();
+        };
+    }
     const packSelect = document.getElementById('roundPackSelect');
     if (packSelect) {
         packSelect.addEventListener('change', () => {
@@ -542,6 +580,8 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                         <button class="settings-link" id="settingsLargeTextBtn" type="button">Large text: Off</button>
                         <button class="settings-link" id="settingsDyslexiaBtn" type="button">Dyslexia font: Off</button>
                         <button class="settings-link" id="settingsColorBlindBtn" type="button">Color-blind safe: Off</button>
+                        <button class="settings-link" id="settingsHighContrastBtn" type="button">High contrast: Off</button>
+                        <button class="settings-link" id="settingsThemeBtn" type="button">Theme: Dark</button>
                     </div>
                 </details>
             `;
@@ -568,6 +608,7 @@ const applyAccessibility = () => {
         document.body.classList.toggle('large-text', localStorage.getItem('closer_large_text') === 'true');
         document.body.classList.toggle('dyslexia-font', localStorage.getItem('closer_dyslexia_font') === 'true');
         document.body.classList.toggle('colorblind-safe', localStorage.getItem('closer_colorblind_safe') === 'true');
+        document.body.classList.toggle('high-contrast', localStorage.getItem('closer_high_contrast') === 'true');
     };
     applyAccessibility();
     const largeTextBtn = document.getElementById('settingsLargeTextBtn');
@@ -599,6 +640,30 @@ const applyAccessibility = () => {
             colorBlindBtn.textContent = `Color-blind safe: ${next ? 'On' : 'Off'}`;
             applyAccessibility();
         };
+const highContrastBtn = document.getElementById('settingsHighContrastBtn');
+    if (highContrastBtn) {
+        highContrastBtn.textContent = `High contrast: ${localStorage.getItem('closer_high_contrast') === 'true' ? 'On' : 'Off'}`;
+        highContrastBtn.onclick = () => {
+            const next = localStorage.getItem('closer_high_contrast') !== 'true';
+            localStorage.setItem('closer_high_contrast', String(next));
+            highContrastBtn.textContent = `High contrast: ${next ? 'On' : 'Off'}`;
+const themeBtn = document.getElementById('settingsThemeBtn');
+    if (themeBtn) {
+        const applyTheme = () => {
+            const light = localStorage.getItem('closer_theme') === 'light';
+            document.body.classList.toggle('light-theme', light);
+            themeBtn.textContent = `Theme: ${light ? 'Light' : 'Dark'}`;
+        };
+        applyTheme();
+        themeBtn.onclick = () => {
+            const next = localStorage.getItem('closer_theme') !== 'light';
+            localStorage.setItem('closer_theme', next ? 'light' : 'dark');
+            applyTheme();
+        };
+    }
+            applyAccessibility();
+        };
+    }
     }
             document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
 document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyboard shortcuts', `<div class="drawer-item"><p><strong>Space/Enter:</strong> Next question</p><p><strong>P:</strong> Pass for now</p><p><strong>F:</strong> Favorite</p><p><strong>Esc:</strong> Quick hide Wild & Unspoken</p></div>`);
@@ -682,6 +747,18 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         };
     });
 
+    // 10b. Mood Filters
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.mood-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            activeMood = btn.dataset.mood;
+            rebuildUnspentDeck();
+            drawNextCard();
+        };
+    });
     // 11. Prompt Style Filters
     document.querySelectorAll('.prompt-style-btn').forEach(btn => {
         btn.onclick = (e) => {

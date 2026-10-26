@@ -136,6 +136,21 @@ function rebuildUnspentDeck() {
 roundTotalCards = declustered.length;
 }
 
+function getMood(card) {
+    if (card.mood) return card.mood;
+    if (card.module === 'explicit') return 'spicy';
+    if (card.module === 'sexuality') {
+        if (card.intensity >= 3) return 'spicy';
+        if (card.intensity === 2) return 'romantic';
+        return 'playful';
+    }
+    // life
+    const cat = (card.category || '').toLowerCase();
+    if (/intimacy|desire|flirt|romance|affection|touch|sensual|pleasure|attraction/.test(cat)) return 'romantic';
+    if (/fun|playful|humor|random|game|sport|adventure|travel/.test(cat)) return 'playful';
+    if (card.intensity >= 3) return 'spicy';
+    return 'deep';
+}
 function getFilteredCards() {
     return masterDatabase.filter(card => {
         const matchesCompareFirst = activeGameMode === 'compare-first';
@@ -143,10 +158,8 @@ function getFilteredCards() {
             ? compareFirstModules.includes(card.module)
             : activeModules.includes(card.module);
         const intensity = String(card.intensity);
-        const matchesMode = activeGameMode !== 'deep' || intensity === '3' || intensity === '4';
-        const matchesIntensity = matchesCompareFirst
-            ? compareFirstLevels.includes(intensity)
-            : activeIntensity === 'all' || intensity === String(activeIntensity);
+        const matchesMode = true;
+        const matchesIntensity = true;
         const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
         const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
         const matchesPromptStyle = matchesCompareFirst
@@ -154,6 +167,7 @@ function getFilteredCards() {
         const matchesTopic = matchesCompareFirst || activeTopics === null
             || activeTopics.includes(`${card.module}::${card.category || 'General'}`);
         if (favoritesOnly && !favoriteIds.includes(card.id)) return false;
+        if (activeMood !== 'all' && getMood(card) !== activeMood) return false;
         if (activeDeckId) {
             const deck = customDecks.find(d => d.id === activeDeckId);
             if (!deck || !deck.cardIds.includes(card.id)) return false;
@@ -166,7 +180,7 @@ function getFilteredCards() {
 
 function applyPack(pack) {
     const packs = {
-        'first-date': { modules: ['life'], topics: null, intensity: '1', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['life'], topics: ['life::Getting to Know You'], intensity: '1', questions: true, activities: true, multipleChoice: true },
         'after-fight': { modules: ['life'], topics: ['life::Conflict & Repair'], intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'travel-night': { modules: ['life'], topics: ['life::Adventure & Travel'], intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'deep-talk': { modules: ['life', 'sexuality'], topics: null, intensity: '3', questions: true, activities: true, multipleChoice: true },
@@ -191,7 +205,7 @@ function getRoundBuilderSelection() {
     return {
         modules,
         topics: topics.length === allTopics ? null : topics,
-        intensity: document.querySelector('input[name="roundIntensity"]:checked')?.value || 'all',
+        mood: document.querySelector('input[name="roundMood"]:checked')?.value || 'all',
         questions: Boolean(document.getElementById('includeQuestions')?.checked),
         activities: Boolean(document.getElementById('includeActivities')?.checked),
         multipleChoice: Boolean(document.getElementById('includeMultipleChoice')?.checked)
@@ -201,7 +215,6 @@ function getRoundBuilderSelection() {
 function getCardsForRoundSelection(selection) {
     return masterDatabase.filter(card => {
         if (!selection.modules.includes(card.module)) return false;
-        if (selection.intensity !== 'all' && String(card.intensity) !== selection.intensity) return false;
         if (selection.topics !== null && !selection.topics.includes(`${card.module}::${card.category || 'General'}`)) return false;
         const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
         if (isMultipleChoice) return selection.multipleChoice;
@@ -322,7 +335,8 @@ function applyRoundSelection(selection, startLight = false) {
         selection.intensity = 'all';
     }
     activeTopics = selection.topics;
-    activeIntensity = startLight ? '1' : selection.intensity;
+    activeIntensity = 'all';
+    activeMood = selection.mood || 'all';
     includeQuestions = selection.questions;
     includeActivities = selection.activities;
     includeMultipleChoice = selection.multipleChoice;
@@ -338,8 +352,8 @@ function applyRoundSelection(selection, startLight = false) {
         activeGameMode = 'classic';
         document.getElementById('gameModeSelect').value = 'classic';
     }
-    document.querySelectorAll('.intensity-btn').forEach(button => {
-        const selected = button.dataset.level === activeIntensity;
+    document.querySelectorAll('.mood-btn').forEach(button => {
+        const selected = button.dataset.mood === activeMood;
         button.classList.toggle('active', selected);
         button.setAttribute('aria-pressed', String(selected));
     });
@@ -358,8 +372,8 @@ function openRoundBuilder() {
     document.querySelectorAll('input[name="roundDeck"]').forEach(input => {
         input.checked = activeModules.includes(input.value);
     });
-    const intensity = document.querySelector(`input[name="roundIntensity"][value="${activeIntensity}"]`);
-    if (intensity) intensity.checked = true;
+    const mood = document.querySelector(`input[name="roundMood"][value="${activeMood}"]`);
+    if (mood) mood.checked = true;
     document.getElementById('includeQuestions').checked = includeQuestions;
     document.getElementById('includeActivities').checked = includeActivities;
     document.getElementById('includeMultipleChoice').checked = includeMultipleChoice;

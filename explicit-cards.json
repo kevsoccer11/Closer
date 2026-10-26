@@ -13959,6 +13959,1896 @@
       "prompt": "What boundaries should we set around praise or teasing?",
       "contextType": "consent",
       "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-be697403b99c",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 1,
+      "prompt": "What is one way we can check in during intimacy without killing the mood?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-e04fbd320290",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "How do you prefer to ask for or give consent in the moment?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-89596a892bc8",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 1,
+      "prompt": "What is one small thing that helps you feel close after sex?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-7b8c5f4b52e2",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "What kind of touch feels best right after?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-18afbf472901",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 1,
+      "prompt": "What is a gentle way to say “not tonight” that feels okay?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-241bca9fd21d",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "What boundary would you like to revisit together?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-84d00d2620e3",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What is one thing you want to be able to say during sex?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-cf79996bb994",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "How do we talk about what we like without pressure?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-fa2b1b22e346",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What is a flirty text that would make you smile?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-06860aebf2fd",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of teasing feels fun versus too much?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-fbe0d9adbc75",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 1,
+      "prompt": "What is one way you like to be invited into intimacy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-e9c3ae8fde51",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What helps you feel in the mood on a low-energy day?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-74091e8a4239",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 1,
+      "prompt": "What is one thing that instantly heightens your pleasure?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-cec7dba08348",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "What kind of feedback helps you most in the moment?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-d92df26f5982",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 1,
+      "prompt": "What kind of touch do you wish we did more of?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-28c8c4799d61",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "How do you like to start foreplay?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-a68b012748e0",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 1,
+      "prompt": "What is a playful way to build anticipation?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-45f38fc906ac",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What kind of teasing feels exciting to you?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-355cf34db6f4",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 1,
+      "prompt": "What helps you relax after sex?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-4fc950ec80c7",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What is your favorite way to wind down together?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-5a334b1e97e1",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is a funny or awkward moment we can laugh about?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-3083488f5469",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 2,
+      "prompt": "What is one thing that makes sex less serious and more fun?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-89d0d5c68c8c",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 1,
+      "prompt": "What kind of kissing do you love most?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-aa659279246c",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a kiss feel electric to you?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-480d9f0dd09e",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 1,
+      "prompt": "What is one area you love being touched?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-50532fda67bc",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What kind of touch feels most connecting?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-30e151901590",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 1,
+      "prompt": "What is a light, fun fantasy you enjoy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-cece6b87fb79",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What role-play scenario sounds playful rather than intense?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-31564daf1eb9",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 1,
+      "prompt": "What is one toy you are curious to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mildexp-f68862c4c1e1",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What would make trying a toy feel comfortable?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-f08e5e8c8c",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "What check-in helps you feel safe before trying something new?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-20f87a1175",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "How do you like to signal a pause?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-10e4965ee4",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "What pacing feels respectful to you?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-4744faee37",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "What is one way to make consent feel ongoing?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-4c54e14eeb",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "What kind of aftercare feels best to you?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-abababb820",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "How do we reconnect after an intense conversation?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-a6852c8a85",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "What helps you feel safe again after vulnerability?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-1ec68c3978",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "Tell me one thing that helps you land after emotional intensity.",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-108c8b374a",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "What is a gentle way for you to say no?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-0c2246f378",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "What boundary would you like to set or revisit?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-dbd2759ea1",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "How can we make no feel safe in our relationship?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-b7f375ccb2",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "Tell me about a boundary you are proud of keeping.",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-c33aec956a",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What is a flirty text that would make you smile?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-306f2fce31",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What kind of teasing feels fun versus too much?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-49655d05cb",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What is one playful way to show interest?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-41eb5b2903",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What is a flirtatious thing I do that you love?",
+      "contextType": "flirting",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-ba57cb1073",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What is one way you like to be invited into intimacy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-7f5398e669",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What helps you feel in the mood?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-50e2334a60",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What is a signal that tells me you want me?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-c98083f3f3",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What is one thing that makes you feel desired?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-3f515f7947",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "What is one thing that instantly heightens your pleasure?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-fb0673bc30",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "What kind of feedback helps you most in the moment?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-106891be92",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "What is a sensation you find irresistible?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-a0be44a906",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "What is one thing that makes pleasure feel better?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-76dbf56ec6",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "What kind of touch do you wish we did more of?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-68398e8798",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "How do you like to start foreplay?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-8a03d5a338",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "What is a touch that instantly connects us?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-331ad93038",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "What is one way to build physical anticipation?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-1b75dbd0da",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What is a playful way to build anticipation?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-88f8203ff8",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What kind of teasing feels exciting to you?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-eb17a0a8a6",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What is one way to keep the spark alive?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-21fb96db68",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What is a flirtatious thing that drives you wild?",
+      "contextType": "anticipation",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-17a88997f6",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What helps you relax after sex?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-72fda96759",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What is your favorite way to wind down together?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-c4507b8fc8",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What is one thing that makes aftercare feel good?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-38b74b0b32",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What helps you feel connected after intimacy?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-7a17227054",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is a funny or awkward moment we can laugh about?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-41e8c94843",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is one thing that makes sex less serious and more fun?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-5d9a632ecb",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is a silly thing that always makes you laugh?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-224d408cdd",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is a playful moment you remember fondly?",
+      "contextType": "humor",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-d392606f0d",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of kissing do you love most?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-6e9ccd5128",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a kiss feel electric?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-4773acc1bb",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What is one way to build physical chemistry?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-543ae6f11b",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What is a touch that instantly connects us?",
+      "contextType": "action",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-f50b3cecd0",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What is one area you love being touched?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-17b2f1692e",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What kind of touch feels most connecting?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-b75f6eaea4",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What is a sensation you find most relaxing?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-4435c35c63",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What is one way to explore each other bodies?",
+      "contextType": "sensory",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-eaa6d9a7b8",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What is a light, fun fantasy you enjoy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-dbc4f28526",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What role-play scenario sounds playful rather than intense?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-2a12e36629",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What is one fantasy you would love to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-d6e65d4813",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What makes a fantasy feel safe to share?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-0be1529119",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What is one toy you are curious to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-d8fc6c8cf5",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What would make trying a toy feel comfortable?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-0545fb73e7",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What is a prop that sounds fun to explore?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "bulk2-9abeb42d9f",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What is one way to introduce something new?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "act-814f9d34c5",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 1,
+      "prompt": "Agree on a pause signal and practice it.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-071e563d24",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "Check in mid-intimacy with one simple question.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-0856dec5f1",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 1,
+      "prompt": "Spend five minutes cuddling after.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-64792985e2",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "Give your partner a glass of water and a compliment.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-092b5705f3",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 1,
+      "prompt": "Practice saying no playfully.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-c310c8b062",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "Share one boundary and one yes.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-843bde2b78",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Send a flirty text right now.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-53ddbdb170",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Whisper something teasing.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-a8d66f5a94",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 1,
+      "prompt": "Initiate with a slow kiss.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-2bf97bf51e",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Set the mood with music.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-403f46bed0",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 1,
+      "prompt": "Ask what touch feels best right now.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-f170ce6eae",
+      "module": "explicit",
+      "category": "Pleasure Triggers",
+      "intensity": 2,
+      "prompt": "Try a new touch for one minute.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-1edc6ae4f6",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 1,
+      "prompt": "Give a slow 60-second massage.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-dbb6429b8a",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "Explore with your hands for one minute.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-d9acad1818",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 1,
+      "prompt": "Build anticipation with a countdown.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-5d0ea62ae1",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "Tease with a feather or breath.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-0c39f4b6a3",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 1,
+      "prompt": "Take three deep breaths together.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-94bce42da5",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "Share one thing you enjoyed most.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-f655d09906",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "Laugh together for 30 seconds.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-df6a4840a9",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 2,
+      "prompt": "Share an awkward moment and laugh.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-eb224c7ceb",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 1,
+      "prompt": "Try a slow kiss.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-290e9cccfa",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "Kiss somewhere new.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-9e6cc110f1",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 1,
+      "prompt": "Explore with gentle touch.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-fc999ce744",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "Try a new texture.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-7c41b4c571",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 1,
+      "prompt": "Act out a simple scenario.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-0470bddbab",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "Use a playful persona for one minute.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-f5d244a4f6",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 1,
+      "prompt": "Introduce a toy slowly.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-3c07d02b3c",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "Explore a prop together.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-090d646f49",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 1,
+      "prompt": "Share what you enjoy about oral.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-f3e4492348",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 2,
+      "prompt": "Try a new technique.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-5e4efb9318",
+      "module": "explicit",
+      "category": "Manual Sexual Stimulation",
+      "intensity": 1,
+      "prompt": "Explore with hands.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-2d2983ff8c",
+      "module": "explicit",
+      "category": "Manual Sexual Stimulation",
+      "intensity": 2,
+      "prompt": "Try a new rhythm.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-60bb5c44df",
+      "module": "explicit",
+      "category": "Anal Sex",
+      "intensity": 1,
+      "prompt": "Discuss comfort level.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-40abe63c78",
+      "module": "explicit",
+      "category": "Anal Sex",
+      "intensity": 2,
+      "prompt": "Try gentle exploration.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-3f7df5da62",
+      "module": "explicit",
+      "category": "Vibrators",
+      "intensity": 1,
+      "prompt": "Introduce a vibrator slowly.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-1d6618752d",
+      "module": "explicit",
+      "category": "Vibrators",
+      "intensity": 2,
+      "prompt": "Explore settings together.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-61723e4980",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 1,
+      "prompt": "Agree on a safe word.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-e38e9d220a",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "Try a light power dynamic.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-21e06cd00e",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 1,
+      "prompt": "Use a soft restraint.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-e1ee16da56",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "Practice a release signal.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-c0792cf210",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 1,
+      "prompt": "Try a light tap.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-504fcbadec",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "Explore temperature play.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-450069ad7a",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 1,
+      "prompt": "Share a yes/no/maybe list.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-579fb722a4",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 2,
+      "prompt": "Discuss one boundary.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-18b9713ebf",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 1,
+      "prompt": "Cuddle for five minutes.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-0239cd56e5",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "Debrief after a scene.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-9e923c1718",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 1,
+      "prompt": "Introduce a new texture.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-f2498ef62c",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 2,
+      "prompt": "Explore an object together.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-33373d4b6d",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 1,
+      "prompt": "Share a fantasy about being seen.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-b69ac9ee47",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "Try a semi-private moment.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-310585bf94",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 1,
+      "prompt": "Try short edging.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-11596ffe0b",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "Practice a pause signal.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-07b04a8ab1",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 1,
+      "prompt": "Act out a simple scenario.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-4fcb226e76",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "Use a playful persona.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-eee759bc77",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 2,
+      "prompt": "Discuss comfort levels.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-99847cdf7b",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 1,
+      "prompt": "Share a fantasy about a risky setting.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-a0ea8f2e9a",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 1,
+      "prompt": "Give a sexy compliment.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-eb21e0949f",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "Explore praise or teasing.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-8cd2fbad98",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 1,
+      "prompt": "Touch yourselves side by side.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "act-00906ab037",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 2,
+      "prompt": "Sync your pace.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    },
+    {
+      "id": "open-38ca8794b3",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What is a fantasy you have not tried but would be open to?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-289c3fb80d",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What is one thing you would love to explore together?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-5c3d368a60",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "What is a fantasy you have kept private until now?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-89ce42b676",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 2,
+      "prompt": "What is a new experience you would be open to trying?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-bf6b56189c",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 2,
+      "prompt": "What would help you feel safe trying something new?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-7a9eec8631",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 3,
+      "prompt": "What is a boundary you would want to set before something new?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-f7c3af535a",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 2,
+      "prompt": "What is one past experience that shaped your desires?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-228b23a6f5",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 2,
+      "prompt": "What is something from a past relationship you miss?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-0f28ebe6d4",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "What is a past experience you want to revisit with me?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-375d68733a",
+      "module": "explicit",
+      "category": "Libido, Mismatch & Life Phases",
+      "intensity": 2,
+      "prompt": "How do you feel about trying something new when desire is low?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-860d9938e0",
+      "module": "explicit",
+      "category": "Libido, Mismatch & Life Phases",
+      "intensity": 2,
+      "prompt": "What helps you feel open to intimacy on a low-energy day?",
+      "contextType": "reflection",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-2e43553402",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "How do we talk about trying something new without pressure?",
+      "contextType": "alignment",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-e4126479ee",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "What is one way to make openness feel easy?",
+      "contextType": "alignment",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-d49052ff59",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What role-play scenario would you be open to trying?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-071330bc09",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 3,
+      "prompt": "What is a fantasy you have kept private until now?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "open-8babef86c8",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 2,
+      "prompt": "What is one toy you are curious to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-ad38258633",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "What kind of power dynamic sounds exciting?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-0b2056e936",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "How do you feel about taking turns being in charge?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-b091696bed",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "What would a perfect scene look like?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-fb7d11035d",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "What words or tone turn you on in control?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-e53f749b88",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "What kind of restraint sounds fun, rope, cuffs, or silk?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-66a6ae7aa3",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "How does being tied up change how you feel?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-2c3792251c",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "What restraint scenario is your favorite fantasy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-678a18e24f",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "What safety signal should we use?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-5592ec02f2",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "What impact play sounds appealing?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-50448d8dec",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "How does sensation play change your arousal?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-07ea448bca",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "What sensation fantasy have you not tried?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-06a4559c68",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "What intensity of impact feels good?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-0534bf8578",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 1,
+      "prompt": "What is on your yes, no, maybe list?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-6b8b38c218",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 1,
+      "prompt": "How do we make kink conversations feel normal?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-85a00158bd",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 1,
+      "prompt": "What boundary would you set before a scene?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-dd8025d298",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 1,
+      "prompt": "What would make you feel safe exploring kink?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-e74b419ad6",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "What kind of aftercare do you need after an intense scene?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-a9c9d76454",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "What helps you come down from a scene high?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-6f09f159af",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "How do we check in the next day?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-6bd7088140",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "What does sub drop or dom drop feel like?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-47babf4d0a",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 2,
+      "prompt": "What texture or material turns you on most?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-7c55056929",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 2,
+      "prompt": "Is there an object you have always wanted to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-e4c788043b",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 2,
+      "prompt": "What is a fetish fantasy you have never said out loud?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-48b229de00",
+      "module": "explicit",
+      "category": "Fetish & Object Play",
+      "intensity": 2,
+      "prompt": "How do we explore a fetish without pressure?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-c95ed4432b",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "How do you feel about being watched during intimacy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-6369299ac0",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "What is a consensual showing or watching fantasy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-68efd6d0c2",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "What boundaries would make exhibitionism feel safe?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-d8c6af1f55",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "What would make a semi-public moment exciting?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-bdbfe183a8",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "How do you feel about edging or orgasm control?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-56ccede591",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "What is a tease-and-denial scenario you would enjoy?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-34eb63fe48",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "What signals help you stay on the edge?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-bd3ce270ed",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "What is your limit for orgasm denial?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-e46c834fdb",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "What role-play scenario sounds fun to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-8fd714937c",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "How do we set up role-play without feeling forced?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-e33c319a88",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "What character would you want to explore?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-f6da5d456d",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "What boundaries matter most in role-play?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-5dde898305",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "How do you feel about threesomes or group play?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-3dbb11aac5",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "What would make a group experience feel safe and fun?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-f29666dc47",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "What boundaries would you want?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-79da9d831a",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "What is your limit for group play?",
+      "contextType": "consent",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-33c75f3b0e",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 2,
+      "prompt": "How do you feel about intimacy in semi-public spaces?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-6b0b4afbfa",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 2,
+      "prompt": "What is a semi-public fantasy you find exciting?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-2340102719",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 2,
+      "prompt": "What safety and privacy checks would you want first?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-11d04f8532",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 2,
+      "prompt": "What would make a semi-public moment exciting?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-3045793a58",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "Do words of praise turn you on, and what kind?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-478028238c",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "How do you feel about playful degradation?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-ae0c8bf1ee",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "What tone feels affirming versus uncomfortable?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
+    },
+    {
+      "id": "thin2-1e28afc9cc",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "What boundaries should we set around praise or teasing?",
+      "contextType": "fantasy",
+      "promptStyle": "question"
     }
   ]
 }
