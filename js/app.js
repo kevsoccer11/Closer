@@ -366,15 +366,80 @@ document.addEventListener('DOMContentLoaded', () => {
         favCardBtn.onclick = (e) => {
             e.stopPropagation();
             if (!currentCard) return;
-            const index = favoriteIds.indexOf(currentCard.id);
-            if (index > -1) {
-                favoriteIds.splice(index, 1);
-            } else {
-                favoriteIds.push(currentCard.id);
+            let menu = document.getElementById('saveMenu');
+            if (menu) { menu.remove(); return; }
+            menu = document.createElement('div');
+            menu.id = 'saveMenu';
+            menu.style.cssText = 'position:fixed;z-index:9999;background:rgba(22,22,29,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.4);';
+            const close = () => menu.remove();
+            const makeBtn = (label, action) => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.textContent = label;
+                b.style.cssText = 'background:transparent;border:none;color:#f8fafc;padding:8px 10px;text-align:left;border-radius:8px;cursor:pointer;';
+                b.onmouseenter = () => b.style.background = 'rgba(255,255,255,0.08)';
+                b.onmouseleave = () => b.style.background = 'transparent';
+                b.onclick = async (ev) => { ev.stopPropagation(); await action(); close(); };
+                return b;
+            };
+            const isFav = favoriteIds.includes(currentCard.id);
+            menu.appendChild(makeBtn(isFav ? 'Remove from favorites' : 'Save to favorites', async () => {
+                const idx = favoriteIds.indexOf(currentCard.id);
+                if (idx > -1) favoriteIds.splice(idx, 1);
+                else favoriteIds.push(currentCard.id);
+                localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
+                favCardBtn.classList.toggle('active', favoriteIds.includes(currentCard.id));
+                favCardBtn.setAttribute('aria-pressed', String(favoriteIds.includes(currentCard.id)));
+            }));
+            if (window.roomRef) {
+                menu.appendChild(makeBtn('Add to shared deck', async () => {
+                    try {
+                        await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
+                        showToast('Added to shared deck.');
+                        renderSharedDeck();
+                    } catch (e) { showToast('Could not add card.'); }
+                }));
+                menu.appendChild(makeBtn('Save to both', async () => {
+                    if (!favoriteIds.includes(currentCard.id)) {
+                        favoriteIds.push(currentCard.id);
+                        localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
+                        favCardBtn.classList.add('active');
+                        favCardBtn.setAttribute('aria-pressed', 'true');
+                    }
+                    try {
+                        await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
+                        showToast('Saved to favorites and shared deck.');
+                        renderSharedDeck();
+                    } catch (e) { showToast('Saved to favorites; shared deck failed.'); }
+                }));
             }
-            localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
-            favCardBtn.classList.toggle('active', favoriteIds.includes(currentCard.id));
-            favCardBtn.setAttribute('aria-pressed', String(favoriteIds.includes(currentCard.id)));
+            const rect = favCardBtn.getBoundingClientRect();
+            menu.style.top = `${rect.bottom + 6}px`;
+            menu.style.left = `${rect.left}px`;
+            document.body.appendChild(menu);
+            setTimeout(() => {
+                const closer = (ev) => {
+                    if (!menu.contains(ev.target)) { close(); document.removeEventListener('click', closer); }
+                };
+                document.addEventListener('click', closer);
+            }, 0);
+        };
+    }
+    const shareDeckBtn = document.getElementById('shareDeckBtn');
+    if (shareDeckBtn) {
+        shareDeckBtn.onclick = async (e) => {
+            e.stopPropagation();
+            if (!currentCard || !window.roomRef) {
+                showToast('Pair with a partner to use the shared deck.');
+                return;
+            }
+            try {
+                await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
+                showToast('Added to shared deck.');
+                renderSharedDeck();
+            } catch (err) {
+                showToast('Could not add card.');
+            }
         };
     }
 

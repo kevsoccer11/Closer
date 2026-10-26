@@ -208,6 +208,7 @@ header {
     flex: 0 0 auto;
     font-size: 0.8rem;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .explicit-content-notice {
@@ -547,7 +548,7 @@ main {
     border: 1px solid var(--card-border);
     border-radius: 20px;
     backdrop-filter: blur(12px);
-    padding: 24px;
+    padding: 20px;
     min-height: 300px;
     display: flex;
     flex-direction: column;
@@ -555,7 +556,7 @@ main {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     user-select: none;
     transition: border-color 0.18s ease;
-    width: min(100% - 32px, 560px);
+    width: min(100% - 20px, 560px);
     margin: 0 auto;
 }
 
@@ -597,7 +598,13 @@ main {
     color: #facc15;
     background: rgba(250, 204, 21, 0.15);
     border-radius: 8px;
-    padding: 2px 4px;
+    padding: 4px 6px;
+}
+
+#favCardBtn i,
+#favCardBtn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .card-actions {
@@ -1860,6 +1867,7 @@ body.colorblind-safe { --primary: #0072b2; --primary-glow: rgba(0, 114, 178, 0.3
     cursor: pointer;
     transition: transform 0.1s ease, background 0.2s ease;
 }
+    .round-summary-label { font-size: 0.68rem; }
 
 .round-pack-btn:hover {
     transform: translateY(-1px);
@@ -2024,4 +2032,25 @@ body.light-theme {
 
 body.light-theme .card-container {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.drawer-action-btn {
+    min-height: 36px;
+    padding: 6px 10px;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    background: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+.drawer-action-btn.danger {
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.4);
+}
+
+.drawer-action-btn:hover {
+    background: var(--btn-hover);
 }

@@ -1503,6 +1503,7 @@ function renderMyDecks() {
         actions.className = 'drawer-item-actions';
         const playBtn = document.createElement('button');
         playBtn.type = 'button';
+        playBtn.className = 'drawer-action-btn';
         playBtn.textContent = activeDeckId === deck.id ? 'Playing' : 'Play';
         playBtn.disabled = activeDeckId === deck.id;
         playBtn.onclick = () => {
@@ -1514,6 +1515,7 @@ function renderMyDecks() {
         };
         const renameBtn = document.createElement('button');
         renameBtn.type = 'button';
+        renameBtn.className = 'drawer-action-btn';
         renameBtn.textContent = 'Rename';
         renameBtn.onclick = () => {
             const newName = prompt('New deck name:', deck.name);
@@ -1525,6 +1527,7 @@ function renderMyDecks() {
         };
         const deleteBtn = document.createElement('button');
         deleteBtn.type = 'button';
+        deleteBtn.className = 'drawer-action-btn danger';
         deleteBtn.textContent = 'Delete';
         deleteBtn.onclick = () => {
             customDecks = customDecks.filter(d => d.id !== deck.id);
