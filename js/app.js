@@ -414,8 +414,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }));
             }
             const rect = favCardBtn.getBoundingClientRect();
+            const menuWidth = 200;
+            const left = Math.min(rect.left, window.innerWidth - menuWidth - 8);
             menu.style.top = `${rect.bottom + 6}px`;
-            menu.style.left = `${rect.left}px`;
+            menu.style.left = `${Math.max(8, left)}px`;
+            menu.style.width = `${Math.min(menuWidth, window.innerWidth - 16)}px`;
             document.body.appendChild(menu);
             setTimeout(() => {
                 const closer = (ev) => {
@@ -423,23 +426,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 document.addEventListener('click', closer);
             }, 0);
-        };
-    }
-    const shareDeckBtn = document.getElementById('shareDeckBtn');
-    if (shareDeckBtn) {
-        shareDeckBtn.onclick = async (e) => {
-            e.stopPropagation();
-            if (!currentCard || !window.roomRef) {
-                showToast('Pair with a partner to use the shared deck.');
-                return;
-            }
-            try {
-                await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
-                showToast('Added to shared deck.');
-                renderSharedDeck();
-            } catch (err) {
-                showToast('Could not add card.');
-            }
         };
     }
 
@@ -546,9 +532,81 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                     <p style="margin-top:6px;">Custom Questions Created: <strong>${customCount}</strong></p>
                     <p style="margin-top:4px;">Favorite Questions Bookmarked: <strong>${favCount}</strong></p>
                 </div>
+                <div class="deck-section" id="myDecksSection">
+                    <h4>My decks</h4>
+                    <div class="deck-actions">
+                        <button class="btn-secondary" id="createDeckBtn" type="button">Create deck</button>
+                        <button class="btn-secondary" id="addCurrentCardToDeckBtn" type="button">Add current card</button>
+                        <button class="btn-secondary" id="exitDeckModeBtn" type="button">Exit deck mode</button>
+                    </div>
+                    <div id="myDecksList"></div>
+                </div>
+                <div class="shared-deck-section">
+                    <h4>Shared deck</h4>
+                    <button id="addCurrentToSharedDeckBtn" class="btn-secondary" type="button">Add current card to shared deck</button>
+                    <div id="sharedDeckList" class="partner-cards-list"></div>
+                </div>
             `;
             openDrawer('Profile Stats', html);
             const content = document.getElementById('drawerContent');
+renderMyDecks();
+    const createDeckBtn = document.getElementById('createDeckBtn');
+    if (createDeckBtn) {
+        createDeckBtn.onclick = () => {
+            const name = prompt('Deck name:');
+            if (!name || !name.trim()) return;
+            const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: [] };
+            customDecks.push(deck);
+            localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+            renderMyDecks();
+        };
+    }
+    const addCurrentCardToDeckBtn = document.getElementById('addCurrentCardToDeckBtn');
+    if (addCurrentCardToDeckBtn) {
+        addCurrentCardToDeckBtn.onclick = () => {
+            if (!currentCard) return;
+            if (customDecks.length === 0) { showToast('Create a deck first.'); return; }
+            const names = customDecks.map(d => d.name).join(', ');
+            const chosen = prompt(`Add to which deck? (${names})`);
+            const deck = customDecks.find(d => d.name.toLowerCase() === (chosen || '').trim().toLowerCase());
+            if (!deck) { showToast('Deck not found.'); return; }
+            if (!deck.cardIds.includes(currentCard.id)) {
+                deck.cardIds.push(currentCard.id);
+                localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+                showToast(`Added to ${deck.name}.`);
+            } else {
+const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
+    if (addSharedBtn) {
+        addSharedBtn.onclick = async () => {
+            if (!currentCard || !window.roomRef) {
+                showToast('Pair with a partner to use the shared deck.');
+                return;
+            }
+            try {
+                await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
+                showToast('Added to shared deck.');
+                renderSharedDeck();
+            } catch (e) {
+                showToast('Could not add card.');
+            }
+        };
+    }
+    renderSharedDeck();
+                showToast('Already in deck.');
+            }
+            renderMyDecks();
+        };
+    }
+    const exitDeckModeBtn = document.getElementById('exitDeckModeBtn');
+    if (exitDeckModeBtn) {
+        exitDeckModeBtn.onclick = () => {
+            activeDeckId = null;
+            localStorage.removeItem('closer_active_deck');
+            rebuildUnspentDeck();
+            drawNextCard();
+            renderMyDecks();
+        };
+    }
             const paired = Boolean(window.currentRoomRole);
             const ownIndex = window.currentRoomRole === 'partner' ? 1 : 0;
             const identityForm = document.createElement('form');

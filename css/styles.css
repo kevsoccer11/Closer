@@ -610,7 +610,14 @@ main {
 .card-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#shareDeckBtn i,
+#shareDeckBtn svg {
+    width: 20px;
+    height: 20px;
 }
 
 .community-vote-btn {
