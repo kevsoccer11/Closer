@@ -17,7 +17,7 @@
           ".validate": "newData.isString() && newData.val().length <= 50"
         },
         "intensity": {
-          ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3"
+          ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3 || newData.val() === 4"
         },
         "prompt": {
           ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 280"
@@ -145,6 +145,17 @@
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
         },
+        "playedCards": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
+        },
+        "sharedDeck": {
+          "$cardId": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            ".validate": "newData.hasChildren(['card'])"
+          }
+        },
         "answers": {
           "current": {
             "$uid": {
@@ -190,7 +201,7 @@
                 ".validate": "newData.isString() && newData.val().length <= 50"
               },
               "intensity": {
-                ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3"
+                ".validate": "newData.val() === 1 || newData.val() === 2 || newData.val() === 3 || newData.val() === 4"
               },
               "prompt": {
                 ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 280"

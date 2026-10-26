@@ -1,10 +1,13 @@
-const CACHE_NAME = 'closer-pwa-v40';
+const CACHE_NAME = 'closer-pwa-v81';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './manifest.json',
     './cards.json',
+    './explicit-cards.json',
     './css/styles.css',
+    './js/app-state.js',
+    './js/app-logic.js',
     './js/app.js',
     './js/firebase-config.js'
 ];

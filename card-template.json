@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "mycard-001",
+      "module": "life",
+      "category": "Category Name",
+      "intensity": 1,
+      "prompt": "Your question or activity here?",
+      "contextType": "story",
+      "promptStyle": "question"
+    },
+    {
+      "id": "mycard-002",
+      "module": "life",
+      "category": "Category Name",
+      "intensity": 2,
+      "prompt": "Your multiple-choice question here?",
+      "contextType": "poll",
+      "promptStyle": "question",
+      "options": [
+        "Choice A",
+        "Choice B",
+        "Choice C"
+      ]
+    },
+    {
+      "id": "mycard-003",
+      "module": "explicit",
+      "category": "Category Name",
+      "intensity": 3,
+      "prompt": "An activity card ends with a period.",
+      "contextType": "action",
+      "promptStyle": "activity"
+    }
+  ]
+}

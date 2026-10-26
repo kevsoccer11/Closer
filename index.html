@@ -22,6 +22,7 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
@@ -34,6 +35,7 @@
 
 <body>
     <!-- Ambient Glow Background -->
+    <div id="offlineBanner" class="offline-banner hidden">You're offline. Some features may be unavailable.</div>
     <div class="ambient-bg" id="ambientBg"></div>
 
     <!-- Header -->
@@ -56,10 +58,11 @@
 
     <div class="round-toolbar">
         <button class="round-summary-button" id="roundSummaryBtn" type="button" aria-haspopup="dialog" aria-controls="roundBuilderModal" disabled>
-            <span class="round-summary-label">Your round</span>
+            <span class="round-summary-label" id="roundSummaryLabel">Create New Game</span>
             <span id="roundSummaryText">Flame &amp; Passion · All topics · All levels</span>
             <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
         </button>
+        <button class="browse-mode-button" id="browseModeBtn" type="button">Browse: Off</button>
         <button class="private-space-button" id="wildUnspokenBtn" type="button"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
     </div>
 
@@ -74,6 +77,7 @@
             <div class="card-header">
                 <span class="card-badge" id="cardCategory">Loading Deck...</span>
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
+                <span class="card-pace" id="cardPace" aria-live="polite"></span>
                 <div class="card-actions">
                     <button class="card-action-btn community-vote-btn hidden" id="communityVoteBtn" type="button" aria-label="Upvote community question" aria-pressed="false"><i data-lucide="thumbs-up" aria-hidden="true"></i><span id="communityVoteCount">0</span></button>
                     <button class="card-action-btn report-card-btn hidden" id="reportCardBtn" type="button" aria-label="Report community question" title="Report community question"><i data-lucide="flag" aria-hidden="true"></i></button>
@@ -111,7 +115,8 @@
 
             <div class="card-footer">
                 <span class="tap-hint">Take your time. There’s no rush.</span>
-                <span class="skip-hint">Either of you can pass anytime.</span>
+    <div id="srAnnouncer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+                <span class="skip-hint" id="skipHint">You can pass</span>
             </div>
         </article>
         <p class="app-status" id="appStatus" role="status" aria-live="polite"></p>
@@ -132,6 +137,15 @@
                     <button id="usePrivateShareKey" type="button">Use key</button>
                     <button id="copyPrivateShareKey" type="button" disabled>Copy key</button>
                     <button id="togglePrivateShareKey" type="button" aria-pressed="false">Show key</button>
+                    <button id="showQrKeyBtn" type="button">Show QR</button>
+                </div>
+                <div id="qrKeyContainer" class="hidden"></div>
+                <p id="keyFingerprint" class="private-share-note"></p>
+                <label class="consent-check"><input id="rememberKey" type="checkbox" /> Remember key on this device (less secure)</label>
+                <div class="private-share-key-actions">
+                    <button id="exportBackupBtn" type="button">Export backup</button>
+                    <button id="importBackupBtn" type="button">Import backup</button>
+                    <input id="importBackupInput" type="file" accept="application/json" class="hidden" />
                 </div>
                 <p class="private-share-note">Share this key separately from the room code. Anyone with both the room access and key can read shared entries. The key is kept only for this browser tab.</p>
                 <p id="privateShareStatus" class="private-reveal-status" role="status" aria-live="polite"></p>
@@ -143,12 +157,29 @@
                     <option value="Fantasy">A fantasy</option>
                     <option value="Something unspoken">Something unspoken</option>
                 </select>
+                <label for="privateRevealTags">Tags (optional, comma separated)</label>
+                <input id="privateRevealTags" type="text" placeholder="e.g. fantasy, boundary, memory" />
                 <label for="privateRevealText">Write it in your own words</label>
                 <textarea id="privateRevealText" maxlength="1000" rows="5" placeholder="Take your time. You can choose when to reveal it." required></textarea>
+                <label for="privateRevealExpiry">Auto-delete after</label>
+                <select id="privateRevealExpiry">
+                    <option value="0">Never</option>
+                    <option value="7">7 days</option>
+                    <option value="30">30 days</option>
+                </select>
+                <label class="consent-check"><input id="privateRevealConsent" type="checkbox" required /> I confirm this is consensual and within our agreed boundaries.</label>
                 <p class="private-reveal-note">Saved only in this browser on this device. It is not shared or published. Anyone with access to this browser may be able to read saved entries.</p>
-                <button class="btn-primary" type="submit">Save privately</button>
+                <div class="private-reveal-actions">
+                    <button class="btn-secondary" id="saveDraftBtn" type="button">Save draft</button>
+                    <button class="btn-primary" type="submit">Save privately</button>
+                </div>
                 <p id="privateRevealStatus" class="private-reveal-status" role="status" aria-live="polite"></p>
             </form>
+            <div class="private-reveal-toolbar">
+                <input id="privateRevealSearch" type="search" placeholder="Search entries…" />
+                <select id="privateRevealTagFilter"><option value="">All tags</option></select>
+                <button id="quickHideBtn" type="button" class="btn-secondary">Quick hide</button>
+            </div>
             <div class="private-reveal-list" id="privateRevealList" aria-live="polite"></div>
             <section class="shared-reveal-section" aria-labelledby="sharedRevealTitle">
                 <h3 id="sharedRevealTitle">Shared by your partner</h3>
@@ -160,8 +191,9 @@
     </main>
 
     <div class="response-section">
-        <button class="next-question-btn" id="nextCardBtn" type="button">Next question</button>
+        <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
         <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
+        <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next question</span></button>
         <button class="warm-up-next-btn hidden" id="warmUpNextBtn" type="button">Go a little deeper</button>
     </div>
 
@@ -169,10 +201,26 @@
         <section class="modal-card round-builder-card" role="dialog" aria-modal="true" aria-labelledby="roundBuilderTitle">
             <div class="round-builder-heading">
                 <div>
-                    <h2 id="roundBuilderTitle">Build a round</h2>
+                    <h2 id="roundBuilderTitle">Create a round</h2>
                     <p>Pick what feels right tonight. You can change it anytime.</p>
                 </div>
                 <button class="icon-btn" id="closeRoundBuilderBtn" type="button" aria-label="Close round builder"><i data-lucide="x" aria-hidden="true"></i></button>
+            </div>
+            <div class="round-packs">
+                <label for="roundPackSelect" class="round-pack-label">Quick pack:</label>
+                <select id="roundPackSelect" class="round-pack-select">
+                    <option value="">Custom</option>
+                    <option value="first-date">First date</option>
+                    <option value="after-fight">After a fight</option>
+                    <option value="travel-night">Travel night</option>
+                    <option value="deep-talk">Deep talk</option>
+                    <option value="kinky-explorative">Kinky & explorative</option>
+                    <option value="reconnection">Reconnection</option>
+                    <option value="long-distance">Long-distance</option>
+                    <option value="new-parents">New parents</option>
+                    <option value="playful">Playful</option>
+                    <option value="aftercare">Aftercare</option>
+                </select>
             </div>
             <div class="round-builder-content">
                 <p class="round-builder-hint">Start light begins with mild cards. When you’re ready, move deeper at your own pace; the round also steps up after you’ve used the current level.</p>
@@ -190,13 +238,14 @@
                     </div>
                     <div class="round-topics" id="roundTopics"></div>
                 </fieldset>
-                <fieldset class="round-builder-group">
+                <fieldset class="round-builder-group" id="roundIntensityGroup">
                     <legend>Intensity</legend>
                     <div class="round-builder-choices">
                         <label><input type="radio" name="roundIntensity" value="all" checked> All levels</label>
                         <label><input type="radio" name="roundIntensity" value="1"> Mild</label>
                         <label><input type="radio" name="roundIntensity" value="2"> Moderate</label>
                         <label><input type="radio" name="roundIntensity" value="3"> Wild</label>
+                                <label><input type="radio" name="roundIntensity" value="4"> Most intense</label>
                     </div>
                 </fieldset>
                 <fieldset class="round-builder-group">
@@ -236,6 +285,7 @@
                     <option value="1">Level 1 - Mild</option>
                     <option value="2">Level 2 - Moderate</option>
                     <option value="3">Level 3 - Wild</option>
+                    <option value="4">Level 4 - Most intense</option>
                 </select>
 
                 <label for="customPrompt">Card</label>
@@ -299,6 +349,17 @@
                     <span class="question-type-summary" id="questionTypeSummary">All question types</span>
                 </summary>
                 <div class="deck-options-content">
+                    <button class="btn-primary" id="createRoundFromSettingsBtn" type="button">Create a new round</button>
+                    <div class="deck-section" id="myDecksSection">
+                    <h4>My decks</h4>
+                    <div class="deck-actions">
+                        <button class="btn-secondary" id="createDeckBtn" type="button">Create deck</button>
+                        <button class="btn-secondary" id="addCurrentCardToDeckBtn" type="button">Add current card</button>
+                        <button class="btn-secondary" id="exitDeckModeBtn" type="button">Exit deck mode</button>
+                    </div>
+                    <div id="myDecksList"></div>
+                </div>
+                    <button class="btn-secondary" id="resetPlayHistoryBtn" type="button">Reset play history</button>
                     <details class="settings-tree-group" open>
                         <summary>Play</summary>
                         <div class="settings-tree-content">
@@ -321,6 +382,7 @@
                                         <label><input type="checkbox" name="compareFirstLevel" value="1" checked> Flirty / Mild</label>
                                         <label><input type="checkbox" name="compareFirstLevel" value="2" checked> Sensual / Moderate</label>
                                         <label><input type="checkbox" name="compareFirstLevel" value="3" checked> Steamy / Wild</label>
+                                        <label><input type="checkbox" name="compareFirstLevel" value="4" checked> Most intense</label>
                                     </fieldset>
                                     <p>Optional paired-room activity: answer polls privately, then compare and talk about them.</p>
                                     <button class="btn-primary" id="startCompareFirstBtn" type="button">Start answer-comparison activity</button>
@@ -353,6 +415,7 @@
                                 <button class="intensity-btn" data-level="1" type="button" aria-pressed="false">Mild</button>
                                 <button class="intensity-btn" data-level="2" type="button" aria-pressed="false">Moderate</button>
                                 <button class="intensity-btn" data-level="3" type="button" aria-pressed="false">Wild</button>
+                                <button class="intensity-btn" data-level="4" type="button" aria-pressed="false">Most intense</button>
                             </div>
                             <div class="action-row">
                                 <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle this round</button>
@@ -372,6 +435,8 @@
     </div>
     <!-- Project Scripts -->
     <script src="js/firebase-config.js"></script>
+    <script src="js/app-state.js"></script>
+    <script src="js/app-logic.js"></script>
     <script src="js/app.js"></script>
 
     <script>

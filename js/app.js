@@ -1,2145 +1,46 @@
-let masterDatabase = [];
-let customUserCards = JSON.parse(localStorage.getItem('closer_custom_cards') || '[]');
-let partnerCards = JSON.parse(localStorage.getItem('closer_partner_cards') || '[]');
-let journalEntries = JSON.parse(localStorage.getItem('closer_journal') || '[]');
-let privateRevealEntries = JSON.parse(localStorage.getItem('closer_private_reveals') || '[]');
-let privateShareKey = sessionStorage.getItem('closer_private_share_key') || '';
-let favoriteIds = JSON.parse(localStorage.getItem('closer_favs') || '[]');
-
-let unspentDeck = [];
-let currentCard = null;
-let activeModule = 'sexuality';
-let activeIntensity = 'all';
-let activePromptStyle = 'all';
-let activeGameMode = 'classic';
-let activeModules = ['sexuality'];
-let activeTopics = null;
-let includeQuestions = true;
-let includeActivities = true;
-let includeMultipleChoice = true;
-let warmUpEnabled = false;
-const EXPLICIT_AGE_CONFIRMATION_KEY = 'closer_explicit_age_confirmed';
-const PLAYER_ONE_NAME_KEY = 'closer_player_one';
-const PLAYER_TWO_NAME_KEY = 'closer_player_two';
-const PLAYER_ICONS = ['❤️', '⭐', '🌙', '☀️', '🔥', '🌿', '🪐', '🦊', '🐻', '🦋'];
-let playerNames = {
-    host: {
-        name: localStorage.getItem(`${PLAYER_ONE_NAME_KEY}_name`) || 'Player 1',
-        icon: localStorage.getItem(`${PLAYER_ONE_NAME_KEY}_icon`) || '❤️'
-    },
-    partner: {
-        name: localStorage.getItem(`${PLAYER_TWO_NAME_KEY}_name`) || 'Player 2',
-        icon: localStorage.getItem(`${PLAYER_TWO_NAME_KEY}_icon`) || '⭐'
-    }
-};
-let roomDisplayNames = {};
-let playerNamesListener = null;
-let compareFirstModules = ['sexuality'];
-let compareFirstLevels = ['1', '2', '3'];
-let compareFirstRoundId = null;
-let compareFirstRoundIndex = 0;
-let compareFirstRoundTotal = 0;
-let compareFirstRestoreState = null;
-let turnTakingEnabled = true;
-let activeTurn = 0;
-let pickedAnswerer = null;
-let pickedAnswererIndex = null;
-let usingStarterDeck = false;
-let communityVoteCounts = {};
-let myCommunityVotes = new Set();
-let modeTimer = null;
-let modeTimerRemaining = 0;
-let cardLoadError = false;
-let sharedRevealListener = null;
-let sharedCardListener = null;
-let activeCardSyncListener = null;
-let partnerSeatListener = null;
-let joinRequestListener = null;
-let roomJoinRequestsListener = null;
-let pendingJoinRequests = {};
-let receivedSharedReveals = [];
-let seenSharedRevealIds = new Set();
-let processingSharedRevealIds = new Set();
-let shareClientId = sessionStorage.getItem('closer_share_client_id') || '';
-let deckOptionsElement = null;
-let partnerCardsSectionElement = null;
-let partnerCardsListElement = null;
-let processingPartnerCardKeys = new Set();
-let pairManagementContainer = null;
-let pendingJoinRequestRef = null;
-let cardAnswerListeners = [];
-let cardAnswerSeatListener = null;
-let cardAnswerSetupKey = null;
-let cardAnswerRoomRef = null;
-let cardAnswerCard = null;
-let cardAnswerOwnUid = null;
-let cardAnswerPartnerUid = null;
-let cardAnswerOwn = null;
-let cardAnswerPartner = null;
-let localAnswerRoundId = null;
-let localAnswerIndices = [null, null];
-let localAnswerPhase = 'choose';
-
-async function initDatabase() {
-    console.log("Initializing database...");
-
-    let localCards = [];
-    try {
-        const response = await fetch('./cards.json');
-        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
-        const data = await response.json();
-        localCards = data.cards || [];
-    } catch (err) {
-        console.warn("Local cards.json fetch failed. Injecting fallback deck.", err);
-        usingStarterDeck = true;
-        localCards = [
-            { id: 'sec-fb1', module: 'sexuality', category: 'Past History', intensity: 1, prompt: 'What was a moment early in our relationship that made your heart race?', contextType: 'story' },
-            { id: 'sec-fb2', module: 'sexuality', category: 'Spicy Dares', intensity: 2, prompt: 'Give your partner a slow 60-second back massage right now.', contextType: 'action' },
-            { id: 'life-fb1', module: 'life', category: 'Shared Goals', intensity: 1, prompt: 'What is one trip or experience you want us to plan in the next 12 months?', contextType: 'alignment' },
-            { id: 'secret-fb1', module: 'secrets', category: 'Desires', intensity: 3, prompt: 'What is a secret fantasy you have thought about but never spoken out loud?', contextType: 'consent' }
-        ];
-    }
-    let remoteCards = [];
-    if (typeof window.db !== 'undefined' && window.db) {
-        try {
-            const snapshot = await window.db.ref('cards').once('value');
-            const remoteData = snapshot.val();
-            if (remoteData) {
-                remoteCards = Array.isArray(remoteData)
-                    ? remoteData.filter(Boolean)
-                    : Object.entries(remoteData).map(([id, card]) => card && ({ ...card, id: card.id || id })).filter(Boolean);
-                console.log(`Loaded ${remoteCards.length} cards from Firebase Database`);
-            }
-        } catch (e) {
-            console.warn("Firebase cards read error:", e);
-            cardLoadError = true;
-        }
-    }
-
-    const cardsById = new Map();
-    [...localCards, ...remoteCards, ...customUserCards].forEach((card, index) => {
-        if (card && card.prompt) cardsById.set(card.id || `loaded-${index}`, { ...card, id: card.id || `loaded-${index}` });
-    });
-    masterDatabase = [...cardsById.values()];
-
-    if (window.db && window.firebaseConfigured) await loadCommunityVotes();
-
-    rebuildUnspentDeck();
-    drawNextCard();
-    updateRoundSummary();
-    const roundSummaryButton = document.getElementById('roundSummaryBtn');
-    if (roundSummaryButton) roundSummaryButton.disabled = false;
-    if (!document.getElementById('roundBuilderModal')?.classList.contains('hidden')) renderRoundTopics();
-    const appStatus = document.getElementById('appStatus');
-    if (appStatus) {
-        const statusMessages = [];
-        if (!window.firebaseConfigured) {
-            statusMessages.push('Local play · Community sharing unavailable until Firebase is configured.');
-        }
-        if (cardLoadError) statusMessages.push('Community cards could not be loaded from Firebase.');
-        if (usingStarterDeck) {
-            statusMessages.push('Showing a small starter deck because the full deck could not load.');
-        }
-        appStatus.textContent = statusMessages.join(' ');
-    }
-}
-
-function rebuildUnspentDeck() {
-    const filteredCards = getFilteredCards();
-    const weightedCards = activeGameMode === 'compare-first'
-        ? filteredCards
-        : filteredCards.flatMap(card => {
-            if (card.visibility !== 'community') return [card];
-            const extraCopies = Math.min(3, Math.floor((communityVoteCounts[card.id] || 0) / 3));
-            return Array.from({ length: 1 + extraCopies }, () => card);
-        });
-    for (let i = weightedCards.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [weightedCards[i], weightedCards[j]] = [weightedCards[j], weightedCards[i]];
-    }
-    unspentDeck = weightedCards;
-}
-
-function getFilteredCards() {
-    return masterDatabase.filter(card => {
-        const matchesCompareFirst = activeGameMode === 'compare-first';
-        const matchesModule = matchesCompareFirst
-            ? compareFirstModules.includes(card.module)
-            : activeModules.includes(card.module);
-        const intensity = String(card.intensity);
-        const matchesMode = activeGameMode !== 'deep' || intensity === '3';
-        const matchesIntensity = matchesCompareFirst
-            ? compareFirstLevels.includes(intensity)
-            : activeIntensity === 'all' || intensity === String(activeIntensity);
-        const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
-        const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
-        const matchesPromptStyle = matchesCompareFirst
-            || (isMultipleChoice ? includeMultipleChoice : promptStyle === 'activity' ? includeActivities : includeQuestions);
-        const matchesTopic = matchesCompareFirst || activeTopics === null
-            || activeTopics.includes(`${card.module}::${card.category || 'General'}`);
-        return matchesModule && matchesMode && matchesIntensity && matchesPromptStyle
-            && matchesTopic
-            && (!matchesCompareFirst || isMultipleChoice);
-    });
-}
-
-function getRoundBuilderSelection() {
-    const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(input => input.value);
-    const topics = [...document.querySelectorAll('#roundTopics input[type="checkbox"]:checked')].map(input => input.value);
-    const allTopics = document.querySelectorAll('#roundTopics input[type="checkbox"]').length;
-    return {
-        modules,
-        topics: topics.length === allTopics ? null : topics,
-        intensity: document.querySelector('input[name="roundIntensity"]:checked')?.value || 'all',
-        questions: Boolean(document.getElementById('includeQuestions')?.checked),
-        activities: Boolean(document.getElementById('includeActivities')?.checked),
-        multipleChoice: Boolean(document.getElementById('includeMultipleChoice')?.checked)
-    };
-}
-
-function getCardsForRoundSelection(selection) {
-    return masterDatabase.filter(card => {
-        if (!selection.modules.includes(card.module)) return false;
-        if (selection.intensity !== 'all' && String(card.intensity) !== selection.intensity) return false;
-        if (selection.topics !== null && !selection.topics.includes(`${card.module}::${card.category || 'General'}`)) return false;
-        const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
-        if (isMultipleChoice) return selection.multipleChoice;
-        const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
-        return promptStyle === 'activity' ? selection.activities : selection.questions;
-    });
-}
-
-function renderRoundTopics() {
-    const container = document.getElementById('roundTopics');
-    if (!container) return;
-    const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(input => input.value);
-    const topics = [...new Set(masterDatabase
-        .filter(card => modules.includes(card.module))
-        .map(card => `${card.module}::${card.category || 'General'}`))]
-        .sort((a, b) => a.split('::')[1].localeCompare(b.split('::')[1]));
-    container.replaceChildren();
-    topics.forEach(topic => {
-        const [module, category] = topic.split('::');
-        const label = document.createElement('label');
-        label.className = 'round-topic-option';
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.value = topic;
-        input.checked = activeTopics === null || activeTopics.includes(topic);
-        const text = document.createElement('span');
-        text.textContent = `${category} · ${module === 'sexuality' ? 'Flame & Passion' : module === 'life' ? 'Deep Connection' : 'Explicit'}`;
-        label.append(input, text);
-        container.appendChild(label);
-    });
-    updateRoundMatchCount();
-}
-
-function updateRoundMatchCount() {
-    const output = document.getElementById('roundMatchCount');
-    const startButton = document.getElementById('startRoundBtn');
-    const startLightButton = document.getElementById('startLightRoundBtn');
-    if (!output) return;
-    const selection = getRoundBuilderSelection();
-    const count = getCardsForRoundSelection(selection).length;
-    output.textContent = `${count} ${count === 1 ? 'card' : 'cards'} match this round.`;
-    if (startButton) startButton.disabled = count === 0;
-    if (startLightButton) {
-        const lightSelection = { ...selection, intensity: '1' };
-        const lightCount = getCardsForRoundSelection(lightSelection).length;
-        startLightButton.disabled = lightCount === 0;
-        startLightButton.title = lightCount ? `${lightCount} lighter cards to start` : 'No mild cards match these choices';
-    }
-}
-
-function updateRoundSummary() {
-    const summary = document.getElementById('roundSummaryText');
-    if (!summary) return;
-    if (activeModules.length === 1 && activeModules[0] === 'secrets') {
-        summary.textContent = 'Private entries · Not part of a question round';
-        return;
-    }
-    const deckNames = {
-        sexuality: 'Flame & Passion',
-        life: 'Deep Connection',
-        explicit: 'Explicit'
-    };
-    const deckSummary = activeModules.length === 3
-        ? 'All decks'
-        : activeModules.map(module => deckNames[module]).join(' + ') || 'No decks';
-    const topicSummary = activeTopics === null
-        ? 'All topics'
-        : `${activeTopics.length} ${activeTopics.length === 1 ? 'topic' : 'topics'}`;
-    const levelSummary = activeIntensity === 'all'
-        ? 'All levels'
-        : `${activeIntensity === '1' ? 'Mild' : activeIntensity === '2' ? 'Moderate' : 'Wild'}`;
-    summary.textContent = `${deckSummary} · ${topicSummary} · ${levelSummary}`;
-}
-
-function updateActiveModulePresentation() {
-    activeModule = activeModules.length === 1 ? activeModules[0] : 'all';
-    document.body.dataset.module = activeModules.length === 1 ? activeModules[0] : 'sexuality';
-    updateIntensityLabels(activeModule);
-    updateSectionView();
-    updateRoundSummary();
-}
-
-function applyRoundSelection(selection, startLight = false) {
-    if (selection.modules.length === 0) {
-        const status = document.getElementById('roundBuilderStatus');
-        if (status) status.textContent = 'Choose at least one deck to start.';
-        return false;
-    }
-    activeModules = selection.modules;
-    activeTopics = selection.topics;
-    activeIntensity = startLight ? '1' : selection.intensity;
-    includeQuestions = selection.questions;
-    includeActivities = selection.activities;
-    includeMultipleChoice = selection.multipleChoice;
-    activeTurn = 0;
-    pickedAnswerer = null;
-    pickedAnswererIndex = null;
-    activePromptStyle = includeQuestions && includeActivities
-        ? 'all'
-        : includeActivities ? 'activity' : 'question';
-    warmUpEnabled = startLight;
-    if (activeGameMode === 'compare-first') exitCompareFirstMode();
-    if (activeGameMode === 'deep') {
-        activeGameMode = 'classic';
-        document.getElementById('gameModeSelect').value = 'classic';
-    }
-    document.querySelectorAll('.intensity-btn').forEach(button => {
-        const selected = button.dataset.level === activeIntensity;
-        button.classList.toggle('active', selected);
-        button.setAttribute('aria-pressed', String(selected));
-    });
-    updateQuestionTypeSelection(activePromptStyle, false, false);
-    updateActiveModulePresentation();
-    rebuildUnspentDeck();
-    updateRoundSummary();
-    drawNextCard();
-    closeRoundBuilder();
-    return true;
-}
-
-function openRoundBuilder() {
-    const modal = document.getElementById('roundBuilderModal');
-    if (!modal) return;
-    document.querySelectorAll('input[name="roundDeck"]').forEach(input => {
-        input.checked = activeModules.includes(input.value);
-    });
-    const intensity = document.querySelector(`input[name="roundIntensity"][value="${activeIntensity}"]`);
-    if (intensity) intensity.checked = true;
-    document.getElementById('includeQuestions').checked = includeQuestions;
-    document.getElementById('includeActivities').checked = includeActivities;
-    document.getElementById('includeMultipleChoice').checked = includeMultipleChoice;
-    const status = document.getElementById('roundBuilderStatus');
-    if (status) status.textContent = '';
-    renderRoundTopics();
-    document.querySelector('.round-builder-content').scrollTop = 0;
-    modal.classList.remove('hidden');
-    document.getElementById('closeRoundBuilderBtn')?.focus();
-}
-
-function closeRoundBuilder() {
-    document.getElementById('roundBuilderModal')?.classList.add('hidden');
-}
-
-async function loadCommunityVotes() {
-    try {
-        const snapshot = await window.db.ref('cardVotes').once('value');
-        const votes = snapshot.val() || {};
-        communityVoteCounts = {};
-        myCommunityVotes = new Set();
-        let user = window.firebase.auth().currentUser;
-        if (!user && window.firebaseAuthReady) {
-            try {
-                user = await window.firebaseAuthReady;
-            } catch (error) {
-                console.warn('Signed-in user vote state is unavailable:', error);
-            }
-        }
-
-        Object.entries(votes).forEach(([cardId, cardVotes]) => {
-            if (!cardVotes || typeof cardVotes !== 'object') return;
-            const voters = Object.keys(cardVotes).filter(uid => cardVotes[uid]);
-            communityVoteCounts[cardId] = voters.length;
-            if (user && cardVotes[user.uid]) myCommunityVotes.add(cardId);
-        });
-    } catch (error) {
-        console.warn('Community vote counts could not be loaded:', error);
-        const status = document.getElementById('appStatus');
-        if (status) status.textContent = `${status.textContent} Community votes are temporarily unavailable.`.trim();
-    }
-}
-
-function setCardActionStatus(message) {
-    const status = document.getElementById('cardActionStatus');
-    if (!status) return;
-    status.textContent = message;
-    status.classList.toggle('hidden', !message);
-}
-
-function setPublishStatus(message) {
-    const status = document.getElementById('publishStatus');
-    if (status) status.textContent = message;
-}
-
-function setCommunityActions(card) {
-    const isCommunityCard = card.visibility === 'community';
-    const user = isCommunityCard && window.firebaseConfigured && window.firebase
-        ? window.firebase.auth().currentUser
-        : null;
-    const isOwnCard = Boolean(user && card.createdBy === user.uid);
-    const voteButton = document.getElementById('communityVoteBtn');
-    const reportButton = document.getElementById('reportCardBtn');
-    if (voteButton) {
-        voteButton.classList.toggle('hidden', !isCommunityCard || isOwnCard);
-        voteButton.classList.toggle('active', myCommunityVotes.has(card.id));
-        voteButton.setAttribute('aria-pressed', String(myCommunityVotes.has(card.id)));
-        const count = document.getElementById('communityVoteCount');
-        if (count) count.textContent = String(communityVoteCounts[card.id] || 0);
-    }
-    if (reportButton) reportButton.classList.toggle('hidden', !isCommunityCard || isOwnCard);
-}
-
-function stopModeTimer() {
-    if (modeTimer) clearInterval(modeTimer);
-    modeTimer = null;
-}
-
-function renderModeTimer(reset = true) {
-    const timerBar = document.getElementById('actionTimerBar');
-    if (!timerBar) return;
-    stopModeTimer();
-
-    if (activeGameMode === 'classic' || activeGameMode === 'compare-first') {
-        timerBar.classList.add('hidden');
-        return;
-    }
-
-    const duration = 120;
-    if (reset) modeTimerRemaining = duration;
-    timerBar.classList.remove('hidden');
-    document.getElementById('timerLabel').textContent = 'Reflection timer';
-    document.getElementById('timerClock').textContent = formatTimer(modeTimerRemaining);
-    document.getElementById('timerToggleBtn').textContent = 'Start';
-}
-
-function formatTimer(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainder = seconds % 60;
-    return `${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`;
-}
-
-function updateQuestionTypeSelection(style, announce = false, syncTypes = true) {
-    activePromptStyle = style;
-    if (syncTypes) {
-        includeQuestions = style !== 'activity';
-        includeActivities = style !== 'question';
-    }
-    const questionToggle = document.getElementById('includeQuestions');
-    const activityToggle = document.getElementById('includeActivities');
-    const multipleChoiceToggle = document.getElementById('includeMultipleChoice');
-    if (questionToggle) questionToggle.checked = includeQuestions;
-    if (activityToggle) activityToggle.checked = includeActivities;
-    if (multipleChoiceToggle) multipleChoiceToggle.checked = includeMultipleChoice;
-    const settingsMultipleChoiceToggle = document.getElementById('settingsIncludeMultipleChoice');
-    if (settingsMultipleChoiceToggle) settingsMultipleChoiceToggle.checked = includeMultipleChoice;
-    const labels = {
-        all: 'All question types',
-        question: 'Questions to answer',
-        activity: 'Activities to try'
-    };
-    document.querySelectorAll('.prompt-style-btn').forEach(btn => {
-        const isActive = btn.dataset.promptStyle === style;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-pressed', String(isActive));
-    });
-    const questionTypeSummary = document.getElementById('questionTypeSummary');
-    if (questionTypeSummary) questionTypeSummary.textContent = labels[style];
-    const confirmation = document.getElementById('questionTypeConfirmation');
-    if (confirmation) confirmation.textContent = announce ? `${labels[style]} selected.` : '';
-}
-
-function drawNextCard(isRemoteUpdate = false) {
-    if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host' && !isRemoteUpdate) {
-        setCardActionStatus('Only the host can advance the Compare First session.');
-        return;
-    }
-    if (activeGameMode !== 'compare-first' && unspentDeck.length === 0 && warmUpEnabled) {
-        let nextLevel = Number(activeIntensity) + 1;
-        while (nextLevel <= 3 && unspentDeck.length === 0) {
-            activeIntensity = String(nextLevel);
-            rebuildUnspentDeck();
-            nextLevel += 1;
-        }
-        if (unspentDeck.length === 0) {
-            warmUpEnabled = false;
-            activeIntensity = '3';
-            rebuildUnspentDeck();
-        }
-        document.querySelectorAll('.intensity-btn').forEach(button => {
-            const selected = button.dataset.level === activeIntensity;
-            button.classList.toggle('active', selected);
-            button.setAttribute('aria-pressed', String(selected));
-        });
-        updateRoundSummary();
-    } else if (activeGameMode !== 'compare-first' && unspentDeck.length === 0) {
-        rebuildUnspentDeck();
-    }
-    if (unspentDeck.length === 0) {
-        if (activeGameMode === 'compare-first' && compareFirstRoundIndex > 0) {
-            completeCompareFirstRound();
-            return;
-        }
-        currentCard = null;
-        const badge = document.getElementById('cardCategory');
-        const prompt = document.getElementById('cardPrompt');
-        if (badge) badge.innerText = 'No questions found';
-        if (prompt) prompt.innerText = 'Try changing your deck filters to find a question.';
-        const nextCardBtn = document.getElementById('nextCardBtn');
-        if (nextCardBtn) nextCardBtn.disabled = true;
-        const passCardBtn = document.getElementById('passCardBtn');
-        if (passCardBtn) passCardBtn.disabled = true;
-        document.getElementById('warmUpNextBtn')?.classList.add('hidden');
-        stopModeTimer();
-        document.getElementById('actionTimerBar')?.classList.add('hidden');
-        document.getElementById('communityVoteBtn')?.classList.add('hidden');
-        document.getElementById('reportCardBtn')?.classList.add('hidden');
-        if (activeGameMode === 'compare-first') {
-            const setupStatus = document.getElementById('compareFirstSetupStatus');
-            if (setupStatus) setupStatus.textContent = 'No multiple-choice cards match those module and level filters.';
-        }
-        return;
-    }
-
-    currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId(), turnIndex: activeTurn };
-    if (activeGameMode === 'compare-first') {
-        compareFirstRoundIndex += 1;
-        currentCard.compareFirst = true;
-        currentCard.compareFirstRoundId = compareFirstRoundId;
-        currentCard.compareFirstIndex = compareFirstRoundIndex;
-        currentCard.compareFirstTotal = compareFirstRoundTotal;
-        currentCard.compareFirstModules = compareFirstModules;
-        currentCard.compareFirstLevels = compareFirstLevels;
-    }
-    renderCard(currentCard);
-    updateCompareFirstControls();
-
-    if (typeof window.roomRef !== 'undefined' && window.roomRef && !isRemoteUpdate && currentCard.module !== 'explicit') {
-        window.roomRef.child('activeCard').set(currentCard);
-    }
-}
-
-function updateCompareFirstControls() {
-    const nextCardBtn = document.getElementById('nextCardBtn');
-    const passCardBtn = document.getElementById('passCardBtn');
-    if (!nextCardBtn) return;
-    if (!currentCard?.compareFirst) {
-        nextCardBtn.textContent = 'Next question';
-        nextCardBtn.disabled = !currentCard;
-        if (passCardBtn) {
-            passCardBtn.classList.remove('hidden');
-            passCardBtn.disabled = !currentCard;
-        }
-        return;
-    }
-    if (passCardBtn) {
-        passCardBtn.classList.add('hidden');
-        passCardBtn.disabled = true;
-    }
-    const isHost = window.currentRoomRole === 'host';
-    const answersSubmitted = Boolean(cardAnswerOwn && cardAnswerPartner);
-    nextCardBtn.textContent = currentCard.compareFirstIndex >= currentCard.compareFirstTotal
-        ? 'Finish poll round'
-        : `Next poll · ${currentCard.compareFirstIndex}/${currentCard.compareFirstTotal}`;
-    nextCardBtn.disabled = !isHost || !answersSubmitted;
-}
-
-function isCompareFirstSessionActive() {
-    return activeGameMode === 'compare-first'
-        || Boolean(currentCard?.compareFirst || currentCard?.compareFirstComplete);
-}
-
-function hasExplicitAgeConfirmation() {
-    return localStorage.getItem(EXPLICIT_AGE_CONFIRMATION_KEY) === 'true';
-}
-
-function getPlayerIdentifier(index) {
-    const role = index === 0 ? 'host' : 'partner';
-    const identity = window.currentRoomRole ? roomDisplayNames[role] : playerNames[role];
-    const name = identity?.name || (window.currentRoomRole ? (role === 'host' ? 'Host' : 'Partner') : `Player ${index + 1}`);
-    const icon = PLAYER_ICONS.includes(identity?.icon) ? identity.icon : playerNames[role].icon;
-    return `${icon} ${name}`;
-}
-
-function savePlayerIdentity(index, name, icon) {
-    const role = index === 0 ? 'host' : 'partner';
-    const localName = name.trim().replace(/\s+/g, ' ').slice(0, 24) || `Player ${index + 1}`;
-    const localIdentity = { name: localName, icon: PLAYER_ICONS.includes(icon) ? icon : PLAYER_ICONS[index] };
-    playerNames[role] = localIdentity;
-    const storageKey = index === 0 ? PLAYER_ONE_NAME_KEY : PLAYER_TWO_NAME_KEY;
-    localStorage.setItem(`${storageKey}_name`, localIdentity.name);
-    localStorage.setItem(`${storageKey}_icon`, localIdentity.icon);
-    if (currentCard) renderCard(currentCard);
-
-    if (window.roomRef && window.currentRoomRole === role) {
-        window.roomRef.child(`playerNames/${role}`).set(localIdentity).catch(error => {
-            console.error('Could not sync your player identity:', error);
-            const status = document.getElementById('playerIdentityStatus');
-            if (status) status.textContent = `Saved on this device, but could not sync to the room: ${error.message}`;
-        });
-    }
-}
-
-function selectModule(module) {
-    if (module === 'secrets') {
-        activeModule = module;
-        updateSectionView();
-        return;
-    }
-    activeModules = [module];
-    activeTopics = null;
-    updateActiveModulePresentation();
-    document.querySelectorAll('.module-tab').forEach(tab => {
-        const isActive = tab.dataset.module === module;
-        tab.classList.toggle('active', isActive);
-        tab.setAttribute('aria-pressed', String(isActive));
-    });
-    activeModule = module;
-    activeIntensity = 'all';
-    document.querySelectorAll('.intensity-btn').forEach(button => {
-        const isActive = button.dataset.level === 'all';
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
-    });
-    updateSectionView();
-    updateRoundSummary();
-    rebuildUnspentDeck();
-    drawNextCard();
-}
-
-function enterCompareFirstModeFromCard(card) {
-    compareFirstRestoreState ||= {
-        module: activeModule,
-        intensity: activeIntensity,
-        promptStyle: activePromptStyle
-    };
-    activeGameMode = 'compare-first';
-    compareFirstModules = Array.isArray(card.compareFirstModules)
-        ? card.compareFirstModules
-        : [card.module];
-    compareFirstLevels = Array.isArray(card.compareFirstLevels)
-        ? card.compareFirstLevels.map(String)
-        : [String(card.intensity)];
-    compareFirstRoundId = card.compareFirstRoundId || compareFirstRoundId;
-    compareFirstRoundIndex = card.compareFirstIndex || card.compareFirstTotal || 1;
-    compareFirstRoundTotal = card.compareFirstTotal || 50;
-    activeModule = compareFirstModules[0] || card.module;
-    activePromptStyle = 'all';
-    document.querySelectorAll('.module-tab').forEach(tab => {
-        const isActive = tab.dataset.module === activeModule;
-        tab.classList.toggle('active', isActive);
-        tab.setAttribute('aria-pressed', String(isActive));
-    });
-    updateQuestionTypeSelection('all');
-    updateSectionView();
-    const gameModeSelect = document.getElementById('gameModeSelect');
-    if (gameModeSelect) gameModeSelect.value = 'compare-first';
-    renderModeTimer();
-}
-
-function exitCompareFirstMode() {
-    if (compareFirstRestoreState) {
-        activeModule = compareFirstRestoreState.module;
-        activeIntensity = compareFirstRestoreState.intensity;
-        activePromptStyle = compareFirstRestoreState.promptStyle;
-        compareFirstRestoreState = null;
-        document.querySelectorAll('.module-tab').forEach(tab => {
-            const isActive = tab.dataset.module === activeModule;
-            tab.classList.toggle('active', isActive);
-            tab.setAttribute('aria-pressed', String(isActive));
-        });
-        document.querySelectorAll('.intensity-btn').forEach(button => {
-            const isActive = button.dataset.level === activeIntensity;
-            button.classList.toggle('active', isActive);
-            button.setAttribute('aria-pressed', String(isActive));
-        });
-        updateQuestionTypeSelection(activePromptStyle);
-        updateSectionView();
-    }
-    activeGameMode = 'classic';
-    compareFirstRoundId = null;
-    compareFirstRoundIndex = 0;
-    compareFirstRoundTotal = 0;
-    document.getElementById('compareFirstComplete')?.classList.add('hidden');
-    const gameModeSelect = document.getElementById('gameModeSelect');
-    if (gameModeSelect) gameModeSelect.value = 'classic';
-    renderModeTimer();
-}
-
-async function startCompareFirstSession() {
-    const status = document.getElementById('compareFirstSetupStatus');
-    const modules = [...document.querySelectorAll('input[name="compareFirstModule"]:checked')].map(input => input.value);
-    const levels = [...document.querySelectorAll('input[name="compareFirstLevel"]:checked')].map(input => input.value);
-    if (modules.length === 0 || levels.length === 0) {
-        if (status) status.textContent = 'Choose at least one module and one level.';
-        return;
-    }
-    if (!window.roomRef || window.currentRoomRole !== 'host') {
-        if (status) status.textContent = 'Connect to your partner and create a room as host before starting Compare First.';
-        return;
-    }
-
-    try {
-        const partnerSnapshot = await window.roomRef.child('members/partner').once('value');
-        if (!partnerSnapshot.val()) {
-            if (status) status.textContent = 'Your partner must join the room before you start the poll round.';
-            return;
-        }
-    } catch (error) {
-        console.error('Could not verify the paired room:', error);
-        if (status) status.textContent = `Could not check room membership: ${error.message}`;
-        return;
-    }
-
-    compareFirstRestoreState = {
-        module: activeModule,
-        intensity: activeIntensity,
-        promptStyle: activePromptStyle
-    };
-    compareFirstModules = modules;
-    compareFirstLevels = levels;
-    compareFirstRoundId = createCardRoundId();
-    compareFirstRoundIndex = 0;
-    activeGameMode = 'compare-first';
-    activeModule = modules[0];
-    activePromptStyle = 'all';
-    document.querySelectorAll('.module-tab').forEach(tab => {
-        const isActive = tab.dataset.module === activeModule;
-        tab.classList.toggle('active', isActive);
-        tab.setAttribute('aria-pressed', String(isActive));
-    });
-    updateQuestionTypeSelection('all');
-    updateSectionView();
-    renderModeTimer();
-    rebuildUnspentDeck();
-    compareFirstRoundTotal = Math.min(50, unspentDeck.length);
-    if (compareFirstRoundTotal === 0) {
-        exitCompareFirstMode();
-        rebuildUnspentDeck();
-        drawNextCard();
-        if (status) status.textContent = 'No multiple-choice cards match those module and level choices.';
-        return;
-    }
-    document.getElementById('gameModeSelect').value = 'compare-first';
-    document.getElementById('compareFirstSetup').classList.add('hidden');
-    if (status) status.textContent = '';
-    setCardActionStatus(`Compare First started: ${compareFirstRoundTotal} polls. Compare and discuss each answer before continuing.`);
-    drawNextCard();
-    closeDrawer();
-}
-
-function renderCompareFirstComplete(card) {
-    const answerPanel = document.getElementById('cardAnswerPanel');
-    const completePanel = document.getElementById('compareFirstComplete');
-    const message = document.getElementById('compareFirstCompleteMessage');
-    const hostNote = document.getElementById('compareFirstHostNote');
-    if (!completePanel || !message || !hostNote) return;
-    detachCardAnswerListeners();
-    cardAnswerCard = null;
-    cardAnswerOwn = null;
-    cardAnswerPartner = null;
-    answerPanel?.classList.add('hidden');
-    completePanel.classList.remove('hidden');
-    setCardActionStatus('');
-    document.getElementById('cardCategory').textContent = 'Compare First';
-    document.getElementById('cardPrompt').textContent = 'You completed your multiple-choice round.';
-    message.textContent = `${card.compareFirstTotal} polls completed. Take a moment to discuss your answers, then decide whether to answer more polls or move into the regular cards.`;
-    const isHost = window.currentRoomRole === 'host';
-    document.getElementById('answerMorePollsBtn').disabled = !isHost;
-    document.getElementById('continueRegularCardsBtn').disabled = !isHost;
-    hostNote.textContent = isHost
-        ? 'The host chooses when to continue.'
-        : 'Discuss the results with your partner. The host chooses when to continue.';
-    const nextCardBtn = document.getElementById('nextCardBtn');
-    if (nextCardBtn) {
-        nextCardBtn.disabled = true;
-        nextCardBtn.textContent = 'Poll round complete';
-    }
-    const gameModeSelect = document.getElementById('gameModeSelect');
-    if (gameModeSelect) gameModeSelect.value = 'compare-first';
-}
-
-function completeCompareFirstRound() {
-    if (window.currentRoomRole !== 'host' || !currentCard?.compareFirst) return;
-    const completeCard = {
-        id: `compare-first-complete-${compareFirstRoundId}`,
-        module: currentCard.module,
-        category: 'Compare First',
-        intensity: currentCard.intensity,
-        prompt: 'You completed your multiple-choice round.',
-        promptStyle: 'question',
-        compareFirstComplete: true,
-        compareFirstRoundId,
-        compareFirstTotal: compareFirstRoundIndex,
-        compareFirstModules,
-        compareFirstLevels,
-        roundId: createCardRoundId()
-    };
-    currentCard = completeCard;
-    renderCompareFirstComplete(completeCard);
-    window.roomRef.child('activeCard').set(completeCard).catch(error => {
-        console.error('Could not sync the completed poll round:', error);
-        setCardActionStatus(`Poll round completed, but room sync failed: ${error.message}`);
-    });
-}
-
-function answerMoreCompareFirstPolls() {
-    if (window.currentRoomRole !== 'host') return;
-    if (unspentDeck.length === 0) rebuildUnspentDeck();
-    compareFirstRoundId = createCardRoundId();
-    compareFirstRoundIndex = 0;
-    compareFirstRoundTotal = Math.min(50, unspentDeck.length);
-    if (compareFirstRoundTotal === 0) {
-        setCardActionStatus('No more multiple-choice cards match this selection.');
-        return;
-    }
-    drawNextCard();
-}
-
-function continueToRegularCards() {
-    if (window.currentRoomRole !== 'host') return;
-    exitCompareFirstMode();
-    document.getElementById('compareFirstSetup')?.classList.add('hidden');
-    rebuildUnspentDeck();
-    drawNextCard();
-}
-
-function advanceCard() {
-    if (currentCard?.compareFirst) {
-        if (window.currentRoomRole !== 'host') {
-            setCardActionStatus('The host advances the poll round after you have both submitted and discussed this card.');
-            return;
-        }
-        if (!cardAnswerOwn || !cardAnswerPartner) {
-            setCardActionStatus('Wait until both partners submit an answer before continuing to the next poll.');
-            return;
-        }
-        if (currentCard.compareFirstIndex >= currentCard.compareFirstTotal) {
-            completeCompareFirstRound();
-            return;
-        }
-    }
-    if (pickedAnswererIndex !== null) activeTurn = pickedAnswererIndex;
-    pickedAnswerer = null;
-    pickedAnswererIndex = null;
-    if (turnTakingEnabled && currentCard) activeTurn = activeTurn === 0 ? 1 : 0;
-    drawNextCard();
-}
-
-function renderCard(card) {
-    if (card.compareFirstComplete) {
-        enterCompareFirstModeFromCard(card);
-        renderCompareFirstComplete(card);
-        return;
-    }
-    if (card.compareFirst && activeGameMode !== 'compare-first') {
-        enterCompareFirstModeFromCard(card);
-    } else if (!card.compareFirst && activeGameMode === 'compare-first') {
-        exitCompareFirstMode();
-    }
-    if (Number.isInteger(card.turnIndex) && [0, 1].includes(card.turnIndex)) activeTurn = card.turnIndex;
-    document.getElementById('compareFirstComplete')?.classList.add('hidden');
-    setCardActionStatus('');
-    const badge = document.getElementById('cardCategory');
-    const prompt = document.getElementById('cardPrompt');
-    if (badge) badge.innerText = card.category || 'General';
-    if (prompt) prompt.innerText = card.prompt;
-    renderCardAnswerPanel(card);
-
-    const favBtn = document.getElementById('favCardBtn');
-    if (favBtn) favBtn.classList.toggle('active', favoriteIds.includes(card.id));
-    if (favBtn) favBtn.setAttribute('aria-pressed', String(favoriteIds.includes(card.id)));
-    const turnIndicator = document.getElementById('turnIndicator');
-    if (turnIndicator) {
-        const pickedLabel = pickedAnswerer === 'both'
-            ? 'Both answer'
-            : pickedAnswerer === 'selected'
-                ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
-                : null;
-        turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
-        turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
-    }
-    const warmUpNextBtn = document.getElementById('warmUpNextBtn');
-    if (warmUpNextBtn) warmUpNextBtn.classList.toggle('hidden', !warmUpEnabled || Number(activeIntensity) >= 3);
-
-    setCommunityActions(card);
-    renderModeTimer();
-    updateCompareFirstControls();
-}
-
-function createCardRoundId() {
-    return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-}
-
-function detachCardAnswerListeners() {
-    cardAnswerListeners.forEach(({ ref, handler }) => ref.off('value', handler));
-    cardAnswerListeners = [];
-    if (cardAnswerSeatListener && window.roomRef) {
-        window.roomRef.child('members/partner').off('value', cardAnswerSeatListener);
-        cardAnswerSeatListener = null;
-    }
-}
-
-function validCardAnswer(answer, card) {
-    return answer
-        && answer.roundId === card.roundId
-        && Number.isInteger(answer.optionIndex)
-        && answer.optionIndex >= 0
-        && answer.optionIndex < card.options.length;
-}
-
-function updateCardAnswerComparison() {
-    const panel = document.getElementById('cardAnswerPanel');
-    const optionsContainer = document.getElementById('cardAnswerOptions');
-    const submitButton = document.getElementById('submitCardAnswer');
-    const status = document.getElementById('cardAnswerStatus');
-    const comparison = document.getElementById('cardAnswerComparison');
-    if (!panel || !optionsContainer || !submitButton || !status || !comparison || !cardAnswerCard) return;
-
-    const selectedRadio = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
-    optionsContainer.querySelectorAll('input[name="cardAnswer"]').forEach((radio, index) => {
-        radio.checked = cardAnswerOwn
-            ? index === cardAnswerOwn.optionIndex
-            : selectedRadio?.value === String(index);
-        radio.disabled = Boolean(cardAnswerOwn) || !cardAnswerOwnUid || !cardAnswerPartnerUid;
-    });
-    submitButton.disabled = Boolean(cardAnswerOwn) || !cardAnswerOwnUid || !cardAnswerPartnerUid;
-    comparison.replaceChildren();
-    comparison.classList.toggle('hidden', !cardAnswerOwn || !cardAnswerPartner);
-
-    if (cardAnswerOwn && cardAnswerPartner) {
-        const matched = cardAnswerOwn.optionIndex === cardAnswerPartner.optionIndex;
-        const heading = document.createElement('strong');
-        heading.className = matched ? 'answer-match' : 'answer-difference';
-        heading.textContent = matched ? 'You agree!' : 'Different answers';
-        const ownAnswer = document.createElement('p');
-        const partnerAnswer = document.createElement('p');
-        const ownLabel = getPlayerIdentifier(cardAnswerOwnUid === cardAnswerRoomRef?.hostUid ? 0 : 1);
-        const partnerLabel = getPlayerIdentifier(cardAnswerPartnerUid === cardAnswerRoomRef?.hostUid ? 0 : 1);
-        ownAnswer.textContent = `${ownLabel}: ${cardAnswerCard.options[cardAnswerOwn.optionIndex]}`;
-        partnerAnswer.textContent = `${partnerLabel}: ${cardAnswerCard.options[cardAnswerPartner.optionIndex]}`;
-        comparison.append(heading, ownAnswer, partnerAnswer);
-        status.textContent = 'Both answers are in. Talk about what you chose.';
-    } else if (cardAnswerOwn) {
-        status.textContent = 'Answer submitted privately. Your choices will show together after your partner answers.';
-    } else if (!cardAnswerOwnUid) {
-        status.textContent = 'Connect to a host-approved room with your partner to compare answers.';
-    } else if (!cardAnswerPartnerUid) {
-        status.textContent = 'Waiting for your partner to join the room.';
-    } else {
-        status.textContent = 'Choose an answer. It stays hidden from your partner until both of you submit.';
-    }
-    updateCompareFirstControls();
-}
-
-function attachPartnerAnswerListener() {
-    if (!cardAnswerOwn || !cardAnswerPartnerUid || !cardAnswerRoomRef?.ref || !cardAnswerCard) return;
-    const partnerAnswerRef = cardAnswerRoomRef.ref.child(`answers/current/${cardAnswerPartnerUid}`);
-    const handler = snapshot => {
-        const answer = snapshot.val();
-        cardAnswerPartner = validCardAnswer(answer, cardAnswerCard) ? answer : null;
-        updateCardAnswerComparison();
-    };
-    partnerAnswerRef.on('value', handler, error => {
-        console.error('Could not read the partner answer:', error);
-        const status = document.getElementById('cardAnswerStatus');
-        if (status) status.textContent = 'Could not load your partner’s answer. Check the room access rules.';
-    });
-    cardAnswerListeners.push({ ref: partnerAnswerRef, handler });
-}
-
-async function setupCardAnswerRoom(card, retry = false) {
-    if (!window.roomRef || !card.roundId || !window.firebase) {
-        updateCardAnswerComparison();
-        return;
-    }
-    const setupKey = `${window.currentRoomCode}:${card.roundId}`;
-    if (!retry && cardAnswerSetupKey === setupKey) return;
-    detachCardAnswerListeners();
-    cardAnswerSetupKey = setupKey;
-    cardAnswerRoomRef = {
-        ref: window.roomRef,
-        hostUid: null
-    };
-    cardAnswerCard = card;
-    cardAnswerOwnUid = null;
-    cardAnswerPartnerUid = null;
-    cardAnswerOwn = null;
-    cardAnswerPartner = null;
-    updateCardAnswerComparison();
-
-    try {
-        const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-        if (!user || window.roomRef !== cardAnswerRoomRef.ref) return;
-        const [hostSnapshot, partnerSnapshot] = await Promise.all([
-            cardAnswerRoomRef.ref.child('members/host').once('value'),
-            cardAnswerRoomRef.ref.child('members/partner').once('value')
-        ]);
-        const hostUid = hostSnapshot.val();
-        const partnerUid = partnerSnapshot.val();
-        if (hostUid !== user.uid && partnerUid !== user.uid) return;
-        cardAnswerRoomRef.hostUid = hostUid;
-        cardAnswerOwnUid = user.uid;
-        cardAnswerPartnerUid = user.uid === hostUid ? partnerUid : hostUid;
-        if (!cardAnswerPartnerUid) {
-            cardAnswerSeatListener = snapshot => {
-                if (snapshot.val() && currentCard?.roundId === card.roundId) {
-                    setupCardAnswerRoom(card, true);
-                }
-            };
-            cardAnswerRoomRef.ref.child('members/partner').on('value', cardAnswerSeatListener);
-            updateCardAnswerComparison();
-            return;
-        }
-
-        const ownAnswerRef = cardAnswerRoomRef.ref.child(`answers/current/${user.uid}`);
-        const ownHandler = snapshot => {
-            const answer = snapshot.val();
-            cardAnswerOwn = validCardAnswer(answer, card) ? answer : null;
-            if (cardAnswerOwn) attachPartnerAnswerListener();
-            updateCardAnswerComparison();
-        };
-        ownAnswerRef.on('value', ownHandler, error => {
-            console.error('Could not load your answer:', error);
-            const status = document.getElementById('cardAnswerStatus');
-            if (status) status.textContent = 'Could not load your answer. Check the room access rules.';
-        });
-        cardAnswerListeners.push({ ref: ownAnswerRef, handler: ownHandler });
-    } catch (error) {
-        console.error('Could not set up paired answer comparison:', error);
-        const status = document.getElementById('cardAnswerStatus');
-        if (status) status.textContent = `Could not set up answer comparison: ${error.message}`;
-    }
-}
-
-function renderCardAnswerPanel(card) {
-    const panel = document.getElementById('cardAnswerPanel');
-    const optionsContainer = document.getElementById('cardAnswerOptions');
-    const submitButton = document.getElementById('submitCardAnswer');
-    if (!panel || !optionsContainer || !submitButton) return;
-    if (!Array.isArray(card.options) || card.options.length < 2) {
-        panel.classList.add('hidden');
-        detachCardAnswerListeners();
-        cardAnswerSetupKey = null;
-        cardAnswerCard = null;
-        localAnswerRoundId = null;
-        return;
-    }
-
-    panel.classList.remove('hidden');
-    if (!window.roomRef) {
-        detachCardAnswerListeners();
-        cardAnswerSetupKey = null;
-        cardAnswerCard = card;
-        if (localAnswerRoundId !== card.roundId) {
-            localAnswerRoundId = card.roundId;
-            localAnswerIndices = [null, null];
-            localAnswerPhase = 'choose';
-        }
-        renderLocalCardAnswers(card, optionsContainer, submitButton, document.getElementById('cardAnswerStatus'), document.getElementById('cardAnswerComparison'));
-        return;
-    }
-    const pairedSetupKey = `${window.currentRoomCode}:${card.roundId}`;
-    optionsContainer.classList.remove('hidden');
-    submitButton.classList.remove('hidden');
-    if (cardAnswerCard?.roundId !== card.roundId || cardAnswerSetupKey !== pairedSetupKey) {
-        detachCardAnswerListeners();
-        cardAnswerSetupKey = null;
-        cardAnswerCard = card;
-        cardAnswerOwnUid = null;
-        cardAnswerPartnerUid = null;
-        cardAnswerOwn = null;
-        cardAnswerPartner = null;
-        const legend = document.createElement('legend');
-        legend.textContent = 'Choose one answer';
-        optionsContainer.replaceChildren(legend);
-        card.options.forEach((option, index) => {
-            const label = document.createElement('label');
-            label.className = 'card-answer-option';
-            const radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = 'cardAnswer';
-            radio.value = String(index);
-            const text = document.createElement('span');
-            text.textContent = option;
-            label.append(radio, text);
-            optionsContainer.appendChild(label);
-        });
-        submitButton.onclick = async () => {
-            const selected = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
-            if (!selected || !cardAnswerOwnUid || !cardAnswerPartnerUid || !cardAnswerRoomRef?.ref) return;
-            submitButton.disabled = true;
-            try {
-                await cardAnswerRoomRef.ref.child(`answers/current/${cardAnswerOwnUid}`).set({
-                    roundId: card.roundId,
-                    optionIndex: Number(selected.value),
-                    submittedAt: Date.now()
-                });
-            } catch (error) {
-                console.error('Could not submit the answer:', error);
-                const status = document.getElementById('cardAnswerStatus');
-                if (status) status.textContent = `Could not submit your answer: ${error.message}`;
-                submitButton.disabled = false;
-            }
-        };
-        setupCardAnswerRoom(card);
-    }
-    updateCardAnswerComparison();
-}
-
-function renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison) {
-    if (!status || !comparison) return;
-    optionsContainer.replaceChildren();
-    comparison.replaceChildren();
-    comparison.classList.add('hidden');
-    submitButton.classList.remove('hidden');
-    submitButton.disabled = false;
-    const legend = document.createElement('legend');
-    optionsContainer.appendChild(legend);
-
-    if (localAnswerPhase === 'handoff') {
-        legend.textContent = 'Answer saved privately';
-        submitButton.textContent = `Pass the phone to ${getPlayerIdentifier(1)}`;
-        status.textContent = `Your choice is hidden. Hand over the phone, then let ${getPlayerIdentifier(1)} tap to continue.`;
-        submitButton.onclick = () => {
-            localAnswerPhase = 'choose';
-            renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison);
-        };
-        return;
-    }
-
-    if (localAnswerPhase === 'reveal') {
-        const heading = document.createElement('strong');
-        heading.textContent = localAnswerIndices[0] === localAnswerIndices[1] ? 'You picked the same answer!' : 'You picked different answers';
-        const firstAnswer = document.createElement('p');
-        firstAnswer.textContent = `${getPlayerIdentifier(0)}: ${card.options[localAnswerIndices[0]]}`;
-        const secondAnswer = document.createElement('p');
-        secondAnswer.textContent = `${getPlayerIdentifier(1)}: ${card.options[localAnswerIndices[1]]}`;
-        comparison.append(heading, firstAnswer, secondAnswer);
-        comparison.classList.remove('hidden');
-        optionsContainer.classList.add('hidden');
-        submitButton.classList.add('hidden');
-        status.textContent = 'Both answers are in. Talk about what you chose.';
-        return;
-    }
-
-    optionsContainer.classList.remove('hidden');
-    const activePlayer = localAnswerIndices[0] === null ? 0 : 1;
-    legend.textContent = `${getPlayerIdentifier(activePlayer)}, choose privately`;
-    card.options.forEach((option, index) => {
-        const label = document.createElement('label');
-        label.className = 'card-answer-option';
-        const radio = document.createElement('input');
-        radio.type = 'radio';
-        radio.name = 'cardAnswer';
-        radio.value = String(index);
-        const text = document.createElement('span');
-        text.textContent = option;
-        label.append(radio, text);
-        optionsContainer.appendChild(label);
-    });
-    submitButton.textContent = `Lock in ${getPlayerIdentifier(activePlayer)}’s answer`;
-    status.textContent = activePlayer === 0
-        ? 'Your answer stays hidden when you hand the phone to your partner.'
-        : 'Your partner’s answer is still hidden. Lock in yours to reveal both.';
-    submitButton.onclick = () => {
-        const selected = optionsContainer.querySelector('input[name="cardAnswer"]:checked');
-        if (!selected) {
-            status.textContent = 'Choose an answer before locking it in.';
-            return;
-        }
-        localAnswerIndices[activePlayer] = Number(selected.value);
-        localAnswerPhase = activePlayer === 0 ? 'handoff' : 'reveal';
-        renderLocalCardAnswers(card, optionsContainer, submitButton, status, comparison);
-    };
-}
-
-// Drawer & Modal Controller Functions
-function openDrawer(title, contentHtml) {
-    const titleEl = document.getElementById('drawerTitle');
-    const contentEl = document.getElementById('drawerContent');
-    const drawer = document.getElementById('appDrawer');
-    const overlay = document.getElementById('drawerOverlay');
-
-    if (deckOptionsElement && contentEl?.contains(deckOptionsElement)) {
-        deckOptionsElement.remove();
-    }
-    const partnerCardsSection = document.getElementById('partnerCardsSection');
-    if (partnerCardsSection && contentEl?.contains(partnerCardsSection)) partnerCardsSection.remove();
-    if (deckOptionsElement) {
-        deckOptionsElement.classList.add('hidden');
-        deckOptionsElement.open = false;
-    }
-    if (titleEl) titleEl.innerText = title;
-    if (contentEl) contentEl.innerHTML = contentHtml;
-    if (drawer) drawer.classList.remove('hidden');
-    if (overlay) overlay.classList.remove('hidden');
-}
-
-function appendDrawerMessage(content, message, className = 'drawer-item') {
-    const item = document.createElement('div');
-    item.className = className;
-    const paragraph = document.createElement('p');
-    paragraph.textContent = message;
-    item.appendChild(paragraph);
-    content.appendChild(item);
-    return item;
-}
-
-function renderJournalDrawerContent(content) {
-    content.replaceChildren();
-    const intro = document.createElement('p');
-    intro.className = 'drawer-intro';
-    intro.textContent = 'Write a memory or reflection from your date night. Entries stay on this device.';
-    content.appendChild(intro);
-
-    const form = document.createElement('form');
-    form.className = 'journal-entry-form';
-    const label = document.createElement('label');
-    label.htmlFor = 'journalEntryText';
-    label.textContent = 'Your journal entry';
-    const textarea = document.createElement('textarea');
-    textarea.id = 'journalEntryText';
-    textarea.rows = 3;
-    textarea.maxLength = 2000;
-    textarea.placeholder = 'What would you like to remember from tonight?';
-    textarea.required = true;
-    form.append(label, textarea);
-
-    const canLinkCurrentQuestion = currentCard && activeModule !== 'secrets';
-    if (canLinkCurrentQuestion) {
-        const contextLabel = document.createElement('label');
-        contextLabel.className = 'journal-context-option';
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.id = 'journalIncludeQuestion';
-        const optionText = document.createElement('span');
-        optionText.textContent = `Include this question: “${currentCard.prompt}”`;
-        contextLabel.append(checkbox, optionText);
-        form.appendChild(contextLabel);
-    }
-
-    const saveButton = document.createElement('button');
-    saveButton.className = 'btn-primary';
-    saveButton.type = 'submit';
-    saveButton.textContent = 'Save journal entry';
-    form.appendChild(saveButton);
-    form.onsubmit = event => {
-        event.preventDefault();
-        const text = textarea.value.trim();
-        if (!text) return;
-        const includeQuestion = canLinkCurrentQuestion && document.getElementById('journalIncludeQuestion').checked;
-        journalEntries.unshift({
-            id: `journal-${Date.now()}`,
-            prompt: text,
-            date: new Date().toLocaleString(),
-            ...(includeQuestion ? { linkedPrompt: currentCard.prompt } : {})
-        });
-        localStorage.setItem('closer_journal', JSON.stringify(journalEntries));
-        renderJournalDrawerContent(content);
-    };
-    content.appendChild(form);
-
-    if (journalEntries.length === 0) {
-        appendDrawerMessage(content, 'No journal entries yet. Add your first memory above.');
-        return;
-    }
-
-    journalEntries.forEach((entry, index) => {
-        const item = document.createElement('div');
-        item.className = 'drawer-item';
-        const prompt = document.createElement('p');
-        prompt.className = 'drawer-item-title';
-        prompt.textContent = entry.prompt || entry.text || '';
-        if (entry.linkedPrompt) {
-            const linkedPrompt = document.createElement('p');
-            linkedPrompt.className = 'drawer-item-meta';
-            linkedPrompt.textContent = `Question: ${entry.linkedPrompt}`;
-            item.append(prompt, linkedPrompt);
-        } else {
-            item.appendChild(prompt);
-        }
-        const date = document.createElement('p');
-        date.className = 'drawer-item-meta';
-        date.textContent = entry.date;
-        const actions = document.createElement('div');
-        actions.className = 'drawer-item-actions';
-        const removeButton = document.createElement('button');
-        removeButton.className = 'drawer-remove-btn';
-        removeButton.type = 'button';
-        removeButton.textContent = 'Delete entry';
-        removeButton.setAttribute('aria-label', `Delete journal entry: ${entry.prompt || entry.text || ''}`);
-        removeButton.onclick = () => {
-            journalEntries.splice(index, 1);
-            localStorage.setItem('closer_journal', JSON.stringify(journalEntries));
-            renderJournalDrawerContent(content);
-        };
-        actions.appendChild(removeButton);
-        item.append(prompt, date, actions);
-        content.appendChild(item);
-    });
-}
-
-function renderFavoritesDrawerContent(content) {
-    content.replaceChildren();
-    const intro = document.createElement('p');
-    intro.className = 'drawer-intro';
-    intro.textContent = 'Bookmarked Favorite Questions:';
-    content.appendChild(intro);
-    const favCards = masterDatabase.filter(card => favoriteIds.includes(card.id));
-
-    if (favCards.length === 0) {
-        appendDrawerMessage(content, 'No favorites saved yet. Tap the bookmark icon on any card to save it here!');
-        return;
-    }
-
-    favCards.forEach(card => {
-        const item = document.createElement('div');
-        item.className = 'drawer-item';
-        const prompt = document.createElement('p');
-        const category = document.createElement('strong');
-        category.textContent = `[${card.category || 'General'}] `;
-        prompt.append(category, document.createTextNode(card.prompt));
-        const actions = document.createElement('div');
-        actions.className = 'drawer-item-actions';
-        const removeButton = document.createElement('button');
-        removeButton.className = 'drawer-remove-btn';
-        removeButton.type = 'button';
-        removeButton.textContent = 'Remove bookmark';
-        removeButton.setAttribute('aria-label', `Remove bookmark: ${card.prompt}`);
-        removeButton.onclick = () => {
-            favoriteIds = favoriteIds.filter(id => id !== card.id);
-            localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
-            if (currentCard?.id === card.id) {
-                const favoriteButton = document.getElementById('favCardBtn');
-                if (favoriteButton) {
-                    favoriteButton.classList.remove('active');
-                    favoriteButton.setAttribute('aria-pressed', 'false');
-                }
-            }
-            renderFavoritesDrawerContent(content);
-        };
-        actions.appendChild(removeButton);
-        item.append(prompt, actions);
-        content.appendChild(item);
-    });
-}
-
-function encodeBase64Url(bytes) {
-    let binary = '';
-    bytes.forEach(byte => { binary += String.fromCharCode(byte); });
-    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
-}
-
-function decodeBase64Url(value) {
-    const normalized = value.replace(/-/g, '+').replace(/_/g, '/');
-    const padded = normalized + '='.repeat((4 - (normalized.length % 4)) % 4);
-    return Uint8Array.from(atob(padded), character => character.charCodeAt(0));
-}
-
-function setPrivateShareStatus(message) {
-    const status = document.getElementById('privateShareStatus');
-    if (status) status.textContent = message;
-}
-
-function getShareClientId() {
-    if (!shareClientId) {
-        shareClientId = window.crypto.randomUUID
-            ? window.crypto.randomUUID()
-            : encodeBase64Url(window.crypto.getRandomValues(new Uint8Array(16)));
-        sessionStorage.setItem('closer_share_client_id', shareClientId);
-    }
-    return shareClientId;
-}
-
-function renderPartnerCards() {
-    const list = partnerCardsListElement;
-    const section = partnerCardsSectionElement;
-    if (!list || !section) return;
-    list.replaceChildren();
-    section.classList.remove('hidden');
-
-    if (partnerCards.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'private-reveal-empty';
-        empty.textContent = window.roomRef
-            ? 'Cards shared by your partner will appear here.'
-            : 'Connect to the same paired room as your partner to receive cards.';
-        list.appendChild(empty);
-        return;
-    }
-
-    partnerCards.forEach((card, index) => {
-        const item = document.createElement('article');
-        item.className = 'partner-card-item';
-        const category = document.createElement('span');
-        category.className = 'private-reveal-item-label';
-        category.textContent = card.category || 'Card from your partner';
-        const prompt = document.createElement('p');
-        prompt.className = 'partner-card-text';
-        prompt.textContent = card.prompt;
-        const actions = document.createElement('div');
-        actions.className = 'partner-card-actions';
-        const useButton = document.createElement('button');
-        useButton.type = 'button';
-        useButton.textContent = 'Use this card';
-        useButton.onclick = () => {
-            activeModules = [card.module];
-            activeTopics = null;
-            updateActiveModulePresentation();
-            activeGameMode = 'classic';
-            activeIntensity = 'all';
-            includeMultipleChoice = true;
-            warmUpEnabled = false;
-            document.querySelectorAll('.module-tab').forEach(tab => {
-                const isActive = tab.dataset.module === activeModule;
-                tab.classList.toggle('active', isActive);
-                tab.setAttribute('aria-pressed', String(isActive));
-            });
-            document.getElementById('gameModeSelect').value = 'classic';
-            document.querySelectorAll('.intensity-btn').forEach(button => {
-                const isActive = button.dataset.level === 'all';
-                button.classList.toggle('active', isActive);
-                button.setAttribute('aria-pressed', String(isActive));
-            });
-            updateQuestionTypeSelection('all');
-            renderModeTimer();
-            updateRoundSummary();
-            rebuildUnspentDeck();
-            unspentDeck.push(card);
-            closeDrawer();
-            drawNextCard();
-        };
-        const removeButton = document.createElement('button');
-        removeButton.type = 'button';
-        removeButton.textContent = 'Remove';
-        removeButton.setAttribute('aria-label', `Remove card from partner: ${card.prompt}`);
-        removeButton.onclick = () => {
-            partnerCards.splice(index, 1);
-            localStorage.setItem('closer_partner_cards', JSON.stringify(partnerCards));
-            renderPartnerCards();
-        };
-        actions.append(useButton, removeButton);
-        item.append(category, prompt, actions);
-        list.appendChild(item);
-    });
-}
-
-async function receivePartnerCard(snapshot, roomRef) {
-    const record = snapshot.val();
-    if (!record || !record.card || typeof record.senderUid !== 'string'
-        || processingPartnerCardKeys.has(snapshot.key)) return;
-    processingPartnerCardKeys.add(snapshot.key);
-    try {
-        const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-        if (!user || record.senderUid === user.uid) return;
-        const card = record.card;
-        if (!['sexuality', 'life'].includes(card.module)
-            || typeof card.prompt !== 'string'
-            || card.prompt.trim().length === 0
-            || card.prompt.length > 280
-            || ![1, 2, 3].includes(Number(card.intensity))
-            || !['question', 'activity'].includes(card.promptStyle)
-            || (card.options !== undefined && (!Array.isArray(card.options)
-                || card.options.length < 2
-                || card.options.length > 6
-                || card.options.some(option => typeof option !== 'string' || !option.trim() || option.length > 120)))
-            || (card.contextType === 'poll') !== Array.isArray(card.options)) {
-            throw new Error('The received card has invalid fields.');
-        }
-        const localId = `partner-${snapshot.key}`;
-        if (!partnerCards.some(savedCard => savedCard.id === localId)) {
-            partnerCards.unshift({
-                id: localId,
-                module: card.module,
-                category: typeof card.category === 'string' ? card.category.slice(0, 50) : 'Card from your partner',
-                intensity: Number(card.intensity),
-                prompt: card.prompt,
-                promptStyle: card.promptStyle,
-                contextType: card.contextType === 'poll' ? 'poll' : card.promptStyle === 'activity' ? 'action' : 'story',
-                ...(Array.isArray(card.options) ? { options: card.options } : {}),
-                receivedAt: record.createdAt || new Date().toISOString()
-            });
-            localStorage.setItem('closer_partner_cards', JSON.stringify(partnerCards));
-            renderPartnerCards();
-        }
-        try {
-            await roomRef.child(snapshot.key).remove();
-        } catch (error) {
-            console.error('Received partner card could not be removed from the room:', error);
-        }
-    } catch (error) {
-        console.error('Could not receive the partner card:', error);
-    } finally {
-        processingPartnerCardKeys.delete(snapshot.key);
-    }
-}
-
-function attachPartnerCardListener() {
-    if (!window.roomRef) return;
-    if (sharedCardListener) {
-        sharedCardListener.ref.off('child_added', sharedCardListener.handler);
-    }
-    const ref = window.roomRef.child('sharedCards');
-    const handler = snapshot => receivePartnerCard(snapshot, ref);
-    sharedCardListener = { ref, handler };
-    ref.on('child_added', handler);
-}
-
-function updatePrivateShareUi() {
-    const connected = Boolean(window.roomRef && window.currentRoomCode);
-    const keyReady = Boolean(privateShareKey);
-    const copyButton = document.getElementById('copyPrivateShareKey');
-    if (copyButton) copyButton.disabled = !keyReady;
-    document.querySelectorAll('.private-share-entry-btn').forEach(button => {
-        button.disabled = !connected || !keyReady;
-        button.title = !connected
-            ? 'Pair both devices to the same room first.'
-            : !keyReady
-                ? 'Set the same sharing key on both devices first.'
-                : '';
-    });
-    if (connected && keyReady) {
-        setPrivateShareStatus(`Connected to room ${window.currentRoomCode}. Sharing key is active for this tab.`);
-    } else if (!connected) {
-        setPrivateShareStatus('Pair both devices to the same room to enable encrypted sharing.');
-    } else {
-        setPrivateShareStatus('Connected. Generate a key or enter the key your partner shared with you.');
-    }
-}
-
-async function applyPrivateShareKey(value) {
-    if (!window.crypto?.subtle) {
-        setPrivateShareStatus('Encrypted sharing requires a browser with Web Crypto support.');
-        return false;
-    }
-    try {
-        const bytes = decodeBase64Url(value.trim());
-        if (bytes.length !== 32) throw new Error('The sharing key must be a valid 256-bit key.');
-        await window.crypto.subtle.importKey('raw', bytes, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
-        privateShareKey = value.trim();
-        sessionStorage.setItem('closer_private_share_key', privateShareKey);
-        attachPrivateRevealListener();
-        updatePrivateShareUi();
-        renderWildRevealEntries();
-        setPrivateShareStatus('Sharing key set for this tab. Exchange this exact key with your partner through a separate trusted channel.');
-        return true;
-    } catch (error) {
-        console.error('Could not set the encrypted sharing key:', error);
-        setPrivateShareStatus(`Could not use this key: ${error.message}`);
-        return false;
-    }
-}
-
-async function getPrivateShareCryptoKey() {
-    if (!privateShareKey) throw new Error('Set a sharing key first.');
-    const bytes = decodeBase64Url(privateShareKey);
-    return window.crypto.subtle.importKey('raw', bytes, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
-}
-
-function renderSharedRevealInbox() {
-    const list = document.getElementById('sharedRevealList');
-    if (!list) return;
-    list.replaceChildren();
-    if (receivedSharedReveals.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'private-reveal-empty';
-        empty.textContent = 'Partner entries will appear here after you connect to the same room and use the same sharing key.';
-        list.appendChild(empty);
-        return;
-    }
-
-    receivedSharedReveals.forEach((entry, index) => {
-        const item = document.createElement('article');
-        item.className = 'private-reveal-item shared-reveal-item';
-        const label = document.createElement('span');
-        label.className = 'private-reveal-item-label';
-        label.textContent = `Partner shared · ${entry.type}`;
-        const text = document.createElement('p');
-        text.id = `shared-reveal-content-${index}`;
-        text.className = 'private-reveal-item-text hidden';
-        text.textContent = entry.text;
-        const actions = document.createElement('div');
-        actions.className = 'private-reveal-item-actions';
-        const revealButton = document.createElement('button');
-        revealButton.type = 'button';
-        revealButton.textContent = 'Reveal entry';
-        revealButton.setAttribute('aria-expanded', 'false');
-        revealButton.setAttribute('aria-controls', text.id);
-        revealButton.onclick = () => {
-            const isRevealed = !text.classList.contains('hidden');
-            text.classList.toggle('hidden', isRevealed);
-            revealButton.textContent = isRevealed ? 'Reveal entry' : 'Hide entry';
-            revealButton.setAttribute('aria-expanded', String(!isRevealed));
-        };
-        const clearButton = document.createElement('button');
-        clearButton.type = 'button';
-        clearButton.textContent = 'Clear';
-        clearButton.onclick = () => {
-            receivedSharedReveals.splice(index, 1);
-            renderSharedRevealInbox();
-        };
-        actions.append(revealButton, clearButton);
-        item.append(label, text, actions);
-        list.appendChild(item);
-    });
-}
-
-async function receiveSharedReveal(snapshot, roomRef) {
-    const record = snapshot.val();
-    if (!record || seenSharedRevealIds.has(snapshot.key) || processingSharedRevealIds.has(snapshot.key)) return;
-    if (!privateShareKey) {
-        setPrivateShareStatus('An encrypted entry is waiting. Enter your partner’s sharing key to receive it.');
-        return;
-    }
-    processingSharedRevealIds.add(snapshot.key);
-    try {
-        const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-        if (!user || record.senderClientId === getShareClientId()) return;
-        if (typeof record.iv !== 'string' || typeof record.ciphertext !== 'string' || record.ciphertext.length > 6000) {
-            throw new Error('The encrypted entry has an invalid format.');
-        }
-        const key = await getPrivateShareCryptoKey();
-        const plaintext = await window.crypto.subtle.decrypt(
-            {
-                name: 'AES-GCM',
-                iv: decodeBase64Url(record.iv),
-                additionalData: new TextEncoder().encode(String(window.currentRoomCode))
-            },
-            key,
-            decodeBase64Url(record.ciphertext)
-        );
-        const entry = JSON.parse(new TextDecoder().decode(plaintext));
-        if (!['Secret', 'Fantasy', 'Something unspoken'].includes(entry.type) || typeof entry.text !== 'string' || entry.text.length > 1000) {
-            throw new Error('The decrypted entry has an invalid format.');
-        }
-        seenSharedRevealIds.add(snapshot.key);
-        receivedSharedReveals.unshift({ type: entry.type, text: entry.text });
-        renderSharedRevealInbox();
-        setPrivateShareStatus('Your partner shared an encrypted entry. Reveal it when you are ready.');
-        try {
-            await roomRef.child(snapshot.key).remove();
-        } catch (error) {
-            console.error('The received encrypted entry could not be removed from the room:', error);
-            setPrivateShareStatus('Entry received, but its encrypted copy could not be cleared from the room.');
-        }
-    } catch (error) {
-        console.error('Could not decrypt the partner entry:', error);
-        setPrivateShareStatus('Could not open the encrypted entry. Check that both devices use the same sharing key.');
-    } finally {
-        processingSharedRevealIds.delete(snapshot.key);
-    }
-}
-
-function attachPrivateRevealListener() {
-    if (!window.roomRef) return;
-    if (sharedRevealListener && sharedRevealListener.ref) {
-        sharedRevealListener.ref.off('child_added', sharedRevealListener.handler);
-    }
-    const ref = window.roomRef.child('sharedReveals');
-    const handler = snapshot => receiveSharedReveal(snapshot, ref);
-    sharedRevealListener = { ref, handler };
-    ref.on('child_added', handler);
-}
-
-async function sharePrivateReveal(entry) {
-    if (!window.roomRef || !window.currentRoomCode) {
-        setPrivateShareStatus('Pair this device to the same room as your partner before sharing.');
-        return;
-    }
-    if (!privateShareKey) {
-        setPrivateShareStatus('Set the same sharing key on both devices before sharing.');
-        return;
-    }
-    try {
-        const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-        if (!user) throw new Error('Firebase sign-in is required for paired sharing.');
-        const iv = window.crypto.getRandomValues(new Uint8Array(12));
-        const key = await getPrivateShareCryptoKey();
-        const payload = new TextEncoder().encode(JSON.stringify({ type: entry.type, text: entry.text }));
-        const ciphertext = await window.crypto.subtle.encrypt(
-            {
-                name: 'AES-GCM',
-                iv,
-                additionalData: new TextEncoder().encode(String(window.currentRoomCode))
-            },
-            key,
-            payload
-        );
-        const messageRef = window.roomRef.child('sharedReveals').push();
-        if (!messageRef.key) throw new Error('Could not create a sharing message.');
-        await messageRef.set({
-            senderUid: user.uid,
-            senderClientId: getShareClientId(),
-            iv: encodeBase64Url(iv),
-            ciphertext: encodeBase64Url(new Uint8Array(ciphertext)),
-            createdAt: new Date().toISOString()
-        });
-        setPrivateShareStatus('Encrypted entry sent to the paired room. Your partner can reveal it in Wild & Unspoken.');
-    } catch (error) {
-        console.error('Could not share the encrypted partner entry:', error);
-        setPrivateShareStatus(`Could not share the entry: ${error.message}`);
-    }
-}
-
-function renderWildRevealEntries() {
-    const list = document.getElementById('privateRevealList');
-    if (!list) return;
-    list.replaceChildren();
-
-    if (privateRevealEntries.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'private-reveal-empty';
-        empty.textContent = 'Your private entries will appear here. Only reveal one when you are ready.';
-        list.appendChild(empty);
-        return;
-    }
-
-    privateRevealEntries.forEach((entry, index) => {
-        const item = document.createElement('article');
-        item.className = 'private-reveal-item';
-        const label = document.createElement('span');
-        label.className = 'private-reveal-item-label';
-        label.textContent = entry.type;
-        const text = document.createElement('p');
-        text.id = `private-reveal-content-${index}`;
-        text.className = 'private-reveal-item-text hidden';
-        text.textContent = entry.text;
-        const actions = document.createElement('div');
-        actions.className = 'private-reveal-item-actions';
-        const revealButton = document.createElement('button');
-        revealButton.type = 'button';
-        revealButton.textContent = 'Reveal to partner';
-        revealButton.setAttribute('aria-expanded', 'false');
-        revealButton.setAttribute('aria-controls', text.id);
-        revealButton.onclick = () => {
-            const isRevealed = !text.classList.contains('hidden');
-            text.classList.toggle('hidden', isRevealed);
-            revealButton.textContent = isRevealed ? 'Reveal to partner' : 'Hide entry';
-            revealButton.setAttribute('aria-expanded', String(!isRevealed));
-        };
-        const shareButton = document.createElement('button');
-        shareButton.className = 'private-share-entry-btn';
-        shareButton.type = 'button';
-        shareButton.textContent = 'Share encrypted';
-        shareButton.disabled = !window.roomRef || !privateShareKey;
-        shareButton.onclick = async () => {
-            shareButton.disabled = true;
-            try {
-                await sharePrivateReveal(entry);
-            } finally {
-                updatePrivateShareUi();
-            }
-        };
-        const deleteButton = document.createElement('button');
-        deleteButton.type = 'button';
-        deleteButton.textContent = 'Delete';
-        deleteButton.setAttribute('aria-label', `Delete private ${entry.type.toLowerCase()} entry`);
-        deleteButton.onclick = () => {
-            privateRevealEntries.splice(index, 1);
-            localStorage.setItem('closer_private_reveals', JSON.stringify(privateRevealEntries));
-            renderWildRevealEntries();
-        };
-        actions.append(revealButton, shareButton, deleteButton);
-        item.append(label, text, actions);
-        list.appendChild(item);
-    });
-    updatePrivateShareUi();
-}
-
-function updateSectionView() {
-    const isWild = activeModule === 'secrets';
-    const isExplicit = !isWild && activeModules.includes('explicit');
-    document.body.dataset.module = isWild ? 'secrets' : activeModules.length === 1 ? activeModules[0] : 'sexuality';
-    updateIntensityLabels();
-    document.getElementById('cardContainer')?.classList.toggle('hidden', isWild);
-    document.querySelector('.response-section')?.classList.toggle('hidden', isWild);
-    document.getElementById('appStatus')?.classList.toggle('hidden', isWild);
-    document.getElementById('cardActionStatus')?.classList.toggle('hidden', isWild);
-    document.getElementById('wildUnspokenPanel')?.classList.toggle('hidden', !isWild);
-    document.getElementById('explicitContentNotice')?.classList.toggle('hidden', !isExplicit);
-    if (isWild) renderWildRevealEntries();
-}
-
-function updateIntensityLabels(module = activeModule) {
-    const labels = module === 'sexuality'
-        ? ['Flirty', 'Sensual', 'Steamy']
-        : module === 'explicit'
-            ? ['Warm-up', 'Direct', 'Detailed']
-        : ['Mild', 'Moderate', 'Wild'];
-
-    document.querySelectorAll('.intensity-btn[data-level]').forEach(button => {
-        const level = Number(button.dataset.level);
-        if (level >= 1 && level <= 3) button.textContent = labels[level - 1];
-    });
-
-    const deepOption = document.querySelector('#gameModeSelect option[value="deep"]');
-    if (deepOption) {
-        deepOption.textContent = module === 'sexuality'
-            ? 'Deep talk · Steamy cards + reflection timer'
-            : 'Deep talk · Level 3 + reflection timer';
-    }
-}
-
-function updateCustomIntensityLabels(module) {
-    const labels = module === 'sexuality'
-        ? ['Flirty', 'Sensual', 'Steamy']
-        : ['Mild', 'Moderate', 'Wild'];
-    document.querySelectorAll('#customIntensity option').forEach(option => {
-        const level = Number(option.value);
-        if (level >= 1 && level <= 3) option.textContent = labels[level - 1];
-    });
-}
-
-function closeDrawer() {
-    const drawer = document.getElementById('appDrawer');
-    const overlay = document.getElementById('drawerOverlay');
-    if (drawer) drawer.classList.add('hidden');
-    if (overlay) overlay.classList.add('hidden');
-}
-
-function toggleModal(show) {
-    const modal = document.getElementById('customCardModal');
-    if (modal) {
-        if (show) modal.classList.remove('hidden');
-        else modal.classList.add('hidden');
-    }
-}
-
-function renderPairManagement() {
-    if (!pairManagementContainer) return;
-    pairManagementContainer.replaceChildren();
-    const roomStatus = document.createElement('div');
-    roomStatus.className = 'drawer-item';
-    roomStatus.setAttribute('role', 'status');
-    roomStatus.setAttribute('aria-live', 'polite');
-    const statusText = document.createElement('p');
-    if (!window.currentRoomCode) {
-        statusText.textContent = 'Not connected to a room.';
-    } else if (window.currentRoomRole === 'host') {
-        statusText.textContent = `Room created and ready · Host · ${window.currentRoomCode}`;
-    } else if (window.currentRoomRole === 'partner') {
-        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner`;
-    } else if (window.currentRoomRole === 'requesting') {
-        statusText.textContent = `Request pending · Room ${window.currentRoomCode}`;
-    } else {
-        statusText.textContent = 'Not connected to a room.';
-    }
-    roomStatus.appendChild(statusText);
-    pairManagementContainer.appendChild(roomStatus);
-
-    if (window.currentRoomRole === 'host' && window.currentRoomCode) {
-        const invite = document.createElement('section');
-        invite.className = 'room-invite-section';
-        const label = document.createElement('label');
-        label.htmlFor = 'roomInviteCode';
-        label.textContent = 'Share this room code with your partner';
-        const row = document.createElement('div');
-        row.className = 'room-invite-row';
-        const codeInput = document.createElement('input');
-        codeInput.id = 'roomInviteCode';
-        codeInput.type = 'text';
-        codeInput.readOnly = true;
-        codeInput.value = window.currentRoomCode;
-        codeInput.setAttribute('aria-label', 'Room invite code');
-        const copyButton = document.createElement('button');
-        copyButton.type = 'button';
-        copyButton.className = 'btn-secondary';
-        copyButton.textContent = 'Copy code';
-        copyButton.onclick = async () => {
-            try {
-                await navigator.clipboard.writeText(window.currentRoomCode);
-                setPairStatus('Room code copied. Your partner will still need your approval to join.');
-            } catch (error) {
-                console.error('Could not copy the room code:', error);
-                codeInput.focus();
-                codeInput.select();
-                setPairStatus('Copy is unavailable. Select and copy the room code above.');
-            }
-        };
-        row.append(codeInput, copyButton);
-        invite.append(label, row);
-        pairManagementContainer.appendChild(invite);
-    }
-
-    if (window.currentRoomRole !== 'host') return;
-    const requests = Object.entries(pendingJoinRequests).filter(([, request]) => request?.status === 'pending');
-    const section = document.createElement('section');
-    section.className = 'room-requests-section';
-    const heading = document.createElement('h4');
-    heading.textContent = 'Join requests';
-    section.appendChild(heading);
-    if (requests.length === 0) {
-        const empty = document.createElement('p');
-        empty.className = 'room-request-empty';
-        empty.textContent = 'No pending requests. Only one partner can be approved.';
-        section.appendChild(empty);
-    }
-    requests.forEach(([uid]) => {
-        const item = document.createElement('div');
-        item.className = 'room-request-item';
-        const label = document.createElement('p');
-        label.textContent = `Someone is requesting to join (${uid.slice(0, 8)}…).`;
-        const actions = document.createElement('div');
-        actions.className = 'room-request-actions';
-        const approveButton = document.createElement('button');
-        approveButton.type = 'button';
-        approveButton.textContent = 'Approve';
-        approveButton.onclick = () => resolveJoinRequest(uid, true);
-        const denyButton = document.createElement('button');
-        denyButton.type = 'button';
-        denyButton.textContent = 'Deny';
-        denyButton.onclick = () => resolveJoinRequest(uid, false);
-        actions.append(approveButton, denyButton);
-        item.append(label, actions);
-        section.appendChild(item);
-    });
-    pairManagementContainer.appendChild(section);
-}
-
-async function resolveJoinRequest(uid, approved) {
-    if (!window.roomRef || window.currentRoomRole !== 'host') return;
-    const requestRef = window.roomRef.child(`joinRequests/${uid}`);
-    try {
-        if (approved) {
-            const partnerRef = window.roomRef.child('members/partner');
-            const result = await partnerRef.transaction(currentUid => currentUid === null ? uid : undefined);
-            if (!result.committed) {
-                setPairStatus('This room already has a partner. The two-person limit has been reached.');
-                return;
-            }
-        }
-        await requestRef.update({
-            status: approved ? 'approved' : 'denied',
-            resolvedAt: Date.now()
-        });
-        setPairStatus(approved
-            ? 'Partner approved. They can now enter the room.'
-            : 'Join request denied.');
-    } catch (error) {
-        console.error('Could not resolve the room join request:', error);
-        setPairStatus(`Could not ${approved ? 'approve' : 'deny'} the request: ${error.message}`);
-    }
-}
-
-function setPairStatus(message) {
-    const status = document.getElementById('pairStatus');
-    if (status) status.textContent = message;
-}
-
-function detachRoomAccessListeners() {
-    detachCardAnswerListeners();
-    cardAnswerSetupKey = null;
-    cardAnswerRoomRef = null;
-    cardAnswerCard = null;
-    cardAnswerOwnUid = null;
-    cardAnswerPartnerUid = null;
-    cardAnswerOwn = null;
-    cardAnswerPartner = null;
-    if (sharedRevealListener) {
-        sharedRevealListener.ref.off('child_added', sharedRevealListener.handler);
-        sharedRevealListener = null;
-    }
-    if (sharedCardListener) {
-        sharedCardListener.ref.off('child_added', sharedCardListener.handler);
-        sharedCardListener = null;
-    }
-    if (activeCardSyncListener && window.roomRef) {
-        window.roomRef.child('activeCard').off('value', activeCardSyncListener);
-        activeCardSyncListener = null;
-    }
-    if (playerNamesListener && window.roomRef) {
-        window.roomRef.child('playerNames').off('value', playerNamesListener);
-        playerNamesListener = null;
-    }
-    if (partnerSeatListener && window.roomRef) {
-        window.roomRef.child('members/partner').off('value', partnerSeatListener);
-        partnerSeatListener = null;
-    }
-    if (joinRequestListener && pendingJoinRequestRef) {
-        pendingJoinRequestRef.off('value', joinRequestListener);
-        joinRequestListener = null;
-    }
-    pendingJoinRequestRef = null;
-    if (roomJoinRequestsListener && window.roomRef) {
-        window.roomRef.child('joinRequests').off('value', roomJoinRequestsListener);
-        roomJoinRequestsListener = null;
-    }
-}
-
-function connectToRoom(roomCode, role) {
-    if (!window.db) throw new Error('Firebase pairing is not configured.');
-    detachRoomAccessListeners();
-    window.currentRoomCode = roomCode;
-    window.currentRoomRole = role;
-    localStorage.setItem('closer_room_code', roomCode);
-    window.roomRef = window.db.ref(`rooms/${roomCode}`);
-    roomDisplayNames = {};
-    playerNamesListener = snapshot => {
-        roomDisplayNames = snapshot.val() || {};
-        if (currentCard) renderCard(currentCard);
-    };
-    window.roomRef.child('playerNames').on('value', playerNamesListener, error => {
-        console.error('Could not load room player names:', error);
-        setCardActionStatus('Could not load player names. Check the room access rules.');
-    });
-    const currentUser = window.firebase?.auth().currentUser;
-    if (currentUser) {
-        const identityRef = window.roomRef.child(`playerNames/${role}`);
-        identityRef.once('value').then(snapshot => {
-            if (snapshot.exists()) return;
-            return identityRef.set(playerNames[role]);
-        }).catch(error => {
-            console.error('Could not save the room player identity:', error);
-            setCardActionStatus(`Your identifier is saved on this device but could not sync to the room: ${error.message}`);
-        });
-    }
-
-    activeCardSyncListener = snapshot => {
-        const remoteCard = snapshot.val();
-        if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
-        if (remoteCard && (!currentCard
-            || remoteCard.id !== currentCard.id
-            || remoteCard.roundId !== currentCard.roundId)) {
-            currentCard = remoteCard;
-            renderCard(currentCard);
-        }
-    };
-    window.roomRef.child('activeCard').on('value', activeCardSyncListener);
-    attachPrivateRevealListener();
-    attachPartnerCardListener();
-
-    if (role === 'host') {
-        roomJoinRequestsListener = snapshot => {
-            pendingJoinRequests = snapshot.val() || {};
-            renderPairManagement();
-        };
-        window.roomRef.child('joinRequests').on('value', roomJoinRequestsListener);
-    } else {
-        pendingJoinRequests = {};
-    }
-
-    updatePrivateShareUi();
-    renderWildRevealEntries();
-    if (currentCard) renderCard(currentCard);
-}
-
-function generateRoomCode() {
-    if (!window.crypto?.getRandomValues) throw new Error('Secure room-code generation is not available in this browser.');
-    const bytes = window.crypto.getRandomValues(new Uint8Array(16));
-    return encodeBase64Url(bytes);
-}
-
-async function createRoom() {
-    if (!window.db || !window.firebase) throw new Error('Firebase pairing is not configured.');
-    const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-    if (!user) throw new Error('Firebase sign-in is required to create a room.');
-    const roomCode = generateRoomCode();
-    const result = await window.db.ref(`rooms/${roomCode}/members/host`)
-        .transaction(currentUid => currentUid === null ? user.uid : undefined);
-    if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
-    connectToRoom(roomCode, 'host');
-    if (currentCard && currentCard.module !== 'explicit') await window.roomRef.child('activeCard').set(currentCard);
-    setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
-    renderPairManagement();
-}
-
-async function requestRoomAccess(roomCode) {
-    if (!window.db || !window.firebase) throw new Error('Firebase pairing is not configured.');
-    if (!/^[A-Za-z0-9_-]{22}$/.test(roomCode)) {
-        throw new Error('Enter a valid room code from the host.');
-    }
-    const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-    if (!user) throw new Error('Firebase sign-in is required to request access.');
-    const roomRef = window.db.ref(`rooms/${roomCode}`);
-    const [hostSnapshot, partnerSnapshot] = await Promise.all([
-        roomRef.child('members/host').once('value'),
-        roomRef.child('members/partner').once('value')
-    ]);
-    if (!hostSnapshot.val()) throw new Error('That room does not exist or is unavailable.');
-    if (hostSnapshot.val() === user.uid) {
-        connectToRoom(roomCode, 'host');
-        renderPairManagement();
-        return;
-    }
-    if (partnerSnapshot.val() === user.uid) {
-        connectToRoom(roomCode, 'partner');
-        renderPairManagement();
-        return;
-    }
-    if (partnerSnapshot.val()) throw new Error('This room already has two people. The room is full.');
-
-    detachRoomAccessListeners();
-    window.currentRoomCode = roomCode;
-    window.currentRoomRole = 'requesting';
-    window.roomRef = null;
-    if (currentCard) renderCard(currentCard);
-    updatePrivateShareUi();
-    const requestRef = roomRef.child(`joinRequests/${user.uid}`);
-    pendingJoinRequestRef = requestRef;
-    try {
-        await requestRef.set({
-            requesterUid: user.uid,
-            status: 'pending',
-            requestedAt: Date.now()
-        });
-    } catch (error) {
-        pendingJoinRequestRef = null;
-        window.currentRoomCode = null;
-        window.currentRoomRole = null;
-        updatePrivateShareUi();
-        throw error;
-    }
-    setPairStatus('Request sent. You will join only if the host approves you.');
-    joinRequestListener = snapshot => {
-        const request = snapshot.val();
-        if (!request) return;
-        if (request.status === 'denied') {
-            setPairStatus('The host denied your request. You are not in the room.');
-        } else if (request.status === 'approved') {
-            roomRef.child('members/partner').once('value').then(partnerSeat => {
-                if (partnerSeat.val() !== user.uid) {
-                    setPairStatus('Approval could not be confirmed. You have not joined the room.');
-                    return;
-                }
-                connectToRoom(roomCode, 'partner');
-                setPairStatus('The host approved you. You are now connected.');
-                renderPairManagement();
-            }).catch(error => {
-                console.error('Could not verify room approval:', error);
-                setPairStatus(`Could not confirm approval: ${error.message}`);
-            });
-        }
-    };
-    requestRef.on('value', joinRequestListener);
-    renderPairManagement();
-}
-
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    const offlineBanner = document.getElementById('offlineBanner');
+    const updateOffline = () => {
+        if (!offlineBanner) return;
+        offlineBanner.classList.toggle('hidden', navigator.onLine);
+    };
+    window.addEventListener('online', updateOffline);
+    window.addEventListener('offline', updateOffline);
+    updateOffline();
     deckOptionsElement = document.getElementById('deckOptions');
     partnerCardsSectionElement = document.getElementById('partnerCardsSection');
     partnerCardsListElement = document.getElementById('partnerCardsList');
     // 1. Advance cards with the explicit controls to avoid accidental skips.
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) {
-        nextCardBtn.onclick = () => advanceCard();
+        nextCardBtn.onclick = () => advanceCard(false);
     }
-    document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard());
+    document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard(true));
+    document.getElementById('undoBtn')?.addEventListener('click', undoCard);
+    const packSelect = document.getElementById('roundPackSelect');
+    if (packSelect) {
+        packSelect.addEventListener('change', () => {
+            if (packSelect.value) {
+                applyPack(packSelect.value);
+                document.body.dataset.pack = packSelect.value;
+            } else {
+                document.body.removeAttribute('data-pack');
+            }
+        });
+    }
+    document.querySelectorAll('.round-pack-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            applyPack(btn.dataset.pack);
+            closeRoundBuilder();
+        });
+    });
     document.getElementById('warmUpNextBtn')?.addEventListener('click', () => {
-        if (!warmUpEnabled || Number(activeIntensity) >= 3) return;
+        if (!warmUpEnabled || Number(activeIntensity) >= 4) return;
+        if (!canCurrentUserAdvanceCard()) {
+            setCardActionStatus(`It is ${getPlayerIdentifier(activeTurn)}'s turn to advance.`);
+            return;
+        }
         activeIntensity = String(Number(activeIntensity) + 1);
         document.querySelectorAll('.intensity-btn').forEach(button => {
             const selected = button.dataset.level === activeIntensity;
@@ -2152,6 +53,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('roundSummaryBtn')?.addEventListener('click', openRoundBuilder);
+    document.getElementById('createRoundFromSettingsBtn')?.addEventListener('click', openRoundBuilder);
+    const createDeckBtn = document.getElementById('createDeckBtn');
+    if (createDeckBtn) {
+        createDeckBtn.onclick = () => {
+            const name = prompt('Deck name:');
+            if (!name || !name.trim()) return;
+            const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: [] };
+            customDecks.push(deck);
+            localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+            renderMyDecks();
+        };
+    }
+    const addCurrentCardToDeckBtn = document.getElementById('addCurrentCardToDeckBtn');
+    if (addCurrentCardToDeckBtn) {
+        addCurrentCardToDeckBtn.onclick = () => {
+            if (!currentCard) return;
+            if (customDecks.length === 0) {
+                showToast('Create a deck first.');
+                return;
+            }
+            const names = customDecks.map(d => d.name).join(', ');
+            const chosen = prompt(`Add to which deck? (${names})`);
+            const deck = customDecks.find(d => d.name.toLowerCase() === (chosen || '').trim().toLowerCase());
+            if (!deck) { showToast('Deck not found.'); return; }
+            if (!deck.cardIds.includes(currentCard.id)) {
+                deck.cardIds.push(currentCard.id);
+                localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+                showToast(`Added to ${deck.name}.`);
+            } else {
+                showToast('Already in deck.');
+            }
+            renderMyDecks();
+        };
+    }
+    const exitDeckModeBtn = document.getElementById('exitDeckModeBtn');
+    if (exitDeckModeBtn) {
+        exitDeckModeBtn.onclick = () => {
+            activeDeckId = null;
+            localStorage.removeItem('closer_active_deck');
+            rebuildUnspentDeck();
+            drawNextCard();
+            renderMyDecks();
+        };
+    }
+
+    const browseBtn = document.getElementById('browseModeBtn');
+    if (browseBtn) {
+        const updateBrowseLabel = () => {
+            browseBtn.textContent = `Browse mode: ${browseMode ? 'On' : 'Off'}`;
+            browseBtn.classList.toggle('active', browseMode);
+        };
+        browseBtn.onclick = () => {
+            browseMode = !browseMode;
+            updateBrowseLabel();
+            rebuildUnspentDeck();
+            drawNextCard();
+        };
+        updateBrowseLabel();
+    }
+    document.getElementById('resetPlayHistoryBtn')?.addEventListener('click', () => {
+        playedCardIds.clear();
+        localStorage.removeItem('closer_played_cards');
+        if (window.roomRef) window.roomRef.child('playedCards').remove().catch(() => {});
+        rebuildUnspentDeck();
+        drawNextCard();
+        setPairStatus('Play history cleared.');
+    });
     document.getElementById('wildUnspokenBtn')?.addEventListener('click', () => {
         if (activeGameMode === 'compare-first') exitCompareFirstMode();
         selectModule('secrets');
@@ -2396,9 +364,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button id="joinRoomBtn" class="btn-secondary" type="button">Request to join</button>
                 </div>
                 <p id="pairStatus" class="pair-status" role="status" aria-live="polite"></p>
+                <p id="lastSynced" class="pair-status" aria-live="polite"></p>
                 <div id="pairManagementContainer"></div>
+                <div class="shared-deck-section">
+                    <h4>Shared deck</h4>
+                    <button id="addCurrentToSharedDeckBtn" class="btn-secondary" type="button">Add current card to shared deck</button>
+                    <div id="sharedDeckList" class="partner-cards-list"></div>
+                </div>
             `;
             openDrawer('Pair Partner', html);
+const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
+    if (addSharedBtn) {
+        addSharedBtn.onclick = async () => {
+            if (!currentCard || !window.roomRef) return;
+            try {
+                await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
+                showToast('Added to shared deck.');
+                renderSharedDeck();
+            } catch (e) {
+                showToast('Could not add card.');
+            }
+        };
+    }
+    renderSharedDeck();
             pairManagementContainer = document.getElementById('pairManagementContainer');
             if (window.currentRoomCode) renderPairManagement();
             const createButton = document.getElementById('createRoomBtn');
@@ -2550,6 +538,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="settings-help-copy">Deck includes ${masterDatabase.length.toLocaleString()} available cards on this device.</p>
                         <button class="settings-link" id="settingsFavoritesBtn" type="button">Saved questions</button>
                         <button class="settings-link" id="settingsJournalBtn" type="button">Date night journal</button>
+                        <button class="settings-link" id="settingsShortcutsBtn" type="button">Keyboard shortcuts</button>
+                        <button class="settings-link" id="settingsLargeTextBtn" type="button">Large text: Off</button>
+                        <button class="settings-link" id="settingsDyslexiaBtn" type="button">Dyslexia font: Off</button>
+                        <button class="settings-link" id="settingsColorBlindBtn" type="button">Color-blind safe: Off</button>
                     </div>
                 </details>
             `;
@@ -2559,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 deckOptionsElement.classList.remove('hidden');
                 deckOptionsElement.open = true;
                 content.prepend(deckOptionsElement);
+renderMyDecks();
             }
             if (partnerCardsSectionElement) {
                 content.appendChild(partnerCardsSectionElement);
@@ -2571,7 +564,44 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             document.getElementById('settingsProfileBtn').onclick = () => openHeaderPanel('userProfileBtn');
             document.getElementById('settingsPartnerBtn').onclick = () => openHeaderPanel('pairPartnerBtn');
+const applyAccessibility = () => {
+        document.body.classList.toggle('large-text', localStorage.getItem('closer_large_text') === 'true');
+        document.body.classList.toggle('dyslexia-font', localStorage.getItem('closer_dyslexia_font') === 'true');
+        document.body.classList.toggle('colorblind-safe', localStorage.getItem('closer_colorblind_safe') === 'true');
+    };
+    applyAccessibility();
+    const largeTextBtn = document.getElementById('settingsLargeTextBtn');
+    if (largeTextBtn) {
+        largeTextBtn.textContent = `Large text: ${localStorage.getItem('closer_large_text') === 'true' ? 'On' : 'Off'}`;
+        largeTextBtn.onclick = () => {
+            const next = localStorage.getItem('closer_large_text') !== 'true';
+            localStorage.setItem('closer_large_text', String(next));
+            largeTextBtn.textContent = `Large text: ${next ? 'On' : 'Off'}`;
+            applyAccessibility();
+        };
+    }
+    const dyslexiaBtn = document.getElementById('settingsDyslexiaBtn');
+    if (dyslexiaBtn) {
+        dyslexiaBtn.textContent = `Dyslexia font: ${localStorage.getItem('closer_dyslexia_font') === 'true' ? 'On' : 'Off'}`;
+        dyslexiaBtn.onclick = () => {
+            const next = localStorage.getItem('closer_dyslexia_font') !== 'true';
+            localStorage.setItem('closer_dyslexia_font', String(next));
+            dyslexiaBtn.textContent = `Dyslexia font: ${next ? 'On' : 'Off'}`;
+            applyAccessibility();
+        };
+    }
+    const colorBlindBtn = document.getElementById('settingsColorBlindBtn');
+    if (colorBlindBtn) {
+        colorBlindBtn.textContent = `Color-blind safe: ${localStorage.getItem('closer_colorblind_safe') === 'true' ? 'On' : 'Off'}`;
+        colorBlindBtn.onclick = () => {
+            const next = localStorage.getItem('closer_colorblind_safe') !== 'true';
+            localStorage.setItem('closer_colorblind_safe', String(next));
+            colorBlindBtn.textContent = `Color-blind safe: ${next ? 'On' : 'Off'}`;
+            applyAccessibility();
+        };
+    }
             document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
+document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyboard shortcuts', `<div class="drawer-item"><p><strong>Space/Enter:</strong> Next question</p><p><strong>P:</strong> Pass for now</p><p><strong>F:</strong> Favorite</p><p><strong>Esc:</strong> Quick hide Wild & Unspoken</p></div>`);
             document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
 
             const resetBtn = document.getElementById('resetAppBtn');
@@ -2611,8 +641,9 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     });
 
-    document.getElementById('confirmExplicitAccessBtn')?.addEventListener('click', () => {
+    document.getElementById('confirmExplicitAccessBtn')?.addEventListener('click', async () => {
         localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
+        await loadExplicitCards();
         document.getElementById('explicitAgeGate')?.classList.add('hidden');
         const deckCheckbox = document.querySelector('input[name="roundDeck"][value="explicit"]');
         if (deckCheckbox && !document.getElementById('roundBuilderModal')?.classList.contains('hidden')) {
@@ -2870,7 +901,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // 14. Shuffle All Button
+    // Keyboard shortcuts for quick play.
+    document.addEventListener('keydown', (event) => {
+        const tag = document.activeElement?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+        if (document.querySelector('.modal-overlay:not(.hidden), .drawer:not(.hidden)')) return;
+        if (event.code === 'Space' || event.code === 'Enter') {
+            event.preventDefault();
+            advanceCard(false);
+        } else if (event.key.toLowerCase() === 'p') {
+            advanceCard(true);
+        } else if (event.key.toLowerCase() === 'f') {
+            document.getElementById('favCardBtn')?.click();
+        }
+    });
     const shuffleBtn = document.getElementById('shuffleAllBtn');
     if (shuffleBtn) {
         shuffleBtn.onclick = (e) => {
@@ -2924,33 +968,184 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleShareKeyBtn.onclick = () => {
             const isVisible = privateShareKeyInput.type === 'text';
             privateShareKeyInput.type = isVisible ? 'password' : 'text';
+    if (!localStorage.getItem('closer_onboarded')) {
+        localStorage.setItem('closer_onboarded', 'true');
+        setTimeout(() => {
+            openDrawer('Welcome to Closer', `<div class="drawer-item"><p><strong>Create a round</strong> to choose decks, topics, and intensity.</p><p><strong>Turn-taking</strong> shows whose turn it is; pass anytime if it is your turn.</p><p><strong>Wild & Unspoken</strong> is a private space for secrets and fantasies.</p><p><strong>Settings</strong> holds filters, players, and privacy options.</p></div>`);
+        }, 600);
+    }
             toggleShareKeyBtn.textContent = isVisible ? 'Show key' : 'Hide key';
             toggleShareKeyBtn.setAttribute('aria-pressed', String(!isVisible));
         };
     }
 
+    // QR code for key sharing.
+    const showQrKeyBtn = document.getElementById('showQrKeyBtn');
+    const qrContainer = document.getElementById('qrKeyContainer');
+    if (showQrKeyBtn && qrContainer) {
+        showQrKeyBtn.onclick = () => {
+            if (!privateShareKey) {
+                setPrivateShareStatus('Generate or enter a key first.');
+                return;
+            }
+            qrContainer.classList.toggle('hidden');
+            if (!qrContainer.classList.contains('hidden')) {
+                qrContainer.replaceChildren();
+                if (typeof QRCode !== 'undefined') {
+                    new QRCode(qrContainer, { text: privateShareKey, width: 160, height: 160 });
+                } else {
+                    qrContainer.textContent = privateShareKey;
+                }
+            }
+        };
+    }
+
+    // Key fingerprint.
+    const updateFingerprint = async () => {
+        const el = document.getElementById('keyFingerprint');
+        if (!el) return;
+        if (!privateShareKey) { el.textContent = ''; return; }
+        try {
+            const data = new TextEncoder().encode(privateShareKey);
+            const hash = await crypto.subtle.digest('SHA-256', data);
+            const hex = [...new Uint8Array(hash)].map(b => b.toString(16).padStart(2, '0')).join('');
+            el.textContent = `Key fingerprint: ${hex.slice(0, 4).toUpperCase()} ${hex.slice(4, 8).toUpperCase()} ${hex.slice(8, 12).toUpperCase()} ${hex.slice(12, 16).toUpperCase()}`;
+        } catch (e) {
+            el.textContent = '';
+        }
+    };
+    const origApply = applyPrivateShareKey;
+    window.applyPrivateShareKey = async (key) => {
+        await origApply(key);
+        updateFingerprint();
+    };
+    updateFingerprint();
+
+    // Remember key on this device.
+    const rememberKey = document.getElementById('rememberKey');
+    if (rememberKey) {
+        rememberKey.checked = localStorage.getItem('closer_remember_key') === 'true';
+        rememberKey.onchange = () => {
+            localStorage.setItem('closer_remember_key', String(rememberKey.checked));
+            if (rememberKey.checked && privateShareKey) {
+                localStorage.setItem('closer_private_share_key_persisted', privateShareKey);
+            } else {
+                localStorage.removeItem('closer_private_share_key_persisted');
+            }
+        };
+    }
+    if (localStorage.getItem('closer_remember_key') === 'true') {
+        const saved = localStorage.getItem('closer_private_share_key_persisted');
+        if (saved && !privateShareKey) {
+            privateShareKeyInput.value = saved;
+            applyPrivateShareKey(saved);
+        }
+    }
+
+
     const privateRevealForm = document.getElementById('privateRevealForm');
     if (privateRevealForm) {
-        privateRevealForm.onsubmit = event => {
-            event.preventDefault();
+        const saveEntry = (draft = false) => {
             const textInput = document.getElementById('privateRevealText');
             const text = textInput.value.trim();
-            if (!text) {
+            if (!draft && !text) {
                 document.getElementById('privateRevealStatus').textContent = 'Write an entry before saving.';
                 return;
             }
-            privateRevealEntries.unshift({
+            const consent = document.getElementById('privateRevealConsent');
+            if (!draft && consent && !consent.checked) {
+                document.getElementById('privateRevealStatus').textContent = 'Please confirm consent before saving.';
+                return;
+            }
+            const tags = (document.getElementById('privateRevealTags')?.value || '')
+                .split(',').map(t => t.trim()).filter(Boolean);
+            const expiryDays = Number(document.getElementById('privateRevealExpiry')?.value || 0);
+            const expiresAt = expiryDays > 0
+                ? new Date(Date.now() + expiryDays * 86400000).toISOString()
+                : null;
+            const entry = {
                 id: `reveal-${Date.now()}`,
                 type: document.getElementById('privateRevealType').value,
                 text,
+                tags,
+                draft: Boolean(draft),
+                expiresAt,
+                revealed: false,
                 createdAt: new Date().toISOString()
-            });
+            };
+            privateRevealEntries.unshift(entry);
             localStorage.setItem('closer_private_reveals', JSON.stringify(privateRevealEntries));
-            textInput.value = '';
-            document.getElementById('privateRevealStatus').textContent = 'Saved privately on this device. Reveal it whenever you are ready.';
+            if (!draft) textInput.value = '';
+            document.getElementById('privateRevealTags').value = '';
+            if (consent) consent.checked = false;
+            document.getElementById('privateRevealStatus').textContent = draft
+                ? 'Draft saved on this device.'
+                : 'Saved privately on this device. Reveal it whenever you are ready.';
             renderWildRevealEntries();
         };
+        privateRevealForm.onsubmit = event => {
+            event.preventDefault();
+            saveEntry(false);
+        };
+        document.getElementById('saveDraftBtn')?.addEventListener('click', () => saveEntry(true));
     }
+
+    // Search + quick hide.
+    // Backup export/import.
+    const exportBtn = document.getElementById('exportBackupBtn');
+    if (exportBtn) {
+        exportBtn.onclick = () => {
+            const backup = { version: 1, exportedAt: new Date().toISOString(), entries: privateRevealEntries };
+            const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'closer-wild-unspoken-backup.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Backup downloaded.');
+        };
+    }
+    const importBtn = document.getElementById('importBackupBtn');
+    const importInput = document.getElementById('importBackupInput');
+    if (importBtn && importInput) {
+        importBtn.onclick = () => importInput.click();
+        importInput.onchange = async () => {
+            const file = importInput.files?.[0];
+            if (!file) return;
+            try {
+                const text = await file.text();
+                const data = JSON.parse(text);
+                if (Array.isArray(data.entries)) {
+                    privateRevealEntries = data.entries;
+                    localStorage.setItem('closer_private_reveals', JSON.stringify(privateRevealEntries));
+                    renderWildRevealEntries();
+                    showToast('Backup imported.');
+                }
+            } catch (e) {
+                showToast('Import failed.');
+            }
+            importInput.value = '';
+        };
+    }
+
+
+    document.getElementById('privateRevealSearch')?.addEventListener('input', renderWildRevealEntries);
+    document.getElementById('privateRevealTagFilter')?.addEventListener('change', renderWildRevealEntries);
+    const quickHideBtn = document.getElementById('quickHideBtn');
+    if (quickHideBtn) {
+        quickHideBtn.onclick = () => {
+            document.getElementById('wildUnspokenPanel')?.classList.add('hidden');
+            showToast('Wild & Unspoken hidden.');
+        };
+    }
+    // Blur-on-blur deterrent.
+    document.addEventListener('visibilitychange', () => {
+        const panel = document.getElementById('wildUnspokenPanel');
+        if (!panel || panel.classList.contains('hidden')) return;
+        if (document.hidden) panel.classList.add('blurred');
+        else panel.classList.remove('blurred');
+    });
 
     updateSectionView();
     updatePrivateShareUi();
