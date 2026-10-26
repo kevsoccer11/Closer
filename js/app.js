@@ -1,5 +1,15 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('visibilitychange', () => {
+        document.body.classList.toggle('app-blurred', document.hidden);
+    });
+    const cardContainer = document.getElementById('cardContainer');
+    if (cardContainer) {
+        cardContainer.addEventListener('click', () => {
+            if (tapToAdvance) advanceCard(false);
+        });
+        cardContainer.style.cursor = tapToAdvance ? 'pointer' : 'default';
+    }
     // Apply saved theme.
     if (localStorage.getItem('closer_theme') === 'light') document.body.classList.add('light-theme');
     const offlineBanner = document.getElementById('offlineBanner');
@@ -9,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     window.addEventListener('online', updateOffline);
     window.addEventListener('offline', updateOffline);
-    updateOffline();
     deckOptionsElement = document.getElementById('deckOptions');
     partnerCardsSectionElement = document.getElementById('partnerCardsSection');
     partnerCardsListElement = document.getElementById('partnerCardsList');
@@ -370,51 +379,92 @@ document.addEventListener('DOMContentLoaded', () => {
             if (menu) { menu.remove(); return; }
             menu = document.createElement('div');
             menu.id = 'saveMenu';
-            menu.style.cssText = 'position:fixed;z-index:9999;background:rgba(22,22,29,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:6px;min-width:180px;box-shadow:0 8px 24px rgba(0,0,0,0.4);';
+            menu.style.cssText = 'position:fixed;z-index:9999;background:rgba(22,22,29,0.98);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:220px;box-shadow:0 8px 24px rgba(0,0,0,0.4);';
             const close = () => menu.remove();
-            const makeBtn = (label, action) => {
-                const b = document.createElement('button');
-                b.type = 'button';
-                b.textContent = label;
-                b.style.cssText = 'background:transparent;border:none;color:#f8fafc;padding:8px 10px;text-align:left;border-radius:8px;cursor:pointer;';
-                b.onmouseenter = () => b.style.background = 'rgba(255,255,255,0.08)';
-                b.onmouseleave = () => b.style.background = 'transparent';
-                b.onclick = async (ev) => { ev.stopPropagation(); await action(); close(); };
-                return b;
+            const title = document.createElement('strong');
+            title.textContent = 'Save to…';
+            title.style.cssText = 'font-size:0.85rem;color:#f8fafc;';
+            menu.appendChild(title);
+            const makeCheck = (label, checked = false) => {
+                const wrap = document.createElement('label');
+                wrap.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#f8fafc;cursor:pointer;';
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = checked;
+                cb.style.cssText = 'width:16px;height:16px;accent-color:#f43f5e;';
+                wrap.appendChild(cb);
+                wrap.appendChild(document.createTextNode(label));
+                return { wrap, cb };
             };
-            const isFav = favoriteIds.includes(currentCard.id);
-            menu.appendChild(makeBtn(isFav ? 'Remove from favorites' : 'Save to favorites', async () => {
-                const idx = favoriteIds.indexOf(currentCard.id);
-                if (idx > -1) favoriteIds.splice(idx, 1);
-                else favoriteIds.push(currentCard.id);
-                localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
-                favCardBtn.classList.toggle('active', favoriteIds.includes(currentCard.id));
-                favCardBtn.setAttribute('aria-pressed', String(favoriteIds.includes(currentCard.id)));
-            }));
+            const favCheck = makeCheck('Favorites', favoriteIds.includes(currentCard.id));
+            menu.appendChild(favCheck.wrap);
+            const deckChecks = [];
+            if (customDecks.length === 0) {
+                const note = document.createElement('p');
+                note.textContent = 'No custom decks yet (create in Profile).';
+                note.style.cssText = 'font-size:0.75rem;color:#94a3b8;margin:0;';
+                menu.appendChild(note);
+            } else {
+                customDecks.forEach(deck => {
+                    const dc = makeCheck(deck.name, deck.cardIds.includes(currentCard.id));
+                    deckChecks.push({ deck, cb: dc.cb });
+                    menu.appendChild(dc.wrap);
+                });
+            }
+            let sharedCheck = null;
             if (window.roomRef) {
-                menu.appendChild(makeBtn('Add to shared deck', async () => {
-                    try {
-                        await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
-                        showToast('Added to shared deck.');
-                        renderSharedDeck();
-                    } catch (e) { showToast('Could not add card.'); }
-                }));
-                menu.appendChild(makeBtn('Save to both', async () => {
+                sharedCheck = makeCheck('Shared deck', false);
+                menu.appendChild(sharedCheck.wrap);
+            }
+            const saveBtn = document.createElement('button');
+            saveBtn.type = 'button';
+            saveBtn.textContent = 'Save';
+            saveBtn.style.cssText = 'background:#f43f5e;border:none;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;margin-top:4px;';
+            saveBtn.onclick = async (ev) => {
+                ev.stopPropagation();
+                // Favorites
+                if (favCheck.cb.checked) {
                     if (!favoriteIds.includes(currentCard.id)) {
                         favoriteIds.push(currentCard.id);
                         localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
                         favCardBtn.classList.add('active');
                         favCardBtn.setAttribute('aria-pressed', 'true');
                     }
+                } else {
+                    const idx = favoriteIds.indexOf(currentCard.id);
+                    if (idx > -1) {
+                        favoriteIds.splice(idx, 1);
+                        localStorage.setItem('closer_favs', JSON.stringify(favoriteIds));
+                        favCardBtn.classList.remove('active');
+                        favCardBtn.setAttribute('aria-pressed', 'false');
+                    }
+                }
+                // Custom decks
+                deckChecks.forEach(({ deck, cb }) => {
+                    if (cb.checked) {
+                        if (!deck.cardIds.includes(currentCard.id)) {
+                            deck.cardIds.push(currentCard.id);
+                        }
+                    } else {
+                        const idx = deck.cardIds.indexOf(currentCard.id);
+                        if (idx > -1) deck.cardIds.splice(idx, 1);
+                    }
+                });
+                localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+                // Shared deck
+                if (sharedCheck && sharedCheck.cb.checked && window.roomRef) {
                     try {
                         await window.roomRef.child(`sharedDeck/${currentCard.id}`).set({ card: currentCard, addedBy: window.firebase?.auth().currentUser?.uid });
-                        showToast('Saved to favorites and shared deck.');
+                        showToast('Saved.');
                         renderSharedDeck();
-                    } catch (e) { showToast('Saved to favorites; shared deck failed.'); }
-                }));
-            }
+                    } catch (e) { showToast('Shared deck failed.'); }
+                }
+                showToast('Saved.');
+                close();
+            };
+            menu.appendChild(saveBtn);
             const rect = favCardBtn.getBoundingClientRect();
-            const menuWidth = 200;
+            const menuWidth = 240;
             const left = Math.min(rect.left, window.innerWidth - menuWidth - 8);
             menu.style.top = `${rect.bottom + 6}px`;
             menu.style.left = `${Math.max(8, left)}px`;
@@ -648,11 +698,23 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                     savePlayerIdentity(1, identityForm.querySelector('#playerTwoName').value, identityForm.querySelector('#playerTwoIcon').value);
                 }
                 if (status) status.textContent = 'Identifiers saved.';
+                setTimeout(() => closeDrawer(), 600);
             };
             content.appendChild(identityForm);
         };
     }
 
+const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
+    if (tapBtn) {
+        tapBtn.textContent = `Tap card to advance: ${tapToAdvance ? 'On' : 'Off'}`;
+        tapBtn.onclick = () => {
+            tapToAdvance = !tapToAdvance;
+            localStorage.setItem('closer_tap_to_advance', String(tapToAdvance));
+            tapBtn.textContent = `Tap card to advance: ${tapToAdvance ? 'On' : 'Off'}`;
+            const cc = document.getElementById('cardContainer');
+            if (cc) cc.style.cursor = tapToAdvance ? 'pointer' : 'default';
+        };
+    }
     // 5. Journal Drawer Button
     const journalBtn = document.getElementById('journalDrawerBtn');
     if (journalBtn) {
@@ -692,6 +754,28 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                         <button id="resetAppBtn" class="btn-secondary reset-local-data-btn" type="button">Clear local app data</button>
                     </div>
                 </details>
+document.querySelectorAll('.pillar-btn').forEach(btn => {
+        btn.onclick = (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.pillar-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            activePillar = btn.dataset.pillar;
+            rebuildUnspentDeck();
+            drawNextCard();
+        };
+    });
+                <details class="settings-tree-group" open>
+                    <summary>Appearance & accessibility</summary>
+                    <div class="settings-tree-content">
+                        <label class="toggle-switch">Theme (light) <input type="checkbox" id="settingsThemeToggle"></label>
+                        <label class="toggle-switch">Large text <input type="checkbox" id="settingsLargeTextToggle"></label>
+                        <label class="toggle-switch">Dyslexia font <input type="checkbox" id="settingsDyslexiaToggle"></label>
+                        <label class="toggle-switch">Color-blind safe <input type="checkbox" id="settingsColorBlindToggle"></label>
+                        <label class="toggle-switch">High contrast <input type="checkbox" id="settingsHighContrastToggle"></label>
+                        <label class="toggle-switch">Tap card to advance <input type="checkbox" id="settingsTapToAdvanceToggle"></label>
+                    </div>
+                </details>
                 <details class="settings-tree-group">
                     <summary>Help &amp; about</summary>
                     <div class="settings-tree-content">
@@ -700,11 +784,6 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                         <button class="settings-link" id="settingsFavoritesBtn" type="button">Saved questions</button>
                         <button class="settings-link" id="settingsJournalBtn" type="button">Date night journal</button>
                         <button class="settings-link" id="settingsShortcutsBtn" type="button">Keyboard shortcuts</button>
-                        <button class="settings-link" id="settingsLargeTextBtn" type="button">Large text: Off</button>
-                        <button class="settings-link" id="settingsDyslexiaBtn" type="button">Dyslexia font: Off</button>
-                        <button class="settings-link" id="settingsColorBlindBtn" type="button">Color-blind safe: Off</button>
-                        <button class="settings-link" id="settingsHighContrastBtn" type="button">High contrast: Off</button>
-                        <button class="settings-link" id="settingsThemeBtn" type="button">Theme: Dark</button>
                     </div>
                 </details>
             `;
@@ -734,61 +813,45 @@ const applyAccessibility = () => {
         document.body.classList.toggle('high-contrast', localStorage.getItem('closer_high_contrast') === 'true');
     };
     applyAccessibility();
-    const largeTextBtn = document.getElementById('settingsLargeTextBtn');
-    if (largeTextBtn) {
-        largeTextBtn.textContent = `Large text: ${localStorage.getItem('closer_large_text') === 'true' ? 'On' : 'Off'}`;
-        largeTextBtn.onclick = () => {
-            const next = localStorage.getItem('closer_large_text') !== 'true';
-            localStorage.setItem('closer_large_text', String(next));
-            largeTextBtn.textContent = `Large text: ${next ? 'On' : 'Off'}`;
+    const applyTheme = () => {
+        const light = localStorage.getItem('closer_theme') === 'light';
+        document.body.classList.toggle('light-theme', light);
+    };
+    applyTheme();
+    const bindToggle = (id, key, onChange) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.checked = localStorage.getItem(key) === 'true';
+        el.onchange = () => {
+            localStorage.setItem(key, String(el.checked));
+            if (onChange) onChange(el.checked);
             applyAccessibility();
+            applyTheme();
         };
-    }
-    const dyslexiaBtn = document.getElementById('settingsDyslexiaBtn');
-    if (dyslexiaBtn) {
-        dyslexiaBtn.textContent = `Dyslexia font: ${localStorage.getItem('closer_dyslexia_font') === 'true' ? 'On' : 'Off'}`;
-        dyslexiaBtn.onclick = () => {
-            const next = localStorage.getItem('closer_dyslexia_font') !== 'true';
-            localStorage.setItem('closer_dyslexia_font', String(next));
-            dyslexiaBtn.textContent = `Dyslexia font: ${next ? 'On' : 'Off'}`;
-            applyAccessibility();
-        };
-    }
-    const colorBlindBtn = document.getElementById('settingsColorBlindBtn');
-    if (colorBlindBtn) {
-        colorBlindBtn.textContent = `Color-blind safe: ${localStorage.getItem('closer_colorblind_safe') === 'true' ? 'On' : 'Off'}`;
-        colorBlindBtn.onclick = () => {
-            const next = localStorage.getItem('closer_colorblind_safe') !== 'true';
-            localStorage.setItem('closer_colorblind_safe', String(next));
-            colorBlindBtn.textContent = `Color-blind safe: ${next ? 'On' : 'Off'}`;
-            applyAccessibility();
-        };
-const highContrastBtn = document.getElementById('settingsHighContrastBtn');
-    if (highContrastBtn) {
-        highContrastBtn.textContent = `High contrast: ${localStorage.getItem('closer_high_contrast') === 'true' ? 'On' : 'Off'}`;
-        highContrastBtn.onclick = () => {
-            const next = localStorage.getItem('closer_high_contrast') !== 'true';
-            localStorage.setItem('closer_high_contrast', String(next));
-            highContrastBtn.textContent = `High contrast: ${next ? 'On' : 'Off'}`;
-const themeBtn = document.getElementById('settingsThemeBtn');
-    if (themeBtn) {
-        const applyTheme = () => {
-            const light = localStorage.getItem('closer_theme') === 'light';
-            document.body.classList.toggle('light-theme', light);
-            themeBtn.textContent = `Theme: ${light ? 'Light' : 'Dark'}`;
-        };
-        applyTheme();
-        themeBtn.onclick = () => {
-            const next = localStorage.getItem('closer_theme') !== 'light';
-            localStorage.setItem('closer_theme', next ? 'light' : 'dark');
+    };
+    bindToggle('settingsLargeTextToggle', 'closer_large_text');
+    bindToggle('settingsDyslexiaToggle', 'closer_dyslexia_font');
+    bindToggle('settingsColorBlindToggle', 'closer_colorblind_safe');
+    bindToggle('settingsHighContrastToggle', 'closer_high_contrast');
+    const themeToggle = document.getElementById('settingsThemeToggle');
+    if (themeToggle) {
+        themeToggle.checked = localStorage.getItem('closer_theme') === 'light';
+        themeToggle.onchange = () => {
+            localStorage.setItem('closer_theme', themeToggle.checked ? 'light' : 'dark');
             applyTheme();
         };
     }
-            applyAccessibility();
+    const tapToggle = document.getElementById('settingsTapToAdvanceToggle');
+    if (tapToggle) {
+        tapToggle.checked = localStorage.getItem('closer_tap_to_advance') === 'true';
+        tapToggle.onchange = () => {
+            tapToAdvance = tapToggle.checked;
+            localStorage.setItem('closer_tap_to_advance', String(tapToAdvance));
+            const cc = document.getElementById('cardContainer');
+            if (cc) cc.style.cursor = tapToAdvance ? 'pointer' : 'default';
         };
     }
-    }
-            document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
+document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
 document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyboard shortcuts', `<div class="drawer-item"><p><strong>Space/Enter:</strong> Next question</p><p><strong>P:</strong> Pass for now</p><p><strong>F:</strong> Favorite</p><p><strong>Esc:</strong> Quick hide Wild & Unspoken</p></div>`);
             document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
 

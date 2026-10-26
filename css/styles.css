@@ -257,9 +257,15 @@ header {
     padding: 8px 10px;
     border: 1px solid var(--card-border);
     border-radius: 8px;
-    background: #17171e;
+    background: var(--btn-bg);
     color: var(--text-main);
     font: inherit;
+}
+
+.player-identity-form input:focus,
+.player-identity-form select:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
 }
 
 .player-identity-form input:disabled,
@@ -274,8 +280,8 @@ header {
     border: none;
     color: var(--text-muted);
     padding: 10px 4px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     border-radius: 8px;
     cursor: pointer;
     display: flex;
@@ -548,7 +554,7 @@ main {
     border: 1px solid var(--card-border);
     border-radius: 20px;
     backdrop-filter: blur(12px);
-    padding: 20px;
+    padding: 18px;
     min-height: 300px;
     display: flex;
     flex-direction: column;
@@ -556,7 +562,7 @@ main {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     user-select: none;
     transition: border-color 0.18s ease;
-    width: min(100% - 20px, 560px);
+    width: min(100% - 12px, 560px);
     margin: 0 auto;
 }
 
@@ -566,9 +572,10 @@ main {
 
 .card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
+    position: relative;
 }
 
 .card-badge {
@@ -598,20 +605,25 @@ main {
     color: #facc15;
     background: rgba(250, 204, 21, 0.15);
     border-radius: 8px;
-    padding: 4px 6px;
+    padding: 2px 4px;
 }
 
 #favCardBtn i,
 #favCardBtn svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
 }
 
 .card-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
+    flex-shrink: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #shareDeckBtn i,
@@ -680,7 +692,7 @@ main {
 
 .card-prompt {
     max-width: 34ch;
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-size: clamp(1.35rem, 4.5vw, 1.85rem);
     line-height: 1.45;
     font-weight: 600;
     color: var(--text-main);
@@ -826,15 +838,17 @@ main {
 }
 
 .turn-indicator {
-    margin-left: auto;
+    margin: 0 auto;
     padding: 8px 12px;
     border: 1px solid var(--primary-border);
     border-radius: 999px;
     background: var(--primary-soft);
     color: var(--primary);
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     white-space: nowrap;
+    max-width: 70%;
+    text-align: center;
 }
 
 .session-controls {
@@ -1123,7 +1137,7 @@ main {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
@@ -1133,7 +1147,7 @@ main {
 }
 
 .modal-card {
-    background: #121218;
+    background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: 20px;
     padding: 24px;
@@ -1144,6 +1158,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    color: var(--text-main);
 }
 
 .modal-form {
@@ -1447,14 +1462,15 @@ main {
     width: 100%;
     max-width: 480px;
     height: 75vh;
-    background: #121218;
+    background: var(--card-bg);
     border-top: 1px solid var(--card-border);
     border-radius: 24px 24px 0 0;
     z-index: 1001;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
+    color: var(--text-main);
 }
 
 .drawer-header {
@@ -2027,14 +2043,15 @@ body.high-contrast {
     --btn-hover: #444444;
 }
 
-body.light-theme {
+body.light-theme,
+body.light-theme[data-pack] {
     --bg-dark: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-border: rgba(0, 0, 0, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --card-border: rgba(0, 0, 0, 0.1);
     --text-main: #0f172a;
-    --text-muted: #475569;
-    --btn-bg: rgba(0, 0, 0, 0.04);
-    --btn-hover: rgba(0, 0, 0, 0.08);
+    --text-muted: #334155;
+    --btn-bg: rgba(0, 0, 0, 0.05);
+    --btn-hover: rgba(0, 0, 0, 0.1);
 }
 
 body.light-theme .card-container {
@@ -2060,4 +2077,112 @@ body.light-theme .card-container {
 
 .drawer-action-btn:hover {
     background: var(--btn-hover);
+}
+
+@media (max-width: 480px) {
+    .response-section button {
+        font-size: 0.72rem;
+        padding: 8px 6px;
+    }
+    .card-action-btn {
+        padding: 4px;
+    }
+    .community-vote-btn,
+    .report-card-btn {
+        display: none;
+    }
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.toggle-switch input {
+    appearance: none;
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex: 0 0 auto;
+}
+
+.toggle-switch input:checked {
+    background: #22c55e;
+}
+
+.toggle-switch input::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.2s ease;
+}
+
+.toggle-switch input:checked::after {
+    transform: translateX(20px);
+}
+
+.share-deck-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--primary-border);
+    border-radius: 12px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.share-deck-btn:hover:not(:disabled) {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.pillar-bar {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding: 4px 0;
+}
+
+.pillar-btn {
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-muted);
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.pillar-btn.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-color: var(--primary-border);
+}
+
+@media print {
+    body { display: none !important; }
+}
+
+body.app-blurred {
+    filter: blur(18px);
+    pointer-events: none;
+    user-select: none;
 }

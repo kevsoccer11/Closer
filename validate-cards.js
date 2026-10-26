@@ -9,6 +9,7 @@ const warnings = [];
 const VALID_MODULES = new Set(['sexuality', 'life', 'explicit']);
 const VALID_CONTEXT = new Set(['story', 'action', 'consent', 'poll', 'alignment', 'discovery', 'humor', 'reflection', 'vulnerability', 'preference', 'game', 'flirting', 'intimacy', 'growth', 'trial', 'connection', 'trust', 'fantasy', 'honesty', 'sensory', 'nostalgia', 'thrill', 'spontaneity', 'anticipation', 'playful', 'couple']);
 const VALID_STYLES = new Set(['question', 'activity']);
+const VALID_PILLARS = new Set(['spark', 'heat', 'closer', 'afterhours']);
 
 if (!data || !Array.isArray(data.cards)) {
   errors.push('Top-level "cards" must be an array.');
@@ -22,6 +23,7 @@ if (!data || !Array.isArray(data.cards)) {
       if (card[field] === undefined || card[field] === null) errors.push(`${loc}: missing ${field}`);
     }
     if (typeof card.id !== 'string' || !card.id) errors.push(`${loc}: id must be a non-empty string`);
+    if (card.pillar !== undefined && !VALID_PILLARS.has(card.pillar)) errors.push(`${loc}: invalid pillar ${card.pillar}`);
     else if (ids.has(card.id)) errors.push(`${loc}: duplicate id ${card.id}`);
     else ids.add(card.id);
     if (!VALID_MODULES.has(card.module)) errors.push(`${loc}: invalid module ${card.module}`);

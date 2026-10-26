@@ -75,12 +75,8 @@
     <main>
         <article class="card-container" id="cardContainer" aria-label="Question card">
             <div class="card-header">
-                <span class="card-badge" id="cardCategory">Loading Deck...</span>
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
-                <span class="card-pace" id="cardPace" aria-live="polite"></span>
                 <div class="card-actions">
-                    <button class="card-action-btn community-vote-btn hidden" id="communityVoteBtn" type="button" aria-label="Upvote community question" aria-pressed="false"><i data-lucide="thumbs-up" aria-hidden="true"></i><span id="communityVoteCount">0</span></button>
-                    <button class="card-action-btn report-card-btn hidden" id="reportCardBtn" type="button" aria-label="Report community question" title="Report community question"><i data-lucide="flag" aria-hidden="true"></i></button>
                     <button class="card-action-btn" id="favCardBtn" type="button" title="Save question" aria-label="Save question" aria-pressed="false"><i
                             data-lucide="bookmark" aria-hidden="true"></i></button>
                 </div>
@@ -193,7 +189,7 @@
     <div class="response-section">
         <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
         <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
-        <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next question</span></button>
+        <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next</span></button>
         <!-- warm-up removed -->
     </div>
 
@@ -212,23 +208,21 @@
                     <optgroup label="All">
                         <option value="">Custom</option>
                     </optgroup>
-                    <optgroup label="Flame & Passion">
+                    <optgroup label="Spark">
                         <option value="playful">Playful</option>
                     </optgroup>
-                    <optgroup label="Deep Connection">
-                        <option value="deep-talk">Deep talk</option>
+                    <optgroup label="Closer">
                         <option value="first-date">First date</option>
+                        <option value="deep-talk">Deep talk</option>
+                        <option value="reconnection">Reconnection</option>
                         <option value="long-distance">Long-distance</option>
                         <option value="new-parents">New parents</option>
-                        <option value="reconnection">Reconnection</option>
-                    </optgroup>
-                    <optgroup label="Explicit">
-                        <option value="aftercare">Aftercare</option>
-                        <option value="kinky-explorative">Kinky & explorative</option>
-                    </optgroup>
-                    <optgroup label="Mixed">
                         <option value="after-fight">After a fight</option>
                         <option value="travel-night">Travel night</option>
+                    </optgroup>
+                    <optgroup label="After Hours">
+                        <option value="kinky-explorative">Kinky & explorative</option>
+                        <option value="aftercare">Aftercare</option>
                     </optgroup>
                 </select>
                 <button id="quickGameBtn" type="button" class="round-pack-btn">Quick game</button>
@@ -236,10 +230,11 @@
             <div class="round-builder-content">
                 <p class="round-builder-hint">Start light begins with mild cards. When you’re ready, move deeper at your own pace; the round also steps up after you’ve used the current level.</p>
                 <fieldset class="round-builder-group">
-                    <legend>Choose your decks</legend>
-                    <label><input type="checkbox" name="roundDeck" value="sexuality" checked> Flame &amp; Passion</label>
-                    <label><input type="checkbox" name="roundDeck" value="life"> Deep Connection</label>
-                    <label><input type="checkbox" name="roundDeck" value="explicit"> Explicit · 18+</label>
+                    <legend>Choose your pillars</legend>
+                    <label><input type="checkbox" name="roundPillar" value="spark" checked> Spark · Flirting & play</label>
+                    <label><input type="checkbox" name="roundPillar" value="heat"> Heat · Sensuality & desire</label>
+                    <label><input type="checkbox" name="roundPillar" value="closer"> Closer · Emotional connection</label>
+                    <label><input type="checkbox" name="roundPillar" value="afterhours"> After Hours · Sex & exploration</label>
                 </fieldset>
                 <fieldset class="round-builder-group">
                     <legend>Choose topics</legend>
@@ -420,6 +415,13 @@
                                 <button class="mood-btn" data-mood="deep" type="button" aria-pressed="false">Deep</button>
                                 <button class="mood-btn" data-mood="romantic" type="button" aria-pressed="false">Romantic</button>
                                 <button class="mood-btn" data-mood="spicy" type="button" aria-pressed="false">Spicy</button>
+                            </div>
+                            <div class="pillar-bar" id="pillarBar">
+                                <button class="pillar-btn active" data-pillar="all" type="button" aria-pressed="true">All pillars</button>
+                                <button class="pillar-btn" data-pillar="spark" type="button" aria-pressed="false">Spark</button>
+                                <button class="pillar-btn" data-pillar="heat" type="button" aria-pressed="false">Heat</button>
+                                <button class="pillar-btn" data-pillar="closer" type="button" aria-pressed="false">Closer</button>
+                                <button class="pillar-btn" data-pillar="afterhours" type="button" aria-pressed="false">After Hours</button>
                             </div>
                             <div class="action-row">
                                 <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle this round</button>
