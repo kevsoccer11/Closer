@@ -41643,26 +41643,6 @@
       "pillar": "heat"
     },
     {
-      "id": "bulk2-d18f480ebf",
-      "module": "sexuality",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "What kind of touch makes you feel most loved?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk2-9c1c60d0e4",
-      "module": "sexuality",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "What is one affectionate habit you want more of?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "bulk2-8521093f62",
       "module": "sexuality",
       "category": "Affection & Touch",
@@ -41678,26 +41658,6 @@
       "category": "Affection & Touch",
       "intensity": 1,
       "prompt": "What is a small touch that means a lot to you?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk2-9c804ba402",
-      "module": "sexuality",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What makes you feel most confident in our relationship?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk2-0b66c3d898",
-      "module": "sexuality",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What is one way we can build intimacy without pressure?",
       "contextType": "intimacy",
       "promptStyle": "question",
       "pillar": "heat"
@@ -41721,16 +41681,6 @@
       "contextType": "intimacy",
       "promptStyle": "question",
       "pillar": "heat"
-    },
-    {
-      "id": "bulk2-0fb9bcf799",
-      "module": "sexuality",
-      "category": "Fantasies & Desires",
-      "intensity": 3,
-      "prompt": "What is a fantasy you have about us?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
     },
     {
       "id": "bulk2-51bec1febe",
@@ -41803,26 +41753,6 @@
       "pillar": "heat"
     },
     {
-      "id": "bulk2-78e5057b04",
-      "module": "sexuality",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What is one thing you are curious to try together?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk2-1ccad80bc3",
-      "module": "sexuality",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What sensation do you find most relaxing?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "bulk2-eb108a88f2",
       "module": "sexuality",
       "category": "Sensual Curiosity",
@@ -41858,16 +41788,6 @@
       "category": "Getting to Know You",
       "intensity": 1,
       "prompt": "What is your favorite way to spend a lazy Sunday?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-281d86998c",
-      "module": "life",
-      "category": "Getting to Know You",
-      "intensity": 1,
-      "prompt": "What is something you are curious about lately?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -41963,26 +41883,6 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-5ae3cf26a1",
-      "module": "life",
-      "category": "Communication & Boundaries",
-      "intensity": 1,
-      "prompt": "What is one thing I can do to make you feel heard?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-64d7527d05",
-      "module": "life",
-      "category": "Communication & Boundaries",
-      "intensity": 1,
-      "prompt": "How do you prefer to bring up something that bothers you?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-f46793516a",
       "module": "life",
       "category": "Communication & Boundaries",
@@ -41999,26 +41899,6 @@
       "intensity": 1,
       "prompt": "What is a boundary you would like us to revisit?",
       "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-c6ae3a0c62",
-      "module": "life",
-      "category": "Trust & Emotional Safety",
-      "intensity": 1,
-      "prompt": "What helps you feel safe being vulnerable with me?",
-      "contextType": "vulnerability",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-1ffce3c88e",
-      "module": "life",
-      "category": "Trust & Emotional Safety",
-      "intensity": 1,
-      "prompt": "What is one thing that builds trust for you?",
-      "contextType": "vulnerability",
       "promptStyle": "question",
       "pillar": "closer"
     },
@@ -42048,16 +41928,6 @@
       "category": "Conflict & Repair",
       "intensity": 1,
       "prompt": "What is one thing that helps us cool down?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-9b79f9a29b",
-      "module": "life",
-      "category": "Conflict & Repair",
-      "intensity": 1,
-      "prompt": "How do you prefer to apologize?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42123,16 +41993,6 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-66c4f05964",
-      "module": "life",
-      "category": "Adventure & Travel",
-      "intensity": 1,
-      "prompt": "What is a trip you would love to take together?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-69148cc1cd",
       "module": "life",
       "category": "Adventure & Travel",
@@ -42183,31 +42043,11 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-134b284f62",
-      "module": "life",
-      "category": "Home & Daily Life",
-      "intensity": 1,
-      "prompt": "What is your favorite part of our daily routine?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-646314b78d",
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
       "prompt": "What is a chore you would love to never do again?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-56545a335b",
-      "module": "life",
-      "category": "Friends & Social Life",
-      "intensity": 1,
-      "prompt": "What is one way we can nurture our friendships?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42243,26 +42083,6 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-ee274b514b",
-      "module": "life",
-      "category": "Family & Community",
-      "intensity": 1,
-      "prompt": "What family tradition do you want to keep?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-b3b4bc4172",
-      "module": "life",
-      "category": "Family & Community",
-      "intensity": 1,
-      "prompt": "How do we balance family time and couple time?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-9dccbd01e7",
       "module": "life",
       "category": "Family & Community",
@@ -42278,26 +42098,6 @@
       "category": "Family & Community",
       "intensity": 1,
       "prompt": "What is a family memory you treasure?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-915b24d67d",
-      "module": "life",
-      "category": "Health & Support",
-      "intensity": 1,
-      "prompt": "What is one health habit you want to build together?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-5574f4a69a",
-      "module": "life",
-      "category": "Health & Support",
-      "intensity": 1,
-      "prompt": "How can I support you when you are stressed?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42323,26 +42123,6 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-be03d69657",
-      "module": "life",
-      "category": "Finances & Money",
-      "intensity": 1,
-      "prompt": "What is one financial goal that would feel like a win?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-cbfd701b58",
-      "module": "life",
-      "category": "Finances & Money",
-      "intensity": 1,
-      "prompt": "How do we make money talks feel less stressful?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-b0a007a1ad",
       "module": "life",
       "category": "Finances & Money",
@@ -42359,106 +42139,6 @@
       "intensity": 1,
       "prompt": "What is one thing you want to save for?",
       "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-4aa71684a1",
-      "module": "life",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What makes you feel most confident in our relationship?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-7d2c6ce554",
-      "module": "life",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What is one way we can build intimacy without pressure?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-8cabe2f8aa",
-      "module": "life",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What helps you feel desired?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-b27ef7f996",
-      "module": "life",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What is one thing that makes you feel sexy?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-98b655e04e",
-      "module": "life",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "What kind of touch makes you feel most loved?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-414fd27c15",
-      "module": "life",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "What is one affectionate habit you want more of?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-dd8da8e737",
-      "module": "life",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "How do you like to be greeted after a long day?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-b467cbe05b",
-      "module": "life",
-      "category": "Affection & Touch",
-      "intensity": 1,
-      "prompt": "What is a small touch that means a lot to you?",
-      "contextType": "intimacy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-da0218a3e8",
-      "module": "life",
-      "category": "Libido, Mismatch & Life Phases",
-      "intensity": 2,
-      "prompt": "How do we talk about desire differences without blame?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-9f29bf6b92",
-      "module": "life",
-      "category": "Libido, Mismatch & Life Phases",
-      "intensity": 2,
-      "prompt": "What helps you feel connected when desire is low?",
-      "contextType": "reflection",
       "promptStyle": "question",
       "pillar": "closer"
     },
@@ -42483,66 +42163,6 @@
       "pillar": "closer"
     },
     {
-      "id": "bulk3-0042545ef1",
-      "module": "life",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What is one thing you are curious to try together?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-e54f3f0df4",
-      "module": "life",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What sensation do you find most relaxing?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-f9732bf692",
-      "module": "life",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What is a new experience you would be open to?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-e0d58a64be",
-      "module": "life",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What is one thing that heightens your pleasure?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "bulk3-6e141685a7",
-      "module": "life",
-      "category": "Growing Together",
-      "intensity": 1,
-      "prompt": "What is one thing you have learned about us lately?",
-      "contextType": "growth",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-0f4f53f336",
-      "module": "life",
-      "category": "Growing Together",
-      "intensity": 1,
-      "prompt": "How have we grown as a couple this year?",
-      "contextType": "growth",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "bulk3-bd81f37ab4",
       "module": "life",
       "category": "Growing Together",
@@ -42561,16 +42181,6 @@
       "contextType": "growth",
       "promptStyle": "question",
       "pillar": "closer"
-    },
-    {
-      "id": "bulk3-50399b80ea",
-      "module": "life",
-      "category": "Rituals & Playfulness",
-      "intensity": 1,
-      "prompt": "What is one small ritual that makes you feel connected?",
-      "contextType": "playful",
-      "promptStyle": "question",
-      "pillar": "spark"
     },
     {
       "id": "bulk3-c5c3e994db",
@@ -42658,16 +42268,6 @@
       "category": "Honesty & Trust",
       "intensity": 2,
       "prompt": "What helps you trust me more?",
-      "contextType": "honesty",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "bulk3-fbce5f517a",
-      "module": "life",
-      "category": "Honesty & Trust",
-      "intensity": 2,
-      "prompt": "What is a secret you feel safe sharing now?",
       "contextType": "honesty",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43033,46 +42633,6 @@
       "pillar": "closer"
     },
     {
-      "id": "open-5b5df3622d",
-      "module": "sexuality",
-      "category": "Fantasies & Desires",
-      "intensity": 2,
-      "prompt": "What is a fantasy you have about us?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "open-835e2464a9",
-      "module": "sexuality",
-      "category": "Fantasies & Desires",
-      "intensity": 2,
-      "prompt": "What is one thing you would love to try together?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "open-a20009794c",
-      "module": "sexuality",
-      "category": "Fantasies & Desires",
-      "intensity": 3,
-      "prompt": "What is a desire you want to explore?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "open-b9080b1d9e",
-      "module": "sexuality",
-      "category": "Consensual Boundaries & New Experiences",
-      "intensity": 2,
-      "prompt": "What is a new experience you would be open to?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "open-3bb8ab63b5",
       "module": "sexuality",
       "category": "Consensual Boundaries & New Experiences",
@@ -43109,16 +42669,6 @@
       "intensity": 2,
       "prompt": "What helps you feel open to intimacy on a low-energy day?",
       "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "open-6603891789",
-      "module": "sexuality",
-      "category": "Communication & Boundaries",
-      "intensity": 2,
-      "prompt": "How do we talk about trying something new without pressure?",
-      "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "heat"
     },
@@ -43243,16 +42793,6 @@
       "pillar": "spark"
     },
     {
-      "id": "more-10924d307b",
-      "module": "life",
-      "category": "Fun & Random",
-      "intensity": 1,
-      "prompt": "What is your favorite way to spend a rainy day?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
       "id": "more-c2894160d1",
       "module": "life",
       "category": "Gatherings & Celebrations",
@@ -43288,16 +42828,6 @@
       "category": "Gatherings & Celebrations",
       "intensity": 2,
       "prompt": "What is the perfect holiday gathering like for you?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "more-39ff5a0391",
-      "module": "life",
-      "category": "Gatherings & Celebrations",
-      "intensity": 1,
-      "prompt": "What is your favorite season and why?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43483,16 +43013,6 @@
       "pillar": "closer"
     },
     {
-      "id": "more-a321692cf6",
-      "module": "life",
-      "category": "Joy & Appreciation",
-      "intensity": 1,
-      "prompt": "What is one thing you love about our relationship?",
-      "contextType": "connection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "more-3a98624b61",
       "module": "life",
       "category": "Joy & Appreciation",
@@ -43528,16 +43048,6 @@
       "category": "Aging & Health Changes",
       "intensity": 1,
       "prompt": "What is one thing you are looking forward to about getting older?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-8f81e67707",
-      "module": "life",
-      "category": "Aging & Health Changes",
-      "intensity": 1,
-      "prompt": "What is one health habit you want to build together?",
       "contextType": "reflection",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43663,26 +43173,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin2-49af96e703",
-      "module": "life",
-      "category": "Retirement & Empty Nest",
-      "intensity": 1,
-      "prompt": "What worries you most about an empty nest?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-32fd82cea6",
-      "module": "life",
-      "category": "Retirement & Empty Nest",
-      "intensity": 1,
-      "prompt": "What excites you most about an empty nest?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin2-6e16ba4d19",
       "module": "life",
       "category": "Long-Distance & Relocation",
@@ -43803,46 +43293,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin2-1b58897da0",
-      "module": "life",
-      "category": "Money Stress & Financial Trauma",
-      "intensity": 1,
-      "prompt": "What is one financial goal that would feel like a win?",
-      "contextType": "vulnerability",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-7b9d9bac47",
-      "module": "life",
-      "category": "Money Stress & Financial Trauma",
-      "intensity": 1,
-      "prompt": "How do we make money talks feel less stressful?",
-      "contextType": "vulnerability",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-d28c835f1e",
-      "module": "life",
-      "category": "Money Stress & Financial Trauma",
-      "intensity": 1,
-      "prompt": "What money worry is hardest to talk about?",
-      "contextType": "vulnerability",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-0b5b6329de",
-      "module": "life",
-      "category": "Money Stress & Financial Trauma",
-      "intensity": 1,
-      "prompt": "Tell me about a money memory that still affects you.",
-      "contextType": "vulnerability",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin2-d4e5f2589b",
       "module": "life",
       "category": "Repair & Apology",
@@ -43873,36 +43323,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin2-cf2c9c1a4c",
-      "module": "life",
-      "category": "Repair & Apology",
-      "intensity": 1,
-      "prompt": "How can we reset after a hard conversation?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-a806eb62c7",
-      "module": "life",
-      "category": "Boundaries & No Scripts",
-      "intensity": 1,
-      "prompt": "What is a gentle way for you to say no?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-30e26d59cb",
-      "module": "life",
-      "category": "Boundaries & No Scripts",
-      "intensity": 1,
-      "prompt": "What boundary would you like to set or revisit?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin2-9a4515a73c",
       "module": "life",
       "category": "Boundaries & No Scripts",
@@ -43913,41 +43333,11 @@
       "pillar": "closer"
     },
     {
-      "id": "thin2-00648f5eec",
-      "module": "life",
-      "category": "Boundaries & No Scripts",
-      "intensity": 1,
-      "prompt": "Tell me about a boundary you are proud of keeping.",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-d0a093eef8",
-      "module": "life",
-      "category": "Boundary Renegotiation",
-      "intensity": 2,
-      "prompt": "What boundary from our past needs updating?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin2-aec61af9cd",
       "module": "life",
       "category": "Boundary Renegotiation",
       "intensity": 2,
       "prompt": "How often should we revisit agreements?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-0fa7b3badb",
-      "module": "life",
-      "category": "Boundary Renegotiation",
-      "intensity": 2,
-      "prompt": "What would make renegotiating feel collaborative?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -44013,16 +43403,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin2-caeb9e53f5",
-      "module": "life",
-      "category": "Queer Experiences & Identity",
-      "intensity": 1,
-      "prompt": "How has your identity shaped our relationship?",
-      "contextType": "discovery",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin2-2a5e8e2864",
       "module": "life",
       "category": "Queer Experiences & Identity",
@@ -44038,16 +43418,6 @@
       "category": "Disability, Accessibility & Chronic Illness",
       "intensity": 1,
       "prompt": "What is one accommodation that would help us?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin2-0d92e98732",
-      "module": "life",
-      "category": "Disability, Accessibility & Chronic Illness",
-      "intensity": 1,
-      "prompt": "How can I support you on low-energy days?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -44113,46 +43483,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin3-73d1120356",
-      "module": "life",
-      "category": "Honesty & Trust",
-      "intensity": 1,
-      "prompt": "What is one thing you want to be more honest about?",
-      "contextType": "honesty",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin3-7c71d066e4",
-      "module": "life",
-      "category": "Honesty & Trust",
-      "intensity": 1,
-      "prompt": "What helps you trust me more?",
-      "contextType": "honesty",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin3-c2db9866cc",
-      "module": "life",
-      "category": "Honesty & Trust",
-      "intensity": 1,
-      "prompt": "What is a secret you feel safe sharing now?",
-      "contextType": "honesty",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin3-3481d08790",
-      "module": "life",
-      "category": "Honesty & Trust",
-      "intensity": 1,
-      "prompt": "What is one way to build trust?",
-      "contextType": "honesty",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin3-67103267e2",
       "module": "life",
       "category": "Aftercare & Connection",
@@ -44208,26 +43538,6 @@
       "category": "Personal Growth & Boundaries",
       "intensity": 2,
       "prompt": "What is a value you want to pass on?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin3-c0040f8178",
-      "module": "life",
-      "category": "Personal Growth & Boundaries",
-      "intensity": 2,
-      "prompt": "What is one thing that makes you feel most like yourself?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "thin3-46fb84007a",
-      "module": "life",
-      "category": "Personal Growth & Boundaries",
-      "intensity": 2,
-      "prompt": "What is a belief you are rethinking?",
       "contextType": "reflection",
       "promptStyle": "question",
       "pillar": "closer"
@@ -44353,16 +43663,6 @@
       "pillar": "spark"
     },
     {
-      "id": "thin3-28f3a86b22",
-      "module": "life",
-      "category": "Teasing & Anticipation",
-      "intensity": 2,
-      "prompt": "What is one way to keep the spark alive?",
-      "contextType": "anticipation",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
       "id": "thin3-b56fbabae0",
       "module": "life",
       "category": "Teasing & Anticipation",
@@ -44473,16 +43773,6 @@
       "pillar": "closer"
     },
     {
-      "id": "thin3-50af1a5581",
-      "module": "life",
-      "category": "Past History & Sexual Firsts",
-      "intensity": 2,
-      "prompt": "What is one past experience that shaped your desires?",
-      "contextType": "reflection",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "thin3-6d5b7032e5",
       "module": "life",
       "category": "Past History & Sexual Firsts",
@@ -44561,46 +43851,6 @@
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
-    },
-    {
-      "id": "thin3-088873bf7c",
-      "module": "life",
-      "category": "Fun & Random",
-      "intensity": 1,
-      "prompt": "If we could have any superpower as a couple, what would it be?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
-      "id": "thin3-c903c0193b",
-      "module": "life",
-      "category": "Fun & Random",
-      "intensity": 1,
-      "prompt": "What is a silly tradition we should start?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
-      "id": "thin3-0e9b54b21a",
-      "module": "life",
-      "category": "Fun & Random",
-      "intensity": 1,
-      "prompt": "If we could time travel for a day, where would we go?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
-      "id": "thin3-64782f36f1",
-      "module": "life",
-      "category": "Fun & Random",
-      "intensity": 1,
-      "prompt": "What is a low-budget date that sounds fun?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "spark"
     }
   ]
 }

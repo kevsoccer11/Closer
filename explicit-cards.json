@@ -15888,26 +15888,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-c33aec956a",
-      "module": "explicit",
-      "category": "Flirting & Chemistry",
-      "intensity": 1,
-      "prompt": "What is a flirty text that would make you smile?",
-      "contextType": "flirting",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-306f2fce31",
-      "module": "explicit",
-      "category": "Flirting & Chemistry",
-      "intensity": 1,
-      "prompt": "What kind of teasing feels fun versus too much?",
-      "contextType": "flirting",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-49655d05cb",
       "module": "explicit",
       "category": "Flirting & Chemistry",
@@ -15924,16 +15904,6 @@
       "intensity": 1,
       "prompt": "What is a flirtatious thing I do that you love?",
       "contextType": "flirting",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-ba57cb1073",
-      "module": "explicit",
-      "category": "Desire & Initiation",
-      "intensity": 2,
-      "prompt": "What is one way you like to be invited into intimacy?",
-      "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
     },
@@ -15968,26 +15938,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-3f515f7947",
-      "module": "explicit",
-      "category": "Pleasure Triggers",
-      "intensity": 2,
-      "prompt": "What is one thing that instantly heightens your pleasure?",
-      "contextType": "sensory",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-fb0673bc30",
-      "module": "explicit",
-      "category": "Pleasure Triggers",
-      "intensity": 2,
-      "prompt": "What kind of feedback helps you most in the moment?",
-      "contextType": "sensory",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-106891be92",
       "module": "explicit",
       "category": "Pleasure Triggers",
@@ -16004,26 +15954,6 @@
       "intensity": 2,
       "prompt": "What is one thing that makes pleasure feel better?",
       "contextType": "sensory",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-76dbf56ec6",
-      "module": "explicit",
-      "category": "Physical Touch & Foreplay",
-      "intensity": 2,
-      "prompt": "What kind of touch do you wish we did more of?",
-      "contextType": "action",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-68398e8798",
-      "module": "explicit",
-      "category": "Physical Touch & Foreplay",
-      "intensity": 2,
-      "prompt": "How do you like to start foreplay?",
-      "contextType": "action",
       "promptStyle": "question",
       "pillar": "afterhours"
     },
@@ -16048,26 +15978,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-1b75dbd0da",
-      "module": "explicit",
-      "category": "Teasing & Anticipation",
-      "intensity": 2,
-      "prompt": "What is a playful way to build anticipation?",
-      "contextType": "anticipation",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-88f8203ff8",
-      "module": "explicit",
-      "category": "Teasing & Anticipation",
-      "intensity": 2,
-      "prompt": "What kind of teasing feels exciting to you?",
-      "contextType": "anticipation",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-eb17a0a8a6",
       "module": "explicit",
       "category": "Teasing & Anticipation",
@@ -16084,26 +15994,6 @@
       "intensity": 2,
       "prompt": "What is a flirtatious thing that drives you wild?",
       "contextType": "anticipation",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-17a88997f6",
-      "module": "explicit",
-      "category": "Orgasm, Wind-Down & Aftercare",
-      "intensity": 2,
-      "prompt": "What helps you relax after sex?",
-      "contextType": "action",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-72fda96759",
-      "module": "explicit",
-      "category": "Orgasm, Wind-Down & Aftercare",
-      "intensity": 2,
-      "prompt": "What is your favorite way to wind down together?",
-      "contextType": "action",
       "promptStyle": "question",
       "pillar": "afterhours"
     },
@@ -16128,26 +16018,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-7a17227054",
-      "module": "explicit",
-      "category": "Humor & Blunders",
-      "intensity": 1,
-      "prompt": "What is a funny or awkward moment we can laugh about?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-41e8c94843",
-      "module": "explicit",
-      "category": "Humor & Blunders",
-      "intensity": 1,
-      "prompt": "What is one thing that makes sex less serious and more fun?",
-      "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-5d9a632ecb",
       "module": "explicit",
       "category": "Humor & Blunders",
@@ -16164,16 +16034,6 @@
       "intensity": 1,
       "prompt": "What is a playful moment you remember fondly?",
       "contextType": "humor",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-d392606f0d",
-      "module": "explicit",
-      "category": "Kissing & Physical Chemistry",
-      "intensity": 2,
-      "prompt": "What kind of kissing do you love most?",
-      "contextType": "action",
       "promptStyle": "question",
       "pillar": "afterhours"
     },
@@ -16198,36 +16058,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-543ae6f11b",
-      "module": "explicit",
-      "category": "Kissing & Physical Chemistry",
-      "intensity": 2,
-      "prompt": "What is a touch that instantly connects us?",
-      "contextType": "action",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-f50b3cecd0",
-      "module": "explicit",
-      "category": "Sensual Touch & Body Exploration",
-      "intensity": 2,
-      "prompt": "What is one area you love being touched?",
-      "contextType": "sensory",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-17b2f1692e",
-      "module": "explicit",
-      "category": "Sensual Touch & Body Exploration",
-      "intensity": 2,
-      "prompt": "What kind of touch feels most connecting?",
-      "contextType": "sensory",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-b75f6eaea4",
       "module": "explicit",
       "category": "Sensual Touch & Body Exploration",
@@ -16248,26 +16078,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "bulk2-eaa6d9a7b8",
-      "module": "explicit",
-      "category": "Role-Play & Fantasy",
-      "intensity": 2,
-      "prompt": "What is a light, fun fantasy you enjoy?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-dbc4f28526",
-      "module": "explicit",
-      "category": "Role-Play & Fantasy",
-      "intensity": 2,
-      "prompt": "What role-play scenario sounds playful rather than intense?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "bulk2-2a12e36629",
       "module": "explicit",
       "category": "Role-Play & Fantasy",
@@ -16283,26 +16093,6 @@
       "category": "Role-Play & Fantasy",
       "intensity": 2,
       "prompt": "What makes a fantasy feel safe to share?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-0be1529119",
-      "module": "explicit",
-      "category": "Sex Toys & Props",
-      "intensity": 2,
-      "prompt": "What is one toy you are curious to try?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "bulk2-d8fc6c8cf5",
-      "module": "explicit",
-      "category": "Sex Toys & Props",
-      "intensity": 2,
-      "prompt": "What would make trying a toy feel comfortable?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -16848,16 +16638,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "act-07b04a8ab1",
-      "module": "explicit",
-      "category": "Role-Play Scenarios",
-      "intensity": 1,
-      "prompt": "Act out a simple scenario.",
-      "contextType": "action",
-      "promptStyle": "activity",
-      "pillar": "afterhours"
-    },
-    {
       "id": "act-4fcb226e76",
       "module": "explicit",
       "category": "Role-Play Scenarios",
@@ -17068,41 +16848,11 @@
       "pillar": "afterhours"
     },
     {
-      "id": "open-071330bc09",
-      "module": "explicit",
-      "category": "Role-Play & Fantasy",
-      "intensity": 3,
-      "prompt": "What is a fantasy you have kept private until now?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "open-8babef86c8",
-      "module": "explicit",
-      "category": "Sex Toys & Props",
-      "intensity": 2,
-      "prompt": "What is one toy you are curious to try?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-ad38258633",
       "module": "explicit",
       "category": "BDSM & Power Exchange",
       "intensity": 2,
       "prompt": "What kind of power dynamic sounds exciting?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-0b2056e936",
-      "module": "explicit",
-      "category": "BDSM & Power Exchange",
-      "intensity": 2,
-      "prompt": "How do you feel about taking turns being in charge?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -17138,26 +16888,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-66a6ae7aa3",
-      "module": "explicit",
-      "category": "Bondage & Restraints",
-      "intensity": 2,
-      "prompt": "How does being tied up change how you feel?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-2c3792251c",
-      "module": "explicit",
-      "category": "Bondage & Restraints",
-      "intensity": 2,
-      "prompt": "What restraint scenario is your favorite fantasy?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-678a18e24f",
       "module": "explicit",
       "category": "Bondage & Restraints",
@@ -17173,16 +16903,6 @@
       "category": "Impact & Sensation Play",
       "intensity": 2,
       "prompt": "What impact play sounds appealing?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-50448d8dec",
-      "module": "explicit",
-      "category": "Impact & Sensation Play",
-      "intensity": 2,
-      "prompt": "How does sensation play change your arousal?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -17248,26 +16968,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-e74b419ad6",
-      "module": "explicit",
-      "category": "Aftercare for Kink",
-      "intensity": 2,
-      "prompt": "What kind of aftercare do you need after an intense scene?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-a9c9d76454",
-      "module": "explicit",
-      "category": "Aftercare for Kink",
-      "intensity": 2,
-      "prompt": "What helps you come down from a scene high?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-6f09f159af",
       "module": "explicit",
       "category": "Aftercare for Kink",
@@ -17288,51 +16988,11 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-47babf4d0a",
-      "module": "explicit",
-      "category": "Fetish & Object Play",
-      "intensity": 2,
-      "prompt": "What texture or material turns you on most?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-7c55056929",
       "module": "explicit",
       "category": "Fetish & Object Play",
       "intensity": 2,
       "prompt": "Is there an object you have always wanted to try?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-e4c788043b",
-      "module": "explicit",
-      "category": "Fetish & Object Play",
-      "intensity": 2,
-      "prompt": "What is a fetish fantasy you have never said out loud?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-48b229de00",
-      "module": "explicit",
-      "category": "Fetish & Object Play",
-      "intensity": 2,
-      "prompt": "How do we explore a fetish without pressure?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-c95ed4432b",
-      "module": "explicit",
-      "category": "Voyeurism & Exhibitionism",
-      "intensity": 2,
-      "prompt": "How do you feel about being watched during intimacy?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -17348,16 +17008,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-68efd6d0c2",
-      "module": "explicit",
-      "category": "Voyeurism & Exhibitionism",
-      "intensity": 2,
-      "prompt": "What boundaries would make exhibitionism feel safe?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-d8c6af1f55",
       "module": "explicit",
       "category": "Voyeurism & Exhibitionism",
@@ -17368,51 +17018,11 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-bdbfe183a8",
-      "module": "explicit",
-      "category": "Orgasm Control & Denial",
-      "intensity": 2,
-      "prompt": "How do you feel about edging or orgasm control?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-56ccede591",
-      "module": "explicit",
-      "category": "Orgasm Control & Denial",
-      "intensity": 2,
-      "prompt": "What is a tease-and-denial scenario you would enjoy?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-34eb63fe48",
-      "module": "explicit",
-      "category": "Orgasm Control & Denial",
-      "intensity": 2,
-      "prompt": "What signals help you stay on the edge?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-bd3ce270ed",
       "module": "explicit",
       "category": "Orgasm Control & Denial",
       "intensity": 2,
       "prompt": "What is your limit for orgasm denial?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-e46c834fdb",
-      "module": "explicit",
-      "category": "Role-Play Scenarios",
-      "intensity": 2,
-      "prompt": "What role-play scenario sounds fun to try?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -17438,36 +17048,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-f6da5d456d",
-      "module": "explicit",
-      "category": "Role-Play Scenarios",
-      "intensity": 2,
-      "prompt": "What boundaries matter most in role-play?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-5dde898305",
-      "module": "explicit",
-      "category": "Group & Multi-Partner Play",
-      "intensity": 3,
-      "prompt": "How do you feel about threesomes or group play?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-3dbb11aac5",
-      "module": "explicit",
-      "category": "Group & Multi-Partner Play",
-      "intensity": 3,
-      "prompt": "What would make a group experience feel safe and fun?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-f29666dc47",
       "module": "explicit",
       "category": "Group & Multi-Partner Play",
@@ -17488,56 +17068,6 @@
       "pillar": "afterhours"
     },
     {
-      "id": "thin2-33c75f3b0e",
-      "module": "explicit",
-      "category": "Public / Semi-Public Play",
-      "intensity": 2,
-      "prompt": "How do you feel about intimacy in semi-public spaces?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-6b0b4afbfa",
-      "module": "explicit",
-      "category": "Public / Semi-Public Play",
-      "intensity": 2,
-      "prompt": "What is a semi-public fantasy you find exciting?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-2340102719",
-      "module": "explicit",
-      "category": "Public / Semi-Public Play",
-      "intensity": 2,
-      "prompt": "What safety and privacy checks would you want first?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-11d04f8532",
-      "module": "explicit",
-      "category": "Public / Semi-Public Play",
-      "intensity": 2,
-      "prompt": "What would make a semi-public moment exciting?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-3045793a58",
-      "module": "explicit",
-      "category": "Praise & Degradation",
-      "intensity": 2,
-      "prompt": "Do words of praise turn you on, and what kind?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
       "id": "thin2-478028238c",
       "module": "explicit",
       "category": "Praise & Degradation",
@@ -17553,16 +17083,6 @@
       "category": "Praise & Degradation",
       "intensity": 2,
       "prompt": "What tone feels affirming versus uncomfortable?",
-      "contextType": "fantasy",
-      "promptStyle": "question",
-      "pillar": "afterhours"
-    },
-    {
-      "id": "thin2-1e28afc9cc",
-      "module": "explicit",
-      "category": "Praise & Degradation",
-      "intensity": 2,
-      "prompt": "What boundaries should we set around praise or teasing?",
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
