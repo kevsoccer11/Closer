@@ -2191,7 +2191,14 @@ body.light-theme .card-container {
 }
 .header-actions .icon-btn {
     width: 44px;
-    height: 44px;
+    height: 52px;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.6rem;
+}
+.header-actions .icon-btn i {
+    width: 20px;
+    height: 20px;
 }
 body {
     padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));

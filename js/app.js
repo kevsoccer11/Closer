@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
     const browseBtn = document.getElementById('browseModeBtn');
     if (browseBtn) {
         const updateBrowseLabel = () => {
