@@ -29,16 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard(true));
     document.getElementById('undoBtn')?.addEventListener('click', undoCard);
-    const packSelect = document.getElementById('roundPackSelect');
-    if (packSelect) {
-        packSelect.addEventListener('change', () => {
-            if (packSelect.value) {
-                applyPack(packSelect.value);
-                document.body.dataset.pack = packSelect.value;
-            } else {
-                document.body.removeAttribute('data-pack');
-            }
-        });
+    const startQuickGameBtn = document.getElementById('startQuickGameBtn');
+    if (startQuickGameBtn) {
+        startQuickGameBtn.onclick = () => {
+            startQuickGame();
+        };
     }
     document.querySelectorAll('.round-pack-btn').forEach(btn => {
         btn.addEventListener('click', () => {

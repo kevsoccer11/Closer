@@ -223,6 +223,47 @@ function applyPack(pack) {
     renderRoundTopics();
     document.body.dataset.pack = pack;
 }
+function startQuickGame() {
+    const selected = [...document.querySelectorAll('input[name="roundPack"]:checked')].map(input => input.value);
+    if (selected.length === 0) { showToast('Select at least one quick pack.'); return; }
+    const packs = {
+        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'after-fight': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'travel-night': { modules: ['closer', 'spark'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'deep-talk': { modules: ['closer', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'deep' },
+        'kinky-explorative': { modules: ['afterhours'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'spicy' },
+        'reconnection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'long-distance': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'new-parents': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'playful': { modules: ['spark', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'playful' },
+        'aftercare': { modules: ['afterhours', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'romantic' }
+    };
+    const modules = new Set();
+    const topicsSet = new Set();
+    let topicsNull = false;
+    let mood = 'all';
+    let questions = false, activities = false, mc = false;
+    selected.forEach(p => {
+        const s = packs[p];
+        if (!s) return;
+        (s.modules || []).forEach(m => modules.add(m));
+        if (!s.topics) topicsNull = true;
+        else (s.topics || []).forEach(t => topicsSet.add(t));
+        if (s.mood && s.mood !== 'all' && selected.length === 1) mood = s.mood;
+        questions = questions || s.questions;
+        activities = activities || s.activities;
+        mc = mc || s.multipleChoice;
+    });
+    const combined = {
+        modules: [...modules],
+        topics: topicsNull ? null : [...topicsSet],
+        mood: selected.length > 1 ? 'all' : mood,
+        questions, activities, multipleChoice: mc
+    };
+    applyRoundSelection(combined, selected.includes('first-date'));
+}
+
+
 function getRoundBuilderSelection() {
     const modules = [...document.querySelectorAll('input[name="roundPillar"]:checked')].map(input => input.value);
     const topics = [...document.querySelectorAll('#roundTopics input[type="checkbox"]:checked')].map(input => input.value);
