@@ -276,9 +276,13 @@ function startPackByKey(key) {
         'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'aftercare': { modules: ['afterhours', 'heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
-        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true }
+        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'escalation': null
     };
-    const selection = packs[key];
+    if (key === 'escalation') { startProgressiveGame(); showGameView(); return; }
     if (!selection) return;
     selection.topics = selection.topics || null;
     selection.intensity = 'all';

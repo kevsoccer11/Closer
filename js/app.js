@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.querySelectorAll('.pack-card').forEach(btn => {
         btn.addEventListener('click', () => {
-            applyPack(btn.dataset.pack);
+            startPackByKey(btn.dataset.pack);
         });
     });
     document.getElementById('warmUpNextBtn')?.addEventListener('click', () => {
