@@ -43,14 +43,15 @@
         <div class="top-bar">
             <h1 class="app-title"><i data-lucide="heart" class="brand-heart" aria-hidden="true"></i> Closer</h1>
             <div class="header-actions">
-                <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><i data-lucide="home" aria-hidden="true"></i><span class="nav-label">Home</span></button>
+                <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><i data-lucide="home" aria-hidden="true"></i><span class="nav-label">Play</span></button>
+                <button class="icon-btn" id="exploreNavBtn" type="button" aria-label="Explore" title="Explore"><i data-lucide="compass" aria-hidden="true"></i><span class="nav-label">Explore</span></button>
                 <button class="icon-btn" id="pairPartnerBtn" type="button" aria-label="Pair with partner" title="Pair with partner"><i
                         data-lucide="radio" aria-hidden="true"></i><span class="nav-label">Connect</span></button>
                 <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><i data-lucide="user" aria-hidden="true"></i><span class="nav-label">Profile</span></button>
-                <button class="icon-btn" id="journalDrawerBtn" type="button" aria-label="Date night journal" title="Date night journal"><i
+                <button class="icon-btn" id="journalDrawerBtn" type="button" aria-label="Date night journal" title="Date night journal" style="display:none;"><i
                         data-lucide="book-heart" aria-hidden="true"></i><span class="nav-label">Journal</span></button>
-                <button class="icon-btn" id="favsDrawerBtn" type="button" aria-label="Favorites" title="Favorites"><i data-lucide="bookmark" aria-hidden="true"></i><span class="nav-label">Saved</span></button>
-                <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><i
+                <button class="icon-btn" id="favsDrawerBtn" type="button" aria-label="Favorites" title="Favorites" style="display:none;"><i data-lucide="bookmark" aria-hidden="true"></i><span class="nav-label">Saved</span></button>
+                <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings" style="display:none;"><i
                         data-lucide="settings" aria-hidden="true"></i><span class="nav-label">Settings</span></button>
             </div>
         </div>
@@ -64,7 +65,6 @@
             <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
         </button>
         <button class="browse-mode-button" id="browseModeBtn" type="button">Browse: Off</button>
-        <button class="private-space-button" id="wildUnspokenBtn" type="button"><i data-lucide="key-round" aria-hidden="true"></i><span>Wild &amp; Unspoken</span></button>
     </div>
 
     <aside class="explicit-content-notice hidden" id="explicitContentNotice" aria-label="Adults-only content notice">

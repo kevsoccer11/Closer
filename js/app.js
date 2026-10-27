@@ -198,6 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
+    document.getElementById('exploreNavBtn')?.addEventListener('click', () => openRoundBuilder());
     document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
     const browseBtn = document.getElementById('browseModeBtn');
     if (browseBtn) {
@@ -652,8 +653,20 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                     <button id="addCurrentToSharedDeckBtn" class="btn-secondary" type="button">Add current card to shared deck</button>
                     <div id="sharedDeckList" class="partner-cards-list"></div>
                 </div>
+                <div class="profile-actions">
+                    <button class="btn-secondary" id="profileSavedBtn" type="button">Saved questions</button>
+                    <button class="btn-secondary" id="profileSettingsBtn" type="button">Settings</button>
+                </div>
             `;
             openDrawer('Profile Stats', html);
+    document.getElementById('profileSavedBtn')?.addEventListener('click', () => {
+        const favBtn = document.getElementById('favsDrawerBtn');
+        if (favBtn) favBtn.click();
+    });
+    document.getElementById('profileSettingsBtn')?.addEventListener('click', () => {
+        const toolsBtn = document.getElementById('toolsDrawerBtn');
+        if (toolsBtn) toolsBtn.click();
+    });
             const content = document.getElementById('drawerContent');
 renderMyDecks();
     const createDeckBtn = document.getElementById('createDeckBtn');
