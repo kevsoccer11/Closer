@@ -2198,11 +2198,6 @@ body.light-theme .card-container {
         padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
     }
 }
-@media (max-width: 767px) {
-    body {
-        padding-bottom: 70px;
-    }
-}
 .bottom-nav { display: none; }
 .pack-card, .discovery-card, .continue-card, .my-decks-preview, .partner-entry {
     background: #FFFEFD;
