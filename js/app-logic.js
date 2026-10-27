@@ -252,6 +252,62 @@ function startQuickGame() {
 }
 
 
+function buildProgressiveDeck(count, pillars) {
+    activePillars = pillars;
+    activeModules = [...pillars];
+    activeTopics = null;
+    activeMood = 'all';
+    includeQuestions = true;
+    includeActivities = true;
+    includeMultipleChoice = true;
+    const filtered = getFilteredCards().filter(card => pillars.includes(card.pillar || 'closer'));
+    const unplayed = filtered.filter(card => !playedCardIds.has(card.id));
+    const pool = unplayed.length >= count ? unplayed : filtered;
+    const byIntensity = {};
+    pool.forEach(card => {
+        const level = Number(card.intensity) || 1;
+        if (!byIntensity[level]) byIntensity[level] = [];
+        byIntensity[level].push(card);
+    });
+    const ordered = [];
+    [1, 2, 3, 4].forEach(level => {
+        const arr = byIntensity[level] ? [...byIntensity[level]] : [];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        ordered.push(...arr);
+    });
+    return ordered.slice(0, count).map(card => ({ ...card }));
+}
+
+function startProgressiveGame() {
+    progressiveMode = true;
+    progressivePhase = 'nonexplicit';
+    activeTurn = 0;
+    roundStats = { played: 0, passed: 0 };
+    pickedAnswerer = null;
+    pickedAnswererIndex = null;
+    unspentDeck = buildProgressiveDeck(50, ['spark', 'heat', 'closer']);
+    roundTotalCards = unspentDeck.length;
+    updateRoundSummary();
+    drawNextCard();
+}
+
+function startProgressiveExplicit() {
+    progressiveMode = true;
+    progressivePhase = 'explicit';
+    activeTurn = 0;
+    roundStats = { played: 0, passed: 0 };
+    pickedAnswerer = null;
+    pickedAnswererIndex = null;
+    unspentDeck = buildProgressiveDeck(20, ['afterhours']);
+    roundTotalCards = unspentDeck.length;
+    updateRoundSummary();
+    drawNextCard();
+}
+
+
 function getRoundBuilderSelection() {
     const modules = [...document.querySelectorAll('input[name="roundPillar"]:checked')].map(input => input.value);
     const topics = [...document.querySelectorAll('#roundTopics input[type="checkbox"]:checked')].map(input => input.value);
@@ -400,6 +456,8 @@ function applyRoundSelection(selection, startLight = false) {
     includeActivities = selection.activities;
     includeMultipleChoice = selection.multipleChoice;
     activeTurn = 0;
+    progressiveMode = false;
+    progressivePhase = null;
 roundStats = { played: 0, passed: 0 };
     pickedAnswerer = null;
     pickedAnswererIndex = null;
@@ -602,6 +660,41 @@ function drawNextCard(isRemoteUpdate = false) {
             return;
         }
         currentCard = null;
+        if (progressiveMode && progressivePhase === 'nonexplicit') {
+            const prompt = document.getElementById('cardPrompt');
+            if (prompt) {
+                prompt.innerHTML = '';
+                const title = document.createElement('strong');
+                title.textContent = 'Progressive round complete';
+                const summary = document.createElement('p');
+                summary.textContent = `You played ${roundStats.played} cards. Continue to the explicit 20-question game, or start a new game?`;
+                const yes = document.createElement('button');
+                yes.type = 'button';
+                yes.className = 'btn-primary';
+                yes.textContent = 'Continue to explicit game';
+                yes.style.marginTop = '12px';
+                yes.onclick = () => { startProgressiveExplicit(); };
+                const no = document.createElement('button');
+                no.type = 'button';
+                no.className = 'btn-secondary';
+                no.textContent = 'Start new game';
+                no.style.marginTop = '12px';
+                no.onclick = () => { startProgressiveGame(); };
+                prompt.append(title, summary, yes, no);
+            }
+            const nextCardBtn = document.getElementById('nextCardBtn');
+            if (nextCardBtn) nextCardBtn.disabled = true;
+            const passCardBtn = document.getElementById('passCardBtn');
+            if (passCardBtn) passCardBtn.disabled = true;
+            document.getElementById('warmUpNextBtn')?.classList.add('hidden');
+            stopModeTimer();
+            document.getElementById('actionTimerBar')?.classList.add('hidden');
+            return;
+        }
+        if (progressiveMode && progressivePhase === 'explicit') {
+            progressiveMode = false;
+            progressivePhase = null;
+        }
     const prompt = document.getElementById('cardPrompt');
     if (prompt) {
         prompt.innerHTML = '';

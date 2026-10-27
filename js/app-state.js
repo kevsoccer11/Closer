@@ -92,6 +92,8 @@ let activeMood = 'all';
 let tapToAdvance = localStorage.getItem('closer_tap_to_advance') === 'true';
 let activePillar = 'all';
 let browseMode = false;
+let progressiveMode = false;
+let progressivePhase = null; // 'nonexplicit' | 'explicit'
 let customDecks = JSON.parse(localStorage.getItem('closer_custom_decks') || '[]');
 let activeDeckId = localStorage.getItem('closer_active_deck') || null;
 let roundConfiguredByUser = false;
