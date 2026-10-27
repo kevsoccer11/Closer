@@ -348,6 +348,7 @@ function startProgressiveExplicit() {
 function showHomeView() {
     document.getElementById('homeView')?.classList.remove('hidden');
     document.querySelector('main')?.classList.add('hidden');
+    document.querySelector('.response-section')?.classList.add('hidden');
     const continueCard = document.getElementById('continueCard');
     const hasSaved = !!localStorage.getItem('closer_unspent_deck') && !!localStorage.getItem('closer_current_card');
     if (continueCard) continueCard.classList.toggle('hidden', !hasSaved);
@@ -373,6 +374,7 @@ function showHomeView() {
 function showGameView() {
     document.getElementById('homeView')?.classList.add('hidden');
     document.querySelector('main')?.classList.remove('hidden');
+    document.querySelector('.response-section')?.classList.remove('hidden');
 }
 
 

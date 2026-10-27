@@ -128,6 +128,25 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             renderMyDecks();
         };
+    document.querySelectorAll('.bottom-nav button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.dataset.action === 'home') showHomeView();
+            if (btn.dataset.action === 'packs') openRoundBuilder();
+            if (btn.dataset.action === 'play') {
+                if (localStorage.getItem('closer_unspent_deck')) {
+                    const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck'));
+                    const savedCard = JSON.parse(localStorage.getItem('closer_current_card'));
+                    if (savedDeck && savedCard) { unspentDeck = savedDeck; currentCard = savedCard; renderCard(currentCard); showGameView(); }
+                } else {
+                    openRoundBuilder();
+                }
+            }
+            if (btn.dataset.action === 'favorites') {
+                const favBtn = document.querySelector('#favsDrawerBtn');
+                if (favBtn) favBtn.click();
+            }
+        });
+    });
     document.getElementById('manageDecksBtn')?.addEventListener('click', () => {
         const toolsBtn = document.getElementById('toolsDrawerBtn');
         if (toolsBtn) toolsBtn.click();
