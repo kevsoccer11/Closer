@@ -2043,6 +2043,9 @@ body.high-contrast {
     --btn-hover: #444444;
 }
 
+body.light-theme {
+    background: linear-gradient(180deg, #F8D5D5 0%, #FCE7E2 18%, #F8F3EB 45%, #F8F3EB 100%);
+}
 body.light-theme,
 body.light-theme[data-pack] {
     --bg-dark: #F8F3EC;
@@ -2174,6 +2177,35 @@ body.light-theme .card-container {
 .pillar-btn.active {
     background: var(--primary-soft);
     color: var(--primary);
+.pack-card, .discovery-card, .continue-card, .my-decks-preview, .partner-entry {
+    background: #FFFEFD;
+    border: 1px solid #E9E2DE;
+    border-radius: 16px;
+}
+.icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+    color: var(--primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.round-toolbar button {
+    height: 55px;
+    border-radius: 14px;
+}
+.round-summary-button, .browse-mode-button, .private-space-button {
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+}
+.private-space-button {
+    background: rgba(244, 63, 94, 0.16);
+    border-color: rgba(244, 63, 94, 0.35);
+    color: var(--primary);
+}
     border-color: var(--primary-border);
 }
 
