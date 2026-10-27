@@ -72,10 +72,22 @@
     </aside>
 
     <!-- Card Stage -->
+    <aside class="desktop-sidebar" aria-label="Desktop navigation">
+        <div class="sidebar-brand">
+            <strong>Closer</strong>
+            <span>Better questions. Closer moments.</span>
+        </div>
+        <nav class="sidebar-nav">
+            <button type="button" data-action="packs">Curated Packs</button>
+            <button type="button" data-action="favorites">Favorites</button>
+            <button type="button" data-action="settings">Settings</button>
+        </nav>
+    </aside>
     <main>
         <article class="card-container" id="cardContainer" aria-label="Question card">
             <div class="card-header">
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
+                <span class="progress-indicator" id="progressIndicator" aria-live="polite"></span>
                 <div class="card-actions">
                     <button class="card-action-btn" id="favCardBtn" type="button" title="Save question" aria-label="Save question" aria-pressed="false"><i
                             data-lucide="bookmark" aria-hidden="true"></i></button>
@@ -204,48 +216,56 @@
             </div>
             <div class="round-packs">
                 <span class="round-pack-label">Curated packs:</span>
+                <div class="filter-chips" id="packFilterChips">
+                    <button class="filter-chip active" data-filter="all" type="button">All</button>
+                    <button class="filter-chip" data-filter="fun" type="button">Fun</button>
+                    <button class="filter-chip" data-filter="romantic" type="button">Romantic</button>
+                    <button class="filter-chip" data-filter="deep" type="button">Deep</button>
+                    <button class="filter-chip" data-filter="intimate" type="button">Intimate</button>
+                    <button class="filter-chip" data-filter="life" type="button">Life Moments</button>
+                </div>
                 <div class="pack-grid">
-                    <button class="pack-card" data-pack="playful" type="button">
+                    <button class="pack-card" data-pack="playful" data-filter="fun" type="button">
                         <span class="pack-title">Playful</span>
                         <span class="pack-desc">Lighthearted questions, unexpected answers, teasing and laughs.</span>
                     </button>
-                    <button class="pack-card" data-pack="first-date" type="button">
+                    <button class="pack-card" data-pack="first-date" data-filter="romantic" type="button">
                         <span class="pack-title">First Impressions</span>
                         <span class="pack-desc">Discover attraction, first impressions, preferences and surprises.</span>
                     </button>
-                    <button class="pack-card" data-pack="deep-talk" type="button">
+                    <button class="pack-card" data-pack="deep-talk" data-filter="deep" type="button">
                         <span class="pack-title">Beneath the Surface</span>
                         <span class="pack-desc">Explore values, fears, memories and what makes each other tick.</span>
                     </button>
-                    <button class="pack-card" data-pack="reconnection" type="button">
+                    <button class="pack-card" data-pack="reconnection" data-filter="life" type="button">
                         <span class="pack-title">Find Our Way Back</span>
                         <span class="pack-desc">Rediscover closeness, attention and affection.</span>
                     </button>
-                    <button class="pack-card" data-pack="long-distance" type="button">
+                    <button class="pack-card" data-pack="long-distance" data-filter="life" type="button">
                         <span class="pack-title">Across the Miles</span>
                         <span class="pack-desc">Stay connected, even when distance gets in the way.</span>
                     </button>
-                    <button class="pack-card" data-pack="new-parents" type="button">
+                    <button class="pack-card" data-pack="new-parents" data-filter="life" type="button">
                         <span class="pack-title">Us, in This New Chapter</span>
                         <span class="pack-desc">Explore your relationship through the journey of becoming parents.</span>
                     </button>
-                    <button class="pack-card" data-pack="travel-night" type="button">
+                    <button class="pack-card" data-pack="travel-night" data-filter="fun" type="button">
                         <span class="pack-title">Passport to Us</span>
                         <span class="pack-desc">Dream destinations, adventures and shared memories.</span>
                     </button>
-                    <button class="pack-card" data-pack="after-fight" type="button">
+                    <button class="pack-card" data-pack="after-fight" data-filter="life" type="button">
                         <span class="pack-title">After the Storm</span>
                         <span class="pack-desc">Understand each other, repair and move forward.</span>
                     </button>
-                    <button class="pack-card" data-pack="kinky-explorative" type="button">
+                    <button class="pack-card" data-pack="kinky-explorative" data-filter="intimate" type="button">
                         <span class="pack-title">Kink & Curiosity</span>
                         <span class="pack-desc">Explore kinks, fantasies, preferences and boundaries.</span>
                     </button>
-                    <button class="pack-card" data-pack="aftercare" type="button">
+                    <button class="pack-card" data-pack="aftercare" data-filter="intimate" type="button">
                         <span class="pack-title">Aftercare</span>
                         <span class="pack-desc">Gentle, reassuring questions for after intimacy.</span>
                     </button>
-                    <button class="pack-card" data-pack="escalation" type="button">
+                    <button class="pack-card" data-pack="escalation" data-filter="deep" type="button">
                         <span class="pack-title">Slow Burn</span>
                         <span class="pack-desc">A gradual journey from flirtation toward deeper intimacy.</span>
                     </button>

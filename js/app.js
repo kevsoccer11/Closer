@@ -61,6 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    document.querySelectorAll('#packFilterChips .filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('#packFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            const filter = chip.dataset.filter;
+            document.querySelectorAll('.pack-card').forEach(card => {
+                const show = filter === 'all' || card.dataset.filter === filter;
+                card.style.display = show ? '' : 'none';
+            });
+        });
+    });
     document.querySelectorAll('.pack-card').forEach(btn => {
         btn.addEventListener('click', () => {
             applyPack(btn.dataset.pack);
@@ -117,6 +128,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             renderMyDecks();
         };
+    document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (btn.dataset.action === 'packs') openRoundBuilder();
+            if (btn.dataset.action === 'favorites') {
+                const favBtn = document.querySelector('#favoritesBtn, .favorites-btn');
+                if (favBtn) favBtn.click();
+                else openDrawer('Favorites', '');
+            }
+            if (btn.dataset.action === 'settings') {
+                const toolsBtn = document.getElementById('toolsDrawerBtn');
+                if (toolsBtn) toolsBtn.click();
+            }
+        });
+    });
     }
     const exitDeckModeBtn = document.getElementById('exitDeckModeBtn');
     if (exitDeckModeBtn) {

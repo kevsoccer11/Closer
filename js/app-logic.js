@@ -1172,6 +1172,15 @@ const undoBtn = document.getElementById('undoBtn');
             turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
         }
     }
+    const progressIndicator = document.getElementById('progressIndicator');
+    if (progressIndicator) {
+        if (roundTotalCards > 0) {
+            const current = Math.min(roundStats.played + 1, roundTotalCards);
+            progressIndicator.textContent = `${current} of ${roundTotalCards}`;
+        } else {
+            progressIndicator.textContent = '';
+        }
+    }
     const announcer = document.getElementById('srAnnouncer');
     if (announcer) {
         if (browseMode) {

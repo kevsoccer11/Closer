@@ -2177,6 +2177,81 @@ body.light-theme .card-container {
     border-color: var(--primary-border);
 }
 
+.desktop-sidebar {
+    display: none;
+}
+@media (min-width: 1024px) {
+    .desktop-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 240px;
+        padding: 24px 16px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        border-right: 1px solid var(--card-border);
+        background: var(--card-bg);
+    }
+    .sidebar-brand strong {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        color: var(--text-main);
+    }
+    .sidebar-brand span {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+    .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .sidebar-nav button {
+        text-align: left;
+        padding: 8px 12px;
+        border: none;
+        background: transparent;
+        color: var(--text-main);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+    .sidebar-nav button:hover {
+        background: var(--btn-bg);
+    }
+    header, main, .round-toolbar, .module-nav {
+        max-width: 960px;
+        margin-left: 280px;
+    }
+}
+.filter-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 4px 0 8px;
+}
+.filter-chip {
+    padding: 6px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.filter-chip.active {
+    background: var(--primary-soft);
+    border-color: var(--primary-border);
+    color: var(--primary);
+}
+.progress-indicator {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-left: auto;
+    margin-right: 8px;
+}
 .pack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
