@@ -167,11 +167,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.discovery-card').forEach(btn => {
         btn.addEventListener('click', () => {
             const mood = btn.dataset.mood;
-            const map = { playful: 'playful', romantic: 'aftercare', deep: 'deep-talk', intimate: 'kinky-explorative' };
-            if (map[mood]) startPackByKey(map[mood]);
+            const wasActive = btn.classList.contains('active');
+            document.querySelectorAll('.discovery-card').forEach(c => c.classList.remove('active'));
+            const packs = document.querySelectorAll('.featured-packs .pack-card');
+            if (wasActive) {
+                packs.forEach(card => card.style.display = '');
+                return;
+            }
+            btn.classList.add('active');
+            packs.forEach(card => {
+                const packMood = card.dataset.mood || '';
+                card.style.display = packMood === mood ? '' : 'none';
+            });
         });
     });
-    document.getElementById('exploreAllBtn')?.addEventListener('click', () => openRoundBuilder());
+    document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
+        document.querySelectorAll('.discovery-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.featured-packs .pack-card').forEach(card => card.style.display = '');
+        openRoundBuilder();
+    });
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.dataset.action === 'packs') openRoundBuilder();
