@@ -2202,23 +2202,28 @@ img {
     right: 0 !important;
     display: flex !important;
     justify-content: space-around !important;
-    padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 8px 6px calc(8px + env(safe-area-inset-bottom, 0px)) !important;
     background: #FFFEFD !important;
     border-top: 1px solid #E9E2DE !important;
     z-index: 999 !important;
-    gap: 2px !important;
+    gap: 4px !important;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.06) !important;
 }
 .header-actions .icon-btn {
-    width: 40px;
-    height: 46px;
+    width: 52px;
+    height: 52px;
     flex-direction: column;
-    gap: 2px;
-    font-size: 0.62rem;
+    gap: 3px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #776B63;
+    background: transparent !important;
+    border: none !important;
     padding: 4px 2px;
 }
 .header-actions .icon-btn i {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
 }
 body {
     padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px));
