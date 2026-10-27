@@ -45,6 +45,10 @@ body[data-module="explicit"] {
     -webkit-tap-highlight-color: transparent;
 }
 
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
@@ -2172,6 +2176,9 @@ body.light-theme .card-container {
     padding: 4px 10px;
     font-size: 0.75rem;
     cursor: pointer;
+}
+img {
+    max-width: 100%;
 }
 
 .pillar-btn.active {
