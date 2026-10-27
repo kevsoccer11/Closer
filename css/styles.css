@@ -2293,7 +2293,7 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
 .featured-packs .pack-grid.compact {
     grid-template-columns: repeat(2, 1fr);
 }
-@media (max-width: 480px) {
+@media (max-width: 359px) {
     .discovery-grid, .featured-packs .pack-grid.compact {
         grid-template-columns: 1fr;
     }
