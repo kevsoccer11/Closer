@@ -2177,32 +2177,24 @@ body.light-theme .card-container {
 .pillar-btn.active {
     background: var(--primary-soft);
     color: var(--primary);
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
-    background: var(--card-bg);
-    border-top: 1px solid var(--card-border);
-    z-index: 50;
-}
-.bottom-nav button {
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    font-size: 0.8rem;
-    padding: 8px;
-}
-@media (min-width: 768px) {
-    .bottom-nav { display: none; }
-    body { padding-bottom: 20px; }
-}
 @media (max-width: 767px) {
-    body { padding-bottom: 70px; }
+    .round-toolbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        max-width: none;
+        z-index: 50;
+        background: var(--card-bg);
+        padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+        border-top: 1px solid var(--card-border);
+    }
+    body {
+        padding-bottom: 70px;
+    }
 }
+.bottom-nav { display: none; }
 .pack-card, .discovery-card, .continue-card, .my-decks-preview, .partner-entry {
     background: #FFFEFD;
     border: 1px solid #E9E2DE;
