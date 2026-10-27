@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v180';
+const CACHE_NAME = 'closer-pwa-v182';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -9,9 +9,12 @@ const ASSETS_TO_CACHE = [
     './js/app-state.js',
     './js/app-logic.js',
     './js/app.js',
+    './img/pack-first-impressions.webp',
+    './img/pack-passport-to-us.webp',
+    './img/pack-find-our-way-back.webp',
+    './img/pack-beneath-the-surface.webp',
     './js/firebase-config.js'
 ];
-
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
