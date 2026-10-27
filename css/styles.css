@@ -2237,6 +2237,9 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     display: none;
 }
 @media (min-width: 1024px) {
+    body {
+        padding-left: 280px;
+    }
     .desktop-sidebar {
         display: flex;
         flex-direction: column;
@@ -2278,12 +2281,11 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
         background: var(--btn-bg);
     }
     .home-view {
-        margin-left: max(280px, calc((100vw - 960px) / 2));
+        margin: 0 auto;
     }
     header, main, .round-toolbar, .module-nav {
         max-width: 960px;
-        margin-left: max(280px, calc((100vw - 960px) / 2));
-        margin-right: auto;
+        margin: 0 auto;
     }
 }
 .filter-chips {
