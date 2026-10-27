@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v175';
+const CACHE_NAME = 'closer-pwa-v176';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -37,20 +37,26 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    // Only handle local relative requests; bypass third-party CDNs (Lucide, Firebase, Google Fonts)
     if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
         return;
     }
-
+    const url = new URL(event.request.url);
+    const isAsset = url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.html') || url.pathname === '/';
+    if (isAsset) {
+        event.respondWith(
+            fetch(event.request).then((response) => {
+                const copy = response.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+                return response;
+            }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('./index.html')))
+        );
+        return;
+    }
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
-            if (cachedResponse) {
-                return cachedResponse;
-            }
+            if (cachedResponse) return cachedResponse;
             return fetch(event.request).catch(() => {
-                if (event.request.mode === 'navigate') {
-                    return caches.match('./index.html');
-                }
+                if (event.request.mode === 'navigate') return caches.match('./index.html');
             });
         })
     );
