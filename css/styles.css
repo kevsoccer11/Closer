@@ -2177,7 +2177,7 @@ body.light-theme .card-container {
 .pillar-btn.active {
     background: var(--primary-soft);
     color: var(--primary);
-.header-actions {
+}
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
