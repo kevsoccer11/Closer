@@ -705,7 +705,7 @@ function drawNextCard(isRemoteUpdate = false) {
         const again = document.createElement('button');
         again.type = 'button';
         again.className = 'btn-primary';
-        again.textContent = 'Play again';
+        again.textContent = 'Start new game';
         again.style.marginTop = '12px';
         again.onclick = () => {
             roundStats = { played: 0, passed: 0 };
