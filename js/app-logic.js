@@ -84,7 +84,7 @@ async function initDatabase() {
         showHomeView();
     } else {
         renderCard(currentCard);
-        showGameView();
+        showHomeView();
     }
     updateRoundSummary();
     const roundSummaryButton = document.getElementById('roundSummaryBtn');
