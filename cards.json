@@ -761,7 +761,7 @@
       "prompt": "Would watching porn or reading erotica together be fun for you, or not your thing?",
       "contextType": "consent",
       "promptStyle": "question",
-      "pillar": "heat"
+      "pillar": "afterhours"
     },
     {
       "id": "sec-076",
@@ -5041,16 +5041,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0338",
-      "module": "sexuality",
-      "category": "Desire & Initiation",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about building anticipation?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0339",
       "module": "sexuality",
       "category": "Desire & Initiation",
@@ -5437,16 +5427,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0378",
-      "module": "sexuality",
-      "category": "Communication & Boundaries",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about talking about what we like?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0379",
       "module": "sexuality",
       "category": "Communication & Boundaries",
@@ -5812,16 +5792,6 @@
       "category": "Communication & Boundaries",
       "intensity": 2,
       "prompt": "When you think about sharing a yes, a maybe, or a no, what helps you feel good about it?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "flame-add-0418",
-      "module": "sexuality",
-      "category": "Communication & Boundaries",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about sharing a yes, a maybe, or a no?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -6593,16 +6563,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0498",
-      "module": "sexuality",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about sensual play?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0499",
       "module": "sexuality",
       "category": "Sensual Curiosity",
@@ -6973,16 +6933,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0538",
-      "module": "sexuality",
-      "category": "Sensual Curiosity",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about exploring each other’s senses?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0539",
       "module": "sexuality",
       "category": "Sensual Curiosity",
@@ -7348,16 +7298,6 @@
       "category": "Sensual Curiosity",
       "intensity": 1,
       "prompt": "When you think about trying new kinds of touch, what helps you feel good about it?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "flame-add-0578",
-      "module": "sexuality",
-      "category": "Sensual Curiosity",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about trying new kinds of touch?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7749,16 +7689,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0618",
-      "module": "sexuality",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about feeling confident in your body?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0619",
       "module": "sexuality",
       "category": "Intimacy & Confidence",
@@ -8076,16 +8006,6 @@
       "category": "Intimacy & Confidence",
       "intensity": 2,
       "prompt": "When you think about feeling sexy together, what helps you feel good about it?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "flame-add-0658",
-      "module": "sexuality",
-      "category": "Intimacy & Confidence",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about feeling sexy together?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -8413,16 +8333,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0698",
-      "module": "sexuality",
-      "category": "Intimacy & Confidence",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about giving each other compliments?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0699",
       "module": "sexuality",
       "category": "Intimacy & Confidence",
@@ -8740,16 +8650,6 @@
       "category": "Romance & Imagination",
       "intensity": 2,
       "prompt": "When you think about romantic date nights, what helps you feel good about it?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "flame-add-0738",
-      "module": "sexuality",
-      "category": "Romance & Imagination",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about romantic date nights?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9077,16 +8977,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0778",
-      "module": "sexuality",
-      "category": "Romance & Imagination",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about sharing fantasies?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0779",
       "module": "sexuality",
       "category": "Romance & Imagination",
@@ -9404,16 +9294,6 @@
       "category": "Pleasure & Connection",
       "intensity": 1,
       "prompt": "When you think about our shared pleasure, what helps you feel good about it?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
-      "id": "flame-add-0818",
-      "module": "sexuality",
-      "category": "Pleasure & Connection",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about our shared pleasure?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9741,16 +9621,6 @@
       "pillar": "heat"
     },
     {
-      "id": "flame-add-0858",
-      "module": "sexuality",
-      "category": "Pleasure & Connection",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about taking our time together?",
-      "contextType": "consent",
-      "promptStyle": "question",
-      "pillar": "heat"
-    },
-    {
       "id": "flame-add-0859",
       "module": "sexuality",
       "category": "Pleasure & Connection",
@@ -10073,16 +9943,6 @@
       "pillar": "spark"
     },
     {
-      "id": "flame-add-0898",
-      "module": "sexuality",
-      "category": "Rituals & Playfulness",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about our little sexy rituals?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
       "id": "flame-add-0899",
       "module": "sexuality",
       "category": "Rituals & Playfulness",
@@ -10400,16 +10260,6 @@
       "category": "Rituals & Playfulness",
       "intensity": 1,
       "prompt": "When you think about flirty notes and texts, what helps you feel good about it?",
-      "contextType": "story",
-      "promptStyle": "question",
-      "pillar": "spark"
-    },
-    {
-      "id": "flame-add-0938",
-      "module": "sexuality",
-      "category": "Rituals & Playfulness",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about flirty notes and texts?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "spark"
@@ -11401,16 +11251,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0058",
-      "module": "life",
-      "category": "Communication & Boundaries",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about listening to each other?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0059",
       "module": "life",
       "category": "Communication & Boundaries",
@@ -11728,16 +11568,6 @@
       "category": "Communication & Boundaries",
       "intensity": 1,
       "prompt": "When you think about talking about the hard stuff, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0098",
-      "module": "life",
-      "category": "Communication & Boundaries",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about talking about the hard stuff?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12065,16 +11895,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0138",
-      "module": "life",
-      "category": "Trust & Emotional Safety",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about trusting each other?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0139",
       "module": "life",
       "category": "Trust & Emotional Safety",
@@ -12392,16 +12212,6 @@
       "category": "Trust & Emotional Safety",
       "intensity": 3,
       "prompt": "When you think about having each other’s backs, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0178",
-      "module": "life",
-      "category": "Trust & Emotional Safety",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about having each other’s backs?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12729,16 +12539,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0218",
-      "module": "life",
-      "category": "Trust & Emotional Safety",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about being honest with each other?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0219",
       "module": "life",
       "category": "Trust & Emotional Safety",
@@ -13056,16 +12856,6 @@
       "category": "Values & Identity",
       "intensity": 2,
       "prompt": "When you think about our shared values, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0258",
-      "module": "life",
-      "category": "Values & Identity",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about our shared values?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13393,16 +13183,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0298",
-      "module": "life",
-      "category": "Values & Identity",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about what matters most to us?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0299",
       "module": "life",
       "category": "Values & Identity",
@@ -13720,16 +13500,6 @@
       "category": "Values & Identity",
       "intensity": 1,
       "prompt": "When you think about the traditions we want to keep, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0338",
-      "module": "life",
-      "category": "Values & Identity",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about the traditions we want to keep?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14389,16 +14159,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0418",
-      "module": "life",
-      "category": "Conflict & Repair",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about apologizing and making up?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0419",
       "module": "life",
       "category": "Conflict & Repair",
@@ -14716,16 +14476,6 @@
       "category": "Conflict & Repair",
       "intensity": 1,
       "prompt": "When you think about finding our way back after a rough moment, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0458",
-      "module": "life",
-      "category": "Conflict & Repair",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about finding our way back after a rough moment?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -15053,16 +14803,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0498",
-      "module": "life",
-      "category": "Money & Work",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about money decisions?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0499",
       "module": "life",
       "category": "Money & Work",
@@ -15380,16 +15120,6 @@
       "category": "Money & Work",
       "intensity": 3,
       "prompt": "When you think about our work-life balance, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0538",
-      "module": "life",
-      "category": "Money & Work",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about our work-life balance?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -15717,16 +15447,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0578",
-      "module": "life",
-      "category": "Home & Daily Life",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about sharing the chores?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0579",
       "module": "life",
       "category": "Home & Daily Life",
@@ -16044,16 +15764,6 @@
       "category": "Home & Daily Life",
       "intensity": 2,
       "prompt": "When you think about our home routines, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0618",
-      "module": "life",
-      "category": "Home & Daily Life",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about our home routines?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -16381,16 +16091,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0658",
-      "module": "life",
-      "category": "Family & Community",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about family time?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0659",
       "module": "life",
       "category": "Family & Community",
@@ -16708,16 +16408,6 @@
       "category": "Family & Community",
       "intensity": 1,
       "prompt": "When you think about holidays and traditions, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0698",
-      "module": "life",
-      "category": "Family & Community",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about holidays and traditions?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -17045,16 +16735,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0738",
-      "module": "life",
-      "category": "Adventure & Travel",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about traveling together?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0739",
       "module": "life",
       "category": "Adventure & Travel",
@@ -17372,16 +17052,6 @@
       "category": "Adventure & Travel",
       "intensity": 3,
       "prompt": "When you think about our next trip, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0778",
-      "module": "life",
-      "category": "Adventure & Travel",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about our next trip?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -17709,16 +17379,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0818",
-      "module": "life",
-      "category": "Health & Support",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about supporting each other?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0819",
       "module": "life",
       "category": "Health & Support",
@@ -18041,16 +17701,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0858",
-      "module": "life",
-      "category": "Health & Support",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about getting through stressful days?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0859",
       "module": "life",
       "category": "Health & Support",
@@ -18333,16 +17983,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0894",
-      "module": "life",
-      "category": "Future & Growth",
-      "intensity": 3,
-      "prompt": "What would you like to understand better about how I experience our future plans?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0895",
       "module": "life",
       "category": "Future & Growth",
@@ -18368,16 +18008,6 @@
       "category": "Future & Growth",
       "intensity": 3,
       "prompt": "When you think about our future plans, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0898",
-      "module": "life",
-      "category": "Future & Growth",
-      "intensity": 1,
-      "prompt": "What helps you feel like I really get you when we talk about our future plans?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -18705,16 +18335,6 @@
       "pillar": "closer"
     },
     {
-      "id": "deep-add-0938",
-      "module": "life",
-      "category": "Future & Growth",
-      "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about what we want to build together?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
       "id": "deep-add-0939",
       "module": "life",
       "category": "Future & Growth",
@@ -18730,16 +18350,6 @@
       "category": "Future & Growth",
       "intensity": 1,
       "prompt": "If we could make one thing about our plans for the next few years less stressful, what would you pick?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0941",
-      "module": "life",
-      "category": "Future & Growth",
-      "intensity": 2,
-      "prompt": "What’s one thing you’d like us to figure out together about our plans for the next few years?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -19032,16 +18642,6 @@
       "category": "Joy & Appreciation",
       "intensity": 2,
       "prompt": "When you think about our everyday moments, what helps you feel good about it?",
-      "contextType": "alignment",
-      "promptStyle": "question",
-      "pillar": "closer"
-    },
-    {
-      "id": "deep-add-0978",
-      "module": "life",
-      "category": "Joy & Appreciation",
-      "intensity": 3,
-      "prompt": "What helps you feel like I really get you when we talk about our everyday moments?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"

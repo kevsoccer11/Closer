@@ -54,7 +54,7 @@ if (!data || !Array.isArray(data.cards)) {
       warnings.push(`${loc}: heat card contains explicit keyword — consider moving to afterhours`);
     }
     // Natural wording: flag very short prompts
-    if (typeof card.prompt === 'string' && card.prompt.trim().length < 20) {
+    if (typeof card.prompt === 'string' && card.prompt.trim().length < 12) {
       warnings.push(`${loc}: prompt very short (${card.prompt.trim().length} chars)`);
     }
     // no extra? allow
