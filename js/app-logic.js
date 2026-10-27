@@ -225,6 +225,11 @@ function applyPack(pack) {
 }
 function startQuickGame() {
     const selected = document.getElementById('roundPackSelect')?.value;
+    if (selected === 'escalation') {
+        startProgressiveGame();
+        document.body.dataset.pack = 'escalation';
+        return;
+    }
     if (!selected) { showToast('Select a quick pack.'); return; }
     const packs = {
         'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
@@ -665,7 +670,7 @@ function drawNextCard(isRemoteUpdate = false) {
             if (prompt) {
                 prompt.innerHTML = '';
                 const title = document.createElement('strong');
-                title.textContent = 'Progressive round complete';
+                title.textContent = 'Escalation round complete';
                 const summary = document.createElement('p');
                 summary.textContent = `You played ${roundStats.played} cards. Continue to the explicit 20-question game, or start a new game?`;
                 const yes = document.createElement('button');
