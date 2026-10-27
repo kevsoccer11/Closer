@@ -2177,6 +2177,9 @@ body.light-theme .card-container {
     border-color: var(--primary-border);
 }
 
+h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
+    font-family: 'Playfair Display', serif;
+}
 .home-view {
     width: 100%;
     max-width: 960px;
