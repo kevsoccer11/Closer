@@ -122,12 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    const progressiveGameBtn = document.getElementById('progressiveGameBtn');
-    if (progressiveGameBtn) {
-        progressiveGameBtn.onclick = () => {
-            startProgressiveGame();
-        };
-    }
     const browseBtn = document.getElementById('browseModeBtn');
     if (browseBtn) {
         const updateBrowseLabel = () => {
