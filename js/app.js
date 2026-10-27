@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         cardContainer.style.cursor = tapToAdvance ? 'pointer' : 'default';
     }
-    // Apply saved theme.
-    if (localStorage.getItem('closer_theme') === 'light') document.body.classList.add('light-theme');
+    // Apply saved theme (default to light).
+    if (localStorage.getItem('closer_theme') !== 'dark') document.body.classList.add('light-theme');
     const offlineBanner = document.getElementById('offlineBanner');
     const updateOffline = () => {
         if (!offlineBanner) return;
@@ -55,8 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.querySelectorAll('.round-pack-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+            if (btn.dataset.pack) {
+                applyPack(btn.dataset.pack);
+                closeRoundBuilder();
+            }
+        });
+    });
+    document.querySelectorAll('.pack-card').forEach(btn => {
+        btn.addEventListener('click', () => {
             applyPack(btn.dataset.pack);
-            closeRoundBuilder();
         });
     });
     document.getElementById('warmUpNextBtn')?.addEventListener('click', () => {
@@ -793,7 +800,7 @@ const applyAccessibility = () => {
     };
     applyAccessibility();
     const applyTheme = () => {
-        const light = localStorage.getItem('closer_theme') === 'light';
+        const light = localStorage.getItem('closer_theme') !== 'dark';
         document.body.classList.toggle('light-theme', light);
     };
     applyTheme();
@@ -814,7 +821,7 @@ const applyAccessibility = () => {
     bindToggle('settingsHighContrastToggle', 'closer_high_contrast');
     const themeToggle = document.getElementById('settingsThemeToggle');
     if (themeToggle) {
-        themeToggle.checked = localStorage.getItem('closer_theme') === 'light';
+        themeToggle.checked = localStorage.getItem('closer_theme') !== 'dark';
         themeToggle.onchange = () => {
             localStorage.setItem('closer_theme', themeToggle.checked ? 'light' : 'dark');
             applyTheme();
