@@ -128,6 +128,42 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             renderMyDecks();
         };
+    const continueGameBtn = document.getElementById('continueGameBtn');
+    if (continueGameBtn) {
+        continueGameBtn.onclick = () => {
+            try {
+                const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
+                const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
+                if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
+                    unspentDeck = savedDeck;
+                    currentCard = savedCard;
+                    // restore filters if saved
+                    try {
+                        const f = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
+                        if (f) {
+                            activePillars = f.activePillars || activePillars;
+                            activeModules = [...activePillars];
+                            activeTopics = f.activeTopics ?? null;
+                            activeMood = f.activeMood || 'all';
+                            includeQuestions = f.includeQuestions ?? includeQuestions;
+                            includeActivities = f.includeActivities ?? includeActivities;
+                            includeMultipleChoice = f.includeMultipleChoice ?? includeMultipleChoice;
+                        }
+                    } catch (e) {}
+                    renderCard(currentCard);
+                    showGameView();
+                }
+            } catch (e) {}
+        };
+    }
+    document.querySelectorAll('.discovery-card').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const mood = btn.dataset.mood;
+            const map = { playful: 'playful', romantic: 'aftercare', deep: 'deep-talk', intimate: 'kinky-explorative' };
+            if (map[mood]) startPackByKey(map[mood]);
+        });
+    });
+    document.getElementById('exploreAllBtn')?.addEventListener('click', () => openRoundBuilder());
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.dataset.action === 'packs') openRoundBuilder();

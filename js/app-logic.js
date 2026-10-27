@@ -54,6 +54,18 @@ async function initDatabase() {
 
     let restoredRound = false;
     try {
+        const savedFilters = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
+        if (savedFilters) {
+            activePillars = savedFilters.activePillars || activePillars;
+            activeModules = [...activePillars];
+            activeTopics = savedFilters.activeTopics ?? activeTopics;
+            activeMood = savedFilters.activeMood || activeMood;
+            includeQuestions = savedFilters.includeQuestions ?? includeQuestions;
+            includeActivities = savedFilters.includeActivities ?? includeActivities;
+            includeMultipleChoice = savedFilters.includeMultipleChoice ?? includeMultipleChoice;
+        }
+    } catch (e) {}
+    try {
         const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
         const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
         if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
@@ -69,10 +81,10 @@ async function initDatabase() {
     if (window.db && window.firebaseConfigured) await loadCommunityVotes();
 
     if (!restoredRound) {
-        rebuildUnspentDeck();
-        drawNextCard();
+        showHomeView();
     } else {
         renderCard(currentCard);
+        showGameView();
     }
     updateRoundSummary();
     const roundSummaryButton = document.getElementById('roundSummaryBtn');
@@ -256,6 +268,24 @@ function startQuickGame() {
     document.body.dataset.pack = selected;
 }
 
+function startPackByKey(key) {
+    const packs = {
+        'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'aftercare': { modules: ['afterhours', 'heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
+        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true }
+    };
+    const selection = packs[key];
+    if (!selection) return;
+    selection.topics = selection.topics || null;
+    selection.intensity = 'all';
+    applyRoundSelection(selection, false);
+    showGameView();
+}
+
 
 function buildProgressiveDeck(count, pillars) {
     activePillars = pillars;
@@ -297,6 +327,7 @@ function startProgressiveGame() {
     roundTotalCards = unspentDeck.length;
     updateRoundSummary();
     drawNextCard();
+    showGameView();
 }
 
 function startProgressiveExplicit() {
@@ -310,6 +341,20 @@ function startProgressiveExplicit() {
     roundTotalCards = unspentDeck.length;
     updateRoundSummary();
     drawNextCard();
+    showGameView();
+}
+
+
+function showHomeView() {
+    document.getElementById('homeView')?.classList.remove('hidden');
+    document.querySelector('main')?.classList.add('hidden');
+    const continueCard = document.getElementById('continueCard');
+    const hasSaved = !!localStorage.getItem('closer_unspent_deck') && !!localStorage.getItem('closer_current_card');
+    if (continueCard) continueCard.classList.toggle('hidden', !hasSaved);
+}
+function showGameView() {
+    document.getElementById('homeView')?.classList.add('hidden');
+    document.querySelector('main')?.classList.remove('hidden');
 }
 
 
@@ -484,7 +529,10 @@ roundStats = { played: 0, passed: 0 };
     updateActiveModulePresentation();
     rebuildUnspentDeck();
     updateRoundSummary();
+    showGameView();
     drawNextCard();
+    try { localStorage.setItem('closer_round_filters', JSON.stringify({ activePillars, activeTopics, activeMood, includeQuestions, includeActivities, includeMultipleChoice })); } catch (e) {}
+
     closeRoundBuilder();
     return true;
 }

@@ -2177,6 +2177,59 @@ body.light-theme .card-container {
     border-color: var(--primary-border);
 }
 
+.home-view {
+    width: 100%;
+    max-width: 960px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.home-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text-main);
+}
+.home-hero p {
+    color: var(--text-muted);
+}
+.continue-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    background: var(--card-bg);
+}
+.discovery-section h2, .featured-packs h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--text-main);
+}
+.discovery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.discovery-card {
+    padding: 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: var(--card-bg);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+}
+.featured-packs .pack-grid.compact {
+    grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 480px) {
+    .discovery-grid, .featured-packs .pack-grid.compact {
+        grid-template-columns: 1fr;
+    }
+}
 .desktop-sidebar {
     display: none;
 }
