@@ -2277,9 +2277,13 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     .sidebar-nav button:hover {
         background: var(--btn-bg);
     }
+    .home-view {
+        margin-left: max(280px, calc((100vw - 960px) / 2));
+    }
     header, main, .round-toolbar, .module-nav {
         max-width: 960px;
-        margin-left: 280px;
+        margin-left: max(280px, calc((100vw - 960px) / 2));
+        margin-right: auto;
     }
 }
 .filter-chips {
