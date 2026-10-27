@@ -203,19 +203,20 @@
                 <button class="icon-btn" id="closeRoundBuilderBtn" type="button" aria-label="Close round builder"><i data-lucide="x" aria-hidden="true"></i></button>
             </div>
             <div class="round-packs">
-                <span class="round-pack-label">Quick packs (select any):</span>
-                <div class="round-pack-checkboxes" id="roundPackCheckboxes">
-                    <label><input type="radio" name="roundPack" value="playful"> Playful</label>
-                    <label><input type="radio" name="roundPack" value="first-date"> First date</label>
-                    <label><input type="radio" name="roundPack" value="deep-talk"> Deep talk</label>
-                    <label><input type="radio" name="roundPack" value="reconnection"> Reconnection</label>
-                    <label><input type="radio" name="roundPack" value="long-distance"> Long-distance</label>
-                    <label><input type="radio" name="roundPack" value="new-parents"> New parents</label>
-                    <label><input type="radio" name="roundPack" value="after-fight"> After a fight</label>
-                    <label><input type="radio" name="roundPack" value="travel-night"> Travel night</label>
-                    <label><input type="radio" name="roundPack" value="kinky-explorative"> Kinky & explorative</label>
-                    <label><input type="radio" name="roundPack" value="aftercare"> Aftercare</label>
-                </div>
+                <span class="round-pack-label">Quick pack:</span>
+                <select id="roundPackSelect" class="round-pack-select">
+                    <option value="">Select a pack…</option>
+                    <option value="playful">Playful</option>
+                    <option value="first-date">First date</option>
+                    <option value="deep-talk">Deep talk</option>
+                    <option value="reconnection">Reconnection</option>
+                    <option value="long-distance">Long-distance</option>
+                    <option value="new-parents">New parents</option>
+                    <option value="after-fight">After a fight</option>
+                    <option value="travel-night">Travel night</option>
+                    <option value="kinky-explorative">Kinky & explorative</option>
+                    <option value="aftercare">Aftercare</option>
+                </select>
                 <button id="startQuickGameBtn" type="button" class="round-pack-btn">Start Quick Game</button>
             </div>
             <div class="round-builder-content">

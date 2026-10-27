@@ -224,7 +224,7 @@ function applyPack(pack) {
     document.body.dataset.pack = pack;
 }
 function startQuickGame() {
-    const selected = document.querySelector('input[name="roundPack"]:checked')?.value;
+    const selected = document.getElementById('roundPackSelect')?.value;
     if (!selected) { showToast('Select a quick pack.'); return; }
     const packs = {
         'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
