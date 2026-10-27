@@ -29,42 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard(true));
     document.getElementById('undoBtn')?.addEventListener('click', undoCard);
-    const quickGameBtn = document.getElementById('quickGameBtn');
-    if (quickGameBtn) {
-        quickGameBtn.onclick = () => {
-            const select = document.getElementById('roundPackSelect');
-            const modules = [...document.querySelectorAll('input[name="roundDeck"]:checked')].map(i => i.value);
-            const intensity = document.querySelector('input[name="roundIntensity"]:checked')?.value || 'all';
-            const packsMeta = {
-                'playful': { modules: ['sexuality','life'], intensity: '1' },
-                'first-date': { modules: ['life'], intensity: '1' },
-                'reconnection': { modules: ['life'], intensity: 'all' },
-                'long-distance': { modules: ['life'], intensity: 'all' },
-                'new-parents': { modules: ['life'], intensity: 'all' },
-                'deep-talk': { modules: ['life','sexuality'], intensity: '3' },
-                'kinky-explorative': { modules: ['explicit'], intensity: 'all' },
-                'aftercare': { modules: ['explicit','sexuality'], intensity: '2' },
-                'after-fight': { modules: ['life'], intensity: 'all' },
-                'travel-night': { modules: ['life'], intensity: 'all' }
-            };
-            let options = [...select.options].filter(o => o.value);
-            options = options.filter(o => {
-                const meta = packsMeta[o.value];
-                if (!meta) return true;
-                const moduleOk = modules.length === 0 || meta.modules.every(m => modules.includes(m));
-                const intensityOk = true; // intensity filter removed
-                return moduleOk && intensityOk;
-            });
-            if (options.length === 0) {
-                showToast('No packs match your current filters.');
-                return;
-            }
-            const pick = options[Math.floor(Math.random() * options.length)].value;
-            select.value = pick;
-            applyPack(pick);
-            closeRoundBuilder();
-        };
-    }
     const packSelect = document.getElementById('roundPackSelect');
     if (packSelect) {
         packSelect.addEventListener('change', () => {

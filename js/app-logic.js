@@ -167,9 +167,7 @@ function getMood(card) {
 function getFilteredCards() {
     return masterDatabase.filter(card => {
         const matchesCompareFirst = activeGameMode === 'compare-first';
-        const matchesModule = matchesCompareFirst
-            ? compareFirstModules.includes(card.module)
-            : activeModules.includes(card.module);
+        const matchesModule = true; // module filter replaced by pillar filter
         const matchesPillar = activePillars.length === 0 || activePillars.includes(getPillar(card));
         const intensity = String(card.intensity);
         const matchesMode = true;
@@ -183,7 +181,6 @@ function getFilteredCards() {
         if (favoritesOnly && !favoriteIds.includes(card.id)) return false;
         if (activeMood !== 'all' && getMood(card) !== activeMood) return false;
         if (activeDeckId) {
-        if (activePillar !== 'all' && (card.pillar || getMood(card)) !== activePillar) return false;
             const deck = customDecks.find(d => d.id === activeDeckId);
             if (!deck || !deck.cardIds.includes(card.id)) return false;
         }
@@ -210,7 +207,20 @@ function applyPack(pack) {
     if (!selection) return;
     // Set topics filter: if topics provided, need activeTopics set; applyRoundSelection expects topics array or null.
     // Ensure topics exist in round builder? applyRoundSelection uses selection.topics directly.
-    applyRoundSelection(selection, pack === 'first-date');
+    activePillars = (selection.modules && selection.modules.length) ? selection.modules : ['spark'];
+    activeModules = [...activePillars];
+    activeTopics = (selection.topics && selection.topics.length) ? selection.topics : null;
+    activeMood = selection.mood || 'all';
+    includeQuestions = selection.questions;
+    includeActivities = selection.activities;
+    includeMultipleChoice = selection.multipleChoice;
+    document.querySelectorAll('input[name="roundPillar"]').forEach(input => { input.checked = activePillars.includes(input.value); });
+    const moodInput = document.querySelector('input[name="roundMood"][value="' + activeMood + '"]');
+    if (moodInput) moodInput.checked = true;
+    const q = document.getElementById('includeQuestions'); if (q) q.checked = includeQuestions;
+    const a = document.getElementById('includeActivities'); if (a) a.checked = includeActivities;
+    const m = document.getElementById('includeMultipleChoice'); if (m) m.checked = includeMultipleChoice;
+    renderRoundTopics();
     document.body.dataset.pack = pack;
 }
 function getRoundBuilderSelection() {
@@ -256,7 +266,7 @@ function renderRoundTopics() {
         input.value = topic;
         input.checked = activeTopics === null || activeTopics.includes(topic);
         const text = document.createElement('span');
-        text.textContent = `${category} · ${module === 'sexuality' ? 'Flame & Passion' : module === 'life' ? 'Deep Connection' : 'Explicit'}`;
+        text.textContent = `${category} · ${module === 'spark' ? 'Spark' : module === 'heat' ? 'Heat' : module === 'closer' ? 'Closer' : 'After Hours'}`;
         label.append(input, text);
         container.appendChild(label);
     });
@@ -290,13 +300,14 @@ function updateRoundSummary() {
         return;
     }
     const deckNames = {
-        sexuality: 'Flame & Passion',
-        life: 'Deep Connection',
-        explicit: 'Explicit'
+        spark: 'Spark',
+        heat: 'Heat',
+        closer: 'Closer',
+        afterhours: 'After Hours'
     };
-    const deckSummary = activeModules.length === 3
-        ? 'All decks'
-        : activeModules.map(module => deckNames[module]).join(' + ') || 'No decks';
+    const deckSummary = activeModules.length === 4
+        ? 'All pillars'
+        : activeModules.map(module => deckNames[module]).join(' + ') || 'No pillars';
     const topicSummary = activeTopics === null
         ? 'All topics'
         : `${activeTopics.length} ${activeTopics.length === 1 ? 'topic' : 'topics'}`;
@@ -347,13 +358,14 @@ function applyRoundSelection(selection, startLight = false) {
         if (status) status.textContent = 'Choose at least one deck to start.';
         return false;
     }
-    activePillars = selection.modules;
+    activePillars = (selection.modules && selection.modules.length) ? selection.modules : ['spark'];
+    activeModules = [...activePillars];
     roundConfiguredByUser = true;
     if (selection.modules.length === 1 && selection.modules[0] === 'life') {
         selection.intensity = 'all';
     }
-    activeTopics = selection.topics;
-    activeIntensity = 'all';
+    activeTopics = (selection.topics && selection.topics.length) ? selection.topics : null;
+    activeIntensity = startLight ? '0' : 'all';
     activeMood = selection.mood || 'all';
     includeQuestions = selection.questions;
     includeActivities = selection.activities;
@@ -389,7 +401,7 @@ function openRoundBuilder() {
     const modal = document.getElementById('roundBuilderModal');
     if (!modal) return;
     document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
-        input.checked = activeModules.includes(input.value);
+        input.checked = activePillars.includes(input.value);
     });
     const mood = document.querySelector(`input[name="roundMood"][value="${activeMood}"]`);
     if (mood) mood.checked = true;
