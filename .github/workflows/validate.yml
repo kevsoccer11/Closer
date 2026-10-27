@@ -15,3 +15,4 @@ jobs:
           node-version: '20'
       - run: node validate-cards.js cards.json
       - run: node validate-cards.js explicit-cards.json
+      - run: node smoke-test.js
