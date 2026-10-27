@@ -1,0 +1,17 @@
+name: Validate cards
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node validate-cards.js cards.json
+      - run: node validate-cards.js explicit-cards.json

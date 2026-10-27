@@ -1,5 +1,23 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    // Basic focus trapping for open dialogs/drawers.
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab') return;
+        const dialog = document.querySelector('.modal-overlay:not(.hidden) .modal-card, .drawer.open, .drawer:not(.hidden)');
+        if (!dialog) return;
+        const focusables = Array.from(dialog.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))
+            .filter(el => !el.disabled && el.offsetParent !== null);
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    });
     document.addEventListener('visibilitychange', () => {
         document.body.classList.toggle('app-blurred', document.hidden);
     });
@@ -113,8 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
         browseBtn.onclick = () => {
             browseMode = !browseMode;
             updateBrowseLabel();
-            rebuildUnspentDeck();
-            drawNextCard();
+            const turnIndicator = document.getElementById('turnIndicator');
+            if (turnIndicator) {
+                turnIndicator.classList.toggle('hidden', browseMode);
+            }
         };
         updateBrowseLabel();
     }

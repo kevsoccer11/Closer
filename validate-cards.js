@@ -16,6 +16,7 @@ if (!data || !Array.isArray(data.cards)) {
 } else {
   const ids = new Set();
   const seenPrompts = new Set();
+  const prefixCounts = new Map();
   data.cards.forEach((card, index) => {
     const loc = `card[${index}]${card && card.id ? ` (${card.id})` : ''}`;
     if (!card || typeof card !== 'object') { errors.push(`${loc}: not an object`); return; }
@@ -34,6 +35,8 @@ if (!data || !Array.isArray(data.cards)) {
       const key = card.prompt.trim().toLowerCase();
       if (seenPrompts.has(key)) warnings.push(`${loc}: duplicate prompt`);
       else seenPrompts.add(key);
+      const prefix = key.slice(0, 60);
+      prefixCounts.set(prefix, (prefixCounts.get(prefix) || 0) + 1);
     }
     if (card.promptStyle === 'question' && !/[?!.:]$/.test(card.prompt.trim())) warnings.push(`${loc}: question prompt should end with punctuation`);
     if (!VALID_CONTEXT.has(card.contextType)) errors.push(`${loc}: invalid contextType ${card.contextType}`);
@@ -46,8 +49,19 @@ if (!data || !Array.isArray(data.cards)) {
     } else if (card.contextType === 'poll') {
       warnings.push(`${loc}: poll card has no options (will render as a regular question)`);
     }
+    // Module/pillar accuracy: Heat cards should not contain explicit sexual content
+    if (card.pillar === 'heat' && /orgasm|anal|oral|penetrat|intercourse|genital|climax|fetish|kink|bondage|handjob|blowjob/i.test(card.prompt)) {
+      warnings.push(`${loc}: heat card contains explicit keyword — consider moving to afterhours`);
+    }
+    // Natural wording: flag very short prompts
+    if (typeof card.prompt === 'string' && card.prompt.trim().length < 20) {
+      warnings.push(`${loc}: prompt very short (${card.prompt.trim().length} chars)`);
+    }
     // no extra? allow
   });
+  for (const [prefix, count] of prefixCounts) {
+    if (count > 3) warnings.push(`near-duplicate prefix (${count}x): "${prefix}…"`);
+  }
   console.log(`Validated ${data.cards.length} cards (${ids.size} unique ids).`);
 }
 
