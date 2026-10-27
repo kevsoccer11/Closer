@@ -128,6 +128,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             renderMyDecks();
         };
+    document.getElementById('manageDecksBtn')?.addEventListener('click', () => {
+        const toolsBtn = document.getElementById('toolsDrawerBtn');
+        if (toolsBtn) toolsBtn.click();
+    });
+    document.getElementById('homePairBtn')?.addEventListener('click', () => {
+        const toolsBtn = document.getElementById('toolsDrawerBtn');
+        if (toolsBtn) toolsBtn.click();
+    });
     const continueGameBtn = document.getElementById('continueGameBtn');
     if (continueGameBtn) {
         continueGameBtn.onclick = () => {

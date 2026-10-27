@@ -351,6 +351,24 @@ function showHomeView() {
     const continueCard = document.getElementById('continueCard');
     const hasSaved = !!localStorage.getItem('closer_unspent_deck') && !!localStorage.getItem('closer_current_card');
     if (continueCard) continueCard.classList.toggle('hidden', !hasSaved);
+    const list = document.getElementById('homeDecksList');
+    if (list) {
+        list.innerHTML = '';
+        const decks = (typeof customDecks !== 'undefined' ? customDecks : []).slice(0, 3);
+        if (decks.length === 0) {
+            const empty = document.createElement('p');
+            empty.textContent = 'No decks yet. Create one from Settings.';
+            empty.style.color = 'var(--text-muted)';
+            list.appendChild(empty);
+        } else {
+            decks.forEach(deck => {
+                const item = document.createElement('div');
+                item.textContent = `${deck.name} (${deck.cardIds.length} cards)`;
+                item.style.padding = '6px 0';
+                list.appendChild(item);
+            });
+        }
+    }
 }
 function showGameView() {
     document.getElementById('homeView')?.classList.add('hidden');
