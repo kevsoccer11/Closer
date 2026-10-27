@@ -227,7 +227,7 @@ function startQuickGame() {
     const selected = document.getElementById('roundPackSelect')?.value;
     if (selected === 'escalation') {
         startProgressiveGame();
-        document.body.dataset.pack = 'escalation';
+        document.body.dataset.pack = 'slow-burn';
         return;
     }
     if (!selected) { showToast('Select a quick pack.'); return; }
@@ -670,7 +670,7 @@ function drawNextCard(isRemoteUpdate = false) {
             if (prompt) {
                 prompt.innerHTML = '';
                 const title = document.createElement('strong');
-                title.textContent = 'Escalation round complete';
+                title.textContent = 'Slow Burn round complete';
                 const summary = document.createElement('p');
                 summary.textContent = `You played ${roundStats.played} cards. Continue to the explicit 20-question game, or start a new game?`;
                 const yes = document.createElement('button');
