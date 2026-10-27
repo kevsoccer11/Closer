@@ -636,12 +636,12 @@ function drawNextCard(isRemoteUpdate = false) {
     }
 
     currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId(), turnIndex: activeTurn };
-roundStats.played += 1;
     if (currentCard?.id && !browseMode) {
         playedCardIds.add(currentCard.id);
         localStorage.setItem('closer_played_cards', JSON.stringify([...playedCardIds]));
         syncPlayedCardsToRoom();
     }
+    if (!browseMode) roundStats.played += 1;
     if (activeGameMode === 'compare-first') {
         compareFirstRoundIndex += 1;
         currentCard.compareFirst = true;
@@ -996,7 +996,7 @@ function advanceCard(passed = false) {
         activeTurn,
         passed
     };
-    if (passed && currentCard) {
+    if (passed && currentCard && !browseMode) {
         roundStats.passed += 1;
         // Return the passed card to the deck so it can appear again later.
         const insertAt = Math.floor(Math.random() * (unspentDeck.length + 1));
@@ -1016,7 +1016,7 @@ function advanceCard(passed = false) {
             return;
         }
     }
-if (!passed) {
+if (!passed && !browseMode) {
         if (pickedAnswererIndex !== null) activeTurn = pickedAnswererIndex;
         if (turnTakingEnabled && currentCard) activeTurn = activeTurn === 0 ? 1 : 0;
     }
@@ -1062,15 +1062,25 @@ const undoBtn = document.getElementById('undoBtn');
     if (favBtn) favBtn.setAttribute('aria-pressed', String(favoriteIds.includes(card.id)));
     const turnIndicator = document.getElementById('turnIndicator');
     if (turnIndicator) {
-        const pickedLabel = pickedAnswerer === 'both'
-            ? 'Both answer'
-            : pickedAnswerer === 'selected'
-                ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
-                : null;
-        turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
-        turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
-const announcer = document.getElementById('srAnnouncer');
-    if (announcer) announcer.textContent = `${card.category || 'Card'}. ${getPlayerIdentifier(activeTurn)}'s turn.`;
+        if (browseMode) {
+            turnIndicator.classList.add('hidden');
+        } else {
+            const pickedLabel = pickedAnswerer === 'both'
+                ? 'Both answer'
+                : pickedAnswerer === 'selected'
+                    ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
+                    : null;
+            turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
+            turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
+        }
+    }
+    const announcer = document.getElementById('srAnnouncer');
+    if (announcer) {
+        if (browseMode) {
+            announcer.textContent = `${card.category || 'Card'}.`;
+        } else {
+            announcer.textContent = `${card.category || 'Card'}. ${getPlayerIdentifier(activeTurn)}'s turn.`;
+        }
     }
     const skipHint = document.getElementById('skipHint');
     if (skipHint) skipHint.classList.toggle('hidden', !canCurrentUserAdvanceCard());
