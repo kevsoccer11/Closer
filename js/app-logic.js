@@ -276,6 +276,13 @@ function startQuickGame() {
 }
 
 function startPackByKey(key) {
+    if (!masterDatabase || masterDatabase.length === 0) {
+        showToast('Loading cards, please try again in a moment.');
+        setTimeout(() => startPackByKey(key), 800);
+        return;
+    }
+    activeDeckId = null;
+    favoritesOnly = false;
     const packs = {
         'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
@@ -771,6 +778,9 @@ function drawNextCard(isRemoteUpdate = false) {
         rebuildUnspentDeck();
     }
     if (unspentDeck.length === 0) {
+        if (!masterDatabase || masterDatabase.length === 0) {
+            return; // cards not loaded yet; avoid false 'Round complete'
+        }
         if (activeGameMode === 'compare-first' && compareFirstRoundIndex > 0) {
             completeCompareFirstRound();
             return;
