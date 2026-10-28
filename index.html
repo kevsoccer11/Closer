@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=231">
+    <link rel="stylesheet" href="css/styles.css?v=303">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -33,7 +33,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 </head>
 
-<body>
+<body class="light-theme">
     <!-- Ambient Glow Background -->
     <div id="offlineBanner" class="offline-banner hidden">You're offline. Some features may be unavailable.</div>
     <div class="ambient-bg" id="ambientBg"></div>
@@ -42,7 +42,7 @@
     <header>
         <div class="top-bar">
             <h1 class="app-title"><svg class="brand-heart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23 8.5 21.5 12c-2 4.5-9.5 9-9.5 9z"/></svg> Closer</h1>
-            <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">Profile</span></button>
+            <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             <div class="header-actions">
                 <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Play</span></button>
                 <button class="icon-btn" id="exploreNavBtn" type="button" aria-label="Explore" title="Explore"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg><span class="nav-label">Explore</span></button>
@@ -55,14 +55,7 @@
 
     </header>
 
-    <div class="round-toolbar">
-        <button class="round-summary-button" id="roundSummaryBtn" type="button" aria-haspopup="dialog" aria-controls="roundBuilderModal" disabled>
-            <span class="round-summary-label" id="roundSummaryLabel">Create New Game</span>
-            <span id="roundSummaryText">Flame &amp; Passion · All topics · All levels</span>
-            <i data-lucide="sliders-horizontal" aria-hidden="true"></i>
-        </button>
-        <button class="browse-mode-button" id="browseModeBtn" type="button">Browse: Off</button>
-    </div>
+    <!-- round toolbar removed -->
 
     <aside class="explicit-content-notice hidden" id="explicitContentNotice" aria-label="Adults-only content notice">
         <strong>Adults only · 18+</strong>
@@ -72,8 +65,9 @@
     <!-- Card Stage -->
     <section id="homeView" class="home-view">
         <div class="home-hero">
+            <span class="home-eyebrow">A space for the two of you</span>
             <h1>A little closer, every day.</h1>
-            <p>Meaningful conversations, playful moments, and intimate experiences designed to bring you closer to the person you love.</p>
+            <p>Meaningful conversations, playful moments, and a deeper connection.</p>
         </div>
         <div id="continueCard" class="continue-card hidden">
             <div>
@@ -83,36 +77,50 @@
             <button class="btn-primary" id="continueGameBtn" type="button">Continue</button>
         </div>
         <!-- Featured experience -->
-        <button class="featured-experience-card pack-card" data-pack="deeper-connection" type="button">
-            <img src="img/deeper-connection.jpg" alt="Deeper Intimacy pack" class="featured-image" loading="lazy">
+        <button class="featured-experience-card" data-pack="deeper-connection" type="button" onclick="try{openRoundBuilder();var m=document.getElementById('roundBuilderModal');if(m&&m.classList.contains('hidden'))m.classList.remove('hidden');}catch(e){alert('Could not open: '+e.message);}">
+            <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="featured-image" loading="lazy">
             <div class="featured-content">
-                <span class="featured-label">Featured</span>
+                <span class="featured-label">Featured experience</span>
                 <h2 class="featured-title">Deeper Intimacy</h2>
-                <p class="featured-desc">Meaningful conversations that help you understand each other, strengthen emotional intimacy, and grow closer.</p>
-                <span class="featured-meta">12 questions · 20–30 min</span>
-                <span class="featured-cta">Start a conversation</span>
+                <p class="featured-desc">Explore desire, vulnerability, and the conversations that bring you closer.</p>
+                <span class="featured-meta">♡ 24 questions · 15 min</span>
+                <span class="featured-cta">Start a conversation →</span>
             </div>
         </button>
-        <!-- Explore categories -->
+        <!-- Explore moods -->
         <section class="categories-section">
+            <div class="categories-header">
+                <h2>Explore moods</h2>
+                <button class="text-link" id="exploreAllBtn" type="button">See all</button>
+            </div>
             <div class="category-grid">
                 <button class="category-card pack-card" data-pack="reconnection" type="button">
-                    <span class="category-icon">♥</span>
+                    <span class="category-icon">♡</span>
                     <span class="category-label">Connection</span>
                 </button>
                 <button class="category-card pack-card" data-pack="playful" type="button">
-                    <span class="category-icon">✦</span>
+                    <span class="category-icon">☺</span>
                     <span class="category-label">Playful</span>
                 </button>
                 <button class="category-card pack-card" data-pack="deep-talk" type="button">
-                    <span class="category-icon">◐</span>
+                    <span class="category-icon">✦</span>
                     <span class="category-label">Deep</span>
                 </button>
                 <button class="category-card pack-card" data-pack="after-hours" type="button">
-                    <span class="category-icon">☾</span>
+                    <span class="category-icon">♨</span>
                     <span class="category-label">Intimacy</span>
                 </button>
             </div>
+        </section>
+        <!-- Question of the day -->
+        <section class="question-of-day">
+            <div class="qod-header">
+                <span class="qod-label">A question for you two</span>
+                <span class="qod-heart">♥</span>
+            </div>
+            <p class="qod-question" id="qodQuestion">What's something about our relationship that you hope never changes?</p>
+            <p class="qod-instruction">Take a moment. Think about it. Then share your answer.</p>
+            <button class="text-link" id="qodAnother" type="button">Another question ↻</button>
         </section>
         <!-- Featured experiences -->
         <section class="featured-experiences">
@@ -124,7 +132,6 @@
                     <div class="experience-content">
                         <h3>Reconnect</h3>
                         <p>Rediscover closeness, attention, and affection.</p>
-                        <span class="experience-meta">12 questions · 20–30 min</span>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="playful" type="button">
@@ -132,7 +139,6 @@
                     <div class="experience-content">
                         <h3>Playful Moments</h3>
                         <p>Lighthearted questions, unexpected answers, teasing, and laughs.</p>
-                        <span class="experience-meta">12 questions · 10–20 min</span>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="deeper-connection" type="button">
@@ -140,21 +146,31 @@
                     <div class="experience-content">
                         <h3>Deeper Intimacy</h3>
                         <p>Meaningful conversations that help you understand each other.</p>
-                        <span class="experience-meta">12 questions · 20–30 min</span>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="deep-talk" type="button">
+                    <img src="img/beneath-the-surface.jpg" alt="Beneath the Surface" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Beneath the Surface</h3>
+                        <p>Explore values, fears, memories, and what makes each other tick.</p>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="travel-night" type="button">
+                    <img src="img/passport-to-us.jpg" alt="Passport to Us" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Passport to Us</h3>
+                        <p>Dream destinations, adventures, and shared memories.</p>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="after-fight" type="button">
+                    <img src="img/after-the-storm.jpg" alt="After the Storm" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>After the Storm</h3>
+                        <p>Understand each other, repair hurt, and move forward.</p>
                     </div>
                 </button>
             </div>
         </section>
-        <!-- Question of the day -->
-        <section class="question-of-day">
-            <span class="qod-label">Connection</span>
-            <span class="qod-heart">♥</span>
-            <p class="qod-question">What's something about our relationship that you hope never changes?</p>
-            <p class="qod-instruction">Take a moment. Think about it. Then share your answer.</p>
-        </section>
-        <div class="featured-packs">
-            <button class="btn-secondary" id="exploreAllBtn" type="button">Explore more packs</button>
-        </div>
     </section>
     <aside class="desktop-sidebar" aria-label="Desktop navigation">
         <div class="sidebar-brand">
@@ -300,7 +316,7 @@
             </div>
             <div class="round-tabs" role="tablist">
                 <button class="round-tab active" data-tab="curated" type="button" role="tab" aria-selected="true" onclick="document.getElementById('curatedTab').classList.remove('hidden');document.getElementById('customTab').classList.add('hidden');document.querySelectorAll('.round-tab').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');">Curated packs</button>
-                <button class="round-tab" data-tab="custom" type="button" role="tab" aria-selected="false" onclick="document.getElementById('curatedTab').classList.add('hidden');document.getElementById('customTab').classList.remove('hidden');document.querySelectorAll('.round-tab').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');">Create custom game</button>
+                <button class="round-tab" data-tab="custom" type="button" role="tab" aria-selected="false" onclick="document.getElementById('curatedTab').classList.add('hidden');document.getElementById('customTab').classList.remove('hidden');document.querySelectorAll('.round-tab').forEach(function(t){t.classList.remove('active');t.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');">Create new deck</button>
             </div>
             <div class="round-tab-panel" id="curatedTab">
                 <div class="round-packs">
@@ -436,7 +452,7 @@
             <div class="round-builder-footer">
                 <p class="round-match-count" id="roundMatchCount" aria-live="polite">Loading available cards…</p>
                 <div class="modal-actions round-builder-actions">
-                    <button class="btn-secondary" id="startLightRoundBtn" type="button">Start light</button>
+                    <button class="btn-secondary" id="browseModeCustomBtn" type="button">Create new deck</button>
                     <button class="btn-primary" id="startRoundBtn" type="button">Start this round</button>
                 </div>
                 <p class="round-builder-status" id="roundBuilderStatus" role="status" aria-live="polite"></p>
@@ -560,10 +576,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=231"></script>
-    <script src="js/app-state.js?v=231"></script>
-    <script src="js/app-logic.js?v=231"></script>
-    <script src="js/app.js?v=231"></script>
+    <script src="js/firebase-config.js?v=303"></script>
+    <script src="js/app-state.js?v=303"></script>
+    <script src="js/app-logic.js?v=303"></script>
+    <script src="js/app.js?v=303"></script>
 
     <script>
         if ('serviceWorker' in navigator) {

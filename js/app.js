@@ -174,9 +174,21 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('customTab')?.classList.toggle('hidden', target !== 'custom');
         });
     });
+    document.getElementById('qodAnother')?.addEventListener('click', () => {
+        if (!masterDatabase || masterDatabase.length === 0) return;
+        const card = masterDatabase[Math.floor(Math.random() * masterDatabase.length)];
+        const el = document.getElementById('qodQuestion');
+        if (el && card && card.prompt) el.textContent = card.prompt;
+    });
+    document.addEventListener('click', (e) => {
+        const btn = e.target && e.target.closest ? e.target.closest('.featured-experience-card') : null;
+        if (btn) {
+            e.preventDefault();
+            try { openRoundBuilder(); } catch (err) { console.error(err); alert('Could not open Play new game: ' + err.message); }
+        }
+    });
     document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
-        document.querySelectorAll('.featured-packs .pack-card').forEach(card => card.style.display = '');
-        openRoundBuilder();
+        try { openRoundBuilder(); } catch (e) { console.error(e); }
     });
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -206,10 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('exploreNavBtn')?.addEventListener('click', () => openRoundBuilder());
     document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
-    const browseBtn = document.getElementById('browseModeBtn');
+    const browseBtn = document.getElementById('browseModeCustomBtn');
     if (browseBtn) {
         const updateBrowseLabel = () => {
-            browseBtn.textContent = `Browse mode: ${browseMode ? 'On' : 'Off'}`;
+            browseBtn.textContent = browseMode ? 'Browse mode: On' : 'Create new deck';
             browseBtn.classList.toggle('active', browseMode);
         };
         browseBtn.onclick = () => {
@@ -283,14 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
             applyRoundSelection(sel);
         } catch (e) { console.error('Start round failed:', e); alert('Could not start round: ' + e.message); }
     });
-    document.getElementById('startLightRoundBtn')?.addEventListener('click', () => {
-        try {
-            const sel = getRoundBuilderSelection();
-            if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
-            applyRoundSelection(sel, true);
-        } catch (e) { console.error('Start light failed:', e); alert('Could not start round: ' + e.message); }
-    });
-
     const gameModeSelect = document.getElementById('gameModeSelect');
     if (gameModeSelect) {
         gameModeSelect.onchange = () => {
@@ -825,7 +829,7 @@ const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
                 <details class="settings-tree-group" open>
                     <summary>Appearance & accessibility</summary>
                     <div class="settings-tree-content">
-                        <label class="toggle-switch">Theme (light) <input type="checkbox" id="settingsThemeToggle"></label>
+                        <label class="toggle-switch">Dark theme <input type="checkbox" id="settingsThemeToggle"></label>
                         <label class="toggle-switch">Large text <input type="checkbox" id="settingsLargeTextToggle"></label>
                         <label class="toggle-switch">Dyslexia font <input type="checkbox" id="settingsDyslexiaToggle"></label>
                         <label class="toggle-switch">Color-blind safe <input type="checkbox" id="settingsColorBlindToggle"></label>
@@ -893,9 +897,9 @@ const applyAccessibility = () => {
     bindToggle('settingsHighContrastToggle', 'closer_high_contrast');
     const themeToggle = document.getElementById('settingsThemeToggle');
     if (themeToggle) {
-        themeToggle.checked = localStorage.getItem('closer_theme') !== 'dark';
+        themeToggle.checked = localStorage.getItem('closer_theme') === 'dark';
         themeToggle.onchange = () => {
-            localStorage.setItem('closer_theme', themeToggle.checked ? 'light' : 'dark');
+            localStorage.setItem('closer_theme', themeToggle.checked ? 'dark' : 'light');
             applyTheme();
         };
     }
