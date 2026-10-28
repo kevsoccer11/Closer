@@ -164,27 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (e) {}
         };
     }
-    document.querySelectorAll('.discovery-card').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const mood = btn.dataset.mood;
-            const wasActive = btn.classList.contains('active');
-            document.querySelectorAll('.discovery-card').forEach(c => c.classList.remove('active'));
-            const packs = document.querySelectorAll('.featured-packs .pack-card');
-            if (wasActive) {
-                packs.forEach(card => card.style.display = '');
-                return;
-            }
-            btn.classList.add('active');
-            packs.forEach(card => {
-                const packMood = card.dataset.mood || '';
-                card.style.display = packMood === mood ? '' : 'none';
-            });
+    document.querySelectorAll('.round-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            const target = tab.dataset.tab;
+            document.getElementById('curatedTab')?.classList.toggle('hidden', target !== 'curated');
+            document.getElementById('customTab')?.classList.toggle('hidden', target !== 'custom');
         });
     });
     document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
-        document.querySelectorAll('.discovery-card').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.featured-packs .pack-card').forEach(card => card.style.display = '');
-        openRoundBuilder();
+        try { openRoundBuilder(); } catch (e) { console.error('openRoundBuilder failed', e); }
     });
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -837,17 +829,6 @@ const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
                         <button id="resetAppBtn" class="btn-secondary reset-local-data-btn" type="button">Clear local app data</button>
                     </div>
                 </details>
-document.querySelectorAll('.pillar-btn').forEach(btn => {
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.pillar-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-            activePillar = btn.dataset.pillar;
-            rebuildUnspentDeck();
-            drawNextCard();
-        };
-    });
                 <details class="settings-tree-group" open>
                     <summary>Appearance & accessibility</summary>
                     <div class="settings-tree-content">
@@ -863,10 +844,11 @@ document.querySelectorAll('.pillar-btn').forEach(btn => {
                     <summary>Help &amp; about</summary>
                     <div class="settings-tree-content">
                         <p class="settings-help-copy">Take turns, answer together, or simply talk through a question. There is no timer or required answer in a relaxed round.</p>
-                        <p class="settings-help-copy">Deck includes ${masterDatabase.length.toLocaleString()} available cards on this device.</p>
+                        <p class="settings-help-copy">Deck includes ${(masterDatabase?.length || 0).toLocaleString()} available cards on this device.</p>
                         <button class="settings-link" id="settingsFavoritesBtn" type="button">Saved questions</button>
                         <button class="settings-link" id="settingsJournalBtn" type="button">Date night journal</button>
                         <button class="settings-link" id="settingsShortcutsBtn" type="button">Keyboard shortcuts</button>
+                        <button class="settings-link" id="settingsUpdateBtn" type="button">Check for updates</button>
                     </div>
                 </details>
             `;
@@ -936,7 +918,69 @@ const applyAccessibility = () => {
     }
 document.getElementById('settingsFavoritesBtn').onclick = () => openHeaderPanel('favsDrawerBtn');
 document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyboard shortcuts', `<div class="drawer-item"><p><strong>Space/Enter:</strong> Next question</p><p><strong>P:</strong> Pass for now</p><p><strong>F:</strong> Favorite</p><p><strong>Esc:</strong> Quick hide Wild & Unspoken</p></div>`);
+            const updateBtn = document.getElementById('settingsUpdateBtn');
+            if (updateBtn) {
+                updateBtn.onclick = async () => {
+                    if (!confirm('Check for a new version and reload? Local app data is kept.')) return;
+                    try {
+                        if ('serviceWorker' in navigator) {
+                            const regs = await navigator.serviceWorker.getRegistrations();
+                            await Promise.all(regs.map(r => r.update()));
+                            await new Promise(res => setTimeout(res, 800));
+                        }
+                        if (window.caches) {
+                            const keys = await caches.keys();
+                            await Promise.all(keys.map(k => caches.delete(k)));
+                        }
+                    } catch (e) { console.warn('Update check failed', e); }
+                    location.reload();
+                };
+            }
             document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
+            // Wire settings-drawer filters (these elements only exist after the drawer is opened).
+            document.querySelectorAll('.mood-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('.mood-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+                    activeMood = btn.dataset.mood;
+                    rebuildUnspentDeck();
+                    drawNextCard();
+                };
+            });
+            document.querySelectorAll('.pillar-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.querySelectorAll('.pillar-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+                    activePillar = btn.dataset.pillar;
+                    rebuildUnspentDeck();
+                    drawNextCard();
+                };
+            });
+            document.querySelectorAll('.prompt-style-btn').forEach(btn => {
+                btn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+                        setCardActionStatus('Only the host can control the Compare First session.');
+                        return;
+                    }
+                    if (activeGameMode === 'compare-first') exitCompareFirstMode();
+                    document.querySelectorAll('.prompt-style-btn').forEach(styleBtn => {
+                        const isActive = styleBtn === btn;
+                        styleBtn.classList.toggle('active', isActive);
+                        styleBtn.setAttribute('aria-pressed', String(isActive));
+                    });
+                    const selectedStyle = btn.dataset.promptStyle;
+                    if (typeof updateQuestionTypeSelection === 'function') updateQuestionTypeSelection(selectedStyle, true);
+                    warmUpEnabled = false;
+                    updateRoundSummary();
+                    rebuildUnspentDeck();
+                    drawNextCard();
+                };
+            });
 
             const resetBtn = document.getElementById('resetAppBtn');
             if (resetBtn) {
@@ -1016,40 +1060,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         };
     });
 
-    // 10b. Mood Filters
-    document.querySelectorAll('.mood-btn').forEach(btn => {
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.querySelectorAll('.mood-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-            activeMood = btn.dataset.mood;
-            rebuildUnspentDeck();
-            drawNextCard();
-        };
-    });
-    // 11. Prompt Style Filters
-    document.querySelectorAll('.prompt-style-btn').forEach(btn => {
-        btn.onclick = (e) => {
-            e.stopPropagation();
-            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
-                setCardActionStatus('Only the host can control the Compare First session.');
-                return;
-            }
-            if (activeGameMode === 'compare-first') exitCompareFirstMode();
-            document.querySelectorAll('.prompt-style-btn').forEach(styleBtn => {
-                const isActive = styleBtn === btn;
-                styleBtn.classList.toggle('active', isActive);
-                styleBtn.setAttribute('aria-pressed', String(isActive));
-            });
-            const selectedStyle = btn.dataset.promptStyle;
-            updateQuestionTypeSelection(selectedStyle, true);
-            warmUpEnabled = false;
-            updateRoundSummary();
-            rebuildUnspentDeck();
-            drawNextCard();
-        };
-    });
+    // 10b/11. Mood & prompt-style filters are wired when the Settings drawer opens (see toolsBtn handler).
 
     // 12. Custom Card Modal Triggers
     const openModalBtn = document.getElementById('openAddCardModal');

@@ -992,7 +992,7 @@ main {
     max-width: 520px;
     max-height: min(92vh, 900px);
     gap: 14px;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .round-builder-footer {
@@ -1022,12 +1022,86 @@ main {
     line-height: 1.4;
 }
 
+.round-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.round-tab {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-main);
+    font-weight: 600;
+    cursor: pointer;
+}
+.round-tab.active {
+    background: var(--primary-soft);
+    color: var(--primary);
+    border-color: var(--primary-border);
+}
+.round-tab-panel.hidden {
+    display: none;
+}
 .round-builder-content {
     flex: 1 1 auto;
     min-height: 0;
     display: grid;
     gap: 14px;
-    overflow-y: auto;
+    overflow-y: visible;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 2px;
+}
+    min-height: 0;
+    display: grid;
+.round-builder-group select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 40px 10px 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.06);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23a0a0b0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    color: var(--text-main);
+    font: inherit;
+    font-size: 0.95rem;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.round-builder-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.round-builder-group input[type="number"] {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-main);
+    font: inherit;
+    font-size: 0.95rem;
+}
+.round-builder-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.round-builder-group select option {
+    background: #1a1a22;
+    color: var(--text-main);
+}
+    gap: 14px;
+    overflow-y: visible;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     padding: 2px;
@@ -2434,9 +2508,14 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
+.pack-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
 .pack-title {
     font-weight: 700;
     font-size: 0.95rem;
+}
 }
 .pack-desc {
     font-size: 0.8rem;

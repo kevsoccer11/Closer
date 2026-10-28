@@ -89,6 +89,7 @@ let undoState = null;
 let playedCardIds = new Set(JSON.parse(localStorage.getItem('closer_played_cards') || '[]'));
 let favoritesOnly = false;
 let activeMood = 'all';
+let activeQuestionCount = null;
 let tapToAdvance = localStorage.getItem('closer_tap_to_advance') === 'true';
 let activePillar = 'all';
 let browseMode = false;

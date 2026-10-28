@@ -32,7 +32,10 @@ async function initDatabase() {
     let remoteCards = [];
     if (typeof window.db !== 'undefined' && window.db) {
         try {
-            const snapshot = await window.db.ref('cards').once('value');
+            const snapshot = await Promise.race([
+                window.db.ref('cards').once('value'),
+                new Promise((_, reject) => setTimeout(() => reject(new Error('Firebase timeout')), 4000))
+            ]);
             const remoteData = snapshot.val();
             if (remoteData) {
                 remoteCards = Array.isArray(remoteData)
@@ -144,8 +147,8 @@ function rebuildUnspentDeck() {
             }
         }
     }
-    unspentDeck = declustered;
-roundTotalCards = declustered.length;
+    unspentDeck = activeQuestionCount ? declustered.slice(0, activeQuestionCount) : declustered;
+roundTotalCards = unspentDeck.length;
 }
 
 function getPillar(card) {
@@ -213,7 +216,11 @@ function applyPack(pack) {
         'long-distance': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'new-parents': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, intensity: '1', questions: true, activities: true, multipleChoice: true },
-        'aftercare': { modules: ['afterhours', 'heat'], topics: null, intensity: '2', questions: true, activities: true, multipleChoice: true }
+        'aftercare': { modules: ['afterhours', 'heat'], topics: null, intensity: '2', questions: true, activities: true, multipleChoice: true },
+        'deeper-connection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true },
+        'playful-chemistry': { modules: ['spark'], topics: null, questions: true, activities: true, multipleChoice: true },
+        'build-the-tension': { modules: ['heat'], topics: null, questions: true, activities: true, multipleChoice: true },
+        'after-hours': { modules: ['afterhours'], topics: null, questions: true, activities: true, multipleChoice: true }
     };
     const selection = packs[pack];
     if (!selection) return;
@@ -270,6 +277,10 @@ function startQuickGame() {
 
 function startPackByKey(key) {
     const packs = {
+        'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
+        'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
         'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
@@ -283,13 +294,18 @@ function startPackByKey(key) {
         'escalation': null
     };
     if (key === 'escalation') { startProgressiveGame(); showGameView(); return; }
-    if (!selection) return;
-    selection.topics = selection.topics || null;
-    selection.intensity = 'all';
-    applyRoundSelection(selection, false);
-    showGameView();
+    const pack = packs[key];
+    if (!pack) { showToast('Unknown pack.'); return; }
+    applyRoundSelection({
+        modules: pack.modules,
+        topics: pack.topics,
+        mood: pack.mood,
+        questions: pack.questions,
+        activities: pack.activities,
+        multipleChoice: pack.multipleChoice
+    }, false);
+    document.body.dataset.pack = key;
 }
-
 
 function buildProgressiveDeck(count, pillars) {
     activePillars = pillars;
@@ -529,6 +545,10 @@ function applyRoundSelection(selection, startLight = false) {
     includeQuestions = selection.questions;
     includeActivities = selection.activities;
     includeMultipleChoice = selection.multipleChoice;
+    const qc = document.getElementById('roundQuestionCount');
+    if (qc) {
+        activeQuestionCount = qc.value ? parseInt(qc.value, 10) : null;
+    }
     activeTurn = 0;
     progressiveMode = false;
     progressivePhase = null;
@@ -564,24 +584,40 @@ roundStats = { played: 0, passed: 0 };
 function openRoundBuilder() {
     const modal = document.getElementById('roundBuilderModal');
     if (!modal) return;
-    document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
-        input.checked = activePillars.includes(input.value);
-    });
-    const mood = document.querySelector(`input[name="roundMood"][value="${activeMood}"]`);
-    if (mood) mood.checked = true;
-    document.getElementById('includeQuestions').checked = includeQuestions;
-    document.getElementById('includeActivities').checked = includeActivities;
-    document.getElementById('includeMultipleChoice').checked = includeMultipleChoice;
-    const status = document.getElementById('roundBuilderStatus');
-    if (status) status.textContent = '';
-    renderRoundTopics();
-    updateRoundIntensityVisibility();
-    document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
-        input.onchange = updateRoundIntensityVisibility;
-    });
-    document.querySelector('.round-builder-content').scrollTop = 0;
     modal.classList.remove('hidden');
-    document.getElementById('closeRoundBuilderBtn')?.focus();
+    // Reset tabs to Curated
+    document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+    const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
+    if (curatedTabBtn) { curatedTabBtn.classList.add('active'); curatedTabBtn.setAttribute('aria-selected', 'true'); }
+    document.getElementById('curatedTab')?.classList.remove('hidden');
+    document.getElementById('customTab')?.classList.add('hidden');
+    try {
+        document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
+            input.checked = activePillars.includes(input.value);
+        });
+        const mood = document.querySelector(`input[name="roundMood"][value="${activeMood}"]`);
+        if (mood) mood.checked = true;
+        const iq = document.getElementById('includeQuestions'); if (iq) iq.checked = includeQuestions;
+        const ia = document.getElementById('includeActivities'); if (ia) ia.checked = includeActivities;
+        const imc = document.getElementById('includeMultipleChoice'); if (imc) imc.checked = includeMultipleChoice;
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = '';
+        renderRoundTopics();
+        updateRoundIntensityVisibility();
+        document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
+            input.onchange = updateRoundIntensityVisibility;
+        });
+        const content = document.querySelector('.round-builder-content');
+        if (content) content.scrollTop = 0;
+        const qc = document.getElementById('roundQuestionCount');
+        if (qc) {
+            qc.value = activeQuestionCount ? String(activeQuestionCount) : '';
+            qc.onchange = () => { activeQuestionCount = qc.value ? parseInt(qc.value, 10) : null; };
+        }
+        document.getElementById('closeRoundBuilderBtn')?.focus();
+    } catch (e) {
+        console.error('openRoundBuilder error', e);
+    }
 }
 
 function closeRoundBuilder() {

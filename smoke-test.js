@@ -8,7 +8,7 @@ function check(label, fn) {
 }
 
 const html = fs.readFileSync('index.html', 'utf8');
-const requiredTokens = ['id="cardPrompt"', 'id="roundPackSelect"', 'id="progressIndicator"', 'id="packFilterChips"', 'class="desktop-sidebar"', 'id="browseModeBtn"', 'id="continueGameBtn"', 'id="exploreAllBtn"', 'id="homeNavBtn"', 'id="roundSummaryBtn"'];
+const requiredTokens = ['id="cardPrompt"', 'id="progressIndicator"', 'class="desktop-sidebar"', 'id="browseModeBtn"', 'id="continueGameBtn"', 'id="exploreAllBtn"', 'id="homeNavBtn"', 'id="roundSummaryBtn"'];
 requiredTokens.forEach(tok => check(`index.html contains ${tok}`, () => {
     if (!html.includes(tok)) throw new Error('missing');
 }));
