@@ -777,6 +777,7 @@ function drawNextCard(isRemoteUpdate = false) {
             const prompt = document.getElementById('cardPrompt');
             if (prompt) {
                 prompt.innerHTML = '';
+                prompt.style.textAlign = 'center';
                 const title = document.createElement('strong');
                 title.textContent = 'Slow Burn round complete';
                 const summary = document.createElement('p');
@@ -786,13 +787,19 @@ function drawNextCard(isRemoteUpdate = false) {
                 yes.className = 'btn-primary';
                 yes.textContent = 'Continue to explicit game';
                 yes.style.marginTop = '12px';
+                yes.style.display = 'block';
+                yes.style.marginLeft = 'auto';
+                yes.style.marginRight = 'auto';
                 yes.onclick = () => { startProgressiveExplicit(); };
                 const no = document.createElement('button');
                 no.type = 'button';
                 no.className = 'btn-secondary';
                 no.textContent = 'Start new game';
                 no.style.marginTop = '12px';
-                no.onclick = () => { startProgressiveGame(); };
+                no.style.display = 'block';
+                no.style.marginLeft = 'auto';
+                no.style.marginRight = 'auto';
+                no.onclick = () => { showHomeView(); openRoundBuilder(); };
                 prompt.append(title, summary, yes, no);
             }
             const nextCardBtn = document.getElementById('nextCardBtn');
@@ -811,6 +818,7 @@ function drawNextCard(isRemoteUpdate = false) {
     const prompt = document.getElementById('cardPrompt');
     if (prompt) {
         prompt.innerHTML = '';
+        prompt.style.textAlign = 'center';
         const title = document.createElement('strong');
         title.textContent = 'Round complete';
         const summary = document.createElement('p');
@@ -820,10 +828,13 @@ function drawNextCard(isRemoteUpdate = false) {
         again.className = 'btn-primary';
         again.textContent = 'Start new game';
         again.style.marginTop = '12px';
+        again.style.display = 'block';
+        again.style.marginLeft = 'auto';
+        again.style.marginRight = 'auto';
         again.onclick = () => {
             roundStats = { played: 0, passed: 0 };
-            rebuildUnspentDeck();
-            drawNextCard();
+            showHomeView();
+            openRoundBuilder();
         };
         prompt.append(title, summary, again);
     }

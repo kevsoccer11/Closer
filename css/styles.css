@@ -2295,7 +2295,7 @@ img {
     border: none !important;
     padding: 4px 2px;
 }
-.header-actions .icon-btn i {
+.header-actions .icon-btn svg {
     width: 22px;
     height: 22px;
 }

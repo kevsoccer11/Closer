@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=208">
+    <link rel="stylesheet" href="css/styles.css?v=213">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -41,7 +41,7 @@
     <!-- Header -->
     <header>
         <div class="top-bar">
-            <h1 class="app-title"><i data-lucide="heart" class="brand-heart" aria-hidden="true"></i> Closer</h1>
+            <h1 class="app-title"><svg class="brand-heart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23 8.5 21.5 12c-2 4.5-9.5 9-9.5 9z"/></svg> Closer</h1>
             <div class="header-actions">
                 <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><i data-lucide="home" aria-hidden="true"></i><span class="nav-label">Play</span></button>
                 <button class="icon-btn" id="exploreNavBtn" type="button" aria-label="Explore" title="Explore"><i data-lucide="compass" aria-hidden="true"></i><span class="nav-label">Explore</span></button>
@@ -111,7 +111,7 @@
             <button type="button" data-action="settings">Settings</button>
         </nav>
     </aside>
-    <main>
+    <main class="hidden">
         <article class="card-container" id="cardContainer" aria-label="Question card">
             <div class="card-header">
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
@@ -226,7 +226,7 @@
         </section>
     </main>
 
-    <div class="response-section">
+    <div class="response-section hidden">
         <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
         <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
         <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next</span></button>
@@ -536,10 +536,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=208"></script>
-    <script src="js/app-state.js?v=208"></script>
-    <script src="js/app-logic.js?v=208"></script>
-    <script src="js/app.js?v=208"></script>
+    <script src="js/firebase-config.js?v=213"></script>
+    <script src="js/app-state.js?v=213"></script>
+    <script src="js/app-logic.js?v=213"></script>
+    <script src="js/app.js?v=213"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
