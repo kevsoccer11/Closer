@@ -32,4 +32,4 @@
 - Mild/moderate explicit prompts (added 30).
 - Kinky/explorative category expansion (added 62).
 - Rewrite prompt removing "me" reference: "What past sensual experience would you like to recreate and elevate?" (original: "What is a past sensual experience with me that you want to recreate, but elevate to a new level").
-- Rewrite prompt removing "our bedroom" reference: "What was the most intense physical sensation you've ever experienced during intimacy?" (original: "what was the most intense physical sensation you have ever experienced in our bedroom").
+- Rewrite prompt removing "our bedroom" reference: "What was the most intense physical sensation you've ever experienced in the bedroom?" (original: "what was the most intense physical sensation you have ever experienced in our bedroom").
