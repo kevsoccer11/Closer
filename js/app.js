@@ -276,10 +276,18 @@ document.addEventListener('DOMContentLoaded', () => {
         drawNextCard();
     });
     document.getElementById('startRoundBtn')?.addEventListener('click', () => {
-        applyRoundSelection(getRoundBuilderSelection());
+        try {
+            const sel = getRoundBuilderSelection();
+            if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
+            applyRoundSelection(sel);
+        } catch (e) { console.error('Start round failed:', e); alert('Could not start round: ' + e.message); }
     });
     document.getElementById('startLightRoundBtn')?.addEventListener('click', () => {
-        applyRoundSelection(getRoundBuilderSelection(), true);
+        try {
+            const sel = getRoundBuilderSelection();
+            if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
+            applyRoundSelection(sel, true);
+        } catch (e) { console.error('Start light failed:', e); alert('Could not start round: ' + e.message); }
     });
 
     const gameModeSelect = document.getElementById('gameModeSelect');
