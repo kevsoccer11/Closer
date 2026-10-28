@@ -2250,6 +2250,7 @@ img {
 .pillar-btn.active {
     background: var(--primary-soft);
     color: var(--primary);
+}
 .home-view, main {
     padding-bottom: 80px;
 }
@@ -2517,7 +2518,6 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     header, main, .round-toolbar, .module-nav {
         max-width: 720px;
     }
-}
 @media (min-width: 1024px) {
     header, main, .round-toolbar, .module-nav {
         max-width: 960px;
