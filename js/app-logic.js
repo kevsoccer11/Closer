@@ -341,6 +341,7 @@ function startProgressiveGame() {
     progressivePhase = 'nonexplicit';
     activeTurn = 0;
     roundStats = { played: 0, passed: 0 };
+    passedCardIds = [];
     pickedAnswerer = null;
     pickedAnswererIndex = null;
     unspentDeck = buildProgressiveDeck(50, ['spark', 'heat', 'closer']);
@@ -355,6 +356,7 @@ function startProgressiveExplicit() {
     progressivePhase = 'explicit';
     activeTurn = 0;
     roundStats = { played: 0, passed: 0 };
+    passedCardIds = [];
     pickedAnswerer = null;
     pickedAnswererIndex = null;
     unspentDeck = buildProgressiveDeck(20, ['afterhours']);
@@ -552,6 +554,7 @@ function applyRoundSelection(selection, startLight = false) {
     activeTurn = 0;
     progressiveMode = false;
     progressivePhase = null;
+    passedCardIds = [];
 roundStats = { played: 0, passed: 0 };
     pickedAnswerer = null;
     pickedAnswererIndex = null;
@@ -837,6 +840,33 @@ function drawNextCard(isRemoteUpdate = false) {
             openRoundBuilder();
         };
         prompt.append(title, summary, again);
+        if (passedCardIds.length > 0) {
+            const missed = document.createElement('button');
+            missed.type = 'button';
+            missed.className = 'btn-secondary';
+            missed.textContent = 'Answer missed questions';
+            missed.style.marginTop = '8px';
+            missed.style.display = 'block';
+            missed.style.marginLeft = 'auto';
+            missed.style.marginRight = 'auto';
+            missed.onclick = () => {
+                const cards = passedCardIds.map(id => masterDatabase.find(c => c.id === id)).filter(Boolean);
+                const unique = [...new Map(cards.map(c => [c.id, c])).values()];
+                if (unique.length === 0) { showToast('No missed questions to replay.'); return; }
+                unspentDeck = [...unique];
+                for (let i = unspentDeck.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [unspentDeck[i], unspentDeck[j]] = [unspentDeck[j], unspentDeck[i]];
+                }
+                roundTotalCards = unspentDeck.length;
+                roundStats = { played: 0, passed: 0 };
+                passedCardIds = [];
+                currentCard = null;
+                drawNextCard();
+                showGameView();
+            };
+            prompt.append(missed);
+        }
     }
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) nextCardBtn.disabled = true;
@@ -1215,6 +1245,7 @@ function advanceCard(passed = false) {
     };
     if (passed && currentCard && !browseMode) {
         roundStats.passed += 1;
+        if (!passedCardIds.includes(currentCard.id)) passedCardIds.push(currentCard.id);
         // Return the passed card to the deck so it can appear again later.
         const insertAt = Math.floor(Math.random() * (unspentDeck.length + 1));
         unspentDeck.splice(insertAt, 0, currentCard);

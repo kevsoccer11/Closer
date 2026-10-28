@@ -85,6 +85,7 @@ let partnerConnected = false;
 let roundTotalCards = 0;
 let lastSyncedAt = null;
 let roundStats = { played: 0, passed: 0 };
+let passedCardIds = [];
 let undoState = null;
 let playedCardIds = new Set(JSON.parse(localStorage.getItem('closer_played_cards') || '[]'));
 let favoritesOnly = false;
