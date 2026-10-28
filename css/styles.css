@@ -1055,8 +1055,6 @@ main {
     -webkit-overflow-scrolling: touch;
     padding: 2px;
 }
-    min-height: 0;
-    display: grid;
 .round-builder-group select {
     width: 100%;
     min-height: 44px;
@@ -1099,12 +1097,6 @@ main {
 .round-builder-group select option {
     background: #1a1a22;
     color: var(--text-main);
-}
-    gap: 14px;
-    overflow-y: visible;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    padding: 2px;
 }
 
 .round-builder-hint {
@@ -2267,7 +2259,6 @@ img {
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 6px;
-}
 }
 .header-actions {
     position: fixed !important;
