@@ -1334,12 +1334,7 @@ const undoBtn = document.getElementById('undoBtn');
     }
     const progressIndicator = document.getElementById('progressIndicator');
     if (progressIndicator) {
-        if (roundTotalCards > 0) {
-            const current = Math.min(roundStats.played + 1, roundTotalCards);
-            progressIndicator.textContent = `${current} of ${roundTotalCards}`;
-        } else {
-            progressIndicator.textContent = '';
-        }
+        progressIndicator.textContent = '';
     }
     const announcer = document.getElementById('srAnnouncer');
     if (announcer) {
