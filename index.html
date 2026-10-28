@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=229">
+    <link rel="stylesheet" href="css/styles.css?v=230">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -72,8 +72,8 @@
     <!-- Card Stage -->
     <section id="homeView" class="home-view">
         <div class="home-hero">
-            <h1>Find your moment.</h1>
-            <p>Thoughtfully curated question packs for every mood, milestone and chapter.</p>
+            <h1>A little closer, every day.</h1>
+            <p>Meaningful conversations, playful moments, and intimate experiences designed to bring you closer to the person you love.</p>
         </div>
         <div id="continueCard" class="continue-card hidden">
             <div>
@@ -82,18 +82,77 @@
             </div>
             <button class="btn-primary" id="continueGameBtn" type="button">Continue</button>
         </div>
-        <div class="featured-packs">
-            <h2>Featured packs</h2>
-            <div class="pack-grid compact">
-                <button class="pack-card" data-pack="first-date" type="button"><img src="img/first-impressions.jpg" alt="First Impressions pack" class="pack-image" loading="lazy"><span class="pack-title">First Impressions</span><span class="pack-desc">Discover attraction, first impressions, preferences and surprises.</span>
-                        <span class="pack-meta">12 questions · 15–25 min</span></button>
-                <button class="pack-card" data-pack="travel-night" type="button"><img src="img/passport-to-us.jpg" alt="Passport to Us pack" class="pack-image" loading="lazy"><span class="pack-title">Passport to Us</span><span class="pack-desc">Dream destinations, adventures and shared memories.</span>
-                        <span class="pack-meta">12 questions · 15–25 min</span></button>
-                <button class="pack-card" data-pack="reconnection" type="button"><img src="img/find-our-way-back.jpg" alt="Find Our Way Back pack" class="pack-image" loading="lazy"><span class="pack-title">Find Our Way Back</span><span class="pack-desc">Rediscover closeness, attention and affection.</span>
-                        <span class="pack-meta">12 questions · 20–30 min</span></button>
-                <button class="pack-card" data-pack="deep-talk" type="button"><img src="img/beneath-the-surface.jpg" alt="Beneath the Surface pack" class="pack-image" loading="lazy"><span class="pack-title">Beneath the Surface</span><span class="pack-desc">Explore values, fears, memories and what makes each other tick.</span>
-                        <span class="pack-meta">14 questions · 20–35 min</span></button>
+        <!-- Featured experience -->
+        <button class="featured-experience-card pack-card" data-pack="deeper-connection" type="button">
+            <img src="img/deeper-connection.jpg" alt="Deeper Intimacy pack" class="featured-image" loading="lazy">
+            <div class="featured-content">
+                <span class="featured-label">Featured</span>
+                <h2 class="featured-title">Deeper Intimacy</h2>
+                <p class="featured-desc">Meaningful conversations that help you understand each other, strengthen emotional intimacy, and grow closer.</p>
+                <span class="featured-meta">12 questions · 20–30 min</span>
+                <span class="featured-cta">Start a conversation</span>
             </div>
+        </button>
+        <!-- Explore categories -->
+        <section class="categories-section">
+            <div class="category-grid">
+                <button class="category-card pack-card" data-pack="reconnection" type="button">
+                    <span class="category-icon">♥</span>
+                    <span class="category-label">Connection</span>
+                </button>
+                <button class="category-card pack-card" data-pack="playful" type="button">
+                    <span class="category-icon">✦</span>
+                    <span class="category-label">Playful</span>
+                </button>
+                <button class="category-card pack-card" data-pack="deep-talk" type="button">
+                    <span class="category-icon">◐</span>
+                    <span class="category-label">Deep</span>
+                </button>
+                <button class="category-card pack-card" data-pack="after-hours" type="button">
+                    <span class="category-icon">☾</span>
+                    <span class="category-label">Intimacy</span>
+                </button>
+            </div>
+        </section>
+        <!-- Featured experiences -->
+        <section class="featured-experiences">
+            <h2>Find your moment</h2>
+            <p>Discover conversations for every mood, phase, and kind of connection.</p>
+            <div class="experience-list">
+                <button class="experience-card pack-card" data-pack="reconnection" type="button">
+                    <img src="img/find-our-way-back.jpg" alt="Reconnect" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Reconnect</h3>
+                        <p>Rediscover closeness, attention, and affection.</p>
+                        <span class="experience-meta">12 questions · 20–30 min</span>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="playful" type="button">
+                    <img src="img/playful.jpg" alt="Playful Moments" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Playful Moments</h3>
+                        <p>Lighthearted questions, unexpected answers, teasing, and laughs.</p>
+                        <span class="experience-meta">12 questions · 10–20 min</span>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="deeper-connection" type="button">
+                    <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Deeper Intimacy</h3>
+                        <p>Meaningful conversations that help you understand each other.</p>
+                        <span class="experience-meta">12 questions · 20–30 min</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+        <!-- Question of the day -->
+        <section class="question-of-day">
+            <span class="qod-label">Connection</span>
+            <span class="qod-heart">♥</span>
+            <p class="qod-question">What's something about our relationship that you hope never changes?</p>
+            <p class="qod-instruction">Take a moment. Think about it. Then share your answer.</p>
+        </section>
+        <div class="featured-packs">
             <button class="btn-secondary" id="exploreAllBtn" type="button">Explore more packs</button>
         </div>
     </section>
@@ -501,10 +560,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=229"></script>
-    <script src="js/app-state.js?v=229"></script>
-    <script src="js/app-logic.js?v=229"></script>
-    <script src="js/app.js?v=229"></script>
+    <script src="js/firebase-config.js?v=230"></script>
+    <script src="js/app-state.js?v=230"></script>
+    <script src="js/app-logic.js?v=230"></script>
+    <script src="js/app.js?v=230"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
