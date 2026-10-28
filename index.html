@@ -94,7 +94,7 @@
                 <button class="pack-card" data-pack="deep-talk" type="button"><img src="img/beneath-the-surface.jpg" alt="Beneath the Surface pack" class="pack-image" loading="lazy"><span class="pack-title">Beneath the Surface</span><span class="pack-desc">Explore values, fears, memories and what makes each other tick.</span>
                         <span class="pack-meta">14 questions · 20–35 min</span></button>
             </div>
-            <button class="btn-secondary" id="exploreAllBtn" type="button" onclick="try{openRoundBuilder();}catch(e){console.error(e);}">Explore more packs</button>
+            <button class="btn-secondary" id="exploreAllBtn" type="button">Explore more packs</button>
         </div>
     </section>
     <aside class="desktop-sidebar" aria-label="Desktop navigation">
@@ -240,8 +240,8 @@
                 <button class="icon-btn" id="closeRoundBuilderBtn" type="button" aria-label="Close round builder"><i data-lucide="x" aria-hidden="true"></i></button>
             </div>
             <div class="round-tabs" role="tablist">
-                <button class="round-tab active" data-tab="curated" type="button" role="tab" aria-selected="true" onclick="document.querySelectorAll('.round-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');document.getElementById('curatedTab')?.classList.remove('hidden');document.getElementById('customTab')?.classList.add('hidden');">Curated packs</button>
-                <button class="round-tab" data-tab="custom" type="button" role="tab" aria-selected="false" onclick="document.querySelectorAll('.round-tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false');});this.classList.add('active');this.setAttribute('aria-selected','true');document.getElementById('curatedTab')?.classList.add('hidden');document.getElementById('customTab')?.classList.remove('hidden');">Create custom game</button>
+                <button class="round-tab active" data-tab="curated" type="button" role="tab" aria-selected="true">Curated packs</button>
+                <button class="round-tab" data-tab="custom" type="button" role="tab" aria-selected="false">Create custom game</button>
             </div>
             <div class="round-tab-panel" id="curatedTab">
                 <div class="round-packs">
