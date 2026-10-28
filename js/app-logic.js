@@ -346,7 +346,7 @@ function buildProgressiveDeck(count, pillars) {
 function startProgressiveGame() {
     progressiveMode = true;
     progressivePhase = 'nonexplicit';
-    activeTurn = 0;
+    activeTurn = Math.random() < 0.5 ? 1 : 0;
     roundStats = { played: 0, passed: 0 };
     passedCardIds = [];
     pickedAnswerer = null;
@@ -361,7 +361,7 @@ function startProgressiveGame() {
 function startProgressiveExplicit() {
     progressiveMode = true;
     progressivePhase = 'explicit';
-    activeTurn = 0;
+    activeTurn = Math.random() < 0.5 ? 1 : 0;
     roundStats = { played: 0, passed: 0 };
     passedCardIds = [];
     pickedAnswerer = null;
@@ -558,7 +558,7 @@ function applyRoundSelection(selection, startLight = false) {
     if (qc) {
         activeQuestionCount = qc.value ? parseInt(qc.value, 10) : null;
     }
-    activeTurn = 0;
+    activeTurn = Math.random() < 0.5 ? 1 : 0;
     progressiveMode = false;
     progressivePhase = null;
     passedCardIds = [];

@@ -229,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rebuildUnspentDeck();
         drawNextCard();
         setPairStatus('Play history cleared.');
+        showToast('Play history cleared.');
     });
     document.getElementById('wildUnspokenBtn')?.addEventListener('click', () => {
         if (activeGameMode === 'compare-first') exitCompareFirstMode();
@@ -335,25 +336,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (answerMorePollsBtn) answerMorePollsBtn.onclick = answerMoreCompareFirstPolls;
     const continueRegularCardsBtn = document.getElementById('continueRegularCardsBtn');
     if (continueRegularCardsBtn) continueRegularCardsBtn.onclick = continueToRegularCards;
-
-    const pickTurnBtn = document.getElementById('pickTurnBtn');
-    if (pickTurnBtn) {
-        pickTurnBtn.onclick = () => {
-            const choices = [0, 1, 2];
-            const selected = choices[Math.floor(Math.random() * choices.length)];
-            activeTurn = selected === 1 ? 1 : 0;
-            pickedAnswererIndex = selected === 2 ? null : selected;
-            pickedAnswerer = selected === 2 ? 'both' : 'selected';
-            const result = document.getElementById('turnPickerResult');
-            const answererLabel = selected === 2 ? 'Both answer' : `${getPlayerIdentifier(activeTurn)} answers first`;
-            if (result) result.textContent = answererLabel;
-            const indicator = document.getElementById('turnIndicator');
-            if (indicator) {
-                indicator.textContent = answererLabel;
-                indicator.classList.remove('hidden');
-            }
-        };
-    }
 
     const timerToggleBtn = document.getElementById('timerToggleBtn');
     if (timerToggleBtn) {
