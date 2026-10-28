@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=213">
+    <link rel="stylesheet" href="css/styles.css?v=214">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -43,16 +43,13 @@
         <div class="top-bar">
             <h1 class="app-title"><svg class="brand-heart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23 8.5 21.5 12c-2 4.5-9.5 9-9.5 9z"/></svg> Closer</h1>
             <div class="header-actions">
-                <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><i data-lucide="home" aria-hidden="true"></i><span class="nav-label">Play</span></button>
-                <button class="icon-btn" id="exploreNavBtn" type="button" aria-label="Explore" title="Explore"><i data-lucide="compass" aria-hidden="true"></i><span class="nav-label">Explore</span></button>
-                <button class="icon-btn" id="pairPartnerBtn" type="button" aria-label="Pair with partner" title="Pair with partner"><i
-                        data-lucide="radio" aria-hidden="true"></i><span class="nav-label">Connect</span></button>
-                <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><i data-lucide="user" aria-hidden="true"></i><span class="nav-label">Profile</span></button>
-                <button class="icon-btn" id="journalDrawerBtn" type="button" aria-label="Date night journal" title="Date night journal" style="display:none;"><i
-                        data-lucide="book-heart" aria-hidden="true"></i><span class="nav-label">Journal</span></button>
-                <button class="icon-btn" id="favsDrawerBtn" type="button" aria-label="Favorites" title="Favorites" style="display:none;"><i data-lucide="bookmark" aria-hidden="true"></i><span class="nav-label">Saved</span></button>
-                <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><i
-                        data-lucide="settings" aria-hidden="true"></i><span class="nav-label">Settings</span></button>
+                <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Play</span></button>
+                <button class="icon-btn" id="exploreNavBtn" type="button" aria-label="Explore" title="Explore"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg><span class="nav-label">Explore</span></button>
+                <button class="icon-btn" id="pairPartnerBtn" type="button" aria-label="Pair with partner" title="Pair with partner"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg><span class="nav-label">Connect</span></button>
+                <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span class="nav-label">Profile</span></button>
+                <button class="icon-btn" id="journalDrawerBtn" type="button" aria-label="Date night journal" title="Date night journal" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 10.5c0-1.5-1.5-2.5-2.5-1.5S8 11 12 14c4-3 3.5-4 2.5-5s-2.5 0-2.5 1.5z"/></svg><span class="nav-label">Journal</span></button>
+                <button class="icon-btn" id="favsDrawerBtn" type="button" aria-label="Favorites" title="Favorites" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg><span class="nav-label">Saved</span></button>
+                <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></button>
             </div>
         </div>
 
@@ -536,10 +533,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=213"></script>
-    <script src="js/app-state.js?v=213"></script>
-    <script src="js/app-logic.js?v=213"></script>
-    <script src="js/app.js?v=213"></script>
+    <script src="js/firebase-config.js?v=214"></script>
+    <script src="js/app-state.js?v=214"></script>
+    <script src="js/app-logic.js?v=214"></script>
+    <script src="js/app.js?v=214"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
