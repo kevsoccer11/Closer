@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=225">
+    <link rel="stylesheet" href="css/styles.css?v=226">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -490,31 +490,6 @@
                     <details class="settings-tree-group">
                         <summary>Questions &amp; decks</summary>
                         <div class="settings-tree-content">
-                            <div class="filter-group" role="group" aria-label="Question type">
-                                <span class="filter-label">Question type</span>
-                                <div class="prompt-style-bar" id="promptStyleBar">
-                                    <button class="prompt-style-btn active" data-prompt-style="all" type="button" aria-pressed="true">All</button>
-                                    <button class="prompt-style-btn" data-prompt-style="question" type="button" aria-pressed="false">Questions to answer</button>
-                                    <button class="prompt-style-btn" data-prompt-style="activity" type="button" aria-pressed="false">Activities to try</button>
-                                </div>
-                                <label class="include-card-type"><input type="checkbox" id="settingsIncludeMultipleChoice" checked> Include multiple-choice cards</label>
-                                <p class="filter-confirmation" id="questionTypeConfirmation" role="status" aria-live="polite"></p>
-                            </div>
-                            <!-- intensity removed -->
-                            <div class="mood-bar" id="moodBar">
-                                <button class="mood-btn active" data-mood="all" type="button" aria-pressed="true">All moods</button>
-                                <button class="mood-btn" data-mood="playful" type="button" aria-pressed="false">Playful</button>
-                                <button class="mood-btn" data-mood="deep" type="button" aria-pressed="false">Deep</button>
-                                <button class="mood-btn" data-mood="romantic" type="button" aria-pressed="false">Romantic</button>
-                                <button class="mood-btn" data-mood="spicy" type="button" aria-pressed="false">Spicy</button>
-                            </div>
-                            <div class="pillar-bar" id="pillarBar">
-                                <button class="pillar-btn active" data-pillar="all" type="button" aria-pressed="true">All pillars</button>
-                                <button class="pillar-btn" data-pillar="spark" type="button" aria-pressed="false">Spark</button>
-                                <button class="pillar-btn" data-pillar="heat" type="button" aria-pressed="false">Heat</button>
-                                <button class="pillar-btn" data-pillar="closer" type="button" aria-pressed="false">Closer</button>
-                                <button class="pillar-btn" data-pillar="afterhours" type="button" aria-pressed="false">After Hours</button>
-                            </div>
                             <div class="action-row">
                                 <button class="shuffle-all-btn" id="shuffleAllBtn" type="button"><i data-lucide="shuffle" aria-hidden="true"></i> Shuffle this round</button>
                                 <button class="add-card-btn" id="openAddCardModal" type="button"><i data-lucide="plus-circle" aria-hidden="true"></i> Add a question</button>
@@ -532,10 +507,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=225"></script>
-    <script src="js/app-state.js?v=225"></script>
-    <script src="js/app-logic.js?v=225"></script>
-    <script src="js/app.js?v=225"></script>
+    <script src="js/firebase-config.js?v=226"></script>
+    <script src="js/app-state.js?v=226"></script>
+    <script src="js/app-logic.js?v=226"></script>
+    <script src="js/app.js?v=226"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
