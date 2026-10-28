@@ -2533,7 +2533,37 @@ body.app-blurred {
     pointer-events: none;
     user-select: none;
 }
-/* Landing page redesign */
+/* Landing page warm theme */
+body.landing {
+    --bg-dark: #FAF6F0;
+    --card-bg: #FFFFFF;
+    --card-border: rgba(53, 39, 35, 0.1);
+    --primary: #A95F4F;
+    --primary-glow: rgba(169, 95, 79, 0.25);
+    --primary-soft: #F1E2DC;
+    --primary-border: rgba(169, 95, 79, 0.3);
+    --text-main: #352723;
+    --text-muted: #746A65;
+    --btn-bg: rgba(53, 39, 35, 0.05);
+    --btn-hover: rgba(53, 39, 35, 0.12);
+    background-color: #FAF6F0;
+}
+body.landing .header-actions {
+    background: #FAF6F0 !important;
+    border-top: 1px solid rgba(53, 39, 35, 0.1) !important;
+}
+body.landing .header-actions .icon-btn {
+    color: #746A65;
+}
+body.landing .top-bar { background: transparent; }
+body.landing .brand-heart { color: #A95F4F; }
+body.landing .app-title { color: #352723; }
+body.landing .featured-cta { background: #A95F4F; }
+body.landing .category-card, body.landing .experience-card, body.landing .featured-experience-card, body.landing .question-of-day {
+    background: #FFFFFF;
+    border-color: rgba(53, 39, 35, 0.1);
+    box-shadow: 0 2px 8px rgba(53, 39, 35, 0.04);
+}
 .home-hero h1 { font-size: 1.9rem; line-height: 1.15; margin-bottom: 6px; }
 .home-hero p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; max-width: 320px; }
 

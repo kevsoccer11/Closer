@@ -372,6 +372,7 @@ function startProgressiveExplicit() {
 
 
 function showHomeView() {
+    document.body.classList.add('landing');
     document.getElementById('homeView')?.classList.remove('hidden');
     document.querySelector('main')?.classList.add('hidden');
     document.querySelector('.response-section')?.classList.add('hidden');
@@ -398,6 +399,7 @@ function showHomeView() {
     }
 }
 function showGameView() {
+    document.body.classList.remove('landing');
     document.getElementById('homeView')?.classList.add('hidden');
     document.querySelector('main')?.classList.remove('hidden');
     document.querySelector('.response-section')?.classList.remove('hidden');
