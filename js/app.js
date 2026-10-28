@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
         document.querySelectorAll('.featured-packs .pack-card').forEach(card => card.style.display = '');
-        try { openRoundBuilder(); } catch (e) { console.error('openRoundBuilder failed', e); }
+        openRoundBuilder();
     });
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
