@@ -31,4 +31,4 @@
 - Category cleanup (merged duplicates).
 - Mild/moderate explicit prompts (added 30).
 - Kinky/explorative category expansion (added 62).
-- 97 new explicit cards pending addition (explicit-0001..0097): categories Past Experiences, Desire & Pleasure, Fantasy & Curiosity, Kink & Exploration, Communication & Boundaries, Us Together. Verified format: all 8 required fields present, intensities 1-3, contextType question/consent. Issues: stray commas in source JSON (2), ID collisions with existing explicit-0001..0097 (need rename to unique IDs), ~15 prompts still reference "me/us/I".
+- 97 new explicit cards added (explicit-1367 to explicit-1463): categories Past Experiences, Desire & Pleasure, Fantasy & Curiosity, Kink & Exploration, Communication & Boundaries, Us Together. ContextType adjusted from "question" to "story" for validity.

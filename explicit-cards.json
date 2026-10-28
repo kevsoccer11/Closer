@@ -17086,6 +17086,976 @@
       "contextType": "fantasy",
       "promptStyle": "question",
       "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1367",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What's a sexual first that changed how you understood your desire? What stayed with you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1368",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever discovered a preference unexpectedly? How did you feel about it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1369",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever tried something intimate out of curiosity? What did you learn?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1370",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What experience helped you understand one of your boundaries?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1371",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever changed your mind during intimacy? What helped you say so?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1372",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What made you feel especially wanted in an intimate moment?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1373",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever enjoyed taking the lead more than expected? What appealed to you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1374",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever preferred being guided? What made that feel good?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1375",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What's one lesson from your intimate history you want us to carry forward?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1376",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever laughed during a sexy moment? Did it bring you closer?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1377",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What kind of communication from a partner helped intimacy feel safer?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1378",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever been nervous to ask for something you wanted? Why?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1379",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What's an experience that clarified a definite no for you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1380",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What's a sensual memory you look back on fondly, without identifying details?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1381",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you explored a fantasy and found it wasn't for you? What did you learn?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1382",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever enjoyed anticipation more than the activity? What created it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1383",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What used to feel hard to discuss but feels easier now?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1384",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "How has emotional closeness shaped what feels pleasurable?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1385",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "What experience taught you what feeling respected means to you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1386",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 1,
+      "prompt": "Have you ever surprised yourself with a desire? What did it reveal?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1387",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What kind of touch most reliably helps you feel wanted?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1388",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How do you like a partner to show eagerness for you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1389",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What helps you relax and enjoy intimacy without rushing?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1390",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "Do you prefer a slow build or a spontaneous start? Why?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1391",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What kind of kissing makes you want to continue?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1392",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What small thing could I do to make intimacy feel personal?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1393",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How do you like to signal that something feels especially good?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1394",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What kind of attention makes you feel most desired?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1395",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "Do you enjoy verbal praise? What words feel right?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1396",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What helps you stay present and connected?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1397",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How could we build anticipation during the day?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1398",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "Do you prefer taking turns initiating or playful surprises?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1399",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What makes you feel confident and attractive with me?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1400",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How do you like to be approached when you're in the mood?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1401",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What atmosphere helps you feel sensual?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1402",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What type of touch would you like us to explore more?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1403",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What does satisfying intimacy mean beyond orgasm?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1404",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How should we handle mismatched desire with care?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1405",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "What would you like more of in our intimate time?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1406",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 2,
+      "prompt": "How can I tell when you'd like me to slow down or pause?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1407",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Is there a fantasy you're curious to share? What draws you to it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1408",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Do you enjoy imagining scenarios together or keeping them private?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1409",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What kind of role-play, if any, sounds intriguing?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1410",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Would a playful lead-taking scenario interest you? What limits matter?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1411",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Is there a fantasy setting you'd rather keep imaginary?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1412",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Has a fantasy ever surprised you? What made it compelling?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1413",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What teasing or anticipation would you be curious to explore?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1414",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Would a sexy date with a little mystery appeal to you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1415",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Is there a fantasy you'd like to discuss without acting on it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1416",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What helps you share a vulnerable desire comfortably?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1417",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What new sensual experience might you consider together?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1418",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What have you wondered about but not brought up?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1419",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Which fantasy mood appeals most: tender, confident, or mischievous?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1420",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "Would you enjoy sharing fantasies just as conversation?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1421",
+      "module": "explicit",
+      "category": "Fantasy & Curiosity",
+      "intensity": 3,
+      "prompt": "What fantasy theme excites you because of its emotional feeling?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1422",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Are you curious about consensual power dynamics with clear limits?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1423",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Do you prefer leading, being guided, switching, or none?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1424",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would light spanking interest you? What boundaries would matter?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1425",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "How do you feel about restraint as a consensual exploration?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1426",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would sensory play such as a blindfold interest you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1427",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Are you curious about safe, body-appropriate temperature play?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1428",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would playful command-and-response feel fun or not your style?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1429",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "What does giving or sharing control mean to you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1430",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would you want to agree on a safeword or stop signal first?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1431",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "How should we check in during a new experience?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1432",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Is there a kink topic you'd like to understand before deciding?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1433",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would consensual teasing appeal to you? What makes it enjoyable?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1434",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "How do you feel about playful dirty talk? Any words to avoid?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1435",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would a negotiated lead-and-follow scene interest you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1436",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "What sensation-play idea would you like to discuss safely?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1437",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would suitable, carefully planned wax play interest you? What concerns you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1438",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "How do you feel about consensual spitting as a fantasy or activity?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1439",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would anal play interest you, or is it outside your comfort zone?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1440",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "How do you feel about incorporating toys into shared intimacy?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1441",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "What kink-related boundary should I understand without judgment?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1442",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "Would a shared yes/maybe/no list help us explore thoughtfully?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1443",
+      "module": "explicit",
+      "category": "Kink & Exploration",
+      "intensity": 3,
+      "prompt": "What aftercare would you want after an intense experience?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1444",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What makes it easiest to tell me what you want in the moment?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1445",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "How should I respond when you say 'not tonight' or 'stop'?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1446",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What words or signals help us communicate clearly when aroused?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1447",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What topic should we be able to discuss without judgment?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1448",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "How can check-ins feel natural rather than mood-breaking?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1449",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "How do you distinguish a curious maybe from a real yes?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1450",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "When do you prefer discussing boundaries: beforehand or calmly later?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1451",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What if one of us wants to try something and the other doesn't?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1452",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What reassurance feels good when you share something vulnerable?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1453",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 1,
+      "prompt": "What boundary should couples revisit as their relationship evolves?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1454",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What intimate ritual would you like us to create?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1455",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What do we already do that makes you feel close to me?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1456",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What would make our intimate connection more playful?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1457",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "How can we make space for intimacy during busy or stressful times?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1458",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What would you like to explore together at a comfortable pace?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1459",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What question about your pleasure would you like me to ask more?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1460",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What would your ideal aftercare moment look like?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1461",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "How can we celebrate openness and honesty with each other?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1462",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What desire would you like to explore in conversation first?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "explicit-1463",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 1,
+      "prompt": "What would help you feel even more chosen and wanted?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
     }
   ]
 }
