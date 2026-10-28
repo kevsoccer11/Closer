@@ -1710,7 +1710,7 @@ function renderJournalDrawerContent(content) {
         event.preventDefault();
         const text = textarea.value.trim();
         if (!text) return;
-        const includeQuestion = canLinkCurrentQuestion && document.getElementById('journalIncludeQuestion').checked;
+        const includeQuestion = canLinkCurrentQuestion && (document.getElementById('journalIncludeQuestion')?.checked ?? false);
         journalEntries.unshift({
             id: `journal-${Date.now()}`,
             prompt: text,

@@ -321,9 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    document.getElementById('startCompareFirstBtn').onclick = startCompareFirstSession;
-    document.getElementById('answerMorePollsBtn').onclick = answerMoreCompareFirstPolls;
-    document.getElementById('continueRegularCardsBtn').onclick = continueToRegularCards;
+    const startCompareFirstBtn = document.getElementById('startCompareFirstBtn');
+    if (startCompareFirstBtn) startCompareFirstBtn.onclick = startCompareFirstSession;
+    const answerMorePollsBtn = document.getElementById('answerMorePollsBtn');
+    if (answerMorePollsBtn) answerMorePollsBtn.onclick = answerMoreCompareFirstPolls;
+    const continueRegularCardsBtn = document.getElementById('continueRegularCardsBtn');
+    if (continueRegularCardsBtn) continueRegularCardsBtn.onclick = continueToRegularCards;
 
     const pickTurnBtn = document.getElementById('pickTurnBtn');
     if (pickTurnBtn) {
