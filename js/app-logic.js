@@ -216,7 +216,6 @@ function applyPack(pack) {
         'long-distance': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'new-parents': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, intensity: '1', questions: true, activities: true, multipleChoice: true },
-        'aftercare': { modules: ['afterhours', 'heat'], topics: null, intensity: '2', questions: true, activities: true, multipleChoice: true },
         'deeper-connection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, questions: true, activities: true, multipleChoice: true },
         'build-the-tension': { modules: ['heat'], topics: null, questions: true, activities: true, multipleChoice: true },
@@ -260,7 +259,6 @@ function startQuickGame() {
         'long-distance': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
         'new-parents': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
         'playful': { modules: ['spark', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'playful' },
-        'aftercare': { modules: ['afterhours', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'romantic' }
     };
     const selection = packs[selected];
     if (!selection) { showToast('Unknown pack.'); return; }
@@ -293,7 +291,6 @@ function startPackByKey(key) {
         'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
         'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'aftercare': { modules: ['afterhours', 'heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
         'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
         'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
