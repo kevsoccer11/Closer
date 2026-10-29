@@ -1,3 +1,5 @@
+let pendingGameStart = null;
+
 async function initDatabase() {
     console.log("Initializing database...");
 
@@ -54,6 +56,9 @@ async function initDatabase() {
         if (card && card.prompt) cardsById.set(card.id || `loaded-${index}`, { ...card, id: card.id || `loaded-${index}` });
     });
     masterDatabase = [...cardsById.values()];
+    window.masterDatabase = masterDatabase;
+    try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
+    try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
 
     let restoredRound = false;
     try {
@@ -167,16 +172,33 @@ function getPillar(card) {
 }
 function getMood(card) {
     if (card.mood) return card.mood;
+    const intensity = Number(card.intensity) || 1;
     if (card.module === 'explicit') return 'spicy';
     if (card.module === 'sexuality') {
-        if (card.intensity >= 3) return 'spicy';
-        if (card.intensity === 2) return 'romantic';
+        if (intensity >= 3) return 'spicy';
+        if (intensity === 2) return 'passionate';
         return 'playful';
     }
     const cat = (card.category || '').toLowerCase();
-    if (/intimacy|desire|flirt|romance|affection|touch|sensual|pleasure|attraction/.test(cat)) return 'romantic';
-    if (/fun|playful|humor|random|game|sport|adventure|travel/.test(cat)) return 'playful';
-    if (card.intensity >= 3) return 'spicy';
+    // Spicy: sexual / kink content
+    if (/kink|spicy|libido|mismatch|sexual|curiosit/.test(cat)) return 'spicy';
+    // Adventurous: bold, new, action-oriented
+    if (/adventure|travel|dare|openness|touch play/.test(cat)) return 'adventurous';
+    const contextType = (card.contextType || '').toLowerCase();
+    if ((contextType === 'action' || contextType === 'spontaneity' || contextType === 'trial' || contextType === 'thrill' || contextType === 'anticipation') && /try|new|explore|challenge|spontaneous|outside|bold/.test(cat)) return 'adventurous';
+    // Reflective: meaning-making over time
+    if (/future|growth|change|deep connection|shared life|life stages|growing|past history|values|identity|conflict|repair|communication|boundaries|future openness/.test(cat)) return 'reflective';
+    // Passionate: high-intensity romantic emotion
+    if (intensity >= 3 && /desire|sensual|pleasure|romance|initiation|intimacy/.test(cat)) return 'passionate';
+    // Tender: soft, safe, comfort
+    if (/trust|safety|health|support|home|daily life|family|community|joy|appreciation|comfort|gentle/.test(cat)) return 'tender';
+    // Romantic: intimacy, desire, flirt, romance, touch, sensual, pleasure
+    if (/intimacy|desire|flirt|romance|touch|sensual|pleasure|attraction|kiss/.test(cat)) return 'romantic';
+    // Playful: fun, humor, games
+    if (/fun|playful|humor|random|game|sport|friends|social|ritual|casual|everyday|gathering|celebration|early relationship|fresh format|getting to know/.test(cat)) return 'playful';
+    // Spicy fallback for high intensity
+    if (intensity >= 3) return 'spicy';
+    // Deep fallback
     return 'deep';
 }
 function getFilteredCards() {
@@ -241,7 +263,8 @@ function applyPack(pack) {
     renderRoundTopics();
     document.body.dataset.pack = pack;
 }
-function startQuickGame() {
+function startQuickGame(skipPlayModeCheck = false) {
+    if (!skipPlayModeCheck) { openPlayModeModal(() => startQuickGame(true)); return; }
     const selected = document.getElementById('roundPackSelect')?.value;
     if (selected === 'escalation') {
         startProgressiveGame();
@@ -273,7 +296,8 @@ function startQuickGame() {
     document.body.dataset.pack = selected;
 }
 
-function startPackByKey(key) {
+function startPackByKey(key, skipPlayModeCheck = false) {
+    if (!skipPlayModeCheck) { openPlayModeModal(() => startPackByKey(key, true)); return; }
     if (!masterDatabase || masterDatabase.length === 0) {
         showToast('Loading cards, please try again in a moment.');
         setTimeout(() => startPackByKey(key), 800);
@@ -307,7 +331,7 @@ function startPackByKey(key) {
         questions: pack.questions,
         activities: pack.activities,
         multipleChoice: pack.multipleChoice
-    }, false);
+    }, false, Math.floor(Math.random() * 16) + 10);
     document.body.dataset.pack = key;
 }
 
@@ -340,7 +364,8 @@ function buildProgressiveDeck(count, pillars) {
     return ordered.slice(0, count).map(card => ({ ...card }));
 }
 
-function startProgressiveGame() {
+function startProgressiveGame(skipPlayModeCheck = false) {
+    if (!skipPlayModeCheck) { openPlayModeModal(() => startProgressiveGame(true)); return; }
     progressiveMode = true;
     progressivePhase = 'nonexplicit';
     activeTurn = Math.random() < 0.5 ? 1 : 0;
@@ -355,7 +380,8 @@ function startProgressiveGame() {
     showGameView();
 }
 
-function startProgressiveExplicit() {
+function startProgressiveExplicit(skipPlayModeCheck = false) {
+    if (!skipPlayModeCheck) { openPlayModeModal(() => startProgressiveExplicit(true)); return; }
     progressiveMode = true;
     progressivePhase = 'explicit';
     activeTurn = Math.random() < 0.5 ? 1 : 0;
@@ -370,6 +396,131 @@ function startProgressiveExplicit() {
     showGameView();
 }
 
+
+
+function updateCuratedPackMeta() {
+    const packs = {
+        'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
+        'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
+        'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true }
+    };
+    const saved = {
+        activePillars: [...activePillars],
+        activeModules: [...activeModules],
+        activeTopics: activeTopics ? [...activeTopics] : null,
+        activeMood: activeMood,
+        includeQuestions: includeQuestions,
+        includeActivities: includeActivities,
+        includeMultipleChoice: includeMultipleChoice,
+        activeIntensity: activeIntensity
+    };
+    document.querySelectorAll('.pack-card[data-pack]').forEach(card => {
+        const key = card.dataset.pack;
+        if (key === 'escalation') {
+            const meta = card.querySelector('.pack-meta');
+            if (meta) meta.textContent = '50 questions · 60–90 min';
+            return;
+        }
+        const pack = packs[key];
+        if (!pack) return;
+        activePillars = (pack.modules && pack.modules.length) ? pack.modules : ['spark'];
+        activeModules = [...activePillars];
+        activeTopics = (pack.topics && pack.topics.length) ? pack.topics : null;
+        activeMood = pack.mood || 'all';
+        includeQuestions = pack.questions;
+        includeActivities = pack.activities;
+        includeMultipleChoice = pack.multipleChoice;
+        activeIntensity = 'all';
+        const filtered = getFilteredCards();
+        const count = Math.min(filtered.length, 30);
+        const estMin = Math.round(count * 1.5);
+        const estMax = Math.round(count * 2.5);
+        const meta = card.querySelector('.pack-meta');
+        if (meta) meta.textContent = count + ' questions · ' + estMin + '–' + estMax + ' min';
+    });
+    activePillars = saved.activePillars;
+    activeModules = saved.activeModules;
+    activeTopics = saved.activeTopics;
+    activeMood = saved.activeMood;
+    includeQuestions = saved.includeQuestions;
+    includeActivities = saved.includeActivities;
+    includeMultipleChoice = saved.includeMultipleChoice;
+    activeIntensity = saved.activeIntensity;
+}
+
+
+function updateCuratedPackMeta() {
+    const packs = {
+        'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
+        'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
+        'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true }
+    };
+    const saved = {
+        activePillars: [...activePillars],
+        activeModules: [...activeModules],
+        activeTopics: activeTopics ? [...activeTopics] : null,
+        activeMood: activeMood,
+        includeQuestions: includeQuestions,
+        includeActivities: includeActivities,
+        includeMultipleChoice: includeMultipleChoice,
+        activeIntensity: activeIntensity
+    };
+    document.querySelectorAll('.pack-card[data-pack]').forEach(card => {
+        const key = card.dataset.pack;
+        if (key === 'escalation') {
+            const meta = card.querySelector('.pack-meta');
+            if (meta) meta.textContent = '50 questions · 60-90 min';
+            return;
+        }
+        const pack = packs[key];
+        if (!pack) return;
+        activePillars = (pack.modules && pack.modules.length) ? pack.modules : ['spark'];
+        activeModules = [...activePillars];
+        activeTopics = (pack.topics && pack.topics.length) ? pack.topics : null;
+        activeMood = pack.mood || 'all';
+        includeQuestions = pack.questions;
+        includeActivities = pack.activities;
+        includeMultipleChoice = pack.multipleChoice;
+        activeIntensity = 'all';
+        const filtered = getFilteredCards();
+        const available = filtered.length;
+        const cap = Math.min(available, 25);
+        const lo = Math.min(10, available);
+        const hi = cap;
+        const estMin = Math.round(lo * 1.5);
+        const estMax = Math.round(hi * 2.5);
+        const meta = card.querySelector('.pack-meta');
+        if (meta) meta.textContent = (available < 10 ? available : '10–25') + ' questions · ' + estMin + '–' + estMax + ' min';
+    });
+    activePillars = saved.activePillars;
+    activeModules = saved.activeModules;
+    activeTopics = saved.activeTopics;
+    activeMood = saved.activeMood;
+    includeQuestions = saved.includeQuestions;
+    includeActivities = saved.includeActivities;
+    includeMultipleChoice = saved.includeMultipleChoice;
+    activeIntensity = saved.activeIntensity;
+}
 
 function showHomeView() {
     document.body.classList.add('landing');
@@ -535,7 +686,7 @@ function updateRoundIntensityVisibility() {
     if (group) group.classList.toggle('hidden', onlyDeepConnection);
 }
 
-function applyRoundSelection(selection, startLight = false) {
+function applyRoundSelection(selection, startLight = false, questionCount = null) {
     if (selection.modules.length === 0) {
         const status = document.getElementById('roundBuilderStatus');
         if (status) status.textContent = 'Choose at least one deck to start.';
@@ -553,9 +704,13 @@ function applyRoundSelection(selection, startLight = false) {
     includeQuestions = selection.questions;
     includeActivities = selection.activities;
     includeMultipleChoice = selection.multipleChoice;
-    const qc = document.getElementById('roundQuestionCount');
-    if (qc) {
-        activeQuestionCount = qc.value ? parseInt(qc.value, 10) : null;
+    if (questionCount !== null && questionCount !== undefined) {
+        activeQuestionCount = questionCount;
+    } else {
+        const qc = document.getElementById('roundQuestionCount');
+        if (qc) {
+            activeQuestionCount = qc.value ? parseInt(qc.value, 10) : null;
+        }
     }
     activeTurn = Math.random() < 0.5 ? 1 : 0;
     progressiveMode = false;
@@ -774,7 +929,10 @@ function drawNextCard(isRemoteUpdate = false) {
         });
         updateRoundSummary();
     } else if (activeGameMode !== 'compare-first' && unspentDeck.length === 0) {
-        rebuildUnspentDeck();
+        const isCuratedPack = document.body.dataset.pack && document.body.dataset.pack !== 'escalation';
+        if (!isCuratedPack) {
+            rebuildUnspentDeck();
+        }
     }
     if (unspentDeck.length === 0) {
         if (!masterDatabase || masterDatabase.length === 0) {
@@ -827,6 +985,8 @@ function drawNextCard(isRemoteUpdate = false) {
             progressiveMode = false;
             progressivePhase = null;
         }
+    // Round is complete: clear saved game so "Continue" no longer shows.
+    try { localStorage.removeItem('closer_unspent_deck'); localStorage.removeItem('closer_current_card'); } catch (e) {}
     const prompt = document.getElementById('cardPrompt');
     if (prompt) {
         prompt.innerHTML = '';
@@ -848,7 +1008,30 @@ function drawNextCard(isRemoteUpdate = false) {
             showHomeView();
             openRoundBuilder();
         };
-        prompt.append(title, summary, again);
+        const activePack = document.body.dataset.pack;
+        const isCuratedPack = activePack && activePack !== 'escalation';
+        if (isCuratedPack) {
+            const samePack = document.createElement('button');
+            samePack.type = 'button';
+            samePack.className = 'btn-primary';
+            samePack.textContent = 'Play another round (same pack)';
+            samePack.style.marginTop = '8px';
+            samePack.style.display = 'block';
+            samePack.style.marginLeft = 'auto';
+            samePack.style.marginRight = 'auto';
+            samePack.onclick = () => {
+                roundStats = { played: 0, passed: 0 };
+                passedCardIds = [];
+                currentCard = null;
+                rebuildUnspentDeck();
+                updateRoundSummary();
+                drawNextCard();
+                showGameView();
+            };
+            prompt.append(title, summary, again, samePack);
+        } else {
+            prompt.append(title, summary, again);
+        }
         if (passedCardIds.length > 0) {
             const missed = document.createElement('button');
             missed.type = 'button';
@@ -919,6 +1102,34 @@ function drawNextCard(isRemoteUpdate = false) {
     }
 }
 
+function updateCardProgressSlider() {
+    const slider = document.getElementById('cardProgressSlider');
+    const fill = document.getElementById('cardProgressFill');
+    const text = document.getElementById('cardProgressText');
+    if (!slider || !fill || !text) return;
+    let played = 0;
+    let total = 0;
+    if (currentCard?.compareFirst) {
+        played = currentCard.compareFirstIndex || 0;
+        total = currentCard.compareFirstTotal || 0;
+    } else {
+        played = (roundStats?.played || 0);
+        total = roundTotalCards || 0;
+    }
+    if (browseMode) {
+        // browse mode has no fixed round; hide slider
+        slider.classList.add('hidden');
+        return;
+    }
+    if (!total) {
+        slider.classList.add('hidden');
+        return;
+    }
+    slider.classList.remove('hidden');
+    const pct = Math.min(100, Math.max(0, (played / total) * 100));
+    fill.style.width = pct + '%';
+    text.textContent = `${played} / ${total}`;
+}
 function updateCompareFirstControls() {
     const nextCardBtn = document.getElementById('nextCardBtn');
     const passCardBtn = document.getElementById('passCardBtn');
@@ -1255,9 +1466,12 @@ function advanceCard(passed = false) {
     if (passed && currentCard && !browseMode) {
         roundStats.passed += 1;
         if (!passedCardIds.includes(currentCard.id)) passedCardIds.push(currentCard.id);
-        // Return the passed card to the deck so it can appear again later.
-        const insertAt = Math.floor(Math.random() * (unspentDeck.length + 1));
-        unspentDeck.splice(insertAt, 0, currentCard);
+        const isCuratedPack = document.body.dataset.pack && document.body.dataset.pack !== 'escalation';
+        if (!isCuratedPack) {
+            // Return the passed card to the deck so it can appear again later.
+            const insertAt = Math.floor(Math.random() * (unspentDeck.length + 1));
+            unspentDeck.splice(insertAt, 0, currentCard);
+        }
     }
     if (currentCard?.compareFirst) {
         if (window.currentRoomRole !== 'host') {
@@ -1279,7 +1493,16 @@ if (!passed && !browseMode) {
     }
     pickedAnswerer = null;
     pickedAnswererIndex = null;
-drawNextCard();
+    const container = document.getElementById('cardContainer');
+    if (container) {
+        container.classList.add('card-exiting');
+        setTimeout(() => {
+            container.classList.remove('card-exiting');
+            drawNextCard();
+        }, 220);
+    } else {
+        drawNextCard();
+    }
 }
 
 function undoCard() {
@@ -1332,9 +1555,7 @@ const undoBtn = document.getElementById('undoBtn');
         }
     }
     const progressIndicator = document.getElementById('progressIndicator');
-    if (progressIndicator) {
-        progressIndicator.textContent = '';
-    }
+    updateCardProgressSlider();
     const announcer = document.getElementById('srAnnouncer');
     if (announcer) {
         if (browseMode) {
@@ -1351,6 +1572,14 @@ const undoBtn = document.getElementById('undoBtn');
     setCommunityActions(card);
     renderModeTimer();
     updateCompareFirstControls();
+    const container = document.getElementById('cardContainer');
+    if (container) {
+        container.classList.remove('card-exiting');
+        container.classList.remove('card-entering');
+        void container.offsetWidth;
+        container.classList.add('card-entering');
+        setTimeout(() => container.classList.remove('card-entering'), 320);
+    }
 }
 
 function createCardRoundId() {
@@ -2854,3 +3083,68 @@ async function requestRoomAccess(roomCode) {
     renderPairManagement();
 }
 
+
+function openNewGameFlow() {
+    openPlayModeModal(() => openRoundBuilder());
+}
+function openPlayModeModal(pending) {
+    pendingGameStart = pending || null;
+    document.getElementById('playModeModal')?.classList.remove('hidden');
+}
+function closePlayModeModal() {
+    document.getElementById('playModeModal')?.classList.add('hidden');
+}
+function openPlayerNamesModal() {
+    const s1 = document.getElementById('pn1Icon');
+    const s2 = document.getElementById('pn2Icon');
+    if (s1) s1.innerHTML = PLAYER_ICONS.map(i => `<option value="${i}">${i}</option>`).join('');
+    if (s2) s2.innerHTML = PLAYER_ICONS.map(i => `<option value="${i}">${i}</option>`).join('');
+    const n1 = document.getElementById('pn1Name');
+    const n2 = document.getElementById('pn2Name');
+    if (n1) n1.value = playerNames.host?.name || 'Player 1';
+    if (n2) n2.value = playerNames.partner?.name || 'Player 2';
+    if (s1) s1.value = playerNames.host?.icon || PLAYER_ICONS[0];
+    if (s2) s2.value = playerNames.partner?.icon || PLAYER_ICONS[1];
+    document.getElementById('playerNamesModal')?.classList.remove('hidden');
+}
+function closePlayerNamesModal() {
+    document.getElementById('playerNamesModal')?.classList.add('hidden');
+}
+
+function loadAnotherQod() {
+    const db = window.masterDatabase || masterDatabase || [];
+    if (!db || db.length === 0) return false;
+    const safe = db.filter(c => c && c.module !== 'explicit' && c.module !== 'sexuality');
+    if (safe.length === 0) return false;
+    const card = safe[Math.floor(Math.random() * safe.length)];
+    const el = document.getElementById('qodQuestion');
+    if (el && card && card.prompt) el.textContent = card.prompt;
+    return true;
+}
+window.loadAnotherQod = loadAnotherQod;
+
+function resumeSavedGame() {
+    try {
+        const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
+        const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
+        if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
+            unspentDeck = savedDeck;
+            currentCard = savedCard;
+            try {
+                const f = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
+                if (f) {
+                    activePillars = f.activePillars || activePillars;
+                    activeModules = [...activePillars];
+                    activeTopics = f.activeTopics ?? null;
+                    activeMood = f.activeMood || 'all';
+                    includeQuestions = f.includeQuestions ?? includeQuestions;
+                    includeActivities = f.includeActivities ?? includeActivities;
+                    includeMultipleChoice = f.includeMultipleChoice ?? includeMultipleChoice;
+                }
+            } catch (e) {}
+            renderCard(currentCard);
+            showGameView();
+        }
+    } catch (e) {}
+}
+window.resumeSavedGame = resumeSavedGame;

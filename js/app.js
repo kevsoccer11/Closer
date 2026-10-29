@@ -72,6 +72,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+    document.querySelectorAll('#packMoodFilterChips .filter-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+            document.querySelectorAll('#packMoodFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            const mood = chip.dataset.mood;
+            document.querySelectorAll('.pack-card').forEach(card => {
+                const show = mood === 'all' || card.dataset.mood === mood;
+                card.style.display = show ? '' : 'none';
+            });
+        });
+    });
     document.querySelectorAll('.pack-card').forEach(btn => {
         btn.addEventListener('click', () => {
             startPackByKey(btn.dataset.pack);
@@ -138,32 +149,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const continueGameBtn = document.getElementById('continueGameBtn');
     if (continueGameBtn) {
-        continueGameBtn.onclick = () => {
-            try {
-                const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
-                const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
-                if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
-                    unspentDeck = savedDeck;
-                    currentCard = savedCard;
-                    // restore filters if saved
-                    try {
-                        const f = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
-                        if (f) {
-                            activePillars = f.activePillars || activePillars;
-                            activeModules = [...activePillars];
-                            activeTopics = f.activeTopics ?? null;
-                            activeMood = f.activeMood || 'all';
-                            includeQuestions = f.includeQuestions ?? includeQuestions;
-                            includeActivities = f.includeActivities ?? includeActivities;
-                            includeMultipleChoice = f.includeMultipleChoice ?? includeMultipleChoice;
-                        }
-                    } catch (e) {}
-                    renderCard(currentCard);
-                    showGameView();
-                }
-            } catch (e) {}
-        };
+        continueGameBtn.onclick = () => { resumeSavedGame(); };
     }
+    // featured continue CTA (inside Start a conversation card)
     document.querySelectorAll('.round-tab').forEach(tab => {
         tab.addEventListener('click', () => {
             document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
@@ -175,10 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     document.getElementById('qodAnother')?.addEventListener('click', () => {
-        if (!masterDatabase || masterDatabase.length === 0) return;
-        const card = masterDatabase[Math.floor(Math.random() * masterDatabase.length)];
-        const el = document.getElementById('qodQuestion');
-        if (el && card && card.prompt) el.textContent = card.prompt;
+        if (!loadAnotherQod()) {
+            setTimeout(() => { loadAnotherQod(); }, 500);
+        }
     });
     document.addEventListener('click', (e) => {
         const btn = e.target && e.target.closest ? e.target.closest('.featured-experience-card') : null;
@@ -188,8 +175,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
-        try { openRoundBuilder(); } catch (e) { console.error(e); }
+        try {
+            openRoundBuilder();
+            const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
+            if (curatedTabBtn) curatedTabBtn.click();
+        } catch (e) { console.error(e); }
     });
+    document.getElementById('seeMoreExperiencesBtn')?.addEventListener('click', () => {
+        try {
+            openRoundBuilder();
+            const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
+            if (curatedTabBtn) curatedTabBtn.click();
+        } catch (e) { console.error(e); }
+    });
+
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
             if (btn.dataset.action === 'packs') openRoundBuilder();
@@ -248,6 +247,34 @@ document.addEventListener('DOMContentLoaded', () => {
         selectModule('secrets');
     });
     document.getElementById('closeRoundBuilderBtn')?.addEventListener('click', closeRoundBuilder);
+    document.getElementById('closePlayModeBtn')?.addEventListener('click', closePlayModeModal);
+    document.getElementById('playModeSameDeviceBtn')?.addEventListener('click', () => {
+        localStorage.setItem('closer_play_mode', 'local');
+        closePlayModeModal();
+        // Prompt for player names; game starts after they are saved.
+        openPlayerNamesModal();
+    });
+    document.getElementById('playModePairedBtn')?.addEventListener('click', () => {
+        localStorage.setItem('closer_play_mode', 'paired');
+        closePlayModeModal();
+        pendingGameStart = null;
+        document.getElementById('pairPartnerBtn')?.click();
+    });
+    document.getElementById('closePlayerNamesBtn')?.addEventListener('click', closePlayerNamesModal);
+    const pnForm = document.getElementById('playerNamesForm');
+    if (pnForm) {
+        pnForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            savePlayerIdentity(0, document.getElementById('pn1Name').value, document.getElementById('pn1Icon').value);
+            savePlayerIdentity(1, document.getElementById('pn2Name').value, document.getElementById('pn2Icon').value);
+            const st = document.getElementById('playerNamesStatus');
+            if (st) st.textContent = 'Names saved.';
+            setTimeout(() => {
+                closePlayerNamesModal();
+                if (pendingGameStart) { const fn = pendingGameStart; pendingGameStart = null; fn(); }
+            }, 600);
+        });
+    }
     document.getElementById('roundBuilderModal')?.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
             closeRoundBuilder();
@@ -817,6 +844,7 @@ const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
                     <div class="settings-tree-content">
                         <button class="settings-link" id="settingsProfileBtn" type="button">Names and icons</button>
                         <button class="settings-link" id="settingsPartnerBtn" type="button">Connect another device</button>
+                        <button class="settings-link" id="settingsPlayModeBtn" type="button">Change play mode</button>
                     </div>
                 </details>
                 <details class="settings-tree-group">
@@ -868,6 +896,7 @@ renderMyDecks();
             };
             document.getElementById('settingsProfileBtn').onclick = () => openHeaderPanel('userProfileBtn');
             document.getElementById('settingsPartnerBtn').onclick = () => openHeaderPanel('pairPartnerBtn');
+            document.getElementById('settingsPlayModeBtn').onclick = () => { localStorage.removeItem('closer_play_mode'); closeDrawer(); openPlayModeModal(() => {}); };
 const applyAccessibility = () => {
         document.body.classList.toggle('large-text', localStorage.getItem('closer_large_text') === 'true');
         document.body.classList.toggle('dyslexia-font', localStorage.getItem('closer_dyslexia_font') === 'true');

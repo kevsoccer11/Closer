@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=303">
+    <link rel="stylesheet" href="css/styles.css?v=343">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -52,6 +52,7 @@
                 <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></button>
             </div>
         </div>
+    </header>
 
     </header>
 
@@ -69,15 +70,8 @@
             <h1>A little closer, every day.</h1>
             <p>Meaningful conversations, playful moments, and a deeper connection.</p>
         </div>
-        <div id="continueCard" class="continue-card hidden">
-            <div>
-                <strong>Continue your game</strong>
-                <p id="continueSummary">Resume where you left off.</p>
-            </div>
-            <button class="btn-primary" id="continueGameBtn" type="button">Continue</button>
-        </div>
         <!-- Featured experience -->
-        <button class="featured-experience-card" data-pack="deeper-connection" type="button" onclick="try{openRoundBuilder();var m=document.getElementById('roundBuilderModal');if(m&&m.classList.contains('hidden'))m.classList.remove('hidden');}catch(e){alert('Could not open: '+e.message);}">
+        <button class="featured-experience-card" data-pack="deeper-connection" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">
             <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="featured-image" loading="lazy">
             <div class="featured-content">
                 <span class="featured-label">Featured experience</span>
@@ -120,53 +114,56 @@
             </div>
             <p class="qod-question" id="qodQuestion">What's something about our relationship that you hope never changes?</p>
             <p class="qod-instruction">Take a moment. Think about it. Then share your answer.</p>
-            <button class="text-link" id="qodAnother" type="button">Another question ↻</button>
+            <button class="text-link" id="qodAnother" type="button" onclick="try{loadAnotherQod();}catch(e){}">Another question ↻</button>
         </section>
         <!-- Featured experiences -->
         <section class="featured-experiences">
-            <h2>Find your moment</h2>
+            <div class="categories-header">
+                <h2>Find your moment</h2>
+                <button class="text-link" id="seeMoreExperiencesBtn" type="button" onclick="try{openRoundBuilder();}catch(e){}">See more</button>
+            </div>
             <p>Discover conversations for every mood, phase, and kind of connection.</p>
             <div class="experience-list">
                 <button class="experience-card pack-card" data-pack="reconnection" type="button">
                     <img src="img/find-our-way-back.jpg" alt="Reconnect" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>Reconnect</h3>
-                        <p>Rediscover closeness, attention, and affection.</p>
+                        <p>Rediscover closeness, attention, and affection through small moments that bring you back to each other, even after distance or routine.</p>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="playful" type="button">
                     <img src="img/playful.jpg" alt="Playful Moments" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>Playful Moments</h3>
-                        <p>Lighthearted questions, unexpected answers, teasing, and laughs.</p>
+                        <p>Lighthearted questions, unexpected answers, teasing, and laughs that keep your connection fun and full of surprise.</p>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="deeper-connection" type="button">
                     <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>Deeper Intimacy</h3>
-                        <p>Meaningful conversations that help you understand each other.</p>
+                        <p>Meaningful conversations that help you understand each other more deeply and build lasting emotional intimacy.</p>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="deep-talk" type="button">
                     <img src="img/beneath-the-surface.jpg" alt="Beneath the Surface" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>Beneath the Surface</h3>
-                        <p>Explore values, fears, memories, and what makes each other tick.</p>
+                        <p>Explore values, fears, memories, and the inner world that makes each of you who you are.</p>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="travel-night" type="button">
                     <img src="img/passport-to-us.jpg" alt="Passport to Us" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>Passport to Us</h3>
-                        <p>Dream destinations, adventures, and shared memories.</p>
+                        <p>Dream destinations, adventures, and shared memories waiting to happen together.</p>
                     </div>
                 </button>
                 <button class="experience-card pack-card" data-pack="after-fight" type="button">
                     <img src="img/after-the-storm.jpg" alt="After the Storm" class="experience-image" loading="lazy">
                     <div class="experience-content">
                         <h3>After the Storm</h3>
-                        <p>Understand each other, repair hurt, and move forward.</p>
+                        <p>Understand each other, repair hurt, and move forward with renewed trust and care.</p>
                     </div>
                 </button>
             </div>
@@ -184,6 +181,13 @@
         </nav>
     </aside>
     <main class="hidden">
+        <!-- Card progress slider -->
+        <div class="card-progress-slider" id="cardProgressSlider" aria-label="Card progress">
+            <div class="card-progress-track">
+                <div class="card-progress-fill" id="cardProgressFill"></div>
+            </div>
+            <span class="card-progress-text" id="cardProgressText">0 / 0</span>
+        </div>
         <article class="card-container" id="cardContainer" aria-label="Question card">
             <div class="card-header">
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
@@ -320,86 +324,97 @@
             </div>
             <div class="round-tab-panel" id="curatedTab">
                 <div class="round-packs">
+                <div class="pack-filter-chips" id="packMoodFilterChips" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;">
+                    <button class="filter-chip active" data-mood="all" type="button">All moods</button>
+                    <button class="filter-chip" data-mood="playful" type="button">Playful</button>
+                    <button class="filter-chip" data-mood="deep" type="button">Deep</button>
+                    <button class="filter-chip" data-mood="romantic" type="button">Romantic</button>
+                    <button class="filter-chip" data-mood="spicy" type="button">Spicy</button>
+                    <button class="filter-chip" data-mood="tender" type="button">Tender</button>
+                    <button class="filter-chip" data-mood="adventurous" type="button">Adventurous</button>
+                    <button class="filter-chip" data-mood="reflective" type="button">Reflective</button>
+                    <button class="filter-chip" data-mood="passionate" type="button">Passionate</button>
+                </div>
                     <div class="pack-grid compact">
-                    <button class="pack-card" data-pack="deeper-connection" data-filter="deep" type="button">
+                    <button class="pack-card" data-pack="deeper-connection" data-filter="deep" data-mood="deep" type="button">
                         <img src="img/deeper-connection.jpg" alt="Deeper Connection pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Deeper Connection</span>
                         <span class="pack-desc">Meaningful conversations that help you understand each other, strengthen emotional intimacy, and grow closer.</span>
                         <span class="pack-meta">12 questions · 20–30 min</span>
                     </button>
-                    <button class="pack-card" data-pack="playful-chemistry" data-filter="fun" type="button">
+                    <button class="pack-card" data-pack="playful-chemistry" data-filter="fun" data-mood="playful" type="button">
                         <img src="img/playful-chemistry.jpg" alt="Playful Chemistry pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Playful Chemistry</span>
                         <span class="pack-desc">Flirting, laughter, attraction, and the little moments that make being together exciting.</span>
                         <span class="pack-meta">12 questions · 15–25 min</span>
                     </button>
-                    <button class="pack-card" data-pack="build-the-tension" data-filter="intimate" type="button">
+                    <button class="pack-card" data-pack="build-the-tension" data-filter="intimate" data-mood="romantic" type="button">
                         <img src="img/build-the-tension.jpg" alt="Build the Tension pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Build the Tension</span>
                         <span class="pack-desc">Explore anticipation, kissing, sensual touch, and the pleasure of taking your time with each other.</span>
                         <span class="pack-meta">12 questions · 15–25 min</span>
                     </button>
-                    <button class="pack-card" data-pack="after-hours" data-filter="intimate" type="button">
+                    <button class="pack-card" data-pack="after-hours" data-filter="intimate" data-mood="spicy" type="button">
                         <img src="img/after-hours.jpg" alt="After Hours pack" class="pack-image" loading="lazy">
                         <span class="pack-title">After Hours</span>
                         <span class="pack-desc">Questions specifically about sex and sexual activity, creating space for honest conversations about intimacy and desire.</span>
                         <span class="pack-meta">10 questions · 15–20 min</span>
                     </button>
-                    <button class="pack-card" data-pack="playful" data-filter="fun" type="button">
+                    <button class="pack-card" data-pack="playful" data-filter="fun" data-mood="playful" type="button">
                         <img src="img/playful.jpg" alt="Playful pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Playful</span>
                         <span class="pack-desc">Lighthearted questions, unexpected answers, teasing, and laughs.</span>
                         <span class="pack-meta">12 questions · 10–20 min</span>
                     </button>
-                    <button class="pack-card" data-pack="first-date" data-filter="romantic" type="button">
+                    <button class="pack-card" data-pack="first-date" data-filter="romantic" data-mood="tender" type="button">
                         <img src="img/first-impressions.jpg" alt="First Impressions pack" class="pack-image" loading="lazy">
                         <span class="pack-title">First Impressions</span>
                         <span class="pack-desc">Discover attraction, first impressions, preferences, and surprises.</span>
                         <span class="pack-meta">12 questions · 15–25 min</span>
                     </button>
-                    <button class="pack-card" data-pack="deep-talk" data-filter="deep" type="button">
+                    <button class="pack-card" data-pack="deep-talk" data-filter="deep" data-mood="deep" type="button">
                         <img src="img/beneath-the-surface.jpg" alt="Beneath the Surface pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Beneath the Surface</span>
                         <span class="pack-desc">Explore values, fears, memories, and what makes each other tick.</span>
                         <span class="pack-meta">14 questions · 20–35 min</span>
                     </button>
-                    <button class="pack-card" data-pack="reconnection" data-filter="deep" type="button">
+                    <button class="pack-card" data-pack="reconnection" data-filter="deep" data-mood="reflective" type="button">
                         <img src="img/find-our-way-back.jpg" alt="Find Our Way Back pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Find Our Way Back</span>
                         <span class="pack-desc">Rediscover closeness, attention, and affection through the small moments that bring you back to each other.</span>
                         <span class="pack-meta">12 questions · 20–30 min</span>
                     </button>
-                    <button class="pack-card" data-pack="long-distance" data-filter="life" type="button">
+                    <button class="pack-card" data-pack="long-distance" data-filter="life" data-mood="reflective" type="button">
                         <img src="img/across-the-miles.jpg" alt="Across the Miles pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Across the Miles</span>
                         <span class="pack-desc">Stay connected, even when distance gets in the way. Explore missing each other, communication, and meaningful shared rituals.</span>
                         <span class="pack-meta">12 questions · 15–25 min</span>
                     </button>
-                    <button class="pack-card" data-pack="new-parents" data-filter="life" type="button">
+                    <button class="pack-card" data-pack="new-parents" data-filter="life" data-mood="tender" type="button">
                         <img src="img/us-in-this-new-chapter.jpg" alt="Us, in This New Chapter pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Us, in This New Chapter</span>
                         <span class="pack-desc">Explore your relationship through the journey of becoming parents, including changing expectations, fears, identity, and teamwork.</span>
                         <span class="pack-meta">12 questions · 20–35 min</span>
                     </button>
-                    <button class="pack-card" data-pack="travel-night" data-filter="fun" type="button">
+                    <button class="pack-card" data-pack="travel-night" data-filter="fun" data-mood="adventurous" type="button">
                         <img src="img/passport-to-us.jpg" alt="Passport to Us pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Passport to Us</span>
                         <span class="pack-desc">Dream destinations, adventures, and shared memories waiting to happen.</span>
                         <span class="pack-meta">12 questions · 15–25 min</span>
                     </button>
-                    <button class="pack-card" data-pack="after-fight" data-filter="deep" type="button">
+                    <button class="pack-card" data-pack="after-fight" data-filter="deep" data-mood="reflective" type="button">
                         <img src="img/after-the-storm.jpg" alt="After the Storm pack" class="pack-image" loading="lazy">
                         <span class="pack-title">After the Storm</span>
                         <span class="pack-desc">Understand each other, repair hurt, and move forward through better communication and renewed trust.</span>
                         <span class="pack-meta">12 questions · 20–35 min</span>
                     </button>
-                    <button class="pack-card" data-pack="kinky-explorative" data-filter="intimate" type="button">
+                    <button class="pack-card" data-pack="kinky-explorative" data-filter="intimate" data-mood="spicy" type="button">
                         <img src="img/kink-and-curiosity.jpg" alt="Kink & Curiosity pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Kink & Curiosity</span>
                         <span class="pack-desc">Explore kinks, fantasies, preferences, consent, and boundaries through open, nonjudgmental conversation.</span>
                         <span class="pack-meta">12 questions · 15–30 min</span>
                     </button>
-                    <button class="pack-card" data-pack="escalation" data-filter="intimate" type="button">
+                    <button class="pack-card" data-pack="escalation" data-filter="intimate" data-mood="passionate" type="button">
                         <img src="img/slow-burn.jpg" alt="Slow Burn pack" class="pack-image" loading="lazy">
                         <span class="pack-title">Slow Burn</span>
                         <span class="pack-desc">A gradual journey from flirtation toward deeper intimacy, building anticipation at a pace that feels comfortable for both partners.</span>
@@ -434,6 +449,10 @@
                         <label><input type="radio" name="roundMood" value="deep"> Deep</label>
                         <label><input type="radio" name="roundMood" value="romantic"> Romantic</label>
                         <label><input type="radio" name="roundMood" value="spicy"> Spicy</label>
+                        <label><input type="radio" name="roundMood" value="tender"> Tender</label>
+                        <label><input type="radio" name="roundMood" value="adventurous"> Adventurous</label>
+                        <label><input type="radio" name="roundMood" value="reflective"> Reflective</label>
+                        <label><input type="radio" name="roundMood" value="passionate"> Passionate</label>
                     </div>
                 </fieldset>
                 <input type="hidden" id="gameModeSelect" value="classic">
@@ -576,10 +595,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=303"></script>
-    <script src="js/app-state.js?v=303"></script>
-    <script src="js/app-logic.js?v=303"></script>
-    <script src="js/app.js?v=303"></script>
+    <script src="js/firebase-config.js?v=343"></script>
+    <script src="js/app-state.js?v=343"></script>
+    <script src="js/app-logic.js?v=343"></script>
+    <script src="js/app.js?v=343"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -612,6 +631,48 @@
             });
         }
     </script>
+<!-- Play mode modal -->
+<!-- Player names modal -->
+<div class="modal-overlay hidden" id="playerNamesModal">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="playerNamesTitle">
+        <div class="round-builder-heading">
+            <div>
+                <h2 id="playerNamesTitle">Player names</h2>
+                <p>Enter names for both players (same device).</p>
+            </div>
+            <button class="icon-btn" id="closePlayerNamesBtn" type="button" aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+        </div>
+        <form id="playerNamesForm" style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+            <label for="pn1Name">Player 1 name</label>
+            <input id="pn1Name" type="text" maxlength="24" autocomplete="nickname">
+            <label for="pn1Icon">Player 1 icon</label>
+            <select id="pn1Icon"></select>
+            <label for="pn2Name">Player 2 name</label>
+            <input id="pn2Name" type="text" maxlength="24" autocomplete="nickname">
+            <label for="pn2Icon">Player 2 icon</label>
+            <select id="pn2Icon"></select>
+            <button class="btn-primary" type="submit">Save names</button>
+            <p id="playerNamesStatus" class="pair-status" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+</div>
+
+<div class="modal-overlay hidden" id="playModeModal">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="playModeTitle">
+        <div class="round-builder-heading">
+            <div>
+                <h2 id="playModeTitle">How are you playing?</h2>
+                <p>Choose how you and your partner will play.</p>
+            </div>
+            <button class="icon-btn" id="closePlayModeBtn" type="button" aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+            <button class="btn-primary" id="playModeSameDeviceBtn" type="button">Same device (local)</button>
+            <button class="btn-secondary" id="playModePairedBtn" type="button">Multiple devices (pair with partner)</button>
+        </div>
+    </section>
+</div>
+
 </body>
 
 </html>
