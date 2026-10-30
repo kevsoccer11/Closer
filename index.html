@@ -34,32 +34,6 @@
 </head>
 
 <body class="light-theme">
-    <script>
-    (function(){
-        try {
-            if (!sessionStorage.getItem('closer_loaded_v360')) {
-                sessionStorage.setItem('closer_loaded_v360', '1');
-                var done = function(){ setTimeout(function(){ window.location.reload(); }, 100); };
-                var tasks = [];
-                if ('serviceWorker' in navigator) {
-                    tasks.push(navigator.serviceWorker.getRegistrations().then(function(regs){
-                        return Promise.all(regs.map(function(r){ return r.unregister(); }));
-                    }));
-                }
-                if (window.caches) {
-                    tasks.push(caches.keys().then(function(keys){
-                        return Promise.all(keys.map(function(k){ return caches.delete(k); }));
-                    }));
-                }
-                if (tasks.length) {
-                    Promise.all(tasks).then(done).catch(done);
-                } else {
-                    done();
-                }
-            }
-        } catch(e){}
-    })();
-    </script>
     <!-- Ambient Glow Background -->
     <div id="offlineBanner" class="offline-banner hidden">You're offline. Some features may be unavailable.</div>
     <div id="updateBanner" class="update-banner hidden" role="status" aria-live="polite">
