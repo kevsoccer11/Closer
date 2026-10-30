@@ -95,8 +95,7 @@ async function initDatabase() {
         showHomeView();
     }
     updateRoundSummary();
-    const roundSummaryButton = document.getElementById('roundSummaryBtn');
-    if (roundSummaryButton) roundSummaryButton.disabled = false;
+    if (typeof showQod === 'function') showQod();
     if (!document.getElementById('roundBuilderModal')?.classList.contains('hidden')) renderRoundTopics();
     const appStatus = document.getElementById('appStatus');
     if (appStatus) {
@@ -113,7 +112,6 @@ async function initDatabase() {
     const savedCode = localStorage.getItem('closer_room_code');
     const savedRole = localStorage.getItem('closer_room_role');
     if (savedCode && savedRole && window.db) {
-        showToast('Reconnecting to your partner…');
         try {
             await connectToRoom(savedCode, savedRole);
         } catch (error) {
@@ -297,7 +295,7 @@ function startQuickGame(skipPlayModeCheck = false) {
 }
 
 function startPackByKey(key, skipPlayModeCheck = false) {
-    if (!skipPlayModeCheck) { openPlayModeModal(() => startPackByKey(key, true)); return; }
+    if (!skipPlayModeCheck) { window.pendingPackKey = key; openPlayModeModal(() => startPackByKey(key, true)); return; }
     if (!masterDatabase || masterDatabase.length === 0) {
         showToast('Loading cards, please try again in a moment.');
         setTimeout(() => startPackByKey(key), 800);
@@ -333,6 +331,7 @@ function startPackByKey(key, skipPlayModeCheck = false) {
         multipleChoice: pack.multipleChoice
     }, false, Math.floor(Math.random() * 16) + 10);
     document.body.dataset.pack = key;
+    window.pendingPackKey = null;
 }
 
 function buildProgressiveDeck(count, pillars) {
@@ -610,18 +609,11 @@ function renderRoundTopics() {
 function updateRoundMatchCount() {
     const output = document.getElementById('roundMatchCount');
     const startButton = document.getElementById('startRoundBtn');
-    const startLightButton = document.getElementById('startLightRoundBtn');
     if (!output) return;
     const selection = getRoundBuilderSelection();
     const count = getCardsForRoundSelection(selection).length;
     output.textContent = `${count} ${count === 1 ? 'card' : 'cards'} match this round.`;
     if (startButton) startButton.disabled = count === 0;
-    if (startLightButton) {
-        const lightSelection = { ...selection, intensity: '1' };
-        const lightCount = getCardsForRoundSelection(lightSelection).length;
-        startLightButton.disabled = lightCount === 0;
-        startLightButton.title = lightCount ? `${lightCount} lighter cards to start` : 'No mild cards match these choices';
-    }
 }
 
 function updateRoundSummary() {
@@ -629,8 +621,6 @@ function updateRoundSummary() {
     if (!summary) return;
     if (activeModules.length === 1 && activeModules[0] === 'secrets') {
         summary.textContent = 'Private entries · Not part of a question round';
-        const label = document.getElementById('roundSummaryLabel');
-        if (label) label.textContent = 'Your round';
         return;
     }
     const deckNames = {
@@ -655,8 +645,6 @@ function updateRoundSummary() {
         summary.textContent = `${deckSummary} · ${topicSummary} · ${levelSummary}`;
         summary.classList.remove('hidden');
     }
-    const label = document.getElementById('roundSummaryLabel');
-    if (label) label.textContent = roundConfiguredByUser ? 'Your round' : 'Create New Game';
 }
 
 function updateActiveModulePresentation() {
@@ -717,6 +705,7 @@ function applyRoundSelection(selection, startLight = false, questionCount = null
     progressivePhase = null;
     passedCardIds = [];
 roundStats = { played: 0, passed: 0 };
+    undoStack = [];
     pickedAnswerer = null;
     pickedAnswererIndex = null;
     activePromptStyle = includeQuestions && includeActivities
@@ -769,7 +758,12 @@ function openRoundBuilder() {
         renderRoundTopics();
         updateRoundIntensityVisibility();
         document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
-            input.onchange = updateRoundIntensityVisibility;
+            input.onchange = () => {
+                activeTopics = null;
+                renderRoundTopics();
+                updateRoundIntensityVisibility();
+                updateRoundMatchCount();
+            };
         });
         const content = document.querySelector('.round-builder-content');
         if (content) content.scrollTop = 0;
@@ -949,9 +943,9 @@ function drawNextCard(isRemoteUpdate = false) {
                 prompt.innerHTML = '';
                 prompt.style.textAlign = 'center';
                 const title = document.createElement('strong');
-                title.textContent = 'Slow Burn round complete';
+                title.textContent = 'Slow Burn complete';
                 const summary = document.createElement('p');
-                summary.textContent = `You played ${roundStats.played} cards. Continue to the explicit 20-question game, or start a new game?`;
+                summary.textContent = `You played ${roundStats.played} cards. Continue to the explicit 20-question game, or start a new conversation?`;
                 const yes = document.createElement('button');
                 yes.type = 'button';
                 yes.className = 'btn-primary';
@@ -964,7 +958,7 @@ function drawNextCard(isRemoteUpdate = false) {
                 const no = document.createElement('button');
                 no.type = 'button';
                 no.className = 'btn-secondary';
-                no.textContent = 'Start new game';
+                no.textContent = 'Start new conversation';
                 no.style.marginTop = '12px';
                 no.style.display = 'block';
                 no.style.marginLeft = 'auto';
@@ -992,13 +986,13 @@ function drawNextCard(isRemoteUpdate = false) {
         prompt.innerHTML = '';
         prompt.style.textAlign = 'center';
         const title = document.createElement('strong');
-        title.textContent = 'Round complete';
+        title.textContent = 'Conversation complete';
         const summary = document.createElement('p');
         summary.textContent = `You played ${roundStats.played} cards and passed ${roundStats.passed}.`;
         const again = document.createElement('button');
         again.type = 'button';
         again.className = 'btn-primary';
-        again.textContent = 'Start new game';
+        again.textContent = 'Start new conversation';
         again.style.marginTop = '12px';
         again.style.display = 'block';
         again.style.marginLeft = 'auto';
@@ -1392,7 +1386,7 @@ function renderCompareFirstComplete(card) {
     if (nextCardBtn) {
         nextCardBtn.disabled = true;
         const label = nextCardBtn.querySelector('.btn-label');
-        if (label) label.textContent = 'Poll round complete';
+        if (label) label.textContent = 'Poll complete';
     }
     const gameModeSelect = document.getElementById('gameModeSelect');
     if (gameModeSelect) gameModeSelect.value = 'compare-first';
@@ -1457,12 +1451,13 @@ function advanceCard(passed = false) {
         setCardActionStatus(`It is ${getPlayerIdentifier(activeTurn)}'s turn to advance.`);
         return;
     }
-    undoState = {
+    undoStack.push({
         currentCard: currentCard ? { ...currentCard } : null,
         unspentDeck: [...unspentDeck],
         activeTurn,
         passed
-    };
+    });
+    if (undoStack.length > 20) undoStack.shift();
     if (passed && currentCard && !browseMode) {
         roundStats.passed += 1;
         if (!passedCardIds.includes(currentCard.id)) passedCardIds.push(currentCard.id);
@@ -1493,33 +1488,64 @@ if (!passed && !browseMode) {
     }
     pickedAnswerer = null;
     pickedAnswererIndex = null;
-    const container = document.getElementById('cardContainer');
+    if (currentCard && !browseMode) {
+        gameHistory.unshift({
+            id: currentCard.id,
+            prompt: currentCard.prompt,
+            module: currentCard.module,
+            passed: !!passed,
+            date: new Date().toISOString()
+        });
+        if (gameHistory.length > 200) gameHistory.length = 200;
+        localStorage.setItem('closer_game_history', JSON.stringify(gameHistory));
+    }
+    const container = document.getElementById('cardFace') || document.getElementById('cardContainer');
+    const stack = document.getElementById('cardContainer');
+    const preview = document.getElementById('cardPreview');
+    const previewPrompt = document.getElementById('cardPreviewPrompt');
+    // Capture the upcoming card for the preview.
+    const upcoming = unspentDeck.length ? unspentDeck[unspentDeck.length - 1] : null;
+    if (upcoming && previewPrompt) previewPrompt.textContent = upcoming.prompt || '';
     if (container) {
         container.classList.add('card-exiting');
+        if (stack) stack.classList.add('stack-peek');
+        if (preview) {
+            preview.classList.remove('hidden');
+            preview.classList.add('show');
+        }
         setTimeout(() => {
             container.classList.remove('card-exiting');
+            if (stack) stack.classList.remove('stack-peek');
+            if (preview) {
+                preview.classList.remove('show');
+                preview.classList.add('hidden');
+            }
             drawNextCard();
-        }, 220);
+        }, 700);
     } else {
+        if (preview) {
+            preview.classList.remove('show');
+            preview.classList.add('hidden');
+        }
         drawNextCard();
     }
 }
 
 function undoCard() {
-    if (!undoState) {
+    if (undoStack.length === 0) {
         setCardActionStatus('Nothing to undo.');
         return;
     }
-    currentCard = undoState.currentCard;
-    unspentDeck = [...undoState.unspentDeck];
-    activeTurn = undoState.activeTurn;
-    undoState = null;
+    const state = undoStack.pop();
+    currentCard = state.currentCard;
+    unspentDeck = [...state.unspentDeck];
+    activeTurn = state.activeTurn;
     if (currentCard) renderCard(currentCard);
     setCardActionStatus('Went back.');
 }
 function renderCard(card) {
 const undoBtn = document.getElementById('undoBtn');
-    if (undoBtn) undoBtn.disabled = !undoState;
+    if (undoBtn) undoBtn.disabled = undoStack.length === 0;
     if (card.compareFirstComplete) {
         enterCompareFirstModeFromCard(card);
         renderCompareFirstComplete(card);
@@ -1554,6 +1580,8 @@ const undoBtn = document.getElementById('undoBtn');
             turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
         }
     }
+    const browseIndicator = document.getElementById('browseIndicator');
+    if (browseIndicator) browseIndicator.classList.toggle('hidden', !browseMode);
     const progressIndicator = document.getElementById('progressIndicator');
     updateCardProgressSlider();
     const announcer = document.getElementById('srAnnouncer');
@@ -1572,13 +1600,36 @@ const undoBtn = document.getElementById('undoBtn');
     setCommunityActions(card);
     renderModeTimer();
     updateCompareFirstControls();
-    const container = document.getElementById('cardContainer');
+    const container = document.getElementById('cardFace') || document.getElementById('cardContainer');
+    if (container) {
+        container.classList.remove('card-exiting');
+        container.classList.remove('card-entering');
+        container.classList.remove('card-drawn');
+        void container.offsetWidth;
+        requestAnimationFrame(() => {
+            container.classList.add('card-entering');
+            setTimeout(() => {
+                container.classList.remove('card-entering');
+                container.classList.add('card-drawn');
+                setTimeout(() => container.classList.remove('card-drawn'), 500);
+            }, 450);
+        });
+    }
+    const stack = document.getElementById('cardContainer');
+    if (stack) {
+        stack.classList.remove('deck-drawn');
+        void stack.offsetWidth;
+        stack.classList.add('deck-drawn');
+        setTimeout(() => stack.classList.remove('deck-drawn'), 420);
+    }
     if (container) {
         container.classList.remove('card-exiting');
         container.classList.remove('card-entering');
         void container.offsetWidth;
-        container.classList.add('card-entering');
-        setTimeout(() => container.classList.remove('card-entering'), 320);
+        requestAnimationFrame(() => {
+            container.classList.add('card-entering');
+            setTimeout(() => container.classList.remove('card-entering'), 320);
+        });
     }
 }
 
@@ -1871,6 +1922,7 @@ function renderLocalCardAnswers(card, optionsContainer, submitButton, status, co
 
 // Drawer & Modal Controller Functions
 function openDrawer(title, contentHtml) {
+    window._lastFocusedBeforeDrawer = document.activeElement;
     const titleEl = document.getElementById('drawerTitle');
     const contentEl = document.getElementById('drawerContent');
     const drawer = document.getElementById('appDrawer');
@@ -1889,6 +1941,10 @@ function openDrawer(title, contentHtml) {
     if (contentEl) contentEl.innerHTML = contentHtml;
     if (drawer) drawer.classList.remove('hidden');
     if (overlay) overlay.classList.remove('hidden');
+    setTimeout(() => {
+        const first = drawer?.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (first) first.focus();
+    }, 0);
 }
 
 function appendDrawerMessage(content, message, className = 'drawer-item') {
@@ -2050,6 +2106,147 @@ function renderFavoritesDrawerContent(content) {
         item.append(prompt, actions);
         content.appendChild(item);
     });
+}
+
+function renderGameHistoryDrawerContent(content) {
+    content.replaceChildren();
+    const intro = document.createElement('p');
+    intro.className = 'drawer-intro';
+    intro.textContent = 'Recently played cards (this device).';
+    content.appendChild(intro);
+    if (gameHistory.length === 0) {
+        appendDrawerMessage(content, 'No game history yet. Play a round to start tracking.');
+        return;
+    }
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'drawer-remove-btn';
+    clearBtn.type = 'button';
+    clearBtn.textContent = 'Clear history';
+    clearBtn.onclick = () => {
+        gameHistory = [];
+        localStorage.removeItem('closer_game_history');
+        renderGameHistoryDrawerContent(content);
+    };
+    content.appendChild(clearBtn);
+    gameHistory.forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'drawer-item';
+        const prompt = document.createElement('p');
+        prompt.textContent = entry.prompt;
+        const meta = document.createElement('p');
+        meta.className = 'drawer-item-meta';
+        meta.textContent = `${entry.passed ? 'Passed' : 'Played'} · ${entry.module || 'general'} · ${new Date(entry.date).toLocaleString()}`;
+        item.append(prompt, meta);
+        content.appendChild(item);
+    });
+}
+
+function renderCardBrowserDrawerContent(content) {
+    content.replaceChildren();
+    const intro = document.createElement('p');
+    intro.className = 'drawer-intro';
+    intro.textContent = 'Browse cards and add them to one of your decks.';
+    content.appendChild(intro);
+
+    const deckRow = document.createElement('div');
+    deckRow.className = 'room-invite-row';
+    const deckSelect = document.createElement('select');
+    deckSelect.id = 'cardBrowserDeckSelect';
+    deckSelect.style.flex = '1';
+    const refreshDeckOptions = () => {
+        deckSelect.replaceChildren();
+        if (customDecks.length === 0) {
+            const opt = document.createElement('option');
+            opt.value = '';
+            opt.textContent = 'Create a deck first';
+            deckSelect.appendChild(opt);
+            deckSelect.disabled = true;
+            return;
+        }
+        deckSelect.disabled = false;
+        customDecks.forEach(deck => {
+            const opt = document.createElement('option');
+            opt.value = deck.id;
+            opt.textContent = `${deck.name} (${deck.cardIds.length})`;
+            deckSelect.appendChild(opt);
+        });
+        if (activeDeckId) deckSelect.value = activeDeckId;
+    };
+    refreshDeckOptions();
+    const createDeckBtn = document.createElement('button');
+    createDeckBtn.className = 'btn-secondary';
+    createDeckBtn.type = 'button';
+    createDeckBtn.textContent = 'New deck';
+    createDeckBtn.onclick = () => {
+        const name = prompt('Deck name:');
+        if (!name || !name.trim()) return;
+        const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: [] };
+        customDecks.push(deck);
+        localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+        refreshDeckOptions();
+        deckSelect.value = deck.id;
+        renderList();
+    };
+    deckRow.append(deckSelect, createDeckBtn);
+    content.appendChild(deckRow);
+
+    const searchInput = document.createElement('input');
+    searchInput.type = 'search';
+    searchInput.placeholder = 'Search cards...';
+    searchInput.style.width = '100%';
+    searchInput.style.margin = '10px 0';
+    content.appendChild(searchInput);
+
+    const list = document.createElement('div');
+    list.className = 'card-browser-list';
+    content.appendChild(list);
+
+    const renderList = () => {
+        list.replaceChildren();
+        const query = (searchInput.value || '').toLowerCase().trim();
+        const selectedDeckId = deckSelect.value;
+        const deck = customDecks.find(d => d.id === selectedDeckId);
+        const cards = (masterDatabase || []).filter(card => {
+            if (!query) return true;
+            return (card.prompt || '').toLowerCase().includes(query)
+                || (card.category || '').toLowerCase().includes(query)
+                || (card.module || '').toLowerCase().includes(query);
+        }).slice(0, 60);
+        if (cards.length === 0) {
+            appendDrawerMessage(list, 'No cards match your search.');
+            return;
+        }
+        cards.forEach(card => {
+            const item = document.createElement('div');
+            item.className = 'drawer-item';
+            const prompt = document.createElement('p');
+            prompt.textContent = card.prompt;
+            const meta = document.createElement('p');
+            meta.className = 'drawer-item-meta';
+            meta.textContent = `${card.module || 'general'} · ${card.category || 'General'} · intensity ${card.intensity || 1}`;
+            const actions = document.createElement('div');
+            actions.className = 'drawer-item-actions';
+            const addBtn = document.createElement('button');
+            addBtn.className = 'drawer-action-btn';
+            addBtn.type = 'button';
+            const already = deck ? deck.cardIds.includes(card.id) : false;
+            addBtn.textContent = already ? 'Added' : 'Add to deck';
+            addBtn.disabled = !deck || already;
+            addBtn.onclick = () => {
+                if (!deck) return;
+                if (!deck.cardIds.includes(card.id)) deck.cardIds.push(card.id);
+                localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+                renderList();
+                showToast('Added to deck.');
+            };
+            actions.appendChild(addBtn);
+            item.append(prompt, meta, actions);
+            list.appendChild(item);
+        });
+    };
+    searchInput.addEventListener('input', renderList);
+    deckSelect.addEventListener('change', renderList);
+    renderList();
 }
 
 function renderMyDecks() {
@@ -2631,13 +2828,25 @@ function closeDrawer() {
     const overlay = document.getElementById('drawerOverlay');
     if (drawer) drawer.classList.add('hidden');
     if (overlay) overlay.classList.add('hidden');
+    if (window._lastFocusedBeforeDrawer && typeof window._lastFocusedBeforeDrawer.focus === 'function') {
+        window._lastFocusedBeforeDrawer.focus();
+    }
 }
 
 function toggleModal(show) {
     const modal = document.getElementById('customCardModal');
     if (modal) {
-        if (show) modal.classList.remove('hidden');
-        else modal.classList.add('hidden');
+        if (show) {
+            window._lastFocusedBeforeModal = document.activeElement;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                const first = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (first) first.focus();
+            }, 0);
+        } else {
+            modal.classList.add('hidden');
+            if (window._lastFocusedBeforeModal && typeof window._lastFocusedBeforeModal.focus === 'function') window._lastFocusedBeforeModal.focus();
+        }
     }
 }
 
@@ -2848,7 +3057,7 @@ function showToast(message) {
         toast.id = 'appToast';
         toast.setAttribute('role', 'status');
         toast.setAttribute('aria-live', 'polite');
-        toast.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(22,22,29,0.95);color:#f8fafc;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);box-shadow:0 8px 24px rgba(0,0,0,0.4);z-index:9999;font-size:0.9rem;opacity:0;transition:opacity 0.2s ease;pointer-events:none;';
+        toast.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(22,22,29,0.95);color:var(--text-main);padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);box-shadow:0 8px 24px rgba(0,0,0,0.4);z-index:9999;font-size:0.9rem;opacity:0;transition:opacity 0.2s ease;pointer-events:none;';
         document.body.appendChild(toast);
     }
     toast.textContent = message;
@@ -3111,17 +3320,97 @@ function closePlayerNamesModal() {
     document.getElementById('playerNamesModal')?.classList.add('hidden');
 }
 
-function loadAnotherQod() {
+function getQodDateKey() {
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function getSafeQodPool() {
     const db = window.masterDatabase || masterDatabase || [];
-    if (!db || db.length === 0) return false;
-    const safe = db.filter(c => c && c.module !== 'explicit' && c.module !== 'sexuality');
-    if (safe.length === 0) return false;
-    const card = safe[Math.floor(Math.random() * safe.length)];
+    return db.filter(c => c && c.module !== 'explicit' && c.module !== 'sexuality' && c.prompt);
+}
+
+function ensureDailyQod() {
+    const today = getQodDateKey();
+    let storedDate = null;
+    try { storedDate = localStorage.getItem('closer_qod_date'); } catch (e) {}
+    if (storedDate !== today) {
+        const pool = getSafeQodPool();
+        const picked = [];
+        const used = new Set();
+        let attempts = 0;
+        while (picked.length < 5 && attempts < 50) {
+            attempts++;
+            if (pool.length === 0) break;
+            const card = pool[Math.floor(Math.random() * pool.length)];
+            if (used.has(card.id)) continue;
+            used.add(card.id);
+            picked.push(card.prompt);
+        }
+        try {
+            localStorage.setItem('closer_qod_date', today);
+            localStorage.setItem('closer_qod_questions', JSON.stringify(picked));
+            localStorage.setItem('closer_qod_index', '0');
+        } catch (e) {}
+    }
+}
+
+function getCurrentQodQuestions() {
+    try {
+        const q = JSON.parse(localStorage.getItem('closer_qod_questions') || '[]');
+        if (Array.isArray(q) && q.length > 0) return q;
+    } catch (e) {}
+    // fallback
+    const pool = getSafeQodPool();
+    return pool.slice(0, 5).map(c => c.prompt);
+}
+
+function getCurrentQodIndex() {
+    let i = 0;
+    try { i = parseInt(localStorage.getItem('closer_qod_index') || '0', 10) || 0; } catch (e) {}
+    const qs = getCurrentQodQuestions();
+    if (i < 0) i = 0;
+    if (i > qs.length) i = qs.length;
+    return i;
+}
+
+function showQod() {
+    ensureDailyQod();
+    const qs = getCurrentQodQuestions();
+    const idx = getCurrentQodIndex();
     const el = document.getElementById('qodQuestion');
-    if (el && card && card.prompt) el.textContent = card.prompt;
+    const anotherBtn = document.getElementById('qodAnother');
+    const startLink = document.getElementById('qodStartConv');
+    if (idx < qs.length) {
+        if (el) el.textContent = qs[idx];
+        if (anotherBtn) anotherBtn.classList.remove('hidden');
+        if (startLink) startLink.classList.add('hidden');
+    } else {
+        // reached the end of the 5
+        if (el) el.textContent = "You've explored today's questions. Start a new conversation to keep connecting.";
+        if (anotherBtn) anotherBtn.classList.add('hidden');
+        if (startLink) startLink.classList.remove('hidden');
+    }
+}
+
+function advanceQod() {
+    const qs = getCurrentQodQuestions();
+    let idx = getCurrentQodIndex();
+    if (idx < qs.length) {
+        idx += 1;
+        try { localStorage.setItem('closer_qod_index', String(idx)); } catch (e) {}
+    }
+    showQod();
+    return true;
+}
+
+function loadAnotherQod() {
+    advanceQod();
     return true;
 }
 window.loadAnotherQod = loadAnotherQod;
+window.advanceQod = advanceQod;
+window.showQod = showQod;
 
 function resumeSavedGame() {
     try {

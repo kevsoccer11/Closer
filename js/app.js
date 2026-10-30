@@ -2,6 +2,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Basic focus trapping for open dialogs/drawers.
     document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('.modal-overlay:not(.hidden)');
+            if (openModal) {
+                openModal.classList.add('hidden');
+                return;
+            }
+            const drawer = document.getElementById('appDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            if (drawer && !drawer.classList.contains('hidden')) {
+                drawer.classList.add('hidden');
+                overlay?.classList.add('hidden');
+            }
+            return;
+        }
         if (e.key !== 'Tab') return;
         const dialog = document.querySelector('.modal-overlay:not(.hidden) .modal-card, .drawer.open, .drawer:not(.hidden)');
         if (!dialog) return;
@@ -43,10 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Advance cards with the explicit controls to avoid accidental skips.
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) {
-        nextCardBtn.onclick = () => advanceCard(false);
+        nextCardBtn.onclick = () => { try { navigator.vibrate?.(10); } catch(e){} advanceCard(false); };
     }
-    document.getElementById('passCardBtn')?.addEventListener('click', () => advanceCard(true));
-    document.getElementById('undoBtn')?.addEventListener('click', undoCard);
+    document.getElementById('passCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(10); } catch(e){} advanceCard(true); });
+    document.getElementById('favCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} });
+    document.getElementById('undoBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} undoCard(); });
     const startQuickGameBtn = document.getElementById('startQuickGameBtn');
     if (startQuickGameBtn) {
         startQuickGameBtn.onclick = () => {
@@ -105,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         drawNextCard();
     });
 
-    document.getElementById('roundSummaryBtn')?.addEventListener('click', openRoundBuilder);
     document.getElementById('createRoundFromSettingsBtn')?.addEventListener('click', openRoundBuilder);
     const createDeckBtn = document.getElementById('createDeckBtn');
     if (createDeckBtn) {
@@ -171,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = e.target && e.target.closest ? e.target.closest('.featured-experience-card') : null;
         if (btn) {
             e.preventDefault();
-            try { openRoundBuilder(); } catch (err) { console.error(err); alert('Could not open Play new game: ' + err.message); }
+            try { openRoundBuilder(); } catch (err) { console.error(err); alert('Could not open: ' + err.message); }
         }
     });
     document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
@@ -219,19 +233,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
     const browseBtn = document.getElementById('browseModeCustomBtn');
     if (browseBtn) {
-        const updateBrowseLabel = () => {
-            browseBtn.textContent = browseMode ? 'Browse mode: On' : 'Create new deck';
-            browseBtn.classList.toggle('active', browseMode);
-        };
         browseBtn.onclick = () => {
-            browseMode = !browseMode;
-            updateBrowseLabel();
-            const turnIndicator = document.getElementById('turnIndicator');
-            if (turnIndicator) {
-                turnIndicator.classList.toggle('hidden', browseMode);
-            }
+            try {
+                browseMode = true;
+                const sel = getRoundBuilderSelection();
+                if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
+                applyRoundSelection(sel);
+                const turnIndicator = document.getElementById('turnIndicator');
+                if (turnIndicator) turnIndicator.classList.add('hidden');
+                const browseIndicator = document.getElementById('browseIndicator');
+                if (browseIndicator) browseIndicator.classList.remove('hidden');
+                showToast('Previewing cards · progress not tracked.');
+            } catch (e) { console.error('Preview failed:', e); alert('Could not preview: ' + e.message); }
         };
-        updateBrowseLabel();
     }
     document.getElementById('resetPlayHistoryBtn')?.addEventListener('click', () => {
         playedCardIds.clear();
@@ -269,16 +283,17 @@ document.addEventListener('DOMContentLoaded', () => {
             savePlayerIdentity(1, document.getElementById('pn2Name').value, document.getElementById('pn2Icon').value);
             const st = document.getElementById('playerNamesStatus');
             if (st) st.textContent = 'Names saved.';
-            setTimeout(() => {
+setTimeout(() => {
                 closePlayerNamesModal();
                 if (pendingGameStart) { const fn = pendingGameStart; pendingGameStart = null; fn(); }
+                else if (window.pendingPackKey) { const key = window.pendingPackKey; window.pendingPackKey = null; startPackByKey(key, true); }
             }, 600);
         });
     }
     document.getElementById('roundBuilderModal')?.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
             closeRoundBuilder();
-            document.getElementById('roundSummaryBtn')?.focus();
+            document.getElementById('closeRoundBuilderBtn')?.focus();
         }
     });
     document.getElementById('roundBuilderModal')?.addEventListener('click', event => {
@@ -302,6 +317,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             activeTopics = null;
             renderRoundTopics();
+        } else if (target.matches('input[name="roundPillar"]')) {
+            activeTopics = null;
+            renderRoundTopics();
+            updateRoundIntensityVisibility();
+            updateRoundMatchCount();
         } else if (target.matches('#roundTopics input[type="checkbox"], input[name="roundIntensity"], #includeQuestions, #includeActivities, #includeMultipleChoice')) {
             updateRoundMatchCount();
         }
@@ -315,12 +335,30 @@ document.addEventListener('DOMContentLoaded', () => {
         rebuildUnspentDeck();
         drawNextCard();
     });
-    document.getElementById('startRoundBtn')?.addEventListener('click', () => {
+    document.getElementById('saveCustomDeckBtn')?.addEventListener('click', () => {
         try {
             const sel = getRoundBuilderSelection();
             if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
+            const cards = getCardsForRoundSelection(sel);
+            if (!cards || cards.length === 0) { showToast('No cards match this selection.'); return; }
+            const name = prompt('Name your deck:');
+            if (!name || !name.trim()) return;
+            const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: cards.map(c => c.id) };
+            customDecks.push(deck);
+            localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+            renderMyDecks();
+            showToast(`Saved "${deck.name}" with ${deck.cardIds.length} cards.`);
+        } catch (e) { console.error('Save deck failed:', e); alert('Could not save deck: ' + e.message); }
+    });
+document.getElementById('startRoundBtn')?.addEventListener('click', () => {
+        try {
+            browseMode = false;
+            const sel = getRoundBuilderSelection();
+            if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
             applyRoundSelection(sel);
-        } catch (e) { console.error('Start round failed:', e); alert('Could not start round: ' + e.message); }
+            const browseIndicator = document.getElementById('browseIndicator');
+            if (browseIndicator) browseIndicator.classList.add('hidden');
+        } catch (e) { console.error('Start round failed:', e); alert('Could not start conversation: ' + e.message); }
     });
     const gameModeSelect = document.getElementById('gameModeSelect');
     if (gameModeSelect) {
@@ -470,15 +508,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const close = () => menu.remove();
             const title = document.createElement('strong');
             title.textContent = 'Save to…';
-            title.style.cssText = 'font-size:0.85rem;color:#f8fafc;';
+            title.style.cssText = 'font-size:0.85rem;color:var(--text-main);';
             menu.appendChild(title);
             const makeCheck = (label, checked = false) => {
                 const wrap = document.createElement('label');
-                wrap.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.85rem;color:#f8fafc;cursor:pointer;';
+                wrap.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.85rem;color:var(--text-main);cursor:pointer;';
                 const cb = document.createElement('input');
                 cb.type = 'checkbox';
                 cb.checked = checked;
-                cb.style.cssText = 'width:16px;height:16px;accent-color:#f43f5e;';
+                cb.style.cssText = 'width:16px;height:16px;accent-color:#A788CA;';
                 wrap.appendChild(cb);
                 wrap.appendChild(document.createTextNode(label));
                 return { wrap, cb };
@@ -506,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const saveBtn = document.createElement('button');
             saveBtn.type = 'button';
             saveBtn.textContent = 'Save';
-            saveBtn.style.cssText = 'background:#f43f5e;border:none;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;margin-top:4px;';
+            saveBtn.style.cssText = 'background:#A788CA;border:none;color:#fff;padding:8px 10px;border-radius:8px;cursor:pointer;font-weight:700;margin-top:4px;';
             saveBtn.onclick = async (ev) => {
                 ev.stopPropagation();
                 // Favorites
@@ -872,6 +910,10 @@ const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
                         <p class="settings-help-copy">Deck includes ${(masterDatabase?.length || 0).toLocaleString()} available cards on this device.</p>
                         <button class="settings-link" id="settingsFavoritesBtn" type="button">Saved questions</button>
                         <button class="settings-link" id="settingsJournalBtn" type="button">Date night journal</button>
+                        <button class="settings-link" id="settingsGameHistoryBtn" type="button">Game history</button>
+                        <button class="settings-link" id="settingsCardBrowserBtn" type="button">Browse cards to add to deck</button>
+                        <button class="settings-link" id="settingsRestartTourBtn" type="button">Restart onboarding tour</button>
+                        <button class="settings-link" id="settingsToggleBrowseBtn" type="button">Toggle preview mode</button>
                         <button class="settings-link" id="settingsShortcutsBtn" type="button">Keyboard shortcuts</button>
                         <button class="settings-link" id="settingsUpdateBtn" type="button">Check for updates</button>
                     </div>
@@ -924,12 +966,26 @@ const applyAccessibility = () => {
     bindToggle('settingsDyslexiaToggle', 'closer_dyslexia_font');
     bindToggle('settingsColorBlindToggle', 'closer_colorblind_safe');
     bindToggle('settingsHighContrastToggle', 'closer_high_contrast');
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const syncThemeIcon = () => {
+        if (themeToggleBtn) themeToggleBtn.textContent = (localStorage.getItem('closer_theme') === 'dark') ? '☀️' : '🌙';
+    };
+    if (themeToggleBtn) {
+        themeToggleBtn.onclick = () => {
+            const next = (localStorage.getItem('closer_theme') === 'dark') ? 'light' : 'dark';
+            localStorage.setItem('closer_theme', next);
+            applyTheme();
+            syncThemeIcon();
+        };
+    }
+    syncThemeIcon();
     const themeToggle = document.getElementById('settingsThemeToggle');
     if (themeToggle) {
         themeToggle.checked = localStorage.getItem('closer_theme') === 'dark';
         themeToggle.onchange = () => {
             localStorage.setItem('closer_theme', themeToggle.checked ? 'dark' : 'light');
             applyTheme();
+            syncThemeIcon();
         };
     }
     const tapToggle = document.getElementById('settingsTapToAdvanceToggle');
@@ -963,6 +1019,10 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
                 };
             }
             document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
+            document.getElementById('settingsGameHistoryBtn').onclick = () => { closeDrawer(); openDrawer('Game History', ''); const content = document.getElementById('drawerContent'); renderGameHistoryDrawerContent(content); };
+            document.getElementById('settingsCardBrowserBtn').onclick = () => { closeDrawer(); openDrawer('Browse Cards', ''); const content = document.getElementById('drawerContent'); renderCardBrowserDrawerContent(content); };
+            document.getElementById('settingsRestartTourBtn').onclick = () => { onboardingDone = false; closeDrawer(); showOnboardingStep(); };
+            document.getElementById('settingsToggleBrowseBtn').onclick = () => { browseMode = !browseMode; showToast(`Preview mode ${browseMode ? 'on' : 'off'}.`); closeDrawer(); };
             // Wire settings-drawer filters (these elements only exist after the drawer is opened).
             document.querySelectorAll('.mood-btn').forEach(btn => {
                 btn.onclick = (e) => {
@@ -1529,6 +1589,41 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         if (document.hidden) panel.classList.add('blurred');
         else panel.classList.remove('blurred');
     });
+
+    // Onboarding interactive tour.
+    const onboardingSteps = [
+        { title: 'Play', text: 'Tap Play to return home and start a conversation.' },
+        { title: 'Create a round', text: 'Choose decks, topics, and intensity, then start.' },
+        { title: 'Card controls', text: 'Use Next, Pass, and Undo while playing.' },
+        { title: 'Explore', text: 'Browse packs and themed experiences.' },
+        { title: 'Settings', text: 'Customize appearance, accessibility, and decks.' }
+    ];
+    let onboardingIndex = 0;
+    const onboardingOverlay = document.getElementById('onboardingOverlay');
+    const onboardingTitle = document.getElementById('onboardingTitle');
+    const onboardingText = document.getElementById('onboardingText');
+    const onboardingNextBtn = document.getElementById('onboardingNextBtn');
+    const onboardingSkipBtn = document.getElementById('onboardingSkipBtn');
+    const showOnboardingStep = () => {
+        if (!onboardingOverlay) return;
+        const step = onboardingSteps[onboardingIndex];
+        if (onboardingTitle) onboardingTitle.textContent = step.title;
+        if (onboardingText) onboardingText.textContent = step.text;
+        if (onboardingNextBtn) onboardingNextBtn.textContent = onboardingIndex === onboardingSteps.length - 1 ? 'Finish' : 'Next';
+        onboardingOverlay.classList.remove('hidden');
+    };
+    const finishOnboarding = () => {
+        onboardingOverlay?.classList.add('hidden');
+        onboardingDone = true;
+        localStorage.setItem('closer_onboarding_done', 'true');
+    };
+    if (onboardingNextBtn) onboardingNextBtn.onclick = () => {
+        onboardingIndex += 1;
+        if (onboardingIndex >= onboardingSteps.length) finishOnboarding();
+        else showOnboardingStep();
+    };
+    if (onboardingSkipBtn) onboardingSkipBtn.onclick = finishOnboarding;
+    // Onboarding tour is available via Settings → "Restart onboarding tour"; not auto-shown.
 
     updateSectionView();
     updatePrivateShareUi();

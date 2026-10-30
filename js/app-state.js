@@ -86,7 +86,7 @@ let roundTotalCards = 0;
 let lastSyncedAt = null;
 let roundStats = { played: 0, passed: 0 };
 let passedCardIds = [];
-let undoState = null;
+let undoStack = [];
 let playedCardIds = new Set(JSON.parse(localStorage.getItem('closer_played_cards') || '[]'));
 let favoritesOnly = false;
 let activeMood = 'all';
@@ -98,5 +98,6 @@ let progressiveMode = false;
 let progressivePhase = null; // 'nonexplicit' | 'explicit'
 let customDecks = JSON.parse(localStorage.getItem('closer_custom_decks') || '[]');
 let activeDeckId = localStorage.getItem('closer_active_deck') || null;
-let roundConfiguredByUser = false;
+let gameHistory = JSON.parse(localStorage.getItem('closer_game_history') || '[]');
+let onboardingDone = localStorage.getItem('closer_onboarding_done') === 'true';
 

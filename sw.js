@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v343';
+const CACHE_NAME = 'closer-pwa-v359';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -39,6 +39,11 @@ self.addEventListener('activate', (event) => {
     );
 });
 
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
+})
+;
+
 self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
         return;
@@ -47,7 +52,7 @@ self.addEventListener('fetch', (event) => {
     const isAsset = url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.html') || url.pathname === '/';
     if (isAsset) {
         event.respondWith(
-            fetch(event.request).then((response) => {
+            fetch(event.request, { cache: 'no-store' }).then((response) => {
                 const copy = response.clone();
                 caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
                 return response;
