@@ -326,13 +326,14 @@ setTimeout(() => {
             await createRoom();
             if (window.roomRef) {
                 await window.roomRef.child('gameMode').set('guess-me');
-                await window.roomRef.child('guessMe').set({
-                    status: 'lobby',
-                    length: sel.length,
-                    vibe: sel.vibe,
-                    hostReady: false,
-                    partnerReady: false,
-                    scores: { host: 0, partner: 0 }
+                await window.roomRef.update({
+                    'guessMe/status': 'lobby',
+                    'guessMe/length': sel.length,
+                    'guessMe/vibe': sel.vibe,
+                    'guessMe/hostReady': false,
+                    'guessMe/partnerReady': false,
+                    'guessMe/scores/host': 0,
+                    'guessMe/scores/partner': 0
                 });
             }
             guessMeActive = true;
