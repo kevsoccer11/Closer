@@ -3773,7 +3773,7 @@ async function renderGuessMe(gm) {
     const qCard = document.createElement('section'); qCard.className='app-hero';
     const qp = document.createElement('p'); qp.className='round-builder-intro';
     qp.textContent = iAmAnswerer ? 'Choose your answer.' : "Guess what your partner will say.";
-    const qText = document.createElement('h2'); qText.textContent = q ? q.prompt : 'Loading question…';
+    const qText = document.createElement('h2'); qText.textContent = q ? (iAmAnswerer ? q.prompt : 'Guess: ' + q.prompt) : 'Loading question…';
     qCard.append(qp, qText);
     if (q && Array.isArray(q.options)) {
         const opts = document.createElement('div');
@@ -3825,6 +3825,10 @@ async function renderGuessMe(gm) {
                 await window.roomRef.child('guessMe/submissionStatus/scored').set(true);
             }
         } catch (e) { console.warn('scoring failed', e); }
+        return;
+    }
+    if (ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost) {
+        try { await window.roomRef.child('guessMe/submissionStatus/resolved').set(true); } catch (e) { console.warn('resolve failed', e); }
         return;
     }
     if (ss.resolved) {
