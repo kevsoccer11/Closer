@@ -3504,3 +3504,23 @@ function resumeSavedGame() {
     } catch (e) {}
 }
 window.resumeSavedGame = resumeSavedGame;
+function quitConversation() {
+    if (!confirm('End this conversation? Your progress will be discarded.')) return;
+    try {
+        localStorage.removeItem('closer_unspent_deck');
+        localStorage.removeItem('closer_current_card');
+    } catch (e) {}
+    currentCard = null;
+    unspentDeck = [];
+    roundStats = { played: 0, passed: 0 };
+    passedCardIds = [];
+    browseMode = false;
+    const browseIndicator = document.getElementById('browseIndicator');
+    if (browseIndicator) browseIndicator.classList.add('hidden');
+    stopModeTimer();
+    document.getElementById('actionTimerBar')?.classList.add('hidden');
+    showHomeView();
+    if (typeof showToast === 'function') showToast('Conversation ended.');
+}
+window.quitConversation = quitConversation;
+

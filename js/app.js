@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         nextCardBtn.onclick = () => { try { navigator.vibrate?.(10); } catch(e){} advanceCard(false); };
     }
     document.getElementById('passCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(10); } catch(e){} advanceCard(true); });
+    document.getElementById('quitGameBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} quitConversation(); });
+
     document.getElementById('favCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} });
     document.getElementById('undoBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} undoCard(); });
     const startQuickGameBtn = document.getElementById('startQuickGameBtn');
