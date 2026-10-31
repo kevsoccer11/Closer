@@ -649,6 +649,19 @@ main {
     top: 50%;
     transform: translateY(-50%);
 }
+.card-in-deck-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(167, 136, 202, 0.18);
+    color: var(--primary, #A788CA);
+    border: 1px solid rgba(167, 136, 202, 0.35);
+    white-space: nowrap;
+}
+.card-in-deck-badge.hidden { display: none; }
+
+
 
 #shareDeckBtn i,
 #shareDeckBtn svg {

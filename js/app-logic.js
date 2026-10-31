@@ -1632,6 +1632,11 @@ const undoBtn = document.getElementById('undoBtn');
     const favBtn = document.getElementById('favCardBtn');
     if (favBtn) favBtn.classList.toggle('active', favoriteIds.includes(card.id));
     if (favBtn) favBtn.setAttribute('aria-pressed', String(favoriteIds.includes(card.id)));
+    const inDeckBadge = document.getElementById('cardInDeckBadge');
+    if (inDeckBadge) {
+        const inDeck = (typeof customDecks !== 'undefined') && customDecks.some(d => Array.isArray(d.cardIds) && d.cardIds.includes(card.id));
+        inDeckBadge.classList.toggle('hidden', !inDeck);
+    }
     const turnIndicator = document.getElementById('turnIndicator');
     if (turnIndicator) {
         if (browseMode) {
