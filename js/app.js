@@ -301,6 +301,67 @@ setTimeout(() => {
     document.getElementById('roundBuilderModal')?.addEventListener('click', event => {
         if (event.target === event.currentTarget) closeRoundBuilder();
     });
+    // Guess Me setup modal interactions
+    document.getElementById('guessMeSetupModal')?.addEventListener('click', event => {
+        if (event.target === event.currentTarget) closeGuessMeSetup();
+    });
+    document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    document.getElementById('guessMeCreateRoomBtn')?.addEventListener('click', async () => {
+        const status = document.getElementById('guessMeSetupStatus');
+        try {
+            if (status) status.textContent = 'Creating Guess Me room…';
+            const sel = getGuessMeSelection();
+            // Reuse existing room creation, then tag the room as Guess Me.
+            await createRoom();
+            if (window.roomRef) {
+                await window.roomRef.child('gameMode').set('guess-me');
+                await window.roomRef.child('guessMe').set({
+                    status: 'lobby',
+                    length: sel.length,
+                    vibe: sel.vibe,
+                    hostReady: false,
+                    partnerReady: false,
+                    scores: { host: 0, partner: 0 }
+                });
+            }
+            if (status) status.textContent = `Room created. Share the code with your partner. (Guess Me scaffold — gameplay coming next.)`;
+        } catch (e) {
+            console.error(e);
+            if (status) status.textContent = `Could not create room: ${e.message}`;
+        }
+    });
+    document.getElementById('guessMeJoinRoomBtn')?.addEventListener('click', async () => {
+        const status = document.getElementById('guessMeSetupStatus');
+        const code = prompt('Enter the host room code:');
+        if (!code) return;
+        try {
+            if (status) status.textContent = 'Joining room…';
+            await requestRoomAccess(code.trim());
+            if (window.roomRef) {
+                const gm = await window.roomRef.child('gameMode').once('value');
+                if (gm.val() !== 'guess-me') {
+                    if (status) status.textContent = 'This room is not a Guess Me room.';
+                    return;
+                }
+            }
+            if (status) status.textContent = 'Joined Guess Me room. Waiting for host. (Scaffold — gameplay coming next.)';
+        } catch (e) {
+            console.error(e);
+            if (status) status.textContent = `Could not join room: ${e.message}`;
+        }
+    });
+
     document.getElementById('selectAllTopicsBtn')?.addEventListener('click', () => {
         document.querySelectorAll('#roundTopics input[type="checkbox"]').forEach(input => { input.checked = true; });
         updateRoundMatchCount();

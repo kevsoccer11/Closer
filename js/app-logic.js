@@ -789,6 +789,32 @@ function openRoundBuilder() {
 
 function closeRoundBuilder() {
     document.getElementById('roundBuilderModal')?.classList.add('hidden');
+
+function openGuessMeSetup() {
+    const modal = document.getElementById('guessMeSetupModal');
+    if (!modal) return;
+    // reset selection
+    document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach((b, i) => b.classList.toggle('active', i === 0));
+    document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach((b, i) => b.classList.toggle('active', i === 0));
+    const status = document.getElementById('guessMeSetupStatus');
+    if (status) status.textContent = '';
+    modal.classList.remove('hidden');
+}
+function closeGuessMeSetup() {
+    document.getElementById('guessMeSetupModal')?.classList.add('hidden');
+}
+function getGuessMeSelection() {
+    const lengthBtn = document.querySelector('#guessMeLengthChips .filter-chip.active');
+    const vibeBtn = document.querySelector('#guessMeVibeChips .filter-chip.active');
+    return {
+        length: Number(lengthBtn?.dataset.length || 10),
+        vibe: vibeBtn?.dataset.vibe || 'mixed'
+    };
+}
+window.openGuessMeSetup = openGuessMeSetup;
+window.closeGuessMeSetup = closeGuessMeSetup;
+window.getGuessMeSelection = getGuessMeSelection;
+
 }
 
 async function loadCommunityVotes() {

@@ -149,6 +149,15 @@
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
         },
+        "gameMode": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".validate": "newData.isString() && (newData.val() === 'conversation' || newData.val() === 'guess-me')"
+        },
+        "guessMe": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
+        },
         "sharedDeck": {
           "$cardId": {
             ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",

@@ -78,6 +78,7 @@
                 <h2>Make space for the conversations that matter</h2>
                 <p>Laugh, flirt, go deep, and rediscover each other—one question at a time.</p>
                 <button class="btn-primary" id="createNewGameBtn" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">Start a conversation</button>
+                <button class="btn-secondary" id="guessMeEntryBtn" type="button" onclick="try{openGuessMeSetup();}catch(e){alert('Could not open: '+e.message);}">Guess Me</button>
             </div>
             <img src="img/deeper-connection.jpg" alt="Couple connecting" class="app-hero-image" loading="lazy">
         </section>
@@ -331,6 +332,39 @@
 
         <!-- warm-up removed -->
     </div>
+
+    <div class="modal-overlay hidden" id="guessMeSetupModal">
+        <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="guessMeSetupTitle">
+            <div class="round-builder-heading">
+                <h2 id="guessMeSetupTitle">Think you know your person?</h2>
+                <button class="modal-close" type="button" aria-label="Close" onclick="closeGuessMeSetup()">×</button>
+            </div>
+            <p class="round-builder-intro">One of you answers. The other predicts. Find out how well you really know each other.</p>
+            <fieldset class="round-builder-group">
+                <legend>Game length</legend>
+                <div class="round-builder-chips" id="guessMeLengthChips">
+                    <button class="filter-chip active" data-length="10" type="button">10 questions</button>
+                    <button class="filter-chip" data-length="20" type="button">20 questions</button>
+                    <button class="filter-chip" data-length="30" type="button">30 questions</button>
+                </div>
+            </fieldset>
+            <fieldset class="round-builder-group">
+                <legend>Question vibe</legend>
+                <div class="round-builder-chips" id="guessMeVibeChips">
+                    <button class="filter-chip active" data-vibe="mixed" type="button">Mixed</button>
+                    <button class="filter-chip" data-vibe="playful" type="button">Playful</button>
+                    <button class="filter-chip" data-vibe="romantic" type="button">Romantic</button>
+                    <button class="filter-chip" data-vibe="deep" type="button">Deep</button>
+                </div>
+            </fieldset>
+            <div class="modal-actions round-builder-actions">
+                <button class="btn-secondary" id="guessMeJoinRoomBtn" type="button">Join room</button>
+                <button class="btn-primary" id="guessMeCreateRoomBtn" type="button">Create room</button>
+            </div>
+            <p class="round-builder-status" id="guessMeSetupStatus" role="status" aria-live="polite"></p>
+        </section>
+    </div>
+
 
     <div class="modal-overlay hidden" id="roundBuilderModal">
         <section class="modal-card round-builder-card" role="dialog" aria-modal="true" aria-labelledby="roundBuilderTitle">
