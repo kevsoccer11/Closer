@@ -988,6 +988,63 @@ function drawNextCard(isRemoteUpdate = false) {
             progressiveMode = false;
             progressivePhase = null;
         }
+        if (browseMode) {
+            currentCard = null;
+            const prompt = document.getElementById('cardPrompt');
+            if (prompt) {
+                prompt.innerHTML = '';
+                prompt.style.textAlign = 'center';
+                const title = document.createElement('strong');
+                title.textContent = "End of preview";
+                const summary = document.createElement('p');
+                summary.textContent = "You've reached the end of this preview. Start a real conversation, or keep previewing.";
+                const begin = document.createElement('button');
+                begin.type = 'button';
+                begin.className = 'btn-primary';
+                begin.textContent = 'Begin conversation';
+                begin.style.marginTop = '12px';
+                begin.style.display = 'block';
+                begin.style.marginLeft = 'auto';
+                begin.style.marginRight = 'auto';
+                begin.onclick = () => {
+                    browseMode = false;
+                    const browseIndicator = document.getElementById('browseIndicator');
+                    if (browseIndicator) browseIndicator.classList.add('hidden');
+                    roundStats = { played: 0, passed: 0 };
+                    passedCardIds = [];
+                    currentCard = null;
+                    rebuildUnspentDeck();
+                    updateRoundSummary();
+                    drawNextCard();
+                    showGameView();
+                };
+                const cont = document.createElement('button');
+                cont.type = 'button';
+                cont.className = 'btn-secondary';
+                cont.textContent = 'Continue preview';
+                cont.style.marginTop = '8px';
+                cont.style.display = 'block';
+                cont.style.marginLeft = 'auto';
+                cont.style.marginRight = 'auto';
+                cont.onclick = () => {
+                    roundStats = { played: 0, passed: 0 };
+                    passedCardIds = [];
+                    currentCard = null;
+                    rebuildUnspentDeck();
+                    updateRoundSummary();
+                    drawNextCard();
+                    showGameView();
+                };
+                prompt.append(title, summary, begin, cont);
+            }
+            const nextCardBtn = document.getElementById('nextCardBtn');
+            if (nextCardBtn) nextCardBtn.disabled = true;
+            const passCardBtn = document.getElementById('passCardBtn');
+            if (passCardBtn) passCardBtn.disabled = true;
+            stopModeTimer();
+            document.getElementById('actionTimerBar')?.classList.add('hidden');
+            return;
+        }
     // Round is complete: clear saved game so "Continue" no longer shows.
     try { localStorage.removeItem('closer_unspent_deck'); localStorage.removeItem('closer_current_card'); } catch (e) {}
     const prompt = document.getElementById('cardPrompt');
