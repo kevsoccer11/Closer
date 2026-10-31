@@ -156,7 +156,90 @@
         },
         "guessMe": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
-          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "status": {
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isString() && (newData.val() === 'lobby' || newData.val() === 'playing' || newData.val() === 'revealing' || newData.val() === 'complete')"
+          },
+          "length": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isNumber() && (newData.val() === 10 || newData.val() === 20 || newData.val() === 30)" 
+          },
+          "vibe": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isString()" 
+          },
+          "currentIndex": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isNumber() && newData.val() >= 0" 
+          },
+          "hostReady": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isBoolean()" 
+          },
+          "partnerReady": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/partner').val()",
+            ".validate": "newData.isBoolean()" 
+          },
+          "scores": {
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            "host": { ".validate": "newData.isNumber()" },
+            "partner": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          },
+          "question": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            "id": { ".validate": "newData.isString()" },
+            "prompt": { ".validate": "newData.isString()" },
+            "options": {
+              "$optionIndex": { ".validate": "newData.isString()" }
+            },
+            "$other": { ".validate": false }
+          },
+          "answererUid": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isString()" 
+          },
+          "predictorUid": { 
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+            ".validate": "newData.isString()" 
+          },
+          "answer": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === data.child('uid').val() || root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() === true)",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && ((newData.exists() && auth.uid === newData.child('uid').val() && auth.uid === root.child('rooms').child($roomCode).child('guessMe/answererUid').val() && root.child('rooms').child($roomCode).child('guessMe/status').val() === 'playing' && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() !== true && !data.exists()) || (!newData.exists() && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()))",
+            ".validate": "newData.hasChildren(['uid','value','submittedAt']) && newData.child('uid').isString() && newData.child('value').isNumber() && newData.child('submittedAt').isNumber()",
+            "uid": { ".validate": "newData.isString()" },
+            "value": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() < 6" },
+            "submittedAt": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          },
+          "guess": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === data.child('uid').val() || root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() === true)",
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && ((newData.exists() && auth.uid === newData.child('uid').val() && auth.uid === root.child('rooms').child($roomCode).child('guessMe/predictorUid').val() && root.child('rooms').child($roomCode).child('guessMe/status').val() === 'playing' && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/answerSubmitted').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() !== true && !data.exists()) || (!newData.exists() && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()))",
+            ".validate": "newData.hasChildren(['uid','value','submittedAt']) && newData.child('uid').isString() && newData.child('value').isNumber() && newData.child('submittedAt').isNumber()",
+            "uid": { ".validate": "newData.isString()" },
+            "value": { ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() < 6" },
+            "submittedAt": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          },
+          "submissionStatus": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            "answerSubmitted": {
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('guessMe/answererUid').val() || (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && newData.val() === false))",
+              ".validate": "newData.isBoolean()"
+            },
+            "guessSubmitted": {
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('guessMe/predictorUid').val() || (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && newData.val() === false))",
+              ".validate": "newData.isBoolean()"
+            },
+            "resolved": {
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/answerSubmitted').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/guessSubmitted').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() !== true",
+              ".validate": "newData.isBoolean()"
+            },
+            "$other": { ".validate": false }
+          },
+          "$other": { ".validate": false }
         },
         "sharedDeck": {
           "$cardId": {
