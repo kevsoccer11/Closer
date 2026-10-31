@@ -564,6 +564,54 @@ function showGameView() {
     document.querySelector('.response-section')?.classList.remove('hidden');
 }
 
+let guessMeActive = false;
+let guessMeListener = null;
+function showGuessMeView() {
+    document.body.classList.remove('landing');
+    document.getElementById('homeView')?.classList.add('hidden');
+    document.querySelector('main')?.classList.add('hidden');
+    document.querySelector('.response-section')?.classList.add('hidden');
+    document.getElementById('guessMeView')?.classList.remove('hidden');
+}
+function hideGuessMeView() {
+    document.getElementById('guessMeView')?.classList.add('hidden');
+}
+function attachGuessMeListener() {
+    if (!window.roomRef) return;
+    if (guessMeListener) window.roomRef.child('guessMe').off('value', guessMeListener);
+    guessMeListener = snapshot => {
+        const gm = snapshot.val();
+        if (!gm) return;
+        const statusEl = document.getElementById('guessMeLobbyStatus');
+        const readyTitle = document.getElementById('guessMeReadyTitle');
+        const roomInfo = document.getElementById('guessMeRoomInfo');
+        const startBtn = document.getElementById('guessMeStartBtn');
+        const isHost = window.currentRoomRole === 'host';
+        const myReady = isHost ? gm.hostReady : gm.partnerReady;
+        const otherReady = isHost ? gm.partnerReady : gm.hostReady;
+        if (statusEl) statusEl.textContent = gm.status === 'lobby'
+            ? (gm.partnerReady && gm.hostReady ? 'Both players ready. Host can start.' : 'Waiting for both players to be ready…')
+            : `Status: ${gm.status}`;
+        if (readyTitle) readyTitle.textContent = myReady ? 'You are ready ✓' : 'Tap when ready';
+        const readyBtn = document.getElementById('guessMeReadyBtn');
+        if (readyBtn) readyBtn.textContent = myReady ? 'Ready ✓' : "I'm ready";
+        if (roomInfo) roomInfo.textContent = `Length: ${gm.length} questions · Vibe: ${gm.vibe} · You are ${isHost ? 'Player A (host)' : 'Player B (partner)'}.`;
+        if (startBtn) {
+            startBtn.classList.toggle('hidden', !(isHost && gm.hostReady && gm.partnerReady && gm.status === 'lobby'));
+        }
+    };
+    window.roomRef.child('guessMe').on('value', guessMeListener);
+}
+function detachGuessMeListener() {
+    if (guessMeListener && window.roomRef) window.roomRef.child('guessMe').off('value', guessMeListener);
+    guessMeListener = null;
+}
+window.showGuessMeView = showGuessMeView;
+window.hideGuessMeView = hideGuessMeView;
+window.attachGuessMeListener = attachGuessMeListener;
+window.detachGuessMeListener = detachGuessMeListener;
+
+
 
 function getRoundBuilderSelection() {
     const modules = [...document.querySelectorAll('input[name="roundPillar"]:checked')].map(input => input.value);
@@ -3283,6 +3331,14 @@ function connectToRoom(roomCode, role) {
     if (currentCard) renderCard(currentCard);
     updateConnectionStatus();
     loadPlayedCardsFromRoom();
+    // Guess Me: if this room is a Guess Me room, activate the lobby scaffold.
+    window.roomRef.child('gameMode').once('value').then(snap => {
+        if (snap.val() === 'guess-me') {
+            guessMeActive = true;
+            showGuessMeView();
+            attachGuessMeListener();
+        }
+    }).catch(() => {});
     if (role === 'partner') {
         showToast('Connected to your partner.');
     }

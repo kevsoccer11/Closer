@@ -335,7 +335,11 @@ setTimeout(() => {
                     scores: { host: 0, partner: 0 }
                 });
             }
-            if (status) status.textContent = `Room created. Share the code with your partner. (Guess Me scaffold — gameplay coming next.)`;
+            guessMeActive = true;
+            closeGuessMeSetup();
+            showGuessMeView();
+            attachGuessMeListener();
+            if (status) status.textContent = 'Room created. Share the code with your partner.';
         } catch (e) {
             console.error(e);
             if (status) status.textContent = `Could not create room: ${e.message}`;
@@ -353,9 +357,37 @@ setTimeout(() => {
                 if (gm.val() !== 'guess-me') {
                     if (status) status.textContent = 'This room is not a Guess Me room.';
                     return;
+    // Guess Me lobby ready/start/leave
+    document.getElementById('guessMeReadyBtn')?.addEventListener('click', async () => {
+        if (!window.roomRef) return;
+        const isHost = window.currentRoomRole === 'host';
+        const key = isHost ? 'hostReady' : 'partnerReady';
+        const cur = await window.roomRef.child('guessMe/' + key).once('value');
+        await window.roomRef.child('guessMe/' + key).set(!cur.val());
+    });
+    document.getElementById('guessMeStartBtn')?.addEventListener('click', async () => {
+        if (!window.roomRef || window.currentRoomRole !== 'host') return;
+        await window.roomRef.child('guessMe/status').set('playing');
+        await window.roomRef.child('guessMe/currentIndex').set(0);
+        if (typeof showToast === 'function') showToast('Game starting — gameplay arrives in the next stage.');
+    });
+    document.getElementById('guessMeLeaveBtn')?.addEventListener('click', () => {
+        detachGuessMeListener();
+        guessMeActive = false;
+        hideGuessMeView();
+        // reuse existing disconnect
+        if (typeof disconnectFromRoom === 'function') disconnectFromRoom();
+        else { window.roomRef = null; window.currentRoomCode = null; window.currentRoomRole = null; }
+        showHomeView();
+    });
+
                 }
             }
-            if (status) status.textContent = 'Joined Guess Me room. Waiting for host. (Scaffold — gameplay coming next.)';
+            guessMeActive = true;
+            closeGuessMeSetup();
+            showGuessMeView();
+            attachGuessMeListener();
+            if (status) status.textContent = 'Joined Guess Me room. Waiting for host.';
         } catch (e) {
             console.error(e);
             if (status) status.textContent = `Could not join room: ${e.message}`;

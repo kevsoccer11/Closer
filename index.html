@@ -754,6 +754,33 @@
         </div>
     </section>
 </div>
+    <section id="guessMeView" class="home-view hidden" aria-labelledby="guessMeTitle">
+        <section class="app-hero">
+            <div class="app-hero-content">
+                <h2 id="guessMeTitle">Guess Me — Lobby</h2>
+                <p id="guessMeLobbyStatus" aria-live="polite">Connecting to your partner…</p>
+            </div>
+        </section>
+        <section class="continue-card" id="guessMeReadyCard">
+            <span class="continue-icon" aria-hidden="true">♡</span>
+            <div class="continue-content">
+                <span class="continue-label">Ready check</span>
+                <h2 class="continue-title" id="guessMeReadyTitle">Waiting for both players</h2>
+            </div>
+            <button class="btn-primary" id="guessMeReadyBtn" type="button">I'm ready</button>
+        </section>
+        <section class="categories-section">
+            <div class="categories-header"><h2>Room</h2></div>
+            <p id="guessMeRoomInfo" class="round-builder-intro"></p>
+            <div class="modal-actions round-builder-actions">
+                <button class="btn-secondary" id="guessMeLeaveBtn" type="button">Leave room</button>
+                <button class="btn-primary hidden" id="guessMeStartBtn" type="button">Start game</button>
+            </div>
+        </section>
+        <p class="round-builder-intro" style="text-align:center;opacity:.7;">Gameplay (answer / predict / reveal) arrives in the next stage.</p>
+    </section>
+
+
 
 </body>
 </html>
