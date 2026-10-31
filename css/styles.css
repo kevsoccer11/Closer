@@ -3103,7 +3103,7 @@ body:not(.light-theme) .card-progress-track {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-top: 16px;
+    margin-top: 24px;
     padding: 20px;
     border-radius: 20px;
     background: linear-gradient(135deg, #FFF9F4 0%, #F3EEF9 100%);
