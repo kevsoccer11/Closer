@@ -861,6 +861,7 @@ function openRoundBuilder() {
 
 function closeRoundBuilder() {
     document.getElementById('roundBuilderModal')?.classList.add('hidden');
+}
 
 function openGuessMeSetup() {
     const modal = document.getElementById('guessMeSetupModal');
@@ -887,7 +888,6 @@ window.openGuessMeSetup = openGuessMeSetup;
 window.closeGuessMeSetup = closeGuessMeSetup;
 window.getGuessMeSelection = getGuessMeSelection;
 
-}
 
 async function loadCommunityVotes() {
     try {
