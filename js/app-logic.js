@@ -528,7 +528,16 @@ function showHomeView() {
     document.querySelector('.response-section')?.classList.add('hidden');
     const continueCard = document.getElementById('continueCard');
     const hasSaved = !!localStorage.getItem('closer_unspent_deck') && !!localStorage.getItem('closer_current_card');
-    if (continueCard) continueCard.classList.toggle('hidden', !hasSaved);
+    if (continueCard) {
+        continueCard.classList.toggle('hidden', !hasSaved);
+        if (hasSaved) {
+            try {
+                const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || '[]');
+                const titleEl = continueCard.querySelector('.continue-title');
+                if (titleEl) titleEl.textContent = savedDeck.length ? `${savedDeck.length} cards remaining` : 'Pick up where you left off';
+            } catch (e) {}
+        }
+    }
     const list = document.getElementById('homeDecksList');
     if (list) {
         list.innerHTML = '';

@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=360">
+    <link rel="stylesheet" href="css/styles.css?v=361">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -45,7 +45,10 @@
     <!-- Header -->
     <header>
         <div class="top-bar">
+            <div class="brand-block">
             <h1 class="app-title"><svg class="brand-heart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23 8.5 21.5 12c-2 4.5-9.5 9-9.5 9z"/></svg> Closer</h1>
+            <p class="tagline">closer everyday</p>
+        </div>
             <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             <div class="header-actions">
                 <button class="icon-btn" id="homeNavBtn" type="button" aria-label="Home" title="Home"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="nav-label">Play</span></button>
@@ -69,27 +72,28 @@
 
     <!-- Card Stage -->
     <section id="homeView" class="home-view">
-        <div class="home-hero">
-            <span class="home-eyebrow">A space for the two of you</span>
-            <h1>A little closer, every day.</h1>
-            <p>Meaningful conversations, playful moments, and a deeper connection.</p>
-        </div>
-        <button class="btn-primary" id="createNewGameBtn" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">Start a conversation</button>
-        <!-- Featured experience -->
-        <button class="featured-experience-card" data-pack="deeper-connection" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">
-            <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="featured-image" loading="eager">
-            <div class="featured-content">
-                <span class="featured-label">Featured experience</span>
-                <h2 class="featured-title">Deeper Intimacy</h2>
-                <p class="featured-desc">Explore desire, vulnerability, and the conversations that bring you closer.</p>
-                <span class="featured-meta">♡ 24 questions · 15 min</span>
-                <span class="featured-cta">Start a conversation →</span>
+        <!-- Hero details -->
+        <section class="app-hero">
+            <div class="app-hero-content">
+                <h2>Make space for the conversations that matter</h2>
+                <p>Laugh, flirt, go deep, and rediscover each other—one question at a time.</p>
+                <button class="btn-primary" id="createNewGameBtn" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">Start a conversation</button>
             </div>
-        </button>
-        <!-- Explore moods -->
+            <img src="img/deeper-connection.jpg" alt="Couple connecting" class="app-hero-image" loading="lazy">
+        </section>
+        <!-- Continue conversation -->
+        <section class="continue-card hidden" id="continueCard">
+            <span class="continue-icon" aria-hidden="true">♡</span>
+            <div class="continue-content">
+                <span class="continue-label">Continue conversation</span>
+                <h2 class="continue-title">Pick up where you left off</h2>
+            </div>
+            <button class="btn-primary" type="button" onclick="try{const d=JSON.parse(localStorage.getItem('closer_unspent_deck')||'null');const c=JSON.parse(localStorage.getItem('closer_current_card')||'null');if(d&&c){unspentDeck=d;currentCard=c;showGameView();renderCard(currentCard);if(typeof updateRoundSummary==='function')updateRoundSummary();}else{showToast('No saved conversation.');}}catch(e){showToast('Could not continue.');}">Continue Conversation</button>
+        </section>
+<!-- Explore moods -->
         <section class="categories-section">
             <div class="categories-header">
-                <h2>Explore moods</h2>
+                <h2>How are you feeling today?</h2>
                 <button class="text-link" id="exploreAllBtn" type="button">See all</button>
             </div>
             <div class="category-grid">
@@ -127,7 +131,7 @@
         <!-- Featured experiences -->
         <section class="featured-experiences">
             <div class="categories-header">
-                <h2>Find your moment</h2>
+                <h2>Curated packs</h2>
                 <button class="text-link" id="seeMoreExperiencesBtn" type="button" onclick="try{openRoundBuilder();}catch(e){}">See more</button>
             </div>
             <p>Discover conversations for every mood, phase, and kind of connection.</p>

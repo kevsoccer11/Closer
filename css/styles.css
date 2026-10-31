@@ -102,13 +102,24 @@ header {
 }
 
 .app-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 8px;
     color: var(--text-main);
+}
+.brand-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.tagline {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    margin: 0;
 }
 
 .brand-heart {
@@ -2320,6 +2331,15 @@ img {
     border: none !important;
     padding: 4px 2px;
 }
+.header-actions .icon-btn.active {
+    color: var(--primary);
+    font-weight: 700;
+}
+.header-actions .icon-btn:focus-visible {
+    outline: 3px solid var(--accent, #B57EDC);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
 .header-actions .icon-btn svg {
     width: 22px;
     height: 22px;
@@ -2616,9 +2636,8 @@ body.landing.light-theme .brand-heart { color: #A788CA; }
 body.landing.light-theme .app-title { color: #3A2E46; }
 body.landing.light-theme .featured-cta { background: #A788CA; }
 body.landing.light-theme .category-card, body.landing.light-theme .experience-card, body.landing.light-theme .featured-experience-card, body.landing.light-theme .question-of-day {
-    background: #FFFFFF;
-    border-color: #E4D9EB;
-    box-shadow: 0 2px 8px rgba(58, 46, 70, 0.04);
+    border-color: #E6DCEB;
+    box-shadow: 0 2px 8px rgba(59, 35, 64, 0.04);
 }
 .home-hero h1 { font-size: 1.9rem; line-height: 1.15; margin-bottom: 6px; }
 .home-hero p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; max-width: 320px; }
@@ -2683,10 +2702,20 @@ body.landing.light-theme .category-card, body.landing.light-theme .experience-ca
     padding: 14px 6px;
     border-radius: 14px;
     border: 1px solid var(--card-border);
-    background: var(--card-bg);
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-soft) 100%);
     cursor: pointer;
     color: var(--text-main);
+    box-shadow: 0 4px 12px rgba(59, 35, 64, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(59, 35, 64, 0.1);
+}
+.category-card[data-pack="reconnection"] { background: linear-gradient(135deg, #FFF9F4 0%, #DCEFF0 100%); }
+.category-card[data-pack="playful"] { background: linear-gradient(135deg, #FFF9F4 0%, #FBE9F1 100%); }
+.category-card[data-pack="deep-talk"] { background: linear-gradient(135deg, #FFF9F4 0%, #E8E2F5 100%); }
+.category-card[data-pack="after-hours"] { background: linear-gradient(135deg, #FFF9F4 0%, #FCE9E2 100%); }
 .category-icon { font-size: 1.4rem; }
 .category-label { font-size: 0.75rem; font-weight: 600; }
 
@@ -2709,12 +2738,15 @@ body.landing.light-theme .category-card, body.landing.light-theme .experience-ca
 }
 .experience-image {
     width: 100%;
-    height: 160px;
+    height: 120px;
     object-fit: cover;
     object-position: center top;
     border-radius: 12px;
     flex: 0 0 auto;
     margin: 0;
+}
+.experience-list .experience-card:nth-child(n+7) {
+    display: none;
 }
 .experience-content { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
 .experience-content h3 { font-size: 0.95rem; font-weight: 700; color: var(--text-main); }
@@ -3036,4 +3068,62 @@ body:not(.light-theme) .card-progress-track {
 .home-start-row .featured-experience-card {
     flex: 2 1 240px;
     min-width: 0;
+}
+
+.app-hero {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #FFF9F4 0%, #F3EEF9 100%);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 24px rgba(59, 35, 64, 0.08);
+    text-align: left;
+    animation: heroFadeIn 0.6s ease-out both;
+}
+.app-hero-content {
+    flex: 1 1 auto;
+}
+.app-hero-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 12px;
+    animation: heroFadeIn 0.8s ease-out 0.15s both;
+}
+@media (min-width: 600px) {
+    .app-hero {
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+    }
+    .app-hero-image {
+        width: 42%;
+        height: 180px;
+        flex: 0 0 42%;
+    }
+}
+.app-hero-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+.app-hero-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+.app-hero-content .btn-primary {
+    display: block;
+    margin: 0;
+    width: fit-content;
+}
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
 }
