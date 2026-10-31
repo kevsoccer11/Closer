@@ -1518,7 +1518,7 @@ if (!passed && !browseMode) {
     if (container) {
         container.classList.add('card-exiting');
         if (stack) stack.classList.add('stack-peek');
-        if (preview) {
+        if (preview && browseMode) {
             preview.classList.remove('hidden');
             preview.classList.add('show');
         }
@@ -2134,6 +2134,7 @@ function renderGameHistoryDrawerContent(content) {
     clearBtn.onclick = () => {
         gameHistory = [];
         localStorage.removeItem('closer_game_history');
+        if (typeof showToast === 'function') showToast('History cleared.');
         renderGameHistoryDrawerContent(content);
     };
     content.appendChild(clearBtn);
