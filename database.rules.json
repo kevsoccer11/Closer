@@ -235,6 +235,10 @@
               ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/answerSubmitted').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/guessSubmitted').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() !== true",
               ".validate": "newData.isBoolean()"
             },
+            "scored": {
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/resolved').val() === true && root.child('rooms').child($roomCode).child('guessMe/submissionStatus/scored').val() !== true",
+              ".validate": "newData.isBoolean()"
+            },
             "$other": { ".validate": false }
           },
           "$other": { ".validate": false }

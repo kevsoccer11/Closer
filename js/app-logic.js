@@ -3676,7 +3676,7 @@ async function loadGuessMeQuestion() {
         'guessMe/submissionStatus/resolved': false
     });
 }
-function renderGuessMe(gm) {
+async function renderGuessMe(gm) {
     const view = document.getElementById('guessMeView');
     if (!view) return;
     view.replaceChildren();
@@ -3728,8 +3728,19 @@ function renderGuessMe(gm) {
         const card = document.createElement('section'); card.className='continue-card';
         const content = document.createElement('div'); content.className='continue-content';
         const label = document.createElement('span'); label.className='continue-label'; label.textContent='Results';
-        const t = document.createElement('h2'); t.className='continue-title'; t.textContent='Game complete';
-        const summary = document.createElement('p'); summary.textContent = 'Played ' + gm.length + ' questions.';
+        const t = document.createElement('h2'); t.className='continue-title';
+        const hostScore = gm.scores?.host ?? 0;
+        const partnerScore = gm.scores?.partner ?? 0;
+        const total = hostScore + partnerScore;
+        const pct = gm.length ? total / gm.length : 0;
+        let title = 'Still Discovering Each Other';
+        if (pct >= 0.91) title = 'Practically Mind Readers';
+        else if (pct >= 0.71) title = 'You Know Them Well';
+        else if (pct >= 0.51) title = 'Pretty in Sync';
+        else if (pct >= 0.31) title = 'Getting to Know Your Person';
+        t.textContent = title;
+        const summary = document.createElement('p');
+        summary.textContent = 'Played ' + gm.length + ' questions. Player A: ' + hostScore + ' correct · Player B: ' + partnerScore + ' correct.';
         content.append(label, t, summary);
         card.appendChild(content);
         const again = document.createElement('button'); again.className='btn-primary'; again.textContent='Play again';
@@ -3797,6 +3808,25 @@ function renderGuessMe(gm) {
         qCard.appendChild(submit);
     }
     view.appendChild(qCard);
+    if (ss.resolved && !ss.scored && isHost) {
+        try {
+            const actual = gm.answer?.value;
+            const guessv = gm.guess?.value;
+            const correct = actual === guessv;
+            const hostIsPredictor = ((gm.currentIndex||0) % 2 !== 0);
+            if (correct) {
+                const path = hostIsPredictor ? 'guessMe/scores/host' : 'guessMe/scores/partner';
+                const cur = await window.roomRef.child(path).once('value').then(x=>x.val()||0);
+                const updates = {};
+                updates[path] = cur + 1;
+                updates['guessMe/submissionStatus/scored'] = true;
+                await window.roomRef.update(updates);
+            } else {
+                await window.roomRef.child('guessMe/submissionStatus/scored').set(true);
+            }
+        } catch (e) { console.warn('scoring failed', e); }
+        return;
+    }
     if (ss.resolved) {
         const reveal = document.createElement('section'); reveal.className='continue-card';
         const content = document.createElement('div'); content.className='continue-content';
