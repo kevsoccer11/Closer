@@ -1116,7 +1116,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
             }
             document.getElementById('settingsJournalBtn').onclick = () => openHeaderPanel('journalDrawerBtn');
             document.getElementById('settingsGameHistoryBtn').onclick = () => { closeDrawer(); openDrawer('Game History', ''); const content = document.getElementById('drawerContent'); renderGameHistoryDrawerContent(content); };
-            document.getElementById('settingsCardBrowserBtn').onclick = () => { closeDrawer(); openDrawer('Browse Cards', ''); const content = document.getElementById('drawerContent'); renderCardBrowserDrawerContent(content); };
+            document.getElementById('settingsCardBrowserBtn').onclick = () => { closeDrawer(); openRoundBuilder(); setTimeout(() => { const t = document.querySelector('.round-tab[data-tab="custom"]'); if (t) t.click(); }, 50); };
             document.getElementById('settingsRestartTourBtn').onclick = () => { onboardingDone = false; closeDrawer(); showOnboardingStep(); };
             document.getElementById('settingsToggleBrowseBtn').onclick = () => { browseMode = !browseMode; showToast(`Preview mode ${browseMode ? 'on' : 'off'}.`); closeDrawer(); };
             // Wire settings-drawer filters (these elements only exist after the drawer is opened).
@@ -1707,6 +1707,9 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         if (onboardingText) onboardingText.textContent = step.text;
         if (onboardingNextBtn) onboardingNextBtn.textContent = onboardingIndex === onboardingSteps.length - 1 ? 'Finish' : 'Next';
         onboardingOverlay.classList.remove('hidden');
+    window.showOnboardingStep = showOnboardingStep;
+    window.restartOnboardingTour = () => { onboardingDone = false; onboardingIndex = 0; showOnboardingStep(); };
+
     };
     const finishOnboarding = () => {
         onboardingOverlay?.classList.add('hidden');
