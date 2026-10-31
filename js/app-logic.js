@@ -576,31 +576,55 @@ function showGuessMeView() {
 function hideGuessMeView() {
     document.getElementById('guessMeView')?.classList.add('hidden');
 }
+async function refreshGuessMeState() {
+    if (!window.roomRef) return;
+    const paths = ['status','length','vibe','currentIndex','hostReady','partnerReady','scores/host','scores/partner','question','answererUid','predictorUid','answer','guess','submissionStatus/answerSubmitted','submissionStatus/guessSubmitted','submissionStatus/resolved','questionIds'];
+    const vals = {};
+    await Promise.all(paths.map(async (path) => {
+        try {
+            const snap = await window.roomRef.child('guessMe/'+path).once('value');
+            // store nested
+            const parts = path.split('/');
+            let cur = vals;
+            for (let i=0;i<parts.length-1;i++){ cur[parts[i]] = cur[parts[i]] || {}; cur=cur[parts[i]]; }
+            cur[parts[parts.length-1]] = snap.val();
+        } catch (e) {}
+    }));
+    const gm = {
+        status: vals.status,
+        length: vals.length,
+        vibe: vals.vibe,
+        currentIndex: vals.currentIndex,
+        hostReady: vals.hostReady,
+        partnerReady: vals.partnerReady,
+        scores: { host: vals.scores?.host, partner: vals.scores?.partner },
+        question: vals.question,
+        answererUid: vals.answererUid,
+        predictorUid: vals.predictorUid,
+        answer: vals.answer,
+        guess: vals.guess,
+        submissionStatus: { answerSubmitted: vals.submissionStatus?.answerSubmitted, guessSubmitted: vals.submissionStatus?.guessSubmitted, resolved: vals.submissionStatus?.resolved },
+        questionIds: vals.questionIds
+    };
+    if (gm.status) renderGuessMe(gm);
+}
 function attachGuessMeListener() {
     if (!window.roomRef) return;
-    if (guessMeListener) window.roomRef.child('guessMe').off('value', guessMeListener);
-    guessMeListener = snapshot => {
-        const gm = snapshot.val();
-        if (!gm) return;
-        const statusEl = document.getElementById('guessMeLobbyStatus');
-        const readyTitle = document.getElementById('guessMeReadyTitle');
-        const roomInfo = document.getElementById('guessMeRoomInfo');
-        const startBtn = document.getElementById('guessMeStartBtn');
-        const isHost = window.currentRoomRole === 'host';
-        const myReady = isHost ? gm.hostReady : gm.partnerReady;
-        const otherReady = isHost ? gm.partnerReady : gm.hostReady;
-        if (statusEl) statusEl.textContent = gm.status === 'lobby'
-            ? (gm.partnerReady && gm.hostReady ? 'Both players ready. Host can start.' : 'Waiting for both players to be ready…')
-            : `Status: ${gm.status}`;
-        if (readyTitle) readyTitle.textContent = myReady ? 'You are ready ✓' : 'Tap when ready';
-        const readyBtn = document.getElementById('guessMeReadyBtn');
-        if (readyBtn) readyBtn.textContent = myReady ? 'Ready ✓' : "I'm ready";
-        if (roomInfo) roomInfo.textContent = `Length: ${gm.length} questions · Vibe: ${gm.vibe} · You are ${isHost ? 'Player A (host)' : 'Player B (partner)'}.`;
-        if (startBtn) {
-            startBtn.classList.toggle('hidden', !(isHost && gm.hostReady && gm.partnerReady && gm.status === 'lobby'));
-        }
-    };
-    window.roomRef.child('guessMe').on('value', guessMeListener);
+    detachGuessMeListener();
+    const children = ['status','question','submissionStatus','answer','guess','currentIndex','hostReady','partnerReady'];
+    guessMeListener = () => { refreshGuessMeState(); };
+    children.forEach(c => {
+        try { window.roomRef.child('guessMe/'+c).on('value', guessMeListener); } catch (e) {}
+    });
+    refreshGuessMeState();
+}
+function detachGuessMeListener() {
+    if (window.roomRef) {
+        ['status','question','submissionStatus','answer','guess','currentIndex','hostReady','partnerReady'].forEach(c => {
+            try { window.roomRef.child('guessMe/'+c).off('value', guessMeListener); } catch (e) {}
+        });
+    }
+    guessMeListener = null;
 }
 function detachGuessMeListener() {
     if (guessMeListener && window.roomRef) window.roomRef.child('guessMe').off('value', guessMeListener);
@@ -3643,10 +3667,13 @@ async function loadGuessMeQuestion() {
     const predictorUid = (idx % 2 === 0) ? partnerUid : hostUid;
     await window.roomRef.child('guessMe/answer').remove();
     await window.roomRef.child('guessMe/guess').remove();
-    await window.roomRef.child('guessMe').update({
-        question: { id: card.id, prompt: card.prompt, options: card.options },
-        answererUid, predictorUid,
-        submissionStatus: { answerSubmitted: false, guessSubmitted: false, resolved: false }
+    await window.roomRef.update({
+        'guessMe/question': { id: card.id, prompt: card.prompt, options: card.options },
+        'guessMe/answererUid': answererUid,
+        'guessMe/predictorUid': predictorUid,
+        'guessMe/submissionStatus/answerSubmitted': false,
+        'guessMe/submissionStatus/guessSubmitted': false,
+        'guessMe/submissionStatus/resolved': false
     });
 }
 function renderGuessMe(gm) {
@@ -3689,7 +3716,7 @@ function renderGuessMe(gm) {
         start.classList.toggle('hidden', !(isHost && gm.hostReady && gm.partnerReady));
         start.onclick = async () => {
             const ids = pickGuessMeQuestions(gm.length, gm.vibe);
-            await window.roomRef.child('guessMe').update({ questionIds: ids, status: 'playing', currentIndex: 0 });
+            await window.roomRef.update({ 'guessMe/questionIds': ids, 'guessMe/status': 'playing', 'guessMe/currentIndex': 0 });
             await loadGuessMeQuestion();
         };
         actions.append(leave, start);
@@ -3707,7 +3734,19 @@ function renderGuessMe(gm) {
         card.appendChild(content);
         const again = document.createElement('button'); again.className='btn-primary'; again.textContent='Play again';
         again.onclick = async () => {
-            await window.roomRef.child('guessMe').update({ status:'lobby', hostReady:false, partnerReady:false, scores:{host:0,partner:0}, question:null, answer:null, guess:null, submissionStatus:null, questionIds:null, currentIndex:0 });
+            await window.roomRef.update({
+                'guessMe/status': 'lobby',
+                'guessMe/hostReady': false,
+                'guessMe/partnerReady': false,
+                'guessMe/scores/host': 0,
+                'guessMe/scores/partner': 0,
+                'guessMe/question': null,
+                'guessMe/answer': null,
+                'guessMe/guess': null,
+                'guessMe/submissionStatus': null,
+                'guessMe/questionIds': null,
+                'guessMe/currentIndex': 0
+            });
         };
         const home = document.createElement('button'); home.className='btn-secondary'; home.textContent='Back to Play Together';
         home.onclick = () => { detachGuessMeListener(); guessMeActive=false; hideGuessMeView(); window.roomRef=null; window.currentRoomCode=null; window.currentRoomRole=null; showHomeView(); };
@@ -3787,15 +3826,4 @@ function renderGuessMe(gm) {
     }
 }
 window.renderGuessMe = renderGuessMe;
-const _origAttach = attachGuessMeListener;
-attachGuessMeListener = function() {
-    _origAttach();
-    if (window.roomRef) {
-        if (guessMeListener) window.roomRef.child('guessMe').off('value', guessMeListener);
-        guessMeListener = snapshot => {
-            const gm = snapshot.val();
-            if (gm) renderGuessMe(gm);
-        };
-        window.roomRef.child('guessMe').on('value', guessMeListener);
-    }
-};
+
