@@ -3422,7 +3422,9 @@ async function createRoom() {
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
     if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
     connectToRoom(roomCode, 'host');
-    if (currentCard && currentCard.module !== 'explicit') await window.roomRef.child('activeCard').set(currentCard);
+    if (currentCard && currentCard.module !== 'explicit') {
+        try { await window.roomRef.child('activeCard').set(currentCard); } catch (e) { console.warn('activeCard set failed', e); }
+    }
     setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
     renderPairManagement();
 }
