@@ -1,5 +1,11 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    const applyTheme = () => {
+        const light = localStorage.getItem('closer_theme') !== 'dark';
+        document.body.classList.toggle('light-theme', light);
+    };
+    applyTheme();
+
     // Basic focus trapping for open dialogs/drawers.
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -1042,11 +1048,6 @@ const applyAccessibility = () => {
         document.body.classList.toggle('high-contrast', localStorage.getItem('closer_high_contrast') === 'true');
     };
     applyAccessibility();
-    const applyTheme = () => {
-        const light = localStorage.getItem('closer_theme') !== 'dark';
-        document.body.classList.toggle('light-theme', light);
-    };
-    applyTheme();
     const bindToggle = (id, key, onChange) => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -1055,7 +1056,6 @@ const applyAccessibility = () => {
             localStorage.setItem(key, String(el.checked));
             if (onChange) onChange(el.checked);
             applyAccessibility();
-            applyTheme();
         };
     };
     bindToggle('settingsLargeTextToggle', 'closer_large_text');

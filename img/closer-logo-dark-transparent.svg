@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" role="img" aria-labelledby="title desc">
+  <title id="title">Closer — closer everyday</title>
+  <desc id="desc">Two conversational bubbles form a heart, with a small heart above. The Closer wordmark and tagline appear below. The canvas is transparent.</desc>
+  <defs>
+    <linearGradient id="bubbleRight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#DCC8F5"/>
+      <stop offset="1" stop-color="#B99AE2"/>
+    </linearGradient>
+  </defs>
+  <!-- Conversation bubbles; no background rectangle is included. -->
+  <path d="M205 270
+           C205 174 279 108 374 108
+           C418 108 453 128 480 163
+           C463 185 451 211 451 240
+           C451 292 486 330 538 353
+           C495 385 443 405 385 405
+           C350 405 322 399 296 388
+           L232 430 L246 363
+           C220 338 205 307 205 270 Z"
+        fill="#B99AE2"/>
+  <path d="M695 270
+           C695 174 621 108 526 108
+           C482 108 447 128 420 163
+           C437 185 449 211 449 240
+           C449 292 414 330 362 353
+           C405 385 457 405 515 405
+           C550 405 578 399 604 388
+           L668 430 L654 363
+           C680 338 695 307 695 270 Z"
+        fill="#DCC8F5"/>
+  <!-- Heart-shaped connection at the center -->
+  <path d="M450 316
+           C430 299 394 274 394 244
+           C394 219 412 202 435 202
+           C448 202 459 209 468 221
+           C477 209 488 202 501 202
+           C524 202 542 219 542 244
+           C542 274 506 299 486 316
+           L468 331 Z"
+        fill="#F5EEFC" opacity="0.96"/>
+  <!-- Small floating heart -->
+  <path d="M450 45
+           C433 24 399 27 393 52
+           C387 78 416 100 450 126
+           C484 100 513 78 507 52
+           C501 27 467 24 450 45 Z"
+        fill="#DCC8F5"/>
+  <text x="450" y="555" text-anchor="middle"
+        font-family="Fraunces, Georgia, serif" font-size="148" font-weight="600"
+        letter-spacing="-5" fill="#E9DDF8">closer</text>
+  <text x="450" y="625" text-anchor="middle"
+        font-family="DM Sans, Arial, sans-serif" font-size="34" font-weight="400"
+        letter-spacing="10" fill="#DCC8F5">closer everyday</text>
+</svg>

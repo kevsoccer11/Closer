@@ -1,4 +1,7 @@
 let pendingGameStart = null;
+let ygmQuestionBank = [];
+window.ygmQuestionBank = ygmQuestionBank;
+
 
 async function initDatabase() {
     console.log("Initializing database...");
@@ -59,6 +62,20 @@ async function initDatabase() {
     window.masterDatabase = masterDatabase;
     try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
     try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
+    try {
+        const ygmResp = await fetch('./YGM-question-bank.json');
+        if (ygmResp.ok) {
+            const ygmData = await ygmResp.json();
+            ygmQuestionBank = (ygmData && Array.isArray(ygmData.questions)) ? ygmData.questions : [];
+            window.ygmQuestionBank = ygmQuestionBank;
+            console.log(`Loaded ${ygmQuestionBank.length} You Get Me questions.`);
+        }
+    } catch (e) {
+        console.warn('You Get Me bank could not be loaded:', e);
+        ygmQuestionBank = [];
+        window.ygmQuestionBank = ygmQuestionBank;
+    }
+
 
     let restoredRound = false;
     try {
@@ -2419,6 +2436,17 @@ function renderCardBrowserDrawerContent(content) {
     renderList();
 }
 
+function createDeckHome() {
+    const name = prompt('Deck name:');
+    if (!name || !name.trim()) return;
+    const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: [] };
+    customDecks.push(deck);
+    localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+    renderMyDecks();
+    showToast(`Created deck "${deck.name}".`);
+}
+window.createDeckHome = createDeckHome;
+
 function renderMyDecks() {
     const list = document.getElementById('myDecksList');
     if (!list) return;
@@ -3642,14 +3670,11 @@ function guessMeVibePillars(vibe) {
     return null;
 }
 function pickGuessMeQuestions(length, vibe) {
-    const pillars = guessMeVibePillars(vibe);
-    const pool = (typeof masterDatabase !== 'undefined' ? masterDatabase : []).filter(c =>
-        (c.module === 'life' || c.module === 'sexuality') &&
-        Array.isArray(c.options) && c.options.length >= 2 &&
-        (!pillars || pillars.includes(c.pillar))
+    const pool = (Array.isArray(window.ygmQuestionBank) ? window.ygmQuestionBank : []).filter(q =>
+        q && q.id && q.question && Array.isArray(q.options) && q.options.length === 4
     );
     const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, length).map(c => c.id);
+    return shuffled.slice(0, Math.min(length, pool.length)).map(q => q.id);
 }
 async function loadGuessMeQuestion() {
     if (!window.roomRef || window.currentRoomRole !== 'host') return;
@@ -3659,7 +3684,7 @@ async function loadGuessMeQuestion() {
     const ids = gm.questionIds || [];
     const idx = gm.currentIndex || 0;
     if (idx >= ids.length) { await window.roomRef.child('guessMe/status').set('complete'); return; }
-    const card = (typeof masterDatabase !== 'undefined') ? masterDatabase.find(c => c.id === ids[idx]) : null;
+    const card = (Array.isArray(window.ygmQuestionBank)) ? window.ygmQuestionBank.find(q => q.id === ids[idx]) : null;
     if (!card) { await window.roomRef.child('guessMe/currentIndex').set(idx + 1); return; }
     const hostUid = await window.roomRef.child('members/host').once('value').then(s => s.val());
     const partnerUid = await window.roomRef.child('members/partner').once('value').then(s => s.val());
@@ -3668,7 +3693,7 @@ async function loadGuessMeQuestion() {
     await window.roomRef.child('guessMe/answer').remove();
     await window.roomRef.child('guessMe/guess').remove();
     await window.roomRef.update({
-        'guessMe/question': { id: card.id, prompt: card.prompt, options: card.options },
+        'guessMe/question': { id: card.id, prompt: card.question, options: card.options },
         'guessMe/answererUid': answererUid,
         'guessMe/predictorUid': predictorUid,
         'guessMe/submissionStatus/answerSubmitted': false,
@@ -3683,7 +3708,7 @@ async function renderGuessMe(gm) {
     const header = document.createElement('section');
     header.className = 'app-hero';
     const h = document.createElement('h2');
-    h.textContent = gm.status === 'lobby' ? 'Guess Me — Lobby' : gm.status === 'complete' ? 'Guess Me — Results' : 'Guess Me';
+    h.textContent = gm.status === 'lobby' ? 'You Get Me — Lobby' : gm.status === 'complete' ? 'You Get Me — Results' : 'You Get Me';
     const p = document.createElement('p');
     p.textContent = gm.status === 'lobby' ? 'Ready check' : 'Question ' + ((gm.currentIndex||0)+1) + ' of ' + gm.length;
     header.append(h, p);
@@ -3715,7 +3740,18 @@ async function renderGuessMe(gm) {
         const start = document.createElement('button'); start.className='btn-primary'; start.textContent='Start game';
         start.classList.toggle('hidden', !(isHost && gm.hostReady && gm.partnerReady));
         start.onclick = async () => {
+            if (!Array.isArray(window.ygmQuestionBank) || window.ygmQuestionBank.length === 0) {
+                try {
+                    const r = await fetch('./YGM-question-bank.json');
+                    if (r.ok) {
+                        const d = await r.json();
+                        window.ygmQuestionBank = (d && Array.isArray(d.questions)) ? d.questions : [];
+                        ygmQuestionBank = window.ygmQuestionBank;
+                    }
+                } catch (e) {}
+            }
             const ids = pickGuessMeQuestions(gm.length, gm.vibe);
+            if (!ids.length) { if (typeof showToast==='function') showToast('Question bank not available yet. Try again.'); return; }
             await window.roomRef.update({ 'guessMe/questionIds': ids, 'guessMe/status': 'playing', 'guessMe/currentIndex': 0 });
             await loadGuessMeQuestion();
         };

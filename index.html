@@ -19,13 +19,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=372">
+    <link rel="stylesheet" href="css/styles.css?v=394">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -46,8 +46,7 @@
     <header>
         <div class="top-bar">
             <div class="brand-block">
-            <h1 class="app-title"><svg class="brand-heart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.5-9.5-9C1 8.5 3 5 6.5 5c2 0 3.5 1.2 5.5 3.2C14 6.2 15.5 5 17.5 5 21 5 23 8.5 21.5 12c-2 4.5-9.5 9-9.5 9z"/></svg> Closer</h1>
-            <p class="tagline">closer everyday</p>
+            <h1 class="app-title"><img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light"><img src="img/closer-logo-dark-transparent.svg" alt="Closer" class="brand-logo logo-dark"></h1>
         </div>
             <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             <div class="header-actions">
@@ -76,11 +75,10 @@
         <section class="app-hero">
             <div class="app-hero-content">
                 <h2>Make space for the conversations that matter</h2>
-                <p>Laugh, flirt, go deep, and rediscover each other—one question at a time.</p>
+                <img src="img/deeper-connection.jpg" alt="Couple connecting" class="app-hero-image" loading="lazy">
+                <p>Laugh, flirt, go deep, and rediscover each other—one question at a time. Start a meaningful conversation whenever you have a few minutes together.</p>
                 <button class="btn-primary" id="createNewGameBtn" type="button" onclick="try{openRoundBuilder();}catch(e){alert('Could not open: '+e.message);}">Start a conversation</button>
-                <button class="btn-secondary" id="guessMeEntryBtn" type="button" onclick="try{openGuessMeSetup();}catch(e){alert('Could not open: '+e.message);}">Guess Me</button>
             </div>
-            <img src="img/deeper-connection.jpg" alt="Couple connecting" class="app-hero-image" loading="lazy">
         </section>
         <!-- Continue conversation -->
         <section class="continue-card hidden" id="continueCard">
@@ -91,6 +89,16 @@
             </div>
             <button class="btn-primary" type="button" onclick="try{const d=JSON.parse(localStorage.getItem('closer_unspent_deck')||'null');const c=JSON.parse(localStorage.getItem('closer_current_card')||'null');if(d&&c){unspentDeck=d;currentCard=c;showGameView();renderCard(currentCard);if(typeof updateRoundSummary==='function')updateRoundSummary();}else{showToast('No saved conversation.');}}catch(e){showToast('Could not continue.');}">Continue Conversation</button>
         </section>
+        <!-- You Get Me -->
+        <section class="continue-card" id="youGetMeCard" aria-labelledby="youGetMeTitle" style="flex-direction:column;align-items:flex-start;">
+            <div class="continue-content" style="width:100%;">
+                <span class="continue-label">You Get Me</span>
+                <h2 class="continue-title" id="youGetMeTitle">See how well you know each other.</h2>
+                <p class="round-builder-intro" style="margin:6px 0 12px;">Predict your partner's answers to fun, romantic, and deep questions, then reveal them together to discover how in sync you really are.</p>
+                <button class="btn-primary" id="youGetMePlayBtn" type="button" onclick="try{openGuessMeSetup();}catch(e){alert('Could not open: '+e.message);}" style="margin:0;">Play You Get Me</button>
+            </div>
+        </section>
+
 <!-- Explore moods -->
         <section class="categories-section">
             <div class="categories-header">
@@ -130,6 +138,7 @@
             </div>
         </section>
         <!-- Featured experiences -->
+
         <section class="featured-experiences">
             <div class="categories-header">
                 <h2>Curated packs</h2>
@@ -137,6 +146,13 @@
             </div>
             <p>Discover conversations for every mood, phase, and kind of connection.</p>
             <div class="experience-list">
+                <button class="experience-card pack-card" type="button" onclick="try{openGuessMeSetup();}catch(e){}">
+                    <img src="img/deeper-connection.jpg" alt="You Get Me" class="experience-image" loading="eager">
+                    <div class="experience-content">
+                        <h3>You Get Me</h3>
+                        <p>Predict your partner's answers, then reveal them together to see how in sync you really are.</p>
+                    </div>
+                </button>
                 <button class="experience-card pack-card" data-pack="reconnection" type="button">
                     <img src="img/find-our-way-back.jpg" alt="Reconnect" class="experience-image" loading="eager">
                     <div class="experience-content">
@@ -184,8 +200,8 @@
     </section>
     <aside class="desktop-sidebar" aria-label="Desktop navigation">
         <div class="sidebar-brand">
-            <strong>Closer</strong>
-            <span>Better questions. Closer moments.</span>
+            <img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light">
+            <img src="img/closer-logo-dark-transparent.svg" alt="Closer" class="brand-logo logo-dark">
         </div>
         <nav class="sidebar-nav">
             <button type="button" data-action="packs">Curated Packs</button>
@@ -336,10 +352,10 @@
     <div class="modal-overlay hidden" id="guessMeSetupModal">
         <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="guessMeSetupTitle">
             <div class="round-builder-heading">
-                <h2 id="guessMeSetupTitle">Think you know your person?</h2>
+                <h2 id="guessMeSetupTitle">You Get Me</h2>
                 <button class="modal-close" type="button" aria-label="Close" onclick="closeGuessMeSetup()">×</button>
             </div>
-            <p class="round-builder-intro">One of you answers. The other predicts. Find out how well you really know each other.</p>
+            <p class="round-builder-intro">See how well you know each other. Predict your partner's answers, then find out if you're in sync.</p>
             <fieldset class="round-builder-group">
                 <legend>Game length</legend>
                 <div class="round-builder-chips" id="guessMeLengthChips">
@@ -392,6 +408,15 @@
                     <button class="filter-chip" data-mood="reflective" type="button">Reflective</button>
                     <button class="filter-chip" data-mood="passionate" type="button">Passionate</button>
                 </div>
+                <div class="featured-game-card">
+                    <div class="featured-game-content">
+                        <span class="continue-label">Featured game</span>
+                        <h3>You Get Me</h3>
+                        <p>Predict your partner's answers, then reveal them together to see how in sync you really are.</p>
+                        <button class="btn-primary" type="button" onclick="try{openGuessMeSetup();}catch(e){}">Play You Get Me</button>
+                    </div>
+                </div>
+
                     <div class="pack-grid compact">
                     <button class="pack-card" data-pack="deeper-connection" data-filter="deep" data-mood="deep" type="button">
                         <img src="img/deeper-connection.jpg" alt="Deeper Connection pack" class="pack-image" loading="eager">
@@ -653,10 +678,10 @@
         </div>
     </div>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=372"></script>
-    <script src="js/app-state.js?v=372"></script>
-    <script src="js/app-logic.js?v=372"></script>
-    <script src="js/app.js?v=372"></script>
+    <script src="js/firebase-config.js?v=394"></script>
+    <script src="js/app-state.js?v=394"></script>
+    <script src="js/app-logic.js?v=394"></script>
+    <script src="js/app.js?v=394"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -757,7 +782,7 @@
     <section id="guessMeView" class="home-view hidden" aria-labelledby="guessMeTitle">
         <section class="app-hero">
             <div class="app-hero-content">
-                <h2 id="guessMeTitle">Guess Me — Lobby</h2>
+                <h2 id="guessMeTitle">You Get Me — Lobby</h2>
                 <p id="guessMeLobbyStatus" aria-live="polite">Connecting to your partner…</p>
             </div>
         </section>

@@ -102,7 +102,7 @@ header {
 }
 
 .app-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.6rem;
     font-weight: 700;
     display: flex;
@@ -122,9 +122,25 @@ header {
     margin: 0;
 }
 
-.brand-heart {
-    color: var(--primary);
+.brand-logo {
+    height: 4.8rem;
+    width: 7.2rem;
+    object-fit: cover;
+    object-position: center;
+    vertical-align: middle;
+    display: inline-block;
 }
+.sidebar-brand .brand-logo {
+    height: 4rem;
+    width: 6rem;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 6px;
+}
+
+.logo-dark { display: none; }
+body:not(.light-theme) .logo-light { display: none; }
+body:not(.light-theme) .logo-dark { display: inline-block; }
 
 .header-actions {
     display: flex;
@@ -955,7 +971,7 @@ main {
 }
 
 .timer-display {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
 }
@@ -1061,7 +1077,7 @@ main {
 }
 
 .round-builder-heading h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.35rem;
 }
 
@@ -1359,7 +1375,7 @@ main {
 }
 
 .wild-panel-header h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.35rem;
 }
 
@@ -1603,7 +1619,7 @@ main {
 }
 
 .drawer-title {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
 }
@@ -2406,7 +2422,7 @@ body {
     margin: 8px 0;
 }
 h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 .home-view {
     width: 100%;
@@ -2417,7 +2433,7 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     gap: 20px;
 }
 .home-hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 2rem;
     color: var(--text-main);
 }
@@ -2435,7 +2451,7 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     background: var(--card-bg);
 }
 .discovery-section h2, .featured-packs h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.4rem;
     color: var(--text-main);
 }
@@ -2483,7 +2499,7 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
         background: var(--card-bg);
     }
     .sidebar-brand strong {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 1.4rem;
         color: var(--text-main);
     }
@@ -3120,7 +3136,7 @@ body:not(.light-theme) .card-progress-track {
     }
 }
 .app-hero-content h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 1.5rem;
     color: var(--text-main);
     margin-bottom: 6px;
@@ -3132,6 +3148,67 @@ body:not(.light-theme) .card-progress-track {
     margin-bottom: 12px;
 }
 .app-hero-content .btn-primary {
+    display: block;
+    margin: 0;
+    width: fit-content;
+}
+body:not(.light-theme) .app-hero {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-soft) 100%) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+body:not(.light-theme) .category-card[data-pack="reconnection"],
+body:not(.light-theme) .category-card[data-pack="playful"],
+body:not(.light-theme) .category-card[data-pack="deep-talk"],
+body:not(.light-theme) .category-card[data-pack="after-hours"] {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-soft) 100%) !important;
+}
+.featured-game-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.featured-game-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 4px 0 6px;
+    color: var(--text-main);
+}
+.featured-game-content p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+.featured-game-content .btn-primary {
+    width: 100%;
+}
+
+
+@keyframes heroFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.featured-game-content h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 4px 0 6px;
+    color: var(--text-main);
+}
+.featured-game-content p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+.featured-game-content .btn-primary {
+    width: 100%;
+}
     display: block;
     margin: 0;
     width: fit-content;

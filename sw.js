@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v372';
+const CACHE_NAME = 'closer-pwa-v394';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -13,7 +13,8 @@ const ASSETS_TO_CACHE = [
     './img/pack-passport-to-us.webp',
     './img/pack-find-our-way-back.webp',
     './img/pack-beneath-the-surface.webp',
-    './js/firebase-config.js'
+    './js/firebase-config.js',
+    './YGM-question-bank.json'
 ];
 self.addEventListener('install', (event) => {
     event.waitUntil(

@@ -1,0 +1,1506 @@
+{
+  "game": "You Get Me",
+  "description": "Dedicated question bank for the You Get Me prediction game. The answerer chooses one of four options; their partner predicts that choice.",
+  "version": 1,
+  "count": 135,
+  "schema": {
+    "id": "stable unique identifier",
+    "category": "category slug",
+    "question": "question text",
+    "options": "exactly four answer choices"
+  },
+  "categories": [
+    "silly_ridiculous",
+    "everyday_personality",
+    "couple_fun",
+    "preferences_unexpected",
+    "sweet_flirty"
+  ],
+  "questions": [
+    {
+      "id": "ygm-001",
+      "category": "silly_ridiculous",
+      "question": "If aliens abducted us and let me choose one thing to bring aboard, what would I grab?",
+      "options": [
+        "My phone, obviously",
+        "A ridiculous amount of snacks",
+        "You, so we’re abducted together",
+        "Something completely useless but funny"
+      ]
+    },
+    {
+      "id": "ygm-002",
+      "category": "silly_ridiculous",
+      "question": "If I woke up with a superpower that only worked on Tuesdays, which would I hope for?",
+      "options": [
+        "Flying",
+        "Reading minds",
+        "Teleporting",
+        "Making any food appear"
+      ]
+    },
+    {
+      "id": "ygm-003",
+      "category": "silly_ridiculous",
+      "question": "If I had to compete in the Intergalactic Olympics, what event would I somehow enter?",
+      "options": [
+        "Competitive napping",
+        "Zero-gravity dance battle",
+        "Alien-language karaoke",
+        "Extreme snack catching"
+      ]
+    },
+    {
+      "id": "ygm-004",
+      "category": "silly_ridiculous",
+      "question": "If a wizard turned me into an object for 24 hours, what would I secretly hope to become?",
+      "options": [
+        "A luxury couch",
+        "A gaming console",
+        "A coffee machine",
+        "A priceless jewel"
+      ]
+    },
+    {
+      "id": "ygm-005",
+      "category": "silly_ridiculous",
+      "question": "If our house became sentient and started roasting us, what would it call me out for?",
+      "options": [
+        "Leaving things everywhere",
+        "Talking to myself",
+        "Opening the fridge repeatedly",
+        "Being dramatic over tiny problems"
+      ]
+    },
+    {
+      "id": "ygm-006",
+      "category": "silly_ridiculous",
+      "question": "If I were the villain in a cartoon, what would my wildly unnecessary evil plan be?",
+      "options": [
+        "Steal everyone’s comfy socks",
+        "Replace all alarms with kazoo music",
+        "Make every elevator play my theme song",
+        "Hide the world’s last good snack"
+      ]
+    },
+    {
+      "id": "ygm-007",
+      "category": "silly_ridiculous",
+      "question": "If I had to survive a zombie apocalypse using one ridiculous item, what would I pick?",
+      "options": [
+        "A pool noodle",
+        "A karaoke microphone",
+        "A shopping cart",
+        "A giant inflatable duck"
+      ]
+    },
+    {
+      "id": "ygm-008",
+      "category": "silly_ridiculous",
+      "question": "If I could make one completely absurd law for the whole world, what would it be?",
+      "options": [
+        "Everyone gets a mandatory nap",
+        "Dessert counts as breakfast",
+        "Pets can vote",
+        "Every Friday is pajama day"
+      ]
+    },
+    {
+      "id": "ygm-009",
+      "category": "silly_ridiculous",
+      "question": "If I accidentally became ruler of a tiny island, what would my first decree be?",
+      "options": [
+        "A national snack hour",
+        "Everyone must compliment the island",
+        "No shoes allowed",
+        "A daily dance break"
+      ]
+    },
+    {
+      "id": "ygm-010",
+      "category": "silly_ridiculous",
+      "question": "If I had to swap bodies with a fictional character, who would I choose?",
+      "options": [
+        "A superhero",
+        "A cartoon character",
+        "A magical creature",
+        "The villain, just to see what it’s like"
+      ]
+    },
+    {
+      "id": "ygm-011",
+      "category": "silly_ridiculous",
+      "question": "If I could summon one creature to do my bidding, what would I choose?",
+      "options": [
+        "A tiny dragon that warms my food",
+        "A unicorn that finds lost things",
+        "A talking raccoon assistant",
+        "A giant fluffy monster for hugs"
+      ]
+    },
+    {
+      "id": "ygm-012",
+      "category": "silly_ridiculous",
+      "question": "If I were famous for something completely bizarre, what would it be?",
+      "options": [
+        "The world’s loudest sneeze",
+        "Remembering oddly specific facts",
+        "Making perfect toast",
+        "Winning arguments with inanimate objects"
+      ]
+    },
+    {
+      "id": "ygm-013",
+      "category": "silly_ridiculous",
+      "question": "If we were trapped inside a video game, what role would I take?",
+      "options": [
+        "The hero charging in",
+        "The one collecting every item",
+        "The player reading all the instructions",
+        "The one accidentally breaking the game"
+      ]
+    },
+    {
+      "id": "ygm-014",
+      "category": "silly_ridiculous",
+      "question": "If a time traveler asked me to bring one thing back from the future, what would I want?",
+      "options": [
+        "A cure for every illness",
+        "A robot that does chores",
+        "A food replicator",
+        "Proof of what happens after the finale of my favorite show"
+      ]
+    },
+    {
+      "id": "ygm-015",
+      "category": "silly_ridiculous",
+      "question": "If I could make one ordinary object enormous, what would be the funniest choice?",
+      "options": [
+        "A giant spoon",
+        "A massive pillow",
+        "A gigantic rubber duck",
+        "A phone the size of a car"
+      ]
+    },
+    {
+      "id": "ygm-016",
+      "category": "silly_ridiculous",
+      "question": "If I had to speak only in movie quotes for a day, how would I handle it?",
+      "options": [
+        "Commit fully and make it theatrical",
+        "Use quotes nobody recognizes",
+        "Give up almost immediately",
+        "Pretend this is normal"
+      ]
+    },
+    {
+      "id": "ygm-017",
+      "category": "silly_ridiculous",
+      "question": "If my pet (or imaginary pet) could expose one secret about me on live TV, what would it reveal?",
+      "options": [
+        "My snack habits",
+        "How often I talk to myself",
+        "My dramatic inner monologue",
+        "My secret dance moves"
+      ]
+    },
+    {
+      "id": "ygm-018",
+      "category": "silly_ridiculous",
+      "question": "If I had to be a contestant on a show hosted by a talking potato, what would I be best at?",
+      "options": [
+        "Answering trivia",
+        "Making the potato laugh",
+        "Solving bizarre puzzles",
+        "Finding the hidden snacks"
+      ]
+    },
+    {
+      "id": "ygm-019",
+      "category": "silly_ridiculous",
+      "question": "If gravity stopped working for ten minutes, what would I do first?",
+      "options": [
+        "Float around like it’s a dream",
+        "Grab onto everything",
+        "Try to film it",
+        "Panic, then enjoy it"
+      ]
+    },
+    {
+      "id": "ygm-020",
+      "category": "silly_ridiculous",
+      "question": "If I were assigned a ridiculous royal title, what would fit me best?",
+      "options": [
+        "Keeper of the Snacks",
+        "Duke/Duchess of Dramatic Reactions",
+        "Royal Minister of Naps",
+        "Supreme Commander of Cozy"
+      ]
+    },
+    {
+      "id": "ygm-021",
+      "category": "everyday_personality",
+      "question": "When I say “I’m ready,” what am I most likely to mean?",
+      "options": [
+        "Shoes on, let’s go",
+        "I just need one last thing",
+        "I’m ready mentally, not physically",
+        "I’m waiting for you to be ready"
+      ]
+    },
+    {
+      "id": "ygm-022",
+      "category": "everyday_personality",
+      "question": "When I’m stressed, what helps me most?",
+      "options": [
+        "A little space to reset",
+        "Someone listening without fixing it",
+        "A practical plan",
+        "A distraction and a laugh"
+      ]
+    },
+    {
+      "id": "ygm-023",
+      "category": "everyday_personality",
+      "question": "What kind of decision am I most likely to overthink?",
+      "options": [
+        "What to eat",
+        "What to wear",
+        "How to word a message",
+        "Whether to make a plan or stay home"
+      ]
+    },
+    {
+      "id": "ygm-024",
+      "category": "everyday_personality",
+      "question": "At a party where I know very few people, what’s most like me?",
+      "options": [
+        "Find one person and settle in",
+        "Work the room surprisingly well",
+        "Stay close to my favorite person",
+        "Locate the food and observe"
+      ]
+    },
+    {
+      "id": "ygm-025",
+      "category": "everyday_personality",
+      "question": "What is my most likely response to an unexpected free afternoon?",
+      "options": [
+        "Get things done while I have time",
+        "Relax and do absolutely nothing",
+        "Start a spontaneous outing",
+        "Mix a little productivity with a lot of lounging"
+      ]
+    },
+    {
+      "id": "ygm-026",
+      "category": "couple_fun",
+      "question": "Who am I most likely to be during a road trip?",
+      "options": [
+        "The DJ with strong opinions",
+        "The navigator who keeps checking the route",
+        "The snack manager",
+        "The one asking, “Are we there yet?”"
+      ]
+    },
+    {
+      "id": "ygm-027",
+      "category": "couple_fun",
+      "question": "What would I choose for our ideal last-minute date?",
+      "options": [
+        "A cozy night with takeout",
+        "A spontaneous drive somewhere",
+        "A fun activity we’ve never tried",
+        "Dessert and a long conversation"
+      ]
+    },
+    {
+      "id": "ygm-028",
+      "category": "couple_fun",
+      "question": "If we competed as a team on a game show, what role would I take?",
+      "options": [
+        "The strategist",
+        "The enthusiastic guesser",
+        "The calm problem-solver",
+        "The one making everyone laugh"
+      ]
+    },
+    {
+      "id": "ygm-029",
+      "category": "couple_fun",
+      "question": "Which small couple ritual would I be most likely to love?",
+      "options": [
+        "A daily check-in",
+        "A regular date night",
+        "Sending each other silly things",
+        "A little cuddle time before sleep"
+      ]
+    },
+    {
+      "id": "ygm-030",
+      "category": "couple_fun",
+      "question": "If we had a whole day with no responsibilities, what would I want us to do?",
+      "options": [
+        "Stay in and recharge together",
+        "Explore somewhere new",
+        "Eat our way through the day",
+        "Make a loose plan and see where it goes"
+      ]
+    },
+    {
+      "id": "ygm-031",
+      "category": "preferences_unexpected",
+      "question": "Which treat would I pick when I want to make an ordinary day feel special?",
+      "options": [
+        "A favorite sweet",
+        "A fancy coffee or tea",
+        "A savory snack",
+        "A meal I didn’t have to make"
+      ]
+    },
+    {
+      "id": "ygm-032",
+      "category": "preferences_unexpected",
+      "question": "Which setting would make me happiest for a weekend escape?",
+      "options": [
+        "A cabin surrounded by nature",
+        "A lively city with lots to explore",
+        "A beach with nothing on the schedule",
+        "A cozy place with a view"
+      ]
+    },
+    {
+      "id": "ygm-033",
+      "category": "preferences_unexpected",
+      "question": "If I could choose one everyday luxury, what would it be?",
+      "options": [
+        "Never having to clean",
+        "A personal chef",
+        "An extra hour of sleep every day",
+        "A daily massage"
+      ]
+    },
+    {
+      "id": "ygm-034",
+      "category": "sweet_flirty",
+      "question": "What kind of affection is most likely to make me feel especially loved?",
+      "options": [
+        "A thoughtful little gesture",
+        "A sincere compliment",
+        "A long hug or cuddle",
+        "Undivided attention"
+      ]
+    },
+    {
+      "id": "ygm-035",
+      "category": "sweet_flirty",
+      "question": "What would make me feel most special on an ordinary day?",
+      "options": [
+        "You remembering a small detail",
+        "A surprise message just because",
+        "You taking something off my plate",
+        "A spontaneous kiss or hug"
+      ]
+    },
+    {
+      "id": "ygm-036",
+      "category": "silly_ridiculous",
+      "question": "If we were accidentally elected rulers of Mars, what would my first new law be?",
+      "options": [
+        "Mandatory moon-viewing breaks",
+        "A national dessert for every meal",
+        "Everyone gets a personal robot",
+        "No meetings longer than five minutes"
+      ]
+    },
+    {
+      "id": "ygm-037",
+      "category": "silly_ridiculous",
+      "question": "If I had to steal the world’s largest cheese with a team, what role would I take?",
+      "options": [
+        "Master planner",
+        "Distraction expert",
+        "Getaway driver",
+        "Snack quality inspector"
+      ]
+    },
+    {
+      "id": "ygm-038",
+      "category": "silly_ridiculous",
+      "question": "If my clone showed up and started dating you, what would bother me most?",
+      "options": [
+        "They’d know all my secrets",
+        "They might be more charming",
+        "You’d mix us up",
+        "They’d steal my favorite clothes"
+      ]
+    },
+    {
+      "id": "ygm-039",
+      "category": "silly_ridiculous",
+      "question": "If I could live inside any fictional universe for a week, which would I pick?",
+      "options": [
+        "A magical fantasy world",
+        "A superhero universe",
+        "A cozy cartoon town",
+        "A sci-fi world with cool technology"
+      ]
+    },
+    {
+      "id": "ygm-040",
+      "category": "silly_ridiculous",
+      "question": "If I were cursed to turn into an animal whenever I sneezed, what animal would I hope for?",
+      "options": [
+        "A tiny fluffy dog",
+        "A majestic eagle",
+        "A dramatic cat",
+        "A very confused penguin"
+      ]
+    },
+    {
+      "id": "ygm-041",
+      "category": "silly_ridiculous",
+      "question": "If I had to enter a competition against a robot, what contest could I win?",
+      "options": [
+        "Making people laugh",
+        "Cooking comfort food",
+        "Recognizing your mood",
+        "Doing absolutely nothing"
+      ]
+    },
+    {
+      "id": "ygm-042",
+      "category": "silly_ridiculous",
+      "question": "If we discovered a secret door in our home, where would I hope it led?",
+      "options": [
+        "A hidden snack room",
+        "A tropical beach",
+        "A library full of mysteries",
+        "A room where time pauses"
+      ]
+    },
+    {
+      "id": "ygm-043",
+      "category": "silly_ridiculous",
+      "question": "If I could replace the sound of one everyday thing with a ridiculous noise, what would I choose?",
+      "options": [
+        "Microwave beeps become opera",
+        "Doorbells become duck quacks",
+        "Cars honk like tiny trumpets",
+        "Phone alerts become dramatic thunder"
+      ]
+    },
+    {
+      "id": "ygm-044",
+      "category": "silly_ridiculous",
+      "question": "If I were given a dragon egg, what would I do while it hatched?",
+      "options": [
+        "Build it a cozy nest",
+        "Read everything about dragons",
+        "Name it immediately",
+        "Panic but pretend I’m prepared"
+      ]
+    },
+    {
+      "id": "ygm-045",
+      "category": "silly_ridiculous",
+      "question": "If I had to become a professional in a made-up sport, which would I choose?",
+      "options": [
+        "Extreme pillow fighting",
+        "Competitive broom racing",
+        "Underwater dodgeball",
+        "Giant-ball obstacle course"
+      ]
+    },
+    {
+      "id": "ygm-046",
+      "category": "silly_ridiculous",
+      "question": "If a genie offered me one wish but it had to be hilariously petty, what would I wish for?",
+      "options": [
+        "Always get the best parking spot",
+        "Never have tangled earbuds",
+        "Win every harmless debate",
+        "Always find the cool side of the pillow"
+      ]
+    },
+    {
+      "id": "ygm-047",
+      "category": "silly_ridiculous",
+      "question": "If I could make one food the size of a car, what would I choose?",
+      "options": [
+        "A giant pizza",
+        "A giant donut",
+        "A giant dumpling",
+        "A giant chocolate bar"
+      ]
+    },
+    {
+      "id": "ygm-048",
+      "category": "silly_ridiculous",
+      "question": "If I got a job at a haunted mansion, what would be my specialty?",
+      "options": [
+        "Ghost customer service",
+        "Monster event planning",
+        "Haunted snack delivery",
+        "Keeping the ghosts entertained"
+      ]
+    },
+    {
+      "id": "ygm-049",
+      "category": "silly_ridiculous",
+      "question": "If I had to wear one costume forever, which would I pick?",
+      "options": [
+        "A wizard robe",
+        "A dinosaur suit",
+        "A superhero outfit",
+        "A fancy royal outfit"
+      ]
+    },
+    {
+      "id": "ygm-050",
+      "category": "silly_ridiculous",
+      "question": "If I were the captain of a pirate ship, what would my crew nickname me?",
+      "options": [
+        "Captain Snackbeard",
+        "The Dramatic One",
+        "Treasure Napper",
+        "The Charming Menace"
+      ]
+    },
+    {
+      "id": "ygm-051",
+      "category": "silly_ridiculous",
+      "question": "If I could communicate with one household appliance, which would I choose?",
+      "options": [
+        "The fridge, for snack intel",
+        "The washing machine, to find lost socks",
+        "The vacuum, to make it do chores",
+        "The coffee maker, to negotiate mornings"
+      ]
+    },
+    {
+      "id": "ygm-052",
+      "category": "silly_ridiculous",
+      "question": "If I were turned into a tiny person and had to live in our home, where would I set up camp?",
+      "options": [
+        "Inside a bookshelf",
+        "In a blanket fort",
+        "Behind the couch",
+        "In a miniature kitchen"
+      ]
+    },
+    {
+      "id": "ygm-053",
+      "category": "silly_ridiculous",
+      "question": "If I could have a ridiculous personal entrance theme play every time I entered a room, what style would it be?",
+      "options": [
+        "Epic movie score",
+        "Cheesy pop anthem",
+        "Circus music",
+        "A dramatic opera"
+      ]
+    },
+    {
+      "id": "ygm-054",
+      "category": "silly_ridiculous",
+      "question": "If we were in a spy movie, what would be my undercover identity?",
+      "options": [
+        "A celebrity chef",
+        "A very suspicious tourist",
+        "A world-famous dog trainer",
+        "A librarian with secrets"
+      ]
+    },
+    {
+      "id": "ygm-055",
+      "category": "silly_ridiculous",
+      "question": "If I had to explain the internet to a medieval king, what would I compare it to?",
+      "options": [
+        "A magic talking scroll",
+        "A giant gossip network",
+        "A library that never closes",
+        "A wizard’s mirror"
+      ]
+    },
+    {
+      "id": "ygm-056",
+      "category": "silly_ridiculous",
+      "question": "If I were allowed to bring one fictional sidekick into real life, who would I want?",
+      "options": [
+        "A wise talking animal",
+        "A tiny mischievous creature",
+        "A loyal robot",
+        "A magical mentor"
+      ]
+    },
+    {
+      "id": "ygm-057",
+      "category": "silly_ridiculous",
+      "question": "If I could turn one boring chore into a competitive sport, which would I choose?",
+      "options": [
+        "Laundry basket basketball",
+        "Speed-cleaning obstacle course",
+        "Dishwashing relay",
+        "Bed-making championship"
+      ]
+    },
+    {
+      "id": "ygm-058",
+      "category": "silly_ridiculous",
+      "question": "If I had to be a contestant on an alien cooking show, what dish would I make?",
+      "options": [
+        "A comfort-food classic",
+        "A chaotic food mashup",
+        "Something shaped like a spaceship",
+        "Dessert and hope"
+      ]
+    },
+    {
+      "id": "ygm-059",
+      "category": "silly_ridiculous",
+      "question": "If I found a button labeled ‘Make Today Weird,’ what would I do?",
+      "options": [
+        "Press it immediately",
+        "Ask you to press it with me",
+        "Read the fine print first",
+        "Walk away but keep thinking about it"
+      ]
+    },
+    {
+      "id": "ygm-060",
+      "category": "silly_ridiculous",
+      "question": "If my life had a narrator, what would they say most often?",
+      "options": [
+        "“They had a plan. Sort of.”",
+        "“A snack was clearly needed.”",
+        "“This could have been avoided.”",
+        "“And then things got dramatic.”"
+      ]
+    },
+    {
+      "id": "ygm-061",
+      "category": "silly_ridiculous",
+      "question": "If I were given a magical hat that granted one personality trait, what would I choose?",
+      "options": [
+        "Unshakable confidence",
+        "Endless patience",
+        "Perfect comedic timing",
+        "The ability to stay focused"
+      ]
+    },
+    {
+      "id": "ygm-062",
+      "category": "silly_ridiculous",
+      "question": "If I could invent a holiday for something absurd, what would we celebrate?",
+      "options": [
+        "National Nap Appreciation Day",
+        "The Great Snack Exchange",
+        "Wear Your Blanket Day",
+        "Compliment Your Houseplant Day"
+      ]
+    },
+    {
+      "id": "ygm-063",
+      "category": "silly_ridiculous",
+      "question": "If I had to be chased by something harmless but relentless, what would be funniest?",
+      "options": [
+        "A marching band",
+        "A swarm of tiny rubber ducks",
+        "A rolling cheese wheel",
+        "A very determined toddler"
+      ]
+    },
+    {
+      "id": "ygm-064",
+      "category": "silly_ridiculous",
+      "question": "If I could have a secret lair, what would be inside?",
+      "options": [
+        "A wall of gadgets",
+        "A giant cozy lounge",
+        "A ridiculous snack vault",
+        "A room for dramatic entrances"
+      ]
+    },
+    {
+      "id": "ygm-065",
+      "category": "silly_ridiculous",
+      "question": "If I were a mythical creature, what would my vibe be?",
+      "options": [
+        "A lovable dragon",
+        "A mischievous fairy",
+        "A sleepy phoenix",
+        "A sarcastic mer-person"
+      ]
+    },
+    {
+      "id": "ygm-066",
+      "category": "silly_ridiculous",
+      "question": "If I accidentally became a ghost, what would I do first?",
+      "options": [
+        "Visit you to say hi",
+        "Haunt the snack cupboard",
+        "Move objects for attention",
+        "Explore places I couldn’t visit before"
+      ]
+    },
+    {
+      "id": "ygm-067",
+      "category": "silly_ridiculous",
+      "question": "If I could add one impossible feature to a car, what would I want?",
+      "options": [
+        "Instant teleportation",
+        "A snack dispenser",
+        "A built-in cozy nap pod",
+        "A button that avoids all traffic"
+      ]
+    },
+    {
+      "id": "ygm-068",
+      "category": "silly_ridiculous",
+      "question": "If I were hired to design a theme park ride about my life, what would it be?",
+      "options": [
+        "A chaotic roller coaster",
+        "A cozy scenic train",
+        "A comedy haunted house",
+        "A spinning ride full of plot twists"
+      ]
+    },
+    {
+      "id": "ygm-069",
+      "category": "silly_ridiculous",
+      "question": "If I had to compete in a talent show for creatures from another planet, what would I perform?",
+      "options": [
+        "A dance routine",
+        "A dramatic story",
+        "A comedy set",
+        "A surprisingly good song"
+      ]
+    },
+    {
+      "id": "ygm-070",
+      "category": "silly_ridiculous",
+      "question": "If I could make one fictional item real, what would I choose?",
+      "options": [
+        "A teleportation device",
+        "An invisibility cloak",
+        "A magical healing potion",
+        "A bottomless bag"
+      ]
+    },
+    {
+      "id": "ygm-071",
+      "category": "silly_ridiculous",
+      "question": "If I were a wizard, what spell would I use way too often?",
+      "options": [
+        "Summon snacks",
+        "Clean this room",
+        "Find my keys",
+        "Make awkward moments disappear"
+      ]
+    },
+    {
+      "id": "ygm-072",
+      "category": "silly_ridiculous",
+      "question": "If we had to build a home on a cloud, what would I insist we include?",
+      "options": [
+        "A giant hammock",
+        "A rooftop garden",
+        "A snack pantry",
+        "A slide between floors"
+      ]
+    },
+    {
+      "id": "ygm-073",
+      "category": "silly_ridiculous",
+      "question": "If I had to pick a mascot for my personality, what would it be?",
+      "options": [
+        "A chaotic squirrel",
+        "A sleepy sloth",
+        "A confident raccoon",
+        "A golden retriever"
+      ]
+    },
+    {
+      "id": "ygm-074",
+      "category": "silly_ridiculous",
+      "question": "If I could make one object obey me like a loyal pet, what would I choose?",
+      "options": [
+        "My laundry basket",
+        "My phone charger",
+        "The remote control",
+        "My car"
+      ]
+    },
+    {
+      "id": "ygm-075",
+      "category": "silly_ridiculous",
+      "question": "If I were sent back to the age of dinosaurs, what would be my strategy?",
+      "options": [
+        "Make friends with a herbivore",
+        "Hide and observe",
+        "Try to invent a time machine",
+        "Find a very tall tree"
+      ]
+    },
+    {
+      "id": "ygm-076",
+      "category": "silly_ridiculous",
+      "question": "If I could swap jobs with any fictional character for a day, what would I choose?",
+      "options": [
+        "A superhero",
+        "A royal advisor",
+        "A wizard",
+        "A cartoon detective"
+      ]
+    },
+    {
+      "id": "ygm-077",
+      "category": "silly_ridiculous",
+      "question": "If I could add a ridiculous feature to my body, what would I pick?",
+      "options": [
+        "Built-in snack radar",
+        "Hair that changes color with mood",
+        "A tail that shows excitement",
+        "A button to pause time"
+      ]
+    },
+    {
+      "id": "ygm-078",
+      "category": "silly_ridiculous",
+      "question": "If I were a contestant on a game show where every answer had to be a dance, how would I do?",
+      "options": [
+        "Absolutely crush it",
+        "Make up moves confidently",
+        "Laugh too much to answer",
+        "Try to negotiate another format"
+      ]
+    },
+    {
+      "id": "ygm-079",
+      "category": "silly_ridiculous",
+      "question": "If we got a message from our future selves, what would I hope it says?",
+      "options": [
+        "“Keep having fun together.”",
+        "“Buy that house!”",
+        "“Don’t worry, it all works out.”",
+        "“You were right about the snacks.”"
+      ]
+    },
+    {
+      "id": "ygm-080",
+      "category": "silly_ridiculous",
+      "question": "If I could create a new animal by combining two, what would I invent?",
+      "options": [
+        "A cat-butterfly",
+        "A penguin-otter",
+        "A tiny elephant-rabbit",
+        "A dog-dragon"
+      ]
+    },
+    {
+      "id": "ygm-081",
+      "category": "silly_ridiculous",
+      "question": "If I were trapped in a mall overnight, where would I go first?",
+      "options": [
+        "The food court",
+        "The furniture store to build a fort",
+        "The arcade",
+        "The bookstore"
+      ]
+    },
+    {
+      "id": "ygm-082",
+      "category": "silly_ridiculous",
+      "question": "If I could be invisible for one hour, what harmless thing would I do?",
+      "options": [
+        "Sneak into a movie premiere",
+        "Leave silly notes everywhere",
+        "Observe how pets act alone",
+        "Explore a museum after hours"
+      ]
+    },
+    {
+      "id": "ygm-083",
+      "category": "silly_ridiculous",
+      "question": "If I had to ride a giant version of a tiny animal, which would I choose?",
+      "options": [
+        "A hamster",
+        "A ladybug",
+        "A frog",
+        "A house cat"
+      ]
+    },
+    {
+      "id": "ygm-084",
+      "category": "silly_ridiculous",
+      "question": "If I could make one fictional character my personal life coach, who would I pick?",
+      "options": [
+        "A wise wizard",
+        "A hilarious cartoon character",
+        "A superhero with a plan",
+        "A lovable chaotic character"
+      ]
+    },
+    {
+      "id": "ygm-085",
+      "category": "silly_ridiculous",
+      "question": "If I had to create a new flavor of ice cream named after myself, what would be in it?",
+      "options": [
+        "Chocolate and chaos",
+        "Vanilla with a surprise swirl",
+        "Something fruity and bright",
+        "A strange mix that somehow works"
+      ]
+    },
+    {
+      "id": "ygm-086",
+      "category": "silly_ridiculous",
+      "question": "If I had to become the mayor of a town where everyone was a version of me, what would be the biggest problem?",
+      "options": [
+        "Everyone procrastinates together",
+        "Too many competing plans",
+        "Nobody agrees on dinner",
+        "The town runs on jokes"
+      ]
+    },
+    {
+      "id": "ygm-087",
+      "category": "silly_ridiculous",
+      "question": "If I could turn our living room into any fantasy setting for a night, what would I choose?",
+      "options": [
+        "A spaceship lounge",
+        "A wizard’s library",
+        "A tropical island",
+        "A royal ballroom"
+      ]
+    },
+    {
+      "id": "ygm-088",
+      "category": "silly_ridiculous",
+      "question": "If I were given a magic remote for life, which button would I use most?",
+      "options": [
+        "Pause",
+        "Rewind",
+        "Fast-forward",
+        "Mute"
+      ]
+    },
+    {
+      "id": "ygm-089",
+      "category": "silly_ridiculous",
+      "question": "If I had to pick a ridiculous side quest for us, what would it be?",
+      "options": [
+        "Find the best fries in town",
+        "Take a photo with every weird statue",
+        "Try a food neither of us can pronounce",
+        "Build the world’s coziest blanket fort"
+      ]
+    },
+    {
+      "id": "ygm-090",
+      "category": "silly_ridiculous",
+      "question": "If I were a secret agent with a very silly gadget, what would it do?",
+      "options": [
+        "Launch confetti",
+        "Translate pet thoughts",
+        "Make perfect toast",
+        "Create a distraction with karaoke"
+      ]
+    },
+    {
+      "id": "ygm-091",
+      "category": "silly_ridiculous",
+      "question": "If a talking moon asked me to tell it one story about Earth, what would I tell it?",
+      "options": [
+        "How humans fall in love",
+        "The strange things people eat",
+        "The invention of the internet",
+        "A funny story about us"
+      ]
+    },
+    {
+      "id": "ygm-092",
+      "category": "silly_ridiculous",
+      "question": "If I could bring one extinct creature back as a pet, what would I choose?",
+      "options": [
+        "A tiny woolly mammoth",
+        "A friendly dodo",
+        "A miniature dinosaur",
+        "A giant prehistoric sloth"
+      ]
+    },
+    {
+      "id": "ygm-093",
+      "category": "silly_ridiculous",
+      "question": "If I were forced to enter a dance battle against a sentient vacuum, what would my strategy be?",
+      "options": [
+        "Out-dance it",
+        "Distract it with dirt",
+        "Make it my dance partner",
+        "Try to unplug the competition"
+      ]
+    },
+    {
+      "id": "ygm-094",
+      "category": "silly_ridiculous",
+      "question": "If we were the only two people in a giant toy store overnight, what would I do?",
+      "options": [
+        "Build an enormous fort",
+        "Try every remote-control toy",
+        "Stage a stuffed-animal talent show",
+        "Find the biggest board game"
+      ]
+    },
+    {
+      "id": "ygm-095",
+      "category": "silly_ridiculous",
+      "question": "If I had to pick a ridiculous new name for myself, what would I choose?",
+      "options": [
+        "Lord/Lady Waffle",
+        "Captain Cuddlebug",
+        "Professor Chaos",
+        "The Snack Oracle"
+      ]
+    },
+    {
+      "id": "ygm-096",
+      "category": "silly_ridiculous",
+      "question": "If I were allowed to make one impossible thing happen every morning, what would I pick?",
+      "options": [
+        "Wake up fully rested",
+        "Have breakfast appear",
+        "Know exactly what to wear",
+        "Start the day with a perfect song"
+      ]
+    },
+    {
+      "id": "ygm-097",
+      "category": "silly_ridiculous",
+      "question": "If I were hired to be a dragon’s roommate, what would I complain about first?",
+      "options": [
+        "The fire hazard",
+        "The enormous mess",
+        "The hoarding of treasure",
+        "The snoring"
+      ]
+    },
+    {
+      "id": "ygm-098",
+      "category": "silly_ridiculous",
+      "question": "If I could make one thing in the world bounce, what would be funniest?",
+      "options": [
+        "Cars",
+        "Buildings",
+        "People’s hats",
+        "The moon"
+      ]
+    },
+    {
+      "id": "ygm-099",
+      "category": "silly_ridiculous",
+      "question": "If I had to design a new emoji that represented me, what would it be?",
+      "options": [
+        "A smiling chaos face",
+        "A sleepy face with snacks",
+        "A heart with sunglasses",
+        "A tiny dramatic tornado"
+      ]
+    },
+    {
+      "id": "ygm-100",
+      "category": "silly_ridiculous",
+      "question": "If I were stuck in a time loop repeating one silly day, what would I try to master?",
+      "options": [
+        "A perfect dance",
+        "A complicated recipe",
+        "A magic trick",
+        "A prank with flawless timing"
+      ]
+    },
+    {
+      "id": "ygm-101",
+      "category": "silly_ridiculous",
+      "question": "If I could get a personal assistant from a fantasy world, what would I choose?",
+      "options": [
+        "A fairy who organizes",
+        "A goblin who finds deals",
+        "A dragon who guards my stuff",
+        "A wizard who handles errands"
+      ]
+    },
+    {
+      "id": "ygm-102",
+      "category": "silly_ridiculous",
+      "question": "If I were a character in a ridiculous courtroom drama, what would I be accused of?",
+      "options": [
+        "Stealing the last cookie",
+        "Being too dramatic",
+        "Overusing exclamation marks",
+        "Taking naps without permission"
+      ]
+    },
+    {
+      "id": "ygm-103",
+      "category": "silly_ridiculous",
+      "question": "If I had to open a restaurant for imaginary creatures, what would I serve?",
+      "options": [
+        "Dragon-safe spicy food",
+        "Fairy-sized desserts",
+        "Monster-sized sandwiches",
+        "Mystery soup"
+      ]
+    },
+    {
+      "id": "ygm-104",
+      "category": "silly_ridiculous",
+      "question": "If I could have a portal to one absurd place, where would it lead?",
+      "options": [
+        "A planet made of pillows",
+        "A library run by cats",
+        "A beach where it’s always sunset",
+        "A supermarket with infinite samples"
+      ]
+    },
+    {
+      "id": "ygm-105",
+      "category": "silly_ridiculous",
+      "question": "If I had to pick a new national anthem for our household, what would it sound like?",
+      "options": [
+        "An epic movie theme",
+        "A silly pop song",
+        "A dramatic opera",
+        "A song about snacks"
+      ]
+    },
+    {
+      "id": "ygm-106",
+      "category": "everyday_personality",
+      "question": "If I could be an expert at one impossible thing, what would I choose?",
+      "options": [
+        "Talking to clouds",
+        "Befriending every animal",
+        "Predicting plot twists in real life",
+        "Making plants tell jokes"
+      ]
+    },
+    {
+      "id": "ygm-107",
+      "category": "everyday_personality",
+      "question": "If a genie gave us a shared magical pet, what would I want it to do?",
+      "options": [
+        "Find lost things",
+        "Make us laugh on command",
+        "Keep us cozy",
+        "Deliver snacks"
+      ]
+    },
+    {
+      "id": "ygm-108",
+      "category": "everyday_personality",
+      "question": "If I had to live in a world where everything was oversized, what would I enjoy most?",
+      "options": [
+        "Giant beds",
+        "Huge food",
+        "Massive pets",
+        "Oversized playgrounds"
+      ]
+    },
+    {
+      "id": "ygm-109",
+      "category": "everyday_personality",
+      "question": "If I had to live in a world where everything was miniature, what would I enjoy most?",
+      "options": [
+        "Tiny cities",
+        "Miniature food",
+        "Pocket-sized pets",
+        "Little versions of everyday things"
+      ]
+    },
+    {
+      "id": "ygm-110",
+      "category": "everyday_personality",
+      "question": "If I were a superhero whose power was mildly inconvenient, what would it be?",
+      "options": [
+        "I can fly, but only backward",
+        "I can teleport, but arrive wearing a hat",
+        "I can read minds, but only song lyrics",
+        "I can become invisible, but still sneeze"
+      ]
+    },
+    {
+      "id": "ygm-111",
+      "category": "everyday_personality",
+      "question": "If I had to choose a ridiculous thing to be immortalized as a statue, what would I pick?",
+      "options": [
+        "A heroic snack pose",
+        "A dramatic thinking pose",
+        "A goofy dance move",
+        "A cuddle with a giant animal"
+      ]
+    },
+    {
+      "id": "ygm-112",
+      "category": "everyday_personality",
+      "question": "If we were invited to a royal ball in a fantasy kingdom, what would I do?",
+      "options": [
+        "Dress extravagantly",
+        "Try to meet the dragon",
+        "Find the dessert table",
+        "Accidentally break royal etiquette"
+      ]
+    },
+    {
+      "id": "ygm-113",
+      "category": "everyday_personality",
+      "question": "If I could add a secret room to our home, what would its impossible purpose be?",
+      "options": [
+        "A portal room",
+        "A zero-gravity lounge",
+        "A room that changes seasons",
+        "A room full of endless cozy blankets"
+      ]
+    },
+    {
+      "id": "ygm-114",
+      "category": "everyday_personality",
+      "question": "If I were a magical creature’s chosen human, which creature would pick me?",
+      "options": [
+        "A dragon with attitude",
+        "A fairy with mischief",
+        "A gentle giant",
+        "A talking fox"
+      ]
+    },
+    {
+      "id": "ygm-115",
+      "category": "everyday_personality",
+      "question": "If I had to choose a ridiculous way to travel across town, what would I pick?",
+      "options": [
+        "A giant rolling hamster ball",
+        "A flying carpet",
+        "A tiny parade float",
+        "A team of trained penguins"
+      ]
+    },
+    {
+      "id": "ygm-116",
+      "category": "everyday_personality",
+      "question": "If I could turn one phrase into a magic spell, what would I choose?",
+      "options": [
+        "“Where are my keys?”",
+        "“Make it cozy.”",
+        "“Snacks, please.”",
+        "“Skip to the good part.”"
+      ]
+    },
+    {
+      "id": "ygm-117",
+      "category": "everyday_personality",
+      "question": "If I were an inventor whose inventions never worked quite right, what would I make?",
+      "options": [
+        "A self-folding laundry machine that folds you too",
+        "A toaster that tells fortunes",
+        "A robot that gives unsolicited compliments",
+        "A teleportation machine that swaps your shoes"
+      ]
+    },
+    {
+      "id": "ygm-118",
+      "category": "couple_fun",
+      "question": "If I were the star of a fantasy prophecy, what would it predict?",
+      "options": [
+        "I will save the last cookie",
+        "I will bring balance to the snack kingdom",
+        "I will defeat boredom forever",
+        "I will unite cats and dogs"
+      ]
+    },
+    {
+      "id": "ygm-119",
+      "category": "couple_fun",
+      "question": "If we had to spend a week in a castle with one magical rule, what would I choose?",
+      "options": [
+        "Every room has a different theme",
+        "The kitchen makes favorite foods",
+        "The furniture gives advice",
+        "The castle can move anywhere"
+      ]
+    },
+    {
+      "id": "ygm-120",
+      "category": "couple_fun",
+      "question": "If I could choose one thing to rain from the sky for a day, what would I choose?",
+      "options": [
+        "Confetti",
+        "Tiny marshmallows",
+        "Flower petals",
+        "Coupons for free food"
+      ]
+    },
+    {
+      "id": "ygm-121",
+      "category": "couple_fun",
+      "question": "If I were a pirate searching for treasure, what would I be most excited to find?",
+      "options": [
+        "A chest of gold",
+        "A secret map to more treasure",
+        "A magical artifact",
+        "A lifetime supply of snacks"
+      ]
+    },
+    {
+      "id": "ygm-122",
+      "category": "couple_fun",
+      "question": "If I had to pick a ridiculous Olympic event for couples, what would we compete in?",
+      "options": [
+        "Synchronized blanket folding",
+        "Partner obstacle course",
+        "Competitive complimenting",
+        "Speed-building a pillow fort"
+      ]
+    },
+    {
+      "id": "ygm-123",
+      "category": "couple_fun",
+      "question": "If I could create a new planet just for us, what would its best feature be?",
+      "options": [
+        "No chores ever",
+        "Endless cozy places",
+        "Every meal is delicious",
+        "Adventure portals everywhere"
+      ]
+    },
+    {
+      "id": "ygm-124",
+      "category": "couple_fun",
+      "question": "If I had to choose a ridiculous disguise to sneak into a place, what would I wear?",
+      "options": [
+        "A giant mustache",
+        "A fake wizard beard",
+        "A mascot costume",
+        "Sunglasses and an obviously fake name"
+      ]
+    },
+    {
+      "id": "ygm-125",
+      "category": "couple_fun",
+      "question": "If I were a magical shopkeeper, what strange item would I sell?",
+      "options": [
+        "Bottled courage",
+        "A map to lost socks",
+        "A jar of extra weekend",
+        "A potion that makes chores fun"
+      ]
+    },
+    {
+      "id": "ygm-126",
+      "category": "couple_fun",
+      "question": "If I could make one fictional creature responsible for a household chore, which chore and creature would I pick?",
+      "options": [
+        "A dragon to vacuum",
+        "A fairy to do laundry",
+        "A goblin to wash dishes",
+        "A unicorn to organize everything"
+      ]
+    },
+    {
+      "id": "ygm-127",
+      "category": "couple_fun",
+      "question": "If I were stuck on a deserted island with a very dramatic parrot, what would I do?",
+      "options": [
+        "Teach it useful survival phrases",
+        "Make it my co-leader",
+        "Argue with it constantly",
+        "Ask it to entertain me"
+      ]
+    },
+    {
+      "id": "ygm-128",
+      "category": "preferences_unexpected",
+      "question": "If I could add one impossible attraction to a carnival, what would it be?",
+      "options": [
+        "A ride through outer space",
+        "A hall of infinite mirrors that tell jokes",
+        "A giant slide into a ball pit",
+        "A petting zoo of mythical creatures"
+      ]
+    },
+    {
+      "id": "ygm-129",
+      "category": "preferences_unexpected",
+      "question": "If I had to choose an absurd thing to be the world champion of, what would it be?",
+      "options": [
+        "Making the weirdest sandwich",
+        "Napping in unusual places",
+        "Naming random objects",
+        "Making people laugh at bad puns"
+      ]
+    },
+    {
+      "id": "ygm-130",
+      "category": "preferences_unexpected",
+      "question": "If I were a ghost in a comedy movie, how would I haunt people?",
+      "options": [
+        "Move their furniture slightly",
+        "Make their snacks mysteriously vanish",
+        "Play dramatic music at random",
+        "Leave silly messages on mirrors"
+      ]
+    },
+    {
+      "id": "ygm-131",
+      "category": "preferences_unexpected",
+      "question": "If I could choose one impossible upgrade for our date nights, what would it be?",
+      "options": [
+        "A teleporting dinner table",
+        "A soundtrack that matches our mood",
+        "A dessert that never ends",
+        "A sunset we can pause"
+      ]
+    },
+    {
+      "id": "ygm-132",
+      "category": "sweet_flirty",
+      "question": "If I had to make a ridiculous deal with a troll under a bridge, what would I offer?",
+      "options": [
+        "My best joke",
+        "A lifetime supply of snacks",
+        "A dance performance",
+        "A very sincere compliment"
+      ]
+    },
+    {
+      "id": "ygm-133",
+      "category": "sweet_flirty",
+      "question": "If I were a character in a space opera, what would my dramatic flaw be?",
+      "options": [
+        "I trust the wrong alien",
+        "I get distracted by shiny planets",
+        "I refuse to share snacks",
+        "I make speeches at inconvenient times"
+      ]
+    },
+    {
+      "id": "ygm-134",
+      "category": "sweet_flirty",
+      "question": "If I had to pick a magical alarm clock, what would wake me up?",
+      "options": [
+        "A tiny orchestra",
+        "A friendly dragon puff",
+        "A motivational talking frog",
+        "A gentle rainstorm indoors"
+      ]
+    },
+    {
+      "id": "ygm-135",
+      "category": "sweet_flirty",
+      "question": "If I could make one thing in our home magically self-replenish, what would I choose?",
+      "options": [
+        "Snacks",
+        "Clean laundry",
+        "Coffee or tea",
+        "Fresh flowers"
+      ]
+    }
+  ]
+}
