@@ -17676,6 +17676,386 @@
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-fbe0d9adbc75",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 1,
+      "prompt": "What is one way you like to be invited into intimacy?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-a68b012748e0",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 1,
+      "prompt": "What is a playful way to build anticipation?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-355cf34db6f4",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 1,
+      "prompt": "What helps you relax after sex?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-4fc950ec80c7",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What is your favorite way to wind down together?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-89d0d5c68c8c",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 1,
+      "prompt": "What kind of kissing do you love most?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-480d9f0dd09e",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 1,
+      "prompt": "What is one area you love being touched?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "mildexp-50532fda67bc",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What kind of touch feels most connecting?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-f08e5e8c8c",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "What check-in helps you feel safe before trying something new?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-20f87a1175",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "How do you like to signal a pause?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-10e4965ee4",
+      "module": "explicit",
+      "category": "Consent Check-Ins & Pacing",
+      "intensity": 2,
+      "prompt": "What pacing feels respectful to you?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-4c54e14eeb",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "What kind of aftercare feels best to you?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-abababb820",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "How do we reconnect after an intense conversation?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-a6852c8a85",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "What helps you feel safe again after vulnerability?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-1ec68c3978",
+      "module": "explicit",
+      "category": "Aftercare & Reconnection",
+      "intensity": 2,
+      "prompt": "Tell me one thing that helps you land after emotional intensity.",
+      "contextType": "consent",
+      "promptStyle": "activity",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-108c8b374a",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "What is a gentle way for you to say no?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-0c2246f378",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "What boundary would you like to set or revisit?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-dbd2759ea1",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "How can we make no feel safe in our relationship?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-b7f375ccb2",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 2,
+      "prompt": "Tell me about a boundary you are proud of keeping.",
+      "contextType": "consent",
+      "promptStyle": "activity",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-41eb5b2903",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "What is a flirtatious thing I do that you love?",
+      "contextType": "flirting",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-7f5398e669",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What helps you feel in the mood?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-50e2334a60",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What is a signal that tells me you want me?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-c98083f3f3",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What is one thing that makes you feel desired?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-8a03d5a338",
+      "module": "explicit",
+      "category": "Physical Touch & Foreplay",
+      "intensity": 2,
+      "prompt": "What is a touch that instantly connects us?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-eb17a0a8a6",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What is one way to keep the spark alive?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-21fb96db68",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What is a flirtatious thing that drives you wild?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-c4507b8fc8",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What is one thing that makes aftercare feel good?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-38b74b0b32",
+      "module": "explicit",
+      "category": "Orgasm, Wind-Down & Aftercare",
+      "intensity": 2,
+      "prompt": "What helps you feel connected after intimacy?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-5d9a632ecb",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 1,
+      "prompt": "What is a silly thing that always makes you laugh?",
+      "contextType": "humor",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-6e9ccd5128",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What makes a kiss feel electric?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-4773acc1bb",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What is one way to build physical chemistry?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-b75f6eaea4",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What is a sensation you find most relaxing?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-4435c35c63",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "What is one way to explore each other bodies?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "bulk2-d6e65d4813",
+      "module": "explicit",
+      "category": "Role-Play & Fantasy",
+      "intensity": 2,
+      "prompt": "What makes a fantasy feel safe to share?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "open-bf6b56189c",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 2,
+      "prompt": "What would help you feel safe trying something new?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "open-f7c3af535a",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 2,
+      "prompt": "What is one past experience that shaped your desires?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "open-228b23a6f5",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 2,
+      "prompt": "What is something from a past relationship you miss?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "open-860d9938e0",
+      "module": "explicit",
+      "category": "Libido, Mismatch & Life Phases",
+      "intensity": 2,
+      "prompt": "What helps you feel open to intimacy on a low-energy day?",
+      "contextType": "reflection",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "open-2e43553402",
+      "module": "explicit",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "How do we talk about trying something new without pressure?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "afterhours"
     }
   ]
 }

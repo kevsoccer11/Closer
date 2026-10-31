@@ -43451,6 +43451,536 @@
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
+    },
+    {
+      "id": "sexuality-add-001",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 1,
+      "prompt": "What’s a sexual first from your past that taught you something about what you like?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-002",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "In the past, what’s something you tried sexually that surprised you by how much you enjoyed it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-003",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Is there a sexual experience from the past that you remember fondly, without needing to share who was involved?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-004",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "What’s something you were curious about in the past but didn’t feel ready to explore then?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-005",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Have you ever tried something sexually and realized it wasn’t for you? What did you learn?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-006",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What fantasy do you enjoy imagining, even if you’re not sure you’d want it in real life?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-007",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What’s a fantasy you’ve kept to yourself because you weren’t sure how it would be received?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-008",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "Is there a setting or scenario that makes a fantasy especially exciting for you?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-009",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What’s the difference between a fantasy you enjoy imagining and something you’d genuinely want to try?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-010",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "Have you ever had a fantasy inspired by a book, movie, or scene? What caught your attention?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-011",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "What helps you feel confident and comfortable in your own sexual skin?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-012",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "What’s something about your own sexuality you understand better now than you did years ago?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-013",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "What kind of attention makes you feel especially desirable?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-014",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Is there a part of your sexual self you’re still discovering?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-015",
+      "module": "sexuality",
+      "category": "Curiosities & Kinks",
+      "intensity": 2,
+      "prompt": "What kind of sensual or kinky play are you curious about learning more about?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-016",
+      "module": "sexuality",
+      "category": "Curiosities & Kinks",
+      "intensity": 2,
+      "prompt": "Which sounds more appealing to you: gentle teasing, playful power exchange, or something sensory-focused?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-017",
+      "module": "sexuality",
+      "category": "Curiosities & Kinks",
+      "intensity": 2,
+      "prompt": "What’s a hard limit you want a partner to understand clearly, even if the topic is exciting to discuss?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-018",
+      "module": "sexuality",
+      "category": "Curiosities & Kinks",
+      "intensity": 2,
+      "prompt": "Have you ever been curious about a kink that you later decided wasn’t for you?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-019",
+      "module": "sexuality",
+      "category": "Curiosities & Kinks",
+      "intensity": 2,
+      "prompt": "What would make trying something new feel safer, more comfortable, and more fun?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-020",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "What helps you learn what feels good when you’re exploring your own body?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-021",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "Are there any toys or objects you’ve been curious about trying on your own?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-022",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "What’s something you enjoy doing for your own pleasure that you’d feel comfortable sharing about?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-023",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "How has your understanding of your own pleasure changed over time?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-024",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "What kind of touch helps you stay present and connected to what you’re feeling?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-025",
+      "module": "sexuality",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "Does the idea of being watched feel exciting, uncomfortable, or somewhere in between for you?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-026",
+      "module": "sexuality",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "Have you ever been curious about watching someone else in an intimate moment, with everyone’s consent?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-027",
+      "module": "sexuality",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "What would need to be true for being seen in a sensual setting to feel exciting rather than exposing?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-028",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What’s your favorite way to show someone you’re interested in them without saying it directly?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-029",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Have you ever wanted to make a bold move but held back? What made you hesitate?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-030",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What kind of flirting feels natural to you, whether you’re with a partner or someone new?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-031",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What’s something someone could do that would make you feel irresistibly pursued—in a way you enjoy?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-032",
+      "module": "sexuality",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "How comfortable are you talking about sexual curiosity before deciding whether to act on it?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-033",
+      "module": "sexuality",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "What’s a question about sex you wish people felt more comfortable asking respectfully?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-034",
+      "module": "sexuality",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "How do you prefer to communicate a change of mind during intimate exploration?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-035",
+      "module": "sexuality",
+      "category": "Communication & Boundaries",
+      "intensity": 2,
+      "prompt": "What helps you feel that your boundaries are being heard without making the conversation feel awkward?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-036",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 1,
+      "prompt": "Choose an outfit or look you’d love to feel irresistible in. What makes it feel like you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-037",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Find an outfit, accessory, or style online that you think could make you feel confident and sensual. What drew you to it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-038",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "What kind of atmosphere—music, lighting, setting, or mood—helps you feel more sensual?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-039",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "What’s a playful way you’d enjoy building anticipation before an intimate date?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-040",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 1,
+      "prompt": "Give your partner a choice: a flirty compliment, a lingering kiss, or a whispered fantasy they can choose to share.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-041",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 1,
+      "prompt": "Take turns choosing one song that makes you feel sensual. Share what each song brings out in you.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-042",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 2,
+      "prompt": "Each choose one small, comfortable way to feel more confident or alluring tonight. Share your choice—no pressure to perform it.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-043",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 2,
+      "prompt": "Show your partner a look, outfit, or accessory you find attractive, and explain what catches your eye.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-044",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 2,
+      "prompt": "Take turns describing a consensual fantasy as a scene from a movie—keep it imaginary unless you both want to discuss more.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-045",
+      "module": "sexuality",
+      "category": "Spicy Dares & Action Prompts",
+      "intensity": 2,
+      "prompt": "Ask your partner what kind of touch they’d enjoy right now, then let them guide you—or choose to pass.",
+      "contextType": "action",
+      "promptStyle": "activity",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-046",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "Have you ever wondered what it might be like to be intimate with more than one person? What feelings or questions come up for you?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-047",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "What’s your honest reaction to the idea of a threesome or group experience: curiosity, no interest, uncertainty, or something else?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-048",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "If you’ve ever considered a multi-person experience, what boundaries or conversations would matter most to you?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-049",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Have you ever had a same-sex experience, or felt curious about one? Share only what feels comfortable.",
+      "contextType": "story",
+      "promptStyle": "activity",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-050",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "How do you feel about the idea of exploring attraction beyond the gender(s) you’ve usually been drawn to?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "sexuality-add-051",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Have you ever had an intimate experience with someone significantly older or younger than you? What did you learn about your preferences?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexuality-add-052",
+      "module": "sexuality",
+      "category": "Fantasies & Desires",
+      "intensity": 2,
+      "prompt": "Is an age difference part of a fantasy for you, or does it not hold much appeal? What about the dynamic interests you, if anything?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexuality-add-053",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What’s a seductive move you’ve used—or would enjoy using—that isn’t necessarily directed at your current partner?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
     }
   ]
 }
