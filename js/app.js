@@ -401,16 +401,6 @@ setTimeout(() => {
     document.getElementById('guessMeSetupModal')?.addEventListener('click', event => {
         if (event.target === event.currentTarget) closeGuessMeSetup();
     });
-    document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(button => {
-                button.classList.remove('active');
-                button.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
-        });
-    });
     document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(button => {

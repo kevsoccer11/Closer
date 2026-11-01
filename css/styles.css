@@ -130,9 +130,13 @@ header {
     vertical-align: middle;
     display: inline-block;
 }
+.sidebar-brand {
+    display: flex;
+    justify-content: center;
+}
 .sidebar-brand .brand-logo {
-    height: 4rem;
-    width: 6rem;
+    height: 6rem;
+    width: 9rem;
     object-fit: cover;
     object-position: center;
     margin-bottom: 6px;
@@ -2640,6 +2644,15 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     .discovery-grid, .featured-packs .pack-grid.compact, .round-packs .pack-grid.compact {
         grid-template-columns: 1fr;
     }
+    #guessMeLengthChips,
+    #guessMeVibeChips {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    #guessMeLengthChips .filter-chip,
+    #guessMeVibeChips .filter-chip {
+        width: 100%;
+    }
 }
 .desktop-sidebar {
     display: none;
@@ -2716,11 +2729,32 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     border-color: var(--primary-border);
     color: var(--primary);
 }
+.round-builder-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
 #guessMeLengthChips .filter-chip,
 #guessMeVibeChips .filter-chip {
-    padding: 10px 16px;
-    font-size: 0.9rem;
+    padding: 8px 10px;
+    font-size: 0.8rem;
     min-height: 40px;
+    white-space: nowrap;
+}
+.guess-me-length-control input {
+    min-height: 48px;
+    font-size: 1rem;
+}
+.guess-me-replay-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+.guess-me-replay-actions button {
+    flex: 1 1 180px;
+    min-height: 48px;
 }
 .progress-indicator {
     font-size: 0.85rem;
@@ -3916,8 +3950,43 @@ body:not(.light-theme) .app-bottom-nav button.active {
     padding: 24px 20px calc(24px + env(safe-area-inset-bottom, 0px));
     border: 1px solid var(--card-border);
     border-radius: 24px 24px 0 0;
-    background: #fffaf8;
+    background: var(--card-bg);
     color: var(--text-main);
+}
+
+#guessMeSetupModal .round-builder-heading {
+    align-items: center;
+}
+
+#guessMeSetupModal .modal-close {
+    display: inline-flex;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 1.65rem;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .modal-overlay#guessMeSetupModal {
+        align-items: center;
+        padding: 24px;
+    }
+
+    #guessMeSetupModal .modal-card {
+        border-radius: 24px;
+        padding: 24px;
+    }
 }
 
 .app-bottom-nav button:focus-visible,

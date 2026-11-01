@@ -1,5 +1,5 @@
 {
-  "version": "7.3-full-bank-QA-review",
+  "version": "7.4-focused-content-review",
   "cards": [
     {
       "id": "sec-001",
@@ -75,7 +75,7 @@
       "id": "sec-008",
       "module": "sexuality",
       "category": "Past History & Sexual Firsts",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "What past memory of us still turns you on whenever it randomly pops into your head?",
       "contextType": "story",
       "promptStyle": "question",
@@ -321,7 +321,7 @@
       "id": "sec-032",
       "module": "sexuality",
       "category": "Curiosities & Kinks",
-      "intensity": 1,
+      "intensity": 2,
       "prompt": "What kind of lingerie, sleepwear, or outfit turns you on the most when I wear it?",
       "contextType": "story",
       "promptStyle": "question",
@@ -397,7 +397,7 @@
       "id": "sec-039",
       "module": "sexuality",
       "category": "Curiosities & Kinks",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "What is a sexual fantasy you have had while reading a book or watching a movie?",
       "contextType": "story",
       "promptStyle": "question",
@@ -757,7 +757,7 @@
       "id": "sec-075",
       "module": "sexuality",
       "category": "Curiosities & Kinks",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "Would watching porn or reading erotica together be fun for you, or not your thing?",
       "contextType": "consent",
       "promptStyle": "question",
@@ -953,7 +953,7 @@
       "id": "sec-094",
       "module": "sexuality",
       "category": "Spicy Dares & Action Prompts",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "Run your fingers slowly through your partner's hair while whispering what turns you on most about them.",
       "contextType": "action",
       "promptStyle": "activity",
@@ -2453,7 +2453,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 2,
-      "prompt": "Is there anything about sending flirty texts you’d like to change?",
+      "prompt": "What kind of message would make you smile and want to reply right away?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "spark"
@@ -3179,7 +3179,7 @@
       "module": "sexuality",
       "category": "Affection & Touch",
       "intensity": 2,
-      "prompt": "Has the way you feel about our everyday affection changed since we got together?",
+      "prompt": "Which affectionate gesture has become more meaningful to you over time?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -3609,7 +3609,7 @@
       "module": "sexuality",
       "category": "Affection & Touch",
       "intensity": 2,
-      "prompt": "Is there anything about kissing you’d like to change?",
+      "prompt": "What kind of kiss makes you feel most connected in the moment?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -3687,7 +3687,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 3,
-      "prompt": "Which option best describes your approach to making the first move, which one are you choosing?",
+      "prompt": "Which style of initiating intimacy feels most natural to you?",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
@@ -3789,7 +3789,7 @@
       "module": "sexuality",
       "category": "Affection & Touch",
       "intensity": 1,
-      "prompt": "What part of cuddling do you wish we spent a little more time on?",
+      "prompt": "What makes cuddling feel relaxing or uncomfortable for you?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -3889,7 +3889,7 @@
       "module": "sexuality",
       "category": "Affection & Touch",
       "intensity": 2,
-      "prompt": "What helps you feel like I really get you when we talk about cuddling?",
+      "prompt": "What kind of cuddle helps you feel safe and at ease?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -4765,7 +4765,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Is there anything about letting me know you want me you’d like to change?",
+      "prompt": "What makes it easiest for you to communicate desire directly?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -5891,7 +5891,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "Is there anything about sharing a yes, a maybe, or a no you’d like to change?",
+      "prompt": "How would you prefer a partner to check that you feel free to change your mind?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -6977,7 +6977,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 2,
-      "prompt": "How has your take on exploring each other’s senses changed over time?",
+      "prompt": "Which sense most strongly shapes your comfort and pleasure: touch, sound, scent, sight, or taste?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7027,7 +7027,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 2,
-      "prompt": "Is there anything about exploring each other’s senses you’d like to change?",
+      "prompt": "Which sensory experience would you prefer to avoid, and what makes that boundary important to you?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -8105,7 +8105,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 2,
-      "prompt": "Is there anything about feeling sexy together you’d like to change?",
+      "prompt": "What helps you feel at ease in your body when you are being intimate?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9021,7 +9021,7 @@
       "module": "sexuality",
       "category": "Romance & Imagination",
       "intensity": 2,
-      "prompt": "How has your take on sharing fantasies changed over time?",
+      "prompt": "What would help you feel comfortable sharing an imagined scenario with a partner?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9071,7 +9071,7 @@
       "module": "sexuality",
       "category": "Romance & Imagination",
       "intensity": 2,
-      "prompt": "Is there anything about sharing fantasies you’d like to change?",
+      "prompt": "If you wanted to share a fantasy but felt shy, what would make it easier to start?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9475,7 +9475,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 2,
-      "prompt": "What should I say or do more about making sure we both feel good?",
+      "prompt": "What sign tells you the pace of intimacy feels right for you?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9715,7 +9715,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 1,
-      "prompt": "Is there anything about taking our time together you’d like to change?",
+      "prompt": "What helps you feel comfortable asking to slow down when intimacy moves too quickly?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -10359,7 +10359,7 @@
       "module": "sexuality",
       "category": "Rituals & Playfulness",
       "intensity": 2,
-      "prompt": "Is there anything about flirty notes and texts you’d like to change?",
+      "prompt": "Which kind of unexpected message would feel most personal and affirming to you?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "spark"
@@ -10571,7 +10571,7 @@
       "module": "sexuality",
       "category": "Growing Together",
       "intensity": 1,
-      "prompt": "Is there anything about keeping things fun in bed as we get older you want to check in on or change?",
+      "prompt": "What would help you adapt intimacy as your preferences change over time?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -10591,7 +10591,7 @@
       "module": "sexuality",
       "category": "Growing Together",
       "intensity": 2,
-      "prompt": "What helps you feel understood when we talk about keeping things fun in bed as we get older?",
+      "prompt": "What changes in your body or desire would you want a partner to understand as you get older?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -10691,7 +10691,7 @@
       "module": "sexuality",
       "category": "Growing Together",
       "intensity": 1,
-      "prompt": "Does the way we keeping things fun in bed as we get older feel okay to you?",
+      "prompt": "What does playful intimacy mean to you at this stage of life?",
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
@@ -11345,7 +11345,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "Is there anything about listening to each other you’d like to change?",
+      "prompt": "What makes it easiest for you to keep talking when a conversation gets difficult?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12261,7 +12261,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 3,
-      "prompt": "How has your take on having each other’s backs changed over time?",
+      "prompt": "When you feel overwhelmed, what kind of support from a partner matters most?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12311,7 +12311,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Is there anything about having each other’s backs you’d like to change?",
+      "prompt": "What makes accepting support difficult for you, even when you need it?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12463,7 +12463,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 3,
-      "prompt": "Where do your current views on being honest with each other come from?",
+      "prompt": "What does honesty from a partner look like when the truth is difficult?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13277,7 +13277,7 @@
       "module": "life",
       "category": "Values & Identity",
       "intensity": 2,
-      "prompt": "Is there anything about what matters most to us you’d like to change?",
+      "prompt": "Which personal value would be hardest for you to compromise in a relationship?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14253,7 +14253,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 2,
-      "prompt": "Is there anything about apologizing and making up you’d like to change?",
+      "prompt": "How do you know an apology feels sincere rather than rushed?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -15219,7 +15219,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 2,
-      "prompt": "Is there anything about our work-life balance you’d like to change?",
+      "prompt": "Which part of your workday most affects the energy you have at home?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -15863,7 +15863,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "Is there anything about our home routines you’d like to change?",
+      "prompt": "Which household routine would you most like to do differently?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -16457,7 +16457,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 1,
-      "prompt": "How has your take on holidays and traditions changed over time?",
+      "prompt": "Which holiday tradition from childhood do you still want in your life?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -16507,7 +16507,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 3,
-      "prompt": "Is there anything about holidays and traditions you’d like to change?",
+      "prompt": "Which holiday tradition do you enjoy but would willingly adapt?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -17151,7 +17151,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 2,
-      "prompt": "Is there anything about our next trip you’d like to change?",
+      "prompt": "When planning a trip, which decision do you most want to make yourself?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -17795,7 +17795,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 1,
-      "prompt": "Is there anything about getting through stressful days you’d like to change?",
+      "prompt": "What early sign tells you stress is building before other people notice?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -18419,7 +18419,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 3,
-      "prompt": "Is there anything about what we want to build together you’d like to change?",
+      "prompt": "What personal goal do you want to protect while building a life with someone?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -24106,7 +24106,7 @@
       "id": "explicit-0902",
       "module": "life",
       "category": "Personal Growth & Boundaries",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "What's a lesson about love or sex from your upbringing that you're actively unlearning right now?",
       "contextType": "vulnerability",
       "promptStyle": "question",
@@ -26616,7 +26616,7 @@
       "id": "explicit-1301",
       "module": "life",
       "category": "Health & Support",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "What helps you feel supported rather than judged when your body makes sex difficult or uncomfortable?",
       "contextType": "trust",
       "promptStyle": "question",
@@ -29596,7 +29596,7 @@
       "id": "new-intimacy-009",
       "module": "sexuality",
       "category": "Libido, Mismatch & Life Phases",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "What would help us talk about a long stretch with little sexual activity in a way that feels honest and kind?",
       "contextType": "discovery",
       "promptStyle": "question",
@@ -41627,7 +41627,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "What makes a house feel like home?",
+      "prompt": "Which detail in a home—light, sound, smell, or layout—helps you relax fastest?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -41657,7 +41657,7 @@
       "module": "life",
       "category": "Friends & Social Life",
       "intensity": 1,
-      "prompt": "How much social time feels right?",
+      "prompt": "After a full week, what kind of social plan leaves you feeling most recharged?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42297,7 +42297,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "What is one thing that makes a house feel like home?",
+      "prompt": "What part of a home would you most want to personalize so it feels like yours?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42647,7 +42647,7 @@
       "module": "life",
       "category": "Aging & Health Changes",
       "intensity": 1,
-      "prompt": "What is one thing you are looking forward to about getting older?",
+      "prompt": "What skill or experience do you hope to gain as you get older?",
       "contextType": "reflection",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42737,7 +42737,7 @@
       "module": "life",
       "category": "Grief, Loss & Healing",
       "intensity": 2,
-      "prompt": "What is a memory of someone lost that still makes you smile?",
+      "prompt": "When you miss someone you've lost, what small ritual or memory comforts you most?",
       "contextType": "vulnerability",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42797,7 +42797,7 @@
       "module": "life",
       "category": "Long-Distance & Relocation",
       "intensity": 1,
-      "prompt": "What is hardest about being apart?",
+      "prompt": "What part of being apart affects your day-to-day mood the most?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42877,7 +42877,7 @@
       "module": "life",
       "category": "Technology & Digital Boundaries",
       "intensity": 1,
-      "prompt": "How much phone time feels healthy?",
+      "prompt": "What phone habit is hardest for you to put down during time together?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42887,7 +42887,7 @@
       "module": "life",
       "category": "Technology & Digital Boundaries",
       "intensity": 1,
-      "prompt": "What digital boundary would make our time better?",
+      "prompt": "What digital habit would you most like to change so you can be more present?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42897,7 +42897,7 @@
       "module": "life",
       "category": "Repair & Apology",
       "intensity": 1,
-      "prompt": "What helps you feel repaired after conflict?",
+      "prompt": "After a disagreement, what helps you believe someone has really heard you?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42927,7 +42927,7 @@
       "module": "life",
       "category": "Boundaries & No Scripts",
       "intensity": 1,
-      "prompt": "How can we make no feel safe?",
+      "prompt": "What would help you say no without worrying about the other person's reaction?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42937,7 +42937,7 @@
       "module": "life",
       "category": "Boundary Renegotiation",
       "intensity": 2,
-      "prompt": "How often should we revisit agreements?",
+      "prompt": "What change in your own needs would prompt you to revisit an agreement?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42957,7 +42957,7 @@
       "module": "life",
       "category": "Non-Monogamy & ENM",
       "intensity": 2,
-      "prompt": "What is one fear and one hope about non-monogamy?",
+      "prompt": "What concern would be hardest for you to voice about non-monogamy?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42967,7 +42967,7 @@
       "module": "life",
       "category": "Non-Monogamy & ENM",
       "intensity": 2,
-      "prompt": "What does ethical non-monogamy mean to you?",
+      "prompt": "Which values would need to guide non-monogamy for you to feel respected?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "closer"
@@ -42977,7 +42977,7 @@
       "module": "life",
       "category": "Non-Monogamy & ENM",
       "intensity": 2,
-      "prompt": "What agreements would make openness feel safe?",
+      "prompt": "What personal boundary would you need respected to feel secure in an open relationship?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43007,7 +43007,7 @@
       "module": "life",
       "category": "Queer Experiences & Identity",
       "intensity": 1,
-      "prompt": "Tell me about a moment you felt truly seen.",
+      "prompt": "Who made you feel accepted in your identity, and what did they do?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43027,7 +43027,7 @@
       "module": "life",
       "category": "Disability, Accessibility & Chronic Illness",
       "intensity": 1,
-      "prompt": "What do you wish people understood about your condition?",
+      "prompt": "What is one misconception about your condition you most wish a partner understood?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43037,7 +43037,7 @@
       "module": "life",
       "category": "Disability, Accessibility & Chronic Illness",
       "intensity": 1,
-      "prompt": "Share one way your condition changed our relationship.",
+      "prompt": "What adjustment helps your condition affect your daily life less?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43047,7 +43047,7 @@
       "module": "life",
       "category": "Cultural & Religious Differences",
       "intensity": 1,
-      "prompt": "What tradition from your culture should we keep?",
+      "prompt": "Which tradition from your culture would you want a partner to understand before joining in?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43057,7 +43057,7 @@
       "module": "life",
       "category": "Cultural & Religious Differences",
       "intensity": 1,
-      "prompt": "How do we navigate family expectations?",
+      "prompt": "Which family expectation is hardest for you to navigate without feeling like you are letting someone down?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43456,7 +43456,7 @@
       "id": "sexuality-add-001",
       "module": "sexuality",
       "category": "Past History & Sexual Firsts",
-      "intensity": 1,
+      "intensity": 2,
       "prompt": "What’s a sexual first from your past that taught you something about what you like?",
       "contextType": "story",
       "promptStyle": "question",
@@ -43626,7 +43626,7 @@
       "id": "sexuality-add-018",
       "module": "sexuality",
       "category": "Curiosities & Kinks",
-      "intensity": 2,
+      "intensity": 3,
       "prompt": "Have you ever been curious about a kink that you later decided wasn’t for you?",
       "contextType": "consent",
       "promptStyle": "question",

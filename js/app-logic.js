@@ -608,6 +608,7 @@ let guessMeListener = null;
 let guessMeListenerRefs = [];
 let guessMeRefreshInFlight = false;
 let guessMeRefreshPending = false;
+let guessMeReplayStarting = false;
 function showGuessMeView() {
     document.body.classList.remove('landing');
     document.getElementById('homeView')?.classList.add('hidden');
@@ -651,7 +652,8 @@ async function refreshGuessMeState() {
                 'status', 'length', 'vibe', 'currentIndex', 'hostReady', 'partnerReady',
                 'scores/host', 'scores/partner', 'question', 'answererUid', 'predictorUid',
                 'submissionStatus/answerSubmitted', 'submissionStatus/guessSubmitted',
-                'submissionStatus/resolved', 'submissionStatus/scored'
+                'submissionStatus/resolved', 'submissionStatus/scored',
+                'replayVotes/host', 'replayVotes/partner', 'questionIds'
             ];
             const snapshots = await Promise.all(paths.map(path => roomRef.child(`guessMe/${path}`).once('value')));
             if (window.roomRef !== roomRef) return;
@@ -671,6 +673,8 @@ async function refreshGuessMeState() {
                 partnerReady: values.partnerReady,
                 scores: { host: values['scores/host'], partner: values['scores/partner'] },
                 question: values.question,
+                questionIds: values.questionIds,
+                replayVotes: { host: values['replayVotes/host'], partner: values['replayVotes/partner'] },
                 answererUid: values.answererUid,
                 predictorUid: values.predictorUid,
                 submissionStatus
@@ -698,7 +702,7 @@ function attachGuessMeListener() {
     detachGuessMeListener();
     const paths = [
         'status', 'length', 'vibe', 'question', 'submissionStatus', 'currentIndex',
-        'hostReady', 'partnerReady', 'scores'
+        'hostReady', 'partnerReady', 'scores', 'replayVotes'
     ];
     guessMeListener = () => { refreshGuessMeState(); };
     guessMeListenerRefs = paths.map(path => window.roomRef.child(`guessMe/${path}`));
@@ -978,12 +982,14 @@ function openGuessMeSetup() {
     const modal = document.getElementById('guessMeSetupModal');
     if (!modal) return;
     // reset selection
-    ['#guessMeLengthChips', '#guessMeVibeChips'].forEach(selector => {
+    ['#guessMeVibeChips'].forEach(selector => {
         document.querySelectorAll(`${selector} .filter-chip`).forEach((button, index) => {
             const selected = index === 0;
             button.classList.toggle('active', selected);
             button.setAttribute('aria-pressed', String(selected));
         });
+        const lengthInput = document.getElementById('guessMeQuestionCount');
+        if (lengthInput) lengthInput.value = '20';
     });
     const createButton = document.getElementById('guessMeCreateRoomBtn');
     if (createButton) createButton.disabled = false;
@@ -995,12 +1001,15 @@ function closeGuessMeSetup() {
     setModalOpen(document.getElementById('guessMeSetupModal'), false);
 }
 function getGuessMeSelection() {
-    const lengthBtn = document.querySelector('#guessMeLengthChips .filter-chip.active');
+    const lengthInput = document.getElementById('guessMeQuestionCount');
     const vibeBtn = document.querySelector('#guessMeVibeChips .filter-chip.active');
-    const length = Number(lengthBtn?.dataset.length);
+    const length = Number(lengthInput?.value);
     const vibe = vibeBtn?.dataset.vibe;
+    if (!Number.isInteger(length) || length < 1 || length > 100) {
+        throw new Error('Choose a round length between 1 and 100 questions.');
+    }
     return {
-        length: [10, 20, 30].includes(length) ? length : 10,
+        length,
         vibe: ['mixed', 'playful', 'romantic', 'deep'].includes(vibe) ? vibe : 'mixed'
     };
 }
@@ -3321,16 +3330,22 @@ function renderPairManagement() {
     }
 
     if (window.currentRoomRole !== 'host') return;
-    const requests = Object.entries(pendingJoinRequests).filter(([, request]) => request?.status === 'pending');
+    pairManagementContainer.appendChild(createJoinRequestsSection(
+        'No pending requests. Only one partner can be approved.'
+    ));
+}
+
+function createJoinRequestsSection(emptyMessage, statusId = null) {
     const section = document.createElement('section');
     section.className = 'room-requests-section';
     const heading = document.createElement('h4');
     heading.textContent = 'Join requests';
     section.appendChild(heading);
+    const requests = Object.entries(pendingJoinRequests).filter(([, request]) => request?.status === 'pending');
     if (requests.length === 0) {
         const empty = document.createElement('p');
         empty.className = 'room-request-empty';
-        empty.textContent = 'No pending requests. Only one partner can be approved.';
+        empty.textContent = emptyMessage;
         section.appendChild(empty);
     }
     requests.forEach(([uid]) => {
@@ -3352,7 +3367,21 @@ function renderPairManagement() {
         item.append(label, actions);
         section.appendChild(item);
     });
-    pairManagementContainer.appendChild(section);
+    if (statusId) {
+        const status = document.createElement('p');
+        status.id = statusId;
+        status.className = 'pair-status';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        section.appendChild(status);
+    }
+    return section;
+}
+
+function setJoinRequestStatus(message) {
+    setPairStatus(message);
+    const status = document.getElementById('guessMeJoinRequestStatus');
+    if (status) status.textContent = message;
 }
 
 async function resolveJoinRequest(uid, approved) {
@@ -3363,7 +3392,7 @@ async function resolveJoinRequest(uid, approved) {
             const partnerRef = window.roomRef.child('members/partner');
             const result = await partnerRef.transaction(currentUid => currentUid === null ? uid : undefined);
             if (!result.committed) {
-                setPairStatus('This room already has a partner. The two-person limit has been reached.');
+                setJoinRequestStatus('This room already has a partner. The two-person limit has been reached.');
                 return;
             }
         }
@@ -3371,12 +3400,12 @@ async function resolveJoinRequest(uid, approved) {
             status: approved ? 'approved' : 'denied',
             resolvedAt: Date.now()
         });
-        setPairStatus(approved
+        setJoinRequestStatus(approved
             ? 'Partner approved. They can now enter the room.'
             : 'Join request denied.');
     } catch (error) {
         console.error('Could not resolve the room join request:', error);
-        setPairStatus(`Could not ${approved ? 'approve' : 'deny'} the request: ${error.message}`);
+        setJoinRequestStatus(`Could not ${approved ? 'approve' : 'deny'} the request: ${error.message}`);
     }
 }
 
@@ -3569,8 +3598,14 @@ function connectToRoom(roomCode, role) {
         roomJoinRequestsListener = snapshot => {
             pendingJoinRequests = snapshot.val() || {};
             renderPairManagement();
+            if (!document.getElementById('guessMeView')?.classList.contains('hidden')) {
+                refreshGuessMeState();
+            }
         };
-        window.roomRef.child('joinRequests').on('value', roomJoinRequestsListener);
+        window.roomRef.child('joinRequests').on('value', roomJoinRequestsListener, error => {
+            console.error('Could not load room join requests:', error);
+            setJoinRequestStatus(`Could not load join requests: ${error.message}`);
+        });
     } else {
         pendingJoinRequests = {};
     }
@@ -3969,6 +4004,40 @@ async function loadGuessMeQuestion(requestedIndex) {
         'guessMe/submissionStatus/scored': false
     });
 }
+async function startGuessMeReplay(gm) {
+    if (window.currentRoomRole !== 'host' || guessMeReplayStarting
+        || gm.replayVotes?.host !== 'yes' || gm.replayVotes?.partner !== 'yes') return;
+    guessMeReplayStarting = true;
+    try {
+        await ensureGuessMeQuestionBank();
+        const ids = pickGuessMeQuestions(gm.length, gm.vibe);
+        if (ids.length !== gm.length) {
+            throw new Error(`Only ${ids.length} questions are available for this vibe. Choose a shorter round.`);
+        }
+        await window.roomRef.update({
+            'guessMe/status': 'lobby',
+            'guessMe/hostReady': false,
+            'guessMe/partnerReady': false,
+            'guessMe/scores/host': 0,
+            'guessMe/scores/partner': 0,
+            'guessMe/question': null,
+            'guessMe/answer': null,
+            'guessMe/guess': null,
+            'guessMe/submissionStatus/answerSubmitted': false,
+            'guessMe/submissionStatus/guessSubmitted': false,
+            'guessMe/submissionStatus/resolved': false,
+            'guessMe/submissionStatus/scored': false,
+            'guessMe/questionIds': null,
+            'guessMe/currentIndex': 0,
+            'guessMe/replayVotes/host': null,
+            'guessMe/replayVotes/partner': null
+        });
+    } catch (error) {
+        reportGuessMeError(error);
+    } finally {
+        guessMeReplayStarting = false;
+    }
+}
 async function renderGuessMe(gm) {
     const view = document.getElementById('guessMeView');
     if (!view) return;
@@ -4051,6 +4120,9 @@ async function renderGuessMe(gm) {
                 await ensureGuessMeQuestionBank();
                 const ids = pickGuessMeQuestions(gm.length, gm.vibe);
                 if (!ids.length) throw new Error(`No You Get Me questions are available for the ${gm.vibe} vibe.`);
+                if (ids.length !== gm.length) {
+                    throw new Error(`Only ${ids.length} questions are available for this vibe. Choose a shorter round.`);
+                }
                 await window.roomRef.update({
                     'guessMe/questionIds': ids,
                     'guessMe/length': ids.length,
@@ -4067,6 +4139,12 @@ async function renderGuessMe(gm) {
         actions.append(leave, start);
         info.append(readiness, ip, actions);
         view.appendChild(info);
+        if (isHost) {
+            view.appendChild(createJoinRequestsSection(
+                'Share the room code with your partner. Their request will appear here.',
+                'guessMeJoinRequestStatus'
+            ));
+        }
         return;
     }
     if (gm.status === 'complete') {
@@ -4091,34 +4169,48 @@ async function renderGuessMe(gm) {
         summary.textContent = `Played ${played} questions. ${hostName}: ${hostScore} predictions correct · ${partnerName}: ${partnerScore} predictions correct.`;
         content.append(label, t, summary);
         card.appendChild(content);
-        const again = document.createElement('button'); again.className='btn-primary'; again.textContent='Play again';
-        again.classList.toggle('hidden', !isHost);
-        again.onclick = async () => {
-            try {
-                await window.roomRef.child('guessMe/status').set('lobby');
-                await window.roomRef.update({
-                    'guessMe/hostReady': false,
-                    'guessMe/partnerReady': false,
-                    'guessMe/scores/host': 0,
-                    'guessMe/scores/partner': 0,
-                    'guessMe/question': null,
-                    'guessMe/answer': null,
-                    'guessMe/guess': null,
-                    'guessMe/submissionStatus/answerSubmitted': false,
-                    'guessMe/submissionStatus/guessSubmitted': false,
-                    'guessMe/submissionStatus/resolved': false,
-                    'guessMe/submissionStatus/scored': false,
-                    'guessMe/questionIds': null,
-                    'guessMe/currentIndex': 0
-                });
-            } catch (error) {
-                reportGuessMeError(error);
-            }
-        };
+        const replayVotes = gm.replayVotes || {};
+        const myRole = isHost ? 'host' : 'partner';
+        const partnerRole = isHost ? 'partner' : 'host';
+        const myVote = replayVotes[myRole];
+        const partnerVote = replayVotes[partnerRole];
+        const replayPrompt = document.createElement('p');
+        replayPrompt.className = 'round-builder-intro';
+        replayPrompt.textContent = 'Would you both like to play another round?';
+        const replayStatus = document.createElement('p');
+        replayStatus.className = 'card-answer-status';
+        replayStatus.setAttribute('role', 'status');
+        replayStatus.textContent = myVote === 'no'
+            ? 'You chose to finish this game.'
+            : partnerVote === 'no' ? 'Your partner chose to finish this game.'
+                : myVote === 'yes' ? 'You’re in. Waiting for your partner.'
+                    : partnerVote === 'yes' ? 'Your partner is up for another round. What do you think?'
+                        : 'Choose whether you would like to continue.';
+        const voteButtons = document.createElement('div');
+        voteButtons.className = 'guess-me-replay-actions';
+        ['yes', 'no'].forEach(vote => {
+            const button = document.createElement('button');
+            button.className = vote === 'yes' ? 'btn-primary' : 'btn-secondary';
+            button.textContent = vote === 'yes' ? 'Yes, play another round' : 'No, finish here';
+            button.disabled = Boolean(myVote || partnerVote === 'no');
+            button.onclick = async () => {
+                button.disabled = true;
+                try {
+                    await window.roomRef.child(`guessMe/replayVotes/${myRole}`).set(vote);
+                } catch (error) {
+                    reportGuessMeError(error);
+                    button.disabled = false;
+                }
+            };
+            voteButtons.appendChild(button);
+        });
         const home = document.createElement('button'); home.className='btn-secondary'; home.textContent='Leave game';
         home.onclick = leaveGuessMeRoom;
-        card.append(again, home);
+        card.append(replayPrompt, voteButtons, replayStatus, home);
         view.appendChild(card);
+        if (isHost && replayVotes.host === 'yes' && replayVotes.partner === 'yes') {
+            await startGuessMeReplay(gm);
+        }
         return;
     }
     const q = gm.question;

@@ -4,9 +4,10 @@ const {
     assertSucceeds,
     initializeTestEnvironment
 } = require('@firebase/rules-unit-testing');
-const { get, ref, remove, set } = require('firebase/database');
+const { get, ref, remove, runTransaction, set, update } = require('firebase/database');
 
 const roomCode = 'abcdefghijklmnopqrstuv';
+const joinRoomCode = 'bcdefghijklmnopqrstuvw';
 const sharedDeckPath = `rooms/${roomCode}/sharedDeck`;
 
 async function seedRoom(environment) {
@@ -39,13 +40,58 @@ async function main() {
         await assertFails(get(ref(outsider, sharedDeckPath)));
 
         const validQuestionIds = Object.fromEntries(
-            Array.from({ length: 30 }, (_, index) => [String(index), `question-${index}`])
+            Array.from({ length: 100 }, (_, index) => [String(index), `question-${index}`])
         );
         await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/questionIds`), validQuestionIds));
         await assertFails(set(ref(host, `rooms/${roomCode}/guessMe/questionIds`), {
             ...validQuestionIds,
-            30: 'question-30'
+            100: 'question-100'
         }));
+
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/gameMode`), 'guess-me'));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/length`), 100));
+        await assertFails(set(ref(host, `rooms/${roomCode}/guessMe/length`), 101));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/currentIndex`), 99));
+        await assertFails(set(ref(host, `rooms/${roomCode}/guessMe/currentIndex`), 100));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/status`), 'complete'));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/replayVotes/host`), 'yes'));
+        await assertFails(set(ref(host, `rooms/${roomCode}/guessMe/replayVotes/partner`), 'yes'));
+        await assertSucceeds(set(ref(partner, `rooms/${roomCode}/guessMe/replayVotes/partner`), 'no'));
+        await assertFails(set(ref(partner, `rooms/${roomCode}/guessMe/replayVotes/host`), 'no'));
+        await assertSucceeds(remove(ref(host, `rooms/${roomCode}/guessMe/replayVotes/partner`)));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/status`), 'playing'));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/predictorUid`), 'partner-uid'));
+        await assertFails(set(ref(partner, `rooms/${roomCode}/guessMe/predictorUid`), 'host-uid'));
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/scores/partner`), 1));
+        await assertFails(set(ref(partner, `rooms/${roomCode}/guessMe/scores/partner`), 2));
+
+        const hostForJoin = environment.authenticatedContext('joining-host').database();
+        const partnerForJoin = environment.authenticatedContext('joining-partner').database();
+        await assertSucceeds(set(ref(hostForJoin, `rooms/${joinRoomCode}/members/host`), 'joining-host'));
+        await assertSucceeds(set(ref(hostForJoin, `rooms/${joinRoomCode}/gameMode`), 'guess-me'));
+        await assertSucceeds(set(ref(partnerForJoin, `rooms/${joinRoomCode}/joinRequests/joining-partner`), {
+            requesterUid: 'joining-partner',
+            status: 'pending',
+            requestedAt: Date.now()
+        }));
+        await assertSucceeds(runTransaction(
+            ref(hostForJoin, `rooms/${joinRoomCode}/members/partner`),
+            currentUid => currentUid === null ? 'joining-partner' : undefined
+        ));
+        await assertSucceeds(update(
+            ref(hostForJoin, `rooms/${joinRoomCode}/joinRequests/joining-partner`),
+            { status: 'approved', resolvedAt: Date.now() }
+        ));
+        await assertSucceeds(get(ref(partnerForJoin, `rooms/${joinRoomCode}/gameMode`)));
+        await assertSucceeds(set(ref(partnerForJoin, `rooms/${joinRoomCode}/guessMe/partnerReady`), true));
+
+        const scoreTransaction = await runTransaction(
+            ref(host, `rooms/${roomCode}/guessMe/scores/partner`),
+            score => (Number(score) || 0) + 1
+        );
+        if (!scoreTransaction.committed || scoreTransaction.snapshot.val() !== 2) {
+            throw new Error('You Get Me host score transaction did not commit');
+        }
 
         await assertSucceeds(set(ref(host, `${sharedDeckPath}/host-new`), {
             addedBy: 'host-uid',

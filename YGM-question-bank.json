@@ -1,8 +1,8 @@
 {
   "game": "You Get Me",
   "description": "Dedicated question bank for the You Get Me prediction game. The answerer chooses one of four options; their partner predicts that choice.",
-  "version": 1,
-  "count": 135,
+  "version": 3,
+  "count": 400,
   "schema": {
     "id": "stable unique identifier",
     "category": "category slug",
@@ -1500,6 +1500,2096 @@
         "Clean laundry",
         "Coffee or tea",
         "Fresh flowers"
+      ]
+    },
+    {
+      "id": "ygm-136",
+      "category": "silly_ridiculous",
+      "question": "Which ridiculous contest would I secretly believe I could win?",
+      "options": ["A dramatic sighing contest", "Speed-folding fitted sheets", "Guessing snacks by smell", "A staring contest with a cat"]
+    },
+    {
+      "id": "ygm-137",
+      "category": "silly_ridiculous",
+      "question": "If my laugh became a ringtone, what would people assume was happening?",
+      "options": ["Someone told a terrible pun", "I saw a dog doing something odd", "A harmless plan went wrong", "I am trying not to laugh in public"]
+    },
+    {
+      "id": "ygm-138",
+      "category": "silly_ridiculous",
+      "question": "What would I most likely name a very low-maintenance pet rock?",
+      "options": ["A serious human name", "Something grand and royal", "A pun about its shape", "Whatever name you suggest"]
+    },
+    {
+      "id": "ygm-139",
+      "category": "silly_ridiculous",
+      "question": "Which tiny inconvenience would make me act like the universe is against me?",
+      "options": ["A sleeve getting wet", "A song ending too soon", "A snack getting stuck in the machine", "My phone charging just slowly enough"]
+    },
+    {
+      "id": "ygm-140",
+      "category": "silly_ridiculous",
+      "question": "If I had to wear one silly accessory every day for a year, what would I choose?",
+      "options": ["A tiny cape", "Oversized sunglasses", "A dramatic hat", "A pair of novelty socks"]
+    },
+    {
+      "id": "ygm-141",
+      "category": "silly_ridiculous",
+      "question": "What would I do first if I discovered I could talk to household appliances?",
+      "options": ["Ask the fridge what it wants", "Apologize to the vacuum", "Get the coffee maker to tell jokes", "Ask the washing machine where socks go"]
+    },
+    {
+      "id": "ygm-142",
+      "category": "silly_ridiculous",
+      "question": "Which job would I be hilariously unqualified to do for one day?",
+      "options": ["Weather presenter", "Circus ringmaster", "Royal food taster", "Museum guard around a tempting button"]
+    },
+    {
+      "id": "ygm-143",
+      "category": "silly_ridiculous",
+      "question": "If I had a personal theme song that played when I entered a room, what would it sound like?",
+      "options": ["An epic movie fanfare", "A playful video-game tune", "A smooth entrance song", "A song that makes me immediately dance"]
+    },
+    {
+      "id": "ygm-144",
+      "category": "silly_ridiculous",
+      "question": "What would I be most tempted to bring home from a very strange gift shop?",
+      "options": ["A comically large mug", "A mysterious tiny figurine", "A shirt with an awful pun", "A souvenir nobody can identify"]
+    },
+    {
+      "id": "ygm-145",
+      "category": "silly_ridiculous",
+      "question": "Which imaginary rule would I add to make a board game more chaotic?",
+      "options": ["Everyone must narrate their moves", "Players trade seats each turn", "A dramatic sound effect is required", "The winner has to invent a new rule"]
+    },
+    {
+      "id": "ygm-146",
+      "category": "silly_ridiculous",
+      "question": "If I could give one animal a very human job, which pairing would amuse me most?",
+      "options": ["A cat as a strict librarian", "A penguin as a wedding planner", "A goat as a food critic", "A golden retriever as a therapist"]
+    },
+    {
+      "id": "ygm-147",
+      "category": "silly_ridiculous",
+      "question": "What would I use as an overly dramatic excuse to avoid a boring chore?",
+      "options": ["I have been summoned by destiny", "The laundry needs time to reflect", "I am training for a nap marathon", "The chore and I are taking space"]
+    },
+    {
+      "id": "ygm-148",
+      "category": "silly_ridiculous",
+      "question": "If I could make one food produce a sound when bitten, what would be funniest?",
+      "options": ["A tiny trumpet for a carrot", "Applause for a crisp", "A drum roll for a grape", "A dramatic gasp for a biscuit"]
+    },
+    {
+      "id": "ygm-149",
+      "category": "silly_ridiculous",
+      "question": "What would my completely unnecessary royal title be?",
+      "options": ["Keeper of the Good Snacks", "Duke of Comfortable Clothes", "The Great Procrastinator", "Protector of the Remote"]
+    },
+    {
+      "id": "ygm-150",
+      "category": "silly_ridiculous",
+      "question": "If a friendly ghost followed me around, what would I ask it to do?",
+      "options": ["Find the things I just misplaced", "Make chores slightly less boring", "Give a warning before awkward moments", "Tell me what the pets are thinking"]
+    },
+    {
+      "id": "ygm-151",
+      "category": "everyday_personality",
+      "question": "When I wake up with a free hour, what am I most likely to do first?",
+      "options": ["Get moving and make a plan", "Stay cozy and ease into the day", "Check messages and see what is happening", "Find something good to eat"]
+    },
+    {
+      "id": "ygm-152",
+      "category": "everyday_personality",
+      "question": "What is the clearest sign that I have had a draining day?",
+      "options": ["I get quieter than usual", "I talk through every detail", "I want comfort and no decisions", "I try to distract myself with something fun"]
+    },
+    {
+      "id": "ygm-153",
+      "category": "everyday_personality",
+      "question": "When I have a difficult decision, what do I rely on most?",
+      "options": ["A list of pros and cons", "A gut feeling", "Talking it through with someone", "Taking time away before deciding"]
+    },
+    {
+      "id": "ygm-154",
+      "category": "everyday_personality",
+      "question": "Which task am I most likely to put off even when it would be quick?",
+      "options": ["Replying to a message", "Making an appointment", "Putting things away", "Starting paperwork or admin"]
+    },
+    {
+      "id": "ygm-155",
+      "category": "everyday_personality",
+      "question": "What kind of compliment would mean the most to me on an ordinary day?",
+      "options": ["You noticed how hard I tried", "You make people feel welcome", "I admire how your mind works", "I feel lucky to be with you"]
+    },
+    {
+      "id": "ygm-156",
+      "category": "everyday_personality",
+      "question": "When I am learning something new, what helps me stick with it?",
+      "options": ["A clear step-by-step guide", "Trying it hands-on", "Someone learning alongside me", "Seeing quick progress"]
+    },
+    {
+      "id": "ygm-157",
+      "category": "everyday_personality",
+      "question": "What do I tend to do when a plan suddenly changes?",
+      "options": ["Adapt quickly and find another option", "Need a moment to reset", "Ask questions until I understand", "Look for the funny side"]
+    },
+    {
+      "id": "ygm-158",
+      "category": "everyday_personality",
+      "question": "Which kind of small win improves my mood the fastest?",
+      "options": ["Finishing a task I avoided", "Getting a thoughtful message", "Finding time to rest", "Making someone laugh"]
+    },
+    {
+      "id": "ygm-159",
+      "category": "everyday_personality",
+      "question": "When I enter a social gathering, what do I usually do first?",
+      "options": ["Find someone I know", "Introduce myself to someone new", "Look for food or a drink", "Take in the room before joining in"]
+    },
+    {
+      "id": "ygm-160",
+      "category": "everyday_personality",
+      "question": "What is most likely to make me feel overwhelmed at home?",
+      "options": ["Too many unfinished tasks", "Noise and interruptions", "Clutter I cannot ignore", "Having to make one more decision"]
+    },
+    {
+      "id": "ygm-161",
+      "category": "everyday_personality",
+      "question": "When I receive unexpected free time, how do I prefer to use it?",
+      "options": ["Rest without feeling guilty", "Get ahead on something useful", "Do something spontaneous", "Spend it with someone I care about"]
+    },
+    {
+      "id": "ygm-162",
+      "category": "everyday_personality",
+      "question": "What would I most want someone to understand about how I handle stress?",
+      "options": ["I need quiet before I can talk", "Talking helps me sort it out", "I want practical help, not advice", "I may seem fine before I actually feel fine"]
+    },
+    {
+      "id": "ygm-163",
+      "category": "everyday_personality",
+      "question": "What kind of responsibility am I most likely to volunteer for?",
+      "options": ["Organizing the details", "Helping someone one-on-one", "Keeping the mood light", "Taking charge when nobody else does"]
+    },
+    {
+      "id": "ygm-164",
+      "category": "everyday_personality",
+      "question": "Which habit would I be happiest to improve this year?",
+      "options": ["Getting more consistent sleep", "Spending less time on my phone", "Following through on plans", "Making more room for fun"]
+    },
+    {
+      "id": "ygm-165",
+      "category": "everyday_personality",
+      "question": "When I feel proud of myself, what am I most likely to do?",
+      "options": ["Tell someone I trust", "Quietly enjoy the moment", "Set an even bigger goal", "Treat myself to something small"]
+    },
+    {
+      "id": "ygm-166",
+      "category": "everyday_personality",
+      "question": "What kind of help is hardest for me to ask for?",
+      "options": ["Emotional support", "Help with practical tasks", "Advice about a personal choice", "Time or space for myself"]
+    },
+    {
+      "id": "ygm-167",
+      "category": "everyday_personality",
+      "question": "What most often makes me lose track of time?",
+      "options": ["A conversation I enjoy", "A game, show, or book", "A project I get absorbed in", "Scrolling through things online"]
+    },
+    {
+      "id": "ygm-168",
+      "category": "everyday_personality",
+      "question": "How do I usually react when I make a mistake in front of someone?",
+      "options": ["Laugh at myself", "Apologize quickly", "Get quiet and replay it later", "Explain what I meant and move on"]
+    },
+    {
+      "id": "ygm-169",
+      "category": "everyday_personality",
+      "question": "What kind of praise feels most believable to me?",
+      "options": ["Specific praise about something I did", "Recognition of my character", "A warm, spontaneous compliment", "Hearing that someone trusts me"]
+    },
+    {
+      "id": "ygm-170",
+      "category": "everyday_personality",
+      "question": "What is my most likely response when I cannot sleep?",
+      "options": ["Read or listen to something calming", "Get up and do a quiet task", "Think through tomorrow's plans", "Reach for my phone"]
+    },
+    {
+      "id": "ygm-171",
+      "category": "everyday_personality",
+      "question": "Which situation is most likely to bring out my competitive side?",
+      "options": ["A team sport or active game", "A trivia or word game", "A playful challenge between friends", "I am rarely competitive"]
+    },
+    {
+      "id": "ygm-172",
+      "category": "everyday_personality",
+      "question": "What would I most like to feel more confident doing?",
+      "options": ["Speaking up in a group", "Trying something I might be bad at", "Setting a boundary", "Celebrating my own achievements"]
+    },
+    {
+      "id": "ygm-173",
+      "category": "everyday_personality",
+      "question": "When I am upset, what is my first instinct?",
+      "options": ["Figure out what caused it", "Find a trusted person to talk to", "Take a break and be alone", "Do something physical to release tension"]
+    },
+    {
+      "id": "ygm-174",
+      "category": "everyday_personality",
+      "question": "Which kind of task do I find surprisingly satisfying?",
+      "options": ["Planning a trip or event", "Sorting and organizing", "Cooking something from scratch", "Fixing a small problem"]
+    },
+    {
+      "id": "ygm-175",
+      "category": "everyday_personality",
+      "question": "What am I most likely to remember about meeting someone new?",
+      "options": ["Their name and face", "A detail from their story", "How they made me feel", "The place where we met"]
+    },
+    {
+      "id": "ygm-176",
+      "category": "everyday_personality",
+      "question": "What kind of surprise would make me happiest during a busy week?",
+      "options": ["A meal I did not have to plan", "An hour of uninterrupted downtime", "A thoughtful note or message", "Help with something on my to-do list"]
+    },
+    {
+      "id": "ygm-177",
+      "category": "everyday_personality",
+      "question": "When I am excited about an idea, what do I do?",
+      "options": ["Start explaining it immediately", "Research how to make it happen", "Tell one person I trust first", "Keep thinking until I have a plan"]
+    },
+    {
+      "id": "ygm-178",
+      "category": "everyday_personality",
+      "question": "Which quality do I rely on most when life gets complicated?",
+      "options": ["Patience", "Humor", "Persistence", "Ability to ask for help"]
+    },
+    {
+      "id": "ygm-179",
+      "category": "everyday_personality",
+      "question": "What kind of message am I most likely to answer right away?",
+      "options": ["A practical question that needs a decision", "A funny photo or joke", "A message from someone I miss", "An invitation to do something fun"]
+    },
+    {
+      "id": "ygm-180",
+      "category": "everyday_personality",
+      "question": "Which part of my routine would I most like to make easier?",
+      "options": ["Getting ready in the morning", "Keeping up with chores", "Making weekday meals", "Switching off at the end of the day"]
+    },
+    {
+      "id": "ygm-181",
+      "category": "everyday_personality",
+      "question": "When someone disagrees with me, what matters most?",
+      "options": ["Understanding their reasoning", "Feeling heard before we move on", "Keeping the conversation respectful", "Finding a solution we can both accept"]
+    },
+    {
+      "id": "ygm-182",
+      "category": "everyday_personality",
+      "question": "What is most likely to make me feel appreciated at work or in a project?",
+      "options": ["Someone noticing my effort", "Being trusted with responsibility", "Getting useful feedback", "Having my time respected"]
+    },
+    {
+      "id": "ygm-183",
+      "category": "everyday_personality",
+      "question": "If I had a whole afternoon with no obligations, what would I gravitate toward?",
+      "options": ["Going somewhere new", "Staying home and recharging", "Catching up with someone", "Working on a personal interest"]
+    },
+    {
+      "id": "ygm-184",
+      "category": "everyday_personality",
+      "question": "What most often gets me through a task I do not want to do?",
+      "options": ["Breaking it into small steps", "Putting on music or a podcast", "Doing it alongside someone", "Promising myself a reward afterward"]
+    },
+    {
+      "id": "ygm-185",
+      "category": "everyday_personality",
+      "question": "How do I prefer to be approached when I seem distracted?",
+      "options": ["A gentle check-in", "A direct question", "A little time before talking", "A light joke to bring me back"]
+    },
+    {
+      "id": "ygm-186",
+      "category": "everyday_personality",
+      "question": "Which kind of memory do I tend to hold onto longest?",
+      "options": ["A time someone showed up for me", "A funny shared moment", "A place that felt special", "A challenge I overcame"]
+    },
+    {
+      "id": "ygm-187",
+      "category": "everyday_personality",
+      "question": "What is my most likely reaction to an unexpected invitation?",
+      "options": ["Say yes if I am free", "Ask who will be there and what the plan is", "Check my energy before deciding", "Suggest a different time"]
+    },
+    {
+      "id": "ygm-188",
+      "category": "everyday_personality",
+      "question": "What would I most want to get better at saying out loud?",
+      "options": ["I need help", "That hurt my feelings", "I am proud of myself", "I need some time to think"]
+    },
+    {
+      "id": "ygm-189",
+      "category": "everyday_personality",
+      "question": "When I am trying to save money, what is hardest for me to resist?",
+      "options": ["Convenient food or coffee", "A hobby or entertainment purchase", "A gift for someone else", "A good deal I did not plan for"]
+    },
+    {
+      "id": "ygm-190",
+      "category": "everyday_personality",
+      "question": "What usually helps me feel settled in a new place?",
+      "options": ["Knowing where everything is", "Finding a familiar food or drink", "Having someone I trust nearby", "Getting a little time to explore"]
+    },
+    {
+      "id": "ygm-191",
+      "category": "couple_fun",
+      "question": "If I planned a spontaneous date for us, what would I most likely choose?",
+      "options": ["A new restaurant or cafe", "A walk somewhere scenic", "A playful activity or game", "A cozy night at home"]
+    },
+    {
+      "id": "ygm-192",
+      "category": "couple_fun",
+      "question": "Which role would I naturally take on during a weekend trip?",
+      "options": ["The itinerary planner", "The navigator", "The one finding good food", "The one keeping plans flexible"]
+    },
+    {
+      "id": "ygm-193",
+      "category": "couple_fun",
+      "question": "What would I pick for a low-pressure evening together?",
+      "options": ["Cooking something new", "A movie and a favorite snack", "A long conversation", "Getting out for a casual activity"]
+    },
+    {
+      "id": "ygm-194",
+      "category": "couple_fun",
+      "question": "At a party where we know very few people, what would I prefer we do?",
+      "options": ["Meet people together", "Split up and catch up later", "Find a quiet corner and talk", "Make a short appearance and head out"]
+    },
+    {
+      "id": "ygm-195",
+      "category": "couple_fun",
+      "question": "What would I be most excited to plan together this year?",
+      "options": ["A weekend away", "A home project", "A new shared tradition", "A class or activity we have never tried"]
+    },
+    {
+      "id": "ygm-196",
+      "category": "couple_fun",
+      "question": "If we had an unscheduled Saturday, what would I want us to do first?",
+      "options": ["Go somewhere before it gets busy", "Enjoy a slow morning at home", "Run a few errands together", "Decide as we go"]
+    },
+    {
+      "id": "ygm-197",
+      "category": "couple_fun",
+      "question": "Which shared activity would I most want to get better at together?",
+      "options": ["Cooking", "Dancing", "A sport or active hobby", "A creative project"]
+    },
+    {
+      "id": "ygm-198",
+      "category": "couple_fun",
+      "question": "What would I most enjoy showing you from my childhood?",
+      "options": ["A favorite movie or show", "A place I used to go", "A hobby or game I loved", "A story about my family"]
+    },
+    {
+      "id": "ygm-199",
+      "category": "couple_fun",
+      "question": "If we hosted friends, what would I be most likely to take charge of?",
+      "options": ["Choosing the food", "Making people feel welcome", "Setting up music and games", "Making sure the details are handled"]
+    },
+    {
+      "id": "ygm-200",
+      "category": "couple_fun",
+      "question": "What kind of shared tradition would I be most excited to start?",
+      "options": ["A regular breakfast or coffee date", "A yearly trip or outing", "A weekly no-phone evening", "A small celebration of everyday wins"]
+    },
+    {
+      "id": "ygm-201",
+      "category": "couple_fun",
+      "question": "When we are choosing something to watch, what is my usual approach?",
+      "options": ["I already have something in mind", "I want to browse options together", "I rewatch a familiar favorite", "I let you choose"]
+    },
+    {
+      "id": "ygm-202",
+      "category": "couple_fun",
+      "question": "What would I most want us to do on a day when we both need a reset?",
+      "options": ["Get outside for a while", "Order food and stay in", "Do something fun without planning much", "Talk about what has been weighing on us"]
+    },
+    {
+      "id": "ygm-203",
+      "category": "couple_fun",
+      "question": "If we took a road trip, what would I want control over?",
+      "options": ["The playlist", "The snacks", "The route and stops", "The passenger-seat entertainment"]
+    },
+    {
+      "id": "ygm-204",
+      "category": "couple_fun",
+      "question": "Which kind of photo would I be most likely to take of us?",
+      "options": ["A posed picture at a nice spot", "A candid laugh", "A photo of our food or view", "A deliberately silly selfie"]
+    },
+    {
+      "id": "ygm-205",
+      "category": "couple_fun",
+      "question": "What would I choose for a celebration that is just for us?",
+      "options": ["A dressed-up dinner", "A quiet night with a favorite meal", "An experience we have never tried", "A small thoughtful exchange"]
+    },
+    {
+      "id": "ygm-206",
+      "category": "couple_fun",
+      "question": "If we entered a friendly competition together, what would be my strongest role?",
+      "options": ["Keeping us focused", "Coming up with an unusual strategy", "Keeping our spirits up", "Not taking it too seriously"]
+    },
+    {
+      "id": "ygm-207",
+      "category": "couple_fun",
+      "question": "What would I be most likely to suggest when we have only an hour together?",
+      "options": ["A walk and a catch-up", "A quick meal together", "A small errand we can make fun", "Staying close and unwinding"]
+    },
+    {
+      "id": "ygm-208",
+      "category": "couple_fun",
+      "question": "If we decorated a room together, which choice would I care about most?",
+      "options": ["The colors and overall feel", "Comfort and how we use it", "Finding a few special pieces", "Keeping it simple and uncluttered"]
+    },
+    {
+      "id": "ygm-209",
+      "category": "couple_fun",
+      "question": "What kind of new experience would I be most likely to say yes to with you?",
+      "options": ["A food I have never tried", "A class where we are both beginners", "A short trip to somewhere new", "A performance or local event"]
+    },
+    {
+      "id": "ygm-210",
+      "category": "couple_fun",
+      "question": "What would I want us to do if it started raining during an outdoor date?",
+      "options": ["Find a cozy place nearby", "Keep going and enjoy the change", "Head home and make a new plan", "Turn it into a funny memory"]
+    },
+    {
+      "id": "ygm-211",
+      "category": "couple_fun",
+      "question": "What would I most enjoy doing together while traveling?",
+      "options": ["Trying local food", "Exploring without a strict plan", "Visiting landmarks or museums", "Taking time to rest where we are staying"]
+    },
+    {
+      "id": "ygm-212",
+      "category": "couple_fun",
+      "question": "If we made a playlist for a long drive, what would I add first?",
+      "options": ["Songs tied to a memory", "Upbeat songs we can sing", "Music I want you to discover", "A mix of both our favorites"]
+    },
+    {
+      "id": "ygm-213",
+      "category": "couple_fun",
+      "question": "What would make me feel most included when you are busy with friends?",
+      "options": ["A quick introduction and context", "A chance to talk one-on-one", "Knowing the plan ahead of time", "A check-in that lets me choose how involved to be"]
+    },
+    {
+      "id": "ygm-214",
+      "category": "couple_fun",
+      "question": "If we had a free evening and a little extra money, what would I pick?",
+      "options": ["A memorable meal", "Tickets to something live", "A treat and a cozy night in", "Saving it for a bigger plan"]
+    },
+    {
+      "id": "ygm-215",
+      "category": "couple_fun",
+      "question": "Which kind of project would I most enjoy working on as a team?",
+      "options": ["Making a room feel more like us", "Planning an event", "Learning a practical skill", "Building or making something"]
+    },
+    {
+      "id": "ygm-216",
+      "category": "couple_fun",
+      "question": "What do I most like hearing from you before we make a plan?",
+      "options": ["I have a fun idea", "What sounds good to you?", "Here are a few options", "I have handled the details"]
+    },
+    {
+      "id": "ygm-217",
+      "category": "couple_fun",
+      "question": "If we had to choose a place to live for a year, what would I prioritize?",
+      "options": ["Being close to friends or family", "Access to nature", "Good food and things to do", "A peaceful, comfortable home"]
+    },
+    {
+      "id": "ygm-218",
+      "category": "couple_fun",
+      "question": "What would I most want us to make time for during a busy month?",
+      "options": ["A proper date night", "A few quiet evenings together", "Time with friends as a couple", "A check-in about how we are both doing"]
+    },
+    {
+      "id": "ygm-219",
+      "category": "couple_fun",
+      "question": "At a market or festival, where would I head first?",
+      "options": ["Food stalls", "Music or performances", "Local crafts and art", "The busiest attraction"]
+    },
+    {
+      "id": "ygm-220",
+      "category": "couple_fun",
+      "question": "What would I be most likely to bring home from a trip as a reminder?",
+      "options": ["A useful item made locally", "A photo or ticket from the day", "A small object with a story", "A new recipe or food to share"]
+    },
+    {
+      "id": "ygm-221",
+      "category": "couple_fun",
+      "question": "What would I prefer if we disagreed about how to spend a day off?",
+      "options": ["Choose one thing for each of us", "Take turns deciding", "Find a new option we both like", "Keep the day open and decide later"]
+    },
+    {
+      "id": "ygm-222",
+      "category": "couple_fun",
+      "question": "What kind of evening would I most enjoy after a big milestone?",
+      "options": ["Celebrate with people close to us", "Keep it private and meaningful", "Go somewhere special", "Relax together and let it sink in"]
+    },
+    {
+      "id": "ygm-223",
+      "category": "couple_fun",
+      "question": "If we tried a new hobby together, what would make it enjoyable for me?",
+      "options": ["No pressure to be good at it", "A clear goal to work toward", "Getting to laugh at our mistakes", "Having time to practice together"]
+    },
+    {
+      "id": "ygm-224",
+      "category": "couple_fun",
+      "question": "What would I want us to do with a completely unexpected day off?",
+      "options": ["Take a short day trip", "Stay home and recharge", "Visit someone we care about", "Pick a fun activity at the last minute"]
+    },
+    {
+      "id": "ygm-225",
+      "category": "couple_fun",
+      "question": "Which small shared accomplishment would make me happiest?",
+      "options": ["Keeping a promise we made to ourselves", "Making a hard week easier for each other", "Finishing a project together", "Making a new memory on an ordinary day"]
+    },
+    {
+      "id": "ygm-226",
+      "category": "couple_fun",
+      "question": "What would I want to show you first in a city I know well?",
+      "options": ["My favorite place to eat", "A spot with a personal memory", "Somewhere with a great view", "A place most visitors miss"]
+    },
+    {
+      "id": "ygm-227",
+      "category": "couple_fun",
+      "question": "If we planned a night with friends, what would I hope it includes?",
+      "options": ["Good conversation", "A shared meal", "A game or activity", "Enough downtime that it does not feel like a production"]
+    },
+    {
+      "id": "ygm-228",
+      "category": "couple_fun",
+      "question": "What would I most enjoy deciding together about our home?",
+      "options": ["A space to make more relaxing", "A meal or recipe to make a regular thing", "A practical upgrade", "A small detail that reflects our personalities"]
+    },
+    {
+      "id": "ygm-229",
+      "category": "couple_fun",
+      "question": "What would make a simple date feel special to me?",
+      "options": ["Knowing you chose it with me in mind", "Having our phones put away", "Getting to try something new", "Taking our time without rushing"]
+    },
+    {
+      "id": "ygm-230",
+      "category": "couple_fun",
+      "question": "Which question would I most enjoy answering together on a quiet night?",
+      "options": ["What are we looking forward to?", "What is something we have not tried yet?", "What has made us laugh lately?", "What would make next week feel easier?"]
+    },
+    {
+      "id": "ygm-231",
+      "category": "preferences_unexpected",
+      "question": "Which kind of gift would feel most personal to me?",
+      "options": ["Something connected to a story I told", "An experience we can share", "A useful upgrade I would not buy myself", "A small handmade or handwritten gesture"]
+    },
+    {
+      "id": "ygm-232",
+      "category": "preferences_unexpected",
+      "question": "What is my ideal way to spend the first hour of a vacation?",
+      "options": ["Explore the area right away", "Unpack and settle in", "Find something to eat", "Sit down and enjoy being there"]
+    },
+    {
+      "id": "ygm-233",
+      "category": "preferences_unexpected",
+      "question": "When choosing a restaurant, what matters most to me?",
+      "options": ["The food is reliably good", "There is something new to try", "The atmosphere feels comfortable", "It is easy for everyone to enjoy"]
+    },
+    {
+      "id": "ygm-234",
+      "category": "preferences_unexpected",
+      "question": "What kind of weather makes me happiest?",
+      "options": ["Cool and crisp", "Warm with sunshine", "Rainy and cozy", "A mild day with a little breeze"]
+    },
+    {
+      "id": "ygm-235",
+      "category": "preferences_unexpected",
+      "question": "Which small comfort would I miss most when traveling?",
+      "options": ["My own bed and pillows", "A familiar morning drink", "Quiet time alone", "My usual home routine"]
+    },
+    {
+      "id": "ygm-236",
+      "category": "preferences_unexpected",
+      "question": "What kind of book or story am I most likely to choose?",
+      "options": ["A mystery or thriller", "A thoughtful real-life story", "Fantasy or science fiction", "Something funny and easy to read"]
+    },
+    {
+      "id": "ygm-237",
+      "category": "preferences_unexpected",
+      "question": "What do I usually want more of in a free weekend?",
+      "options": ["Rest", "Time outdoors", "Time with people", "A chance to make progress on something"]
+    },
+    {
+      "id": "ygm-238",
+      "category": "preferences_unexpected",
+      "question": "Which kind of music is most likely to change my mood for the better?",
+      "options": ["Something upbeat and familiar", "A calm instrumental mix", "Songs that bring back memories", "Whatever I can sing along to"]
+    },
+    {
+      "id": "ygm-239",
+      "category": "preferences_unexpected",
+      "question": "How do I prefer to choose a place for a short getaway?",
+      "options": ["I research options and compare them", "I follow a recommendation", "I pick what feels appealing", "I want you to surprise me"]
+    },
+    {
+      "id": "ygm-240",
+      "category": "preferences_unexpected",
+      "question": "What is my favorite kind of way to celebrate a personal win?",
+      "options": ["Tell someone close to me", "Enjoy a favorite meal or treat", "Take a little time off", "Mark it with a meaningful keepsake"]
+    },
+    {
+      "id": "ygm-241",
+      "category": "preferences_unexpected",
+      "question": "Which kind of conversation do I most enjoy at the end of the day?",
+      "options": ["A funny recap of what happened", "A thoughtful talk about something real", "Making plans for something we want to do", "A relaxed chat without a particular topic"]
+    },
+    {
+      "id": "ygm-242",
+      "category": "preferences_unexpected",
+      "question": "What is my preferred pace for a day of sightseeing?",
+      "options": ["See as much as possible", "Choose a few highlights and linger", "Leave room for spontaneous stops", "Take breaks and keep it relaxed"]
+    },
+    {
+      "id": "ygm-243",
+      "category": "preferences_unexpected",
+      "question": "What kind of meal feels most comforting to me?",
+      "options": ["Something warm and familiar", "A favorite meal from childhood", "A fresh meal made at home", "A favorite takeout order"]
+    },
+    {
+      "id": "ygm-244",
+      "category": "preferences_unexpected",
+      "question": "Which kind of creative activity would I be most willing to try?",
+      "options": ["Painting or drawing", "Making something with my hands", "Writing or telling a story", "Music, singing, or dancing"]
+    },
+    {
+      "id": "ygm-245",
+      "category": "preferences_unexpected",
+      "question": "When I have to wait somewhere, what do I prefer to do?",
+      "options": ["Read or listen to something", "People-watch", "Chat with whoever I am with", "Use the time to handle a small task"]
+    },
+    {
+      "id": "ygm-246",
+      "category": "preferences_unexpected",
+      "question": "What kind of home environment helps me relax most?",
+      "options": ["Quiet and tidy", "Warm lighting and soft things", "Music or a familiar show in the background", "A bit of activity and company"]
+    },
+    {
+      "id": "ygm-247",
+      "category": "preferences_unexpected",
+      "question": "Which would I choose for a low-key birthday?",
+      "options": ["A meal with a few favorite people", "A day planned around something I love", "A quiet day with no expectations", "A small surprise from someone close"]
+    },
+    {
+      "id": "ygm-248",
+      "category": "preferences_unexpected",
+      "question": "What kind of outdoor time do I enjoy most?",
+      "options": ["A walk with somewhere to go", "Sitting somewhere scenic", "A more active adventure", "Being outside while doing something social"]
+    },
+    {
+      "id": "ygm-249",
+      "category": "preferences_unexpected",
+      "question": "What kind of meal would I order when I want to treat myself?",
+      "options": ["A dish I already know I love", "Something I have never tried", "A generous comfort-food meal", "A dessert or treat I usually skip"]
+    },
+    {
+      "id": "ygm-250",
+      "category": "preferences_unexpected",
+      "question": "What would I most enjoy receiving as a thoughtful message?",
+      "options": ["A specific thing you appreciate about me", "A funny memory we share", "A little encouragement for my day", "A note saying you miss me"]
+    },
+    {
+      "id": "ygm-251",
+      "category": "preferences_unexpected",
+      "question": "What is my favorite way to spend time near water?",
+      "options": ["Swimming or being active", "Sitting and watching the view", "Walking along the shore", "Enjoying a meal or drink nearby"]
+    },
+    {
+      "id": "ygm-252",
+      "category": "preferences_unexpected",
+      "question": "Which kind of plan do I find easiest to say yes to?",
+      "options": ["A clear plan with a time and place", "A few flexible options", "A spontaneous invitation", "A plan that includes time to recharge"]
+    },
+    {
+      "id": "ygm-253",
+      "category": "preferences_unexpected",
+      "question": "What do I most enjoy about a really good day?",
+      "options": ["Feeling productive", "Feeling connected to people", "Having a new experience", "Feeling rested and unhurried"]
+    },
+    {
+      "id": "ygm-254",
+      "category": "preferences_unexpected",
+      "question": "Which type of place would I choose for a quiet afternoon?",
+      "options": ["A bookstore or library", "A park or garden", "A cafe with a good view", "Home with a comfortable seat"]
+    },
+    {
+      "id": "ygm-255",
+      "category": "preferences_unexpected",
+      "question": "What would I most want to learn about if I had a free class?",
+      "options": ["A language or culture", "Cooking or baking", "A practical hands-on skill", "Art, music, or another creative skill"]
+    },
+    {
+      "id": "ygm-256",
+      "category": "preferences_unexpected",
+      "question": "Which is my most tempting kind of treat?",
+      "options": ["A sweet dessert", "A savory snack", "A favorite drink", "An experience I would not usually plan"]
+    },
+    {
+      "id": "ygm-257",
+      "category": "preferences_unexpected",
+      "question": "What is my ideal amount of planning for a vacation?",
+      "options": ["A detailed itinerary", "The important bookings, with free time", "A rough idea and room to improvise", "As little planning as possible"]
+    },
+    {
+      "id": "ygm-258",
+      "category": "preferences_unexpected",
+      "question": "What do I most like to do during a long conversation?",
+      "options": ["Sit face-to-face without distractions", "Walk or do something side by side", "Share a meal or drink", "Talk in a familiar, comfortable place"]
+    },
+    {
+      "id": "ygm-259",
+      "category": "preferences_unexpected",
+      "question": "Which sound would I most enjoy hearing at home?",
+      "options": ["Rain against the windows", "Music I love", "People laughing together", "A quiet room with no background noise"]
+    },
+    {
+      "id": "ygm-260",
+      "category": "preferences_unexpected",
+      "question": "Which souvenir am I most likely to keep for years?",
+      "options": ["A photo from a meaningful day", "A small useful item", "A note or ticket with a story", "Something handmade by a local artist"]
+    },
+    {
+      "id": "ygm-261",
+      "category": "preferences_unexpected",
+      "question": "What would I most want to do on a very hot day?",
+      "options": ["Find shade and a cold drink", "Go somewhere with water", "Stay inside somewhere cool", "Take it slowly and avoid a packed schedule"]
+    },
+    {
+      "id": "ygm-262",
+      "category": "preferences_unexpected",
+      "question": "What kind of challenge sounds most satisfying to me?",
+      "options": ["Solving a tricky problem", "Building a new habit", "Trying something that takes courage", "Working toward a shared goal"]
+    },
+    {
+      "id": "ygm-263",
+      "category": "preferences_unexpected",
+      "question": "Which way of spending an unexpected bonus would I prefer?",
+      "options": ["Save most of it", "Put it toward a trip or experience", "Buy something I have wanted", "Use some to make life easier for someone"]
+    },
+    {
+      "id": "ygm-264",
+      "category": "preferences_unexpected",
+      "question": "What kind of photo do I enjoy looking back at most?",
+      "options": ["A candid moment with people I love", "A beautiful place", "A milestone or celebration", "A funny moment nobody planned"]
+    },
+    {
+      "id": "ygm-265",
+      "category": "preferences_unexpected",
+      "question": "What helps me enjoy a busy day out?",
+      "options": ["Knowing the main plan in advance", "Having breaks built in", "Going with someone whose company I enjoy", "Keeping expectations flexible"]
+    },
+    {
+      "id": "ygm-266",
+      "category": "sweet_flirty",
+      "question": "What kind of affection from you is most likely to make me feel chosen?",
+      "options": ["A warm hug that lasts", "A genuine compliment", "Your full attention", "A thoughtful touch as you pass by"]
+    },
+    {
+      "id": "ygm-267",
+      "category": "sweet_flirty",
+      "question": "When would I most appreciate a loving check-in from you?",
+      "options": ["At the start of a busy day", "After something stressful", "When we have been apart for a while", "Before we settle in for the night"]
+    },
+    {
+      "id": "ygm-268",
+      "category": "sweet_flirty",
+      "question": "Which romantic gesture would feel most natural and meaningful to me?",
+      "options": ["A sincere note", "Planning time just for us", "Reaching for my hand", "Remembering a small detail I mentioned"]
+    },
+    {
+      "id": "ygm-269",
+      "category": "sweet_flirty",
+      "question": "What would make me feel especially attractive to you?",
+      "options": ["Hearing what you find beautiful about me", "A lingering look or smile", "Feeling wanted when we are close", "Being appreciated for more than my appearance"]
+    },
+    {
+      "id": "ygm-270",
+      "category": "sweet_flirty",
+      "question": "What is my favorite kind of goodbye when we are parting for the day?",
+      "options": ["A long hug", "A kiss and a kind word", "A playful moment that makes me smile", "A reminder of when we will reconnect"]
+    },
+    {
+      "id": "ygm-271",
+      "category": "sweet_flirty",
+      "question": "Which little sign of affection would I notice even on a hectic day?",
+      "options": ["A message that says you are thinking of me", "A hand on my shoulder", "A small favor done without asking", "A moment of eye contact and a smile"]
+    },
+    {
+      "id": "ygm-272",
+      "category": "sweet_flirty",
+      "question": "What would I most like to hear when I am doubting myself?",
+      "options": ["I believe in you", "You do not have to handle this alone", "I love who you are, not just what you do", "Take your time; I am here"]
+    },
+    {
+      "id": "ygm-273",
+      "category": "sweet_flirty",
+      "question": "What kind of moment with you makes me feel closest?",
+      "options": ["Laughing until we lose track of time", "Talking honestly without rushing", "Being affectionate in a quiet moment", "Doing something ordinary side by side"]
+    },
+    {
+      "id": "ygm-274",
+      "category": "sweet_flirty",
+      "question": "What would I most enjoy you remembering about our relationship?",
+      "options": ["A detail from our early days", "Something I am working toward", "How I like to be comforted", "A small thing that reliably makes me smile"]
+    },
+    {
+      "id": "ygm-275",
+      "category": "sweet_flirty",
+      "question": "When do I most enjoy being flirted with?",
+      "options": ["In a sweet message during the day", "During a playful back-and-forth", "When we have time alone", "In a small, unexpected moment"]
+    },
+    {
+      "id": "ygm-276",
+      "category": "sweet_flirty",
+      "question": "Which shared memory would I most like to revisit with you?",
+      "options": ["A time we laughed uncontrollably", "A first or important milestone", "A quiet moment when I felt safe", "A day we tried something new"]
+    },
+    {
+      "id": "ygm-277",
+      "category": "sweet_flirty",
+      "question": "What makes a compliment from you feel most special?",
+      "options": ["It is specific and sincere", "It comes when I do not expect it", "You tell me what it means to you", "You say it privately and tenderly"]
+    },
+    {
+      "id": "ygm-278",
+      "category": "sweet_flirty",
+      "question": "What kind of reassurance helps me feel secure in our connection?",
+      "options": ["Hearing that we are a team", "Knowing we will make time for each other", "A direct expression of affection", "Seeing you follow through on what you say"]
+    },
+    {
+      "id": "ygm-279",
+      "category": "sweet_flirty",
+      "question": "What would I most like us to do when we have missed each other?",
+      "options": ["Take time to catch up properly", "Share a close and unhurried hug", "Make a small plan to look forward to", "Ease back in with something fun"]
+    },
+    {
+      "id": "ygm-280",
+      "category": "sweet_flirty",
+      "question": "Which thing about the way you love me do I value most?",
+      "options": ["You make room for my feelings", "You show up in practical ways", "You keep finding ways to make me laugh", "You keep choosing to grow with me"]
+    },
+    {
+      "id": "ygm-281",
+      "category": "sweet_flirty",
+      "question": "What would I most enjoy doing together to feel close after a long week?",
+      "options": ["A cozy night with no agenda", "A date that gets us out of the house", "A long talk and an early night", "Something playful that helps us laugh"]
+    },
+    {
+      "id": "ygm-282",
+      "category": "sweet_flirty",
+      "question": "Which expression of love would I find hardest to forget?",
+      "options": ["You standing up for me", "You noticing I needed support", "You sharing something vulnerable with me", "You celebrating a win that mattered to me"]
+    },
+    {
+      "id": "ygm-283",
+      "category": "sweet_flirty",
+      "question": "What kind of touch feels most comforting when I need closeness?",
+      "options": ["Holding hands", "A full embrace", "Sitting close with an arm around me", "A gentle touch on my back or shoulder"]
+    },
+    {
+      "id": "ygm-284",
+      "category": "sweet_flirty",
+      "question": "What would I most want you to say after we have worked through a hard conversation?",
+      "options": ["I am glad we talked about it", "I still feel close to you", "Thank you for being honest with me", "Let us keep figuring this out together"]
+    },
+    {
+      "id": "ygm-285",
+      "category": "sweet_flirty",
+      "question": "Which surprise from you would make an ordinary weekday feel romantic?",
+      "options": ["A favorite treat waiting for me", "An invitation to take a walk together", "A message about what you appreciate", "You taking one thing off my plate"]
+    },
+    {
+      "id": "ygm-286",
+      "category": "sweet_flirty",
+      "question": "What do I most hope you notice about me lately?",
+      "options": ["The effort I am putting into something", "A change in how I am feeling", "A part of me I am trying to share more", "The ways I show up for you"]
+    },
+    {
+      "id": "ygm-287",
+      "category": "sweet_flirty",
+      "question": "Which kind of love note would make me smile longest?",
+      "options": ["A memory of when you first felt close to me", "A list of small things you love about me", "A playful message only we would understand", "A few words about what you hope we will share"]
+    },
+    {
+      "id": "ygm-288",
+      "category": "sweet_flirty",
+      "question": "When would I most appreciate you reaching for my hand?",
+      "options": ["While we are walking somewhere", "When we are sitting together quietly", "In a moment that feels new or uncertain", "When we are around other people"]
+    },
+    {
+      "id": "ygm-289",
+      "category": "sweet_flirty",
+      "question": "What would make me feel most cherished after a difficult week?",
+      "options": ["You listening without trying to fix everything", "A little time planned just for us", "A warm and affectionate welcome home", "You telling me what you admire about me"]
+    },
+    {
+      "id": "ygm-290",
+      "category": "sweet_flirty",
+      "question": "Which thing would I be most likely to save because it came from you?",
+      "options": ["A handwritten note", "A photo from an ordinary day", "A small item with a story", "A message that arrived at the right time"]
+    },
+    {
+      "id": "ygm-291",
+      "category": "sweet_flirty",
+      "question": "What helps me feel desired while still feeling emotionally connected?",
+      "options": ["Affection that is not a request for more", "Hearing what you love about being close to me", "Feeling relaxed and not rushed", "Knowing I can say what feels good to me"]
+    },
+    {
+      "id": "ygm-292",
+      "category": "sweet_flirty",
+      "question": "What kind of shared future moment do I most look forward to?",
+      "options": ["A place we have talked about visiting", "A tradition we have not started yet", "A peaceful day in a home that feels like ours", "A milestone we will celebrate together"]
+    },
+    {
+      "id": "ygm-293",
+      "category": "sweet_flirty",
+      "question": "What makes me feel most seen when I tell you about my day?",
+      "options": ["You remember a detail I mentioned earlier", "You notice how the experience affected me", "You ask a thoughtful follow-up", "You make space for both the good and bad parts"]
+    },
+    {
+      "id": "ygm-294",
+      "category": "sweet_flirty",
+      "question": "What is my favorite way for us to reconnect after time apart?",
+      "options": ["A proper hello and a long hug", "A few minutes to talk without distractions", "Sharing a meal or drink", "A playful greeting that feels like us"]
+    },
+    {
+      "id": "ygm-295",
+      "category": "sweet_flirty",
+      "question": "Which thing would I most like you to say when introducing me to someone?",
+      "options": ["Something you genuinely admire about me", "How we met or a story about us", "A detail that shows you know me well", "Just my name, with warmth and affection"]
+    },
+    {
+      "id": "ygm-296",
+      "category": "sweet_flirty",
+      "question": "What would make me feel especially loved during a quiet moment together?",
+      "options": ["You leaning into me", "You asking what is on my mind", "You sharing something you appreciate", "Simply being comfortable in the silence"]
+    },
+    {
+      "id": "ygm-297",
+      "category": "sweet_flirty",
+      "question": "What kind of invitation from you would I find hardest to turn down?",
+      "options": ["Come take a break with me", "Let us go somewhere just the two of us", "Tell me what you have been thinking about", "Come here; I want to hold you"]
+    },
+    {
+      "id": "ygm-298",
+      "category": "sweet_flirty",
+      "question": "What would I most want you to remember on a day I feel insecure?",
+      "options": ["A quality in me you have always loved", "A time I handled something hard", "That I do not have to earn your affection", "That you are here even when I am struggling"]
+    },
+    {
+      "id": "ygm-299",
+      "category": "sweet_flirty",
+      "question": "Which little ritual would I most enjoy adding to our evenings?",
+      "options": ["Sharing one good thing from the day", "A few minutes of cuddling without screens", "Making a drink for each other", "Taking turns choosing a song"]
+    },
+    {
+      "id": "ygm-300",
+      "category": "sweet_flirty",
+      "question": "What would I most like us to celebrate about the way we are growing together?",
+      "options": ["How we keep learning about each other", "How we make room for each other's differences", "How we handle hard moments as a team", "How we still make each other laugh"]
+    },
+    {
+      "id": "ygm-301",
+      "category": "silly_ridiculous",
+      "question": "If I had to participate in a silent movie, what would my signature dramatic expression be?",
+      "options": [
+        "Staring blankly into the middle distance",
+        "Clutching my chest in absolute shock",
+        "Raising one eyebrow with supreme skepticism",
+        "Sighing deeply while looking up at the sky"
+      ]
+    },
+    {
+      "id": "ygm-302",
+      "category": "silly_ridiculous",
+      "question": "If my inner thoughts had a physical manifestation in the room, what would they look like?",
+      "options": [
+        "A bouncing neon sign",
+        "A tiny storm cloud",
+        "A floating question mark",
+        "A calm little lantern"
+      ]
+    },
+    {
+      "id": "ygm-303",
+      "category": "silly_ridiculous",
+      "question": "If I were forced to star in a low-budget commercial, what product would I be selling?",
+      "options": [
+        "An overly complicated kitchen gadget",
+        "A mattress that promises miraculous sleep",
+        "A questionable miracle cleaning spray",
+        "An uncomfortably bright flashlight"
+      ]
+    },
+    {
+      "id": "ygm-304",
+      "category": "silly_ridiculous",
+      "question": "If I could magically attach wheels to one household object, what would be the most entertaining choice?",
+      "options": [
+        "The refrigerator",
+        "Our main armchair",
+        "The laundry basket",
+        "The coffee table"
+      ]
+    },
+    {
+      "id": "ygm-305",
+      "category": "silly_ridiculous",
+      "question": "If I were a villain whose evil scheme was entirely minor and annoying, what would I do?",
+      "options": [
+        "Turn all TV volume levels to odd numbers",
+        "Slightly misalign every picture frame in town",
+        "Hide the top sheet on every bed",
+        "Make every doorknob slightly sticky"
+      ]
+    },
+    {
+      "id": "ygm-306",
+      "category": "silly_ridiculous",
+      "question": "If I had to compete in an unconventional sport involving animals, which would I choose?",
+      "options": [
+        "Synchronized swimming with goldfish",
+        "A gentle race against a tortoise",
+        "Herding confused ducklings",
+        "A staring contest with an owl"
+      ]
+    },
+    {
+      "id": "ygm-307",
+      "category": "silly_ridiculous",
+      "question": "If my shadow gained independence and started acting out, what would it probably be doing?",
+      "options": [
+        "Taking a nap on the nearest surface",
+        "Dancing badly when nobody is looking",
+        "Sneaking imaginary snacks",
+        "Practicing a dramatic speech"
+      ]
+    },
+    {
+      "id": "ygm-308",
+      "category": "silly_ridiculous",
+      "question": "If I could instantly download the skills of a random professional, which would I pick first?",
+      "options": [
+        "A master pastry chef",
+        "A professional acrobat",
+        "An expert clockmaker",
+        "A Broadway set designer"
+      ]
+    },
+    {
+      "id": "ygm-309",
+      "category": "silly_ridiculous",
+      "question": "If I had to wear a ridiculous hat to every formal event for the rest of my life, what kind would I choose?",
+      "options": [
+        "A classic wizard pointed hat",
+        "A tiny miniature top hat",
+        "A wide-brimmed sun hat with fruit on it",
+        "A fluffy aviator helmet with goggles"
+      ]
+    },
+    {
+      "id": "ygm-310",
+      "category": "silly_ridiculous",
+      "question": "If an ancient artifact gave me one useless magical ability, what would I hope it is?",
+      "options": [
+        "Making my hair blow in a breeze when none exists",
+        "Glowing faintly in the dark like a nightlight",
+        "Making any beverage instantly room temperature",
+        "Causing small echoes whenever I speak"
+      ]
+    },
+    {
+      "id": "ygm-311",
+      "category": "everyday_personality",
+      "question": "When I am browsing through a streaming service and trying to pick something, what usually happens?",
+      "options": [
+        "I scroll for an eternity and pick nothing",
+        "I immediately choose a reliable comfort show",
+        "I read every single description before deciding",
+        "I ask you to make the final choice"
+      ]
+    },
+    {
+      "id": "ygm-312",
+      "category": "everyday_personality",
+      "question": "What is my absolute least favorite part of doing household chores?",
+      "options": [
+        "Getting started on the task",
+        "Dealing with tiny, tedious details",
+        "Putting everything back where it belongs",
+        "Doing them when I am already tired"
+      ]
+    },
+    {
+      "id": "ygm-313",
+      "category": "everyday_personality",
+      "question": "When I receive an unexpected phone call from an unknown number, what is my immediate reaction?",
+      "options": [
+        "Ignore it completely and let it go to voicemail",
+        "Stare at the screen with mild suspicion",
+        "Answer it immediately out of sheer curiosity",
+        "Check who it might be online before deciding"
+      ]
+    },
+    {
+      "id": "ygm-314",
+      "category": "everyday_personality",
+      "question": "How do I generally handle running slightly late for an appointment or gathering?",
+      "options": [
+        "I stay completely calm and keep my pace",
+        "I stress out internally while looking calm",
+        "I rush frantically and drop things",
+        "I accept it and let whoever is waiting know"
+      ]
+    },
+    {
+      "id": "ygm-315",
+      "category": "everyday_personality",
+      "question": "What is my typical approach when packing a bag for a trip?",
+      "options": [
+        "I pack days in advance with a meticulous list",
+        "I throw everything together the night before",
+        "I pack light and plan to buy what I need",
+        "I overpack because I worry about every scenario"
+      ]
+    },
+    {
+      "id": "ygm-316",
+      "category": "everyday_personality",
+      "question": "When I am listening to someone explain a complicated story, what do I tend to do?",
+      "options": [
+        "Nod along intently and ask clarifying questions",
+        "Get distracted by a minor detail they mentioned",
+        "Quietly try to predict how the story ends",
+        "Focus entirely on their expressions and feelings"
+      ]
+    },
+    {
+      "id": "ygm-317",
+      "category": "everyday_personality",
+      "question": "What is my usual reaction when I try a new recipe and it does not turn out right?",
+      "options": [
+        "I laugh it off and order takeout",
+        "I analyze what went wrong for next time",
+        "I get quietly frustrated with myself",
+        "I try to rescue it with extra seasoning"
+      ]
+    },
+    {
+      "id": "ygm-318",
+      "category": "everyday_personality",
+      "question": "How do I typically feel about shopping in crowded, busy stores?",
+      "options": [
+        "I get it over with as fast as humanly possible",
+        "I find it draining and lose my patience",
+        "I treat it like a mission with a clear target",
+        "I avoid it entirely whenever possible"
+      ]
+    },
+    {
+      "id": "ygm-319",
+      "category": "everyday_personality",
+      "question": "What is my preferred method for organizing my thoughts when life gets busy?",
+      "options": [
+        "Writing everything down on physical paper",
+        "Talking it out loud with someone I trust",
+        "Keeping a mental checklist in my head",
+        "Taking quiet time alone to process things"
+      ]
+    },
+    {
+      "id": "ygm-320",
+      "category": "everyday_personality",
+      "question": "When something minor breaks or stops working around the house, what do I do first?",
+      "options": [
+        "Try to fix it immediately with whatever is nearby",
+        "Research a tutorial online before touching it",
+        "Leave it alone and hope it fixes itself",
+        "Ask for help or delegate the problem"
+      ]
+    },
+    {
+      "id": "ygm-321",
+      "category": "couple_fun",
+      "question": "If we decided to host an impromptu themed dinner party tonight, what vibe would I pick?",
+      "options": [
+        "A fancy restaurant simulation at our table",
+        "A casual comfort-food night with games",
+        "A chaotic snack-platter grazing event",
+        "An upscale tasting menu made from random pantry items"
+      ]
+    },
+    {
+      "id": "ygm-322",
+      "category": "couple_fun",
+      "question": "If we were contestants on a reality game show about couples, what would be our biggest strength?",
+      "options": [
+        "Our ability to communicate without speaking",
+        "Our unmatched competitive teamwork",
+        "Keeping each other laughing under pressure",
+        "Staying remarkably calm in chaos"
+      ]
+    },
+    {
+      "id": "ygm-323",
+      "category": "couple_fun",
+      "question": "What kind of whimsical challenge would I most enjoy setting up for us on a lazy Sunday?",
+      "options": [
+        "Building the most elaborate blanket structure",
+        "A blind taste test of random kitchen ingredients",
+        "A tournament of a simple board game",
+        "A competition to find the oldest item in our fridge"
+      ]
+    },
+    {
+      "id": "ygm-324",
+      "category": "couple_fun",
+      "question": "If we had to swap roles for an entire weekend day, what would be hardest for me?",
+      "options": [
+        "Following your exact schedule without complaints",
+        "Letting you make every single decision",
+        "Matching your level of energy and pacing",
+        "Giving up control of the remote and music"
+      ]
+    },
+    {
+      "id": "ygm-325",
+      "category": "couple_fun",
+      "question": "What kind of inside joke between us do I cherish and repeat the most?",
+      "options": [
+        "A silly mispronunciation of a common word",
+        "A reference to a strange moment on a trip",
+        "A funny phrase from a movie we watched together",
+        "A nickname that started completely by accident"
+      ]
+    },
+    {
+      "id": "ygm-326",
+      "category": "couple_fun",
+      "question": "If we decided to learn a completely ridiculous skill together, what would I pick?",
+      "options": [
+        "Juggling three random objects",
+        "Basic magic tricks with cards",
+        "Synchronized kitchen dancing",
+        "Speaking in exaggerated accents"
+      ]
+    },
+    {
+      "id": "ygm-327",
+      "category": "couple_fun",
+      "question": "What is my favorite way for us to break up a monotonous routine during the week?",
+      "options": [
+        "Going on an impromptu late-night drive",
+        "Ordering dessert from somewhere new",
+        "Stopping by a park just to walk for ten minutes",
+        "Putting on upbeat music and cooking together"
+      ]
+    },
+    {
+      "id": "ygm-328",
+      "category": "couple_fun",
+      "question": "If we created a signature cocktail or mocktail representing our relationship, what would define it?",
+      "options": [
+        "Something sweet balanced with a little tartness",
+        "A comforting classic with an unexpected twist",
+        "A fizzy, vibrant drink with lots of color",
+        "A warm, rich beverage meant for slow sipping"
+      ]
+    },
+    {
+      "id": "ygm-329",
+      "category": "couple_fun",
+      "question": "What kind of small collaborative project around the house brings out my best teamwork?",
+      "options": [
+        "Rearranging furniture until it feels right",
+        "Cooking a complicated meal together step by step",
+        "Deep cleaning a single room while listening to music",
+        "Assembling a piece of flat-pack furniture"
+      ]
+    },
+    {
+      "id": "ygm-330",
+      "category": "couple_fun",
+      "question": "If we were stranded in an airport for twelve hours, how would I handle the time with you?",
+      "options": [
+        "Explore every single shop and terminal",
+        "Find a quiet corner to camp out and talk",
+        "Sample every food option available",
+        "Play games and people-watch together"
+      ]
+    },
+    {
+      "id": "ygm-331",
+      "category": "travel",
+      "question": "When arriving in a brand-new city, what is the very first thing I want to do?",
+      "options": [
+        "Drop our bags off and wander the streets",
+        "Find a local cafe and sit outside",
+        "Check out a major landmark or viewpoint",
+        "Figure out the public transit system"
+      ]
+    },
+    {
+      "id": "ygm-332",
+      "category": "travel",
+      "question": "What is my biggest pet peeve when navigating through a busy airport or train station?",
+      "options": [
+        "People stopping abruptly in the middle of walkways",
+        "Unclear signs and confusing directions",
+        "Long lines at security or ticketing",
+        "Delayed departures with no updates"
+      ]
+    },
+    {
+      "id": "ygm-333",
+      "category": "travel",
+      "question": "How do I prefer to capture memories while visiting a new destination?",
+      "options": [
+        "Taking candid photos of everyday street scenes",
+        "Recording short videos of our favorite moments",
+        "Collecting small physical tokens like tickets or maps",
+        "Just living in the moment and taking a few photos"
+      ]
+    },
+    {
+      "id": "ygm-334",
+      "category": "travel",
+      "question": "What kind of accommodation adds the most joy to a vacation for me?",
+      "options": [
+        "A boutique hotel with unique character",
+        "A cozy apartment right in the center of town",
+        "A quiet place surrounded by nature with a view",
+        "A historic building with a fascinating story"
+      ]
+    },
+    {
+      "id": "ygm-335",
+      "category": "travel",
+      "question": "When packing my suitcase for a trip, what item do I refuse to leave behind?",
+      "options": [
+        "A comfortable pair of walking shoes",
+        "My preferred headphones or entertainment",
+        "A portable charger for all my devices",
+        "A versatile jacket for changing weather"
+      ]
+    },
+    {
+      "id": "ygm-336",
+      "category": "travel",
+      "question": "What is my ideal balance between scheduled activities and downtime while traveling?",
+      "options": [
+        "One big thing planned per day, then wander",
+        "A completely open schedule to see what happens",
+        "A full itinerary so we do not miss anything",
+        "Mornings explored actively, afternoons resting"
+      ]
+    },
+    {
+      "id": "ygm-337",
+      "category": "travel",
+      "question": "How do I react when public transit or travel plans go completely off the rails?",
+      "options": [
+        "I stay calm and look for an alternative route",
+        "I feel stressed but try to keep my composure",
+        "I look for the silver lining and a place to eat",
+        "I let someone else take charge of fixing it"
+      ]
+    },
+    {
+      "id": "ygm-338",
+      "category": "travel",
+      "question": "What kind of journey do I find most relaxing when traveling long distances?",
+      "options": [
+        "A scenic train ride looking out the window",
+        "A smooth flight where I can catch up on sleep",
+        "A road trip with great music and good conversation",
+        "A comfortable ferry crossing with an ocean view"
+      ]
+    },
+    {
+      "id": "ygm-339",
+      "category": "travel",
+      "question": "What is my approach to trying local street food or unfamiliar cuisine abroad?",
+      "options": [
+        "I want to try everything, no matter how unusual",
+        "I look for recommendations from locals first",
+        "I stick to things I can easily recognize",
+        "I share dishes with you so we can taste more"
+      ]
+    },
+    {
+      "id": "ygm-340",
+      "category": "travel",
+      "question": "What is my favorite part of coming back home after a wonderful trip?",
+      "options": [
+        "Sleeping in my own familiar bed",
+        "Unpacking and settling back into routine",
+        "Reflecting on all our favorite memories",
+        "Catching up with our pets or plants"
+      ]
+    },
+    {
+      "id": "ygm-341",
+      "category": "movies",
+      "question": "When a movie I am watching takes an unexpected emotional turn, how do I usually react?",
+      "options": [
+        "I get completely absorbed and quiet",
+        "I comment on the plot twist out loud",
+        "I feel it deeply and remember it for days",
+        "I analyze the filmmaking and acting choices"
+      ]
+    },
+    {
+      "id": "ygm-342",
+      "category": "movies",
+      "question": "What kind of movie ending leaves the strongest impression on me?",
+      "options": [
+        "A bittersweet resolution that feels earned",
+        "A mind-bending twist that changes everything",
+        "A deeply heartwarming and happy conclusion",
+        "An open-ended finale that lets me wonder"
+      ]
+    },
+    {
+      "id": "ygm-343",
+      "category": "movies",
+      "question": "How do I feel about watching a film I have already seen multiple times?",
+      "options": [
+        "I love it because it feels like comfort food",
+        "I only rewatch things if years have passed",
+        "I prefer discovering something brand new",
+        "I will watch it if you are in the mood for it"
+      ]
+    },
+    {
+      "id": "ygm-344",
+      "category": "movies",
+      "question": "What is my stance on snacking during a movie night at home?",
+      "options": [
+        "I need a specific mix of sweet and savory snacks",
+        "I prefer having a full meal while watching",
+        "I rarely eat while watching unless offered",
+        "I am protective of my own snack bowl"
+      ]
+    },
+    {
+      "id": "ygm-345",
+      "category": "movies",
+      "question": "If I could step into the cinematic world of any film genre for a day, which would I pick?",
+      "options": [
+        "A whimsical, beautifully animated fantasy",
+        "A charming, cozy romantic comedy",
+        "An adventurous sci-fi exploration",
+        "A lighthearted mystery with clever clues"
+      ]
+    },
+    {
+      "id": "ygm-346",
+      "category": "movies",
+      "question": "What is my biggest pet peeve when watching a fictional story unfold on screen?",
+      "options": [
+        "Characters making completely avoidable mistakes",
+        "Plot holes that make no logical sense",
+        "Unrealistic dialogue that nobody would say",
+        "Pacing that drags on for too long"
+      ]
+    },
+    {
+      "id": "ygm-347",
+      "category": "movies",
+      "question": "How do I usually choose what film to watch when left to my own devices?",
+      "options": [
+        "I look for something light and comforting",
+        "I pick based on a specific actor or director",
+        "I choose an acclaimed drama or thriller",
+        "I browse until something catches my eye"
+      ]
+    },
+    {
+      "id": "ygm-348",
+      "category": "movies",
+      "question": "What role does film music or a score play in my viewing experience?",
+      "options": [
+        "It completely dictates how I feel during scenes",
+        "I notice it only when it is exceptionally good",
+        "It helps immerse me in the world of the story",
+        "I seek out the soundtrack after watching"
+      ]
+    },
+    {
+      "id": "ygm-349",
+      "category": "movies",
+      "question": "How do I feel about movie adaptations of books I have read?",
+      "options": [
+        "I keep an open mind and judge them separately",
+        "I tend to nitpick what they changed or left out",
+        "I enjoy seeing the world brought to life visually",
+        "I prefer reading the book first before watching"
+      ]
+    },
+    {
+      "id": "ygm-350",
+      "category": "movies",
+      "question": "What kind of cinematic villain do I find most compelling to watch?",
+      "options": [
+        "One with understandable, complex motives",
+        "An eccentric, highly theatrical mastermind",
+        "A cold, calculating force of nature",
+        "One who is surprisingly charming and witty"
+      ]
+    },
+    {
+      "id": "ygm-351",
+      "category": "food",
+      "question": "When I am ordering at a restaurant, how do I usually make my final decision?",
+      "options": [
+        "I stick to my reliable favorite dish",
+        "I scan for something entirely new to try",
+        "I weigh two options and stress over it",
+        "I ask the server for their top recommendation"
+      ]
+    },
+    {
+      "id": "ygm-352",
+      "category": "food",
+      "question": "What is my absolute favorite texture combination in a meal?",
+      "options": [
+        "Crispy on the outside, tender on the inside",
+        "Smooth and creamy with a crunchy topping",
+        "Warm and soft with a rich sauce",
+        "Fresh, crisp, and light throughout"
+      ]
+    },
+    {
+      "id": "ygm-353",
+      "category": "food",
+      "question": "How do I feel about sharing food off my plate with someone else?",
+      "options": [
+        "I am happy to share if you ask first",
+        "I plan ahead so we can sample each other's food",
+        "I prefer keeping my meal to myself",
+        "I will gladly give you the best bite"
+      ]
+    },
+    {
+      "id": "ygm-354",
+      "category": "food",
+      "question": "What is my go-to style of breakfast when I want to treat myself on a weekend?",
+      "options": [
+        "Something warm, sweet, and decadent",
+        "A hearty, savory plate with eggs and toast",
+        "Fresh fruit and pastries with good coffee",
+        "A comforting comfort-food classic"
+      ]
+    },
+    {
+      "id": "ygm-355",
+      "category": "food",
+      "question": "How do I approach seasoning or adding condiments to my food?",
+      "options": [
+        "I taste it first before adding anything",
+        "I automatically add my favorite spice or sauce",
+        "I keep it exactly as the chef prepared it",
+        "I like a little kick of heat on almost everything"
+      ]
+    },
+    {
+      "id": "ygm-356",
+      "category": "food",
+      "question": "What is my ultimate comfort food when I need a mood boost?",
+      "options": [
+        "A warm bowl of noodles or pasta",
+        "Cheesy, baked comfort food",
+        "Freshly baked pastries or bread",
+        "A classic sweet treat like ice cream"
+      ]
+    },
+    {
+      "id": "ygm-357",
+      "category": "food",
+      "question": "How do I feel about cooking a meal that requires many intricate steps?",
+      "options": [
+        "I love the process as a relaxing project",
+        "I find it stressful and prefer keeping things simple",
+        "I will do it if we are cooking together",
+        "I prefer quick meals with maximum flavor"
+      ]
+    },
+    {
+      "id": "ygm-358",
+      "category": "food",
+      "question": "What is my preference when it comes to snacking between meals?",
+      "options": [
+        "I prefer something salty and crunchy",
+        "I lean toward something sweet and rich",
+        "I like fresh fruit or something light",
+        "I rarely snack between meals"
+      ]
+    },
+    {
+      "id": "ygm-359",
+      "category": "food",
+      "question": "How do I handle discovering an ingredient in my food that I am not fond of?",
+      "options": [
+        "I quietly pick it out and keep eating",
+        "I eat around it without making a fuss",
+        "I mention it playfully with a laugh",
+        "It completely ruins that bite for me"
+      ]
+    },
+    {
+      "id": "ygm-360",
+      "category": "food",
+      "question": "What is my ideal temperature for a hot beverage like tea or coffee?",
+      "options": [
+        "Scolding hot right away",
+        "Warm enough to sip comfortably without waiting",
+        "Lukewarm so I can drink it quickly",
+        "Slowly cooling down over an hour"
+      ]
+    },
+    {
+      "id": "ygm-361",
+      "category": "fears",
+      "question": "If I had a mildly ridiculous fear that made me hesitate in everyday life, what would it be?",
+      "options": [
+        "Escalators moving slightly too fast",
+        "Pushing a door that is supposed to be pulled",
+        "Accidentally pressing the wrong floor in an elevator",
+        "Balloons popping unexpectedly"
+      ]
+    },
+    {
+      "id": "ygm-362",
+      "category": "fears",
+      "question": "What minor inconvenience do I secretly dread encountering the most?",
+      "options": [
+        "Running out of phone battery away from home",
+        "Dropping food right after preparing it",
+        "Realizing I forgot my reusable bags at the store",
+        "Having my headphones snag on a doorknob"
+      ]
+    },
+    {
+      "id": "ygm-363",
+      "category": "fears",
+      "question": "What is my funniest irrational worry when walking past a sleeping dog or cat?",
+      "options": [
+        "That my footsteps will wake them up",
+        "That they will judge how I walk",
+        "That they will expect pets I cannot stop to give",
+        "That they are secretly plotting something"
+      ]
+    },
+    {
+      "id": "ygm-364",
+      "category": "fears",
+      "question": "What is my mild anxiety regarding social interactions in public?",
+      "options": [
+        "Waving back at someone who was waving at someone else",
+        "Forgetting a casual acquaintance's name immediately",
+        "Tripping slightly on a flat sidewalk",
+        "Ordering the wrong thing and being too polite to say"
+      ]
+    },
+    {
+      "id": "ygm-365",
+      "category": "fears",
+      "question": "What silly nightmare scenario pops into my head when I hear a strange noise at night?",
+      "options": [
+        "A raccoon has broken in to inspect the kitchen",
+        "The house is settling and judging my lifestyle",
+        "A ghost is wandering around looking for a snack",
+        "An inanimate object has come to life"
+      ]
+    },
+    {
+      "id": "ygm-366",
+      "category": "fears",
+      "question": "What is my slight worry when dealing with automated customer service phone trees?",
+      "options": [
+        "Getting trapped in an endless loop of menus",
+        "Pressing the wrong number and starting over",
+        "The robot voice misunderstanding my accent",
+        "Never actually reaching a human being"
+      ]
+    },
+    {
+      "id": "ygm-367",
+      "category": "fears",
+      "question": "What minor kitchen disaster do I quietly fear whenever I bake or cook?",
+      "options": [
+        "Setting off the smoke detector with perfectly good food",
+        "Baking something that refuses to come out of the pan",
+        "Measuring something completely wrong by accident",
+        "Burning the bottom while the top is raw"
+      ]
+    },
+    {
+      "id": "ygm-368",
+      "category": "fears",
+      "question": "What is my playful fear when standing near the edge of a high balcony or rooftop?",
+      "options": [
+        "The sudden urge to drop my phone",
+        "Feeling like the ground is tilting",
+        "Wondering what would happen if I sneezed too hard",
+        "Realizing my shoes have no traction"
+      ]
+    },
+    {
+      "id": "ygm-369",
+      "category": "fears",
+      "question": "What is my minor dread when trying to parallel park in a tight space?",
+      "options": [
+        "Cars lining up and watching me struggle",
+        "Scraping my bumper against the curb",
+        "Realizing the space is actually too small",
+        "Panicking and driving away to find another spot"
+      ]
+    },
+    {
+      "id": "ygm-370",
+      "category": "fears",
+      "question": "What is my silly concern when checking my reflection in a store window while walking?",
+      "options": [
+        "Walking straight into a pole while distracted",
+        "Realizing my hair is doing something bizarre",
+        "Making eye contact with someone inside",
+        "Tripping over my own feet"
+      ]
+    },
+    {
+      "id": "ygm-371",
+      "category": "preferences_unexpected",
+      "question": "What kind of scent or fragrance do I find most comforting in a home?",
+      "options": [
+        "Warm vanilla or baking spices",
+        "Crisp, fresh linen or clean air",
+        "Earthy cedarwood or pine",
+        "Subtle citrus or herbal notes"
+      ]
+    },
+    {
+      "id": "ygm-372",
+      "category": "preferences_unexpected",
+      "question": "What is my preferred style of lighting when relaxing in the evening?",
+      "options": [
+        "Soft, warm lamps instead of overhead lights",
+        "Dim ambient lighting from multiple corners",
+        "Natural twilight coming through the windows",
+        "Cozy fairy lights or accent lighting"
+      ]
+    },
+    {
+      "id": "ygm-373",
+      "category": "preferences_unexpected",
+      "question": "How do I feel about wearing watches or jewelry on a regular basis?",
+      "options": [
+        "I love wearing a few signature pieces daily",
+        "I like them for special occasions only",
+        "I prefer keeping my hands and wrists completely bare",
+        "I wear them out of habit and miss them if removed"
+      ]
+    },
+    {
+      "id": "ygm-374",
+      "category": "preferences_unexpected",
+      "question": "What texture of clothing do I naturally gravitate toward for maximum comfort?",
+      "options": [
+        "Ultra-soft, worn-in cotton",
+        "Cozy fleece or plush fabrics",
+        "Light, breathable linen",
+        "Smooth, stretchy athletic wear"
+      ]
+    },
+    {
+      "id": "ygm-375",
+      "category": "preferences_unexpected",
+      "question": "How do I prefer to organize my desktop or phone screen?",
+      "options": [
+        "Every app neatly sorted into folders",
+        "A completely clean background with minimal icons",
+        "A chaotic array of recently used things",
+        "Organized by color or frequency of use"
+      ]
+    },
+    {
+      "id": "ygm-376",
+      "category": "preferences_unexpected",
+      "question": "What is my preference when it comes to pen and paper for writing?",
+      "options": [
+        "A smooth gel pen with dark ink",
+        "A classic wooden pencil with a good eraser",
+        "A fine-liner pen for precision",
+        "Whatever pen is closest and works"
+      ]
+    },
+    {
+      "id": "ygm-377",
+      "category": "preferences_unexpected",
+      "question": "How do I feel about unexpected phone calls versus text messages?",
+      "options": [
+        "I much prefer texts so I can reply on my own time",
+        "I like phone calls if it is quick and important",
+        "I do not mind either depending on who is calling",
+        "I prefer voice notes over both texting and calling"
+      ]
+    },
+    {
+      "id": "ygm-378",
+      "category": "preferences_unexpected",
+      "question": "What kind of art or visual decor do I find most appealing in a space?",
+      "options": [
+        "Minimalist abstract prints with calm tones",
+        "Botanical illustrations and nature photography",
+        "Vibrant, colorful pieces with a story",
+        "Vintage posters or quirky art"
+      ]
+    },
+    {
+      "id": "ygm-379",
+      "category": "preferences_unexpected",
+      "question": "How do I prefer my morning routine to flow?",
+      "options": [
+        "Slow and quiet with plenty of time to wake up",
+        "Quick and efficient so I can get moving",
+        "Flexible depending on how much sleep I got",
+        "Structured with coffee as the absolute priority"
+      ]
+    },
+    {
+      "id": "ygm-380",
+      "category": "preferences_unexpected",
+      "question": "What is my attitude toward keeping physical books versus digital ones?",
+      "options": [
+        "I love the physical feel and look of real books",
+        "I prefer digital for convenience and portability",
+        "I like a mix of both depending on the genre",
+        "I collect physical copies of my absolute favorites"
+      ]
+    },
+    {
+      "id": "ygm-381",
+      "category": "sweet_flirty",
+      "question": "What kind of small unexpected message from you instantly brightens my workday?",
+      "options": [
+        "A random photo of something funny you saw",
+        "A sweet reminder that you are thinking of me",
+        "A silly question to make me smile",
+        "An invitation for a treat later on"
+      ]
+    },
+    {
+      "id": "ygm-382",
+      "category": "sweet_flirty",
+      "question": "When we are walking together in public, what is my favorite way to hold hands?",
+      "options": [
+        "Interlocked fingers swinging between us",
+        "Holding hands loosely and casually",
+        "Linking arms close to your side",
+        "Holding hands only when crossing a busy street"
+      ]
+    },
+    {
+      "id": "ygm-383",
+      "category": "sweet_flirty",
+      "question": "What kind of compliment from you makes me feel most appreciated as a partner?",
+      "options": [
+        "When you notice how much care I put into things",
+        "When you tell me I make you feel safe",
+        "When you laugh genuinely at my humor",
+        "When you tell me how lucky you feel"
+      ]
+    },
+    {
+      "id": "ygm-384",
+      "category": "sweet_flirty",
+      "question": "How do I show you non-verbally that I am listening and engaged when we talk?",
+      "options": [
+        "Leaning in closer toward you",
+        "Reaching out to touch your arm or hand",
+        "Maintaining steady, warm eye contact",
+        "Nodding and smiling at your expressions"
+      ]
+    },
+    {
+      "id": "ygm-385",
+      "category": "sweet_flirty",
+      "question": "What makes a quiet evening at home together feel especially romantic to me?",
+      "options": [
+        "Sitting close on the couch with no screens",
+        "Sharing a late-night snack in the kitchen",
+        "Talking about our hopes for the future",
+        "Falling asleep while you play with my hair"
+      ]
+    },
+    {
+      "id": "ygm-386",
+      "category": "sweet_flirty",
+      "question": "What is my favorite way for us to greet each other after being apart all day?",
+      "options": [
+        "A long, lingering embrace right at the door",
+        "A bright smile and an excited wave",
+        "A quick kiss before dropping our bags",
+        "A goofy greeting that makes us both laugh"
+      ]
+    },
+    {
+      "id": "ygm-387",
+      "category": "sweet_flirty",
+      "question": "Which quality of yours do I find myself falling more in love with over time?",
+      "options": [
+        "Your patience when things get difficult",
+        "Your ability to find joy in small moments",
+        "Your kindness toward everyone you meet",
+        "Your unwavering support for my dreams"
+      ]
+    },
+    {
+      "id": "ygm-388",
+      "category": "sweet_flirty",
+      "question": "What kind of gentle physical touch do I appreciate most when I am feeling overwhelmed?",
+      "options": [
+        "A reassuring rub on my back",
+        "Holding my hand firmly and steadily",
+        "A warm, protective hug from behind",
+        "Having my shoulders gently massaged"
+      ]
+    },
+    {
+      "id": "ygm-389",
+      "category": "sweet_flirty",
+      "question": "What is my favorite memory of us from a completely ordinary day?",
+      "options": [
+        "A time we laughed so hard we couldn't speak",
+        "A quiet moment sharing coffee in the morning",
+        "An unexpected conversation while running errands",
+        "A spontaneous dance in our living room"
+      ]
+    },
+    {
+      "id": "ygm-390",
+      "category": "sweet_flirty",
+      "question": "What makes me feel most secure and cherished in our relationship?",
+      "options": [
+        "Knowing we face problems as a unified team",
+        "Seeing how consistently you show up for me",
+        "Feeling completely accepted for who I am",
+        "Sharing quiet moments where words aren't needed"
+      ]
+    },
+    {
+      "id": "ygm-391",
+      "category": "silly_ridiculous",
+      "question": "If I had to lead an expedition into an unexplored cave behind our house, what would I bring?",
+      "options": [
+        "A flashlight and an overly cautious attitude",
+        "A backpack full of snacks and a map I drew",
+        "A stick to poke things with from a distance",
+        "You, so we can be brave together"
+      ]
+    },
+    {
+      "id": "ygm-392",
+      "category": "silly_ridiculous",
+      "question": "If I were a cartoon cat, what would be my primary method of causing mischief?",
+      "options": [
+        "Knocking things off counters while maintaining eye contact",
+        "Sleeping in the most inconvenient spots possible",
+        "Demanding meals three hours early",
+        "Staring blankly at empty corners"
+      ]
+    },
+    {
+      "id": "ygm-393",
+      "category": "silly_ridiculous",
+      "question": "If I had to invent a completely useless household robot, what would it specialize in?",
+      "options": [
+        "Giving unsolicited fashion advice on pajamas",
+        "Tracking how many steps I take to the fridge",
+        "Chasing dust bunnies with dramatic commentary",
+        "Telling terrible dad jokes on command"
+      ]
+    },
+    {
+      "id": "ygm-394",
+      "category": "silly_ridiculous",
+      "question": "If I were magically granted the ability to speak with insects, what would I talk about first?",
+      "options": [
+        "Asking spiders why they build webs in doorways",
+        "Complaining to mosquitoes about their life choices",
+        "Negotiating terms with ants in the kitchen",
+        "Asking bees for gardening tips"
+      ]
+    },
+    {
+      "id": "ygm-395",
+      "category": "silly_ridiculous",
+      "question": "If I had to participate in a medieval jousting tournament using absurd props, what would I ride?",
+      "options": [
+        "A motorized shopping cart",
+        "An inflatable pool floatie",
+        "A rocking horse with wheels",
+        "A bicycle decorated like a dragon"
+      ]
+    },
+    {
+      "id": "ygm-396",
+      "category": "silly_ridiculous",
+      "question": "If my brain were a browser, how many tabs would typically be open at once?",
+      "options": [
+        "Eighty tabs open, and three are playing music",
+        "Three tabs open, but nobody knows where the sound is coming from",
+        "One tab open that has been frozen for hours",
+        "Tabs multiplying faster than I can close them"
+      ]
+    },
+    {
+      "id": "ygm-397",
+      "category": "silly_ridiculous",
+      "question": "If I had to give a dramatic academic lecture on a completely made-up topic, what would it be?",
+      "options": [
+        "The advanced sociology of couch cushion placement",
+        "Why cold sides of pillows are vital for world peace",
+        "The historical evolution of snack wrappers",
+        "Cryptids hiding in household laundry baskets"
+      ]
+    },
+    {
+      "id": "ygm-398",
+      "category": "silly_ridiculous",
+      "question": "If I were a ghost haunting a modern apartment, what is the funniest thing I would move?",
+      "options": [
+        "Car keys into slightly more visible spots",
+        "The TV remote to behind the cushions",
+        "Socks so they never match again",
+        "Houseplants just an inch to the left"
+      ]
+    },
+    {
+      "id": "ygm-399",
+      "category": "silly_ridiculous",
+      "question": "If I had to swap my voice with a sound effect for a day, what would I choose?",
+      "options": [
+        "A gentle cartoon spring bounce sound",
+        "A dramatic movie trailer horn",
+        "A soft microwave beep",
+        "A mysterious creaking door"
+      ]
+    },
+    {
+      "id": "ygm-400",
+      "category": "silly_ridiculous",
+      "question": "If I were the captain of an exploration ship in a glass of soda, what would be my greatest hazard?",
+      "options": [
+        "A rogue ice cube iceberg",
+        "Rising carbonation bubbles",
+        "A whirlpool in a straw",
+        "A sudden spoon attack"
       ]
     }
   ]

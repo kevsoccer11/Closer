@@ -43,6 +43,21 @@ check('remove unfinished You Get Me placeholder', () => {
     }
 });
 
+check('You Get Me setup has an accessible, touch-sized close control', () => {
+    const modal = html.match(/<div class="modal-overlay hidden" id="guessMeSetupModal">([\s\S]*?)<\/div>\s*<\/div>/);
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!modal || !modal[1].includes('class="modal-close"')
+        || !modal[1].includes('aria-label="Close"')
+        || !styles.includes('#guessMeSetupModal .modal-close {\n    display: inline-flex;\n    flex: 0 0 44px;')
+        || !styles.includes('width: 44px;\n    min-width: 44px;\n    height: 44px;')) {
+        throw new Error('You Get Me setup close control is missing or too small');
+    }
+    if (!styles.includes('background: var(--card-bg);')
+        || !styles.includes('@media (min-width: 768px) {\n    .modal-overlay#guessMeSetupModal {\n        align-items: center;')) {
+        throw new Error('You Get Me setup modal does not respect the theme or center on desktop');
+    }
+});
+
 check('home features six curated packs with an Explore link', () => {
     const section = html.match(/<section class="featured-experiences" id="featuredExperiences">([\s\S]*?)<\/section>/);
     if (!section) throw new Error('featured pack section is missing');
@@ -302,6 +317,30 @@ check('header logos use the same larger dimensions in both themes', () => {
     }
 });
 
+check('desktop sidebar logo is centered and sized to use the brand area', () => {
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    const brandRule = styles.match(/\.sidebar-brand \{([^}]*)\}/);
+    const logoRule = styles.match(/\.sidebar-brand \.brand-logo \{([^}]*)\}/);
+    if (!brandRule || !brandRule[1].includes('display: flex;')
+        || !brandRule[1].includes('justify-content: center;')) {
+        throw new Error('desktop sidebar brand is not horizontally centered');
+    }
+    if (!logoRule || !logoRule[1].includes('height: 6rem;')
+        || !logoRule[1].includes('width: 9rem;')) {
+        throw new Error('desktop sidebar logo does not use the available brand space');
+    }
+});
+
+check('You Get Me length and vibe selectors use spaced wrapping chip layouts', () => {
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    const chipsRule = styles.match(/\.round-builder-chips \{([^}]*)\}/);
+    if (!chipsRule || !chipsRule[1].includes('display: flex;')
+        || !chipsRule[1].includes('flex-wrap: wrap;')
+        || !chipsRule[1].includes('gap: 8px;')) {
+        throw new Error('You Get Me selector chips do not have a responsive spaced layout');
+    }
+});
+
 check('Explore controls and cards have dark-mode styling', () => {
     const styles = fs.readFileSync('css/styles.css', 'utf8');
     if (!styles.includes('body:not(.light-theme) .explore-search,')
@@ -319,11 +358,13 @@ check('Explore controls and cards have dark-mode styling', () => {
 
 check('validate YGM-question-bank.json', () => {
     const d = JSON.parse(fs.readFileSync('YGM-question-bank.json', 'utf8'));
-    if (d.count !== 135) throw new Error('count mismatch');
-    if (!Array.isArray(d.questions) || d.questions.length !== 135) throw new Error('questions length');
+    if (d.count !== 400) throw new Error(`expected 400 questions, found ${d.count}`);
+    if (!Array.isArray(d.questions) || d.questions.length !== 400) throw new Error('questions length');
     const ids = d.questions.map(q => q.id);
     if (new Set(ids).size !== ids.length) throw new Error('duplicate ids');
-    if (d.questions.some(q => !Array.isArray(q.options) || q.options.length !== 4)) throw new Error('options count');
+    if (d.questions.some(q => !Array.isArray(q.options) || q.options.length !== 4
+        || q.options.some(option => typeof option !== 'string' || !option.trim())
+        || typeof q.question !== 'string' || !q.question.trim())) throw new Error('invalid question or options');
 });
 
 check('You Get Me selection filters by vibe and avoids duplicates', () => {
@@ -347,8 +388,8 @@ check('You Get Me selection filters by vibe and avoids duplicates', () => {
     context.window.ygmQuestionBank = bank;
 
     Object.entries(categories).forEach(([vibe, allowedCategories]) => {
-        const selected = Array.from(context.window.pickGuessMeQuestions(30, vibe));
-        if (selected.length !== 30) throw new Error(`${vibe} should return 30 questions`);
+        const selected = Array.from(context.window.pickGuessMeQuestions(100, vibe));
+        if (selected.length !== 100) throw new Error(`${vibe} should return 100 questions`);
         if (new Set(selected).size !== selected.length) throw new Error(`${vibe} returned duplicate questions`);
         if (selected.some(id => {
             const question = bank.find(item => item.id === id);
@@ -357,6 +398,17 @@ check('You Get Me selection filters by vibe and avoids duplicates', () => {
     });
     if (context.window.pickGuessMeQuestions(10, 'deep').length !== 10) throw new Error('deep selection count mismatch');
     if (context.window.pickGuessMeQuestions(0, 'mixed').length !== 0) throw new Error('zero-length selection should be empty');
+    let lengthInput = { value: '100' };
+    context.document.getElementById = id => id === 'guessMeQuestionCount' ? lengthInput : null;
+    context.document.querySelector = selector => selector === '#guessMeVibeChips .filter-chip.active'
+        ? { dataset: { vibe: 'deep' } }
+        : null;
+    const selection = context.window.getGuessMeSelection();
+    if (selection.length !== 100 || selection.vibe !== 'deep') throw new Error('custom round length was not read');
+    lengthInput.value = '101';
+    let rejectedInvalidLength = false;
+    try { context.window.getGuessMeSelection(); } catch { rejectedInvalidLength = true; }
+    if (!rejectedInvalidLength) throw new Error('round lengths above 100 were accepted');
 });
 
 check('community moderation code is removed', () => {
@@ -371,13 +423,44 @@ check('community moderation code is removed', () => {
 check('You Get Me rules enforce room roles and question-id bounds', () => {
     const rules = JSON.parse(fs.readFileSync('database.rules.json', 'utf8')).rules.rooms.$roomCode.guessMe;
     if (rules.questionIds['.validate'].includes('numChildren()')
-        || !rules.questionIds['.validate'].includes("!newData.child('30').exists()")
-        || !rules.questionIds.$questionIndex['.validate'].includes('[12][0-9]')) {
+        || !rules.questionIds['.validate'].includes("!newData.child('100').exists()")
+        || !rules.questionIds.$questionIndex['.validate'].includes('[1-9][0-9]')
+        || !rules.length['.validate'].includes('newData.val() <= 100')) {
         throw new Error('question IDs are not validated with supported list bounds');
     }
     if (rules.hostReady['.write'].includes("members/partner")
         || !rules.partnerReady['.write'].includes('newData.val() === false')) {
         throw new Error('ready state writes are not constrained to the owning player');
+    }
+});
+
+check('You Get Me lets players choose a round length and requires mutual replay consent', () => {
+    const html = fs.readFileSync('index.html', 'utf8');
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const setup = html.match(/id="guessMeQuestionCount"[^>]+/);
+    if (!setup || !setup[0].includes('min="1"') || !setup[0].includes('max="100"')
+        || !logic.includes("await window.roomRef.child(`guessMe/replayVotes/${myRole}`).set(vote);")
+        || !logic.includes("gm.replayVotes?.host !== 'yes' || gm.replayVotes?.partner !== 'yes'")
+        || !logic.includes('await startGuessMeReplay(gm);')) {
+        throw new Error('custom question count or mutual replay voting is missing');
+    }
+});
+
+check('You Get Me lobby lets the host approve or deny join requests', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const lobby = logic.match(/async function renderGuessMe\(gm\) \{([\s\S]*?)if \(gm\.status === 'complete'\)/);
+    if (!lobby || !lobby[1].includes('if (isHost)')
+        || !lobby[1].includes('createJoinRequestsSection(')
+        || !lobby[1].includes('guessMeJoinRequestStatus')) {
+        throw new Error('host join-request actions are missing from the You Get Me lobby');
+    }
+    const listener = logic.match(/if \(role === 'host'\) \{\s*roomJoinRequestsListener = snapshot => \{([\s\S]*?)\n        \};/);
+    if (!listener || !listener[1].includes('refreshGuessMeState()')) {
+        throw new Error('new join requests do not refresh the visible You Get Me lobby');
+    }
+    if (!logic.includes('approveButton.onclick = () => resolveJoinRequest(uid, true);')
+        || !logic.includes('denyButton.onclick = () => resolveJoinRequest(uid, false);')) {
+        throw new Error('host join-request approval or denial action is not wired');
     }
 });
 
