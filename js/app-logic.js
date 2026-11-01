@@ -3746,7 +3746,7 @@ async function renderGuessMe(gm) {
                 await window.roomRef.child('guessMe/'+key).set(!cur.val());
             } catch (e) {
                 console.error('ready toggle failed', e);
-                if (typeof showToast === 'function') showToast('Could not update ready status.');
+                if (typeof showToast === 'function') showToast('Could not update ready status: ' + (e && e.message ? e.message : 'permission denied'));
             }
         };
         card.append(icon, content, readyBtn);
