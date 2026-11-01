@@ -2328,7 +2328,8 @@ img {
 }
 .pack-image {
     width: 100%;
-    height: 150px;
+    aspect-ratio: 16 / 9;
+    height: auto;
     object-fit: cover;
     object-position: center top;
     border-radius: 10px;
@@ -2772,7 +2773,8 @@ body.landing.light-theme .category-card, body.landing.light-theme .experience-ca
 }
 .experience-image {
     width: 100%;
-    height: 120px;
+    aspect-ratio: 4 / 3;
+    height: auto;
     object-fit: cover;
     object-position: center top;
     border-radius: 12px;
