@@ -326,8 +326,9 @@ setTimeout(() => {
     });
     document.getElementById('guessMeCreateRoomBtn')?.addEventListener('click', async () => {
         const status = document.getElementById('guessMeSetupStatus');
+        if (status) status.textContent = 'Creating Guess Me room…';
+        console.log('YGM create room clicked');
         try {
-            if (status) status.textContent = 'Creating Guess Me room…';
             const sel = getGuessMeSelection();
             // Reuse existing room creation, then tag the room as Guess Me.
             await createRoom();
