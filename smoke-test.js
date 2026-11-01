@@ -48,9 +48,16 @@ check('home features six curated packs with an Explore link', () => {
     if (!section) throw new Error('featured pack section is missing');
     const packs = section[1].match(/class="experience-card pack-card"/g) || [];
     if (packs.length !== 6) throw new Error(`expected 6 featured packs, found ${packs.length}`);
-    if (!section[1].includes('<h2>Find your moment</h2>')) throw new Error('section heading is missing');
+    if (!section[1].includes('<h2>Find your moment</h2>') || !section[1].includes('<div class="experience-list">')) {
+        throw new Error('section heading or curated packs are missing from the shared section');
+    }
     if (!section[1].includes('id="seeMoreExperiencesBtn"') || !section[1].includes('onclick="showExploreView()"')) {
         throw new Error('See more button is missing');
+    }
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!styles.includes('#homeView #featuredExperiences {')
+        || !styles.includes('body:not(.light-theme) #homeView #featuredExperiences {')) {
+        throw new Error('Find your moment is not visually grouped with the curated pack cards');
     }
 });
 
@@ -68,7 +75,7 @@ check('mood section is grouped and its See all action opens Explore', () => {
     const styles = fs.readFileSync('css/styles.css', 'utf8');
     if (!home || !home[1].includes('id="exploreAllBtn"')
         || !home[1].includes('onclick="window.showExploreView()"')
-        || !styles.includes('#homeMoodSection {\n    padding: 14px;')) {
+        || !styles.includes('#homeMoodSection,\n#homeView #featuredExperiences {\n    padding: 14px;')) {
         throw new Error('home moods are not grouped or See all is not wired to Explore');
     }
     if (!app.includes("moodClone.querySelector('.categories-header .text-link')?.remove();")) {
@@ -156,11 +163,16 @@ check('card browser includes searchable deck, intensity, type, and category filt
         || !browser[1].includes('cardBrowserIntensityFilter')
         || !browser[1].includes('cardBrowserTypeFilter')
         || !browser[1].includes('cardBrowserCategoryFilter')
-        || !browser[1].includes('matchesModule && matchesIntensity && matchesType && matchesCategory')
+        || !browser[1].includes("checkbox.type = 'checkbox'")
+        || !browser[1].includes('const selectedCategories = new Set()')
+        || !browser[1].includes('selectedCategories.has(String(card.category || \'General\'))')
+        || !browser[1].includes('selectedCategories.clear()')
         || !browser[1].includes('clearFiltersButton.addEventListener')
         || !styles.includes('.card-browser-filters {')
+        || !styles.includes('.card-browser-category-list {')
+        || !styles.includes('max-height: 190px;')
         || !styles.includes('.card-browser-filter select {')) {
-        throw new Error('card browser search does not expose and apply its filters');
+        throw new Error('card browser category checkboxes are missing or do not filter results');
     }
 });
 

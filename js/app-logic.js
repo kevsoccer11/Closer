@@ -2485,34 +2485,48 @@ function renderCardBrowserDrawerContent(content) {
         { value: 'activity', text: 'Activity' },
         { value: 'multiple-choice', text: 'Multiple choice' }
     ]);
-    const categoryControl = createFilter('Category', 'cardBrowserCategoryFilter', [
-        { value: 'all', text: 'All categories' }
-    ]);
     const moduleFilter = moduleControl.select;
     const intensityFilter = intensityControl.select;
     const typeFilter = typeControl.select;
-    const categoryFilter = categoryControl.select;
+    const categoryControl = document.createElement('fieldset');
+    categoryControl.className = 'card-browser-category-filter';
+    categoryControl.id = 'cardBrowserCategoryFilter';
+    const categoryLegend = document.createElement('legend');
+    categoryLegend.textContent = 'Categories';
+    const categoryList = document.createElement('div');
+    categoryList.className = 'card-browser-category-list';
+    categoryControl.append(categoryLegend, categoryList);
+    const selectedCategories = new Set();
     const refreshCategoryOptions = () => {
-        const selectedCategory = categoryFilter.value;
         const categories = [...new Set((masterDatabase || [])
             .filter(card => moduleFilter.value === 'all' || (card.module || 'general') === moduleFilter.value)
             .map(card => String(card.category || 'General')))]
             .sort((a, b) => a.localeCompare(b));
-        categoryFilter.replaceChildren();
-        const allOption = document.createElement('option');
-        allOption.value = 'all';
-        allOption.textContent = 'All categories';
-        categoryFilter.appendChild(allOption);
+        for (const selectedCategory of selectedCategories) {
+            if (!categories.includes(selectedCategory)) selectedCategories.delete(selectedCategory);
+        }
+        categoryList.replaceChildren();
         categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category;
-            categoryFilter.appendChild(option);
+            const label = document.createElement('label');
+            label.className = 'card-browser-category-option';
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = category;
+            checkbox.checked = selectedCategories.has(category);
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) selectedCategories.add(category);
+                else selectedCategories.delete(category);
+                renderList();
+            });
+            const text = document.createElement('span');
+            text.textContent = category;
+            label.append(checkbox, text);
+            categoryList.appendChild(label);
         });
-        categoryFilter.value = categories.includes(selectedCategory) ? selectedCategory : 'all';
     };
-    filters.append(moduleControl.label, intensityControl.label, typeControl.label, categoryControl.label);
+    filters.append(moduleControl.label, intensityControl.label, typeControl.label);
     content.appendChild(filters);
+    content.appendChild(categoryControl);
 
     const clearFiltersButton = document.createElement('button');
     clearFiltersButton.className = 'card-browser-clear-filters';
@@ -2545,7 +2559,7 @@ function renderCardBrowserDrawerContent(content) {
             const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
             const cardType = isMultipleChoice ? 'multiple-choice' : promptStyle === 'activity' ? 'activity' : 'question';
             const matchesType = typeFilter.value === 'all' || cardType === typeFilter.value;
-            const matchesCategory = categoryFilter.value === 'all' || (card.category || 'General') === categoryFilter.value;
+            const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(String(card.category || 'General'));
             return matchesQuery && matchesModule && matchesIntensity && matchesType && matchesCategory;
         });
         const cards = matchingCards.slice(0, 60);
@@ -2585,7 +2599,7 @@ function renderCardBrowserDrawerContent(content) {
         });
     };
     searchInput.addEventListener('input', renderList);
-    [moduleFilter, intensityFilter, typeFilter, categoryFilter].forEach(filter => {
+    [moduleFilter, intensityFilter, typeFilter].forEach(filter => {
         filter.addEventListener('change', () => {
             if (filter === moduleFilter) refreshCategoryOptions();
             renderList();
@@ -2596,8 +2610,8 @@ function renderCardBrowserDrawerContent(content) {
         moduleFilter.value = 'all';
         intensityFilter.value = 'all';
         typeFilter.value = 'all';
+        selectedCategories.clear();
         refreshCategoryOptions();
-        categoryFilter.value = 'all';
         renderList();
     });
     deckSelect.addEventListener('change', renderList);
