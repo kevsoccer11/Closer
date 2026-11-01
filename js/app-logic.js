@@ -3253,7 +3253,7 @@ function showToast(message) {
         toast.id = 'appToast';
         toast.setAttribute('role', 'status');
         toast.setAttribute('aria-live', 'polite');
-        toast.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:rgba(22,22,29,0.95);color:var(--text-main);padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);box-shadow:0 8px 24px rgba(0,0,0,0.4);z-index:9999;font-size:0.9rem;opacity:0;transition:opacity 0.2s ease;pointer-events:none;';
+        toast.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--card-bg);color:var(--text-main);padding:10px 16px;border-radius:999px;border:1px solid var(--card-border);box-shadow:0 8px 24px rgba(0,0,0,0.25);z-index:9999;font-size:0.9rem;opacity:0;transition:opacity 0.2s ease;pointer-events:none;max-width:90vw;';
         document.body.appendChild(toast);
     }
     toast.textContent = message;
