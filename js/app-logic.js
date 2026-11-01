@@ -3501,6 +3501,8 @@ async function requestRoomAccess(roomCode) {
 
 function openNewGameFlow() {
     openPlayModeModal(() => openRoundBuilder());
+window.openNewGameFlow = openNewGameFlow;
+
 }
 function openPlayModeModal(pending) {
     pendingGameStart = pending || null;
