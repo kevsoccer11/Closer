@@ -97,7 +97,7 @@ check('bottom navigation uses Settings instead of a second Profile icon', () => 
         throw new Error('Settings gear is missing from bottom navigation');
     }
     if (nav[0].includes('>Profile</span>')) throw new Error('duplicate Profile navigation item remains');
-    if (!fs.readFileSync('js/app.js', 'utf8').includes("getElementById('appNavSettings')?.addEventListener('click', () => {\n        document.getElementById('toolsDrawerBtn')?.click();")) {
+    if (!fs.readFileSync('js/app.js', 'utf8').includes("document.getElementById('appNavSettings')?.addEventListener('click', () => {\n        dismissOverlaysForNavigation();\n        document.getElementById('toolsDrawerBtn')?.click();")) {
         throw new Error('Settings navigation is not wired to the settings drawer');
     }
 });
@@ -149,8 +149,23 @@ check('round builder gives the active tab its own bounded scroll area', () => {
     const navigationRule = styles.match(/\.app-bottom-nav \{([^}]*)\}/);
     const modalZ = modalRule?.[1].match(/z-index:\s*(\d+)/)?.[1];
     const navigationZ = navigationRule?.[1].match(/z-index:\s*(\d+)/)?.[1];
-    if (!modalZ || !navigationZ || Number(modalZ) <= Number(navigationZ)) {
-        throw new Error('modal is not layered above the fixed bottom navigation');
+    if (!modalZ || !navigationZ || Number(navigationZ) <= Number(modalZ)) {
+        throw new Error('bottom navigation is not clickable above modal overlays');
+    }
+});
+
+check('bottom navigation closes open overlays before navigating', () => {
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const navigation = app.match(/const dismissOverlaysForNavigation = \(\) => \{([\s\S]*?)\n    \};/);
+    if (!navigation || !navigation[1].includes("document.querySelectorAll('.modal-overlay:not(.hidden)')")
+        || !navigation[1].includes('setModalOpen(modal, false)')
+        || !navigation[1].includes('closeDrawer()')
+        || !navigation[1].includes('pendingGameStart = null;')) {
+        throw new Error('navigation does not close modal/drawer state before routing');
+    }
+    const navBindings = app.match(/document\.getElementById\('exploreNavBtn'\).*?const filterExploreCards = \(\) => \{/s);
+    if (!navBindings || (navBindings[0].match(/dismissOverlaysForNavigation\(\);/g) || []).length !== 6) {
+        throw new Error('one or more bottom-navigation actions do not dismiss open overlays');
     }
 });
 

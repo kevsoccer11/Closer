@@ -254,15 +254,45 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    document.getElementById('exploreNavBtn')?.addEventListener('click', showExploreView);
-    document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
-    document.getElementById('appNavPlay')?.addEventListener('click', () => showHomeView());
-    document.getElementById('appNavExplore')?.addEventListener('click', showExploreView);
+    const dismissOverlaysForNavigation = () => {
+        document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(modal => {
+            setModalOpen(modal, false);
+        });
+        const drawer = document.getElementById('appDrawer');
+        if (drawer && !drawer.classList.contains('hidden')) {
+            window._settingsPreviousNav = null;
+            closeDrawer();
+        }
+        pendingGameStart = null;
+        window.pendingPackKey = null;
+    };
+    document.getElementById('exploreNavBtn')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
+        showExploreView();
+        window.scrollTo(0, 0);
+    });
+    document.getElementById('homeNavBtn')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
+        showHomeView();
+        window.scrollTo(0, 0);
+    });
+    document.getElementById('appNavPlay')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
+        showHomeView();
+        window.scrollTo(0, 0);
+    });
+    document.getElementById('appNavExplore')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
+        showExploreView();
+        window.scrollTo(0, 0);
+    });
     document.getElementById('appNavConnect')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
         setActiveNavigationView('connect');
         document.getElementById('pairPartnerBtn')?.click();
     });
     document.getElementById('appNavSettings')?.addEventListener('click', () => {
+        dismissOverlaysForNavigation();
         document.getElementById('toolsDrawerBtn')?.click();
     });
 
