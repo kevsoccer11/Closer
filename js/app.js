@@ -337,7 +337,6 @@ setTimeout(() => {
                     'guessMe/length': sel.length,
                     'guessMe/vibe': sel.vibe,
                     'guessMe/hostReady': false,
-                    'guessMe/partnerReady': false,
                     'guessMe/scores/host': 0,
                     'guessMe/scores/partner': 0
                 });

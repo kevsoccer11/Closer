@@ -3795,7 +3795,6 @@ async function renderGuessMe(gm) {
             await window.roomRef.update({
                 'guessMe/status': 'lobby',
                 'guessMe/hostReady': false,
-                'guessMe/partnerReady': false,
                 'guessMe/scores/host': 0,
                 'guessMe/scores/partner': 0,
                 'guessMe/question': null,
