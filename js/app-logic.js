@@ -128,15 +128,9 @@ async function initDatabase() {
     }
     const savedCode = localStorage.getItem('closer_room_code');
     const savedRole = localStorage.getItem('closer_room_role');
-    if (savedCode && savedRole && window.db) {
-        try {
-            await connectToRoom(savedCode, savedRole);
-        } catch (error) {
-            console.warn('Could not restore the previous room:', error);
-            localStorage.removeItem('closer_room_code');
-            localStorage.removeItem('closer_room_role');
-        }
-    }
+    // Do not auto-connect to a previous room on load; pairing is an explicit user action.
+    // (Saved code/role are retained for manual reconnect.)
+    void savedCode; void savedRole;
 
 }
 
