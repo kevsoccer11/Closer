@@ -2973,7 +2973,11 @@ body:not(.light-theme) .card-progress-track {
 
 .card-preview {
     position: absolute;
-    inset: 0;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    bottom: auto;
+    max-height: 55%;
     border-radius: 20px;
     background: var(--card-bg);
     border: 2px solid var(--primary-border);
@@ -2990,6 +2994,7 @@ body:not(.light-theme) .card-progress-track {
     transform: scale(0.96);
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
+    overflow: hidden;
 }
 .card-preview.show {
     opacity: 1;

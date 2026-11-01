@@ -3727,9 +3727,14 @@ async function renderGuessMe(gm) {
         const readyBtn = document.createElement('button'); readyBtn.className='btn-primary';
         readyBtn.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'Ready ✓' : "I'm ready";
         readyBtn.onclick = async () => {
-            const key = isHost ? 'hostReady' : 'partnerReady';
-            const cur = await window.roomRef.child('guessMe/'+key).once('value');
-            await window.roomRef.child('guessMe/'+key).set(!cur.val());
+            try {
+                const key = isHost ? 'hostReady' : 'partnerReady';
+                const cur = await window.roomRef.child('guessMe/'+key).once('value');
+                await window.roomRef.child('guessMe/'+key).set(!cur.val());
+            } catch (e) {
+                console.error('ready toggle failed', e);
+                if (typeof showToast === 'function') showToast('Could not update ready status.');
+            }
         };
         card.append(icon, content, readyBtn);
         view.appendChild(card);
