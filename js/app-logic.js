@@ -836,6 +836,7 @@ function openRoundBuilder() {
     const modal = document.getElementById('roundBuilderModal');
     if (!modal) return;
     modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
     // Reset tabs to Curated
     document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
     const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
@@ -878,6 +879,7 @@ function openRoundBuilder() {
 
 function closeRoundBuilder() {
     document.getElementById('roundBuilderModal')?.classList.add('hidden');
+    document.body.style.overflow = '';
 }
 
 function openGuessMeSetup() {
@@ -889,9 +891,11 @@ function openGuessMeSetup() {
     const status = document.getElementById('guessMeSetupStatus');
     if (status) status.textContent = '';
     modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
 }
 function closeGuessMeSetup() {
     document.getElementById('guessMeSetupModal')?.classList.add('hidden');
+    document.body.style.overflow = '';
 }
 function getGuessMeSelection() {
     const lengthBtn = document.querySelector('#guessMeLengthChips .filter-chip.active');

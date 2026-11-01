@@ -2553,7 +2553,12 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     border-color: var(--primary-border);
     color: var(--primary);
 }
-.progress-indicator {
+#guessMeLengthChips .filter-chip,
+#guessMeVibeChips .filter-chip {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    min-height: 40px;
+}
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-left: auto;
