@@ -279,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('playModePairedBtn')?.addEventListener('click', () => {
         localStorage.setItem('closer_play_mode', 'paired');
         closePlayModeModal();
+        closeRoundBuilder();
         pendingGameStart = null;
         document.getElementById('pairPartnerBtn')?.click();
     });
