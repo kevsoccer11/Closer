@@ -58,6 +58,31 @@ check('You Get Me setup has an accessible, touch-sized close control', () => {
     }
 });
 
+check('You Get Me setup keeps room actions visible while its choices scroll', () => {
+    const modal = html.match(/<div class="modal-overlay hidden" id="guessMeSetupModal">([\s\S]*?)<\/section>/);
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!modal || !modal[1].includes('class="guess-me-setup-content"')
+        || !modal[1].includes('class="guess-me-setup-footer"')
+        || !modal[1].includes('id="guessMeCreateRoomBtn"')
+        || !modal[1].includes('id="guessMeJoinRoomBtn"')) {
+        throw new Error('You Get Me setup does not separate scrollable choices from room actions');
+    }
+    if (!styles.includes('#guessMeSetupModal .guess-me-setup-content {\n    flex: 1 1 auto;\n    min-height: 0;\n    overflow-y: auto;')
+        || !styles.includes('#guessMeSetupModal .guess-me-setup-footer {\n    flex: 0 0 auto;')) {
+        throw new Error('You Get Me room actions are not kept outside the scrolling content');
+    }
+});
+
+check('You Get Me lobby controls fit narrow screens and modal headers stay pinned', () => {
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!styles.includes('#guessMeView .continue-card {\n    flex-wrap: wrap;')
+        || !styles.includes('#guessMeView .continue-card > .btn-primary {\n    flex: 1 0 100%;')
+        || !styles.includes('#guessMeView .round-builder-actions {\n    grid-template-columns: repeat(2, minmax(0, 1fr));')
+        || !styles.includes('#playModeModal .round-builder-heading,\n#playerNamesModal .round-builder-heading {\n    position: sticky;')) {
+        throw new Error('You Get Me controls can be squeezed or modal close controls can scroll out of view');
+    }
+});
+
 check('home features six curated packs with an Explore link', () => {
     const section = html.match(/<section class="featured-experiences" id="featuredExperiences">([\s\S]*?)<\/section>/);
     if (!section) throw new Error('featured pack section is missing');
@@ -461,6 +486,37 @@ check('You Get Me lobby lets the host approve or deny join requests', () => {
     if (!logic.includes('approveButton.onclick = () => resolveJoinRequest(uid, true);')
         || !logic.includes('denyButton.onclick = () => resolveJoinRequest(uid, false);')) {
         throw new Error('host join-request approval or denial action is not wired');
+    }
+});
+
+check('You Get Me reveals for both players and supports shared pause, resume, and end', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const rules = JSON.parse(fs.readFileSync('database.rules.json', 'utf8')).rules.rooms.$roomCode.guessMe.status;
+    const ruleTests = fs.readFileSync('tests/database-rules.test.js', 'utf8');
+    if (!logic.includes("if (gm.status === 'playing' && ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost)")
+        || !logic.includes('if (ss.resolved && !ss.scored && isHost) {\n        (async () => {')
+        || !logic.includes('nextBtn.disabled = gm.status === \'paused\' || !ss.scored;')
+        || !logic.includes("gm.status === 'paused' ? 'Resume game' : 'Pause game'")
+        || !logic.includes("textContent = 'End game';")
+        || !logic.includes("if (gm.status === 'ended')")) {
+        throw new Error('shared reveal, pause/resume, or partial results flow is missing');
+    }
+    if (!rules['.write'].includes("members/partner")
+        || !rules['.validate'].includes("newData.val() === 'paused'")
+        || !rules['.validate'].includes("newData.val() === 'ended'")
+        || !ruleTests.includes("guessMe/status`), 'paused'"))
+        throw new Error('shared game state transitions are not covered by database rules tests');
+});
+
+check('approved private rooms direct the host to choose a pack', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const state = fs.readFileSync('js/app-state.js', 'utf8');
+    if (!logic.includes("startButton.textContent = 'Choose a pack and start';")
+        || !logic.includes('closeDrawer();\n            openRoundBuilder();')
+        || !/partnerConnected\s*&& currentRoomGameModeLoaded && currentRoomGameMode !== 'guess-me'/.test(logic)
+        || !logic.includes('renderPairManagement();\n            }\n        };\n        window.roomRef.child(\'members/partner\')')
+        || !state.includes('let currentRoomGameModeLoaded = false;')) {
+        throw new Error('regular paired rooms do not offer pack selection after the partner joins');
     }
 });
 

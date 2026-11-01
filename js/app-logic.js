@@ -3264,9 +3264,11 @@ function renderPairManagement() {
     if (!window.currentRoomCode) {
         statusText.textContent = 'Not connected to a room.';
     } else if (window.currentRoomRole === 'host') {
-        statusText.textContent = `Room created and ready · Host · ${window.currentRoomCode}`;
+        statusText.textContent = partnerConnected
+            ? `Partner connected · Host · ${window.currentRoomCode}`
+            : `Room created and ready · Host · ${window.currentRoomCode}`;
     } else if (window.currentRoomRole === 'partner') {
-        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner`;
+        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner. The host will choose a pack and start.`;
     } else if (window.currentRoomRole === 'requesting') {
         statusText.textContent = `Request pending · Room ${window.currentRoomCode}`;
     } else {
@@ -3327,6 +3329,24 @@ function renderPairManagement() {
         row.append(codeInput, copyButton);
         invite.append(label, row);
         pairManagementContainer.appendChild(invite);
+    }
+
+    if (window.currentRoomRole === 'host' && partnerConnected
+        && currentRoomGameModeLoaded && currentRoomGameMode !== 'guess-me') {
+        const startSection = document.createElement('section');
+        startSection.className = 'room-create-section';
+        const prompt = document.createElement('p');
+        prompt.textContent = 'Your partner is connected. Choose a pack or customize a round, then start your conversation.';
+        const startButton = document.createElement('button');
+        startButton.type = 'button';
+        startButton.className = 'btn-primary';
+        startButton.textContent = 'Choose a pack and start';
+        startButton.onclick = () => {
+            closeDrawer();
+            openRoundBuilder();
+        };
+        startSection.append(prompt, startButton);
+        pairManagementContainer.appendChild(startSection);
     }
 
     if (window.currentRoomRole !== 'host') return;
@@ -3536,6 +3556,10 @@ function detachRoomAccessListeners() {
         window.roomRef.child('members/partner').off('value', partnerSeatListener);
         partnerSeatListener = null;
     }
+    if (gameModeListener && window.roomRef) {
+        window.roomRef.child('gameMode').off('value', gameModeListener);
+        gameModeListener = null;
+    }
     if (window.roomRef) window.roomRef.child('sharedDeck').off('value');
     if (joinRequestListener && pendingJoinRequestRef) {
         pendingJoinRequestRef.off('value', joinRequestListener);
@@ -3554,6 +3578,8 @@ function connectToRoom(roomCode, role) {
     window.currentRoomCode = roomCode;
     window.currentRoomRole = role;
     partnerConnected = role === 'partner';
+    currentRoomGameMode = null;
+    currentRoomGameModeLoaded = false;
     localStorage.setItem('closer_room_code', roomCode);
     localStorage.setItem('closer_room_role', role);
     window.roomRef = window.db.ref(`rooms/${roomCode}`);
@@ -3615,14 +3641,17 @@ function connectToRoom(roomCode, role) {
     if (currentCard) renderCard(currentCard);
     updateConnectionStatus();
     loadPlayedCardsFromRoom();
-    // Guess Me: if this room is a Guess Me room, activate the lobby scaffold.
-    window.roomRef.child('gameMode').once('value').then(snap => {
-        if (snap.val() === 'guess-me') {
+    gameModeListener = snapshot => {
+        currentRoomGameMode = snapshot.val();
+        currentRoomGameModeLoaded = true;
+        renderPairManagement();
+        if (currentRoomGameMode === 'guess-me') {
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
         }
-    }).catch(error => {
+    };
+    window.roomRef.child('gameMode').on('value', gameModeListener, error => {
         console.error('Could not read the connected room game mode:', error);
         setPairStatus(`Could not load room details: ${error.message}`);
     });
@@ -3636,6 +3665,7 @@ function connectToRoom(roomCode, role) {
                 partnerConnected = true;
                 showToast('Your partner joined the room.');
                 updateConnectionStatus();
+                renderPairManagement();
             }
         };
         window.roomRef.child('members/partner').on('value', partnerSeatListener);
@@ -4038,6 +4068,18 @@ async function startGuessMeReplay(gm) {
         guessMeReplayStarting = false;
     }
 }
+async function transitionGuessMeStatus(nextStatus) {
+    if (!window.roomRef) throw new Error('You are no longer connected to this room.');
+    const statusRef = window.roomRef.child('guessMe/status');
+    const currentStatus = (await statusRef.once('value')).val();
+    const allowed = (currentStatus === 'playing' && ['paused', 'ended'].includes(nextStatus))
+        || (currentStatus === 'paused' && ['playing', 'ended'].includes(nextStatus));
+    if (!allowed) {
+        if (typeof showToast === 'function') showToast('The game changed on the other device. Your screen will update.');
+        return;
+    }
+    await statusRef.set(nextStatus);
+}
 async function renderGuessMe(gm) {
     const view = document.getElementById('guessMeView');
     if (!view) return;
@@ -4046,25 +4088,82 @@ async function renderGuessMe(gm) {
     header.className = 'app-hero';
     const h = document.createElement('h2');
     h.id = 'guessMeTitle';
-    h.textContent = gm.status === 'lobby' ? 'You Get Me — Lobby' : gm.status === 'complete' ? 'You Get Me — Results' : 'You Get Me';
+    h.textContent = gm.status === 'lobby' ? 'You Get Me — Lobby'
+        : gm.status === 'complete' ? 'You Get Me — Results'
+            : gm.status === 'paused' ? 'You Get Me — Paused'
+                : gm.status === 'ended' ? 'You Get Me — Game ended' : 'You Get Me';
     const p = document.createElement('p');
     const questionCount = Array.isArray(gm.questionIds) ? gm.questionIds.length : gm.length;
     p.textContent = gm.status === 'lobby'
         ? 'Ready check'
         : gm.status === 'complete'
             ? `${questionCount} questions played`
-            : `Question ${((gm.currentIndex || 0) + 1)} of ${questionCount}`;
+            : gm.status === 'ended'
+                ? `Game ended after ${Math.min(questionCount, (gm.currentIndex || 0) + (gm.submissionStatus?.resolved ? 1 : 0))} completed questions`
+                : `${gm.status === 'paused' ? 'Paused · ' : ''}Question ${((gm.currentIndex || 0) + 1)} of ${questionCount}`;
     header.append(h, p);
     view.appendChild(header);
     const isHost = window.currentRoomRole === 'host';
+    if (['playing', 'paused'].includes(gm.status)) {
+        const controls = document.createElement('section');
+        controls.className = 'guess-me-controls';
+        controls.setAttribute('aria-label', 'Shared game controls');
+        const status = document.createElement('p');
+        status.textContent = gm.status === 'paused'
+            ? 'The game is paused for both players.'
+            : 'Both players are in the same round.';
+        const actions = document.createElement('div');
+        actions.className = 'guess-me-control-actions';
+        const toggle = document.createElement('button');
+        toggle.type = 'button';
+        toggle.className = 'btn-primary';
+        toggle.textContent = gm.status === 'paused' ? 'Resume game' : 'Pause game';
+        toggle.onclick = async () => {
+            toggle.disabled = true;
+            try {
+                await transitionGuessMeStatus(gm.status === 'paused' ? 'playing' : 'paused');
+            } catch (error) {
+                reportGuessMeError(error);
+                toggle.disabled = false;
+            }
+        };
+        const end = document.createElement('button');
+        end.type = 'button';
+        end.className = 'btn-secondary';
+        end.textContent = 'End game';
+        end.onclick = async () => {
+            if (!confirm('End this game for both of you? Your current scores will be saved, but you will not be able to resume.')) return;
+            end.disabled = true;
+            try {
+                await transitionGuessMeStatus('ended');
+            } catch (error) {
+                reportGuessMeError(error);
+                end.disabled = false;
+            }
+        };
+        actions.append(toggle, end);
+        controls.append(status, actions);
+        view.appendChild(controls);
+    }
     if (gm.status === 'lobby') {
+        if (isHost) {
+            view.appendChild(createJoinRequestsSection(
+                'Share the room code with your partner. Their request will appear here.',
+                'guessMeJoinRequestStatus'
+            ));
+        }
         const card = document.createElement('section'); card.className = 'continue-card';
         const icon = document.createElement('span'); icon.className='continue-icon'; icon.textContent='♡'; icon.setAttribute('aria-hidden','true');
-        const content = document.createElement('div'); content.className='continue-content';
-        const label = document.createElement('span'); label.className='continue-label'; label.textContent='Ready check';
-        const t = document.createElement('h2'); t.className='continue-title';
+        const content = document.createElement('div'); content.className = 'continue-content';
+        const label = document.createElement('span'); label.className = 'continue-label'; label.textContent = 'Ready check';
+        const t = document.createElement('h2'); t.className = 'continue-title';
         t.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'You are ready ✓' : 'Mark yourself ready when you are set.';
-        content.append(label, t);
+        const hostName = roomDisplayNames.host?.name || 'Player A';
+        const partnerName = roomDisplayNames.partner?.name || 'Player B';
+        const readiness = document.createElement('p');
+        readiness.className = 'round-builder-intro';
+        readiness.textContent = `${hostName}: ${gm.hostReady ? 'ready' : 'not ready'} · ${partnerName}: ${gm.partnerReady ? 'ready' : 'not ready'}`;
+        content.append(label, t, readiness);
         if (isHost && window.currentRoomCode) {
             const codeP = document.createElement('p');
             codeP.className = 'round-builder-intro';
@@ -4087,7 +4186,8 @@ async function renderGuessMe(gm) {
             content.append(codeP, copyBtn);
         }
         const readyBtn = document.createElement('button'); readyBtn.className='btn-primary';
-        readyBtn.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'Ready ✓' : "I'm ready";
+        const iAmReady = isHost ? gm.hostReady : gm.partnerReady;
+        readyBtn.textContent = iAmReady ? 'I need a moment' : "I'm ready";
         readyBtn.onclick = async () => {
             try {
                 const key = isHost ? 'hostReady' : 'partnerReady';
@@ -4097,19 +4197,6 @@ async function renderGuessMe(gm) {
                 reportGuessMeError(e);
             }
         };
-        card.append(icon, content, readyBtn);
-        view.appendChild(card);
-        const info = document.createElement('section'); info.className='categories-section';
-        const hostName = roomDisplayNames.host?.name || 'Player A';
-        const partnerName = roomDisplayNames.partner?.name || 'Player B';
-        const readiness = document.createElement('p');
-        readiness.className = 'round-builder-intro';
-        readiness.textContent = `${hostName}: ${gm.hostReady ? 'ready' : 'not ready'} · ${partnerName}: ${gm.partnerReady ? 'ready' : 'not ready'}`;
-        const ip = document.createElement('p'); ip.className='round-builder-intro';
-        ip.textContent = 'Length: ' + gm.length + ' questions · Vibe: ' + gm.vibe + ' · You are ' + (isHost ? 'Player A (host)' : 'Player B (partner)') + '.';
-        const actions = document.createElement('div'); actions.className='modal-actions round-builder-actions';
-        const leave = document.createElement('button'); leave.className='btn-secondary'; leave.textContent='Leave room';
-        leave.onclick = leaveGuessMeRoom;
         const start = document.createElement('button'); start.className='btn-primary'; start.textContent='Start game';
         start.classList.toggle('hidden', !isHost);
         start.disabled = !(gm.hostReady && gm.partnerReady);
@@ -4136,15 +4223,47 @@ async function renderGuessMe(gm) {
                 start.disabled = false;
             }
         };
-        actions.append(leave, start);
-        info.append(readiness, ip, actions);
+        card.append(icon, content, readyBtn, start);
+        view.appendChild(card);
+        const info = document.createElement('section'); info.className='categories-section';
+        const ip = document.createElement('p'); ip.className='round-builder-intro';
+        ip.textContent = 'Length: ' + gm.length + ' questions · Vibe: ' + gm.vibe + ' · You are ' + (isHost ? 'Player A (host)' : 'Player B (partner)') + '.';
+        const actions = document.createElement('div'); actions.className='modal-actions round-builder-actions';
+        const leave = document.createElement('button'); leave.className='btn-secondary'; leave.textContent='Leave room';
+        leave.onclick = leaveGuessMeRoom;
+        actions.append(leave);
+        info.append(ip, actions);
         view.appendChild(info);
-        if (isHost) {
-            view.appendChild(createJoinRequestsSection(
-                'Share the room code with your partner. Their request will appear here.',
-                'guessMeJoinRequestStatus'
-            ));
-        }
+        return;
+    }
+    if (gm.status === 'ended') {
+        const card = document.createElement('section');
+        card.className = 'continue-card';
+        const content = document.createElement('div');
+        content.className = 'continue-content';
+        const label = document.createElement('span');
+        label.className = 'continue-label';
+        label.textContent = 'Partial results';
+        const title = document.createElement('h2');
+        title.className = 'continue-title';
+        title.textContent = 'Game ended';
+        const hostScore = gm.scores?.host ?? 0;
+        const partnerScore = gm.scores?.partner ?? 0;
+        const total = gm.scores ? hostScore + partnerScore : 0;
+        const played = Array.isArray(gm.questionIds) ? gm.questionIds.length : gm.length;
+        const completed = Math.min(played, (gm.currentIndex || 0) + (gm.submissionStatus?.resolved ? 1 : 0));
+        const summary = document.createElement('p');
+        const hostName = roomDisplayNames.host?.name || 'Player A';
+        const partnerName = roomDisplayNames.partner?.name || 'Player B';
+        summary.textContent = `Completed ${completed} of ${played} questions. ${hostName}: ${hostScore} correct · ${partnerName}: ${partnerScore} correct (${total} total).`;
+        content.append(label, title, summary);
+        const leave = document.createElement('button');
+        leave.type = 'button';
+        leave.className = 'btn-secondary';
+        leave.textContent = 'Leave game';
+        leave.onclick = leaveGuessMeRoom;
+        card.append(content, leave);
+        view.appendChild(card);
         return;
     }
     if (gm.status === 'complete') {
@@ -4218,7 +4337,7 @@ async function renderGuessMe(gm) {
     const hostIsAnswerer = (idx % 2 === 0);
     const iAmAnswerer = isHost ? hostIsAnswerer : !hostIsAnswerer;
     const ss = gm.submissionStatus || {};
-    if (ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost) {
+    if (gm.status === 'playing' && ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost) {
         try {
             await window.roomRef.child('guessMe/submissionStatus/resolved').set(true);
         } catch (error) {
@@ -4227,18 +4346,19 @@ async function renderGuessMe(gm) {
         return;
     }
     if (ss.resolved && !ss.scored && isHost) {
-        try {
-            const scoreLock = await window.roomRef.child('guessMe/submissionStatus/scored')
-                .transaction(current => current === true ? undefined : true);
-            if (scoreLock.committed && gm.answer?.value === gm.guess?.value) {
-                const hostIsPredictor = idx % 2 !== 0;
-                const scorePath = `guessMe/scores/${hostIsPredictor ? 'host' : 'partner'}`;
-                await window.roomRef.child(scorePath).transaction(current => (Number(current) || 0) + 1);
+        (async () => {
+            try {
+                const scoreLock = await window.roomRef.child('guessMe/submissionStatus/scored')
+                    .transaction(current => current === true ? undefined : true);
+                if (scoreLock.committed && gm.answer?.value === gm.guess?.value) {
+                    const hostIsPredictor = idx % 2 !== 0;
+                    const scorePath = `guessMe/scores/${hostIsPredictor ? 'host' : 'partner'}`;
+                    await window.roomRef.child(scorePath).transaction(current => (Number(current) || 0) + 1);
+                }
+            } catch (error) {
+                reportGuessMeError(error);
             }
-        } catch (error) {
-            reportGuessMeError(error);
-        }
-        return;
+        })();
     }
     const qCard = document.createElement('section'); qCard.className='app-hero';
     const qp = document.createElement('p'); qp.className='round-builder-intro';
@@ -4258,7 +4378,7 @@ async function renderGuessMe(gm) {
             btn.className='btn-secondary'; btn.style.textAlign='left'; btn.textContent=opt;
             btn.dataset.idx = i;
             btn.setAttribute('aria-pressed', 'false');
-            btn.disabled = alreadySubmitted || waitingForAnswer;
+            btn.disabled = alreadySubmitted || waitingForAnswer || gm.status === 'paused';
             btn.onclick = () => {
                 opts.querySelectorAll('button').forEach(option => {
                     option.classList.remove('active');
@@ -4271,12 +4391,16 @@ async function renderGuessMe(gm) {
         });
         qCard.appendChild(opts);
         const submit = document.createElement('button'); submit.className='btn-primary'; submit.style.marginTop='12px';
-        submit.disabled = alreadySubmitted || waitingForAnswer;
-        submit.textContent = alreadySubmitted ? 'Answer locked' : iAmAnswerer ? 'Lock in answer' : waitingForAnswer ? 'Waiting for partner…' : 'Lock in guess';
+        submit.disabled = alreadySubmitted || waitingForAnswer || gm.status === 'paused';
+        submit.textContent = gm.status === 'paused' ? 'Game paused'
+            : alreadySubmitted ? 'Answer locked'
+                : iAmAnswerer ? 'Lock in answer'
+                    : waitingForAnswer ? 'Waiting for partner…' : 'Lock in guess';
         const actionStatus = document.createElement('p');
         actionStatus.className = 'card-answer-status';
         actionStatus.setAttribute('role', 'status');
-        actionStatus.textContent = iAmAnswerer
+        actionStatus.textContent = gm.status === 'paused' ? 'Resume the game when you are both ready to continue.'
+            : iAmAnswerer
             ? (ss.answerSubmitted ? 'Your answer is locked. Your partner is making a guess.' : 'Your partner will not see your answer until both of you lock in.')
             : (ss.guessSubmitted ? 'Your guess is locked. Waiting to reveal together.' : waitingForAnswer ? 'Your partner picks their answer first.' : 'Choose what you think your partner selected.');
         submit.onclick = async () => {
@@ -4327,6 +4451,9 @@ async function renderGuessMe(gm) {
         content.append(label, t, aLine, gLine);
         reveal.appendChild(content);
         const nextBtn = document.createElement('button'); nextBtn.className='btn-primary'; nextBtn.textContent='Next question';
+        nextBtn.disabled = gm.status === 'paused' || !ss.scored;
+        if (gm.status === 'paused') nextBtn.textContent = 'Resume to continue';
+        else if (!ss.scored) nextBtn.textContent = 'Revealing…';
         nextBtn.onclick = async () => {
             if (!isHost) { if (typeof showToast==='function') showToast('Waiting for host…'); return; }
             const nextIdx = (gm.currentIndex||0) + 1;

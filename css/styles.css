@@ -3958,6 +3958,51 @@ body:not(.light-theme) .app-bottom-nav button.active {
     align-items: center;
 }
 
+#playModeModal .round-builder-heading,
+#playerNamesModal .round-builder-heading {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    flex: 0 0 auto;
+    padding: 8px 0;
+    background: var(--card-bg);
+}
+
+#guessMeSetupModal .modal-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#guessMeSetupModal .guess-me-setup-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#guessMeSetupModal .guess-me-setup-footer {
+    flex: 0 0 auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--card-border);
+    background: var(--card-bg);
+}
+
+#guessMeSetupModal .round-builder-actions {
+    flex-wrap: nowrap;
+}
+
+#guessMeSetupModal .round-builder-actions button {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 48px;
+    padding: 10px 12px;
+}
+
 #guessMeSetupModal .modal-close {
     display: inline-flex;
     flex: 0 0 44px;
@@ -3975,6 +4020,61 @@ body:not(.light-theme) .app-bottom-nav button.active {
     font-weight: 400;
     line-height: 1;
     cursor: pointer;
+}
+
+#guessMeView .continue-card {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+#guessMeView .continue-content {
+    flex: 1 1 180px;
+    min-width: 0;
+}
+
+#guessMeView .continue-card > .btn-primary {
+    flex: 1 0 100%;
+    min-width: 0;
+    min-height: 48px;
+}
+
+#guessMeView .guess-me-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    background: var(--card-bg);
+}
+
+#guessMeView .guess-me-control-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+#guessMeView .guess-me-control-actions button {
+    min-width: 0;
+    min-height: 48px;
+    padding-inline: 8px;
+    white-space: normal;
+}
+
+#guessMeView .round-builder-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#guessMeView .round-builder-actions button {
+    min-width: 0;
+    min-height: 48px;
+    padding-inline: 8px;
+    white-space: normal;
+}
+
+#guessMeView .room-request-actions button {
+    min-width: 0;
+    min-height: 44px;
 }
 
 @media (min-width: 768px) {

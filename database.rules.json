@@ -130,8 +130,8 @@
         "guessMe": {
           "status": {
             ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
-            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
-            ".validate": "newData.isString() && (newData.val() === 'lobby' || newData.val() === 'playing' || newData.val() === 'revealing' || newData.val() === 'complete')"
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && ((auth.uid === root.child('rooms').child($roomCode).child('members/host').val() && ((!data.exists() && newData.val() === 'lobby') || data.val() === newData.val() || (data.val() === 'lobby' && newData.val() === 'playing') || (data.val() === 'playing' && (newData.val() === 'complete' || newData.val() === 'paused' || newData.val() === 'ended')) || (data.val() === 'paused' && (newData.val() === 'playing' || newData.val() === 'ended')) || (data.val() === 'complete' && newData.val() === 'lobby') || (data.val() === 'revealing' && (newData.val() === 'playing' || newData.val() === 'complete' || newData.val() === 'paused' || newData.val() === 'ended')))) || (auth.uid === root.child('rooms').child($roomCode).child('members/partner').val() && ((data.val() === 'playing' && (newData.val() === 'paused' || newData.val() === 'ended')) || (data.val() === 'paused' && (newData.val() === 'playing' || newData.val() === 'ended')))))",
+            ".validate": "newData.isString() && (newData.val() === 'lobby' || newData.val() === 'playing' || newData.val() === 'revealing' || newData.val() === 'paused' || newData.val() === 'ended' || newData.val() === 'complete')"
           },
           "length": { 
             ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
