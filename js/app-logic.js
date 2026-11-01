@@ -3728,6 +3728,21 @@ async function renderGuessMe(gm) {
         const t = document.createElement('h2'); t.className='continue-title';
         t.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'You are ready ✓' : 'Waiting for both players';
         content.append(label, t);
+        if (isHost && window.currentRoomCode) {
+            const codeP = document.createElement('p');
+            codeP.className = 'round-builder-intro';
+            codeP.textContent = 'Room code: ' + window.currentRoomCode;
+            codeP.style.fontWeight = '700';
+            codeP.style.wordBreak = 'break-all';
+            const copyBtn = document.createElement('button');
+            copyBtn.className = 'btn-secondary';
+            copyBtn.textContent = 'Copy code';
+            copyBtn.style.marginTop = '6px';
+            copyBtn.onclick = () => {
+                try { navigator.clipboard.writeText(window.currentRoomCode); if (typeof showToast === 'function') showToast('Room code copied.'); } catch (e) { if (typeof showToast === 'function') showToast('Copy failed — select the code manually.'); }
+            };
+            content.append(codeP, copyBtn);
+        }
         const readyBtn = document.createElement('button'); readyBtn.className='btn-primary';
         readyBtn.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'Ready ✓' : "I'm ready";
         readyBtn.onclick = async () => {
