@@ -137,7 +137,7 @@ header {
 .sidebar-brand .brand-logo {
     height: 6rem;
     width: 9rem;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     margin-bottom: 6px;
 }
@@ -2661,6 +2661,9 @@ h1, h2, h3, .card-prompt, .home-hero h1, .sidebar-brand strong {
     body {
         padding-left: 280px;
     }
+    .top-bar .brand-block {
+        display: none;
+    }
     .desktop-sidebar {
         display: flex;
         flex-direction: column;
@@ -3941,6 +3944,10 @@ body:not(.light-theme) .app-bottom-nav button.active {
     background: rgba(35, 20, 48, 0.28);
 }
 
+#playModeModal {
+    z-index: 10020;
+}
+
 #playModeModal .modal-card,
 #playerNamesModal .modal-card,
 #guessMeSetupModal .modal-card {
@@ -3952,6 +3959,11 @@ body:not(.light-theme) .app-bottom-nav button.active {
     border-radius: 24px 24px 0 0;
     background: var(--card-bg);
     color: var(--text-main);
+}
+
+#playModeModal .play-mode-card {
+    gap: 0;
+    padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
 }
 
 #guessMeSetupModal .round-builder-heading {
@@ -3969,20 +3981,16 @@ body:not(.light-theme) .app-bottom-nav button.active {
 }
 
 #playModeModal .round-builder-heading {
-    padding-block: 4px;
+    position: static;
+    padding: 0;
 }
 
 #playModeModal .play-mode-options {
-    position: sticky;
-    bottom: 0;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 10px;
     flex: 0 0 auto;
-    margin-top: 0;
-    padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
-    background: var(--card-bg);
+    margin-top: 12px;
 }
 
 #playModeModal .play-mode-options button {

@@ -83,15 +83,23 @@ check('You Get Me lobby controls fit narrow screens and modal headers stay pinne
     }
 });
 
-check('play mode choices stay pinned and dark mode uses a transparent logo', () => {
+check('play mode choices stay reachable and dark mode uses a transparent logo', () => {
     const styles = fs.readFileSync('css/styles.css', 'utf8');
     const serviceWorker = fs.readFileSync('sw.js', 'utf8');
     const playMode = html.match(/<div class="modal-overlay hidden" id="playModeModal">([\s\S]*?)<\/section>/);
     if (!playMode || !playMode[1].includes('class="play-mode-options"')
         || !playMode[1].includes('id="playModeSameDeviceBtn"')
         || !playMode[1].includes('id="playModePairedBtn"')
-        || !styles.includes('#playModeModal .play-mode-options {\n    position: sticky;\n    bottom: 0;')) {
-        throw new Error('play-mode choices are not kept visible in a short viewport');
+    || !styles.includes('#playModeModal .play-mode-options {\n    display: flex;')
+    || !styles.includes('#playModeModal .play-mode-card {\n    gap: 0;')) {
+    throw new Error('play-mode choices are not laid out as a compact, reachable group');
+    }
+    const overlayRule = styles.match(/#playModeModal \{([^}]*)\}/);
+    const navigationRule = styles.match(/\.app-bottom-nav \{([^}]*)\}/);
+    const overlayZIndex = Number(overlayRule?.[1].match(/z-index:\s*(\d+)/)?.[1]);
+    const navigationZIndex = Number(navigationRule?.[1].match(/z-index:\s*(\d+)/)?.[1]);
+    if (!overlayZIndex || !navigationZIndex || overlayZIndex <= navigationZIndex) {
+    throw new Error('bottom navigation can cover the play-mode options');
     }
     if (!/body:not\(\.light-theme\) \.brand-logo \{\s*filter: brightness\(0\) invert\(1\);/.test(styles)
         || !html.includes('Closer%20Everyday%20Heart%20Logo.png')
@@ -358,6 +366,9 @@ check('header uses the transparent logo with the same dimensions in both themes'
         || html.includes('img/Closer%20Heart%20Connect%20Logo%20Dark.png')
         || !styles.includes('body:not(.light-theme) .brand-logo')) {
         throw new Error('the transparent logo is not reused with a dark-mode treatment');
+    }
+    if (!styles.includes('@media (min-width: 1024px) {\n    body {\n        padding-left: 280px;\n    }\n    .top-bar .brand-block {\n        display: none;')) {
+        throw new Error('desktop header duplicates the sidebar logo');
     }
 });
 
