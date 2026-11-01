@@ -1,7 +1,27 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
+    const exploreContent = document.getElementById('exploreContent');
+    const homeMoodSection = document.getElementById('homeMoodSection');
+    const featuredExperiences = document.getElementById('featuredExperiences');
+    if (exploreContent) {
+        if (homeMoodSection) {
+            const moodClone = homeMoodSection.cloneNode(true);
+            moodClone.removeAttribute('id');
+            moodClone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+            moodClone.querySelector('.categories-header .text-link')?.remove();
+            exploreContent.appendChild(moodClone);
+        }
+        if (featuredExperiences) {
+            const packsClone = featuredExperiences.cloneNode(true);
+            packsClone.removeAttribute('id');
+            packsClone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+            packsClone.querySelector('.categories-header .text-link')?.remove();
+            exploreContent.appendChild(packsClone);
+        }
+    }
+
     const applyTheme = () => {
-        const light = localStorage.getItem('closer_theme') !== 'dark';
+        const light = readStoredValue('closer_theme') !== 'dark';
         document.body.classList.toggle('light-theme', light);
     };
     applyTheme();
@@ -11,14 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             const openModal = document.querySelector('.modal-overlay:not(.hidden)');
             if (openModal) {
-                openModal.classList.add('hidden');
+                setModalOpen(openModal, false);
                 return;
             }
             const drawer = document.getElementById('appDrawer');
-            const overlay = document.getElementById('drawerOverlay');
             if (drawer && !drawer.classList.contains('hidden')) {
-                drawer.classList.add('hidden');
-                overlay?.classList.add('hidden');
+                closeDrawer();
             }
             return;
         }
@@ -49,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardContainer.style.cursor = tapToAdvance ? 'pointer' : 'default';
     }
     // Apply saved theme (default to light).
-    if (localStorage.getItem('closer_theme') !== 'dark') document.body.classList.add('light-theme');
+    if (readStoredValue('closer_theme') !== 'dark') document.body.classList.add('light-theme');
     const offlineBanner = document.getElementById('offlineBanner');
     const updateOffline = () => {
         if (!offlineBanner) return;
@@ -67,6 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('passCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(10); } catch(e){} advanceCard(true); });
     document.getElementById('quitGameBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} quitConversation(); });
+    document.getElementById('pauseGameBtn')?.addEventListener('click', pauseConversation);
+    document.getElementById('editRoundBtn')?.addEventListener('click', () => {
+        openRoundBuilder(true);
+        document.querySelector('.round-tab[data-tab="custom"]')?.click();
+    });
 
     document.getElementById('favCardBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} });
     document.getElementById('undoBtn')?.addEventListener('click', () => { try { navigator.vibrate?.(8); } catch(e){} undoCard(); });
@@ -129,6 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('createRoundFromSettingsBtn')?.addEventListener('click', openRoundBuilder);
+    document.getElementById('homeCreateDeckBtn')?.addEventListener('click', () => {
+        openRoundBuilder();
+        document.querySelector('.round-tab[data-tab="custom"]')?.click();
+    });
+    document.getElementById('homeBrowseCardsBtn')?.addEventListener('click', () => {
+        openDrawer('Browse cards', '');
+        renderCardBrowserDrawerContent(document.getElementById('drawerContent'));
+    });
+    document.getElementById('resumeSavedGameBtn')?.addEventListener('click', resumeSavedGame);
     const createDeckBtn = document.getElementById('createDeckBtn');
     if (createDeckBtn) {
         createDeckBtn.onclick = () => {
@@ -196,24 +228,9 @@ document.addEventListener('DOMContentLoaded', () => {
             try { openRoundBuilder(); } catch (err) { console.error(err); alert('Could not open: ' + err.message); }
         }
     });
-    document.getElementById('exploreAllBtn')?.addEventListener('click', () => {
-        try {
-            openRoundBuilder();
-            const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
-            if (curatedTabBtn) curatedTabBtn.click();
-        } catch (e) { console.error(e); }
-    });
-    document.getElementById('seeMoreExperiencesBtn')?.addEventListener('click', () => {
-        try {
-            openRoundBuilder();
-            const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
-            if (curatedTabBtn) curatedTabBtn.click();
-        } catch (e) { console.error(e); }
-    });
-
     document.querySelectorAll('.desktop-sidebar button[data-action]').forEach(btn => {
         btn.addEventListener('click', () => {
-            if (btn.dataset.action === 'packs') openRoundBuilder();
+            if (btn.dataset.action === 'packs') showExploreView();
             if (btn.dataset.action === 'favorites') {
                 const favBtn = document.querySelector('#favoritesBtn, .favorites-btn');
                 if (favBtn) favBtn.click();
@@ -237,8 +254,49 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    document.getElementById('exploreNavBtn')?.addEventListener('click', () => openRoundBuilder());
+    document.getElementById('exploreNavBtn')?.addEventListener('click', showExploreView);
     document.getElementById('homeNavBtn')?.addEventListener('click', () => showHomeView());
+    document.getElementById('appNavPlay')?.addEventListener('click', () => showHomeView());
+    document.getElementById('appNavExplore')?.addEventListener('click', showExploreView);
+    document.getElementById('appNavConnect')?.addEventListener('click', () => {
+        setActiveNavigationView('connect');
+        document.getElementById('pairPartnerBtn')?.click();
+    });
+    document.getElementById('appNavSettings')?.addEventListener('click', () => {
+        document.getElementById('toolsDrawerBtn')?.click();
+    });
+
+    const filterExploreCards = () => {
+        const query = document.getElementById('exploreSearch')?.value.trim().toLocaleLowerCase() || '';
+        const selectedMood = document.querySelector('#exploreMoodFilters [aria-pressed="true"]')?.dataset.moodFilter || 'all';
+        document.querySelectorAll('#exploreContent .pack-card').forEach(card => {
+            const matchesQuery = !query || card.textContent.toLocaleLowerCase().includes(query);
+            const matchesMood = selectedMood === 'all' || card.dataset.mood === selectedMood;
+            card.classList.toggle('hidden', !(matchesQuery && matchesMood));
+        });
+    };
+    document.getElementById('exploreSearch')?.addEventListener('input', filterExploreCards);
+    document.querySelectorAll('#exploreMoodFilters [data-mood-filter]').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('#exploreMoodFilters [data-mood-filter]').forEach(chip => {
+                const active = chip === button;
+                chip.setAttribute('aria-pressed', String(active));
+                chip.classList.toggle('active', active);
+            });
+            filterExploreCards();
+        });
+    });
+    document.getElementById('exploreBrowseCardsBtn')?.addEventListener('click', () => {
+        openDrawer('Browse cards', '');
+        renderCardBrowserDrawerContent(document.getElementById('drawerContent'));
+    });
+    document.getElementById('exploreBuildDeckBtn')?.addEventListener('click', () => {
+        openRoundBuilder();
+        document.querySelector('.round-tab[data-tab="custom"]')?.click();
+    });
+    document.getElementById('loadCommunityCardsBtn')?.addEventListener('click', () => {
+        window.loadCommunityDeck();
+    });
     const browseBtn = document.getElementById('browseModeCustomBtn');
     if (browseBtn) {
         browseBtn.onclick = () => {
@@ -251,11 +309,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (turnIndicator) turnIndicator.classList.add('hidden');
                 const browseIndicator = document.getElementById('browseIndicator');
                 if (browseIndicator) browseIndicator.classList.remove('hidden');
-                showToast('Previewing cards · progress not tracked.');
+                showToast('Previewing cards · not saved.');
             } catch (e) { console.error('Preview failed:', e); alert('Could not preview: ' + e.message); }
         };
     }
     document.getElementById('resetPlayHistoryBtn')?.addEventListener('click', () => {
+        if (!confirm('Reset played-card history on this device and in your shared room? This cannot be undone.')) return;
         playedCardIds.clear();
         localStorage.removeItem('closer_played_cards');
         if (window.roomRef) window.roomRef.child('playedCards').remove().catch(() => {});
@@ -314,43 +373,54 @@ setTimeout(() => {
     });
     document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach(button => {
+                button.classList.remove('active');
+                button.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
         });
     });
     document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach(button => {
+                button.classList.remove('active');
+                button.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
         });
     });
     document.getElementById('guessMeCreateRoomBtn')?.addEventListener('click', async () => {
+        const createButton = document.getElementById('guessMeCreateRoomBtn');
         const status = document.getElementById('guessMeSetupStatus');
+        if (createButton) createButton.disabled = true;
         if (status) status.textContent = 'Creating Guess Me room…';
-        console.log('YGM create room clicked');
         try {
             const sel = getGuessMeSelection();
-            // Reuse existing room creation, then tag the room as Guess Me.
             await createRoom();
-            if (window.roomRef) {
-                await window.roomRef.child('gameMode').set('guess-me');
-                await window.roomRef.update({
-                    'guessMe/status': 'lobby',
-                    'guessMe/length': sel.length,
-                    'guessMe/vibe': sel.vibe,
-                    'guessMe/hostReady': false,
-                    'guessMe/scores/host': 0,
-                    'guessMe/scores/partner': 0
-                });
-            }
-            guessMeActive = true;
+            if (!window.roomRef) throw new Error('The room could not be opened.');
+            await window.roomRef.child('gameMode').set('guess-me');
+            await window.roomRef.update({
+                'guessMe/status': 'lobby',
+                'guessMe/length': sel.length,
+                'guessMe/vibe': sel.vibe,
+                'guessMe/hostReady': false,
+                'guessMe/partnerReady': false,
+                'guessMe/currentIndex': 0,
+                'guessMe/scores/host': 0,
+                'guessMe/scores/partner': 0,
+                'guessMe/questionIds': null,
+                'guessMe/question': null
+            });
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
             if (status) status.textContent = 'Room created. Share the code with your partner.';
         } catch (e) {
-            console.error(e);
+            console.error('Could not create You Get Me room:', e);
             if (status) status.textContent = `Could not create room: ${e.message}`;
+            if (createButton) createButton.disabled = false;
         }
     });
     document.getElementById('guessMeJoinRoomBtn')?.addEventListener('click', async () => {
@@ -359,45 +429,18 @@ setTimeout(() => {
         if (!code) return;
         try {
             if (status) status.textContent = 'Joining room…';
-            await requestRoomAccess(code.trim());
+            await requestRoomAccess(code.trim(), 'guess-me');
             if (window.roomRef) {
-                const gm = await window.roomRef.child('gameMode').once('value');
-                if (gm.val() !== 'guess-me') {
-                    if (status) status.textContent = 'This room is not a Guess Me room.';
-                    return;
-    // Guess Me lobby ready/start/leave
-    document.getElementById('guessMeReadyBtn')?.addEventListener('click', async () => {
-        if (!window.roomRef) return;
-        const isHost = window.currentRoomRole === 'host';
-        const key = isHost ? 'hostReady' : 'partnerReady';
-        const cur = await window.roomRef.child('guessMe/' + key).once('value');
-        await window.roomRef.child('guessMe/' + key).set(!cur.val());
-    });
-    document.getElementById('guessMeStartBtn')?.addEventListener('click', async () => {
-        if (!window.roomRef || window.currentRoomRole !== 'host') return;
-        await window.roomRef.child('guessMe/status').set('playing');
-        await window.roomRef.child('guessMe/currentIndex').set(0);
-        if (typeof showToast === 'function') showToast('Game starting — gameplay arrives in the next stage.');
-    });
-    document.getElementById('guessMeLeaveBtn')?.addEventListener('click', () => {
-        detachGuessMeListener();
-        guessMeActive = false;
-        hideGuessMeView();
-        // reuse existing disconnect
-        if (typeof disconnectFromRoom === 'function') disconnectFromRoom();
-        else { window.roomRef = null; window.currentRoomCode = null; window.currentRoomRole = null; }
-        showHomeView();
-    });
-
-                }
+                const mode = await window.roomRef.child('gameMode').once('value');
+                if (mode.val() !== 'guess-me') throw new Error('That room is not set up for You Get Me.');
+                closeGuessMeSetup();
+                showGuessMeView();
+                attachGuessMeListener();
+            } else if (window.currentRoomRole === 'requesting') {
+                if (status) status.textContent = 'Request sent. You’ll enter the game automatically if the host approves you.';
             }
-            guessMeActive = true;
-            closeGuessMeSetup();
-            showGuessMeView();
-            attachGuessMeListener();
-            if (status) status.textContent = 'Joined Guess Me room. Waiting for host.';
         } catch (e) {
-            console.error(e);
+            console.error('Could not join You Get Me room:', e);
             if (status) status.textContent = `Could not join room: ${e.message}`;
         }
     });
@@ -415,7 +458,7 @@ setTimeout(() => {
         if (target.matches('input[name="roundDeck"]')) {
             if (target.value === 'explicit' && target.checked && !hasExplicitAgeConfirmation()) {
                 target.checked = false;
-                document.getElementById('explicitAgeGate')?.classList.remove('hidden');
+                setModalOpen(document.getElementById('explicitAgeGate'), true);
                 return;
             }
             activeTopics = null;
@@ -528,59 +571,6 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
                     setCardActionStatus('Reflection time is up. Continue whenever you’re ready.');
                 }
             }, 1000);
-        };
-    }
-
-    const communityVoteBtn = document.getElementById('communityVoteBtn');
-    if (communityVoteBtn) {
-        communityVoteBtn.onclick = async (event) => {
-            event.stopPropagation();
-            if (!currentCard || currentCard.visibility !== 'community' || !window.db || !window.firebase) return;
-            communityVoteBtn.disabled = true;
-            try {
-                const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-                if (!user) throw new Error('Sign in is required to vote.');
-                const voteRef = window.db.ref(`cardVotes/${currentCard.id}/${user.uid}`);
-                const wasVoted = myCommunityVotes.has(currentCard.id);
-                const result = await voteRef.transaction(value => value ? null : true);
-                const isVoted = Boolean(result.snapshot.val());
-                const voteCount = communityVoteCounts[currentCard.id] || 0;
-                communityVoteCounts[currentCard.id] = Math.max(0, voteCount + (isVoted ? 1 : 0) - (wasVoted ? 1 : 0));
-                if (isVoted) myCommunityVotes.add(currentCard.id);
-                else myCommunityVotes.delete(currentCard.id);
-                setCommunityActions(currentCard);
-                rebuildUnspentDeck();
-                setCardActionStatus(isVoted ? 'Upvote saved.' : 'Upvote removed.');
-            } catch (error) {
-                console.error('Community upvote failed:', error);
-                setCardActionStatus(`Could not save your upvote: ${error.message}`);
-            } finally {
-                communityVoteBtn.disabled = false;
-            }
-        };
-    }
-
-    const reportCardBtn = document.getElementById('reportCardBtn');
-    if (reportCardBtn) {
-        reportCardBtn.onclick = async (event) => {
-            event.stopPropagation();
-            if (!currentCard || currentCard.visibility !== 'community' || !window.db || !window.firebase) return;
-            if (!confirm('Report this public card for moderator review?')) return;
-            reportCardBtn.disabled = true;
-            try {
-                const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
-                if (!user) throw new Error('Sign in is required to report a card.');
-                await window.db.ref(`cardReports/${currentCard.id}/${user.uid}`).set({
-                    reason: 'community-report',
-                    createdAt: window.firebase.database.ServerValue.TIMESTAMP
-                });
-                setCardActionStatus('Report sent for moderator review. Thank you.');
-            } catch (error) {
-                console.error('Community report failed:', error);
-                setCardActionStatus(`Could not send your report: ${error.message}`);
-            } finally {
-                reportCardBtn.disabled = false;
-            }
         };
     }
 
@@ -711,6 +701,7 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
     const pairBtn = document.getElementById('pairPartnerBtn');
     if (pairBtn) {
         pairBtn.onclick = () => {
+            setActiveNavigationView('connect');
             if (!window.db) {
                 openDrawer('Pair Partner', `
                     <div class="drawer-item">
@@ -979,6 +970,9 @@ const tapBtn = document.getElementById('settingsTapToAdvanceBtn');
     const toolsBtn = document.getElementById('toolsDrawerBtn');
     if (toolsBtn) {
         toolsBtn.onclick = () => {
+            const activeView = document.querySelector('.app-bottom-nav [data-view][aria-current="page"]')?.dataset.view;
+            window._settingsPreviousNav = activeView === 'settings' ? 'play' : activeView;
+            setActiveNavigationView('settings');
             const html = `
                 <details class="settings-tree-group">
                     <summary>Players &amp; partner</summary>
@@ -1043,16 +1037,16 @@ renderMyDecks();
             document.getElementById('settingsPartnerBtn').onclick = () => openHeaderPanel('pairPartnerBtn');
             document.getElementById('settingsPlayModeBtn').onclick = () => { localStorage.removeItem('closer_play_mode'); closeDrawer(); openPlayModeModal(() => {}); };
 const applyAccessibility = () => {
-        document.body.classList.toggle('large-text', localStorage.getItem('closer_large_text') === 'true');
-        document.body.classList.toggle('dyslexia-font', localStorage.getItem('closer_dyslexia_font') === 'true');
-        document.body.classList.toggle('colorblind-safe', localStorage.getItem('closer_colorblind_safe') === 'true');
-        document.body.classList.toggle('high-contrast', localStorage.getItem('closer_high_contrast') === 'true');
+        document.body.classList.toggle('large-text', readStoredValue('closer_large_text') === 'true');
+        document.body.classList.toggle('dyslexia-font', readStoredValue('closer_dyslexia_font') === 'true');
+        document.body.classList.toggle('colorblind-safe', readStoredValue('closer_colorblind_safe') === 'true');
+        document.body.classList.toggle('high-contrast', readStoredValue('closer_high_contrast') === 'true');
     };
     applyAccessibility();
     const bindToggle = (id, key, onChange) => {
         const el = document.getElementById(id);
         if (!el) return;
-        el.checked = localStorage.getItem(key) === 'true';
+        el.checked = readStoredValue(key) === 'true';
         el.onchange = () => {
             localStorage.setItem(key, String(el.checked));
             if (onChange) onChange(el.checked);
@@ -1065,11 +1059,11 @@ const applyAccessibility = () => {
     bindToggle('settingsHighContrastToggle', 'closer_high_contrast');
     const themeToggleBtn = document.getElementById('themeToggleBtn');
     const syncThemeIcon = () => {
-        if (themeToggleBtn) themeToggleBtn.textContent = (localStorage.getItem('closer_theme') === 'dark') ? '☀️' : '🌙';
+        if (themeToggleBtn) themeToggleBtn.textContent = (readStoredValue('closer_theme') === 'dark') ? '☀️' : '🌙';
     };
     if (themeToggleBtn) {
         themeToggleBtn.onclick = () => {
-            const next = (localStorage.getItem('closer_theme') === 'dark') ? 'light' : 'dark';
+            const next = (readStoredValue('closer_theme') === 'dark') ? 'light' : 'dark';
             localStorage.setItem('closer_theme', next);
             applyTheme();
             syncThemeIcon();
@@ -1078,7 +1072,7 @@ const applyAccessibility = () => {
     syncThemeIcon();
     const themeToggle = document.getElementById('settingsThemeToggle');
     if (themeToggle) {
-        themeToggle.checked = localStorage.getItem('closer_theme') === 'dark';
+        themeToggle.checked = readStoredValue('closer_theme') === 'dark';
         themeToggle.onchange = () => {
             localStorage.setItem('closer_theme', themeToggle.checked ? 'dark' : 'light');
             applyTheme();
@@ -1087,7 +1081,7 @@ const applyAccessibility = () => {
     }
     const tapToggle = document.getElementById('settingsTapToAdvanceToggle');
     if (tapToggle) {
-        tapToggle.checked = localStorage.getItem('closer_tap_to_advance') === 'true';
+        tapToggle.checked = readStoredValue('closer_tap_to_advance') === 'true';
         tapToggle.onchange = () => {
             tapToAdvance = tapToggle.checked;
             localStorage.setItem('closer_tap_to_advance', String(tapToAdvance));
@@ -1194,7 +1188,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
             }
             const selectedModule = tab.dataset.module;
             if (selectedModule === 'explicit' && !hasExplicitAgeConfirmation()) {
-                document.getElementById('explicitAgeGate')?.classList.remove('hidden');
+                setModalOpen(document.getElementById('explicitAgeGate'), true);
                 return;
             }
             if (activeGameMode === 'compare-first') exitCompareFirstMode();
@@ -1205,7 +1199,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
     document.getElementById('confirmExplicitAccessBtn')?.addEventListener('click', async () => {
         localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
         await loadExplicitCards();
-        document.getElementById('explicitAgeGate')?.classList.add('hidden');
+        setModalOpen(document.getElementById('explicitAgeGate'), false);
         const deckCheckbox = document.querySelector('input[name="roundDeck"][value="explicit"]');
         if (deckCheckbox && !document.getElementById('roundBuilderModal')?.classList.contains('hidden')) {
             deckCheckbox.checked = true;
@@ -1216,7 +1210,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         selectModule('explicit');
     });
     document.getElementById('cancelExplicitAccessBtn')?.addEventListener('click', () => {
-        document.getElementById('explicitAgeGate')?.classList.add('hidden');
+        setModalOpen(document.getElementById('explicitAgeGate'), false);
     });
 
     // 10. Intensity Level Filter Buttons
@@ -1508,7 +1502,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         toggleShareKeyBtn.onclick = () => {
             const isVisible = privateShareKeyInput.type === 'text';
             privateShareKeyInput.type = isVisible ? 'password' : 'text';
-    if (!localStorage.getItem('closer_onboarded')) {
+    if (!readStoredValue('closer_onboarded')) {
         localStorage.setItem('closer_onboarded', 'true');
         setTimeout(() => {
             openDrawer('Welcome to Closer', `<div class="drawer-item"><p><strong>Create a round</strong> to choose decks, topics, and intensity.</p><p><strong>Turn-taking</strong> shows whose turn it is; pass anytime if it is your turn.</p><p><strong>Wild & Unspoken</strong> is a private space for secrets and fantasies.</p><p><strong>Settings</strong> holds filters, players, and privacy options.</p></div>`);
@@ -1564,7 +1558,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
     // Remember key on this device.
     const rememberKey = document.getElementById('rememberKey');
     if (rememberKey) {
-        rememberKey.checked = localStorage.getItem('closer_remember_key') === 'true';
+        rememberKey.checked = readStoredValue('closer_remember_key') === 'true';
         rememberKey.onchange = () => {
             localStorage.setItem('closer_remember_key', String(rememberKey.checked));
             if (rememberKey.checked && privateShareKey) {
@@ -1574,8 +1568,8 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
             }
         };
     }
-    if (localStorage.getItem('closer_remember_key') === 'true') {
-        const saved = localStorage.getItem('closer_private_share_key_persisted');
+    if (readStoredValue('closer_remember_key') === 'true') {
+        const saved = readStoredValue('closer_private_share_key_persisted');
         if (saved && !privateShareKey) {
             privateShareKeyInput.value = saved;
             applyPrivateShareKey(saved);
@@ -1707,13 +1701,13 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         if (onboardingTitle) onboardingTitle.textContent = step.title;
         if (onboardingText) onboardingText.textContent = step.text;
         if (onboardingNextBtn) onboardingNextBtn.textContent = onboardingIndex === onboardingSteps.length - 1 ? 'Finish' : 'Next';
-        onboardingOverlay.classList.remove('hidden');
+        setModalOpen(onboardingOverlay, true);
     window.showOnboardingStep = showOnboardingStep;
     window.restartOnboardingTour = () => { onboardingDone = false; onboardingIndex = 0; showOnboardingStep(); };
 
     };
     const finishOnboarding = () => {
-        onboardingOverlay?.classList.add('hidden');
+        setModalOpen(onboardingOverlay, false);
         onboardingDone = true;
         localStorage.setItem('closer_onboarding_done', 'true');
     };

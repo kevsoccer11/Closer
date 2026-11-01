@@ -12,7 +12,12 @@ const firebaseConfig = {
 // Explicitly attach variables to the global window scope
 window.db = null;
 window.roomRef = null;
-window.currentRoomCode = localStorage.getItem('closer_room_code') || null;
+try {
+    window.currentRoomCode = localStorage.getItem('closer_room_code') || null;
+} catch (error) {
+    window.currentRoomCode = null;
+    console.warn('Saved room code is unavailable:', error);
+}
 window.firebaseConfigured = false;
 window.firebaseAuthReady = Promise.resolve(null);
 

@@ -1,5 +1,10 @@
 let pendingGameStart = null;
 let ygmQuestionBank = [];
+const COMMUNITY_CARD_PAGE_SIZE = 100;
+let communityCardsLastKey = null;
+let communityCardsHasMore = true;
+let communityCardsLoadInFlight = false;
+let communityDeckLoadInFlight = false;
 window.ygmQuestionBank = ygmQuestionBank;
 
 
@@ -34,33 +39,12 @@ async function initDatabase() {
             { id: 'secret-fb1', module: 'secrets', category: 'Desires', intensity: 3, prompt: 'What is a secret fantasy you have thought about but never spoken out loud?', contextType: 'consent' }
         ];
     }
-    let remoteCards = [];
-    if (typeof window.db !== 'undefined' && window.db) {
-        try {
-            const snapshot = await Promise.race([
-                window.db.ref('cards').once('value'),
-                new Promise((_, reject) => setTimeout(() => reject(new Error('Firebase timeout')), 4000))
-            ]);
-            const remoteData = snapshot.val();
-            if (remoteData) {
-                remoteCards = Array.isArray(remoteData)
-                    ? remoteData.filter(Boolean)
-                    : Object.entries(remoteData).map(([id, card]) => card && ({ ...card, id: card.id || id })).filter(Boolean);
-                console.log(`Loaded ${remoteCards.length} cards from Firebase Database`);
-            }
-        } catch (e) {
-            console.warn("Firebase cards read error:", e);
-            cardLoadError = true;
-        }
-    }
-
     const cardsById = new Map();
-    [...localCards, ...remoteCards, ...customUserCards].forEach((card, index) => {
+    [...localCards, ...customUserCards].forEach((card, index) => {
         if (card && card.prompt) cardsById.set(card.id || `loaded-${index}`, { ...card, id: card.id || `loaded-${index}` });
     });
     masterDatabase = [...cardsById.values()];
     window.masterDatabase = masterDatabase;
-    try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
     try { updateCuratedPackMeta(); } catch (e) { console.warn(e); }
     try {
         const ygmResp = await fetch('./YGM-question-bank.json');
@@ -79,7 +63,13 @@ async function initDatabase() {
 
     let restoredRound = false;
     try {
-        const savedFilters = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
+        const savedFilters = readStoredJSON('closer_round_filters', null, value => value === null || (
+            typeof value === 'object' && !Array.isArray(value)
+            && (value.activePillars === undefined || (Array.isArray(value.activePillars) && value.activePillars.every(item => typeof item === 'string')))
+            && (value.activeTopics === undefined || value.activeTopics === null || (Array.isArray(value.activeTopics) && value.activeTopics.every(item => typeof item === 'string')))
+            && (value.activeMood === undefined || typeof value.activeMood === 'string')
+            && ['includeQuestions', 'includeActivities', 'includeMultipleChoice'].every(key => value[key] === undefined || typeof value[key] === 'boolean')
+        ));
         if (savedFilters) {
             activePillars = savedFilters.activePillars || activePillars;
             activeModules = [...activePillars];
@@ -90,20 +80,13 @@ async function initDatabase() {
             includeMultipleChoice = savedFilters.includeMultipleChoice ?? includeMultipleChoice;
         }
     } catch (e) {}
-    try {
-        const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
-        const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
-        if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
-            unspentDeck = savedDeck;
-            currentCard = savedCard;
-            restoredRound = true;
-        }
-    } catch (e) {
-        localStorage.removeItem('closer_unspent_deck');
-        localStorage.removeItem('closer_current_card');
+    const savedDeck = readStoredJSON('closer_unspent_deck', null, value => value === null || (Array.isArray(value) && value.every(card => card && typeof card.id === 'string' && typeof card.prompt === 'string')));
+    const savedCard = readStoredJSON('closer_current_card', null, value => value === null || (typeof value === 'object' && !Array.isArray(value) && typeof value.id === 'string' && typeof value.prompt === 'string'));
+    if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
+        unspentDeck = savedDeck;
+        currentCard = savedCard;
+        restoredRound = true;
     }
-
-    if (window.db && window.firebaseConfigured) await loadCommunityVotes();
 
     if (!restoredRound) {
         showHomeView();
@@ -124,28 +107,116 @@ async function initDatabase() {
         if (usingStarterDeck) {
             statusMessages.push('Showing a small starter deck because the full deck could not load.');
         }
+        const recoveryNotice = getStorageRecoveryNotice();
+        if (recoveryNotice) statusMessages.push(recoveryNotice);
         appStatus.textContent = statusMessages.join(' ');
     }
-    const savedCode = localStorage.getItem('closer_room_code');
-    const savedRole = localStorage.getItem('closer_room_role');
+    if (window.db) {
+        scheduleCommunityDeckLoad();
+    } else {
+        const status = document.getElementById('communityCardsStatus');
+        if (status) status.textContent = 'Global Deck is unavailable without a Firebase connection. Local cards remain available.';
+    }
+    const savedCode = readStoredValue('closer_room_code');
+    const savedRole = readStoredValue('closer_room_role');
     // Do not auto-connect to a previous room on load; pairing is an explicit user action.
     // (Saved code/role are retained for manual reconnect.)
     void savedCode; void savedRole;
 
 }
 
+function scheduleCommunityDeckLoad() {
+    const startLoading = () => { void loadCommunityDeck(); };
+    if (typeof window.requestAnimationFrame === 'function') {
+        window.requestAnimationFrame(() => window.requestAnimationFrame(startLoading));
+    } else {
+        setTimeout(startLoading, 0);
+    }
+}
+
+async function loadCommunityCards() {
+    const button = document.getElementById('loadCommunityCardsBtn');
+    const status = document.getElementById('communityCardsStatus');
+    if (communityCardsLoadInFlight) return false;
+    if (!window.db) {
+        if (status) status.textContent = 'Global Deck requires a Firebase connection. Your local cards remain available.';
+        return false;
+    }
+    if (!communityCardsHasMore) return true;
+    communityCardsLoadInFlight = true;
+    if (button) {
+        button.classList.add('hidden');
+        button.disabled = true;
+    }
+    if (status) status.textContent = 'Loading Global Deck cards…';
+    try {
+        let query = window.db.ref('cards').orderByKey();
+        if (communityCardsLastKey) query = query.startAt(communityCardsLastKey);
+        const snapshot = await query.limitToFirst(COMMUNITY_CARD_PAGE_SIZE + 1 + (communityCardsLastKey ? 1 : 0)).once('value');
+        const rows = [];
+        snapshot.forEach(child => rows.push([child.key, child.val()]));
+        const nextRows = rows.filter(([key]) => !communityCardsLastKey || key > communityCardsLastKey);
+        const page = nextRows.slice(0, COMMUNITY_CARD_PAGE_SIZE);
+        communityCardsHasMore = nextRows.length > page.length;
+        if (page.length > 0) communityCardsLastKey = page[page.length - 1][0];
+        const cardsById = new Map(masterDatabase.map(card => [card.id, card]));
+        let added = 0;
+        page.forEach(([key, card]) => {
+            if (!card || card.visibility !== 'community' || typeof card.prompt !== 'string' || !card.prompt.trim()) return;
+            const id = typeof card.id === 'string' && card.id ? card.id : key;
+            if (!cardsById.has(id)) added++;
+            cardsById.set(id, { ...card, id });
+        });
+        masterDatabase = [...cardsById.values()];
+        window.masterDatabase = masterDatabase;
+        if (typeof updateCuratedPackMeta === 'function') updateCuratedPackMeta();
+        if (typeof updateRoundMatchCount === 'function') updateRoundMatchCount();
+        cardLoadError = false;
+        if (status) {
+            status.textContent = added
+                ? `Loaded ${added} Global Deck ${added === 1 ? 'card' : 'cards'}.${communityCardsHasMore && communityDeckLoadInFlight ? ' Loading remaining cards in the background…' : communityCardsHasMore ? '' : ' Global Deck is up to date.'}`
+                : communityCardsHasMore
+                    ? `No new cards in this batch.${communityDeckLoadInFlight ? ' Loading remaining cards in the background…' : ''}`
+                    : 'No additional Global Deck cards found.';
+        }
+        return true;
+    } catch (error) {
+        cardLoadError = true;
+        console.error('Could not load a Global Deck page:', error);
+        if (status) status.textContent = 'Could not load Global Deck cards. Check your connection and try again.';
+        if (button) {
+            button.textContent = 'Retry Global Deck loading';
+            button.disabled = false;
+            button.classList.remove('hidden');
+        }
+        return false;
+    } finally {
+        communityCardsLoadInFlight = false;
+    }
+}
+window.loadCommunityCards = loadCommunityCards;
+
+async function loadCommunityDeck() {
+    if (communityDeckLoadInFlight) return;
+    communityDeckLoadInFlight = true;
+    try {
+        while (communityCardsHasMore) {
+            const loaded = await loadCommunityCards();
+            if (!loaded || !communityCardsHasMore) break;
+            await new Promise(resolve => setTimeout(resolve, 0));
+        }
+    } finally {
+        communityDeckLoadInFlight = false;
+    }
+}
+window.loadCommunityDeck = loadCommunityDeck;
+
 function rebuildUnspentDeck() {
     const filteredCards = getFilteredCards();
     let candidateCards = filteredCards;
     const unplayed = filteredCards.filter(card => !playedCardIds.has(card.id));
     if (unplayed.length > 0) candidateCards = unplayed;
-    const weightedCards = activeGameMode === 'compare-first'
-        ? candidateCards
-        : candidateCards.flatMap(card => {
-            if (card.visibility !== 'community') return [card];
-            const extraCopies = Math.min(3, Math.floor((communityVoteCounts[card.id] || 0) / 3));
-            return Array.from({ length: 1 + extraCopies }, () => card);
-        });
+    const weightedCards = candidateCards;
     for (let i = weightedCards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [weightedCards[i], weightedCards[j]] = [weightedCards[j], weightedCards[i]];
@@ -438,67 +509,6 @@ function updateCuratedPackMeta() {
         const key = card.dataset.pack;
         if (key === 'escalation') {
             const meta = card.querySelector('.pack-meta');
-            if (meta) meta.textContent = '50 questions · 60–90 min';
-            return;
-        }
-        const pack = packs[key];
-        if (!pack) return;
-        activePillars = (pack.modules && pack.modules.length) ? pack.modules : ['spark'];
-        activeModules = [...activePillars];
-        activeTopics = (pack.topics && pack.topics.length) ? pack.topics : null;
-        activeMood = pack.mood || 'all';
-        includeQuestions = pack.questions;
-        includeActivities = pack.activities;
-        includeMultipleChoice = pack.multipleChoice;
-        activeIntensity = 'all';
-        const filtered = getFilteredCards();
-        const count = Math.min(filtered.length, 30);
-        const estMin = Math.round(count * 1.5);
-        const estMax = Math.round(count * 2.5);
-        const meta = card.querySelector('.pack-meta');
-        if (meta) meta.textContent = count + ' questions · ' + estMin + '–' + estMax + ' min';
-    });
-    activePillars = saved.activePillars;
-    activeModules = saved.activeModules;
-    activeTopics = saved.activeTopics;
-    activeMood = saved.activeMood;
-    includeQuestions = saved.includeQuestions;
-    includeActivities = saved.includeActivities;
-    includeMultipleChoice = saved.includeMultipleChoice;
-    activeIntensity = saved.activeIntensity;
-}
-
-
-function updateCuratedPackMeta() {
-    const packs = {
-        'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
-        'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
-        'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
-        'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
-        'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
-        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
-        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
-        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true }
-    };
-    const saved = {
-        activePillars: [...activePillars],
-        activeModules: [...activeModules],
-        activeTopics: activeTopics ? [...activeTopics] : null,
-        activeMood: activeMood,
-        includeQuestions: includeQuestions,
-        includeActivities: includeActivities,
-        includeMultipleChoice: includeMultipleChoice,
-        activeIntensity: activeIntensity
-    };
-    document.querySelectorAll('.pack-card[data-pack]').forEach(card => {
-        const key = card.dataset.pack;
-        if (key === 'escalation') {
-            const meta = card.querySelector('.pack-meta');
             if (meta) meta.textContent = '50 questions · 60-90 min';
             return;
         }
@@ -535,19 +545,15 @@ function updateCuratedPackMeta() {
 function showHomeView() {
     document.body.classList.add('landing');
     document.getElementById('homeView')?.classList.remove('hidden');
+    document.getElementById('exploreView')?.classList.add('hidden');
+    document.getElementById('guessMeView')?.classList.add('hidden');
     document.querySelector('main')?.classList.add('hidden');
     document.querySelector('.response-section')?.classList.add('hidden');
+    setActiveNavigationView('play');
     const continueCard = document.getElementById('continueCard');
-    const hasSaved = !!localStorage.getItem('closer_unspent_deck') && !!localStorage.getItem('closer_current_card');
+    const hasSaved = !!readStoredValue('closer_unspent_deck') && !!readStoredValue('closer_current_card');
     if (continueCard) {
         continueCard.classList.toggle('hidden', !hasSaved);
-        if (hasSaved) {
-            try {
-                const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || '[]');
-                const titleEl = continueCard.querySelector('.continue-title');
-                if (titleEl) titleEl.textContent = savedDeck.length ? `${savedDeck.length} cards remaining` : 'Pick up where you left off';
-            } catch (e) {}
-        }
     }
     const list = document.getElementById('homeDecksList');
     if (list) {
@@ -571,80 +577,156 @@ function showHomeView() {
 function showGameView() {
     document.body.classList.remove('landing');
     document.getElementById('homeView')?.classList.add('hidden');
+    document.getElementById('exploreView')?.classList.add('hidden');
+    document.getElementById('guessMeView')?.classList.add('hidden');
     document.querySelector('main')?.classList.remove('hidden');
     document.querySelector('.response-section')?.classList.remove('hidden');
+    setActiveNavigationView('play');
+    if (!document.querySelector('.modal-overlay:not(.hidden)')) window.scrollTo(0, 0);
 }
 
-let guessMeActive = false;
-let guessMeListener = null;
-function showGuessMeView() {
-    document.body.classList.remove('landing');
+function setActiveNavigationView(view) {
+    document.querySelectorAll('.app-bottom-nav [data-view]').forEach(button => {
+        const active = button.dataset.view === view;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-current', active ? 'page' : 'false');
+    });
+}
+
+function showExploreView() {
+    document.body.classList.add('landing');
     document.getElementById('homeView')?.classList.add('hidden');
     document.querySelector('main')?.classList.add('hidden');
     document.querySelector('.response-section')?.classList.add('hidden');
+    document.getElementById('guessMeView')?.classList.add('hidden');
+    document.getElementById('exploreView')?.classList.remove('hidden');
+    setActiveNavigationView('explore');
+}
+window.showExploreView = showExploreView;
+
+let guessMeListener = null;
+let guessMeListenerRefs = [];
+let guessMeRefreshInFlight = false;
+let guessMeRefreshPending = false;
+function showGuessMeView() {
+    document.body.classList.remove('landing');
+    document.getElementById('homeView')?.classList.add('hidden');
+    document.getElementById('exploreView')?.classList.add('hidden');
+    document.querySelector('main')?.classList.add('hidden');
+    document.querySelector('.response-section')?.classList.add('hidden');
     document.getElementById('guessMeView')?.classList.remove('hidden');
+    setActiveNavigationView('connect');
 }
 function hideGuessMeView() {
     document.getElementById('guessMeView')?.classList.add('hidden');
 }
+function reportGuessMeError(error) {
+    console.error('You Get Me sync failed:', error);
+    const view = document.getElementById('guessMeView');
+    if (!view) return;
+    let status = document.getElementById('guessMeError');
+    if (!status) {
+        status = document.createElement('p');
+        status.id = 'guessMeError';
+        status.className = 'round-builder-status';
+        status.setAttribute('role', 'alert');
+        view.appendChild(status);
+    }
+    status.textContent = `Could not sync You Get Me: ${error.message}`;
+}
 async function refreshGuessMeState() {
     if (!window.roomRef) return;
-    const paths = ['status','length','vibe','currentIndex','hostReady','partnerReady','scores/host','scores/partner','question','answererUid','predictorUid','answer','guess','submissionStatus/answerSubmitted','submissionStatus/guessSubmitted','submissionStatus/resolved','questionIds'];
-    const vals = {};
-    await Promise.all(paths.map(async (path) => {
-        try {
-            const snap = await window.roomRef.child('guessMe/'+path).once('value');
-            // store nested
-            const parts = path.split('/');
-            let cur = vals;
-            for (let i=0;i<parts.length-1;i++){ cur[parts[i]] = cur[parts[i]] || {}; cur=cur[parts[i]]; }
-            cur[parts[parts.length-1]] = snap.val();
-        } catch (e) {}
-    }));
-    const gm = {
-        status: vals.status,
-        length: vals.length,
-        vibe: vals.vibe,
-        currentIndex: vals.currentIndex,
-        hostReady: vals.hostReady,
-        partnerReady: vals.partnerReady,
-        scores: { host: vals.scores?.host, partner: vals.scores?.partner },
-        question: vals.question,
-        answererUid: vals.answererUid,
-        predictorUid: vals.predictorUid,
-        answer: vals.answer,
-        guess: vals.guess,
-        submissionStatus: { answerSubmitted: vals.submissionStatus?.answerSubmitted, guessSubmitted: vals.submissionStatus?.guessSubmitted, resolved: vals.submissionStatus?.resolved },
-        questionIds: vals.questionIds
-    };
-    if (gm.status) renderGuessMe(gm);
+    if (guessMeRefreshInFlight) {
+        guessMeRefreshPending = true;
+        return;
+    }
+
+    guessMeRefreshInFlight = true;
+    try {
+        do {
+            guessMeRefreshPending = false;
+            const roomRef = window.roomRef;
+            if (!roomRef) return;
+            const paths = [
+                'status', 'length', 'vibe', 'currentIndex', 'hostReady', 'partnerReady',
+                'scores/host', 'scores/partner', 'question', 'answererUid', 'predictorUid',
+                'submissionStatus/answerSubmitted', 'submissionStatus/guessSubmitted',
+                'submissionStatus/resolved', 'submissionStatus/scored'
+            ];
+            const snapshots = await Promise.all(paths.map(path => roomRef.child(`guessMe/${path}`).once('value')));
+            if (window.roomRef !== roomRef) return;
+            const values = Object.fromEntries(paths.map((path, index) => [path, snapshots[index].val()]));
+            const submissionStatus = {
+                answerSubmitted: values['submissionStatus/answerSubmitted'],
+                guessSubmitted: values['submissionStatus/guessSubmitted'],
+                resolved: values['submissionStatus/resolved'],
+                scored: values['submissionStatus/scored']
+            };
+            const gm = {
+                status: values.status,
+                length: values.length,
+                vibe: values.vibe,
+                currentIndex: values.currentIndex,
+                hostReady: values.hostReady,
+                partnerReady: values.partnerReady,
+                scores: { host: values['scores/host'], partner: values['scores/partner'] },
+                question: values.question,
+                answererUid: values.answererUid,
+                predictorUid: values.predictorUid,
+                submissionStatus
+            };
+            if (submissionStatus.resolved) {
+                const [answerSnapshot, guessSnapshot] = await Promise.all([
+                    roomRef.child('guessMe/answer').once('value'),
+                    roomRef.child('guessMe/guess').once('value')
+                ]);
+                if (window.roomRef !== roomRef) return;
+                gm.answer = answerSnapshot.val();
+                gm.guess = guessSnapshot.val();
+            }
+            if (gm.status) await renderGuessMe(gm);
+        } while (guessMeRefreshPending);
+    } catch (error) {
+        reportGuessMeError(error);
+    } finally {
+        guessMeRefreshInFlight = false;
+        if (guessMeRefreshPending) refreshGuessMeState();
+    }
 }
 function attachGuessMeListener() {
     if (!window.roomRef) return;
     detachGuessMeListener();
-    const children = ['status','question','submissionStatus','answer','guess','currentIndex','hostReady','partnerReady'];
+    const paths = [
+        'status', 'length', 'vibe', 'question', 'submissionStatus', 'currentIndex',
+        'hostReady', 'partnerReady', 'scores'
+    ];
     guessMeListener = () => { refreshGuessMeState(); };
-    children.forEach(c => {
-        try { window.roomRef.child('guessMe/'+c).on('value', guessMeListener); } catch (e) {}
-    });
+    guessMeListenerRefs = paths.map(path => window.roomRef.child(`guessMe/${path}`));
+    guessMeListenerRefs.forEach(ref => ref.on('value', guessMeListener, error => {
+        reportGuessMeError(error);
+    }));
     refreshGuessMeState();
 }
 function detachGuessMeListener() {
-    if (window.roomRef) {
-        ['status','question','submissionStatus','answer','guess','currentIndex','hostReady','partnerReady'].forEach(c => {
-            try { window.roomRef.child('guessMe/'+c).off('value', guessMeListener); } catch (e) {}
-        });
-    }
+    guessMeListenerRefs.forEach(ref => ref.off('value', guessMeListener));
+    guessMeListenerRefs = [];
     guessMeListener = null;
 }
-function detachGuessMeListener() {
-    if (guessMeListener && window.roomRef) window.roomRef.child('guessMe').off('value', guessMeListener);
-    guessMeListener = null;
+function leaveGuessMeRoom() {
+    detachGuessMeListener();
+    detachRoomAccessListeners();
+    hideGuessMeView();
+    window.roomRef = null;
+    window.currentRoomCode = null;
+    window.currentRoomRole = null;
+    showHomeView();
+    setPairStatus('You left the You Get Me session. The room remains available to its members.');
 }
 window.showGuessMeView = showGuessMeView;
 window.hideGuessMeView = hideGuessMeView;
 window.attachGuessMeListener = attachGuessMeListener;
 window.detachGuessMeListener = detachGuessMeListener;
+window.leaveGuessMeRoom = leaveGuessMeRoom;
 
 
 
@@ -818,19 +900,27 @@ roundStats = { played: 0, passed: 0 };
     updateActiveModulePresentation();
     rebuildUnspentDeck();
     updateRoundSummary();
-    showGameView();
-    drawNextCard();
     try { localStorage.setItem('closer_round_filters', JSON.stringify({ activePillars, activeTopics, activeMood, includeQuestions, includeActivities, includeMultipleChoice })); } catch (e) {}
 
     closeRoundBuilder();
+    showGameView();
+    drawNextCard();
     return true;
 }
 
-function openRoundBuilder() {
+function openRoundBuilder(isEditing = false) {
     const modal = document.getElementById('roundBuilderModal');
     if (!modal) return;
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+    modal.dataset.editing = String(isEditing);
+    setModalOpen(modal, true);
+    const title = document.getElementById('roundBuilderTitle');
+    const intro = document.getElementById('roundBuilderIntro');
+    const startButton = document.getElementById('startRoundBtn');
+    if (title) title.textContent = isEditing ? 'Edit current round' : 'Start new conversation';
+    if (intro) intro.textContent = isEditing
+        ? 'Change the filters for a new round. Your current progress will be reset.'
+        : 'Pick a curated pack or build your own custom conversation below.';
+    if (startButton) startButton.textContent = isEditing ? 'Apply & restart round' : 'Start conversation';
     // Reset tabs to Curated
     document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
     const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
@@ -872,65 +962,52 @@ function openRoundBuilder() {
 }
 
 function closeRoundBuilder() {
-    document.getElementById('roundBuilderModal')?.classList.add('hidden');
-    document.body.style.overflow = '';
+    const modal = document.getElementById('roundBuilderModal');
+    if (!modal) return;
+    modal.dataset.editing = 'false';
+    const title = document.getElementById('roundBuilderTitle');
+    const intro = document.getElementById('roundBuilderIntro');
+    const startButton = document.getElementById('startRoundBtn');
+    if (title) title.textContent = 'Start new conversation';
+    if (intro) intro.textContent = 'Pick a curated pack or build your own custom conversation below.';
+    if (startButton) startButton.textContent = 'Start conversation';
+    setModalOpen(modal, false);
 }
 
 function openGuessMeSetup() {
     const modal = document.getElementById('guessMeSetupModal');
     if (!modal) return;
     // reset selection
-    document.querySelectorAll('#guessMeLengthChips .filter-chip').forEach((b, i) => b.classList.toggle('active', i === 0));
-    document.querySelectorAll('#guessMeVibeChips .filter-chip').forEach((b, i) => b.classList.toggle('active', i === 0));
+    ['#guessMeLengthChips', '#guessMeVibeChips'].forEach(selector => {
+        document.querySelectorAll(`${selector} .filter-chip`).forEach((button, index) => {
+            const selected = index === 0;
+            button.classList.toggle('active', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+    });
+    const createButton = document.getElementById('guessMeCreateRoomBtn');
+    if (createButton) createButton.disabled = false;
     const status = document.getElementById('guessMeSetupStatus');
     if (status) status.textContent = '';
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+    setModalOpen(modal, true);
 }
 function closeGuessMeSetup() {
-    document.getElementById('guessMeSetupModal')?.classList.add('hidden');
-    document.body.style.overflow = '';
+    setModalOpen(document.getElementById('guessMeSetupModal'), false);
 }
 function getGuessMeSelection() {
     const lengthBtn = document.querySelector('#guessMeLengthChips .filter-chip.active');
     const vibeBtn = document.querySelector('#guessMeVibeChips .filter-chip.active');
+    const length = Number(lengthBtn?.dataset.length);
+    const vibe = vibeBtn?.dataset.vibe;
     return {
-        length: Number(lengthBtn?.dataset.length || 10),
-        vibe: vibeBtn?.dataset.vibe || 'mixed'
+        length: [10, 20, 30].includes(length) ? length : 10,
+        vibe: ['mixed', 'playful', 'romantic', 'deep'].includes(vibe) ? vibe : 'mixed'
     };
 }
 window.openGuessMeSetup = openGuessMeSetup;
 window.closeGuessMeSetup = closeGuessMeSetup;
 window.getGuessMeSelection = getGuessMeSelection;
 
-
-async function loadCommunityVotes() {
-    try {
-        const snapshot = await window.db.ref('cardVotes').once('value');
-        const votes = snapshot.val() || {};
-        communityVoteCounts = {};
-        myCommunityVotes = new Set();
-        let user = window.firebase.auth().currentUser;
-        if (!user && window.firebaseAuthReady) {
-            try {
-                user = await window.firebaseAuthReady;
-            } catch (error) {
-                console.warn('Signed-in user vote state is unavailable:', error);
-            }
-        }
-
-        Object.entries(votes).forEach(([cardId, cardVotes]) => {
-            if (!cardVotes || typeof cardVotes !== 'object') return;
-            const voters = Object.keys(cardVotes).filter(uid => cardVotes[uid]);
-            communityVoteCounts[cardId] = voters.length;
-            if (user && cardVotes[user.uid]) myCommunityVotes.add(cardId);
-        });
-    } catch (error) {
-        console.warn('Community vote counts could not be loaded:', error);
-        const status = document.getElementById('appStatus');
-        if (status) status.textContent = `${status.textContent} Community votes are temporarily unavailable.`.trim();
-    }
-}
 
 function setCardActionStatus(message) {
     const status = document.getElementById('cardActionStatus');
@@ -942,24 +1019,6 @@ function setCardActionStatus(message) {
 function setPublishStatus(message) {
     const status = document.getElementById('publishStatus');
     if (status) status.textContent = message;
-}
-
-function setCommunityActions(card) {
-    const isCommunityCard = card.visibility === 'community';
-    const user = isCommunityCard && window.firebaseConfigured && window.firebase
-        ? window.firebase.auth().currentUser
-        : null;
-    const isOwnCard = Boolean(user && card.createdBy === user.uid);
-    const voteButton = document.getElementById('communityVoteBtn');
-    const reportButton = document.getElementById('reportCardBtn');
-    if (voteButton) {
-        voteButton.classList.toggle('hidden', !isCommunityCard || isOwnCard);
-        voteButton.classList.toggle('active', myCommunityVotes.has(card.id));
-        voteButton.setAttribute('aria-pressed', String(myCommunityVotes.has(card.id)));
-        const count = document.getElementById('communityVoteCount');
-        if (count) count.textContent = String(communityVoteCounts[card.id] || 0);
-    }
-    if (reportButton) reportButton.classList.toggle('hidden', !isCommunityCard || isOwnCard);
 }
 
 function stopModeTimer() {
@@ -1253,7 +1312,7 @@ function drawNextCard(isRemoteUpdate = false) {
         localStorage.setItem('closer_played_cards', JSON.stringify([...playedCardIds]));
         syncPlayedCardsToRoom();
     }
-    if (!browseMode) roundStats.played += 1;
+    roundStats.played += 1;
     if (activeGameMode === 'compare-first') {
         compareFirstRoundIndex += 1;
         currentCard.compareFirst = true;
@@ -1288,11 +1347,6 @@ function updateCardProgressSlider() {
     } else {
         played = (roundStats?.played || 0);
         total = roundTotalCards || 0;
-    }
-    if (browseMode) {
-        // browse mode has no fixed round; hide slider
-        slider.classList.add('hidden');
-        return;
     }
     if (!total) {
         slider.classList.add('hidden');
@@ -1337,7 +1391,7 @@ function isCompareFirstSessionActive() {
 }
 
 function hasExplicitAgeConfirmation() {
-    return localStorage.getItem(EXPLICIT_AGE_CONFIRMATION_KEY) === 'true';
+    return readStoredValue(EXPLICIT_AGE_CONFIRMATION_KEY) === 'true';
 }
 
 async function loadExplicitCards() {
@@ -1781,7 +1835,6 @@ const undoBtn = document.getElementById('undoBtn');
     const warmUpNextBtn = document.getElementById('warmUpNextBtn');
     if (warmUpNextBtn) warmUpNextBtn.classList.toggle('hidden', !warmUpEnabled || Number(activeIntensity) >= 4);
 
-    setCommunityActions(card);
     renderModeTimer();
     updateCompareFirstControls();
     const container = document.getElementById('cardFace') || document.getElementById('cardContainer');
@@ -2105,7 +2158,9 @@ function renderLocalCardAnswers(card, optionsContainer, submitButton, status, co
 }
 
 // Drawer & Modal Controller Functions
+let drawerScrollState = null;
 function openDrawer(title, contentHtml) {
+    const body = document.body;
     window._lastFocusedBeforeDrawer = document.activeElement;
     const titleEl = document.getElementById('drawerTitle');
     const contentEl = document.getElementById('drawerContent');
@@ -2123,6 +2178,17 @@ function openDrawer(title, contentHtml) {
     }
     if (titleEl) titleEl.innerText = title;
     if (contentEl) contentEl.innerHTML = contentHtml;
+    if (!drawerScrollState) {
+        drawerScrollState = {
+            scrollY: window.scrollY,
+            position: body.style.position,
+            top: body.style.top,
+            width: body.style.width,
+            overflow: body.style.overflow
+        };
+        body.classList.add('drawer-open');
+        body.style.top = `-${drawerScrollState.scrollY}px`;
+    }
     if (drawer) drawer.classList.remove('hidden');
     if (overlay) overlay.classList.remove('hidden');
     setTimeout(() => {
@@ -2307,6 +2373,7 @@ function renderGameHistoryDrawerContent(content) {
     clearBtn.type = 'button';
     clearBtn.textContent = 'Clear history';
     clearBtn.onclick = () => {
+        if (!confirm('Clear all game history saved on this device? This cannot be undone.')) return;
         gameHistory = [];
         localStorage.removeItem('closer_game_history');
         if (typeof showToast === 'function') showToast('History cleared.');
@@ -2378,27 +2445,115 @@ function renderCardBrowserDrawerContent(content) {
     const searchInput = document.createElement('input');
     searchInput.type = 'search';
     searchInput.placeholder = 'Search cards...';
-    searchInput.style.width = '100%';
-    searchInput.style.margin = '10px 0';
+    searchInput.className = 'card-browser-search';
+    searchInput.setAttribute('aria-label', 'Search cards');
     content.appendChild(searchInput);
+
+    const filters = document.createElement('div');
+    filters.className = 'card-browser-filters';
+    filters.setAttribute('role', 'group');
+    filters.setAttribute('aria-label', 'Filter cards');
+    const createFilter = (labelText, id, options) => {
+        const label = document.createElement('label');
+        label.className = 'card-browser-filter';
+        const caption = document.createElement('span');
+        caption.textContent = labelText;
+        const select = document.createElement('select');
+        select.id = id;
+        options.forEach(({ value, text }) => {
+            const option = document.createElement('option');
+            option.value = value;
+            option.textContent = text;
+            select.appendChild(option);
+        });
+        label.append(caption, select);
+        return { label, select };
+    };
+    const moduleControl = createFilter('Deck', 'cardBrowserModuleFilter', [
+        { value: 'all', text: 'All decks' },
+        { value: 'life', text: 'Deep Connection' },
+        { value: 'sexuality', text: 'Flame & Passion' },
+        { value: 'explicit', text: 'Explicit' }
+    ]);
+    const intensityControl = createFilter('Intensity', 'cardBrowserIntensityFilter', [
+        { value: 'all', text: 'All levels' },
+        ...[1, 2, 3, 4].map(level => ({ value: String(level), text: `Level ${level}` }))
+    ]);
+    const typeControl = createFilter('Card type', 'cardBrowserTypeFilter', [
+        { value: 'all', text: 'All types' },
+        { value: 'question', text: 'Conversation' },
+        { value: 'activity', text: 'Activity' },
+        { value: 'multiple-choice', text: 'Multiple choice' }
+    ]);
+    const categoryControl = createFilter('Category', 'cardBrowserCategoryFilter', [
+        { value: 'all', text: 'All categories' }
+    ]);
+    const moduleFilter = moduleControl.select;
+    const intensityFilter = intensityControl.select;
+    const typeFilter = typeControl.select;
+    const categoryFilter = categoryControl.select;
+    const refreshCategoryOptions = () => {
+        const selectedCategory = categoryFilter.value;
+        const categories = [...new Set((masterDatabase || [])
+            .filter(card => moduleFilter.value === 'all' || (card.module || 'general') === moduleFilter.value)
+            .map(card => String(card.category || 'General')))]
+            .sort((a, b) => a.localeCompare(b));
+        categoryFilter.replaceChildren();
+        const allOption = document.createElement('option');
+        allOption.value = 'all';
+        allOption.textContent = 'All categories';
+        categoryFilter.appendChild(allOption);
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+        });
+        categoryFilter.value = categories.includes(selectedCategory) ? selectedCategory : 'all';
+    };
+    filters.append(moduleControl.label, intensityControl.label, typeControl.label, categoryControl.label);
+    content.appendChild(filters);
+
+    const clearFiltersButton = document.createElement('button');
+    clearFiltersButton.className = 'card-browser-clear-filters';
+    clearFiltersButton.type = 'button';
+    clearFiltersButton.textContent = 'Clear filters';
+    content.appendChild(clearFiltersButton);
+
+    const resultCount = document.createElement('p');
+    resultCount.className = 'card-browser-count';
+    resultCount.setAttribute('role', 'status');
+    resultCount.setAttribute('aria-live', 'polite');
+    content.appendChild(resultCount);
 
     const list = document.createElement('div');
     list.className = 'card-browser-list';
     content.appendChild(list);
 
+    refreshCategoryOptions();
     const renderList = () => {
         list.replaceChildren();
         const query = (searchInput.value || '').toLowerCase().trim();
         const selectedDeckId = deckSelect.value;
         const deck = customDecks.find(d => d.id === selectedDeckId);
-        const cards = (masterDatabase || []).filter(card => {
-            if (!query) return true;
-            return (card.prompt || '').toLowerCase().includes(query)
-                || (card.category || '').toLowerCase().includes(query)
-                || (card.module || '').toLowerCase().includes(query);
-        }).slice(0, 60);
+        const matchingCards = (masterDatabase || []).filter(card => {
+            const matchesQuery = !query || [card.prompt, card.category, card.module]
+                .some(value => String(value || '').toLowerCase().includes(query));
+            const matchesModule = moduleFilter.value === 'all' || (card.module || 'general') === moduleFilter.value;
+            const matchesIntensity = intensityFilter.value === 'all' || String(card.intensity || 1) === intensityFilter.value;
+            const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
+            const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
+            const cardType = isMultipleChoice ? 'multiple-choice' : promptStyle === 'activity' ? 'activity' : 'question';
+            const matchesType = typeFilter.value === 'all' || cardType === typeFilter.value;
+            const matchesCategory = categoryFilter.value === 'all' || (card.category || 'General') === categoryFilter.value;
+            return matchesQuery && matchesModule && matchesIntensity && matchesType && matchesCategory;
+        });
+        const cards = matchingCards.slice(0, 60);
+        resultCount.textContent = matchingCards.length > cards.length
+            ? `Showing the first ${cards.length} of ${matchingCards.length} matching cards.`
+            : `${matchingCards.length} ${matchingCards.length === 1 ? 'card' : 'cards'} found.`;
         if (cards.length === 0) {
-            appendDrawerMessage(list, 'No cards match your search.');
+            appendDrawerMessage(list, 'No cards match these filters. Try changing or clearing your search and filters.');
             return;
         }
         cards.forEach(card => {
@@ -2430,6 +2585,21 @@ function renderCardBrowserDrawerContent(content) {
         });
     };
     searchInput.addEventListener('input', renderList);
+    [moduleFilter, intensityFilter, typeFilter, categoryFilter].forEach(filter => {
+        filter.addEventListener('change', () => {
+            if (filter === moduleFilter) refreshCategoryOptions();
+            renderList();
+        });
+    });
+    clearFiltersButton.addEventListener('click', () => {
+        searchInput.value = '';
+        moduleFilter.value = 'all';
+        intensityFilter.value = 'all';
+        typeFilter.value = 'all';
+        refreshCategoryOptions();
+        categoryFilter.value = 'all';
+        renderList();
+    });
     deckSelect.addEventListener('change', renderList);
     renderList();
 }
@@ -2622,7 +2792,7 @@ async function receivePartnerCard(snapshot, roomRef) {
             || typeof card.prompt !== 'string'
             || card.prompt.trim().length === 0
             || card.prompt.length > 280
-            || ![1, 2, 3].includes(Number(card.intensity))
+            || ![1, 2, 3, 4].includes(Number(card.intensity))
             || !['question', 'activity'].includes(card.promptStyle)
             || (card.options !== undefined && (!Array.isArray(card.options)
                 || card.options.length < 2
@@ -3024,6 +3194,20 @@ function closeDrawer() {
     const overlay = document.getElementById('drawerOverlay');
     if (drawer) drawer.classList.add('hidden');
     if (overlay) overlay.classList.add('hidden');
+    if (drawerScrollState) {
+        const { scrollY, position, top, width, overflow } = drawerScrollState;
+        document.body.classList.remove('drawer-open');
+        document.body.style.position = position;
+        document.body.style.top = top;
+        document.body.style.width = width;
+        document.body.style.overflow = overflow;
+        drawerScrollState = null;
+        window.scrollTo(0, scrollY);
+    }
+    if (window._settingsPreviousNav) {
+        setActiveNavigationView(window._settingsPreviousNav);
+        window._settingsPreviousNav = null;
+    }
     if (window._lastFocusedBeforeDrawer && typeof window._lastFocusedBeforeDrawer.focus === 'function') {
         window._lastFocusedBeforeDrawer.focus();
     }
@@ -3034,13 +3218,13 @@ function toggleModal(show) {
     if (modal) {
         if (show) {
             window._lastFocusedBeforeModal = document.activeElement;
-            modal.classList.remove('hidden');
+            setModalOpen(modal, true);
             setTimeout(() => {
                 const first = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (first) first.focus();
             }, 0);
         } else {
-            modal.classList.add('hidden');
+            setModalOpen(modal, false);
             if (window._lastFocusedBeforeModal && typeof window._lastFocusedBeforeModal.focus === 'function') window._lastFocusedBeforeModal.focus();
         }
     }
@@ -3280,6 +3464,7 @@ function updateConnectionStatus() {
 }
 
 function detachRoomAccessListeners() {
+    detachGuessMeListener();
     detachCardAnswerListeners();
     cardAnswerSetupKey = null;
     cardAnswerRoomRef = null;
@@ -3307,8 +3492,8 @@ function detachRoomAccessListeners() {
     if (partnerSeatListener && window.roomRef) {
         window.roomRef.child('members/partner').off('value', partnerSeatListener);
         partnerSeatListener = null;
-    if (window.roomRef) window.roomRef.child('sharedDeck').off('value');
     }
+    if (window.roomRef) window.roomRef.child('sharedDeck').off('value');
     if (joinRequestListener && pendingJoinRequestRef) {
         pendingJoinRequestRef.off('value', joinRequestListener);
         joinRequestListener = null;
@@ -3384,11 +3569,14 @@ function connectToRoom(roomCode, role) {
     // Guess Me: if this room is a Guess Me room, activate the lobby scaffold.
     window.roomRef.child('gameMode').once('value').then(snap => {
         if (snap.val() === 'guess-me') {
-            guessMeActive = true;
+            closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
         }
-    }).catch(() => {});
+    }).catch(error => {
+        console.error('Could not read the connected room game mode:', error);
+        setPairStatus(`Could not load room details: ${error.message}`);
+    });
     if (role === 'partner') {
         showToast('Connected to your partner.');
     }
@@ -3427,7 +3615,7 @@ async function createRoom() {
     renderPairManagement();
 }
 
-async function requestRoomAccess(roomCode) {
+async function requestRoomAccess(roomCode, expectedGameMode = null) {
     if (!window.db || !window.firebase) throw new Error('Firebase pairing is not configured.');
     if (!/^[A-Za-z0-9_-]{22}$/.test(roomCode)) {
         throw new Error('Enter a valid room code from the host.');
@@ -3441,11 +3629,19 @@ async function requestRoomAccess(roomCode) {
     ]);
     if (!hostSnapshot.val()) throw new Error('That room does not exist or is unavailable.');
     if (hostSnapshot.val() === user.uid) {
+        if (expectedGameMode) {
+            const mode = await roomRef.child('gameMode').once('value');
+            if (mode.val() !== expectedGameMode) throw new Error('That room is not set up for You Get Me.');
+        }
         connectToRoom(roomCode, 'host');
         renderPairManagement();
         return;
     }
     if (partnerSnapshot.val() === user.uid) {
+        if (expectedGameMode) {
+            const mode = await roomRef.child('gameMode').once('value');
+            if (mode.val() !== expectedGameMode) throw new Error('That room is not set up for You Get Me.');
+        }
         connectToRoom(roomCode, 'partner');
         renderPairManagement();
         return;
@@ -3480,12 +3676,24 @@ async function requestRoomAccess(roomCode) {
         if (request.status === 'denied') {
             setPairStatus('The host denied your request. You are not in the room.');
         } else if (request.status === 'approved') {
-            roomRef.child('members/partner').once('value').then(partnerSeat => {
+            Promise.all([
+                roomRef.child('members/partner').once('value'),
+                expectedGameMode ? roomRef.child('gameMode').once('value') : Promise.resolve(null)
+            ]).then(([partnerSeat, gameModeSnapshot]) => {
                 if (partnerSeat.val() !== user.uid) {
                     setPairStatus('Approval could not be confirmed. You have not joined the room.');
                     return;
                 }
                 connectToRoom(roomCode, 'partner');
+                if (expectedGameMode && gameModeSnapshot.val() !== expectedGameMode) {
+                    closeGuessMeSetup();
+                    showHomeView();
+                    const message = 'You joined the room, but it is not set up for You Get Me.';
+                    setPairStatus(message);
+                    showToast(message);
+                    renderPairManagement();
+                    return;
+                }
                 setPairStatus('The host approved you. You are now connected.');
                 renderPairManagement();
             }).catch(error => {
@@ -3506,10 +3714,10 @@ window.openNewGameFlow = openNewGameFlow;
 }
 function openPlayModeModal(pending) {
     pendingGameStart = pending || null;
-    document.getElementById('playModeModal')?.classList.remove('hidden');
+    setModalOpen(document.getElementById('playModeModal'), true);
 }
 function closePlayModeModal() {
-    document.getElementById('playModeModal')?.classList.add('hidden');
+    setModalOpen(document.getElementById('playModeModal'), false);
 }
 function openPlayerNamesModal() {
     const s1 = document.getElementById('pn1Icon');
@@ -3522,10 +3730,10 @@ function openPlayerNamesModal() {
     if (n2) n2.value = playerNames.partner?.name || 'Player 2';
     if (s1) s1.value = playerNames.host?.icon || PLAYER_ICONS[0];
     if (s2) s2.value = playerNames.partner?.icon || PLAYER_ICONS[1];
-    document.getElementById('playerNamesModal')?.classList.remove('hidden');
+    setModalOpen(document.getElementById('playerNamesModal'), true);
 }
 function closePlayerNamesModal() {
-    document.getElementById('playerNamesModal')?.classList.add('hidden');
+    setModalOpen(document.getElementById('playerNamesModal'), false);
 }
 
 function getQodDateKey() {
@@ -3541,7 +3749,7 @@ function getSafeQodPool() {
 function ensureDailyQod() {
     const today = getQodDateKey();
     let storedDate = null;
-    try { storedDate = localStorage.getItem('closer_qod_date'); } catch (e) {}
+    storedDate = readStoredValue('closer_qod_date');
     if (storedDate !== today) {
         const pool = getSafeQodPool();
         const picked = [];
@@ -3565,7 +3773,7 @@ function ensureDailyQod() {
 
 function getCurrentQodQuestions() {
     try {
-        const q = JSON.parse(localStorage.getItem('closer_qod_questions') || '[]');
+        const q = readStoredJSON('closer_qod_questions', [], value => Array.isArray(value) && value.every(question => typeof question === 'string'));
         if (Array.isArray(q) && q.length > 0) return q;
     } catch (e) {}
     // fallback
@@ -3575,7 +3783,7 @@ function getCurrentQodQuestions() {
 
 function getCurrentQodIndex() {
     let i = 0;
-    try { i = parseInt(localStorage.getItem('closer_qod_index') || '0', 10) || 0; } catch (e) {}
+    i = parseInt(readStoredValue('closer_qod_index', '0'), 10) || 0;
     const qs = getCurrentQodQuestions();
     if (i < 0) i = 0;
     if (i > qs.length) i = qs.length;
@@ -3622,13 +3830,13 @@ window.showQod = showQod;
 
 function resumeSavedGame() {
     try {
-        const savedDeck = JSON.parse(localStorage.getItem('closer_unspent_deck') || 'null');
-        const savedCard = JSON.parse(localStorage.getItem('closer_current_card') || 'null');
+        const savedDeck = readStoredJSON('closer_unspent_deck', null, value => value === null || (Array.isArray(value) && value.every(card => card && typeof card.id === 'string' && typeof card.prompt === 'string')));
+        const savedCard = readStoredJSON('closer_current_card', null, value => value === null || (typeof value === 'object' && !Array.isArray(value) && typeof value.id === 'string' && typeof value.prompt === 'string'));
         if (Array.isArray(savedDeck) && savedCard && savedCard.id) {
             unspentDeck = savedDeck;
             currentCard = savedCard;
             try {
-                const f = JSON.parse(localStorage.getItem('closer_round_filters') || 'null');
+                const f = readStoredJSON('closer_round_filters', null, value => value === null || (typeof value === 'object' && !Array.isArray(value)));
                 if (f) {
                     activePillars = f.activePillars || activePillars;
                     activeModules = [...activePillars];
@@ -3645,6 +3853,17 @@ function resumeSavedGame() {
     } catch (e) {}
 }
 window.resumeSavedGame = resumeSavedGame;
+function pauseConversation() {
+    const wasPreview = browseMode;
+    browseMode = false;
+    stopModeTimer();
+    showHomeView();
+    window.scrollTo(0, 0);
+    if (typeof showToast === 'function') {
+        showToast(wasPreview ? 'Preview closed. Your place was not saved.' : 'Conversation paused. Your place is saved.');
+    }
+}
+window.pauseConversation = pauseConversation;
 function quitConversation() {
     if (!confirm('End this conversation? Your progress will be discarded.')) return;
     try {
@@ -3665,42 +3884,75 @@ function quitConversation() {
 }
 window.quitConversation = quitConversation;
 
-function guessMeVibePillars(vibe) {
-    if (vibe === 'playful') return ['spark'];
-    if (vibe === 'romantic') return ['heat'];
-    if (vibe === 'deep') return ['closer','afterhours'];
-    return null;
-}
 function pickGuessMeQuestions(length, vibe) {
     const pool = (Array.isArray(window.ygmQuestionBank) ? window.ygmQuestionBank : []).filter(q =>
-        q && q.id && q.question && Array.isArray(q.options) && q.options.length === 4
+        q && typeof q.id === 'string' && typeof q.question === 'string'
+        && Array.isArray(q.options) && q.options.length === 4
+        && q.options.every(option => typeof option === 'string' && option.trim())
     );
-    const shuffled = [...pool].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, Math.min(length, pool.length)).map(q => q.id);
+    const categoryMap = {
+        playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected'],
+        romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty'],
+        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty']
+    };
+    const categories = categoryMap[vibe];
+    const filtered = categories ? pool.filter(question => categories.includes(question.category)) : pool;
+    const shuffled = [...filtered];
+    for (let index = shuffled.length - 1; index > 0; index--) {
+        const other = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[other]] = [shuffled[other], shuffled[index]];
+    }
+    return shuffled.slice(0, Math.min(Math.max(0, Number(length) || 0), shuffled.length)).map(q => q.id);
 }
-async function loadGuessMeQuestion() {
+
+async function ensureGuessMeQuestionBank() {
+    if (!Array.isArray(window.ygmQuestionBank) || window.ygmQuestionBank.length === 0) {
+        const response = await fetch('./YGM-question-bank.json');
+        if (!response.ok) throw new Error(`Could not load the You Get Me question bank (HTTP ${response.status}).`);
+        const data = await response.json();
+        if (!data || !Array.isArray(data.questions)) throw new Error('The You Get Me question bank is invalid.');
+        ygmQuestionBank = data.questions;
+        window.ygmQuestionBank = ygmQuestionBank;
+    }
+    return window.ygmQuestionBank;
+}
+window.pickGuessMeQuestions = pickGuessMeQuestions;
+
+async function loadGuessMeQuestion(requestedIndex) {
     if (!window.roomRef || window.currentRoomRole !== 'host') return;
-    const gmSnap = await window.roomRef.child('guessMe').once('value');
-    const gm = gmSnap.val();
-    if (!gm || gm.status !== 'playing') return;
-    const ids = gm.questionIds || [];
-    const idx = gm.currentIndex || 0;
+    const [statusSnapshot, idsSnapshot, indexSnapshot] = await Promise.all([
+        window.roomRef.child('guessMe/status').once('value'),
+        window.roomRef.child('guessMe/questionIds').once('value'),
+        window.roomRef.child('guessMe/currentIndex').once('value')
+    ]);
+    if (statusSnapshot.val() !== 'playing') return;
+    const ids = Array.isArray(idsSnapshot.val()) ? idsSnapshot.val() : [];
+    const idx = requestedIndex ?? indexSnapshot.val() ?? 0;
     if (idx >= ids.length) { await window.roomRef.child('guessMe/status').set('complete'); return; }
-    const card = (Array.isArray(window.ygmQuestionBank)) ? window.ygmQuestionBank.find(q => q.id === ids[idx]) : null;
-    if (!card) { await window.roomRef.child('guessMe/currentIndex').set(idx + 1); return; }
-    const hostUid = await window.roomRef.child('members/host').once('value').then(s => s.val());
-    const partnerUid = await window.roomRef.child('members/partner').once('value').then(s => s.val());
+    const bank = await ensureGuessMeQuestionBank();
+    const card = bank.find(q => q.id === ids[idx]);
+    if (!card) throw new Error(`Question ${ids[idx]} is missing from the You Get Me bank.`);
+    const [hostSnapshot, partnerSnapshot] = await Promise.all([
+        window.roomRef.child('members/host').once('value'),
+        window.roomRef.child('members/partner').once('value')
+    ]);
+    const hostUid = hostSnapshot.val();
+    const partnerUid = partnerSnapshot.val();
+    if (!hostUid || !partnerUid) throw new Error('Both players must join the room before the game starts.');
     const answererUid = (idx % 2 === 0) ? hostUid : partnerUid;
     const predictorUid = (idx % 2 === 0) ? partnerUid : hostUid;
-    await window.roomRef.child('guessMe/answer').remove();
-    await window.roomRef.child('guessMe/guess').remove();
     await window.roomRef.update({
+        'guessMe/status': 'playing',
+        'guessMe/currentIndex': idx,
+        'guessMe/answer': null,
+        'guessMe/guess': null,
         'guessMe/question': { id: card.id, prompt: card.question, options: card.options },
         'guessMe/answererUid': answererUid,
         'guessMe/predictorUid': predictorUid,
         'guessMe/submissionStatus/answerSubmitted': false,
         'guessMe/submissionStatus/guessSubmitted': false,
-        'guessMe/submissionStatus/resolved': false
+        'guessMe/submissionStatus/resolved': false,
+        'guessMe/submissionStatus/scored': false
     });
 }
 async function renderGuessMe(gm) {
@@ -3710,9 +3962,15 @@ async function renderGuessMe(gm) {
     const header = document.createElement('section');
     header.className = 'app-hero';
     const h = document.createElement('h2');
+    h.id = 'guessMeTitle';
     h.textContent = gm.status === 'lobby' ? 'You Get Me — Lobby' : gm.status === 'complete' ? 'You Get Me — Results' : 'You Get Me';
     const p = document.createElement('p');
-    p.textContent = gm.status === 'lobby' ? 'Ready check' : 'Question ' + ((gm.currentIndex||0)+1) + ' of ' + gm.length;
+    const questionCount = Array.isArray(gm.questionIds) ? gm.questionIds.length : gm.length;
+    p.textContent = gm.status === 'lobby'
+        ? 'Ready check'
+        : gm.status === 'complete'
+            ? `${questionCount} questions played`
+            : `Question ${((gm.currentIndex || 0) + 1)} of ${questionCount}`;
     header.append(h, p);
     view.appendChild(header);
     const isHost = window.currentRoomRole === 'host';
@@ -3722,7 +3980,7 @@ async function renderGuessMe(gm) {
         const content = document.createElement('div'); content.className='continue-content';
         const label = document.createElement('span'); label.className='continue-label'; label.textContent='Ready check';
         const t = document.createElement('h2'); t.className='continue-title';
-        t.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'You are ready ✓' : 'Waiting for both players';
+        t.textContent = (isHost ? gm.hostReady : gm.partnerReady) ? 'You are ready ✓' : 'Mark yourself ready when you are set.';
         content.append(label, t);
         if (isHost && window.currentRoomCode) {
             const codeP = document.createElement('p');
@@ -3734,8 +3992,14 @@ async function renderGuessMe(gm) {
             copyBtn.className = 'btn-secondary';
             copyBtn.textContent = 'Copy code';
             copyBtn.style.marginTop = '6px';
-            copyBtn.onclick = () => {
-                try { navigator.clipboard.writeText(window.currentRoomCode); if (typeof showToast === 'function') showToast('Room code copied.'); } catch (e) { if (typeof showToast === 'function') showToast('Copy failed — select the code manually.'); }
+            copyBtn.onclick = async () => {
+                try {
+                    await navigator.clipboard.writeText(window.currentRoomCode);
+                    if (typeof showToast === 'function') showToast('Room code copied.');
+                } catch (error) {
+                    console.error('Could not copy the You Get Me room code:', error);
+                    if (typeof showToast === 'function') showToast('Copy failed — select the code manually.');
+                }
             };
             content.append(codeP, copyBtn);
         }
@@ -3744,41 +4008,50 @@ async function renderGuessMe(gm) {
         readyBtn.onclick = async () => {
             try {
                 const key = isHost ? 'hostReady' : 'partnerReady';
-                const cur = await window.roomRef.child('guessMe/'+key).once('value');
-                await window.roomRef.child('guessMe/'+key).set(!cur.val());
+                await window.roomRef.child(`guessMe/${key}`).set(!(isHost ? gm.hostReady : gm.partnerReady));
             } catch (e) {
-                console.error('ready toggle failed', e);
-                if (typeof showToast === 'function') showToast('Could not update ready status: ' + (e && e.message ? e.message : 'permission denied'));
+                console.error('Could not update You Get Me ready status:', e);
+                reportGuessMeError(e);
             }
         };
         card.append(icon, content, readyBtn);
         view.appendChild(card);
         const info = document.createElement('section'); info.className='categories-section';
+        const hostName = roomDisplayNames.host?.name || 'Player A';
+        const partnerName = roomDisplayNames.partner?.name || 'Player B';
+        const readiness = document.createElement('p');
+        readiness.className = 'round-builder-intro';
+        readiness.textContent = `${hostName}: ${gm.hostReady ? 'ready' : 'not ready'} · ${partnerName}: ${gm.partnerReady ? 'ready' : 'not ready'}`;
         const ip = document.createElement('p'); ip.className='round-builder-intro';
         ip.textContent = 'Length: ' + gm.length + ' questions · Vibe: ' + gm.vibe + ' · You are ' + (isHost ? 'Player A (host)' : 'Player B (partner)') + '.';
         const actions = document.createElement('div'); actions.className='modal-actions round-builder-actions';
         const leave = document.createElement('button'); leave.className='btn-secondary'; leave.textContent='Leave room';
-        leave.onclick = () => { detachGuessMeListener(); guessMeActive=false; hideGuessMeView(); window.roomRef=null; window.currentRoomCode=null; window.currentRoomRole=null; showHomeView(); };
+        leave.onclick = leaveGuessMeRoom;
         const start = document.createElement('button'); start.className='btn-primary'; start.textContent='Start game';
-        start.classList.toggle('hidden', !(isHost && gm.hostReady && gm.partnerReady));
+        start.classList.toggle('hidden', !isHost);
+        start.disabled = !(gm.hostReady && gm.partnerReady);
         start.onclick = async () => {
-            if (!Array.isArray(window.ygmQuestionBank) || window.ygmQuestionBank.length === 0) {
-                try {
-                    const r = await fetch('./YGM-question-bank.json');
-                    if (r.ok) {
-                        const d = await r.json();
-                        window.ygmQuestionBank = (d && Array.isArray(d.questions)) ? d.questions : [];
-                        ygmQuestionBank = window.ygmQuestionBank;
-                    }
-                } catch (e) {}
+            start.disabled = true;
+            try {
+                if (!gm.hostReady || !gm.partnerReady) throw new Error('Both players must be ready before starting.');
+                await ensureGuessMeQuestionBank();
+                const ids = pickGuessMeQuestions(gm.length, gm.vibe);
+                if (!ids.length) throw new Error(`No You Get Me questions are available for the ${gm.vibe} vibe.`);
+                await window.roomRef.update({
+                    'guessMe/questionIds': ids,
+                    'guessMe/length': ids.length,
+                    'guessMe/currentIndex': 0,
+                    'guessMe/status': 'playing'
+                });
+                await loadGuessMeQuestion(0);
+            } catch (error) {
+                console.error('Could not start You Get Me:', error);
+                reportGuessMeError(error);
+                start.disabled = false;
             }
-            const ids = pickGuessMeQuestions(gm.length, gm.vibe);
-            if (!ids.length) { if (typeof showToast==='function') showToast('Question bank not available yet. Try again.'); return; }
-            await window.roomRef.update({ 'guessMe/questionIds': ids, 'guessMe/status': 'playing', 'guessMe/currentIndex': 0 });
-            await loadGuessMeQuestion();
         };
         actions.append(leave, start);
-        info.append(ip, actions);
+        info.append(readiness, ip, actions);
         view.appendChild(info);
         return;
     }
@@ -3790,7 +4063,8 @@ async function renderGuessMe(gm) {
         const hostScore = gm.scores?.host ?? 0;
         const partnerScore = gm.scores?.partner ?? 0;
         const total = hostScore + partnerScore;
-        const pct = gm.length ? total / gm.length : 0;
+        const played = Array.isArray(gm.questionIds) ? gm.questionIds.length : gm.length;
+        const pct = played ? total / played : 0;
         let title = 'Still Discovering Each Other';
         if (pct >= 0.91) title = 'Practically Mind Readers';
         else if (pct >= 0.71) title = 'You Know Them Well';
@@ -3798,26 +4072,37 @@ async function renderGuessMe(gm) {
         else if (pct >= 0.31) title = 'Getting to Know Your Person';
         t.textContent = title;
         const summary = document.createElement('p');
-        summary.textContent = 'Played ' + gm.length + ' questions. Player A: ' + hostScore + ' correct · Player B: ' + partnerScore + ' correct.';
+        const hostName = roomDisplayNames.host?.name || 'Player A';
+        const partnerName = roomDisplayNames.partner?.name || 'Player B';
+        summary.textContent = `Played ${played} questions. ${hostName}: ${hostScore} predictions correct · ${partnerName}: ${partnerScore} predictions correct.`;
         content.append(label, t, summary);
         card.appendChild(content);
         const again = document.createElement('button'); again.className='btn-primary'; again.textContent='Play again';
+        again.classList.toggle('hidden', !isHost);
         again.onclick = async () => {
-            await window.roomRef.update({
-                'guessMe/status': 'lobby',
-                'guessMe/hostReady': false,
-                'guessMe/scores/host': 0,
-                'guessMe/scores/partner': 0,
-                'guessMe/question': null,
-                'guessMe/answer': null,
-                'guessMe/guess': null,
-                'guessMe/submissionStatus': null,
-                'guessMe/questionIds': null,
-                'guessMe/currentIndex': 0
-            });
+            try {
+                await window.roomRef.child('guessMe/status').set('lobby');
+                await window.roomRef.update({
+                    'guessMe/hostReady': false,
+                    'guessMe/partnerReady': false,
+                    'guessMe/scores/host': 0,
+                    'guessMe/scores/partner': 0,
+                    'guessMe/question': null,
+                    'guessMe/answer': null,
+                    'guessMe/guess': null,
+                    'guessMe/submissionStatus/answerSubmitted': false,
+                    'guessMe/submissionStatus/guessSubmitted': false,
+                    'guessMe/submissionStatus/resolved': false,
+                    'guessMe/submissionStatus/scored': false,
+                    'guessMe/questionIds': null,
+                    'guessMe/currentIndex': 0
+                });
+            } catch (error) {
+                reportGuessMeError(error);
+            }
         };
-        const home = document.createElement('button'); home.className='btn-secondary'; home.textContent='Back to Play Together';
-        home.onclick = () => { detachGuessMeListener(); guessMeActive=false; hideGuessMeView(); window.roomRef=null; window.currentRoomCode=null; window.currentRoomRole=null; showHomeView(); };
+        const home = document.createElement('button'); home.className='btn-secondary'; home.textContent='Leave game';
+        home.onclick = leaveGuessMeRoom;
         card.append(again, home);
         view.appendChild(card);
         return;
@@ -3827,67 +4112,101 @@ async function renderGuessMe(gm) {
     const hostIsAnswerer = (idx % 2 === 0);
     const iAmAnswerer = isHost ? hostIsAnswerer : !hostIsAnswerer;
     const ss = gm.submissionStatus || {};
+    if (ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost) {
+        try {
+            await window.roomRef.child('guessMe/submissionStatus/resolved').set(true);
+        } catch (error) {
+            reportGuessMeError(error);
+        }
+        return;
+    }
+    if (ss.resolved && !ss.scored && isHost) {
+        try {
+            const scoreLock = await window.roomRef.child('guessMe/submissionStatus/scored')
+                .transaction(current => current === true ? undefined : true);
+            if (scoreLock.committed && gm.answer?.value === gm.guess?.value) {
+                const hostIsPredictor = idx % 2 !== 0;
+                const scorePath = `guessMe/scores/${hostIsPredictor ? 'host' : 'partner'}`;
+                await window.roomRef.child(scorePath).transaction(current => (Number(current) || 0) + 1);
+            }
+        } catch (error) {
+            reportGuessMeError(error);
+        }
+        return;
+    }
     const qCard = document.createElement('section'); qCard.className='app-hero';
     const qp = document.createElement('p'); qp.className='round-builder-intro';
-    qp.textContent = iAmAnswerer ? 'Choose your answer.' : "Guess what your partner will say.";
+    const answererName = roomDisplayNames[hostIsAnswerer ? 'host' : 'partner']?.name || (hostIsAnswerer ? 'Player A' : 'Player B');
+    qp.textContent = iAmAnswerer
+        ? `Your turn to choose, ${answererName}.`
+        : 'Guess what your partner will say.';
     const qText = document.createElement('h2'); qText.textContent = q ? (iAmAnswerer ? q.prompt : 'Guess: ' + q.prompt) : 'Loading question…';
     qCard.append(qp, qText);
-    if (q && Array.isArray(q.options)) {
+    if (q && Array.isArray(q.options) && q.options.length === 4) {
         const opts = document.createElement('div');
         opts.style.display='flex'; opts.style.flexDirection='column'; opts.style.gap='8px'; opts.style.marginTop='12px';
+        const alreadySubmitted = iAmAnswerer ? ss.answerSubmitted : ss.guessSubmitted;
+        const waitingForAnswer = !iAmAnswerer && !ss.answerSubmitted;
         q.options.forEach((opt, i) => {
             const btn = document.createElement('button');
             btn.className='btn-secondary'; btn.style.textAlign='left'; btn.textContent=opt;
             btn.dataset.idx = i;
+            btn.setAttribute('aria-pressed', 'false');
+            btn.disabled = alreadySubmitted || waitingForAnswer;
             btn.onclick = () => {
-                opts.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+                opts.querySelectorAll('button').forEach(option => {
+                    option.classList.remove('active');
+                    option.setAttribute('aria-pressed', 'false');
+                });
                 btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
             };
             opts.appendChild(btn);
         });
         qCard.appendChild(opts);
         const submit = document.createElement('button'); submit.className='btn-primary'; submit.style.marginTop='12px';
-        if (iAmAnswerer) { submit.disabled = !!ss.answerSubmitted; submit.textContent = ss.answerSubmitted ? 'Locked ✓' : 'Lock in'; }
-        else { submit.disabled = !ss.answerSubmitted || !!ss.guessSubmitted; submit.textContent = ss.guessSubmitted ? 'Locked ✓' : (ss.answerSubmitted ? 'Lock in guess' : 'Waiting for partner…'); }
+        submit.disabled = alreadySubmitted || waitingForAnswer;
+        submit.textContent = alreadySubmitted ? 'Answer locked' : iAmAnswerer ? 'Lock in answer' : waitingForAnswer ? 'Waiting for partner…' : 'Lock in guess';
+        const actionStatus = document.createElement('p');
+        actionStatus.className = 'card-answer-status';
+        actionStatus.setAttribute('role', 'status');
+        actionStatus.textContent = iAmAnswerer
+            ? (ss.answerSubmitted ? 'Your answer is locked. Your partner is making a guess.' : 'Your partner will not see your answer until both of you lock in.')
+            : (ss.guessSubmitted ? 'Your guess is locked. Waiting to reveal together.' : waitingForAnswer ? 'Your partner picks their answer first.' : 'Choose what you think your partner selected.');
         submit.onclick = async () => {
             const sel = opts.querySelector('button.active');
-            if (!sel) { if (typeof showToast==='function') showToast('Choose an option first.'); return; }
-            const val = Number(sel.dataset.idx);
-            const uid = await window.roomRef.child('members/' + (isHost?'host':'partner')).once('value').then(s => s.val());
-            if (iAmAnswerer) {
-                await window.roomRef.child('guessMe/answer').set({ uid: uid, value: val, submittedAt: Date.now() });
-                await window.roomRef.child('guessMe/submissionStatus/answerSubmitted').set(true);
-            } else {
-                await window.roomRef.child('guessMe/guess').set({ uid: uid, value: val, submittedAt: Date.now() });
-                await window.roomRef.child('guessMe/submissionStatus/guessSubmitted').set(true);
+            if (!sel) {
+                actionStatus.textContent = 'Choose an option before locking in.';
+                return;
+            }
+            submit.disabled = true;
+            try {
+                const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
+                if (!user) throw new Error('Sign in is required to submit an answer.');
+                const expectedUid = iAmAnswerer ? gm.answererUid : gm.predictorUid;
+                if (user.uid !== expectedUid) throw new Error('It is not your turn to submit this choice.');
+                const value = Number(sel.dataset.idx);
+                const timestamp = Date.now();
+                if (iAmAnswerer) {
+                    await window.roomRef.update({
+                        'guessMe/answer': { uid: user.uid, value, submittedAt: timestamp },
+                        'guessMe/submissionStatus/answerSubmitted': true
+                    });
+                } else {
+                    await window.roomRef.update({
+                        'guessMe/guess': { uid: user.uid, value, submittedAt: timestamp },
+                        'guessMe/submissionStatus/guessSubmitted': true
+                    });
+                }
+            } catch (error) {
+                console.error('Could not submit You Get Me choice:', error);
+                actionStatus.textContent = `Could not submit your choice: ${error.message}`;
+                submit.disabled = false;
             }
         };
-        qCard.appendChild(submit);
+        qCard.append(submit, actionStatus);
     }
     view.appendChild(qCard);
-    if (ss.resolved && !ss.scored && isHost) {
-        try {
-            const actual = gm.answer?.value;
-            const guessv = gm.guess?.value;
-            const correct = actual === guessv;
-            const hostIsPredictor = ((gm.currentIndex||0) % 2 !== 0);
-            if (correct) {
-                const path = hostIsPredictor ? 'guessMe/scores/host' : 'guessMe/scores/partner';
-                const cur = await window.roomRef.child(path).once('value').then(x=>x.val()||0);
-                const updates = {};
-                updates[path] = cur + 1;
-                updates['guessMe/submissionStatus/scored'] = true;
-                await window.roomRef.update(updates);
-            } else {
-                await window.roomRef.child('guessMe/submissionStatus/scored').set(true);
-            }
-        } catch (e) { console.warn('scoring failed', e); }
-        return;
-    }
-    if (ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost) {
-        try { await window.roomRef.child('guessMe/submissionStatus/resolved').set(true); } catch (e) { console.warn('resolve failed', e); }
-        return;
-    }
     if (ss.resolved) {
         const reveal = document.createElement('section'); reveal.className='continue-card';
         const content = document.createElement('div'); content.className='continue-content';
@@ -3897,8 +4216,8 @@ async function renderGuessMe(gm) {
         const guessv = gm.guess?.value;
         const correct = actual === guessv;
         t.textContent = correct ? 'You know your person!' : 'A little surprise!';
-        const aLine = document.createElement('p'); aLine.textContent = 'Actual answer: ' + (q.options[actual] ?? '?');
-        const gLine = document.createElement('p'); gLine.textContent = 'Guess: ' + (q.options[guessv] ?? '?');
+        const aLine = document.createElement('p'); aLine.textContent = 'Actual answer: ' + (q?.options?.[actual] ?? '?');
+        const gLine = document.createElement('p'); gLine.textContent = 'Guess: ' + (q?.options?.[guessv] ?? '?');
         content.append(label, t, aLine, gLine);
         reveal.appendChild(content);
         const nextBtn = document.createElement('button'); nextBtn.className='btn-primary'; nextBtn.textContent='Next question';
@@ -3906,10 +4225,17 @@ async function renderGuessMe(gm) {
             if (!isHost) { if (typeof showToast==='function') showToast('Waiting for host…'); return; }
             const nextIdx = (gm.currentIndex||0) + 1;
             if (nextIdx >= (gm.length||0)) {
-                await window.roomRef.child('guessMe/status').set('complete');
+                try {
+                    await window.roomRef.child('guessMe/status').set('complete');
+                } catch (error) {
+                    reportGuessMeError(error);
+                }
             } else {
-                await window.roomRef.child('guessMe/currentIndex').set(nextIdx);
-                await loadGuessMeQuestion();
+                try {
+                    await loadGuessMeQuestion(nextIdx);
+                } catch (error) {
+                    reportGuessMeError(error);
+                }
             }
         };
         reveal.appendChild(nextBtn);
@@ -3917,4 +4243,3 @@ async function renderGuessMe(gm) {
     }
 }
 window.renderGuessMe = renderGuessMe;
-

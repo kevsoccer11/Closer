@@ -19,13 +19,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=410">
+    <link rel="stylesheet" href="css/styles.css?v=421">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -46,7 +46,7 @@
     <header>
         <div class="top-bar">
             <div class="brand-block">
-            <h1 class="app-title"><img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light"><img src="img/closer-logo-dark-transparent.svg" alt="Closer" class="brand-logo logo-dark"></h1>
+            <h1 class="app-title"><img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light"><img src="img/Closer%20Heart%20Connect%20Logo%20Dark.png" alt="Closer" class="brand-logo logo-dark"></h1>
         </div>
             <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             <div class="header-actions">
@@ -58,8 +58,6 @@
                 <button class="icon-btn" id="toolsDrawerBtn" type="button" aria-label="Settings" title="Settings"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="nav-label">Settings</span></button>
             </div>
         </div>
-    </header>
-
     </header>
 
     <!-- round toolbar removed -->
@@ -74,13 +72,25 @@
         <!-- Hero details -->
         <section class="app-hero">
             <div class="app-hero-content">
-                <h2>Make space for the conversations that matter</h2>
+                <h2>A little closer,<br>every day.</h2>
                 <img src="img/deeper-connection.jpg" alt="Couple connecting" class="app-hero-image" loading="lazy">
-                <p>Laugh, flirt, go deep, and rediscover each other—one question at a time. Start a meaningful conversation whenever you have a few minutes together.</p>
+                <p>Meaningful conversations, playful moments, and a deeper connection.</p>
                 <button class="btn-primary" id="createNewGameBtn" type="button" onclick="try{openNewGameFlow();}catch(e){alert('Could not open: '+e.message);}">Start a conversation</button>
-                <button class="btn-secondary" type="button" onclick="try{if(window.restartOnboardingTour)window.restartOnboardingTour();}catch(e){}" style="margin-top:8px;">Take the tour</button>
             </div>
         </section>
+        <div class="home-shortcuts">
+            <button type="button" class="home-shortcut" id="homeCreateDeckBtn">
+                <i data-lucide="layers" aria-hidden="true"></i><span>Create custom deck</span>
+            </button>
+            <button type="button" class="home-shortcut" id="homeBrowseCardsBtn">
+                <i data-lucide="search" aria-hidden="true"></i><span>Browse cards</span>
+            </button>
+        </div>
+        <section class="continue-card hidden" id="continueCard" aria-label="Continue your conversation">
+            <div class="continue-content">
+                <h2 class="continue-title">Continue your conversation</h2>
+            </div>
+            <button type="button" class="btn-primary" id="resumeSavedGameBtn">Continue</button>
         </section>
         <!-- You Get Me -->
         <section class="continue-card" id="youGetMeCard" aria-labelledby="youGetMeTitle" style="flex-direction:column;align-items:flex-start;">
@@ -93,25 +103,25 @@
         </section>
 
 <!-- Explore moods -->
-        <section class="categories-section">
+        <section class="categories-section" id="homeMoodSection">
             <div class="categories-header">
                 <h2>How are you feeling today?</h2>
-                <button class="text-link" id="exploreAllBtn" type="button">See all</button>
+                <button class="text-link" id="exploreAllBtn" type="button" onclick="window.showExploreView()">See all</button>
             </div>
             <div class="category-grid">
-                <button class="category-card pack-card" data-pack="reconnection" type="button">
+                <button class="category-card pack-card" data-pack="reconnection" data-mood="connection" type="button">
                     <span class="category-icon">♡</span>
                     <span class="category-label">Connection</span>
                 </button>
-                <button class="category-card pack-card" data-pack="playful" type="button">
+                <button class="category-card pack-card" data-pack="playful" data-mood="playful" type="button">
                     <span class="category-icon">☺</span>
                     <span class="category-label">Playful</span>
                 </button>
-                <button class="category-card pack-card" data-pack="deep-talk" type="button">
+                <button class="category-card pack-card" data-pack="deep-talk" data-mood="deep" type="button">
                     <span class="category-icon">✦</span>
                     <span class="category-label">Deep</span>
                 </button>
-                <button class="category-card pack-card" data-pack="after-hours" type="button">
+                <button class="category-card pack-card" data-pack="after-hours" data-mood="intimacy" type="button">
                     <span class="category-icon">♨</span>
                     <span class="category-label">Intimacy</span>
                 </button>
@@ -132,62 +142,95 @@
         </section>
         <!-- Featured experiences -->
 
-        <section class="featured-experiences">
+        <section class="featured-experiences" id="featuredExperiences">
             <div class="categories-header">
-                <h2>Curated packs</h2>
-                <button class="text-link" id="seeMoreExperiencesBtn" type="button" onclick="try{openRoundBuilder();}catch(e){}">See more</button>
+                <h2>Find your moment</h2>
+                <button class="text-link" id="seeMoreExperiencesBtn" type="button" onclick="showExploreView()">See more</button>
             </div>
             <p>Discover conversations for every mood, phase, and kind of connection.</p>
             <div class="experience-list">
-                <button class="experience-card pack-card" data-pack="reconnection" type="button">
+                <button class="experience-card pack-card" data-pack="reconnection" data-mood="connection" type="button">
                     <img src="img/find-our-way-back.jpg" alt="Reconnect" class="experience-image" loading="eager">
                     <div class="experience-content">
                         <h3>Reconnect</h3>
                         <p>Rediscover closeness, attention, and affection through small moments that bring you back to each other, even after distance or routine.</p>
                     </div>
                 </button>
-                <button class="experience-card pack-card" data-pack="playful" type="button">
+                <button class="experience-card pack-card" data-pack="playful" data-mood="playful" type="button">
                     <img src="img/playful.jpg" alt="Playful Moments" class="experience-image" loading="eager">
                     <div class="experience-content">
                         <h3>Playful Moments</h3>
                         <p>Lighthearted questions, unexpected answers, teasing, and laughs that keep your connection fun and full of surprise.</p>
                     </div>
                 </button>
-                <button class="experience-card pack-card" data-pack="deeper-connection" type="button">
+                <button class="experience-card pack-card" data-pack="deeper-connection" data-mood="deep" type="button">
                     <img src="img/deeper-connection.jpg" alt="Deeper Intimacy" class="experience-image" loading="eager">
                     <div class="experience-content">
                         <h3>Deeper Intimacy</h3>
                         <p>Meaningful conversations that help you understand each other more deeply and build lasting emotional intimacy.</p>
                     </div>
                 </button>
-                <button class="experience-card pack-card" data-pack="deep-talk" type="button">
+                <button class="experience-card pack-card" data-pack="build-the-tension" data-mood="romantic" type="button">
+                    <img src="img/build-the-tension.jpg" alt="Build the Tension" class="experience-image" loading="lazy">
+                    <div class="experience-content">
+                        <h3>Build the Tension</h3>
+                        <p>Explore anticipation, attraction, and the pleasure of taking your time with each other.</p>
+                    </div>
+                </button>
+                <button class="experience-card pack-card" data-pack="deep-talk" data-mood="deep" type="button">
                     <img src="img/beneath-the-surface.jpg" alt="Beneath the Surface" class="experience-image" loading="eager">
                     <div class="experience-content">
                         <h3>Beneath the Surface</h3>
                         <p>Explore values, fears, memories, and the inner world that makes each of you who you are.</p>
                     </div>
                 </button>
-                <button class="experience-card pack-card" data-pack="travel-night" type="button">
+                <button class="experience-card pack-card" data-pack="travel-night" data-mood="adventure" type="button">
                     <img src="img/passport-to-us.jpg" alt="Passport to Us" class="experience-image" loading="eager">
                     <div class="experience-content">
                         <h3>Passport to Us</h3>
                         <p>Dream destinations, adventures, and shared memories waiting to happen together.</p>
                     </div>
                 </button>
-                <button class="experience-card pack-card" data-pack="after-fight" type="button">
-                    <img src="img/after-the-storm.jpg" alt="After the Storm" class="experience-image" loading="eager">
-                    <div class="experience-content">
-                        <h3>After the Storm</h3>
-                        <p>Understand each other, repair hurt, and move forward with renewed trust and care.</p>
-                    </div>
-                </button>
             </div>
         </section>
+    </section>
+    <section id="exploreView" class="home-view explore-view hidden" aria-labelledby="exploreTitle">
+            <div class="screen-heading">
+                <h2 id="exploreTitle">Explore</h2>
+                <p>Find a pack, mood, or conversation for your moment.</p>
+            </div>
+            <label class="sr-only" for="exploreSearch">Search packs</label>
+            <div class="explore-search">
+                <i data-lucide="search" aria-hidden="true"></i>
+                <input id="exploreSearch" type="search" placeholder="Search packs, moods, or keywords…">
+            </div>
+            <div class="explore-mood-filters" id="exploreMoodFilters" aria-label="Filter packs by mood">
+                <button class="filter-chip active" type="button" data-mood-filter="all" aria-pressed="true">All</button>
+                <button class="filter-chip" type="button" data-mood-filter="playful" aria-pressed="false">Playful</button>
+                <button class="filter-chip" type="button" data-mood-filter="deep" aria-pressed="false">Deep</button>
+                <button class="filter-chip" type="button" data-mood-filter="romantic" aria-pressed="false">Romantic</button>
+                <button class="filter-chip" type="button" data-mood-filter="intimacy" aria-pressed="false">Intimacy</button>
+                <button class="filter-chip" type="button" data-mood-filter="connection" aria-pressed="false">Connection</button>
+                <button class="filter-chip" type="button" data-mood-filter="adventure" aria-pressed="false">Adventure</button>
+            </div>
+            <div class="explore-actions">
+                <button class="btn-secondary" id="exploreBuildDeckBtn" type="button"><i data-lucide="heart" aria-hidden="true"></i> Create a deck</button>
+                <button class="btn-secondary" id="exploreBrowseCardsBtn" type="button"><i data-lucide="search" aria-hidden="true"></i> Browse cards</button>
+            </div>
+            <section class="continue-card explore-you-get-me" aria-labelledby="exploreYouGetMeTitle">
+                <div class="continue-content">
+                    <span class="continue-label">You Get Me</span>
+                    <h2 class="continue-title" id="exploreYouGetMeTitle">See how well you know each other.</h2>
+                    <p class="round-builder-intro">Predict your partner’s answers, then reveal your choices together.</p>
+                </div>
+                <button class="btn-primary" id="exploreYouGetMeBtn" type="button" onclick="window.openGuessMeSetup()">Play You Get Me</button>
+            </section>
+            <div id="exploreContent" class="explore-content"></div>
     </section>
     <aside class="desktop-sidebar" aria-label="Desktop navigation">
         <div class="sidebar-brand">
             <img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light">
-            <img src="img/closer-logo-dark-transparent.svg" alt="Closer" class="brand-logo logo-dark">
+            <img src="img/Closer%20Heart%20Connect%20Logo%20Dark.png" alt="Closer" class="brand-logo logo-dark">
         </div>
         <nav class="sidebar-nav">
             <button type="button" data-action="packs">Curated Packs</button>
@@ -207,7 +250,7 @@
             <div class="card-face" id="cardFace">
             <div class="card-header">
                 <span class="turn-indicator hidden" id="turnIndicator" aria-live="polite"></span>
-                <span class="browse-indicator hidden" id="browseIndicator" aria-live="polite">🔍 Previewing · progress not tracked</span>
+                <span class="browse-indicator hidden" id="browseIndicator" aria-live="polite">Preview · not saved</span>
                 <span class="progress-indicator" id="progressIndicator" aria-live="polite"></span>
                 <div class="card-actions">
                     <button class="card-action-btn" id="favCardBtn" type="button" title="Save question" aria-label="Save question" aria-pressed="false"><i
@@ -327,12 +370,16 @@
     </main>
 
     <div class="response-section hidden">
-        <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
-        <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
-        <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next</span></button>
-         <button class="pass-question-btn" id="quitGameBtn" type="button" title="End conversation" aria-label="End conversation">End conversation</button>
-
-        <!-- warm-up removed -->
+        <div class="card-play-actions">
+            <button class="undo-btn" id="undoBtn" type="button"><i data-lucide="chevron-left" aria-hidden="true"></i> <span class="btn-label">Back</span></button>
+            <button class="pass-question-btn" id="passCardBtn" type="button">Pass for now</button>
+            <button class="next-question-btn" id="nextCardBtn" type="button"><i data-lucide="chevron-right" aria-hidden="true"></i> <span class="btn-label">Next</span></button>
+        </div>
+        <div class="game-management-actions" aria-label="Conversation controls">
+            <button class="game-management-btn" id="pauseGameBtn" type="button">Pause</button>
+            <button class="game-management-btn" id="editRoundBtn" type="button">Edit round</button>
+            <button class="game-management-btn" id="quitGameBtn" type="button" title="End conversation" aria-label="End conversation">End</button>
+        </div>
     </div>
 
     <div class="modal-overlay hidden" id="guessMeSetupModal">
@@ -373,7 +420,7 @@
             <div class="round-builder-heading">
                 <div>
                     <h2 id="roundBuilderTitle">Start new conversation</h2>
-                    <p>Pick a curated pack or build your own custom conversation below.</p>
+                    <p id="roundBuilderIntro">Pick a curated pack or build your own custom conversation below.</p>
                 </div>
                 <button class="icon-btn" id="closeRoundBuilderBtn" type="button" aria-label="Close round builder"><i data-lucide="x" aria-hidden="true"></i></button>
             </div>
@@ -527,6 +574,12 @@
                     <label for="roundQuestionCount">How many questions in your conversation? (leave blank for all)</label>
                     <input type="number" id="roundQuestionCount" min="1" max="500" placeholder="All matching">
                 </fieldset>
+                <fieldset class="round-builder-group">
+                    <legend>Global Deck</legend>
+                    <p>Global Deck cards load automatically in the background and join your available cards for this session.</p>
+                    <button class="btn-secondary hidden" id="loadCommunityCardsBtn" type="button">Retry Global Deck loading</button>
+                    <p id="communityCardsStatus" role="status" aria-live="polite"></p>
+                </fieldset>
             </div>
             <div class="round-builder-footer">
                 <p class="round-match-count" id="roundMatchCount" aria-live="polite">Loading available cards…</p>
@@ -589,7 +642,7 @@
                     <label><input type="radio" name="publishMode" value="private" checked> Keep in my deck · this device</label>
                     <label><input type="radio" name="publishMode" value="partner"> Share with my partner · paired room only</label>
                     <label><input type="radio" name="publishMode" value="community"> Share with everyone · Global Deck</label>
-                    <p class="publish-note">Cards kept on this device stay out of your partner’s saved deck, but the active card is visible in a paired room. Partner-shared card text is sent to the paired room and may be readable by anyone with room database access. Global cards are public and may be reviewed if reported.</p>
+                    <p class="publish-note">Cards kept on this device stay out of your partner’s saved deck, but the active card is visible in a paired room. Partner-shared card text is sent to the paired room and may be readable by anyone with room database access. Global cards are public and do not have in-app moderation yet.</p>
                 </fieldset>
                 <p id="publishStatus" class="publish-status" role="status" aria-live="polite"></p>
             </div>
@@ -635,7 +688,7 @@
                                 <span id="turnPickerResult" class="turn-picker-result" role="status" aria-live="polite"></span>
                             </div>
                         </div>
-                    </details>
+                                    </details>
                     <details class="settings-tree-group">
                         <summary>Questions &amp; decks</summary>
                         <div class="settings-tree-content">
@@ -655,11 +708,25 @@
             <!-- Dynamic Drawer Content Renders Here -->
         </div>
     </div>
+    <nav class="app-bottom-nav" aria-label="Main navigation">
+        <button type="button" data-view="play" id="appNavPlay" aria-current="page">
+            <i data-lucide="home" aria-hidden="true"></i><span>Play</span>
+        </button>
+        <button type="button" data-view="explore" id="appNavExplore" aria-current="false">
+            <i data-lucide="compass" aria-hidden="true"></i><span>Explore</span>
+        </button>
+        <button type="button" data-view="connect" id="appNavConnect" aria-current="false">
+            <i data-lucide="radio" aria-hidden="true"></i><span>Connect</span>
+        </button>
+        <button type="button" data-view="settings" id="appNavSettings" aria-current="false" aria-label="Settings">
+            <i data-lucide="settings" aria-hidden="true"></i><span>Settings</span>
+        </button>
+    </nav>
     <!-- Project Scripts -->
-    <script src="js/firebase-config.js?v=410"></script>
-    <script src="js/app-state.js?v=410"></script>
-    <script src="js/app-logic.js?v=410"></script>
-    <script src="js/app.js?v=410"></script>
+    <script src="js/firebase-config.js?v=422"></script>
+    <script src="js/app-state.js?v=422"></script>
+    <script src="js/app-logic.js?v=422"></script>
+    <script src="js/app.js?v=422"></script>
 
     <script>
         if ('serviceWorker' in navigator) {
@@ -757,31 +824,7 @@
         </div>
     </section>
 </div>
-    <section id="guessMeView" class="home-view hidden" aria-labelledby="guessMeTitle">
-        <section class="app-hero">
-            <div class="app-hero-content">
-                <h2 id="guessMeTitle">You Get Me — Lobby</h2>
-                <p id="guessMeLobbyStatus" aria-live="polite">Connecting to your partner…</p>
-            </div>
-        </section>
-        <section class="continue-card" id="guessMeReadyCard">
-            <span class="continue-icon" aria-hidden="true">♡</span>
-            <div class="continue-content">
-                <span class="continue-label">Ready check</span>
-                <h2 class="continue-title" id="guessMeReadyTitle">Waiting for both players</h2>
-            </div>
-            <button class="btn-primary" id="guessMeReadyBtn" type="button">I'm ready</button>
-        </section>
-        <section class="categories-section">
-            <div class="categories-header"><h2>Room</h2></div>
-            <p id="guessMeRoomInfo" class="round-builder-intro"></p>
-            <div class="modal-actions round-builder-actions">
-                <button class="btn-secondary" id="guessMeLeaveBtn" type="button">Leave room</button>
-                <button class="btn-primary hidden" id="guessMeStartBtn" type="button">Start game</button>
-            </div>
-        </section>
-        <p class="round-builder-intro" style="text-align:center;opacity:.7;">Gameplay (answer / predict / reveal) arrives in the next stage.</p>
-    </section>
+    <section id="guessMeView" class="home-view hidden" aria-labelledby="guessMeTitle"></section>
 
 
 

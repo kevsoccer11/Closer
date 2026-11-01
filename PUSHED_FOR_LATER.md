@@ -1,12 +1,12 @@
 # Pushed for Later
 
 ## Community & moderation
-- Community upvote/report buttons (removed from UI; backend remains).
+- Community moderation: add reporting, review queues, and moderator tools before making user-published cards broadly discoverable.
 - Community card approval workflow (pending/approved/rejected).
 - Moderator UI and allowlisted UIDs.
 
 ## UX / accessibility
-- Focus trapping in modals and drawers.
+- Focus trapping in modals and drawers (done).
 - Screen-reader announcements for card changes (partially done).
 - High-contrast theme (done) + dyslexia font refinement.
 - Onboarding interactive tour.
