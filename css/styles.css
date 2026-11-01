@@ -142,9 +142,9 @@ header {
     margin-bottom: 6px;
 }
 
-.logo-dark { display: none; }
-body:not(.light-theme) .logo-light { display: none; }
-body:not(.light-theme) .logo-dark { display: inline-block; }
+body:not(.light-theme) .brand-logo {
+    filter: brightness(0) invert(1);
+}
 
 .header-actions {
     display: flex;
@@ -3966,6 +3966,27 @@ body:not(.light-theme) .app-bottom-nav button.active {
     flex: 0 0 auto;
     padding: 8px 0;
     background: var(--card-bg);
+}
+
+#playModeModal .round-builder-heading {
+    padding-block: 4px;
+}
+
+#playModeModal .play-mode-options {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 0 0 auto;
+    margin-top: 0;
+    padding: 8px 0 calc(8px + env(safe-area-inset-bottom, 0px));
+    background: var(--card-bg);
+}
+
+#playModeModal .play-mode-options button {
+    min-height: 48px;
 }
 
 #guessMeSetupModal .modal-card {

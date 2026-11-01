@@ -83,6 +83,24 @@ check('You Get Me lobby controls fit narrow screens and modal headers stay pinne
     }
 });
 
+check('play mode choices stay pinned and dark mode uses a transparent logo', () => {
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    const serviceWorker = fs.readFileSync('sw.js', 'utf8');
+    const playMode = html.match(/<div class="modal-overlay hidden" id="playModeModal">([\s\S]*?)<\/section>/);
+    if (!playMode || !playMode[1].includes('class="play-mode-options"')
+        || !playMode[1].includes('id="playModeSameDeviceBtn"')
+        || !playMode[1].includes('id="playModePairedBtn"')
+        || !styles.includes('#playModeModal .play-mode-options {\n    position: sticky;\n    bottom: 0;')) {
+        throw new Error('play-mode choices are not kept visible in a short viewport');
+    }
+    if (!/body:not\(\.light-theme\) \.brand-logo \{\s*filter: brightness\(0\) invert\(1\);/.test(styles)
+        || !html.includes('Closer%20Everyday%20Heart%20Logo.png')
+        || !serviceWorker.includes('./img/Closer Everyday Heart Logo.png')
+        || serviceWorker.includes('./img/Closer Heart Connect Logo Dark.png')) {
+        throw new Error('dark mode is not using the transparent logo asset');
+    }
+});
+
 check('home features six curated packs with an Explore link', () => {
     const section = html.match(/<section class="featured-experiences" id="featuredExperiences">([\s\S]*?)<\/section>/);
     if (!section) throw new Error('featured pack section is missing');
@@ -324,7 +342,7 @@ check('home shortcuts have dark-mode card styling', () => {
     }
 });
 
-check('header logos use the same larger dimensions in both themes', () => {
+check('header uses the transparent logo with the same dimensions in both themes', () => {
     const styles = fs.readFileSync('css/styles.css', 'utf8');
     const sharedLogoRule = styles.match(/\.brand-logo \{([^}]*)\}/);
     if (!sharedLogoRule || !sharedLogoRule[1].includes('height: 3.5rem;')
@@ -337,8 +355,9 @@ check('header logos use the same larger dimensions in both themes', () => {
         throw new Error('a theme-specific header logo size overrides the shared dimensions');
     }
     if (!html.includes('img/Closer%20Everyday%20Heart%20Logo.png')
-        || !html.includes('img/Closer%20Heart%20Connect%20Logo%20Dark.png')) {
-        throw new Error('the paired light and dark logo assets are not both in use');
+        || html.includes('img/Closer%20Heart%20Connect%20Logo%20Dark.png')
+        || !styles.includes('body:not(.light-theme) .brand-logo')) {
+        throw new Error('the transparent logo is not reused with a dark-mode treatment');
     }
 });
 

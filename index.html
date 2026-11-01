@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
     <!-- App Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css?v=425">
+    <link rel="stylesheet" href="css/styles.css?v=426">
 
     <!-- Firebase Compat SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -46,7 +46,7 @@
     <header>
         <div class="top-bar">
             <div class="brand-block">
-            <h1 class="app-title"><img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light"><img src="img/Closer%20Heart%20Connect%20Logo%20Dark.png" alt="Closer" class="brand-logo logo-dark"></h1>
+            <h1 class="app-title"><img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo"></h1>
         </div>
             <button class="icon-btn" id="userProfileBtn" type="button" aria-label="User profile" title="User profile"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
             <div class="header-actions">
@@ -229,8 +229,7 @@
     </section>
     <aside class="desktop-sidebar" aria-label="Desktop navigation">
         <div class="sidebar-brand">
-            <img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo logo-light">
-            <img src="img/Closer%20Heart%20Connect%20Logo%20Dark.png" alt="Closer" class="brand-logo logo-dark">
+            <img src="img/Closer%20Everyday%20Heart%20Logo.png" alt="Closer" class="brand-logo">
         </div>
         <nav class="sidebar-nav">
             <button type="button" data-action="packs">Curated Packs</button>
@@ -800,7 +799,7 @@
 </div>
 
 <div class="modal-overlay hidden" id="playModeModal">
-    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="playModeTitle">
+    <section class="modal-card play-mode-card" role="dialog" aria-modal="true" aria-labelledby="playModeTitle">
         <div class="round-builder-heading">
             <div>
                 <h2 id="playModeTitle">How are you playing?</h2>
@@ -808,7 +807,7 @@
             </div>
             <button class="icon-btn" id="closePlayModeBtn" type="button" aria-label="Close"><i data-lucide="x" aria-hidden="true"></i></button>
         </div>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+        <div class="play-mode-options">
             <button class="btn-primary" id="playModeSameDeviceBtn" type="button">Same device (local)</button>
             <button class="btn-secondary" id="playModePairedBtn" type="button">Multiple devices (pair with partner)</button>
         </div>
