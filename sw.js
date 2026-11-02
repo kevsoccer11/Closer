@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v445';
+const CACHE_NAME = 'closer-pwa-v448';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -13,7 +13,8 @@ const ASSETS_TO_CACHE = [
     './img/pack-passport-to-us.webp',
     './img/pack-find-our-way-back.webp',
     './img/pack-beneath-the-surface.webp',
-    './img/Closer Everyday Heart Logo.png',
+    './img/closer-logo-light.png',
+    './img/closer-logo-dark.png',
     './js/firebase-config.js',
     './YGM-question-bank.json'
 ];

@@ -104,10 +104,11 @@ check('play mode choices stay reachable and dark mode uses a transparent logo', 
         || !overlayRule[1].includes('z-index: 10020;')) {
         throw new Error('bottom navigation can cover modal actions');
     }
-    if (!/body:not\(\.light-theme\) \.brand-logo \{\s*filter: brightness\(0\) invert\(1\);/.test(styles)
-        || !html.includes('Closer%20Everyday%20Heart%20Logo.png')
-        || !serviceWorker.includes('./img/Closer Everyday Heart Logo.png')
-        || serviceWorker.includes('./img/Closer Heart Connect Logo Dark.png')) {
+    if (!/body:not\(\.light-theme\) \.brand-logo-dark \{[^}]*display: inline-block;/.test(styles)
+        || !html.includes('img/closer-logo-light.png')
+        || !html.includes('img/closer-logo-dark.png')
+        || !serviceWorker.includes('./img/closer-logo-light.png')
+        || !serviceWorker.includes('./img/closer-logo-dark.png')) {
         throw new Error('dark mode is not using the transparent logo asset');
     }
 });
@@ -702,9 +703,9 @@ check('header uses the transparent logo with the same dimensions in both themes'
         || styles.includes('body.light-theme .app-title')) {
         throw new Error('a theme-specific header logo size overrides the shared dimensions');
     }
-    if (!html.includes('img/Closer%20Everyday%20Heart%20Logo.png')
-        || html.includes('img/Closer%20Heart%20Connect%20Logo%20Dark.png')
-        || !styles.includes('body:not(.light-theme) .brand-logo')) {
+    if (!html.includes('img/closer-logo-light.png')
+        || !html.includes('img/closer-logo-dark.png')
+        || !styles.includes('body:not(.light-theme) .brand-logo-dark')) {
         throw new Error('the transparent logo is not reused with a dark-mode treatment');
     }
     if (!styles.includes('@media (min-width: 1024px) {\n    body {\n        padding-left: 280px;\n    }\n    .top-bar .brand-block {\n        display: none;')) {

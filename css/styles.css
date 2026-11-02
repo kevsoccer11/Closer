@@ -143,9 +143,9 @@ header {
     margin-bottom: 6px;
 }
 
-body:not(.light-theme) .brand-logo {
-    filter: brightness(0) invert(1);
-}
+.brand-logo-dark { display: none; }
+body:not(.light-theme) .brand-logo-light { display: none; }
+body:not(.light-theme) .brand-logo-dark { display: inline-block; }
 
 .header-actions {
     display: flex;
