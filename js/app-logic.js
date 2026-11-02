@@ -330,10 +330,17 @@ function getFilteredCards() {
 const STORY_PACK_TOPICS = ['closer::Our Story', 'closer::Growing Up Stories', 'closer::College & Early Career Stories', 'closer::Dating Through the Years', 'closer::Regrets & Do-Overs', 'spark::Story Time', 'spark::Growing Up Stories', 'spark::College & Early Career Stories', 'spark::Dating Stories', 'spark::Ideal Dates'];
 
 const PACK_SIZE_MIN = 8;
-const PACK_SIZE_MAX = 15;
+const PACK_SIZE_MAX = 25;
+const PACK_MIN_REMAINING = 5;
 
-function getRandomPackSize() {
-    return PACK_SIZE_MIN + Math.floor(Math.random() * (PACK_SIZE_MAX - PACK_SIZE_MIN + 1));
+function getRandomPackSize(available = Infinity) {
+    const max = Math.min(PACK_SIZE_MAX, available);
+    const min = Math.min(PACK_SIZE_MIN, max);
+    return min + Math.floor(Math.random() * (max - min + 1));
+}
+
+function getUnplayedPackCards() {
+    return getFilteredCards().filter(card => !playedCardIds.has(card.id));
 }
 
 // Rough minutes a couple spends on a card: stories and heavy topics take longer than light ones.
@@ -413,6 +420,7 @@ function getCuratedPackSelection(key) {
         'regrets-do-overs': { modules: ['closer'], topics: ['closer::Regrets & Do-Overs', 'closer::Repair & Apology', 'closer::Past Experiences'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'date-night-planner': { modules: ['spark', 'together'], topics: ['spark::Ideal Dates', 'spark::Rituals & Playfulness', 'spark::Adventure & Travel', 'together::Gatherings & Celebrations'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'building-our-life': { modules: ['together'], topics: ['together::Home & Daily Life', 'together::Finances & Money', 'together::Money & Work', 'together::Future & Growth', 'together::Family & Community'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'everyday-joy': { modules: ['closer', 'spark', 'together'], topics: ['closer::Joy & Appreciation', 'spark::Casual & Everyday', 'spark::Rituals & Playfulness', 'together::Gatherings & Celebrations'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'escalation': null
     };
     return packs[key] || null;
@@ -1317,7 +1325,7 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
         };
         const activePack = document.body.dataset.pack;
         const isCuratedPack = activePack && activePack !== 'escalation';
-        if (isCuratedPack) {
+        if (isCuratedPack && getUnplayedPackCards().length >= PACK_MIN_REMAINING) {
             const samePack = document.createElement('button');
             samePack.type = 'button';
             samePack.className = 'btn-primary';
@@ -1327,15 +1335,26 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
             samePack.style.marginLeft = 'auto';
             samePack.style.marginRight = 'auto';
             samePack.onclick = () => {
+                const pool = getUnplayedPackCards();
+                for (let i = pool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [pool[i], pool[j]] = [pool[j], pool[i]];
+                }
+                activeQuestionCount = getRandomPackSize(pool.length);
                 roundStats = { played: 0, passed: 0 };
                 passedCardIds = [];
                 currentCard = null;
-                rebuildUnspentDeck();
+                unspentDeck = pool.slice(0, activeQuestionCount);
+                roundTotalCards = unspentDeck.length;
                 updateRoundSummary();
                 drawNextCard();
                 showGameView();
             };
             prompt.append(title, summary, again, samePack);
+        } else if (isCuratedPack) {
+            const covered = document.createElement('p');
+            covered.textContent = "You've covered this pack. Start a new conversation to explore something fresh.";
+            prompt.append(title, summary, covered, again);
         } else {
             prompt.append(title, summary, again);
         }

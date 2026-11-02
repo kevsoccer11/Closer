@@ -135,7 +135,7 @@ check('Explore shows every curated pack and mood shortcuts filter matching packs
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const curatedGrid = html.match(/<div class="pack-grid compact">([\s\S]*?)<\/div>/);
     const curatedPacks = curatedGrid?.[1].match(/class="pack-card"/g) || [];
-    if (curatedPacks.length !== 21
+    if (curatedPacks.length !== 22 || curatedPacks.length % 2 !== 0
         || !app.includes("document.querySelector('#curatedTab .pack-grid')")
         || !app.includes("packsClone.className = 'pack-grid compact explore-curated-grid'")
         || !app.includes("document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card')")
@@ -845,8 +845,13 @@ check('deck health: pillar sizes, story density, unique prompts and clean wordin
         throw new Error('invalid followUp text');
     }
     if (new Set(followUps.map(card => card.followUp)).size !== followUps.length) throw new Error('followUp prompts must be unique per card');
-    if (!/PACK_SIZE_MIN = 8;\s*const PACK_SIZE_MAX = 15;/.test(logic) || !logic.includes('getRandomPackSize()') || !logic.includes('estimateCardMinutes')) {
+    if (!/PACK_SIZE_MIN = 8;\s*const PACK_SIZE_MAX = 25;/.test(logic) || !logic.includes('getRandomPackSize(pool.length)') || !logic.includes('getUnplayedPackCards') || !logic.includes("You've covered this pack") || !logic.includes('estimateCardMinutes')) {
         throw new Error('packs should draw a random size with a time estimate');
+    }
+    const sizeHelper = logic.match(/function getRandomPackSize\(available = Infinity\) \{[\s\S]*?\n\}/);
+    const sizes = sizeHelper && vm.runInNewContext(`const PACK_SIZE_MIN = 8; const PACK_SIZE_MAX = 25;\n${sizeHelper[0]}\nArray.from({ length: 400 }, () => getRandomPackSize()).concat([getRandomPackSize(3), getRandomPackSize(12)])`);
+    if (!sizes || Math.max(...sizes) > 25 || Math.min(...sizes) < 3 || new Set(sizes).size < 10 || sizes[400] > 3 || sizes[401] > 12) {
+        throw new Error('pack sizes must be random, capped at 25 and limited by available cards');
     }
     if (!html.includes('id="cardFollowUp"') || !logic.includes('card.followUp')) throw new Error('follow-up prompts are not rendered');
 });
