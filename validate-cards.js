@@ -38,6 +38,7 @@ if (!data || !Array.isArray(data.cards)) {
       const prefix = key.slice(0, 60);
       prefixCounts.set(prefix, (prefixCounts.get(prefix) || 0) + 1);
     }
+    if (card.followUp !== undefined && (typeof card.followUp !== 'string' || !card.followUp.trim() || card.followUp.length > 200)) errors.push(`${loc}: followUp must be a non-empty string up to 200 characters`);
     if (card.promptStyle === 'question' && !/[?!.:]$/.test(card.prompt.trim())) warnings.push(`${loc}: question prompt should end with punctuation`);
     if (!VALID_CONTEXT.has(card.contextType)) errors.push(`${loc}: invalid contextType ${card.contextType}`);
     if (!VALID_STYLES.has(card.promptStyle)) errors.push(`${loc}: invalid promptStyle ${card.promptStyle}`);

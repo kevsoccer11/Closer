@@ -756,6 +756,15 @@ main {
     color: var(--text-main);
 }
 
+.card-follow-up {
+    max-width: 34ch;
+    margin: 14px auto 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
 .card-answer-panel {
     width: min(100%, 38rem);
     margin-top: 22px;

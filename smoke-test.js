@@ -135,7 +135,7 @@ check('Explore shows every curated pack and mood shortcuts filter matching packs
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const curatedGrid = html.match(/<div class="pack-grid compact">([\s\S]*?)<\/div>/);
     const curatedPacks = curatedGrid?.[1].match(/class="pack-card"/g) || [];
-    if (curatedPacks.length !== 14
+    if (curatedPacks.length !== 15
         || !app.includes("document.querySelector('#curatedTab .pack-grid')")
         || !app.includes("packsClone.className = 'pack-grid compact explore-curated-grid'")
         || !app.includes("document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card')")
@@ -761,6 +761,14 @@ check('validate YGM-question-bank.json', () => {
     if (d.questions.some(q => !Array.isArray(q.options) || q.options.length !== 4
         || q.options.some(option => typeof option !== 'string' || !option.trim())
         || typeof q.question !== 'string' || !q.question.trim())) throw new Error('invalid question or options');
+    const listed = new Set(d.categories);
+    const used = new Set(d.questions.map(q => q.category));
+    if (listed.size !== d.categories.length) throw new Error('duplicate entries in categories list');
+    const unlisted = [...used].filter(c => !listed.has(c));
+    const unused = [...listed].filter(c => !used.has(c));
+    if (unlisted.length || unused.length) {
+        throw new Error(`categories list out of sync (unlisted: ${unlisted.join(', ') || 'none'}; unused: ${unused.join(', ') || 'none'})`);
+    }
     const newCategories = ['support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth'];
     if (newCategories.some(category => !d.categories.includes(category)
         || d.questions.filter(question => question.category === category).length !== 10)) {
@@ -792,13 +800,52 @@ check('general question bank includes new life-stage and support topics', () => 
     }
 });
 
+check('deck health: pillar sizes, story density, unique prompts and clean wording', () => {
+    const main = JSON.parse(fs.readFileSync('cards.json', 'utf8')).cards;
+    const explicit = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8')).cards;
+    const all = [...main, ...explicit];
+    const pillarOf = card => card.pillar || (card.module === 'explicit' ? 'afterhours' : 'closer');
+    const minimums = { spark: 700, heat: 800, closer: 2300, afterhours: 2000 };
+    for (const [pillar, min] of Object.entries(minimums)) {
+        const count = all.filter(card => pillarOf(card) === pillar).length;
+        if (count < min) throw new Error(`${pillar} has ${count} cards, expected at least ${min}`);
+    }
+    const reference = JSON.parse(fs.readFileSync('questions-reference.json', 'utf8'));
+    if (reference.total !== all.length || reference.questions.length !== all.length) {
+        throw new Error('questions-reference.json is out of date; regenerate it from cards.json and explicit-cards.json');
+    }
+    const stories = main.filter(card => card.contextType === 'story').length;
+    if (stories < 250) throw new Error(`only ${stories} story cards; expected at least 250`);
+    const normalize = prompt => prompt.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    const seen = new Map();
+    for (const card of all) {
+        const key = normalize(card.prompt);
+        if (seen.has(key)) throw new Error(`duplicate prompt in ${seen.get(key)} and ${card.id}`);
+        seen.set(key, card.id);
+        if (/\b(\w+) \1\b/i.test(card.prompt) && !/\b(that that|had had)\b/i.test(card.prompt)) {
+            throw new Error(`repeated word in ${card.id}: ${card.prompt}`);
+        }
+    }
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const storyTopics = [...logic.match(/const STORY_PACK_TOPICS = \[([^\]]*)\]/)[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
+    for (const topic of storyTopics) {
+        if (!main.some(card => `${pillarOf(card)}::${card.category}` === topic)) throw new Error(`Story Time topic has no cards: ${topic}`);
+    }
+    const followUps = main.filter(card => card.followUp !== undefined);
+    if (followUps.length < 100) throw new Error('expected follow-up prompts on the story cards');
+    if (followUps.some(card => typeof card.followUp !== 'string' || !card.followUp.trim() || card.followUp.length > 200)) {
+        throw new Error('invalid followUp text');
+    }
+    if (!html.includes('id="cardFollowUp"') || !logic.includes('card.followUp')) throw new Error('follow-up prompts are not rendered');
+});
+
 check('You Get Me selection filters by vibe and avoids duplicates', () => {
     const bank = JSON.parse(fs.readFileSync('YGM-question-bank.json', 'utf8')).questions;
     const categories = {
         mixed: null,
-        playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected'],
-        romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty'],
-        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth']
+        playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected', 'travel', 'movies', 'food'],
+        romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty', 'travel', 'food'],
+        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth', 'fears']
     };
     const storage = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
     const context = vm.createContext({

@@ -323,6 +323,8 @@ function getFilteredCards() {
     });
 }
 
+const STORY_PACK_TOPICS = ['closer::Our Story', 'closer::Growing Up Stories', 'closer::College & Early Career Stories', 'closer::Dating Through the Years', 'closer::Regrets & Do-Overs', 'spark::Story Time', 'spark::Growing Up Stories', 'spark::College & Early Career Stories', 'spark::Dating Stories', 'spark::Ideal Dates'];
+
 function applyPack(pack) {
     const packs = {
         'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], intensity: '1', questions: true, activities: true, multipleChoice: true },
@@ -337,7 +339,8 @@ function applyPack(pack) {
         'deeper-connection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, questions: true, activities: true, multipleChoice: true },
         'build-the-tension': { modules: ['heat'], topics: null, questions: true, activities: true, multipleChoice: true },
-        'after-hours': { modules: ['afterhours'], topics: null, questions: true, activities: true, multipleChoice: true }
+        'after-hours': { modules: ['afterhours'], topics: null, questions: true, activities: true, multipleChoice: true },
+        'story-time': { modules: ['closer', 'spark'], topics: STORY_PACK_TOPICS, questions: true, activities: true, multipleChoice: true }
     };
     const selection = packs[pack];
     if (!selection) return;
@@ -396,6 +399,7 @@ function startQuickGame(skipPlayModeCheck = false) {
 }
 
 function getCuratedPackSelection(key) {
+    const STORY_PACK_TOPICS = ['closer::Our Story', 'closer::Growing Up Stories', 'closer::College & Early Career Stories', 'closer::Dating Through the Years', 'closer::Regrets & Do-Overs', 'spark::Story Time', 'spark::Growing Up Stories', 'spark::College & Early Career Stories', 'spark::Dating Stories', 'spark::Ideal Dates'];
     const packs = {
         'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
@@ -410,6 +414,7 @@ function getCuratedPackSelection(key) {
         'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'story-time': { modules: ['closer', 'spark'], topics: STORY_PACK_TOPICS, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'escalation': null
     };
     return packs[key] || null;
@@ -519,7 +524,8 @@ function updateCuratedPackMeta() {
         'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
         'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true }
+        'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'story-time': { modules: ['closer', 'spark'], topics: STORY_PACK_TOPICS, mood: 'all', questions: true, activities: true, multipleChoice: true }
     };
     const saved = {
         activePillars: [...activePillars],
@@ -1195,6 +1201,7 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
         }
     }
     if (unspentDeck.length === 0) {
+        document.getElementById('cardFollowUp')?.classList.add('hidden');
         if (!masterDatabase || masterDatabase.length === 0) {
             return; // cards not loaded yet; avoid false 'Round complete'
         }
@@ -1904,6 +1911,12 @@ const undoBtn = document.getElementById('undoBtn');
     setCardActionStatus('');
     const prompt = document.getElementById('cardPrompt');
     if (prompt) prompt.innerText = card.prompt;
+    const followUp = document.getElementById('cardFollowUp');
+    if (followUp) {
+        const followUpText = typeof card.followUp === 'string' ? card.followUp.trim() : '';
+        followUp.textContent = followUpText ? `Dig deeper: ${followUpText}` : '';
+        followUp.classList.toggle('hidden', !followUpText);
+    }
     renderCardAnswerPanel(card);
 
     const favBtn = document.getElementById('favCardBtn');
@@ -4317,9 +4330,9 @@ function pickGuessMeQuestions(length, vibe) {
         && q.options.every(option => typeof option === 'string' && option.trim())
     );
     const categoryMap = {
-        playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected'],
-        romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty'],
-        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth']
+        playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected', 'travel', 'movies', 'food'],
+        romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty', 'travel', 'food'],
+        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth', 'fears']
     };
     const categories = categoryMap[vibe];
     const filtered = categories ? pool.filter(question => categories.includes(question.category)) : pool;
