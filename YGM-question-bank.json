@@ -18,7 +18,11 @@
     "support_stress",
     "conflict_repair",
     "values_future",
-    "vulnerability_growth"
+    "vulnerability_growth",
+    "travel",
+    "movies",
+    "food",
+    "fears"
   ],
   "questions": [
     {
