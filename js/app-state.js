@@ -171,6 +171,7 @@ let playerNames = {
 let roomDisplayNames = {};
 let roomPresence = {};
 let guessMeRequestListener = null;
+let sharedDeckRound = null;
 let presenceState = {};
 let playerNamesListener = null;
 let compareFirstModules = ['sexuality'];

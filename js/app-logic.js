@@ -943,6 +943,7 @@ roundStats = { played: 0, passed: 0 };
 
     const sharedHostStart = !browseMode && window.roomRef && isSeatedRoomMember();
     currentCard = null;
+    if (sharedHostStart) await publishRoundDeck(); else sharedDeckRound = null;
     drawNextCard(false, !sharedHostStart);
     if (!currentCard) {
         const message = 'No cards match this selection yet. Try another pack or check that cards have loaded.';
@@ -1173,6 +1174,40 @@ function updateQuestionTypeSelection(style, announce = false, syncTypes = true) 
     if (questionTypeSummary) questionTypeSummary.textContent = labels[style];
     const confirmation = document.getElementById('questionTypeConfirmation');
     if (confirmation) confirmation.textContent = announce ? `${labels[style]} selected.` : '';
+}
+
+// Publishes the ordered deck so both players draw the same cards in the same order.
+async function publishRoundDeck() {
+    sharedDeckRound = null;
+    if (!window.roomRef || !isSeatedRoomMember() || browseMode) return;
+    const ids = unspentDeck.map(card => card.id).filter(id => typeof id === 'string' && id.length <= 80).slice(-999);
+    if (!ids.length) return;
+    const id = createCardRoundId();
+    sharedDeckRound = { id, total: ids.length };
+    try {
+        await window.roomRef.child('roundDeck').set({ id, ids, by: window.firebase?.auth().currentUser?.uid || null });
+    } catch (error) {
+        console.error('Could not share the round deck:', error);
+        sharedDeckRound = null;
+        showToast('Could not share this deck with your partner. They may see different cards.');
+    }
+}
+
+async function adoptSharedRoundDeck(card) {
+    if (!window.roomRef || !card?.deckRoundId || sharedDeckRound?.id === card.deckRoundId) return;
+    try {
+        const deck = (await window.roomRef.child('roundDeck').once('value')).val();
+        if (!deck || deck.id !== card.deckRoundId || !Array.isArray(deck.ids)) return;
+        const byId = new Map(masterDatabase.map(item => [item.id, item]));
+        const remaining = deck.ids.slice(0, Math.max(0, deck.ids.length - (card.deckIndex || 0)))
+            .map(id => byId.get(id)).filter(Boolean);
+        sharedDeckRound = { id: deck.id, total: deck.ids.length };
+        unspentDeck = remaining;
+        roundTotalCards = deck.ids.length;
+        updateCardProgressSlider();
+    } catch (error) {
+        console.error('Could not load the shared round deck:', error);
+    }
 }
 
 function isSeatedRoomMember() {
@@ -1418,6 +1453,10 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
     }
 
     currentCard = { ...unspentDeck.pop(), roundId: createCardRoundId(), turnIndex: activeTurn };
+    if (sharedDeckRound && window.roomRef && !browseMode && !isRemoteUpdate) {
+        currentCard.deckRoundId = sharedDeckRound.id;
+        currentCard.deckIndex = sharedDeckRound.total - unspentDeck.length;
+    }
     if (currentCard?.id && !browseMode) {
         playedCardIds.add(currentCard.id);
         localStorage.setItem('closer_played_cards', JSON.stringify([...playedCardIds]));
@@ -3056,6 +3095,7 @@ function renderMyDecks() {
             if (document.body?.dataset) delete document.body.dataset.pack;
             document.getElementById('browseIndicator')?.classList.add('hidden');
             rebuildUnspentDeck();
+            if (window.roomRef && isSeatedRoomMember()) publishRoundDeck(); else sharedDeckRound = null;
             drawNextCard();
             closeDrawer();
             showGameView();
@@ -3748,6 +3788,15 @@ function renderPairManagement() {
                 window.pendingPackKey = null;
             }
         };
+        const deckButton = document.createElement('button');
+        deckButton.type = 'button';
+        deckButton.className = 'btn-secondary';
+        deckButton.textContent = 'Play one of my custom decks';
+        deckButton.onclick = () => {
+            closeDrawer();
+            document.getElementById('userProfileBtn')?.click();
+            showToast('Tap Play next to a deck under My decks. Your partner will get the same cards.');
+        };
         const guessButton = document.createElement('button');
         guessButton.type = 'button';
         guessButton.className = 'btn-secondary';
@@ -3756,7 +3805,7 @@ function renderPairManagement() {
             closeDrawer();
             openGuessMeSetup();
         };
-        startSection.append(heading, prompt, startButton, guessButton);
+        startSection.append(heading, prompt, startButton, deckButton, guessButton);
         if (window.currentRoomRole !== 'host') {
             const note = document.createElement('p');
             note.className = 'pair-status';
@@ -4125,6 +4174,7 @@ function connectToRoom(roomCode, role) {
         if (isNewRemoteCard) {
             currentCard = remoteCard;
             renderCard(currentCard);
+            if (remoteCard.deckRoundId) adoptSharedRoundDeck(remoteCard);
             if (startedByOther && remoteCard.startedBy) {
                 const otherRole = role === 'host' ? 'partner' : 'host';
                 const other = roomDisplayNames[otherRole];
@@ -4847,6 +4897,15 @@ async function renderGuessMe(gm) {
         const start = document.createElement('button'); start.className='btn-primary'; start.textContent='Start game';
         start.classList.toggle('hidden', !isHost);
         start.disabled = !(gm.hostReady && gm.partnerReady);
+        if (isHost && !(gm.hostReady && gm.partnerReady)) {
+            const waiting = [];
+            if (!gm.hostReady) waiting.push('you (tap "I\'m ready")');
+            if (!gm.partnerReady) waiting.push(partnerName);
+            const hint = document.createElement('p');
+            hint.className = 'round-builder-intro';
+            hint.textContent = `Start unlocks when both players are ready. Waiting on ${waiting.join(' and ')}.`;
+            content.appendChild(hint);
+        }
         start.onclick = async () => {
             start.disabled = true;
             try {

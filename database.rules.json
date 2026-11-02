@@ -135,6 +135,17 @@
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())"
         },
+        "roundDeck": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          ".validate": "!newData.exists() || (newData.hasChildren(['id', 'ids', 'by']) && newData.child('by').val() === auth.uid)",
+          "id": { ".validate": "newData.isString() && newData.val().length <= 60" },
+          "by": { ".validate": "newData.isString()" },
+          "ids": {
+            "$i": { ".validate": "$i.matches(/^[0-9]{1,3}$/) && newData.isString() && newData.val().length > 0 && newData.val().length <= 80" }
+          },
+          "$other": { ".validate": false }
+        },
         "guessMeRequest": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
           ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",

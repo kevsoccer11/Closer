@@ -139,6 +139,12 @@ async function main() {
         await assertFails(set(ref(outsider, reqPath), { by: 'outsider-uid', length: 10, vibe: 'mixed', at: Date.now() }));
         await assertSucceeds(remove(ref(host, reqPath)));
 
+        const deckPath = `rooms/${roomCode}/roundDeck`;
+        await assertSucceeds(set(ref(partner, deckPath), { id: 'r1', ids: ['a', 'b', 'c'], by: 'partner-uid' }));
+        await assertSucceeds(get(ref(host, deckPath)));
+        await assertFails(set(ref(partner, deckPath), { id: 'r2', ids: ['a'], by: 'host-uid' }));
+        await assertFails(set(ref(outsider, deckPath), { id: 'r3', ids: ['a'], by: 'outsider-uid' }));
+
         const presencePath = `rooms/${roomCode}/presence`;
         await assertSucceeds(set(ref(host, `${presencePath}/host`), { online: true, lastSeen: Date.now() }));
         await assertSucceeds(set(ref(partner, `${presencePath}/partner`), { online: false, lastSeen: Date.now() }));
