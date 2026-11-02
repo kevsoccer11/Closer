@@ -127,7 +127,7 @@ header {
     height: 3.5rem;
     width: 9rem;
     object-fit: contain;
-    object-position: center;
+    object-position: left center;
     vertical-align: middle;
     display: inline-block;
 }
