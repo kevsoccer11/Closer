@@ -21,7 +21,6 @@
 ## Features
 - Session recap screen after a round.
 - Joint favorites deck (beyond shared deck).
-- Export round summary (printable/shareable).
 - Daily prompt notifications.
 - Themed micro-packs expansion.
 - Auto-lock for Wild & Unspoken.
