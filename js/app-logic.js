@@ -941,7 +941,7 @@ roundStats = { played: 0, passed: 0 };
     updateRoundSummary();
     try { localStorage.setItem('closer_round_filters', JSON.stringify({ activePillars, activeTopics, activeMood, includeQuestions, includeActivities, includeMultipleChoice })); } catch (e) {}
 
-    const sharedHostStart = !browseMode && window.roomRef && window.currentRoomRole === 'host';
+    const sharedHostStart = !browseMode && window.roomRef && isSeatedRoomMember();
     currentCard = null;
     drawNextCard(false, !sharedHostStart);
     if (!currentCard) {
@@ -962,7 +962,8 @@ roundStats = { played: 0, passed: 0 };
         try {
             await window.roomRef.child('activeCard').set({
                 ...currentCard,
-                sharedRoundStartedAt: Date.now()
+                sharedRoundStartedAt: Date.now(),
+                startedBy: window.firebase?.auth().currentUser?.uid || null
             });
         } catch (error) {
             console.error('Could not sync the shared round start:', error);
@@ -1160,6 +1161,10 @@ function updateQuestionTypeSelection(style, announce = false, syncTypes = true) 
     if (questionTypeSummary) questionTypeSummary.textContent = labels[style];
     const confirmation = document.getElementById('questionTypeConfirmation');
     if (confirmation) confirmation.textContent = announce ? `${labels[style]} selected.` : '';
+}
+
+function isSeatedRoomMember() {
+    return window.currentRoomRole === 'host' || window.currentRoomRole === 'partner';
 }
 
 function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
@@ -1425,11 +1430,12 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
     }
     updateCompareFirstControls();
 
-    if (syncSharedCard && window.roomRef && window.currentRoomRole === 'host' && !browseMode
+    if (syncSharedCard && window.roomRef && isSeatedRoomMember() && !browseMode
         && !isRemoteUpdate && currentCard.module !== 'explicit') {
         window.roomRef.child('activeCard').set({
             ...currentCard,
-            sharedRoundStartedAt: Date.now()
+            sharedRoundStartedAt: Date.now(),
+            startedBy: window.firebase?.auth().currentUser?.uid || null
         }).catch(error => {
             console.error('Could not sync the active room card:', error);
             const message = `Card shown on this device, but room sync failed: ${error.message}`;
@@ -4063,15 +4069,23 @@ function connectToRoom(roomCode, role) {
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
         if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
-        if (remoteCard && (!currentCard
+        const myUid = window.firebase?.auth().currentUser?.uid;
+        const startedByOther = remoteCard?.startedBy ? remoteCard.startedBy !== myUid : role === 'partner';
+        const isNewRemoteCard = !!remoteCard && (!currentCard
             || remoteCard.id !== currentCard.id
-            || remoteCard.roundId !== currentCard.roundId)) {
+            || remoteCard.roundId !== currentCard.roundId);
+        if (isNewRemoteCard) {
             currentCard = remoteCard;
             renderCard(currentCard);
+            if (startedByOther && remoteCard.startedBy) {
+                const otherRole = role === 'host' ? 'partner' : 'host';
+                const other = roomDisplayNames[otherRole];
+                showToast(`${other?.icon || ''} ${other?.name || 'Your partner'} started a new round.`.trim());
+            }
         }
-        if (role === 'partner' && Number.isFinite(remoteCard?.sharedRoundStartedAt)) {
+        if (startedByOther && Number.isFinite(remoteCard?.sharedRoundStartedAt)) {
             if (currentRoomGameModeLoaded) {
-                if (currentRoomGameMode !== 'guess-me') showGameView();
+                if (currentRoomGameMode !== 'guess-me' && (role === 'partner' || isNewRemoteCard)) showGameView();
             } else {
                 sharedRoundStartedBeforeModeLoaded = true;
             }
@@ -4113,7 +4127,7 @@ function connectToRoom(roomCode, role) {
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
-        } else if (role === 'partner' && sharedRoundStartedBeforeModeLoaded) {
+        } else if (sharedRoundStartedBeforeModeLoaded) {
             sharedRoundStartedBeforeModeLoaded = false;
             showGameView();
         }
@@ -4121,7 +4135,7 @@ function connectToRoom(roomCode, role) {
     window.roomRef.child('gameMode').on('value', gameModeListener, error => {
         console.error('Could not read the connected room game mode:', error);
         currentRoomGameModeLoaded = true;
-        if (role === 'partner' && sharedRoundStartedBeforeModeLoaded) {
+        if (sharedRoundStartedBeforeModeLoaded) {
             sharedRoundStartedBeforeModeLoaded = false;
             showGameView();
         }

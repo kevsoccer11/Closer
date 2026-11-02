@@ -1019,15 +1019,16 @@ check('shared conversation starts only after the host syncs its first card', () 
         || !listener || !listener[1].includes('Number.isFinite(remoteCard?.sharedRoundStartedAt)')
         || !listener[1].includes('sharedRoundStartedBeforeModeLoaded = true')
         || !createRoom || createRoom[1].includes('activeCard')
-        || !start[0].includes("window.currentRoomRole === 'partner'")) {
+        || !start[0].includes('isSeatedRoomMember()')) {
         throw new Error('paired players do not share an acknowledged round-start transition');
     }
-    if (!logic.includes('else if (role === \'partner\' && sharedRoundStartedBeforeModeLoaded)')) {
+    if (!logic.includes('} else if (sharedRoundStartedBeforeModeLoaded) {')) {
         throw new Error('the round-start transition is not applied after the room mode loads');
     }
     if (!rules['.write'].includes("members/host")
-        || rules['.write'].includes("members/partner")) {
-        throw new Error('only the host should be able to publish the shared active card');
+        || !rules['.write'].includes("members/partner")
+        || !rules.startedBy) {
+        throw new Error('either room member should be able to publish the shared active card, stamped with their uid');
     }
 });
 

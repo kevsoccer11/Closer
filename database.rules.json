@@ -126,7 +126,10 @@
         },
         "activeCard": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
-          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()"
+          ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "startedBy": {
+            ".validate": "newData.isString() && newData.val() === auth.uid"
+          }
         },
         "playedCards": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",

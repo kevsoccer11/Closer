@@ -39,7 +39,9 @@ async function main() {
         const sharedCard = { id: 'question-1', module: 'closer', roundId: 'round-1', sharedRoundStartedAt: Date.now() };
         await assertSucceeds(set(ref(host, activeCardPath), sharedCard));
         await assertSucceeds(get(ref(partner, activeCardPath)));
-        await assertFails(set(ref(partner, activeCardPath), { ...sharedCard, id: 'partner-card' }));
+        await assertSucceeds(set(ref(partner, activeCardPath), { ...sharedCard, id: 'partner-card', startedBy: 'partner-uid' }));
+        await assertFails(set(ref(partner, activeCardPath), { ...sharedCard, id: 'spoofed', startedBy: 'host-uid' }));
+        await assertSucceeds(set(ref(host, activeCardPath), sharedCard));
         await assertFails(set(ref(outsider, activeCardPath), sharedCard));
 
         await assertSucceeds(get(ref(host, sharedDeckPath)));
