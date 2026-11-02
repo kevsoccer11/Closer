@@ -4679,10 +4679,11 @@ async function startGuessMeInRoom(selection) {
         'guessMe/submissionStatus/answerSubmitted': false,
         'guessMe/submissionStatus/guessSubmitted': false,
         'guessMe/submissionStatus/resolved': false,
-        'guessMe/submissionStatus/scored': false,
-        'guessMe/replayVotes/host': null,
-        'guessMe/replayVotes/partner': null
+        'guessMe/submissionStatus/scored': false
     });
+    // Replay votes can only be cleared once a game is complete, so clearing them must not block starting.
+    await Promise.all(['host', 'partner'].map(seat =>
+        window.roomRef.child(`guessMe/replayVotes/${seat}`).remove().catch(() => {})));
 }
 window.startGuessMeInRoom = startGuessMeInRoom;
 
