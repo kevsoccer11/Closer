@@ -68,7 +68,9 @@ check('You Get Me setup keeps room actions visible while its choices scroll', ()
         throw new Error('You Get Me setup does not separate scrollable choices from room actions');
     }
     if (!styles.includes('#guessMeSetupModal .guess-me-setup-content {\n    flex: 1 1 auto;\n    min-height: 0;\n    overflow-y: auto;')
-        || !styles.includes('#guessMeSetupModal .guess-me-setup-footer {\n    flex: 0 0 auto;')) {
+        || !styles.includes('#guessMeSetupModal .guess-me-setup-footer {\n    flex: 0 0 auto;')
+        || !styles.includes('--app-bottom-nav-height: 63px;')
+        || !styles.includes('padding: 24px 20px calc(24px + var(--app-bottom-nav-height) + env(safe-area-inset-bottom, 0px));')) {
         throw new Error('You Get Me room actions are not kept outside the scrolling content');
     }
 });
@@ -548,6 +550,30 @@ check('approved private rooms direct the host to choose a pack', () => {
         || !logic.includes('renderPairManagement();\n            }\n        };\n        window.roomRef.child(\'members/partner\')')
         || !state.includes('let currentRoomGameModeLoaded = false;')) {
         throw new Error('regular paired rooms do not offer pack selection after the partner joins');
+    }
+});
+
+check('shared conversation starts only after the host syncs its first card', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const rules = JSON.parse(fs.readFileSync('database.rules.json', 'utf8')).rules.rooms.$roomCode.activeCard;
+    const start = logic.match(/async function applyRoundSelection\(selection[\s\S]*?\n}\n\nfunction openRoundBuilder/);
+    const listener = logic.match(/activeCardSyncListener = snapshot => \{([\s\S]*?)\n    \};/);
+    const createRoom = logic.match(/async function createRoom\(\) \{([\s\S]*?)\n}\n\nasync function requestRoomAccess/);
+    if (!start || !start[0].includes('await window.roomRef.child(\'activeCard\').set({')
+        || !start[0].includes('sharedRoundStartedAt: Date.now()')
+        || !start[0].includes('Could not start the shared conversation because room sync failed')
+        || !listener || !listener[1].includes('Number.isFinite(remoteCard?.sharedRoundStartedAt)')
+        || !listener[1].includes('sharedRoundStartedBeforeModeLoaded = true')
+        || !createRoom || createRoom[1].includes('activeCard')
+        || !start[0].includes("window.currentRoomRole === 'partner'")) {
+        throw new Error('paired players do not share an acknowledged round-start transition');
+    }
+    if (!logic.includes('else if (role === \'partner\' && sharedRoundStartedBeforeModeLoaded)')) {
+        throw new Error('the round-start transition is not applied after the room mode loads');
+    }
+    if (!rules['.write'].includes("members/host")
+        || rules['.write'].includes("members/partner")) {
+        throw new Error('only the host should be able to publish the shared active card');
     }
 });
 

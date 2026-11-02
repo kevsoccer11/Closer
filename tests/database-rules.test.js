@@ -35,6 +35,13 @@ async function main() {
         const partner = environment.authenticatedContext('partner-uid').database();
         const outsider = environment.authenticatedContext('outsider-uid').database();
 
+        const activeCardPath = `rooms/${roomCode}/activeCard`;
+        const sharedCard = { id: 'question-1', module: 'closer', roundId: 'round-1', sharedRoundStartedAt: Date.now() };
+        await assertSucceeds(set(ref(host, activeCardPath), sharedCard));
+        await assertSucceeds(get(ref(partner, activeCardPath)));
+        await assertFails(set(ref(partner, activeCardPath), { ...sharedCard, id: 'partner-card' }));
+        await assertFails(set(ref(outsider, activeCardPath), sharedCard));
+
         await assertSucceeds(get(ref(host, sharedDeckPath)));
         await assertSucceeds(get(ref(partner, sharedDeckPath)));
         await assertFails(get(ref(outsider, sharedDeckPath)));

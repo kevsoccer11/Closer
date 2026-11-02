@@ -334,7 +334,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 browseMode = true;
                 const sel = getRoundBuilderSelection();
                 if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
-                applyRoundSelection(sel);
+                applyRoundSelection(sel).catch(error => {
+                    console.error('Preview failed:', error);
+                    showToast(`Could not preview: ${error.message}`);
+                });
                 const turnIndicator = document.getElementById('turnIndicator');
                 if (turnIndicator) turnIndicator.classList.add('hidden');
                 const browseIndicator = document.getElementById('browseIndicator');
@@ -521,7 +524,10 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
             browseMode = false;
             const sel = getRoundBuilderSelection();
             if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
-            applyRoundSelection(sel);
+            applyRoundSelection(sel).catch(error => {
+                console.error('Start round failed:', error);
+                alert('Could not start conversation: ' + error.message);
+            });
             const browseIndicator = document.getElementById('browseIndicator');
             if (browseIndicator) browseIndicator.classList.add('hidden');
         } catch (e) { console.error('Start round failed:', e); alert('Could not start conversation: ' + e.message); }

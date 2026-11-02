@@ -3,7 +3,7 @@
 ## File structure
 - `cards.json` — non-explicit cards (`life`, `sexuality` modules).
 - `explicit-cards.json` — `explicit` module cards (18+).
-- Top-level: `{ "version": <number>, "cards": [ ... ] }`.
+- Top-level: `{ "version": "<version label>", "cards": [ ... ] }`.
 
 ## Required fields per card
 | Field | Type | Rules |

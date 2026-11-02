@@ -372,7 +372,10 @@ function startQuickGame(skipPlayModeCheck = false) {
         questions: selection.questions,
         activities: selection.activities,
         multipleChoice: selection.multipleChoice
-    }, selected === 'first-date');
+    }, selected === 'first-date').catch(error => {
+        console.error('Could not start quick pack:', error);
+        showToast(`Could not start conversation: ${error.message}`);
+    });
     document.body.dataset.pack = selected;
 }
 
@@ -411,7 +414,10 @@ function startPackByKey(key, skipPlayModeCheck = false) {
         questions: pack.questions,
         activities: pack.activities,
         multipleChoice: pack.multipleChoice
-    }, false, Math.floor(Math.random() * 16) + 10);
+    }, false, Math.floor(Math.random() * 16) + 10).catch(error => {
+        console.error('Could not start selected pack:', error);
+        showToast(`Could not start conversation: ${error.message}`);
+    });
     document.body.dataset.pack = key;
     window.pendingPackKey = null;
 }
@@ -852,10 +858,17 @@ function updateRoundIntensityVisibility() {
     if (group) group.classList.toggle('hidden', onlyDeepConnection);
 }
 
-function applyRoundSelection(selection, startLight = false, questionCount = null) {
+async function applyRoundSelection(selection, startLight = false, questionCount = null) {
     if (selection.modules.length === 0) {
         const status = document.getElementById('roundBuilderStatus');
         if (status) status.textContent = 'Choose at least one deck to start.';
+        return false;
+    }
+    if (!browseMode && window.roomRef && window.currentRoomRole === 'partner') {
+        const message = 'The host chooses the pack and starts the shared conversation.';
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = message;
+        showToast(message);
         return false;
     }
     activePillars = (selection.modules && selection.modules.length) ? selection.modules : ['spark'];
@@ -906,9 +919,40 @@ roundStats = { played: 0, passed: 0 };
     updateRoundSummary();
     try { localStorage.setItem('closer_round_filters', JSON.stringify({ activePillars, activeTopics, activeMood, includeQuestions, includeActivities, includeMultipleChoice })); } catch (e) {}
 
+    const sharedHostStart = !browseMode && window.roomRef && window.currentRoomRole === 'host';
+    currentCard = null;
+    drawNextCard(false, !sharedHostStart);
+    if (!currentCard) {
+        const message = 'No cards match this selection yet. Try another pack or check that cards have loaded.';
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = message;
+        showToast(message);
+        return false;
+    }
+    if (sharedHostStart && currentCard.module === 'explicit') {
+        const message = 'Explicit cards cannot be started in a paired room.';
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = message;
+        showToast(message);
+        return false;
+    }
+    if (sharedHostStart) {
+        try {
+            await window.roomRef.child('activeCard').set({
+                ...currentCard,
+                sharedRoundStartedAt: Date.now()
+            });
+        } catch (error) {
+            console.error('Could not sync the shared round start:', error);
+            const message = `Could not start the shared conversation because room sync failed: ${error.message}`;
+            const status = document.getElementById('roundBuilderStatus');
+            if (status) status.textContent = message;
+            showToast('Room sync failed. Check your connection and try starting again.');
+            return false;
+        }
+    }
     closeRoundBuilder();
     showGameView();
-    drawNextCard();
     return true;
 }
 
@@ -1089,7 +1133,7 @@ function updateQuestionTypeSelection(style, announce = false, syncTypes = true) 
     if (confirmation) confirmation.textContent = announce ? `${labels[style]} selected.` : '';
 }
 
-function drawNextCard(isRemoteUpdate = false) {
+function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
     if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host' && !isRemoteUpdate) {
         setCardActionStatus('Only the host can advance the Compare First session.');
         return;
@@ -1338,8 +1382,17 @@ function drawNextCard(isRemoteUpdate = false) {
     } catch (e) {}
     updateCompareFirstControls();
 
-    if (typeof window.roomRef !== 'undefined' && window.roomRef && !isRemoteUpdate && currentCard.module !== 'explicit') {
-        window.roomRef.child('activeCard').set(currentCard);
+    if (syncSharedCard && window.roomRef && window.currentRoomRole === 'host' && !browseMode
+        && !isRemoteUpdate && currentCard.module !== 'explicit') {
+        window.roomRef.child('activeCard').set({
+            ...currentCard,
+            sharedRoundStartedAt: Date.now()
+        }).catch(error => {
+            console.error('Could not sync the active room card:', error);
+            const message = `Card shown on this device, but room sync failed: ${error.message}`;
+            setCardActionStatus(message);
+            showToast('Room sync failed. Your partner may not see this card.');
+        });
     }
 }
 
@@ -3268,7 +3321,7 @@ function renderPairManagement() {
             ? `Partner connected · Host · ${window.currentRoomCode}`
             : `Room created and ready · Host · ${window.currentRoomCode}`;
     } else if (window.currentRoomRole === 'partner') {
-        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner. The host will choose a pack and start.`;
+        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner. The host will choose a pack; the game will open here automatically.`;
     } else if (window.currentRoomRole === 'requesting') {
         statusText.textContent = `Request pending · Room ${window.currentRoomCode}`;
     } else {
@@ -3604,6 +3657,7 @@ function connectToRoom(roomCode, role) {
         });
     }
 
+    let sharedRoundStartedBeforeModeLoaded = false;
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
         if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
@@ -3612,6 +3666,13 @@ function connectToRoom(roomCode, role) {
             || remoteCard.roundId !== currentCard.roundId)) {
             currentCard = remoteCard;
             renderCard(currentCard);
+        }
+        if (role === 'partner' && Number.isFinite(remoteCard?.sharedRoundStartedAt)) {
+            if (currentRoomGameModeLoaded) {
+                if (currentRoomGameMode !== 'guess-me') showGameView();
+            } else {
+                sharedRoundStartedBeforeModeLoaded = true;
+            }
         }
         lastSyncedAt = new Date().toISOString();
         updateSyncStatus();
@@ -3646,9 +3707,13 @@ function connectToRoom(roomCode, role) {
         currentRoomGameModeLoaded = true;
         renderPairManagement();
         if (currentRoomGameMode === 'guess-me') {
+            sharedRoundStartedBeforeModeLoaded = false;
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
+        } else if (role === 'partner' && sharedRoundStartedBeforeModeLoaded) {
+            sharedRoundStartedBeforeModeLoaded = false;
+            showGameView();
         }
     };
     window.roomRef.child('gameMode').on('value', gameModeListener, error => {
@@ -3687,9 +3752,6 @@ async function createRoom() {
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
     if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
     connectToRoom(roomCode, 'host');
-    if (currentCard && currentCard.module !== 'explicit') {
-        try { await window.roomRef.child('activeCard').set(currentCard); } catch (e) { console.warn('activeCard set failed', e); }
-    }
     setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
     renderPairManagement();
 }
