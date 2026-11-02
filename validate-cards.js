@@ -9,7 +9,7 @@ const warnings = [];
 const VALID_MODULES = new Set(['sexuality', 'life', 'explicit']);
 const VALID_CONTEXT = new Set(['story', 'action', 'consent', 'poll', 'alignment', 'discovery', 'humor', 'reflection', 'vulnerability', 'preference', 'game', 'flirting', 'intimacy', 'growth', 'trial', 'connection', 'trust', 'fantasy', 'honesty', 'sensory', 'nostalgia', 'thrill', 'spontaneity', 'anticipation', 'playful', 'couple']);
 const VALID_STYLES = new Set(['question', 'activity']);
-const VALID_PILLARS = new Set(['spark', 'heat', 'closer', 'afterhours']);
+const VALID_PILLARS = new Set(['spark', 'heat', 'closer', 'together', 'afterhours']);
 
 if (!data || !Array.isArray(data.cards)) {
   errors.push('Top-level "cards" must be an array.');

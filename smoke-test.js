@@ -805,7 +805,7 @@ check('deck health: pillar sizes, story density, unique prompts and clean wordin
     const explicit = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8')).cards;
     const all = [...main, ...explicit];
     const pillarOf = card => card.pillar || (card.module === 'explicit' ? 'afterhours' : 'closer');
-    const minimums = { spark: 700, heat: 800, closer: 2300, afterhours: 2000 };
+    const minimums = { spark: 800, heat: 900, closer: 1000, together: 900, afterhours: 2000 };
     for (const [pillar, min] of Object.entries(minimums)) {
         const count = all.filter(card => pillarOf(card) === pillar).length;
         if (count < min) throw new Error(`${pillar} has ${count} cards, expected at least ${min}`);

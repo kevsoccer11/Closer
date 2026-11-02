@@ -248,38 +248,42 @@ function getPillar(card) {
     // life
     const cat = (card.category || '').toLowerCase();
     if (/intimacy|desire|flirt|romance|affection|touch|sensual|pleasure|attraction|kiss/.test(cat)) return 'heat';
-    if (/fun|playful|humor|random|game|sport|adventure|travel/.test(cat)) return 'spark';
+    if (/fun|playful|humor|random|game|sport|adventure|travel|casual|getting to know/.test(cat)) return 'spark';
+    if (/home|money|financ|work|career|family|community|friends|gathering|health|caregiv|aging|retirement|future|life stages|relocation|disab|technology/.test(cat)) return 'together';
     return 'closer';
 }
 function getMood(card) {
     if (card.mood) return card.mood;
     const intensity = Number(card.intensity) || 1;
     if (card.module === 'explicit') return 'spicy';
-    if (card.module === 'sexuality') {
-        if (intensity >= 3) return 'spicy';
-        if (intensity === 2) return 'passionate';
+    const pillar = getPillar(card);
+    const cat = (card.category || '').toLowerCase();
+    const contextType = (card.contextType || '').toLowerCase();
+    if (pillar === 'afterhours') return 'spicy';
+    if (pillar === 'heat') {
+        if (/kink|libido|mismatch|openness/.test(cat)) return 'spicy';
+        if (intensity === 1 && /flirt|ritual|playful|tease|teasing/.test(cat)) return 'playful';
+        if (intensity >= 2 && /desire|sensual|pleasure|initiation|intimacy|touch|past history/.test(cat)) return 'passionate';
+        return 'romantic';
+    }
+    if (pillar === 'spark') {
+        if (/ideal dates/.test(cat)) return 'romantic';
+        if (/growing up|college/.test(cat)) return 'reflective';
+        if (/adventure|travel|sports|fitness|dare|spontan/.test(cat)
+            || ((contextType === 'action' || contextType === 'spontaneity' || contextType === 'thrill' || contextType === 'trial') && /try|new|explore|challenge/.test(cat))) return 'adventurous';
         return 'playful';
     }
-    const cat = (card.category || '').toLowerCase();
-    // Spicy: sexual / kink content
-    if (/kink|spicy|libido|mismatch|sexual|curiosit/.test(cat)) return 'spicy';
-    // Adventurous: bold, new, action-oriented
-    if (/adventure|travel|dare|openness|touch play/.test(cat)) return 'adventurous';
-    const contextType = (card.contextType || '').toLowerCase();
-    if ((contextType === 'action' || contextType === 'spontaneity' || contextType === 'trial' || contextType === 'thrill' || contextType === 'anticipation') && /try|new|explore|challenge|spontaneous|outside|bold/.test(cat)) return 'adventurous';
-    // Reflective: meaning-making over time
-    if (/future|growth|change|deep connection|shared life|life stages|growing|past history|values|identity|conflict|repair|communication|boundaries|future openness/.test(cat)) return 'reflective';
-    // Passionate: high-intensity romantic emotion
-    if (intensity >= 3 && /desire|sensual|pleasure|romance|initiation|intimacy/.test(cat)) return 'passionate';
-    // Tender: soft, safe, comfort
-    if (/trust|safety|health|support|home|daily life|family|community|joy|appreciation|comfort|gentle/.test(cat)) return 'tender';
-    // Romantic: intimacy, desire, flirt, romance, touch, sensual, pleasure
-    if (/intimacy|desire|flirt|romance|touch|sensual|pleasure|attraction|kiss/.test(cat)) return 'romantic';
-    // Playful: fun, humor, games
-    if (/fun|playful|humor|random|game|sport|friends|social|ritual|casual|everyday|gathering|celebration|early relationship|fresh format|getting to know/.test(cat)) return 'playful';
-    // Spicy fallback for high intensity
-    if (intensity >= 3) return 'spicy';
-    // Deep fallback
+    if (pillar === 'together') {
+        if (/adventure|travel/.test(cat)) return 'adventurous';
+        if (/friends|social|gathering|celebration|pets|community/.test(cat)) return 'playful';
+        if (/money stress|financial trauma|disab|chronic|cultural|religious|caregiving/.test(cat)) return 'deep';
+        if (/future|growth|life stages|aging|retirement|career|money|financ|work|relocation|long-distance|technology/.test(cat)) return 'reflective';
+        return 'tender';
+    }
+    // closer
+    if (/joy|appreciation|aftercare|our story|early relationship/.test(cat)) return 'tender';
+    if (/trust|safety/.test(cat)) return intensity >= 2 ? 'deep' : 'tender';
+    if (/conflict|repair|apolog|communication|dating through|regrets|growing up|college|lightbulb/.test(cat)) return 'reflective';
     return 'deep';
 }
 
@@ -327,14 +331,14 @@ const STORY_PACK_TOPICS = ['closer::Our Story', 'closer::Growing Up Stories', 'c
 
 function applyPack(pack) {
     const packs = {
-        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], intensity: '1', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['spark', 'closer'], topics: ['spark::Getting to Know You', 'spark::Casual & Everyday', 'spark::Learning & Curiosity', 'spark::Dating Stories', 'spark::Ideal Dates', 'closer::Early Relationship Discovery'], intensity: '1', questions: true, activities: true, multipleChoice: true },
         'after-fight': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
-        'travel-night': { modules: ['closer', 'spark'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
-        'deep-talk': { modules: ['closer', 'heat'], topics: null, intensity: '3', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['spark', 'together'], topics: ['spark::Adventure & Travel', 'together::Adventure & Travel', 'spark::Sports & Fitness', 'spark::Pets & Animals'], intensity: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'together'], topics: null, intensity: '3', questions: true, activities: true, multipleChoice: true },
         'kinky-explorative': { modules: ['afterhours'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'reconnection': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
-        'long-distance': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
-        'new-parents': { modules: ['closer'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer', 'together'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer', 'together'], topics: null, intensity: 'all', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, intensity: '1', questions: true, activities: true, multipleChoice: true },
         'deeper-connection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, questions: true, activities: true, multipleChoice: true },
@@ -372,14 +376,14 @@ function startQuickGame(skipPlayModeCheck = false) {
     }
     if (!selected) { showToast('Select a quick pack.'); return; }
     const packs = {
-        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'first-date': { modules: ['spark', 'closer'], topics: ['spark::Getting to Know You', 'spark::Casual & Everyday', 'spark::Learning & Curiosity', 'spark::Dating Stories', 'spark::Ideal Dates', 'closer::Early Relationship Discovery'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
         'after-fight': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
-        'travel-night': { modules: ['closer', 'spark'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
-        'deep-talk': { modules: ['closer', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'deep' },
+        'travel-night': { modules: ['spark', 'together'], topics: ['spark::Adventure & Travel', 'together::Adventure & Travel', 'spark::Sports & Fitness', 'spark::Pets & Animals'], questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'deep-talk': { modules: ['closer', 'together'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'deep' },
         'kinky-explorative': { modules: ['afterhours'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'spicy' },
         'reconnection': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
-        'long-distance': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
-        'new-parents': { modules: ['closer'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'long-distance': { modules: ['closer', 'together'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
+        'new-parents': { modules: ['closer', 'together'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'all' },
         'playful': { modules: ['spark', 'heat'], topics: null, questions: true, activities: true, multipleChoice: true, mood: 'playful' },
     };
     const selection = packs[selected];
@@ -406,13 +410,13 @@ function getCuratedPackSelection(key) {
         'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
         'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
-        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
-        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['spark', 'closer'], topics: ['spark::Getting to Know You', 'spark::Casual & Everyday', 'spark::Learning & Curiosity', 'spark::Dating Stories', 'spark::Ideal Dates', 'closer::Early Relationship Discovery'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'together'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['spark', 'together'], topics: ['spark::Adventure & Travel', 'together::Adventure & Travel', 'spark::Sports & Fitness', 'spark::Pets & Animals'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
-        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer', 'together'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer', 'together'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'story-time': { modules: ['closer', 'spark'], topics: STORY_PACK_TOPICS, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'escalation': null
@@ -517,13 +521,13 @@ function updateCuratedPackMeta() {
         'build-the-tension': { modules: ['heat'], topics: null, mood: 'romantic', questions: true, activities: true, multipleChoice: true },
         'after-hours': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
         'playful': { modules: ['spark', 'heat'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
-        'first-date': { modules: ['closer'], topics: ['closer::Getting to Know You'], mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'deep-talk': { modules: ['closer', 'heat'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
-        'travel-night': { modules: ['closer', 'spark'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'first-date': { modules: ['spark', 'closer'], topics: ['spark::Getting to Know You', 'spark::Casual & Everyday', 'spark::Learning & Curiosity', 'spark::Dating Stories', 'spark::Ideal Dates', 'closer::Early Relationship Discovery'], mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'deep-talk': { modules: ['closer', 'together'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
+        'travel-night': { modules: ['spark', 'together'], topics: ['spark::Adventure & Travel', 'together::Adventure & Travel', 'spark::Sports & Fitness', 'spark::Pets & Animals'], mood: 'all', questions: true, activities: true, multipleChoice: true },
         'reconnection': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'kinky-explorative': { modules: ['afterhours'], topics: null, mood: 'spicy', questions: true, activities: true, multipleChoice: true },
-        'long-distance': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
-        'new-parents': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'long-distance': { modules: ['closer', 'together'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
+        'new-parents': { modules: ['closer', 'together'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'story-time': { modules: ['closer', 'spark'], topics: STORY_PACK_TOPICS, mood: 'all', questions: true, activities: true, multipleChoice: true }
     };
@@ -810,7 +814,7 @@ function renderRoundTopics() {
         input.value = topic;
         input.checked = activeTopics === null || activeTopics.includes(topic);
         const text = document.createElement('span');
-        text.textContent = `${category} · ${module === 'spark' ? 'Spark' : module === 'heat' ? 'Heat' : module === 'closer' ? 'Closer' : 'After Hours'}`;
+        text.textContent = `${category} · ${module === 'spark' ? 'Spark' : module === 'heat' ? 'Heat' : module === 'closer' ? 'Closer' : module === 'together' ? 'Life Together' : 'After Hours'}`;
         label.append(input, text);
         container.appendChild(label);
     });
@@ -838,9 +842,10 @@ function updateRoundSummary() {
         spark: 'Spark',
         heat: 'Heat',
         closer: 'Closer',
+        together: 'Life Together',
         afterhours: 'After Hours'
     };
-    const deckSummary = activeModules.length === 4
+    const deckSummary = activeModules.length === 5
         ? 'All pillars'
         : activeModules.map(module => deckNames[module]).join(' + ') || 'No pillars';
     const topicSummary = activeTopics === null
@@ -861,7 +866,7 @@ function updateRoundSummary() {
 function updateActiveModulePresentation() {
     activeModule = activeModules.length === 1 ? activeModules[0] : 'all';
     const pillar = activePillars.length === 1 ? activePillars[0] : 'spark';
-    const moduleMap = { spark: 'sexuality', heat: 'life', closer: 'life', afterhours: 'explicit' };
+    const moduleMap = { spark: 'sexuality', heat: 'life', closer: 'life', together: 'life', afterhours: 'explicit' };
     document.body.dataset.module = moduleMap[pillar] || 'sexuality';
     document.body.dataset.pillar = pillar;
     updateIntensityLabels(activeModule);
@@ -1568,7 +1573,7 @@ async function selectModule(module) {
     }
     // Map legacy module to pillar for filtering.
     const pillarMap = { sexuality: 'spark', life: 'closer', explicit: 'afterhours' };
-    activePillars = [pillarMap[module] || 'closer'];
+    activePillars = module === 'life' ? ['closer', 'together'] : [pillarMap[module] || 'closer'];
     activeModules = [module];
     activeTopics = null;
     updateActiveModulePresentation();
