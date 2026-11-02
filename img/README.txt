@@ -1,5 +1,5 @@
 Closer curated pack artwork
 
-15 separate JPG files cropped from the generated 15-panel artwork preview. Filenames correspond to the curated pack slugs. No pack title or category badge is included intentionally.
+Cozy hand-drawn watercolor illustrations, one per curated pack (1280x720 JPG, focal point in the upper half), plus hero.jpg (1600x640) for the home screen. Filenames match pack slugs. Scenes intentionally show diverse people (skin tones, ages, body types, abilities, family and couple types). No text is included.
 
-Note: these are individually cropped panels from a single generated grid preview, not 15 independently generated original images. Please inspect the crops in your app before production use; if you need fully independent compositions, generate each pack image separately.
+aftercare.jpg and the pack-*.webp files are no longer used by index.html (the webp files remain precached by sw.js).
