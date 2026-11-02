@@ -2000,6 +2000,8 @@ function createCardRoundId() {
 }
 
 function detachCardAnswerListeners() {
+    clearTimeout(cardAnswerRetryTimer);
+    cardAnswerRetryTimer = null;
     cardAnswerListeners.forEach(({ ref, handler }) => ref.off('value', handler));
     cardAnswerListeners = [];
     if (cardAnswerSeatListener && window.roomRef) {
@@ -2062,18 +2064,25 @@ function updateCardAnswerComparison() {
 
 function attachPartnerAnswerListener() {
     if (!cardAnswerOwn || !cardAnswerPartnerUid || !cardAnswerRoomRef?.ref || !cardAnswerCard) return;
+    if (cardAnswerListeners.some(listener => listener.partner)) return;
+    const card = cardAnswerCard;
     const partnerAnswerRef = cardAnswerRoomRef.ref.child(`answers/current/${cardAnswerPartnerUid}`);
     const handler = snapshot => {
         const answer = snapshot.val();
-        cardAnswerPartner = validCardAnswer(answer, cardAnswerCard) ? answer : null;
+        cardAnswerPartner = validCardAnswer(answer, card) ? answer : null;
         updateCardAnswerComparison();
     };
-    partnerAnswerRef.on('value', handler, error => {
-        console.error('Could not read the partner answer:', error);
-        const status = document.getElementById('cardAnswerStatus');
-        if (status) status.textContent = 'Could not load your partner’s answer. Check the room access rules.';
+    const entry = { ref: partnerAnswerRef, handler, partner: true };
+    // The rules keep the partner's answer unreadable until both players have answered,
+    // so the first player to answer is denied and Firebase cancels the listener. Retry until it opens.
+    partnerAnswerRef.on('value', handler, () => {
+        cardAnswerListeners = cardAnswerListeners.filter(listener => listener !== entry);
+        clearTimeout(cardAnswerRetryTimer);
+        cardAnswerRetryTimer = setTimeout(() => {
+            if (cardAnswerCard === card && !cardAnswerPartner) attachPartnerAnswerListener();
+        }, 2000);
     });
-    cardAnswerListeners.push({ ref: partnerAnswerRef, handler });
+    cardAnswerListeners.push(entry);
 }
 
 async function setupCardAnswerRoom(card, retry = false) {
@@ -2105,7 +2114,13 @@ async function setupCardAnswerRoom(card, retry = false) {
         ]);
         const hostUid = hostSnapshot.val();
         const partnerUid = partnerSnapshot.val();
-        if (hostUid !== user.uid && partnerUid !== user.uid) return;
+        if (hostUid !== user.uid && partnerUid !== user.uid) {
+            // The seat can lag behind the card on a freshly joined device, so look again shortly.
+            cardAnswerRetryTimer = setTimeout(() => {
+                if (currentCard?.roundId === card.roundId) setupCardAnswerRoom(card, true);
+            }, 1500);
+            return;
+        }
         cardAnswerRoomRef.hostUid = hostUid;
         cardAnswerOwnUid = user.uid;
         cardAnswerPartnerUid = user.uid === hostUid ? partnerUid : hostUid;
@@ -4018,6 +4033,11 @@ function connectToRoom(roomCode, role) {
     };
     window.roomRef.child('gameMode').on('value', gameModeListener, error => {
         console.error('Could not read the connected room game mode:', error);
+        currentRoomGameModeLoaded = true;
+        if (role === 'partner' && sharedRoundStartedBeforeModeLoaded) {
+            sharedRoundStartedBeforeModeLoaded = false;
+            showGameView();
+        }
         setPairStatus(`Could not load room details: ${error.message}`);
     });
     if (role === 'partner') {

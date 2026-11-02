@@ -206,6 +206,7 @@ let pairManagementContainer = null;
 let pendingJoinRequestRef = null;
 let cardAnswerListeners = [];
 let cardAnswerSeatListener = null;
+let cardAnswerRetryTimer = null;
 let cardAnswerSetupKey = null;
 let cardAnswerRoomRef = null;
 let cardAnswerCard = null;
