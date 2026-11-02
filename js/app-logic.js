@@ -1901,6 +1901,33 @@ function undoCard() {
     if (currentCard) renderCard(currentCard);
     setCardActionStatus('Went back.');
 }
+function updateTurnIndicator() {
+    const turnIndicator = document.getElementById('turnIndicator');
+    if (turnIndicator) {
+        if (browseMode) {
+            turnIndicator.classList.add('hidden');
+        } else {
+            const pickedLabel = pickedAnswerer === 'both'
+                ? 'Both answer'
+                : pickedAnswerer === 'selected'
+                    ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
+                    : null;
+            const turnSeat = activeTurn === 1 ? 'partner' : 'host';
+            let turnLabel = `${getPlayerIdentifier(activeTurn)} answers`;
+            if (window.currentRoomRole === 'host' || window.currentRoomRole === 'partner') {
+                if (turnSeat === window.currentRoomRole) {
+                    turnLabel = `${getPlayerIdentifier(activeTurn)} · Your turn`;
+                } else {
+                    const offline = roomPresence[turnSeat] && roomPresence[turnSeat].online === false;
+                    turnLabel = `Waiting for ${getPlayerIdentifier(activeTurn)}${offline ? ' (offline)' : ''}`;
+                }
+            }
+            turnIndicator.textContent = pickedLabel || turnLabel;
+            turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
+        }
+    }
+}
+
 function renderCard(card) {
 const undoBtn = document.getElementById('undoBtn');
     if (undoBtn) undoBtn.disabled = undoStack.length === 0;
@@ -1935,20 +1962,7 @@ const undoBtn = document.getElementById('undoBtn');
         const inDeck = (typeof customDecks !== 'undefined') && customDecks.some(d => Array.isArray(d.cardIds) && d.cardIds.includes(card.id));
         inDeckBadge.classList.toggle('hidden', !inDeck);
     }
-    const turnIndicator = document.getElementById('turnIndicator');
-    if (turnIndicator) {
-        if (browseMode) {
-            turnIndicator.classList.add('hidden');
-        } else {
-            const pickedLabel = pickedAnswerer === 'both'
-                ? 'Both answer'
-                : pickedAnswerer === 'selected'
-                    ? `${getPlayerIdentifier(pickedAnswererIndex)} answers first`
-                    : null;
-            turnIndicator.textContent = pickedLabel || `${getPlayerIdentifier(activeTurn)} answers`;
-            turnIndicator.classList.toggle('hidden', !turnTakingEnabled && !pickedAnswerer);
-        }
-    }
+    updateTurnIndicator();
     const browseIndicator = document.getElementById('browseIndicator');
     if (browseIndicator) browseIndicator.classList.toggle('hidden', !browseMode);
     const progressIndicator = document.getElementById('progressIndicator');
@@ -3978,6 +3992,7 @@ function startRoomPresence(roomCode, role) {
     presenceState.listener = snapshot => {
         roomPresence = snapshot.val() || {};
         renderPresenceIndicator();
+        if (currentCard && !browseMode) updateTurnIndicator();
     };
     presenceState.listenRef.on('value', presenceState.listener, error => {
         console.error('Could not read room presence:', error);

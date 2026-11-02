@@ -1345,7 +1345,7 @@ check('preview mode displays progress and keeps its label inside the card header
         || !renderAnswers[1].includes("submitButton.classList.add('hidden')")
         || !draw?.[0].includes("if (!browseMode) {\n        try {\n            localStorage.setItem('closer_unspent_deck'")
         || !renderCard?.[1].includes("browseIndicator.classList.toggle('hidden', !browseMode)")
-        || !renderCard[1].includes("turnIndicator.classList.add('hidden')")) {
+        || !logic.match(/function updateTurnIndicator\(\) \{[\s\S]*?turnIndicator\.classList\.add\('hidden'\)/)) {
         throw new Error('preview list/card views or preview-only persistence behavior are missing');
     }
 });
