@@ -826,6 +826,14 @@ check('deck health: pillar sizes, story density, unique prompts and clean wordin
             throw new Error(`repeated word in ${card.id}: ${card.prompt}`);
         }
     }
+    const openers = new Map();
+    for (const card of main) {
+        const opener = normalize(card.prompt).split(' ').slice(0, 5).join(' ');
+        openers.set(opener, (openers.get(opener) || 0) + 1);
+    }
+    for (const [opener, count] of openers) {
+        if (count > 60) throw new Error(`prompt opener "${opener}" is used ${count} times; vary the wording`);
+    }
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const storyTopics = [...logic.match(/const STORY_PACK_TOPICS = \[([^\]]*)\]/)[1].matchAll(/'([^']+)'/g)].map(m => m[1]);
     for (const topic of storyTopics) {
@@ -836,6 +844,7 @@ check('deck health: pillar sizes, story density, unique prompts and clean wordin
     if (followUps.some(card => typeof card.followUp !== 'string' || !card.followUp.trim() || card.followUp.length > 200)) {
         throw new Error('invalid followUp text');
     }
+    if (new Set(followUps.map(card => card.followUp)).size !== followUps.length) throw new Error('followUp prompts must be unique per card');
     if (!html.includes('id="cardFollowUp"') || !logic.includes('card.followUp')) throw new Error('follow-up prompts are not rendered');
 });
 
