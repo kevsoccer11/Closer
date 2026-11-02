@@ -469,25 +469,14 @@ setTimeout(() => {
         if (status) status.textContent = 'Creating Guess Me room…';
         try {
             const sel = getGuessMeSelection();
-            await createRoom();
+            const reuseRoom = window.roomRef && window.currentRoomRole === 'host';
+            if (!reuseRoom) await createRoom();
             if (!window.roomRef) throw new Error('The room could not be opened.');
-            await window.roomRef.child('gameMode').set('guess-me');
-            await window.roomRef.update({
-                'guessMe/status': 'lobby',
-                'guessMe/length': sel.length,
-                'guessMe/vibe': sel.vibe,
-                'guessMe/hostReady': false,
-                'guessMe/partnerReady': false,
-                'guessMe/currentIndex': 0,
-                'guessMe/scores/host': 0,
-                'guessMe/scores/partner': 0,
-                'guessMe/questionIds': null,
-                'guessMe/question': null
-            });
+            await startGuessMeInRoom(sel);
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
-            if (status) status.textContent = 'Room created. Share the code with your partner.';
+            if (status) status.textContent = reuseRoom ? 'You Get Me started.' : 'Room created. Share the code with your partner.';
         } catch (e) {
             console.error('Could not create You Get Me room:', e);
             if (status) status.textContent = `Could not create room: ${e.message}`;
@@ -500,13 +489,9 @@ setTimeout(() => {
         if (!code) return;
         try {
             if (status) status.textContent = 'Joining room…';
-            await requestRoomAccess(code.trim(), 'guess-me');
+            await requestRoomAccess(code.trim());
             if (window.roomRef) {
-                const mode = await window.roomRef.child('gameMode').once('value');
-                if (mode.val() !== 'guess-me') throw new Error('That room is not set up for You Get Me.');
                 closeGuessMeSetup();
-                showGuessMeView();
-                attachGuessMeListener();
             } else if (window.currentRoomRole === 'requesting') {
                 if (status) status.textContent = 'Request sent. You’ll enter the game automatically if the host approves you.';
             }

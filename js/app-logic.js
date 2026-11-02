@@ -960,6 +960,7 @@ roundStats = { played: 0, passed: 0 };
     }
     if (sharedHostStart) {
         try {
+            if (currentRoomGameMode === 'guess-me') await window.roomRef.child('gameMode').set('conversation');
             await window.roomRef.child('activeCard').set({
                 ...currentCard,
                 sharedRoundStartedAt: Date.now(),
@@ -1066,9 +1067,20 @@ function openGuessMeSetup() {
         if (lengthInput) lengthInput.value = '20';
     });
     const createButton = document.getElementById('guessMeCreateRoomBtn');
-    if (createButton) createButton.disabled = false;
+    const joinButton = document.getElementById('guessMeJoinRoomBtn');
     const status = document.getElementById('guessMeSetupStatus');
-    if (status) status.textContent = '';
+    const inRoom = window.roomRef && ['host', 'partner'].includes(window.currentRoomRole);
+    const isHostInRoom = inRoom && window.currentRoomRole === 'host';
+    if (createButton) {
+        createButton.textContent = isHostInRoom ? 'Start You Get Me' : 'Create room';
+        createButton.disabled = inRoom && !isHostInRoom;
+    }
+    if (joinButton) joinButton.classList.toggle('hidden', !!inRoom);
+    if (status) {
+        status.textContent = inRoom && !isHostInRoom
+            ? 'Only the host can start You Get Me. Ask them to start it, or pick a pack to play Start Convo.'
+            : '';
+    }
     setModalOpen(modal, true);
 }
 function closeGuessMeSetup() {
@@ -3713,12 +3725,15 @@ function renderPairManagement() {
         pairManagementContainer.appendChild(invite);
     }
 
-    if (window.currentRoomRole === 'host' && partnerConnected
-        && currentRoomGameModeLoaded && currentRoomGameMode !== 'guess-me') {
+    if (['host', 'partner'].includes(window.currentRoomRole) && partnerConnected && currentRoomGameModeLoaded) {
         const startSection = document.createElement('section');
         startSection.className = 'room-create-section';
+        const heading = document.createElement('h4');
+        heading.textContent = 'Choose what to play';
         const prompt = document.createElement('p');
-        prompt.textContent = 'Your partner is connected. Choose a pack or customize a round, then start your conversation.';
+        prompt.textContent = currentRoomGameMode === 'guess-me'
+            ? 'You are playing You Get Me. Either of you can switch to a conversation pack at any time.'
+            : 'Either of you can pick a curated pack or build your own, then start. The other player follows automatically.';
         const startButton = document.createElement('button');
         startButton.type = 'button';
         startButton.className = 'btn-primary';
@@ -3733,7 +3748,21 @@ function renderPairManagement() {
                 window.pendingPackKey = null;
             }
         };
-        startSection.append(prompt, startButton);
+        const guessButton = document.createElement('button');
+        guessButton.type = 'button';
+        guessButton.className = 'btn-secondary';
+        guessButton.textContent = currentRoomGameMode === 'guess-me' ? 'Restart You Get Me' : 'Play You Get Me';
+        guessButton.onclick = () => {
+            closeDrawer();
+            openGuessMeSetup();
+        };
+        startSection.append(heading, prompt, startButton, guessButton);
+        if (window.currentRoomRole !== 'host') {
+            const note = document.createElement('p');
+            note.className = 'pair-status';
+            note.textContent = 'The host starts You Get Me, since they keep score.';
+            startSection.appendChild(note);
+        }
         pairManagementContainer.appendChild(startSection);
     }
 
@@ -4142,9 +4171,16 @@ function connectToRoom(roomCode, role) {
             closeGuessMeSetup();
             showGuessMeView();
             attachGuessMeListener();
-        } else if (sharedRoundStartedBeforeModeLoaded) {
-            sharedRoundStartedBeforeModeLoaded = false;
-            showGameView();
+        } else {
+            if (!document.getElementById('guessMeView')?.classList.contains('hidden')) {
+                detachGuessMeListener();
+                hideGuessMeView();
+                if (!sharedRoundStartedBeforeModeLoaded) showHomeView();
+            }
+            if (sharedRoundStartedBeforeModeLoaded) {
+                sharedRoundStartedBeforeModeLoaded = false;
+                showGameView();
+            }
         }
     };
     window.roomRef.child('gameMode').on('value', gameModeListener, error => {
@@ -4582,6 +4618,32 @@ async function loadGuessMeQuestion(requestedIndex) {
         'guessMe/submissionStatus/scored': false
     });
 }
+async function startGuessMeInRoom(selection) {
+    if (!window.roomRef || window.currentRoomRole !== 'host') throw new Error('Only the host can start You Get Me.');
+    await window.roomRef.child('gameMode').set('guess-me');
+    await window.roomRef.update({
+        'guessMe/status': 'lobby',
+        'guessMe/length': selection.length,
+        'guessMe/vibe': selection.vibe,
+        'guessMe/hostReady': false,
+        'guessMe/partnerReady': false,
+        'guessMe/currentIndex': 0,
+        'guessMe/scores/host': 0,
+        'guessMe/scores/partner': 0,
+        'guessMe/questionIds': null,
+        'guessMe/question': null,
+        'guessMe/answer': null,
+        'guessMe/guess': null,
+        'guessMe/submissionStatus/answerSubmitted': false,
+        'guessMe/submissionStatus/guessSubmitted': false,
+        'guessMe/submissionStatus/resolved': false,
+        'guessMe/submissionStatus/scored': false,
+        'guessMe/replayVotes/host': null,
+        'guessMe/replayVotes/partner': null
+    });
+}
+window.startGuessMeInRoom = startGuessMeInRoom;
+
 async function startGuessMeReplay(gm) {
     if (window.currentRoomRole !== 'host' || guessMeReplayStarting
         || gm.replayVotes?.host !== 'yes' || gm.replayVotes?.partner !== 'yes') return;

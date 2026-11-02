@@ -128,6 +128,10 @@ async function main() {
         await assertFails(remove(ref(host, `${sharedDeckPath}/partner-new`)));
         await assertSucceeds(remove(ref(partner, `${sharedDeckPath}/partner-new`)));
 
+        await assertSucceeds(set(ref(host, `rooms/${roomCode}/guessMe/status`), 'lobby'));
+        await assertFails(set(ref(partner, `rooms/${roomCode}/guessMe/status`), 'lobby'));
+        await assertSucceeds(set(ref(partner, `rooms/${roomCode}/gameMode`), 'conversation'));
+
         const presencePath = `rooms/${roomCode}/presence`;
         await assertSucceeds(set(ref(host, `${presencePath}/host`), { online: true, lastSeen: Date.now() }));
         await assertSucceeds(set(ref(partner, `${presencePath}/partner`), { online: false, lastSeen: Date.now() }));

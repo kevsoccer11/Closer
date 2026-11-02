@@ -1000,7 +1000,7 @@ check('approved private rooms direct the host to choose a pack', () => {
     const state = fs.readFileSync('js/app-state.js', 'utf8');
     if (!logic.includes("startButton.textContent = 'Choose a pack and start';")
         || !logic.includes('closeDrawer();\n            openRoundBuilder();')
-        || !/partnerConnected\s*&& currentRoomGameModeLoaded && currentRoomGameMode !== 'guess-me'/.test(logic)
+        || !/partnerConnected && currentRoomGameModeLoaded\) \{/.test(logic)
         || !logic.includes('renderPairManagement();\n            }\n        };\n        window.roomRef.child(\'members/partner\')')
         || !state.includes('let currentRoomGameModeLoaded = false;')) {
         throw new Error('regular paired rooms do not offer pack selection after the partner joins');
@@ -1022,7 +1022,7 @@ check('shared conversation starts only after the host syncs its first card', () 
         || !start[0].includes('isSeatedRoomMember()')) {
         throw new Error('paired players do not share an acknowledged round-start transition');
     }
-    if (!logic.includes('} else if (sharedRoundStartedBeforeModeLoaded) {')) {
+    if (!/if \(sharedRoundStartedBeforeModeLoaded\) \{\s+sharedRoundStartedBeforeModeLoaded = false;\s+showGameView\(\);/.test(logic)) {
         throw new Error('the round-start transition is not applied after the room mode loads');
     }
     if (!rules['.write'].includes("members/host")
