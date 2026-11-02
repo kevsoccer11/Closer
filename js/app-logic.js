@@ -1295,9 +1295,14 @@ function isSeatedRoomMember() {
     return window.currentRoomRole === 'host' || window.currentRoomRole === 'partner';
 }
 
+function canControlCompareFirst() {
+    return window.currentRoomRole === 'host' || window.currentRoomRole === 'partner';
+}
+window.canControlCompareFirst = canControlCompareFirst;
+
 function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
-    if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host' && !isRemoteUpdate) {
-        setCardActionStatus('Only the host can advance the Compare First session.');
+    if (isCompareFirstSessionActive() && !canControlCompareFirst() && !isRemoteUpdate) {
+        setCardActionStatus('Join a room to advance the Compare First session.');
         return;
     }
     if (activeGameMode !== 'compare-first' && unspentDeck.length === 0 && warmUpEnabled) {
@@ -1619,7 +1624,7 @@ function updateCompareFirstControls() {
         passCardBtn.classList.add('hidden');
         passCardBtn.disabled = true;
     }
-    const isHost = window.currentRoomRole === 'host';
+    const isHost = canControlCompareFirst();
     const answersSubmitted = Boolean(cardAnswerOwn && cardAnswerPartner);
     const label = nextCardBtn.querySelector('.btn-label');
     if (label) label.textContent = currentCard.compareFirstIndex >= currentCard.compareFirstTotal
@@ -1797,13 +1802,13 @@ async function startCompareFirstSession() {
         if (status) status.textContent = 'Choose at least one module and one level.';
         return;
     }
-    if (!window.roomRef || window.currentRoomRole !== 'host') {
-        if (status) status.textContent = 'Connect to your partner and create a room as host before starting Compare First.';
+    if (!window.roomRef || !canControlCompareFirst()) {
+        if (status) status.textContent = 'Connect to your partner in a room before starting Compare First.';
         return;
     }
 
     try {
-        const partnerSnapshot = await window.roomRef.child('members/partner').once('value');
+        const partnerSnapshot = await window.roomRef.child(window.currentRoomRole === 'host' ? 'members/partner' : 'members/host').once('value');
         if (!partnerSnapshot.val()) {
             if (status) status.textContent = 'Your partner must join the room before you start the poll round.';
             return;
@@ -1866,12 +1871,10 @@ function renderCompareFirstComplete(card) {
     setCardActionStatus('');
     document.getElementById('cardPrompt').textContent = 'You completed your multiple-choice round.';
     message.textContent = `${card.compareFirstTotal} polls completed. Take a moment to discuss your answers, then decide whether to answer more polls or move into the regular cards.`;
-    const isHost = window.currentRoomRole === 'host';
-    document.getElementById('answerMorePollsBtn').disabled = !isHost;
-    document.getElementById('continueRegularCardsBtn').disabled = !isHost;
-    hostNote.textContent = isHost
-        ? 'The host chooses when to continue.'
-        : 'Discuss the results with your partner. The host chooses when to continue.';
+    const canControl = canControlCompareFirst();
+    document.getElementById('answerMorePollsBtn').disabled = !canControl;
+    document.getElementById('continueRegularCardsBtn').disabled = !canControl;
+    hostNote.textContent = 'Either of you can choose when to continue.';
     const nextCardBtn = document.getElementById('nextCardBtn');
     if (nextCardBtn) {
         nextCardBtn.disabled = true;
@@ -1883,7 +1886,7 @@ function renderCompareFirstComplete(card) {
 }
 
 function completeCompareFirstRound() {
-    if (window.currentRoomRole !== 'host' || !currentCard?.compareFirst) return;
+    if (!canControlCompareFirst() || !currentCard?.compareFirst) return;
     const completeCard = {
         id: `compare-first-complete-${compareFirstRoundId}`,
         module: currentCard.module,
@@ -1907,7 +1910,7 @@ function completeCompareFirstRound() {
 }
 
 function answerMoreCompareFirstPolls() {
-    if (window.currentRoomRole !== 'host') return;
+    if (!canControlCompareFirst()) return;
     if (unspentDeck.length === 0) rebuildUnspentDeck();
     compareFirstRoundId = createCardRoundId();
     compareFirstRoundIndex = 0;
@@ -1920,7 +1923,7 @@ function answerMoreCompareFirstPolls() {
 }
 
 function continueToRegularCards() {
-    if (window.currentRoomRole !== 'host') return;
+    if (!canControlCompareFirst()) return;
     exitCompareFirstMode();
     document.getElementById('compareFirstSetup')?.classList.add('hidden');
     rebuildUnspentDeck();
@@ -1930,7 +1933,7 @@ function continueToRegularCards() {
 function canCurrentUserAdvanceCard() {
     if (browseMode) return true; // browse mode: anyone can advance freely
     if (!window.currentRoomRole) return true; // local play: anyone on the device can advance
-    if (isCompareFirstSessionActive()) return window.currentRoomRole === 'host';
+    if (isCompareFirstSessionActive()) return canControlCompareFirst();
     if (!turnTakingEnabled) return true; // turn-taking off: keep existing free-advance behavior
     const turnOwnerRole = activeTurn === 1 ? 'partner' : 'host';
     return window.currentRoomRole === turnOwnerRole || isSeatAwayLongEnough(turnOwnerRole);
@@ -1967,8 +1970,8 @@ function advanceCard(passed = false) {
         }
     }
     if (currentCard?.compareFirst) {
-        if (window.currentRoomRole !== 'host') {
-            setCardActionStatus('The host advances the poll round after you have both submitted and discussed this card.');
+        if (!canControlCompareFirst()) {
+            setCardActionStatus('Join a room to continue the poll round.');
             return;
         }
         if (!cardAnswerOwn || !cardAnswerPartner) {

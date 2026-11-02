@@ -591,9 +591,9 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
     if (gameModeSelect) {
         gameModeSelect.onchange = () => {
             const compareSetup = document.getElementById('compareFirstSetup');
-            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
+            if (isCompareFirstSessionActive() && !canControlCompareFirst()) {
                 gameModeSelect.value = 'compare-first';
-                setCardActionStatus('Only the host can control the Compare First session.');
+                setCardActionStatus('Join a room to control the Compare First session.');
                 return;
             }
             if (gameModeSelect.value === 'compare-first') {
@@ -1226,8 +1226,8 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
             document.querySelectorAll('.prompt-style-btn').forEach(btn => {
                 btn.onclick = (e) => {
                     e.stopPropagation();
-                    if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
-                        setCardActionStatus('Only the host can control the Compare First session.');
+                    if (isCompareFirstSessionActive() && !canControlCompareFirst()) {
+                        setCardActionStatus('Join a room to control the Compare First session.');
                         return;
                     }
                     if (activeGameMode === 'compare-first') exitCompareFirstMode();
@@ -1268,8 +1268,8 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
     document.querySelectorAll('.module-tab').forEach(tab => {
         tab.onclick = (e) => {
             e.stopPropagation();
-            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
-                setCardActionStatus('Only the host can control the Compare First session.');
+            if (isCompareFirstSessionActive() && !canControlCompareFirst()) {
+                setCardActionStatus('Join a room to control the Compare First session.');
                 return;
             }
             const selectedModule = tab.dataset.module;
@@ -1305,8 +1305,8 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
     document.querySelectorAll('.intensity-btn').forEach(btn => {
         btn.onclick = (e) => {
             e.stopPropagation();
-            if (isCompareFirstSessionActive() && window.currentRoomRole !== 'host') {
-                setCardActionStatus('Only the host can control the Compare First session.');
+            if (isCompareFirstSessionActive() && !canControlCompareFirst()) {
+                setCardActionStatus('Join a room to control the Compare First session.');
                 return;
             }
             if (activeGameMode === 'compare-first') exitCompareFirstMode();

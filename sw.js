@@ -1,4 +1,4 @@
-const CACHE_NAME = 'closer-pwa-v463';
+const CACHE_NAME = 'closer-pwa-v464';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
