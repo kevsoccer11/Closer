@@ -90,16 +90,17 @@ check('play mode choices stay reachable and dark mode uses a transparent logo', 
     if (!playMode || !playMode[1].includes('class="play-mode-options"')
         || !playMode[1].includes('id="playModeSameDeviceBtn"')
         || !playMode[1].includes('id="playModePairedBtn"')
-    || !styles.includes('#playModeModal .play-mode-options {\n    display: flex;')
-    || !styles.includes('#playModeModal .play-mode-card {\n    gap: 0;')) {
-    throw new Error('play-mode choices are not laid out as a compact, reachable group');
+        || !styles.includes('#playModeModal .play-mode-options {\n    display: flex;')
+        || !styles.includes('#playModeModal .play-mode-card {\n    gap: 0;')) {
+        throw new Error('play-mode choices are not laid out as a compact, reachable group');
     }
-    const overlayRule = styles.match(/#playModeModal \{([^}]*)\}/);
+    const overlayRule = styles.match(/\.modal-overlay#playModeModal,\s*\.modal-overlay#playerNamesModal,\s*\.modal-overlay#guessMeSetupModal \{([^}]*)\}/);
     const navigationRule = styles.match(/\.app-bottom-nav \{([^}]*)\}/);
     const overlayZIndex = Number(overlayRule?.[1].match(/z-index:\s*(\d+)/)?.[1]);
     const navigationZIndex = Number(navigationRule?.[1].match(/z-index:\s*(\d+)/)?.[1]);
-    if (!overlayZIndex || !navigationZIndex || overlayZIndex <= navigationZIndex) {
-    throw new Error('bottom navigation can cover the play-mode options');
+    if (!overlayZIndex || !navigationZIndex || overlayZIndex <= navigationZIndex
+        || !overlayRule[1].includes('z-index: 10020;')) {
+        throw new Error('bottom navigation can cover modal actions');
     }
     if (!/body:not\(\.light-theme\) \.brand-logo \{\s*filter: brightness\(0\) invert\(1\);/.test(styles)
         || !html.includes('Closer%20Everyday%20Heart%20Logo.png')
