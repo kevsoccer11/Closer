@@ -4152,6 +4152,11 @@ function connectToRoom(roomCode, role) {
     let sharedRoundStartedBeforeModeLoaded = false;
     activeCardSyncListener = snapshot => {
         const remoteCard = snapshot.val();
+        if (!remoteCard) {
+            const gameVisible = !document.querySelector('main')?.classList.contains('hidden');
+            if (currentCard && gameVisible && !browseMode) resetLocalConversation('Your partner ended the conversation.');
+            return;
+        }
         if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
         const myUid = window.firebase?.auth().currentUser?.uid;
         const startedByOther = remoteCard?.startedBy ? remoteCard.startedBy !== myUid : role === 'partner';
@@ -4569,14 +4574,14 @@ function pauseConversation() {
     }
 }
 window.pauseConversation = pauseConversation;
-function quitConversation() {
-    if (!confirm('End this conversation? Your progress will be discarded.')) return;
+function resetLocalConversation(message) {
     try {
         localStorage.removeItem('closer_unspent_deck');
         localStorage.removeItem('closer_current_card');
     } catch (e) {}
     currentCard = null;
     unspentDeck = [];
+    sharedDeckRound = null;
     roundStats = { played: 0, passed: 0 };
     passedCardIds = [];
     browseMode = false;
@@ -4585,7 +4590,18 @@ function quitConversation() {
     stopModeTimer();
     document.getElementById('actionTimerBar')?.classList.add('hidden');
     showHomeView();
-    if (typeof showToast === 'function') showToast('Conversation ended.');
+    if (typeof showToast === 'function') showToast(message);
+}
+
+function quitConversation() {
+    const inRoom = !!window.roomRef && isSeatedRoomMember();
+    const prompt = inRoom
+        ? 'End this conversation for both of you? Your progress will be discarded.'
+        : 'End this conversation? Your progress will be discarded.';
+    if (!confirm(prompt)) return;
+    // Clearing the shared card tells the partner's screen to end too.
+    if (inRoom) window.roomRef.child('activeCard').remove().catch(error => console.error('Could not end the shared conversation:', error));
+    resetLocalConversation('Conversation ended.');
 }
 window.quitConversation = quitConversation;
 

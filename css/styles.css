@@ -4418,3 +4418,33 @@ body:not(.light-theme) .app-bottom-nav button.active {
 input[type="text"], input[type="search"], input[type="email"], input[type="number"], input[type="tel"], input:not([type]), textarea, select {
     font-size: 16px;
 }
+
+/* Game screen: let the card use the available height and keep the action buttons clear of the bottom nav. */
+main {
+    padding-bottom: 16px;
+}
+.card-container,
+.card-face {
+    min-height: max(300px, calc(100dvh - 400px));
+}
+.response-section {
+    position: sticky;
+    bottom: calc(var(--app-bottom-nav-height) + env(safe-area-inset-bottom, 0px));
+    z-index: 5;
+    margin: 0 auto calc(var(--app-bottom-nav-height) + 12px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: 12px;
+    background: linear-gradient(to top, var(--bg-dark) 75%, transparent);
+}
+/* The round builder is full-screen, so it must cover the bottom nav instead of hiding its buttons behind it. */
+.modal-overlay#roundBuilderModal {
+    z-index: 10030;
+}
+/* Presence sits in the header gap so it never covers the card or the action buttons. */
+.room-presence {
+    top: calc(env(safe-area-inset-top, 0px) + 34px);
+    bottom: auto;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10013;
+}
