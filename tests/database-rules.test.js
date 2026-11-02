@@ -132,6 +132,13 @@ async function main() {
         await assertFails(set(ref(partner, `rooms/${roomCode}/guessMe/status`), 'lobby'));
         await assertSucceeds(set(ref(partner, `rooms/${roomCode}/gameMode`), 'conversation'));
 
+        const reqPath = `rooms/${roomCode}/guessMeRequest`;
+        await assertSucceeds(set(ref(partner, reqPath), { by: 'partner-uid', length: 10, vibe: 'mixed', at: Date.now() }));
+        await assertSucceeds(get(ref(host, reqPath)));
+        await assertFails(set(ref(partner, reqPath), { by: 'host-uid', length: 10, vibe: 'mixed', at: Date.now() }));
+        await assertFails(set(ref(outsider, reqPath), { by: 'outsider-uid', length: 10, vibe: 'mixed', at: Date.now() }));
+        await assertSucceeds(remove(ref(host, reqPath)));
+
         const presencePath = `rooms/${roomCode}/presence`;
         await assertSucceeds(set(ref(host, `${presencePath}/host`), { online: true, lastSeen: Date.now() }));
         await assertSucceeds(set(ref(partner, `${presencePath}/partner`), { online: false, lastSeen: Date.now() }));

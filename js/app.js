@@ -469,6 +469,12 @@ setTimeout(() => {
         if (status) status.textContent = 'Creating Guess Me room…';
         try {
             const sel = getGuessMeSelection();
+            if (window.roomRef && window.currentRoomRole === 'partner') {
+                await requestGuessMeFromHost(sel);
+                closeGuessMeSetup();
+                showToast('Asked the host to start You Get Me.');
+                return;
+            }
             const reuseRoom = window.roomRef && window.currentRoomRole === 'host';
             if (!reuseRoom) await createRoom();
             if (!window.roomRef) throw new Error('The room could not be opened.');

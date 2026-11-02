@@ -1072,13 +1072,13 @@ function openGuessMeSetup() {
     const inRoom = window.roomRef && ['host', 'partner'].includes(window.currentRoomRole);
     const isHostInRoom = inRoom && window.currentRoomRole === 'host';
     if (createButton) {
-        createButton.textContent = isHostInRoom ? 'Start You Get Me' : 'Create room';
-        createButton.disabled = inRoom && !isHostInRoom;
+        createButton.textContent = isHostInRoom ? 'Start You Get Me' : inRoom ? 'Ask host to start' : 'Create room';
+        createButton.disabled = false;
     }
     if (joinButton) joinButton.classList.toggle('hidden', !!inRoom);
     if (status) {
         status.textContent = inRoom && !isHostInRoom
-            ? 'Only the host can start You Get Me. Ask them to start it, or pick a pack to play Start Convo.'
+            ? 'The host keeps score, so they start You Get Me. Tap "Ask host to start" and they will get a prompt.'
             : '';
     }
     setModalOpen(modal, true);
@@ -3760,7 +3760,7 @@ function renderPairManagement() {
         if (window.currentRoomRole !== 'host') {
             const note = document.createElement('p');
             note.className = 'pair-status';
-            note.textContent = 'The host starts You Get Me, since they keep score.';
+            note.textContent = 'The host starts You Get Me since they keep score. Tapping it sends them a request.';
             startSection.appendChild(note);
         }
         pairManagementContainer.appendChild(startSection);
@@ -4030,6 +4030,10 @@ function startRoomPresence(roomCode, role) {
 
 function detachRoomAccessListeners() {
     stopRoomPresence();
+    if (guessMeRequestListener) {
+        guessMeRequestListener.ref.off('value', guessMeRequestListener.handler);
+        guessMeRequestListener = null;
+    }
     detachGuessMeListener();
     detachCardAnswerListeners();
     cardAnswerSetupKey = null;
@@ -4141,6 +4145,7 @@ function connectToRoom(roomCode, role) {
     attachPrivateRevealListener();
     attachPartnerCardListener();
 
+    attachGuessMeRequestListener();
     if (role === 'host') {
         roomJoinRequestsListener = snapshot => {
             pendingJoinRequests = snapshot.val() || {};
@@ -4643,6 +4648,38 @@ async function startGuessMeInRoom(selection) {
     });
 }
 window.startGuessMeInRoom = startGuessMeInRoom;
+
+async function requestGuessMeFromHost(selection) {
+    if (!window.roomRef || window.currentRoomRole !== 'partner') throw new Error('You are not connected to a room.');
+    const uid = window.firebase?.auth().currentUser?.uid;
+    await window.roomRef.child('guessMeRequest').set({ by: uid, length: selection.length, vibe: selection.vibe, at: Date.now() });
+}
+window.requestGuessMeFromHost = requestGuessMeFromHost;
+
+function attachGuessMeRequestListener() {
+    if (!window.roomRef || window.currentRoomRole !== 'host') return;
+    const ref = window.roomRef.child('guessMeRequest');
+    const handler = async snapshot => {
+        const request = snapshot.val();
+        if (!request || !Number.isFinite(request.at) || Date.now() - request.at > 10 * 60 * 1000) return;
+        const other = roomDisplayNames.partner;
+        const who = `${other?.icon || ''} ${other?.name || 'Your partner'}`.trim();
+        const accept = window.confirm(`${who} wants to play You Get Me (${request.length} questions, ${request.vibe}). Start it now?`);
+        try {
+            await ref.remove();
+            if (accept) {
+                await startGuessMeInRoom({ length: request.length, vibe: request.vibe });
+                showGuessMeView();
+                attachGuessMeListener();
+            }
+        } catch (error) {
+            console.error('Could not handle the You Get Me request:', error);
+            showToast(`Could not start You Get Me: ${error.message}`);
+        }
+    };
+    ref.on('value', handler, error => console.error('Could not read You Get Me requests:', error));
+    guessMeRequestListener = { ref, handler };
+}
 
 async function startGuessMeReplay(gm) {
     if (window.currentRoomRole !== 'host' || guessMeReplayStarting
