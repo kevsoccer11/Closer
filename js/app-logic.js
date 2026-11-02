@@ -1,5 +1,6 @@
 let pendingGameStart = null;
 let ygmQuestionBank = [];
+let pendingExplicitCardBrowserFilter = null;
 const COMMUNITY_CARD_PAGE_SIZE = 100;
 let communityCardsLastKey = null;
 let communityCardsHasMore = true;
@@ -281,7 +282,26 @@ function getMood(card) {
     // Deep fallback
     return 'deep';
 }
+
+function getExploreMoodValues(mood) {
+    const moodGroups = {
+        connection: ['connection', 'reflective', 'tender'],
+        playful: ['playful'],
+        deep: ['deep', 'reflective'],
+        romantic: ['romantic', 'passionate'],
+        intimacy: ['intimacy', 'romantic', 'spicy', 'passionate'],
+        adventure: ['adventure', 'adventurous']
+    };
+    return moodGroups[mood] || [mood];
+}
+
 function getFilteredCards() {
+    if (activeDeckId) {
+        const deck = customDecks.find(item => item.id === activeDeckId);
+        if (!deck) return [];
+        const cardIds = new Set(deck.cardIds);
+        return masterDatabase.filter(card => cardIds.has(card.id));
+    }
     return masterDatabase.filter(card => {
         const matchesCompareFirst = activeGameMode === 'compare-first';
         const matchesModule = true; // module filter replaced by pillar filter
@@ -297,10 +317,6 @@ function getFilteredCards() {
             || activeTopics.includes(`${getPillar(card)}::${card.category || 'General'}`);
         if (favoritesOnly && !favoriteIds.includes(card.id)) return false;
         if (activeMood !== 'all' && getMood(card) !== activeMood) return false;
-        if (activeDeckId) {
-            const deck = customDecks.find(d => d.id === activeDeckId);
-            if (!deck || !deck.cardIds.includes(card.id)) return false;
-        }
         return matchesModule && matchesPillar && matchesMode && matchesIntensity && matchesPromptStyle
             && matchesTopic
             && (!matchesCompareFirst || isMultipleChoice);
@@ -379,15 +395,7 @@ function startQuickGame(skipPlayModeCheck = false) {
     document.body.dataset.pack = selected;
 }
 
-function startPackByKey(key, skipPlayModeCheck = false) {
-    if (!skipPlayModeCheck) { window.pendingPackKey = key; openPlayModeModal(() => startPackByKey(key, true)); return; }
-    if (!masterDatabase || masterDatabase.length === 0) {
-        showToast('Loading cards, please try again in a moment.');
-        setTimeout(() => startPackByKey(key), 800);
-        return;
-    }
-    activeDeckId = null;
-    favoritesOnly = false;
+function getCuratedPackSelection(key) {
     const packs = {
         'deeper-connection': { modules: ['closer'], topics: null, mood: 'deep', questions: true, activities: true, multipleChoice: true },
         'playful-chemistry': { modules: ['spark'], topics: null, mood: 'playful', questions: true, activities: true, multipleChoice: true },
@@ -404,8 +412,20 @@ function startPackByKey(key, skipPlayModeCheck = false) {
         'after-fight': { modules: ['closer'], topics: null, mood: 'all', questions: true, activities: true, multipleChoice: true },
         'escalation': null
     };
+    return packs[key] || null;
+}
+
+function startPackByKey(key, skipPlayModeCheck = false) {
+    if (!skipPlayModeCheck) { window.pendingPackKey = key; openPlayModeModal(() => startPackByKey(key, true)); return; }
+    if (!masterDatabase || masterDatabase.length === 0) {
+        showToast('Loading cards, please try again in a moment.');
+        setTimeout(() => startPackByKey(key), 800);
+        return;
+    }
+    activeDeckId = null;
+    favoritesOnly = false;
     if (key === 'escalation') { startProgressiveGame(); showGameView(); return; }
-    const pack = packs[key];
+    const pack = getCuratedPackSelection(key);
     if (!pack) { showToast('Unknown pack.'); return; }
     applyRoundSelection({
         modules: pack.modules,
@@ -758,6 +778,7 @@ function getCardsForRoundSelection(selection) {
     return masterDatabase.filter(card => {
         if (!selection.modules.includes(getPillar(card))) return false;
         if (selection.topics !== null && !selection.topics.includes(`${getPillar(card)}::${card.category || 'General'}`)) return false;
+        if (selection.mood && selection.mood !== 'all' && getMood(card) !== selection.mood) return false;
         const isMultipleChoice = Array.isArray(card.options) && card.options.length >= 2;
         if (isMultipleChoice) return selection.multipleChoice;
         const promptStyle = card.promptStyle || (card.contextType === 'action' ? 'activity' : 'question');
@@ -871,6 +892,10 @@ async function applyRoundSelection(selection, startLight = false, questionCount 
         showToast(message);
         return false;
     }
+    if (activeDeckId) {
+        activeDeckId = null;
+        localStorage.removeItem('closer_active_deck');
+    }
     activePillars = (selection.modules && selection.modules.length) ? selection.modules : ['spark'];
     activeModules = [...activePillars];
     roundConfiguredByUser = true;
@@ -975,6 +1000,8 @@ function openRoundBuilder(isEditing = false) {
     if (curatedTabBtn) { curatedTabBtn.classList.add('active'); curatedTabBtn.setAttribute('aria-selected', 'true'); }
     document.getElementById('curatedTab')?.classList.remove('hidden');
     document.getElementById('customTab')?.classList.add('hidden');
+    document.getElementById('saveCustomDeckBtn')?.classList.add('hidden');
+    document.querySelector('#roundBuilderModal .round-builder-actions')?.classList.add('single-action');
     try {
         document.querySelectorAll('input[name="roundPillar"]').forEach(input => {
             input.checked = activePillars.includes(input.value);
@@ -1376,10 +1403,12 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
         currentCard.compareFirstLevels = compareFirstLevels;
     }
     renderCard(currentCard);
-    try {
-        localStorage.setItem('closer_unspent_deck', JSON.stringify(unspentDeck));
-        localStorage.setItem('closer_current_card', JSON.stringify(currentCard));
-    } catch (e) {}
+    if (!browseMode) {
+        try {
+            localStorage.setItem('closer_unspent_deck', JSON.stringify(unspentDeck));
+            localStorage.setItem('closer_current_card', JSON.stringify(currentCard));
+        } catch (e) {}
+    }
     updateCompareFirstControls();
 
     if (syncSharedCard && window.roomRef && window.currentRoomRole === 'host' && !browseMode
@@ -1457,7 +1486,7 @@ function hasExplicitAgeConfirmation() {
 }
 
 async function loadExplicitCards() {
-    if (explicitCardsLoaded) return;
+    if (explicitCardsLoaded) return true;
     try {
         const response = await fetch('./explicit-cards.json');
         if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
@@ -1470,9 +1499,23 @@ async function loadExplicitCards() {
             }
         });
         explicitCardsLoaded = true;
+        return true;
     } catch (error) {
         console.warn('Explicit cards could not be loaded:', error);
+        return false;
     }
+}
+
+function resumeExplicitCardBrowserFilter(cardsLoaded = explicitCardsLoaded) {
+    const resume = pendingExplicitCardBrowserFilter;
+    pendingExplicitCardBrowserFilter = null;
+    if (!resume) return false;
+    resume(cardsLoaded);
+    return true;
+}
+
+function cancelExplicitCardBrowserFilter() {
+    pendingExplicitCardBrowserFilter = null;
 }
 
 function getPlayerIdentifier(index) {
@@ -2081,6 +2124,8 @@ function renderCardAnswerPanel(card) {
     const panel = document.getElementById('cardAnswerPanel');
     const optionsContainer = document.getElementById('cardAnswerOptions');
     const submitButton = document.getElementById('submitCardAnswer');
+    const status = document.getElementById('cardAnswerStatus');
+    const comparison = document.getElementById('cardAnswerComparison');
     if (!panel || !optionsContainer || !submitButton) return;
     if (!Array.isArray(card.options) || card.options.length < 2) {
         panel.classList.add('hidden');
@@ -2092,6 +2137,31 @@ function renderCardAnswerPanel(card) {
     }
 
     panel.classList.remove('hidden');
+    if (browseMode) {
+        optionsContainer.replaceChildren();
+        const legend = document.createElement('legend');
+        legend.textContent = 'Answer choices · preview only';
+        optionsContainer.appendChild(legend);
+        card.options.forEach(option => {
+            const label = document.createElement('label');
+            label.className = 'card-answer-option';
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.disabled = true;
+            const text = document.createElement('span');
+            text.textContent = option;
+            label.append(radio, text);
+            optionsContainer.appendChild(label);
+        });
+        submitButton.classList.add('hidden');
+        if (status) status.textContent = 'Answers are not collected in preview mode.';
+        comparison?.classList.add('hidden');
+        detachCardAnswerListeners();
+        cardAnswerSetupKey = null;
+        cardAnswerCard = null;
+        localAnswerRoundId = null;
+        return;
+    }
     if (!window.roomRef) {
         detachCardAnswerListeners();
         cardAnswerSetupKey = null;
@@ -2455,11 +2525,11 @@ function renderGameHistoryDrawerContent(content) {
     });
 }
 
-function renderCardBrowserDrawerContent(content) {
+function renderCardBrowserDrawerContent(content, initialView = 'list') {
     content.replaceChildren();
     const intro = document.createElement('p');
     intro.className = 'drawer-intro';
-    intro.textContent = 'Browse cards and add them to one of your decks.';
+    intro.textContent = 'Preview each question, then add the cards you want to a custom deck.';
     content.appendChild(intro);
 
     const deckRow = document.createElement('div');
@@ -2497,12 +2567,30 @@ function renderCardBrowserDrawerContent(content) {
         const deck = { id: `deck-${Date.now()}`, name: name.trim(), cardIds: [] };
         customDecks.push(deck);
         localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+        renderMyDecks();
         refreshDeckOptions();
         deckSelect.value = deck.id;
         renderList();
     };
     deckRow.append(deckSelect, createDeckBtn);
     content.appendChild(deckRow);
+
+    const viewControls = document.createElement('div');
+    viewControls.className = 'card-browser-view-controls';
+    viewControls.setAttribute('role', 'group');
+    viewControls.setAttribute('aria-label', 'Card preview layout');
+    const listViewButton = document.createElement('button');
+    listViewButton.type = 'button';
+    listViewButton.className = 'btn-secondary';
+    listViewButton.textContent = 'List view';
+    listViewButton.setAttribute('aria-pressed', String(initialView !== 'card'));
+    const cardViewButton = document.createElement('button');
+    cardViewButton.type = 'button';
+    cardViewButton.className = 'btn-secondary';
+    cardViewButton.textContent = 'Card view';
+    cardViewButton.setAttribute('aria-pressed', String(initialView === 'card'));
+    viewControls.append(listViewButton, cardViewButton);
+    content.appendChild(viewControls);
 
     const searchInput = document.createElement('input');
     searchInput.type = 'search';
@@ -2602,13 +2690,47 @@ function renderCardBrowserDrawerContent(content) {
     resultCount.setAttribute('aria-live', 'polite');
     content.appendChild(resultCount);
 
+    const cardNavigation = document.createElement('div');
+    cardNavigation.className = 'card-browser-card-navigation hidden';
+    const previousCardButton = document.createElement('button');
+    previousCardButton.type = 'button';
+    previousCardButton.className = 'btn-secondary';
+    previousCardButton.textContent = 'Previous card';
+    const cardPosition = document.createElement('span');
+    cardPosition.className = 'card-browser-card-position';
+    cardPosition.setAttribute('aria-live', 'polite');
+    const nextCardButton = document.createElement('button');
+    nextCardButton.type = 'button';
+    nextCardButton.className = 'btn-secondary';
+    nextCardButton.textContent = 'Next card';
+    cardNavigation.append(previousCardButton, cardPosition, nextCardButton);
+    content.appendChild(cardNavigation);
+
     const list = document.createElement('div');
     list.className = 'card-browser-list';
     content.appendChild(list);
+    let currentView = initialView === 'card' ? 'card' : 'list';
+    let displayedLimit = 60;
+    let currentCards = [];
+    let matchingCardCount = 0;
+    let cardIndex = 0;
+    const showMoreButton = document.createElement('button');
+    showMoreButton.type = 'button';
+    showMoreButton.className = 'btn-secondary card-browser-show-more';
+    showMoreButton.textContent = 'Show more cards';
+    content.appendChild(showMoreButton);
 
     refreshCategoryOptions();
+    let explicitLoadFailed = false;
     const renderList = () => {
         list.replaceChildren();
+        if (explicitLoadFailed && moduleFilter.value === 'explicit') {
+            showMoreButton.classList.add('hidden');
+            cardNavigation.classList.add('hidden');
+            resultCount.textContent = 'Explicit cards could not be loaded. Check your connection and try again.';
+            appendDrawerMessage(list, resultCount.textContent);
+            return;
+        }
         const query = (searchInput.value || '').toLowerCase().trim();
         const selectedDeckId = deckSelect.value;
         const deck = customDecks.find(d => d.id === selectedDeckId);
@@ -2624,26 +2746,72 @@ function renderCardBrowserDrawerContent(content) {
             const matchesCategory = selectedCategories.size === 0 || selectedCategories.has(String(card.category || 'General'));
             return matchesQuery && matchesModule && matchesIntensity && matchesType && matchesCategory;
         });
-        const cards = matchingCards.slice(0, 60);
-        resultCount.textContent = matchingCards.length > cards.length
-            ? `Showing the first ${cards.length} of ${matchingCards.length} matching cards.`
+        matchingCardCount = matchingCards.length;
+        currentCards = matchingCards.slice(0, displayedLimit);
+        cardIndex = Math.min(cardIndex, Math.max(currentCards.length - 1, 0));
+        resultCount.textContent = matchingCards.length > currentCards.length
+            ? `Showing ${currentCards.length} of ${matchingCards.length} matching cards.`
             : `${matchingCards.length} ${matchingCards.length === 1 ? 'card' : 'cards'} found.`;
-        if (cards.length === 0) {
+        showMoreButton.classList.toggle('hidden', currentView === 'card' || currentCards.length >= matchingCards.length);
+        cardNavigation.classList.toggle('hidden', currentView !== 'card' || currentCards.length === 0);
+        cardPosition.textContent = currentCards.length ? `${cardIndex + 1} of ${matchingCards.length}` : '0 of 0';
+        previousCardButton.disabled = cardIndex === 0;
+        nextCardButton.disabled = cardIndex >= matchingCardCount - 1;
+        if (currentCards.length === 0) {
             appendDrawerMessage(list, 'No cards match these filters. Try changing or clearing your search and filters.');
             return;
         }
-        cards.forEach(card => {
-            const item = document.createElement('div');
-            item.className = 'drawer-item';
+        const cardsToRender = currentView === 'card' ? [currentCards[cardIndex]] : currentCards;
+        cardsToRender.forEach(card => {
+            const cardView = currentView === 'card';
+            const item = document.createElement(cardView ? 'article' : 'div');
+            item.className = cardView
+                ? 'card-container card-browser-item card-preview-item'
+                : 'drawer-item card-browser-item';
+            const previewFace = cardView ? document.createElement('div') : null;
+            if (previewFace) {
+                previewFace.className = 'card-face card-browser-preview-face';
+                item.appendChild(previewFace);
+            }
+            const header = cardView ? document.createElement('div') : null;
+            if (header) {
+                header.className = 'card-header';
+                const categoryBadge = document.createElement('span');
+                categoryBadge.className = 'card-badge';
+                categoryBadge.textContent = card.category || 'General';
+                header.appendChild(categoryBadge);
+                previewFace.appendChild(header);
+            }
+            const body = cardView ? document.createElement('div') : null;
+            if (body) {
+                body.className = 'card-body';
+                previewFace.appendChild(body);
+            }
             const prompt = document.createElement('p');
+            prompt.className = cardView ? 'card-prompt card-browser-prompt' : 'card-browser-prompt';
             prompt.textContent = card.prompt;
             const meta = document.createElement('p');
             meta.className = 'drawer-item-meta';
             meta.textContent = `${card.module || 'general'} · ${card.category || 'General'} · intensity ${card.intensity || 1}`;
+            if (body) body.appendChild(prompt);
+            else item.append(prompt, meta);
+            if (Array.isArray(card.options) && card.options.length >= 2) {
+                const options = document.createElement('p');
+                options.className = 'drawer-item-meta card-browser-options';
+                options.textContent = card.options.join(' · ');
+                if (body) body.appendChild(options);
+                else item.appendChild(options);
+            }
+            const footer = cardView ? document.createElement('div') : null;
+            if (footer) {
+                footer.className = 'card-footer card-browser-card-footer';
+                footer.appendChild(meta);
+                previewFace.appendChild(footer);
+            }
             const actions = document.createElement('div');
-            actions.className = 'drawer-item-actions';
+            actions.className = cardView ? 'drawer-item-actions card-browser-card-actions' : 'drawer-item-actions';
             const addBtn = document.createElement('button');
-            addBtn.className = 'drawer-action-btn';
+            addBtn.className = cardView ? 'btn-primary card-browser-add-card' : 'drawer-action-btn';
             addBtn.type = 'button';
             const already = deck ? deck.cardIds.includes(card.id) : false;
             addBtn.textContent = already ? 'Added' : 'Add to deck';
@@ -2652,31 +2820,85 @@ function renderCardBrowserDrawerContent(content) {
                 if (!deck) return;
                 if (!deck.cardIds.includes(card.id)) deck.cardIds.push(card.id);
                 localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
+                renderMyDecks();
+                refreshDeckOptions();
+                deckSelect.value = deck.id;
                 renderList();
                 showToast('Added to deck.');
             };
             actions.appendChild(addBtn);
-            item.append(prompt, meta, actions);
+            if (footer) footer.appendChild(actions);
+            else item.appendChild(actions);
             list.appendChild(item);
         });
     };
+    const setView = view => {
+        const cardView = view === 'card';
+        currentView = cardView ? 'card' : 'list';
+        listViewButton.setAttribute('aria-pressed', String(!cardView));
+        cardViewButton.setAttribute('aria-pressed', String(cardView));
+        list.classList.toggle('card-view', cardView);
+        renderList();
+        Array.from(list.children).forEach(item => item.classList.toggle('card-preview-item', cardView));
+    };
+    listViewButton.addEventListener('click', () => setView('list'));
+    cardViewButton.addEventListener('click', () => setView('card'));
+    showMoreButton.addEventListener('click', () => {
+        displayedLimit += 60;
+        renderList();
+    });
+    previousCardButton.addEventListener('click', () => {
+        if (cardIndex === 0) return;
+        cardIndex -= 1;
+        renderList();
+    });
+    nextCardButton.addEventListener('click', () => {
+        if (cardIndex >= currentCards.length - 1) {
+            if (currentCards.length >= matchingCardCount) return;
+            displayedLimit += 60;
+        }
+        cardIndex += 1;
+        renderList();
+    });
     searchInput.addEventListener('input', renderList);
-    [moduleFilter, intensityFilter, typeFilter].forEach(filter => {
-        filter.addEventListener('change', () => {
-            if (filter === moduleFilter) refreshCategoryOptions();
+    moduleFilter.addEventListener('change', async () => {
+        explicitLoadFailed = false;
+        if (moduleFilter.value === 'explicit' && !hasExplicitAgeConfirmation()) {
+            moduleFilter.value = 'all';
+            pendingExplicitCardBrowserFilter = cardsLoaded => {
+                if (!moduleFilter.isConnected) return;
+                moduleFilter.value = 'explicit';
+                explicitLoadFailed = !cardsLoaded;
+                refreshCategoryOptions();
+                renderList();
+            };
+            refreshCategoryOptions();
             renderList();
-        });
+            setModalOpen(document.getElementById('explicitAgeGate'), true);
+            return;
+        }
+        if (moduleFilter.value === 'explicit') {
+            explicitLoadFailed = !(await loadExplicitCards());
+        }
+        refreshCategoryOptions();
+        renderList();
+    });
+    [intensityFilter, typeFilter].forEach(filter => {
+        filter.addEventListener('change', renderList);
     });
     clearFiltersButton.addEventListener('click', () => {
         searchInput.value = '';
         moduleFilter.value = 'all';
         intensityFilter.value = 'all';
         typeFilter.value = 'all';
+        explicitLoadFailed = false;
+        cancelExplicitCardBrowserFilter();
         selectedCategories.clear();
         refreshCategoryOptions();
         renderList();
     });
     deckSelect.addEventListener('change', renderList);
+    setView(initialView);
     renderList();
 }
 
@@ -2712,13 +2934,62 @@ function renderMyDecks() {
         const playBtn = document.createElement('button');
         playBtn.type = 'button';
         playBtn.className = 'drawer-action-btn';
-        playBtn.textContent = activeDeckId === deck.id ? 'Playing' : 'Play';
-        playBtn.disabled = activeDeckId === deck.id;
+        const hasCards = deck.cardIds.length > 0;
+        playBtn.textContent = activeDeckId === deck.id ? 'Playing' : hasCards ? 'Play' : 'Add cards to play';
+        playBtn.disabled = activeDeckId === deck.id || !hasCards;
+        if (!hasCards) {
+            playBtn.setAttribute('aria-label', `Add cards to ${deck.name} before playing.`);
+            playBtn.title = 'Add cards to this deck before playing.';
+        }
         playBtn.onclick = () => {
+            const deckCards = masterDatabase.filter(card => deck.cardIds.includes(card.id));
+            if (deckCards.length === 0) {
+                showToast(deck.cardIds.length
+                    ? 'This deck has no available cards. Add cards to it before playing.'
+                    : 'Add cards to this deck before playing.');
+                return;
+            }
             activeDeckId = deck.id;
             localStorage.setItem('closer_active_deck', deck.id);
+            if (activeGameMode === 'compare-first') exitCompareFirstMode();
+            if (activeGameMode === 'deep') {
+                activeGameMode = 'classic';
+                const gameModeSelect = document.getElementById('gameModeSelect');
+                if (gameModeSelect) gameModeSelect.value = 'classic';
+            }
+            activePillars = [...new Set(deckCards.map(getPillar))];
+            activeModules = [...activePillars];
+            activeTopics = null;
+            activeMood = 'all';
+            activeIntensity = 'all';
+            includeQuestions = true;
+            includeActivities = true;
+            includeMultipleChoice = true;
+            activePromptStyle = 'all';
+            activeQuestionCount = null;
+            favoritesOnly = false;
+            warmUpEnabled = false;
+            progressiveMode = false;
+            progressivePhase = null;
+            roundStats = { played: 0, passed: 0 };
+            passedCardIds = [];
+            undoStack = [];
+            pickedAnswerer = null;
+            pickedAnswererIndex = null;
+            browseMode = false;
+            document.querySelectorAll('.mood-btn').forEach(button => {
+                const selected = button.dataset.mood === 'all';
+                button.classList.toggle('active', selected);
+                button.setAttribute('aria-pressed', String(selected));
+            });
+            updateQuestionTypeSelection(activePromptStyle, false, false);
+            updateActiveModulePresentation();
+            if (document.body?.dataset) delete document.body.dataset.pack;
+            document.getElementById('browseIndicator')?.classList.add('hidden');
             rebuildUnspentDeck();
             drawNextCard();
+            closeDrawer();
+            showGameView();
             renderMyDecks();
         };
         const renameBtn = document.createElement('button');
@@ -2755,6 +3026,7 @@ function renderMyDecks() {
     const exitBtn = document.getElementById('exitDeckModeBtn');
     if (exitBtn) exitBtn.disabled = !activeDeckId;
 }
+
 function encodeBase64Url(bytes) {
     let binary = '';
     bytes.forEach(byte => { binary += String.fromCharCode(byte); });
@@ -4034,7 +4306,7 @@ function pickGuessMeQuestions(length, vibe) {
     const categoryMap = {
         playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected'],
         romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty'],
-        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty']
+        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth']
     };
     const categories = categoryMap[vibe];
     const filtered = categories ? pool.filter(question => categories.includes(question.category)) : pool;

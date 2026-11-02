@@ -130,6 +130,43 @@ check('home features six curated packs with an Explore link', () => {
     }
 });
 
+check('Explore shows every curated pack and mood shortcuts filter matching packs', () => {
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const curatedGrid = html.match(/<div class="pack-grid compact">([\s\S]*?)<\/div>/);
+    const curatedPacks = curatedGrid?.[1].match(/class="pack-card"/g) || [];
+    if (curatedPacks.length !== 14
+        || !app.includes("document.querySelector('#curatedTab .pack-grid')")
+        || !app.includes("packsClone.className = 'pack-grid compact explore-curated-grid'")
+        || !app.includes("document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card')")
+        || html.includes('explore-pack-actions')
+        || !app.includes("if (moodFilters) packsSection.appendChild(moodFilters);")
+        || app.includes('const moodClone = homeMoodSection.cloneNode(true);')) {
+        throw new Error(`Explore does not include every curated pack (found ${curatedPacks.length})`);
+    }
+    const packSelectionHelper = logic.match(/function getCuratedPackSelection\(key\) \{[\s\S]*?\n\}/);
+    const curatedKeys = [...curatedGrid[1].matchAll(/data-pack="([^"]+)"/g)].map(match => match[1]);
+    const packSelections = packSelectionHelper && vm.runInNewContext(
+        `${packSelectionHelper[0]}\n${JSON.stringify(curatedKeys)}.map(key => [key, getCuratedPackSelection(key)])`
+    );
+    if (!packSelections || packSelections.length !== curatedPacks.length
+        || packSelections.some(([key, selection]) => key === 'escalation'
+            ? selection !== null
+            : !selection || !Array.isArray(selection.modules) || !selection.modules.length)) {
+        throw new Error('one or more Explore packs do not have a playable selection');
+    }
+    const moodHelper = logic.match(/function getExploreMoodValues\(mood\) \{[\s\S]*?\n\}/);
+    const moodGroups = moodHelper && vm.runInNewContext(`${moodHelper[0]}\n({ connection: getExploreMoodValues('connection'), playful: getExploreMoodValues('playful'), deep: getExploreMoodValues('deep'), intimacy: getExploreMoodValues('intimacy') })`);
+    if (!moodGroups
+        || moodGroups.connection.join(',') !== 'connection,reflective,tender'
+        || moodGroups.playful.join(',') !== 'playful'
+        || moodGroups.deep.join(',') !== 'deep,reflective'
+        || moodGroups.intimacy.join(',') !== 'intimacy,romantic,spicy,passionate'
+        || !app.includes("button.addEventListener('click', () => {\n            if (!button.closest('#exploreContent'))")) {
+        throw new Error('home mood shortcuts do not filter the complete Explore pack list');
+    }
+});
+
 check('home resume card has one concise prompt', () => {
     const section = html.match(/<section class="continue-card hidden" id="continueCard"[\s\S]*?<\/section>/);
     if (!section || section[0].includes('Pick up where you left off')
@@ -147,8 +184,9 @@ check('mood section is grouped and its See all action opens Explore', () => {
         || !styles.includes('#homeMoodSection,\n#homeView #featuredExperiences {\n    padding: 14px;')) {
         throw new Error('home moods are not grouped or See all is not wired to Explore');
     }
-    if (!app.includes("moodClone.querySelector('.categories-header .text-link')?.remove();")) {
-        throw new Error('Explore shows a redundant See all button that cannot navigate further');
+    if (app.includes('const moodClone = homeMoodSection.cloneNode(true);')
+        || !app.includes("if (moodFilters) packsSection.appendChild(moodFilters);")) {
+        throw new Error('Explore mood shortcuts are not grouped with the curated packs');
     }
 });
 
@@ -223,6 +261,24 @@ check('round builder gives the active tab its own bounded scroll area', () => {
     }
 });
 
+check('round builder start action is available on curated tab', () => {
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    const customTabStart = html.indexOf('<div class="round-tab-panel hidden" id="customTab">');
+    const footerStart = html.indexOf('<div class="round-builder-footer">', customTabStart);
+    const customTabClosedBeforeFooter = html.slice(customTabStart, footerStart).trimEnd().endsWith('</div>');
+    if (customTabStart < 0 || footerStart < 0 || !customTabClosedBeforeFooter
+        || !html.includes("document.getElementById('saveCustomDeckBtn').classList.add('hidden')")
+        || !html.includes("document.getElementById('saveCustomDeckBtn').classList.remove('hidden')")
+        || !app.includes("document.getElementById('saveCustomDeckBtn')?.classList.toggle('hidden', target !== 'custom')")
+        || !logic.includes("document.getElementById('saveCustomDeckBtn')?.classList.add('hidden')")
+        || !styles.includes('#roundBuilderModal .round-builder-actions.single-action {\n    grid-template-columns: minmax(0, 1fr);')
+        || !styles.includes('#roundBuilderModal .round-builder-actions.single-action button {\n    width: 100%;')) {
+        throw new Error('round builder actions are hidden or misleading on the curated tab');
+    }
+});
+
 check('bottom navigation closes open overlays before navigating', () => {
     const app = fs.readFileSync('js/app.js', 'utf8');
     const navigation = app.match(/const dismissOverlaysForNavigation = \(\) => \{([\s\S]*?)\n    \};/);
@@ -241,7 +297,7 @@ check('bottom navigation closes open overlays before navigating', () => {
 check('card browser includes searchable deck, intensity, type, and category filters', () => {
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const styles = fs.readFileSync('css/styles.css', 'utf8');
-    const browser = logic.match(/function renderCardBrowserDrawerContent\(content\) \{([\s\S]*?)\n\}/);
+    const browser = logic.match(/function renderCardBrowserDrawerContent\(content, initialView = 'list'\) \{([\s\S]*?)\n\}/);
     if (!browser
         || !browser[1].includes('cardBrowserModuleFilter')
         || !browser[1].includes('cardBrowserIntensityFilter')
@@ -257,6 +313,100 @@ check('card browser includes searchable deck, intensity, type, and category filt
         || !styles.includes('max-height: 190px;')
         || !styles.includes('.card-browser-filter select {')) {
         throw new Error('card browser category checkboxes are missing or do not filter results');
+    }
+});
+
+check('card browser loads explicit cards after age confirmation', async () => {
+    class TestElement {
+        constructor(tagName = 'div') {
+            this.tagName = tagName;
+            this.children = [];
+            this.attributes = {};
+            this.listeners = {};
+            this.classList = { add() {}, remove() {}, toggle() {} };
+            this.dataset = {};
+            this.style = {};
+            this.isConnected = true;
+            this.value = '';
+            this.textContent = '';
+        }
+        append(...elements) {
+            elements.forEach(element => {
+                if (this.tagName === 'select' && this.children.length === 0) this.value = element.value;
+                this.children.push(element);
+            });
+        }
+        appendChild(element) {
+            if (this.tagName === 'select' && this.children.length === 0) this.value = element.value;
+            this.children.push(element);
+        }
+        replaceChildren(...elements) { this.children = elements; }
+        setAttribute(name, value) { this.attributes[name] = value; }
+        addEventListener(type, callback) {
+            (this.listeners[type] ||= []).push(callback);
+        }
+        dispatch(type) {
+            return this.listeners[type]?.map(callback => callback({ target: this, currentTarget: this })).at(-1);
+        }
+    }
+
+    const stored = new Map();
+    const storage = {
+        getItem: key => stored.get(key) ?? null,
+        setItem: (key, value) => stored.set(key, value),
+        removeItem: key => stored.delete(key)
+    };
+    const ageGate = new TestElement();
+    let ageGateOpened = false;
+    const context = vm.createContext({
+        window: { localStorage: storage, sessionStorage: storage },
+        localStorage: storage,
+        sessionStorage: storage,
+        document: {
+            createElement: tagName => new TestElement(tagName),
+            getElementById: id => id === 'explicitAgeGate' ? ageGate : null
+        },
+        fetch: async () => ({
+            ok: true,
+            json: async () => ({
+                cards: [{ id: 'explicit-test-card', module: 'explicit', pillar: 'afterhours', category: 'Test', intensity: 1, prompt: 'Explicit card prompt?' }]
+            })
+        }),
+        console: { error() {}, warn() {}, log() {} }
+    });
+    vm.runInContext(fs.readFileSync('js/app-state.js', 'utf8'), context);
+    vm.runInContext(fs.readFileSync('js/app-logic.js', 'utf8'), context);
+    context.setModalOpen = (_modal, open) => { ageGateOpened = open; };
+    const content = new TestElement();
+    context.renderCardBrowserDrawerContent(content);
+
+    const findById = (element, id) => {
+        if (element.id === id) return element;
+        for (const child of element.children) {
+            const found = findById(child, id);
+            if (found) return found;
+        }
+        return null;
+    };
+    const moduleFilter = findById(content, 'cardBrowserModuleFilter');
+    moduleFilter.value = 'explicit';
+    await moduleFilter.dispatch('change');
+    if (!ageGateOpened || moduleFilter.value !== 'all') {
+        throw new Error('explicit card access was not guarded by age confirmation');
+    }
+
+    storage.setItem('closer_explicit_age_confirmed', 'true');
+    const loaded = await context.loadExplicitCards();
+    context.resumeExplicitCardBrowserFilter(loaded);
+    const resultCount = content.children.find(child => child.className === 'card-browser-count');
+    if (!loaded || !resultCount?.textContent.includes('1 card found.')
+        || vm.runInContext('masterDatabase.length', context) !== 1) {
+        throw new Error('explicit cards were not loaded and displayed after confirmation');
+    }
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    if (!app.includes('if (resumeExplicitCardBrowserFilter()) return;')
+        || !app.includes('cancelExplicitCardBrowserFilter();')) {
+        throw new Error('the age confirmation actions do not resume or cancel the pending browser filter');
     }
 });
 
@@ -304,6 +454,167 @@ check('starting a round resets the game view scroll position', () => {
     }
     if (!roundSelection || roundSelection[1].indexOf('closeRoundBuilder();') > roundSelection[1].indexOf('showGameView();')) {
         throw new Error('round builder restores the previous page scroll after starting the game');
+    }
+});
+
+check('custom deck play ignores unrelated filters and opens the game view', () => {
+    class TestElement {
+        constructor() {
+            this.children = [];
+            this.dataset = {};
+            this.attributes = {};
+            this.classList = {
+                add() {},
+                remove() {},
+                toggle() {}
+            };
+        }
+        append(...elements) { this.children.push(...elements); }
+        appendChild(element) { this.children.push(element); }
+        replaceChildren(...elements) { this.children = elements; }
+        setAttribute(name, value) { this.attributes[name] = value; }
+    }
+
+    const stored = new Map();
+    const storage = {
+        getItem: key => stored.get(key) ?? null,
+        setItem: (key, value) => stored.set(key, value),
+        removeItem: key => stored.delete(key)
+    };
+    const deckList = new TestElement();
+    const exitButton = new TestElement();
+    const body = { dataset: { pack: 'previous-pack' } };
+    const events = [];
+    const context = vm.createContext({
+        window: { localStorage: storage, sessionStorage: storage },
+        localStorage: storage,
+        sessionStorage: storage,
+        document: {
+            body,
+            createElement: () => new TestElement(),
+            getElementById: id => ({ myDecksList: deckList, exitDeckModeBtn: exitButton }[id] || null),
+            querySelectorAll: () => [],
+            querySelector: () => null
+        },
+        console: { error() {}, warn() {}, log() {} }
+    });
+    vm.runInContext(fs.readFileSync('js/app-state.js', 'utf8'), context);
+    vm.runInContext(fs.readFileSync('js/app-logic.js', 'utf8'), context);
+    context.testCards = [
+        { id: 'deck-card', module: 'explicit', category: 'After Hours', intensity: 3, promptStyle: 'question' },
+        { id: 'other-card', module: 'spark', category: 'Playful', intensity: 1, promptStyle: 'question' }
+    ];
+    vm.runInContext(`
+        masterDatabase = testCards;
+        customDecks = [{ id: 'selected-deck', name: 'Selected', cardIds: ['deck-card'] }];
+        activePillars = ['spark'];
+        activeTopics = [];
+        activeMood = 'deep';
+        includeQuestions = false;
+        favoritesOnly = true;
+        activeGameMode = 'compare-first';
+    `, context);
+    context.recordEvent = event => events.push(event);
+    vm.runInContext(`
+        exitCompareFirstMode = () => { activeGameMode = 'classic'; };
+        updateQuestionTypeSelection = () => {};
+        updateActiveModulePresentation = () => {};
+        closeDrawer = () => recordEvent('close');
+        showGameView = () => recordEvent('show');
+        drawNextCard = () => recordEvent('draw');
+    `, context);
+
+    context.renderMyDecks();
+    const playButton = deckList.children[0].children[1].children[0];
+    playButton.onclick();
+
+    const selectedIds = vm.runInContext('unspentDeck.map(card => card.id)', context);
+    if (selectedIds.length !== 1 || selectedIds[0] !== 'deck-card') {
+        throw new Error('deck cards were still filtered by unrelated round settings');
+    }
+    if (vm.runInContext('activeDeckId', context) !== 'selected-deck'
+        || stored.get('closer_active_deck') !== 'selected-deck') {
+        throw new Error('selected deck mode was not persisted');
+    }
+    if (vm.runInContext('activeMood', context) !== 'all'
+        || vm.runInContext('favoritesOnly', context)
+        || vm.runInContext('activeGameMode', context) !== 'classic'
+        || body.dataset.pack !== undefined) {
+        throw new Error('deck play did not clear incompatible round state');
+    }
+    if (events.join(',') !== 'draw,close,show') {
+        throw new Error(`expected to draw, close the drawer, and show the game; got ${events.join(',')}`);
+    }
+
+    vm.runInContext("customDecks = [{ id: 'empty-deck', name: 'Empty', cardIds: [] }]; activeDeckId = null;", context);
+    context.renderMyDecks();
+    const emptyPlayButton = deckList.children[0].children[1].children[0];
+    if (!emptyPlayButton.disabled || emptyPlayButton.textContent !== 'Add cards to play') {
+        throw new Error('empty deck does not clearly disable its Play action');
+    }
+});
+
+check('starting another round exits custom deck mode and saved decks honor mood', async () => {
+    const stored = new Map([['closer_active_deck', 'old-deck']]);
+    const storage = {
+        getItem: key => stored.get(key) ?? null,
+        setItem: (key, value) => stored.set(key, value),
+        removeItem: key => stored.delete(key)
+    };
+    const context = vm.createContext({
+        window: { localStorage: storage, sessionStorage: storage },
+        localStorage: storage,
+        sessionStorage: storage,
+        document: {
+            getElementById: () => null,
+            querySelectorAll: () => [],
+            querySelector: () => null
+        },
+        console: { error() {}, warn() {}, log() {} }
+    });
+    vm.runInContext(fs.readFileSync('js/app-state.js', 'utf8'), context);
+    vm.runInContext(fs.readFileSync('js/app-logic.js', 'utf8'), context);
+    context.testCards = [
+        { id: 'spicy-card', module: 'explicit', category: 'After Hours', intensity: 3, promptStyle: 'question', mood: 'spicy' },
+        { id: 'deep-card', module: 'explicit', category: 'After Hours', intensity: 2, promptStyle: 'question', mood: 'deep' }
+    ];
+    vm.runInContext(`
+        masterDatabase = testCards;
+        activeDeckId = 'old-deck';
+        activeGameMode = 'classic';
+    `, context);
+    vm.runInContext(`
+        updateQuestionTypeSelection = () => {};
+        updateActiveModulePresentation = () => {};
+        updateRoundSummary = () => {};
+        rebuildUnspentDeck = () => {};
+        drawNextCard = () => { currentCard = testCards[0]; };
+        closeRoundBuilder = () => {};
+        showGameView = () => {};
+    `, context);
+
+    const savedCards = context.getCardsForRoundSelection({
+        modules: ['afterhours'],
+        topics: null,
+        mood: 'spicy',
+        questions: true,
+        activities: true,
+        multipleChoice: true
+    });
+    if (savedCards.length !== 1 || savedCards[0].id !== 'spicy-card') {
+        throw new Error('saved deck selection did not apply the selected mood');
+    }
+    const started = await context.applyRoundSelection({
+        modules: ['spark'],
+        topics: null,
+        mood: 'all',
+        questions: true,
+        activities: true,
+        multipleChoice: true
+    });
+    if (!started || vm.runInContext('activeDeckId', context) !== null
+        || stored.has('closer_active_deck')) {
+        throw new Error('starting a new round left the previous custom deck active');
     }
 });
 
@@ -404,7 +715,8 @@ check('Explore controls and cards have dark-mode styling', () => {
     if (!styles.includes('body:not(.light-theme) .explore-search,')
         || !styles.includes('body:not(.light-theme) .explore-mood-filters .filter-chip:not(.active) {')
         || !styles.includes('body:not(.light-theme) #exploreContent .category-card,')
-        || !styles.includes('body:not(.light-theme) #exploreContent .experience-card {')
+        || !styles.includes('body:not(.light-theme) #exploreContent .experience-card,')
+        || !styles.includes('body:not(.light-theme) #exploreContent .explore-curated-grid .pack-card {')
         || !styles.includes('body:not(.light-theme) .app-bottom-nav {')) {
         throw new Error('Explore controls or cards do not adapt to dark mode');
     }
@@ -416,13 +728,42 @@ check('Explore controls and cards have dark-mode styling', () => {
 
 check('validate YGM-question-bank.json', () => {
     const d = JSON.parse(fs.readFileSync('YGM-question-bank.json', 'utf8'));
-    if (d.count !== 400) throw new Error(`expected 400 questions, found ${d.count}`);
-    if (!Array.isArray(d.questions) || d.questions.length !== 400) throw new Error('questions length');
+    if (d.count !== 440) throw new Error(`expected 440 questions, found ${d.count}`);
+    if (!Array.isArray(d.questions) || d.questions.length !== 440) throw new Error('questions length');
     const ids = d.questions.map(q => q.id);
     if (new Set(ids).size !== ids.length) throw new Error('duplicate ids');
     if (d.questions.some(q => !Array.isArray(q.options) || q.options.length !== 4
         || q.options.some(option => typeof option !== 'string' || !option.trim())
         || typeof q.question !== 'string' || !q.question.trim())) throw new Error('invalid question or options');
+    const newCategories = ['support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth'];
+    if (newCategories.some(category => !d.categories.includes(category)
+        || d.questions.filter(question => question.category === category).length !== 10)) {
+        throw new Error('deeper relationship categories are missing or unbalanced');
+    }
+});
+
+check('general question bank includes new life-stage and support topics', () => {
+    const cards = JSON.parse(fs.readFileSync('cards.json', 'utf8')).cards;
+    const additions = cards.filter(card => /^coverage-\d{3}$/.test(card.id));
+    const expectedCategories = [
+        'Family Planning & Reproductive Health',
+        'Body Changes & Life Stages',
+        'Access Needs & Neurodiversity',
+        'Identity, Culture & Belonging',
+        'Grief, Stress & Support',
+        'Care Work & Shared Load'
+    ];
+    if (additions.length !== 30 || new Set(additions.map(card => card.id)).size !== 30) {
+        throw new Error('expected 30 uniquely identified coverage cards');
+    }
+    if (expectedCategories.some(category => additions.filter(card => card.category === category).length !== 5)) {
+        throw new Error('coverage categories should each have five questions');
+    }
+    const normalize = prompt => prompt.toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+    const existingPrompts = new Set(cards.filter(card => !additions.includes(card)).map(card => normalize(card.prompt)));
+    if (additions.some(card => existingPrompts.has(normalize(card.prompt)))) {
+        throw new Error('a coverage question duplicates an existing prompt');
+    }
 });
 
 check('You Get Me selection filters by vibe and avoids duplicates', () => {
@@ -431,7 +772,7 @@ check('You Get Me selection filters by vibe and avoids duplicates', () => {
         mixed: null,
         playful: ['silly_ridiculous', 'everyday_personality', 'couple_fun', 'preferences_unexpected'],
         romantic: ['everyday_personality', 'couple_fun', 'preferences_unexpected', 'sweet_flirty'],
-        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty']
+        deep: ['everyday_personality', 'couple_fun', 'sweet_flirty', 'support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth']
     };
     const storage = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
     const context = vm.createContext({
@@ -455,6 +796,11 @@ check('You Get Me selection filters by vibe and avoids duplicates', () => {
         })) throw new Error(`${vibe} returned a question outside its category`);
     });
     if (context.window.pickGuessMeQuestions(10, 'deep').length !== 10) throw new Error('deep selection count mismatch');
+    const deepIds = Array.from(context.window.pickGuessMeQuestions(200, 'deep'));
+    const deepCategories = new Set(deepIds.map(id => bank.find(item => item.id === id)?.category));
+    for (const category of ['support_stress', 'conflict_repair', 'values_future', 'vulnerability_growth']) {
+        if (!deepCategories.has(category)) throw new Error(`deep selection omitted ${category}`);
+    }
     if (context.window.pickGuessMeQuestions(0, 'mixed').length !== 0) throw new Error('zero-length selection should be empty');
     let lengthInput = { value: '100' };
     context.document.getElementById = id => id === 'guessMeQuestionCount' ? lengthInput : null;
@@ -842,20 +1188,108 @@ check('preview mode displays progress and keeps its label inside the card header
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const styles = fs.readFileSync('css/styles.css', 'utf8');
     const progress = logic.match(/function updateCardProgressSlider\(\) \{([\s\S]*?)\n\}/);
+    const draw = logic.match(/function drawNextCard\([\s\S]*?\n\}/);
+    const renderCard = logic.match(/function renderCard\(card\) \{([\s\S]*?)\n\}/);
+    const renderAnswers = logic.match(/function renderCardAnswerPanel\(card\) \{([\s\S]*?)\n\}/);
     const browseStyle = styles.match(/\.browse-indicator \{([^}]*)\}/);
     if (!progress || progress[1].includes('if (browseMode)')
         || !progress[1].includes('text.textContent = `${played} / ${total}`;')) {
         throw new Error('preview mode does not update the selected-round progress indicator');
     }
-    if (!html.includes('Preview · not saved') || !app.includes("showToast('Previewing cards · not saved.')")
+    if (!html.includes('Preview · not saved')
         || !browseStyle?.[1].includes('white-space: normal;')
         || !browseStyle[1].includes('max-width: calc(100% - 44px);')) {
         throw new Error('preview label can overflow the card header');
+    }
+    const customTabStart = html.indexOf('id="customTab"');
+    const previewByCardPosition = html.indexOf('id="previewCustomCardsBtn"');
+    const previewByListPosition = html.indexOf('id="previewCustomListBtn"');
+    const cardBrowser = logic.match(/function renderCardBrowserDrawerContent\(content, initialView = 'list'\) \{([\s\S]*?)\n\}/);
+    if (customTabStart < 0
+        || previewByCardPosition < customTabStart
+        || previewByListPosition < customTabStart
+        || !html.includes('Preview individual questions and add the ones you want to a custom deck.')
+        || html.includes('id="browseModeCustomBtn"')
+        || html.includes('id="previewRoundListBtn"')
+        || !app.includes("openCustomDeckCardBrowser('card')")
+        || !app.includes("openCustomDeckCardBrowser('list')")
+        || !app.includes("renderCardBrowserDrawerContent(document.getElementById('drawerContent'), view)")
+        || !cardBrowser?.[1].includes("addBtn.textContent = already ? 'Added' : 'Add to deck';")
+        || !cardBrowser[1].includes("createDeckBtn.textContent = 'New deck';")
+        || !cardBrowser[1].includes("listViewButton.textContent = 'List view';")
+        || !cardBrowser[1].includes("cardViewButton.textContent = 'Card view';")
+        || !cardBrowser[1].includes("'card-container card-browser-item card-preview-item'")
+        || !cardBrowser[1].includes("'drawer-item card-browser-item'")
+        || !cardBrowser[1].includes("previewFace.className = 'card-face card-browser-preview-face'")
+        || !cardBrowser[1].includes("`${cardIndex + 1} of ${matchingCards.length}`")
+        || !cardBrowser[1].includes("const cardsToRender = currentView === 'card' ? [currentCards[cardIndex]] : currentCards;")
+        || !cardBrowser[1].includes("previousCardButton.textContent = 'Previous card';")
+        || !cardBrowser[1].includes("nextCardButton.textContent = 'Next card';")
+        || !cardBrowser[1].includes('card.options.join')
+        || !cardBrowser[1].includes('displayedLimit += 60;')
+        || !styles.includes('.card-browser-list.card-view {')
+        || !renderAnswers?.[1].includes('if (browseMode)')
+        || !renderAnswers[1].includes('radio.disabled = true;')
+        || !renderAnswers[1].includes("submitButton.classList.add('hidden')")
+        || !draw?.[0].includes("if (!browseMode) {\n        try {\n            localStorage.setItem('closer_unspent_deck'")
+        || !renderCard?.[1].includes("browseIndicator.classList.toggle('hidden', !browseMode)")
+        || !renderCard[1].includes("turnIndicator.classList.add('hidden')")) {
+        throw new Error('preview list/card views or preview-only persistence behavior are missing');
     }
 });
 
 check('validate cards.json', () => { execSync('node validate-cards.js cards.json', { stdio: 'pipe' }); });
 check('validate explicit-cards.json', () => { execSync('node validate-cards.js explicit-cards.json', { stdio: 'pipe' }); });
+check('oral-sex prompts use invitational, non-pressuring language', () => {
+    const bank = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8'));
+    const recentOralPrompts = bank.cards.filter(card => card.category === 'Oral Sex' && card.id.startsWith('new-'));
+    const aggressivePhrasing = /ten times harder|push harder|grip tightly|working perfectly|working flawlessly|TRUTH:|intense oral sex/i;
+    if (recentOralPrompts.length !== 10 || recentOralPrompts.some(card => aggressivePhrasing.test(card.prompt))) {
+        throw new Error('recent oral-sex prompts still contain forceful or performance-focused wording');
+    }
+});
+check('explicit prompts avoid pressure in sleep, oral-sex, and edging scenarios', () => {
+    const bank = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8'));
+    const cardsById = new Map(bank.cards.map(card => [card.id, card]));
+    const expected = new Map([
+        ['new-39340cc5-c476-4b70-9d35-ab957048ceba', {
+            promptIncludes: ['nonsexual', 'wait until we’re both awake'],
+            options: []
+        }],
+        ['new-4b9d58f4-d352-42fe-a52f-d8760d29533b', {
+            promptIncludes: ['check in or pause'],
+            options: []
+        }],
+        ['new-12f94420-b80d-4c2e-bf64-9bdab1799602', {
+            promptIncludes: [],
+            options: [
+                'Resting my hands at your hips, if that feels good',
+                'Keeping my hands completely away so you focus on the mouth',
+                'Checking with you before holding your hands',
+                'Letting you guide my hands or hair, if you want'
+            ]
+        }],
+        ['new-ff0a4ad2-366b-401e-969b-b73121d57864', {
+            promptIncludes: [],
+            options: [
+                'Making eye contact when it feels natural',
+                'Closing my eyes fully to sink deeply into the physical sensations',
+                'Gently running your hands through my hair, if we both enjoy it',
+                'Sharing sounds or words that feel natural'
+            ]
+        }]
+    ]);
+
+    for (const [id, check] of expected) {
+        const card = cardsById.get(id);
+        const text = card ? [card.prompt, ...(card.options || [])].join(' ') : '';
+        if (!card || check.promptIncludes.some(phrase => !card.prompt.includes(phrase))
+            || (check.options.length && JSON.stringify(card.options) !== JSON.stringify(check.options))
+            || /masturbating aggressively|while you were trying to sleep|aggressively to anchor|restraining your hands|aggressively guide|absolute limit of time|before you lose control/i.test(text)) {
+            throw new Error(`explicit card ${id} is missing the safer wording`);
+        }
+    }
+});
 
 Promise.all(pendingChecks).then(() => {
     if (failures > 0) { console.error(`\n${failures} smoke test(s) failed.`); process.exit(1); }

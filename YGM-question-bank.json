@@ -1,8 +1,8 @@
 {
   "game": "You Get Me",
   "description": "Dedicated question bank for the You Get Me prediction game. The answerer chooses one of four options; their partner predicts that choice.",
-  "version": 3,
-  "count": 400,
+  "version": 4,
+  "count": 440,
   "schema": {
     "id": "stable unique identifier",
     "category": "category slug",
@@ -14,7 +14,11 @@
     "everyday_personality",
     "couple_fun",
     "preferences_unexpected",
-    "sweet_flirty"
+    "sweet_flirty",
+    "support_stress",
+    "conflict_repair",
+    "values_future",
+    "vulnerability_growth"
   ],
   "questions": [
     {
@@ -3590,6 +3594,446 @@
         "Rising carbonation bubbles",
         "A whirlpool in a straw",
         "A sudden spoon attack"
+      ]
+    },
+    {
+      "id": "ygm-401",
+      "category": "support_stress",
+      "question": "When I am overwhelmed, what kind of support helps me most?",
+      "options": [
+        "Listening without trying to fix it",
+        "Helping me choose one next step",
+        "Taking a practical task off my plate",
+        "Giving me quiet time and checking back later"
+      ]
+    },
+    {
+      "id": "ygm-402",
+      "category": "support_stress",
+      "question": "After a difficult day, what is most likely to help me feel close to you again?",
+      "options": [
+        "A hug or gentle touch",
+        "A little time to decompress first",
+        "Talking through what happened",
+        "Doing something ordinary together"
+      ]
+    },
+    {
+      "id": "ygm-403",
+      "category": "support_stress",
+      "question": "When I am quiet under stress, what is the best way to check in with me?",
+      "options": [
+        "Ask directly if I want to talk",
+        "Offer company without questions",
+        "Give me space and name when you will check back",
+        "Ask whether I want help with something specific"
+      ]
+    },
+    {
+      "id": "ygm-404",
+      "category": "support_stress",
+      "question": "If I had a hard week, what small gesture would I appreciate most?",
+      "options": [
+        "You handling one everyday chore",
+        "A thoughtful message or note",
+        "A simple plan for time together",
+        "My favorite snack or comfort item"
+      ]
+    },
+    {
+      "id": "ygm-405",
+      "category": "support_stress",
+      "question": "When I need reassurance, which kind is most likely to land with me?",
+      "options": [
+        "Hearing exactly what you appreciate about me",
+        "Knowing you will stay and listen",
+        "A specific plan for what happens next",
+        "Affection that does not require me to explain"
+      ]
+    },
+    {
+      "id": "ygm-406",
+      "category": "support_stress",
+      "question": "When I am grieving or missing someone, what would I most want from you?",
+      "options": [
+        "A chance to talk about them",
+        "A quiet, comforting presence",
+        "Help with practical things",
+        "Room to feel it in my own way"
+      ]
+    },
+    {
+      "id": "ygm-407",
+      "category": "support_stress",
+      "question": "If I felt sick or low on energy, what would make me feel cared for?",
+      "options": [
+        "You bringing me something I need",
+        "You taking over a task without fuss",
+        "A check-in, then space to rest",
+        "Company while I do nothing"
+      ]
+    },
+    {
+      "id": "ygm-408",
+      "category": "support_stress",
+      "question": "When I am facing a big decision, what role do I most want you to play?",
+      "options": [
+        "Help me compare the practical options",
+        "Ask questions so I can hear my own thoughts",
+        "Tell me honestly what you think",
+        "Remind me that the decision is mine to make"
+      ]
+    },
+    {
+      "id": "ygm-409",
+      "category": "support_stress",
+      "question": "If I had to start over after a setback, what would help me take the first step?",
+      "options": [
+        "Breaking it into one small action",
+        "Remembering a time I got through something hard",
+        "Making a plan together",
+        "Having a little time before planning"
+      ]
+    },
+    {
+      "id": "ygm-410",
+      "category": "support_stress",
+      "question": "When I am carrying too much, what might I have the hardest time asking you for?",
+      "options": [
+        "Practical help",
+        "Comfort and affection",
+        "A listening ear",
+        "Permission to take a break"
+      ]
+    },
+    {
+      "id": "ygm-411",
+      "category": "conflict_repair",
+      "question": "During a disagreement, what helps me stay present instead of shutting down?",
+      "options": [
+        "Slowing the conversation down",
+        "Hearing that we can pause and return to it",
+        "Focusing on one issue at a time",
+        "Knowing you are trying to understand, not win"
+      ]
+    },
+    {
+      "id": "ygm-412",
+      "category": "conflict_repair",
+      "question": "When I realize I have hurt you, what is the first thing I am most likely to need to do?",
+      "options": [
+        "Listen to the impact without defending myself",
+        "Apologize clearly",
+        "Ask what repair would look like",
+        "Take a moment to settle, then come back"
+      ]
+    },
+    {
+      "id": "ygm-413",
+      "category": "conflict_repair",
+      "question": "After we disagree, what helps me feel that we have really reconnected?",
+      "options": [
+        "A sincere apology",
+        "A calm conversation about what we learned",
+        "A warm gesture or affectionate touch",
+        "Seeing a specific change afterward"
+      ]
+    },
+    {
+      "id": "ygm-414",
+      "category": "conflict_repair",
+      "question": "If we remember the same moment differently, what would I most want us to do?",
+      "options": [
+        "Get curious about each other's perspective",
+        "Agree on what we can verify",
+        "Focus on how it affected us",
+        "Let some details remain unresolved"
+      ]
+    },
+    {
+      "id": "ygm-415",
+      "category": "conflict_repair",
+      "question": "When I need a pause during conflict, what kind of pause feels most respectful?",
+      "options": [
+        "A clear time to come back to the conversation",
+        "A short break with no pressure to talk",
+        "A check-in by text later",
+        "A quiet activity together before we revisit it"
+      ]
+    },
+    {
+      "id": "ygm-416",
+      "category": "conflict_repair",
+      "question": "What am I most likely to interpret as feeling heard in a tough conversation?",
+      "options": [
+        "You reflecting back what you understood",
+        "You asking a thoughtful follow-up",
+        "You acknowledging the impact on me",
+        "You remembering it and acting differently later"
+      ]
+    },
+    {
+      "id": "ygm-417",
+      "category": "conflict_repair",
+      "question": "If I become defensive, what approach is most likely to help me soften?",
+      "options": [
+        "A gentle question about what I am worried about",
+        "A clear statement of what you need",
+        "Reassurance that we are on the same team",
+        "A little space before continuing"
+      ]
+    },
+    {
+      "id": "ygm-418",
+      "category": "conflict_repair",
+      "question": "When we have made up, what would tell me that the repair is lasting?",
+      "options": [
+        "We follow through on a small agreement",
+        "We can talk about it without reliving the fight",
+        "We make time for warmth and fun again",
+        "We notice the pattern sooner next time"
+      ]
+    },
+    {
+      "id": "ygm-419",
+      "category": "conflict_repair",
+      "question": "If we disagree about a shared decision, what would I most want to protect?",
+      "options": [
+        "That both of us have a real say",
+        "That we make a practical choice in time",
+        "That neither of us feels dismissed",
+        "That we can revisit the decision if needed"
+      ]
+    },
+    {
+      "id": "ygm-420",
+      "category": "conflict_repair",
+      "question": "What kind of apology is most likely to feel meaningful to me?",
+      "options": [
+        "Naming specifically what you are sorry for",
+        "Showing that you understand how it affected me",
+        "Offering a realistic way to make it right",
+        "Changing the behavior over time"
+      ]
+    },
+    {
+      "id": "ygm-421",
+      "category": "values_future",
+      "question": "When we plan our future, what matters most for me to feel included?",
+      "options": [
+        "Having time to think before deciding",
+        "Talking openly about the tradeoffs",
+        "Knowing my hopes are taken seriously",
+        "Making a concrete plan together"
+      ]
+    },
+    {
+      "id": "ygm-422",
+      "category": "values_future",
+      "question": "If we had to choose where to live, what would I weigh most heavily?",
+      "options": [
+        "Being near people I love",
+        "Work and financial stability",
+        "A sense of belonging and community",
+        "Room for a new adventure"
+      ]
+    },
+    {
+      "id": "ygm-423",
+      "category": "values_future",
+      "question": "When I think about a meaningful life together, what do I picture first?",
+      "options": [
+        "A peaceful everyday routine",
+        "Shared adventures and new experiences",
+        "Supporting family or community",
+        "Building something we are proud of"
+      ]
+    },
+    {
+      "id": "ygm-424",
+      "category": "values_future",
+      "question": "If a career opportunity meant a major change for us, what would I want us to discuss first?",
+      "options": [
+        "How it affects each person's goals",
+        "What it means for our daily life",
+        "The financial and practical details",
+        "Whether the change feels exciting or too costly"
+      ]
+    },
+    {
+      "id": "ygm-425",
+      "category": "values_future",
+      "question": "When we talk about money and the future, what gives me the most peace of mind?",
+      "options": [
+        "A clear plan and shared priorities",
+        "Having room for spontaneity",
+        "Knowing we can talk without blame",
+        "Feeling that we are building security together"
+      ]
+    },
+    {
+      "id": "ygm-426",
+      "category": "values_future",
+      "question": "If we could make more room for one value in our everyday life, which would I choose?",
+      "options": [
+        "Rest and balance",
+        "Curiosity and learning",
+        "Community and generosity",
+        "Creativity and play"
+      ]
+    },
+    {
+      "id": "ygm-427",
+      "category": "values_future",
+      "question": "When family expectations differ from what I want, what would I most want from you?",
+      "options": [
+        "A united front in the moment",
+        "A private conversation before responding",
+        "Help setting a clear boundary",
+        "Time to decide what feels right to me"
+      ]
+    },
+    {
+      "id": "ygm-428",
+      "category": "values_future",
+      "question": "If our life looked different from the plan we once imagined, what would help me feel hopeful?",
+      "options": [
+        "Finding a new shared goal",
+        "Noticing what is still good in our life",
+        "Talking honestly about what I miss",
+        "Taking one next step together"
+      ]
+    },
+    {
+      "id": "ygm-429",
+      "category": "values_future",
+      "question": "What would make a new tradition feel meaningful enough for me to keep?",
+      "options": [
+        "It connects us to family or culture",
+        "It is easy to adapt as life changes",
+        "It gives us something fun to anticipate",
+        "It reflects something we both value"
+      ]
+    },
+    {
+      "id": "ygm-430",
+      "category": "values_future",
+      "question": "If we had more free time as a couple, how would I most want to use it?",
+      "options": [
+        "Resting and enjoying home",
+        "Exploring somewhere new",
+        "Learning or making something together",
+        "Being with friends, family, or community"
+      ]
+    },
+    {
+      "id": "ygm-431",
+      "category": "vulnerability_growth",
+      "question": "When I share something vulnerable, what response helps me feel safe to continue?",
+      "options": [
+        "Listening without interrupting",
+        "Asking whether I want comfort or advice",
+        "Thanking me for trusting you",
+        "Sharing your own experience only if it feels relevant"
+      ]
+    },
+    {
+      "id": "ygm-432",
+      "category": "vulnerability_growth",
+      "question": "What is most likely to help me admit that I have changed my mind?",
+      "options": [
+        "Knowing I will not be teased about it",
+        "Having time to explain what changed",
+        "Being asked with genuine curiosity",
+        "Knowing we can update our plans together"
+      ]
+    },
+    {
+      "id": "ygm-433",
+      "category": "vulnerability_growth",
+      "question": "If I am learning something new about myself, what kind of support would I prefer?",
+      "options": [
+        "Space to figure it out privately",
+        "A patient conversation when I am ready",
+        "Encouragement without pressure to label it",
+        "Practical help exploring what it means"
+      ]
+    },
+    {
+      "id": "ygm-434",
+      "category": "vulnerability_growth",
+      "question": "When I feel embarrassed about a mistake, what helps me recover?",
+      "options": [
+        "A little humor that does not minimize it",
+        "Reassurance that one mistake does not define me",
+        "Help making amends if needed",
+        "A chance to move on without a big discussion"
+      ]
+    },
+    {
+      "id": "ygm-435",
+      "category": "vulnerability_growth",
+      "question": "What kind of compliment is most likely to stay with me?",
+      "options": [
+        "One about a quality I worked hard to build",
+        "One about how I make you feel",
+        "One that notices a small detail",
+        "One about who I am when things are difficult"
+      ]
+    },
+    {
+      "id": "ygm-436",
+      "category": "vulnerability_growth",
+      "question": "If I am struggling to ask for a boundary, what might help me say it?",
+      "options": [
+        "A reminder that I can change my mind",
+        "A calm, private moment to talk",
+        "You asking what would feel comfortable",
+        "Knowing you will not take it as rejection"
+      ]
+    },
+    {
+      "id": "ygm-437",
+      "category": "vulnerability_growth",
+      "question": "When I feel proud of personal growth, what would I most want you to notice?",
+      "options": [
+        "The effort it took to get here",
+        "The way I treat myself differently",
+        "How the change affects our relationship",
+        "That I am still figuring parts of it out"
+      ]
+    },
+    {
+      "id": "ygm-438",
+      "category": "vulnerability_growth",
+      "question": "If I needed to talk about a difficult memory, what would help me stay in control of the conversation?",
+      "options": [
+        "I choose how much detail to share",
+        "We agree on a pause signal first",
+        "You ask before offering questions or advice",
+        "We can stop and talk about something else"
+      ]
+    },
+    {
+      "id": "ygm-439",
+      "category": "vulnerability_growth",
+      "question": "When I feel uncertain about the future, what helps me most?",
+      "options": [
+        "Talking through realistic possibilities",
+        "Remembering what we can handle together",
+        "Focusing on what is true right now",
+        "Making one small plan"
+      ]
+    },
+    {
+      "id": "ygm-440",
+      "category": "vulnerability_growth",
+      "question": "What would make it easiest for me to tell you that I need something to change?",
+      "options": [
+        "Knowing you will listen before responding",
+        "Having a specific example to talk through",
+        "Starting with what is working too",
+        "Agreeing to revisit the conversation if needed"
       ]
     }
   ]

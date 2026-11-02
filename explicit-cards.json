@@ -6564,7 +6564,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "If I am performing oral sex on you, does it heighten your arousal more if I maintain intense eye contact or if you focus purely on the sensation?",
+      "prompt": "During oral, do you enjoy eye contact, focusing on sensation, or a mix? There’s no wrong answer.",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
@@ -6610,7 +6610,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "When performing oral sex on me, what specific reaction or sound from my body tells you that your technique is working perfectly?",
+      "prompt": "When you’re giving oral, what kind of feedback from your partner helps you feel connected and know they’re enjoying it?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -6764,7 +6764,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "When I am down on you, what particular verbal instruction or explicit request from your mouth makes me work ten times harder?",
+      "prompt": "If you wanted to guide a partner during oral, what kind of words would feel natural and comfortable to share?",
       "contextType": "preference",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -6908,7 +6908,7 @@
       "module": "explicit",
       "category": "Mutual Masturbation",
       "intensity": 4,
-      "prompt": "TRUTH: If I began masturbating aggressively right next to you while you were trying to sleep, would you join in immediately or tell me to stop?",
+      "prompt": "If one of us is asleep, what kind of affectionate, nonsexual wake-up would feel welcome—and what should wait until we’re both awake?",
       "contextType": "anticipation",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -6938,7 +6938,7 @@
       "module": "explicit",
       "category": "Edging",
       "intensity": 4,
-      "prompt": "TRUTH: When we are teasing each other, what is the absolute limit of time you can handle being on the absolute edge before you lose control?",
+      "prompt": "When we’re teasing each other, what helps you enjoy the build-up, and how would you like us to check in or pause?",
       "contextType": "trial",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -6968,14 +6968,14 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "When you are receiving oral sex, does it heighten your peak if I grip your hips tightly or if I keep my hands entirely off your body?",
+      "prompt": "If you enjoy receiving oral, do you prefer a partner’s hands involved, kept still, or decided together in the moment?",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
-        "Gripping your hips aggressively to anchor you",
+        "Resting my hands at your hips, if that feels good",
         "Keeping my hands completely away so you focus on the mouth",
-        "Restraining your hands over your head while I do it",
-        "Running my fingers through your hair to guide the depth"
+        "Checking with you before holding your hands",
+        "Letting you guide my hands or hair, if you want"
       ],
       "pillar": "afterhours"
     },
@@ -7024,7 +7024,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "When you are performing oral sex on me, what specific change in my breathing or muscle tension acts as your cue to push harder?",
+      "prompt": "When you’re giving oral, what helps you stay in sync with your partner, and how would you like them to check in?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -7182,7 +7182,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "Does a private, mutually agreed scenario with a little playful anticipation appeal to you? What privacy boundaries matter?",
+      "prompt": "Would a little playful anticipation around oral appeal to you? What would help it feel private, comfortable, and mutual?",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
@@ -7228,7 +7228,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "TRUTH: When you are performing oral sex on me, does it turn you on more to hear deep, gutteral groans or explicit verbal praise about your mouth?",
+      "prompt": "If you enjoy giving oral, what kind of response feels affirming: words, sounds, eye contact, or something else?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -7386,7 +7386,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "When you are receiving intense oral sex, does it heighten your arousal more if I hold unbroken eye contact or if you shut your eyes completely?",
+      "prompt": "While receiving oral, do you like eye contact, closing your eyes and focusing on sensation, or choosing in the moment?",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
@@ -7432,7 +7432,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "TRUTH: When performing oral sex on me, what specific physical reaction or change in my breathing signals that your rhythm is working flawlessly?",
+      "prompt": "What cues help you tell whether your partner is enjoying oral, and what’s a comfortable way for you both to check in?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "afterhours"
@@ -7586,14 +7586,14 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "TRUTH: If I am performing oral sex on you, does it heighten your physical arousal more if I keep intense eye contact or if you close your eyes completely?",
+      "prompt": "If oral is something you enjoy, what helps it feel playful and mutual rather than like anyone has to perform?",
       "contextType": "poll",
       "promptStyle": "question",
       "options": [
-        "Maintaining deep, direct, and unblinking eye contact the entire time",
+        "Making eye contact when it feels natural",
         "Closing my eyes fully to sink deeply into the physical sensations",
-        "Running your hands through my hair to aggressively guide my movements",
-        "Hearing you make heavy, wet vocal sounds of pure physical pleasure"
+        "Gently running your hands through my hair, if we both enjoy it",
+        "Sharing sounds or words that feel natural"
       ],
       "pillar": "afterhours"
     },

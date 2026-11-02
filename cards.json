@@ -1,5 +1,5 @@
 {
-  "version": "7.4-focused-content-review",
+  "version": "7.5-deeper-relationship-coverage",
   "cards": [
     {
       "id": "sec-001",
@@ -30367,7 +30367,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 2,
-      "prompt": "What would you want us to understand about fertility or family-building before we need to make decisions?",
+      "prompt": "Before making family-building choices, what questions would you want us to explore together?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "closer"
@@ -43981,6 +43981,306 @@
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "spark"
+    },
+    {
+      "id": "coverage-001",
+      "module": "life",
+      "category": "Family Planning & Reproductive Health",
+      "intensity": 2,
+      "prompt": "What would you want us to understand about fertility or family-building before we need to make decisions?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-002",
+      "module": "life",
+      "category": "Family Planning & Reproductive Health",
+      "intensity": 2,
+      "prompt": "How would you want us to support each other if trying to conceive took longer than expected?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-003",
+      "module": "life",
+      "category": "Family Planning & Reproductive Health",
+      "intensity": 2,
+      "prompt": "What feelings or questions would you want space for when we talk about whether to have children?",
+      "contextType": "reflection",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-004",
+      "module": "life",
+      "category": "Family Planning & Reproductive Health",
+      "intensity": 2,
+      "prompt": "If a pregnancy or family-building plan changed unexpectedly, what kind of support would matter most to you?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-005",
+      "module": "life",
+      "category": "Family Planning & Reproductive Health",
+      "intensity": 2,
+      "prompt": "How would you like us to share the emotional and practical work of contraception decisions?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-006",
+      "module": "life",
+      "category": "Body Changes & Life Stages",
+      "intensity": 2,
+      "prompt": "What would help you feel supported if hormones, aging, or a health change affected your desire?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-007",
+      "module": "life",
+      "category": "Body Changes & Life Stages",
+      "intensity": 2,
+      "prompt": "If pregnancy, birth, or postpartum recovery changed our routines, what would help us stay connected?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-008",
+      "module": "life",
+      "category": "Body Changes & Life Stages",
+      "intensity": 2,
+      "prompt": "How could we talk about perimenopause or menopause in a way that feels caring rather than clinical?",
+      "contextType": "connection",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-009",
+      "module": "life",
+      "category": "Body Changes & Life Stages",
+      "intensity": 2,
+      "prompt": "What kind of affection feels good when your body is tired, sore, or changing?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-010",
+      "module": "life",
+      "category": "Body Changes & Life Stages",
+      "intensity": 2,
+      "prompt": "What would make it easier to tell me that a familiar kind of touch no longer feels right?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-011",
+      "module": "life",
+      "category": "Access Needs & Neurodiversity",
+      "intensity": 1,
+      "prompt": "What helps you feel understood when you communicate or process things differently from me?",
+      "contextType": "connection",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-012",
+      "module": "life",
+      "category": "Access Needs & Neurodiversity",
+      "intensity": 1,
+      "prompt": "Are there sensory details—noise, light, texture, or pace—that can make closeness easier or harder?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-013",
+      "module": "life",
+      "category": "Access Needs & Neurodiversity",
+      "intensity": 1,
+      "prompt": "When plans change suddenly, what helps you feel grounded and included?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-014",
+      "module": "life",
+      "category": "Access Needs & Neurodiversity",
+      "intensity": 1,
+      "prompt": "What kind of reminder or shared system makes everyday responsibilities easier for you?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-015",
+      "module": "life",
+      "category": "Access Needs & Neurodiversity",
+      "intensity": 1,
+      "prompt": "What is one way I can ask about an access need without making you feel singled out?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-016",
+      "module": "life",
+      "category": "Identity, Culture & Belonging",
+      "intensity": 1,
+      "prompt": "Which part of your identity would you like me to understand better, without making assumptions?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-017",
+      "module": "life",
+      "category": "Identity, Culture & Belonging",
+      "intensity": 1,
+      "prompt": "What does feeling affirmed by a partner look like for you in ordinary everyday moments?",
+      "contextType": "reflection",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-018",
+      "module": "life",
+      "category": "Identity, Culture & Belonging",
+      "intensity": 1,
+      "prompt": "How would you like us to handle it if someone makes an assumption about your identity or our relationship?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-019",
+      "module": "life",
+      "category": "Identity, Culture & Belonging",
+      "intensity": 1,
+      "prompt": "Which family or cultural tradition would you like me to experience with you, and what should I know first?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-020",
+      "module": "life",
+      "category": "Identity, Culture & Belonging",
+      "intensity": 1,
+      "prompt": "When our backgrounds shape a disagreement differently, what helps you feel that I am curious rather than judging?",
+      "contextType": "trust",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-021",
+      "module": "life",
+      "category": "Grief, Stress & Support",
+      "intensity": 2,
+      "prompt": "When you are grieving, would you rather I listen, help with practical things, offer affection, or give you space?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-022",
+      "module": "life",
+      "category": "Grief, Stress & Support",
+      "intensity": 2,
+      "prompt": "What is a small sign that tells me you are carrying more than you have said out loud?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-023",
+      "module": "life",
+      "category": "Grief, Stress & Support",
+      "intensity": 2,
+      "prompt": "If a difficult memory came up during closeness, what would help you feel safe and in control?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-024",
+      "module": "life",
+      "category": "Grief, Stress & Support",
+      "intensity": 2,
+      "prompt": "How can we make room for a loss or hard anniversary without expecting either of us to handle it a certain way?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-025",
+      "module": "life",
+      "category": "Grief, Stress & Support",
+      "intensity": 2,
+      "prompt": "What helps you feel close to me when stress leaves you with very little energy to talk?",
+      "contextType": "connection",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-026",
+      "module": "life",
+      "category": "Care Work & Shared Load",
+      "intensity": 1,
+      "prompt": "Which recurring task takes more mental energy than I may realize?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-027",
+      "module": "life",
+      "category": "Care Work & Shared Load",
+      "intensity": 1,
+      "prompt": "How should we check whether our division of household or caregiving work still feels fair?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-028",
+      "module": "life",
+      "category": "Care Work & Shared Load",
+      "intensity": 1,
+      "prompt": "What kind of help feels supportive when you are overwhelmed, rather than like one more thing to manage?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-029",
+      "module": "life",
+      "category": "Care Work & Shared Load",
+      "intensity": 1,
+      "prompt": "What responsibility would you like us to plan for together instead of leaving it to whoever notices first?",
+      "contextType": "alignment",
+      "promptStyle": "question",
+      "pillar": "closer"
+    },
+    {
+      "id": "coverage-030",
+      "module": "life",
+      "category": "Care Work & Shared Load",
+      "intensity": 1,
+      "prompt": "What would make asking for a more balanced share of the work feel easier?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "closer"
     }
   ]
 }

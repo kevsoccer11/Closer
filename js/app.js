@@ -1,22 +1,26 @@
 // Bind event listeners safely on DOM Load
 document.addEventListener('DOMContentLoaded', () => {
     const exploreContent = document.getElementById('exploreContent');
-    const homeMoodSection = document.getElementById('homeMoodSection');
-    const featuredExperiences = document.getElementById('featuredExperiences');
     if (exploreContent) {
-        if (homeMoodSection) {
-            const moodClone = homeMoodSection.cloneNode(true);
-            moodClone.removeAttribute('id');
-            moodClone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
-            moodClone.querySelector('.categories-header .text-link')?.remove();
-            exploreContent.appendChild(moodClone);
-        }
-        if (featuredExperiences) {
-            const packsClone = featuredExperiences.cloneNode(true);
-            packsClone.removeAttribute('id');
+        const curatedPackGrid = document.querySelector('#curatedTab .pack-grid');
+        const moodFilters = document.getElementById('exploreMoodFilters');
+        if (curatedPackGrid) {
+            const packsSection = document.createElement('section');
+            packsSection.className = 'featured-experiences explore-curated-packs';
+            const heading = document.createElement('div');
+            heading.className = 'categories-header';
+            const title = document.createElement('h2');
+            title.textContent = 'All curated packs';
+            heading.appendChild(title);
+            const description = document.createElement('p');
+            description.textContent = 'Choose a guided conversation for the moment you are in.';
+            const packsClone = curatedPackGrid.cloneNode(true);
+            packsClone.className = 'pack-grid compact explore-curated-grid';
             packsClone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
-            packsClone.querySelector('.categories-header .text-link')?.remove();
-            exploreContent.appendChild(packsClone);
+            packsSection.append(heading, description);
+            if (moodFilters) packsSection.appendChild(moodFilters);
+            packsSection.appendChild(packsClone);
+            exploreContent.appendChild(packsSection);
         }
     }
 
@@ -112,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('#packFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             const filter = chip.dataset.filter;
-            document.querySelectorAll('.pack-card').forEach(card => {
+            document.querySelectorAll('#curatedTab .pack-card').forEach(card => {
                 const show = filter === 'all' || card.dataset.filter === filter;
                 card.style.display = show ? '' : 'none';
             });
@@ -123,13 +127,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('#packMoodFilterChips .filter-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             const mood = chip.dataset.mood;
-            document.querySelectorAll('.pack-card').forEach(card => {
+            document.querySelectorAll('#curatedTab .pack-card').forEach(card => {
                 const show = mood === 'all' || card.dataset.mood === mood;
                 card.style.display = show ? '' : 'none';
             });
         });
     });
-    document.querySelectorAll('.pack-card').forEach(btn => {
+    document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card').forEach(btn => {
+        if (btn.classList.contains('category-card')) return;
         btn.addEventListener('click', () => {
             startPackByKey(btn.dataset.pack);
         });
@@ -214,6 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const target = tab.dataset.tab;
             document.getElementById('curatedTab')?.classList.toggle('hidden', target !== 'curated');
             document.getElementById('customTab')?.classList.toggle('hidden', target !== 'custom');
+            document.getElementById('saveCustomDeckBtn')?.classList.toggle('hidden', target !== 'custom');
+            document.querySelector('#roundBuilderModal .round-builder-actions')?.classList.toggle('single-action', target !== 'custom');
         });
     });
     document.getElementById('qodAnother')?.addEventListener('click', () => {
@@ -299,9 +306,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterExploreCards = () => {
         const query = document.getElementById('exploreSearch')?.value.trim().toLocaleLowerCase() || '';
         const selectedMood = document.querySelector('#exploreMoodFilters [aria-pressed="true"]')?.dataset.moodFilter || 'all';
+        const matchingMoods = getExploreMoodValues(selectedMood);
         document.querySelectorAll('#exploreContent .pack-card').forEach(card => {
             const matchesQuery = !query || card.textContent.toLocaleLowerCase().includes(query);
-            const matchesMood = selectedMood === 'all' || card.dataset.mood === selectedMood;
+            const matchesMood = selectedMood === 'all' || matchingMoods.includes(card.dataset.mood);
             card.classList.toggle('hidden', !(matchesQuery && matchesMood));
         });
     };
@@ -316,6 +324,17 @@ document.addEventListener('DOMContentLoaded', () => {
             filterExploreCards();
         });
     });
+    document.querySelectorAll('#homeMoodSection .category-card[data-mood], #exploreContent .category-card[data-mood]').forEach(button => {
+        button.addEventListener('click', () => {
+            if (!button.closest('#exploreContent')) {
+                showExploreView();
+                window.scrollTo(0, 0);
+            }
+            const moodFilter = [...document.querySelectorAll('#exploreMoodFilters [data-mood-filter]')]
+                .find(chip => chip.dataset.moodFilter === button.dataset.mood);
+            moodFilter?.click();
+        });
+    });
     document.getElementById('exploreBrowseCardsBtn')?.addEventListener('click', () => {
         openDrawer('Browse cards', '');
         renderCardBrowserDrawerContent(document.getElementById('drawerContent'));
@@ -327,25 +346,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('loadCommunityCardsBtn')?.addEventListener('click', () => {
         window.loadCommunityDeck();
     });
-    const browseBtn = document.getElementById('browseModeCustomBtn');
-    if (browseBtn) {
-        browseBtn.onclick = () => {
-            try {
-                browseMode = true;
-                const sel = getRoundBuilderSelection();
-                if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
-                applyRoundSelection(sel).catch(error => {
-                    console.error('Preview failed:', error);
-                    showToast(`Could not preview: ${error.message}`);
-                });
-                const turnIndicator = document.getElementById('turnIndicator');
-                if (turnIndicator) turnIndicator.classList.add('hidden');
-                const browseIndicator = document.getElementById('browseIndicator');
-                if (browseIndicator) browseIndicator.classList.remove('hidden');
-                showToast('Previewing cards · not saved.');
-            } catch (e) { console.error('Preview failed:', e); alert('Could not preview: ' + e.message); }
-        };
-    }
+    const openCustomDeckCardBrowser = view => {
+        closeRoundBuilder();
+        openDrawer('Preview cards to add to a custom deck', '');
+        renderCardBrowserDrawerContent(document.getElementById('drawerContent'), view);
+    };
+    document.getElementById('previewCustomCardsBtn')?.addEventListener('click', () => {
+        openCustomDeckCardBrowser('card');
+    });
+    document.getElementById('previewCustomListBtn')?.addEventListener('click', () => {
+        openCustomDeckCardBrowser('list');
+    });
     document.getElementById('resetPlayHistoryBtn')?.addEventListener('click', () => {
         if (!confirm('Reset played-card history on this device and in your shared room? This cannot be undone.')) return;
         playedCardIds.clear();
@@ -491,7 +502,7 @@ setTimeout(() => {
             renderRoundTopics();
             updateRoundIntensityVisibility();
             updateRoundMatchCount();
-        } else if (target.matches('#roundTopics input[type="checkbox"], input[name="roundIntensity"], #includeQuestions, #includeActivities, #includeMultipleChoice')) {
+        } else if (target.matches('#roundTopics input[type="checkbox"], input[name="roundMood"], input[name="roundIntensity"], #includeQuestions, #includeActivities, #includeMultipleChoice')) {
             updateRoundMatchCount();
         }
     });
@@ -1139,7 +1150,12 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
             document.getElementById('settingsGameHistoryBtn').onclick = () => { closeDrawer(); openDrawer('Game History', ''); const content = document.getElementById('drawerContent'); renderGameHistoryDrawerContent(content); };
             document.getElementById('settingsCardBrowserBtn').onclick = () => { closeDrawer(); openRoundBuilder(); setTimeout(() => { const t = document.querySelector('.round-tab[data-tab="custom"]'); if (t) t.click(); }, 50); };
             document.getElementById('settingsRestartTourBtn').onclick = () => { onboardingDone = false; closeDrawer(); showOnboardingStep(); };
-            document.getElementById('settingsToggleBrowseBtn').onclick = () => { browseMode = !browseMode; showToast(`Preview mode ${browseMode ? 'on' : 'off'}.`); closeDrawer(); };
+            document.getElementById('settingsToggleBrowseBtn').onclick = () => {
+                browseMode = !browseMode;
+                if (currentCard) renderCard(currentCard);
+                showToast(`Preview mode ${browseMode ? 'on' : 'off'}.`);
+                closeDrawer();
+            };
             // Wire settings-drawer filters (these elements only exist after the drawer is opened).
             document.querySelectorAll('.mood-btn').forEach(btn => {
                 btn.onclick = (e) => {
@@ -1226,6 +1242,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
         await loadExplicitCards();
         setModalOpen(document.getElementById('explicitAgeGate'), false);
+        if (resumeExplicitCardBrowserFilter()) return;
         const deckCheckbox = document.querySelector('input[name="roundDeck"][value="explicit"]');
         if (deckCheckbox && !document.getElementById('roundBuilderModal')?.classList.contains('hidden')) {
             deckCheckbox.checked = true;
@@ -1236,6 +1253,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         selectModule('explicit');
     });
     document.getElementById('cancelExplicitAccessBtn')?.addEventListener('click', () => {
+        cancelExplicitCardBrowserFilter();
         setModalOpen(document.getElementById('explicitAgeGate'), false);
     });
 
