@@ -3394,35 +3394,30 @@ body:not(.light-theme) .card-progress-track {
     justify-content: flex-start;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     user-select: none;
-    transition: border-color 0.18s ease, transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 0.18s ease, transform 0.28s cubic-bezier(0.4, 0, 0.6, 1), opacity 0.28s ease-in;
     position: relative;
     z-index: 2;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 .card-face:hover {
     border-color: rgba(255, 255, 255, 0.16);
 }
 .card-face.card-exiting {
-    transform: translateX(110%) rotate(12deg);
+    transform: translateX(-60px) rotate(-5deg) scale(0.96);
     opacity: 0;
 }
-.card-face.card-drawn {
-    animation: cardDrawn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-@keyframes cardDrawn {
-    0% { transform: scale(1); }
-    40% { transform: scale(1.035); }
-    100% { transform: scale(1); }
-}
 .card-face.card-entering {
-    animation: cardEnter 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none;
+    animation: cardFaceEnter 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
-@keyframes cardEnter {
-    from { transform: translateX(16px) scale(0.97); opacity: 0.6; }
-    to { transform: translateX(0) scale(1); opacity: 1; }
+@keyframes cardFaceEnter {
+    from { transform: translateX(60px) rotate(4deg) scale(0.96); opacity: 0; }
+    to { transform: translateX(0) rotate(0) scale(1); opacity: 1; }
 }
-@keyframes cardEnter {
-    from { transform: translateX(16px) scale(0.97); opacity: 0.5; }
-    to { transform: translateX(0) scale(1); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+    .card-face.card-exiting { transform: none; }
+    .card-face.card-entering { animation-duration: 0.01s; }
 }
 
 #userProfileBtn {
@@ -4418,3 +4413,8 @@ body:not(.light-theme) .app-bottom-nav button.active {
 .room-presence-item { display: inline-flex; align-items: center; gap: 5px; }
 .presence-dot { width: 9px; height: 9px; border-radius: 50%; background: #9aa0a6; }
 .presence-dot.online { background: #2fb344; box-shadow: 0 0 0 3px rgba(47,179,68,.25); }
+
+/* Prevent iOS Safari from zooming the page when an input is focused (needs >=16px). */
+input[type="text"], input[type="search"], input[type="email"], input[type="number"], input[type="tel"], input:not([type]), textarea, select {
+    font-size: 16px;
+}

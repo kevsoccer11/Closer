@@ -882,13 +882,6 @@ async function applyRoundSelection(selection, startLight = false, questionCount 
         if (status) status.textContent = 'Choose at least one deck to start.';
         return false;
     }
-    if (!browseMode && window.roomRef && window.currentRoomRole === 'partner') {
-        const message = 'The host chooses the pack and starts the shared conversation.';
-        const status = document.getElementById('roundBuilderStatus');
-        if (status) status.textContent = message;
-        showToast(message);
-        return false;
-    }
     if (activeDeckId) {
         activeDeckId = null;
         localStorage.removeItem('closer_active_deck');
@@ -1194,7 +1187,16 @@ async function publishRoundDeck() {
 }
 
 async function adoptSharedRoundDeck(card) {
-    if (!window.roomRef || !card?.deckRoundId || sharedDeckRound?.id === card.deckRoundId) return;
+    if (!window.roomRef || !card?.deckRoundId) return;
+    if (sharedDeckRound?.id === card.deckRoundId) {
+        // Same deck: drop the cards the partner already drew so both players stay in step.
+        const remainingCount = Math.max(0, sharedDeckRound.total - (card.deckIndex || 0));
+        if (unspentDeck.length > remainingCount) {
+            unspentDeck = unspentDeck.slice(0, remainingCount);
+            updateCardProgressSlider();
+        }
+        return;
+    }
     try {
         const deck = (await window.roomRef.child('roundDeck').once('value')).val();
         if (!deck || deck.id !== card.deckRoundId || !Array.isArray(deck.ids)) return;
@@ -1930,7 +1932,7 @@ if (!passed && !browseMode) {
                 preview.classList.add('hidden');
             }
             drawNextCard();
-        }, 700);
+        }, 280);
     } else {
         if (preview) {
             preview.classList.remove('show');
@@ -2035,18 +2037,12 @@ const undoBtn = document.getElementById('undoBtn');
     updateCompareFirstControls();
     const container = document.getElementById('cardFace') || document.getElementById('cardContainer');
     if (container) {
-        container.classList.remove('card-exiting');
-        container.classList.remove('card-entering');
-        container.classList.remove('card-drawn');
+        // Swap exit -> enter in one frame so the card never flashes or sits invisible.
+        container.classList.remove('card-exiting', 'card-entering', 'card-drawn');
         void container.offsetWidth;
-        requestAnimationFrame(() => {
-            container.classList.add('card-entering');
-            setTimeout(() => {
-                container.classList.remove('card-entering');
-                container.classList.add('card-drawn');
-                setTimeout(() => container.classList.remove('card-drawn'), 500);
-            }, 450);
-        });
+        container.classList.add('card-entering');
+        clearTimeout(container._enterTimer);
+        container._enterTimer = setTimeout(() => container.classList.remove('card-entering'), 380);
     }
     const stack = document.getElementById('cardContainer');
     if (stack) {
@@ -2054,15 +2050,6 @@ const undoBtn = document.getElementById('undoBtn');
         void stack.offsetWidth;
         stack.classList.add('deck-drawn');
         setTimeout(() => stack.classList.remove('deck-drawn'), 420);
-    }
-    if (container) {
-        container.classList.remove('card-exiting');
-        container.classList.remove('card-entering');
-        void container.offsetWidth;
-        requestAnimationFrame(() => {
-            container.classList.add('card-entering');
-            setTimeout(() => container.classList.remove('card-entering'), 320);
-        });
     }
 }
 
