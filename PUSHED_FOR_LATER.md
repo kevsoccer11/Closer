@@ -22,7 +22,7 @@
 - Session recap screen after a round.
 - Joint favorites deck (beyond shared deck).
 - Daily prompt notifications.
-- Themed micro-packs expansion.
+- Custom images for Story Time and the newer micro-packs (Dating Stories, Growing Up, Our Story, Regrets & Do-Overs, Date Night Planner, Building Our Life, Everyday Joy).
 - Auto-lock for Wild & Unspoken.
 
 ## Content

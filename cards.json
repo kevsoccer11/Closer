@@ -1,5 +1,5 @@
 {
-  "version": "7.6-story-and-dating-coverage",
+  "version": "7.7-pillars-packs-and-rewrites",
   "cards": [
     {
       "id": "sec-001",
@@ -4755,7 +4755,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What could I do to make feeling ready for intimacy easier for you?",
+      "prompt": "What could I do to make things easier for you around feeling ready for intimacy?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "heat"
@@ -5881,7 +5881,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 1,
-      "prompt": "What could I do to make feeling safe together easier for you?",
+      "prompt": "What could I do to make things easier for you around feeling safe together?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -5901,7 +5901,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "What part of feeling safe together are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around feeling safe together?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -6251,7 +6251,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 1,
-      "prompt": "What do you most want me to understand about our different levels of desire?",
+      "prompt": "What do you most want me to understand about how our levels of desire differ?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -6261,7 +6261,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "How could I make our different levels of desire easier for you day to day?",
+      "prompt": "How could I make it easier for you when our levels of desire don’t match?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -6281,7 +6281,7 @@
       "module": "sexuality",
       "category": "Communication & Boundaries",
       "intensity": 1,
-      "prompt": "Is there something new about our different levels of desire you’d like us to try together?",
+      "prompt": "Is there something new you’d like us to try when our levels of desire don’t match?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7017,7 +7017,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 1,
-      "prompt": "What could I do to make being playful together easier for you?",
+      "prompt": "What could I do to make things easier for you around being playful together?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7037,7 +7037,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 2,
-      "prompt": "What part of being playful together are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around being playful together?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7377,7 +7377,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 1,
-      "prompt": "What do you most want me to understand about mood?",
+      "prompt": "What do you most want me to understand about what puts you in the mood?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7387,7 +7387,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 2,
-      "prompt": "How could I make mood easier for you day to day?",
+      "prompt": "How could I help you feel more in the mood day to day?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -7407,7 +7407,7 @@
       "module": "sexuality",
       "category": "Sensual Curiosity",
       "intensity": 1,
-      "prompt": "Is there something new about mood you’d like us to try together?",
+      "prompt": "Is there something new you’d like us to try to set the mood?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -8095,7 +8095,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 1,
-      "prompt": "What could I do to make telling me what feels good easier for you?",
+      "prompt": "What could I do to make things easier for you around telling me what feels good?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "heat"
@@ -8115,7 +8115,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 2,
-      "prompt": "What part of telling me what feels good are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around telling me what feels good?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "heat"
@@ -8831,7 +8831,7 @@
       "module": "sexuality",
       "category": "Romance & Imagination",
       "intensity": 1,
-      "prompt": "What should I say or do more about our date nights?",
+      "prompt": "What should I say or do more of around our date nights?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9223,7 +9223,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 2,
-      "prompt": "Has how you feel about what feels good for both of us changed over time? What changed?",
+      "prompt": "Has how you feel about making sure we both feel good changed over time? What changed?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9263,7 +9263,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 1,
-      "prompt": "What have you wanted to ask me about my perspective on what feels good for both of us?",
+      "prompt": "What have you wanted to ask me about making sure we both feel good?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9705,7 +9705,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 2,
-      "prompt": "What could I do to make aftercare easier for you?",
+      "prompt": "What could I do to make things easier for you around aftercare?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -9725,7 +9725,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 2,
-      "prompt": "What part of aftercare are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around aftercare?",
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "heat"
@@ -10119,7 +10119,7 @@
       "module": "sexuality",
       "category": "Rituals & Playfulness",
       "intensity": 2,
-      "prompt": "What should I say or do more about our sexy little routines?",
+      "prompt": "What should I say or do more of around our sexy little routines?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "heat"
@@ -10349,7 +10349,7 @@
       "module": "sexuality",
       "category": "Rituals & Playfulness",
       "intensity": 2,
-      "prompt": "What could I do to make mixing sweet moments with laughs easier for you?",
+      "prompt": "What could I do to make things easier for you around mixing sweet moments with laughs?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "spark"
@@ -10369,7 +10369,7 @@
       "module": "sexuality",
       "category": "Rituals & Playfulness",
       "intensity": 1,
-      "prompt": "What part of mixing sweet moments with laughs are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around mixing sweet moments with laughs?",
       "contextType": "discovery",
       "promptStyle": "question",
       "pillar": "spark"
@@ -11003,7 +11003,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "Is there anything about listening to you I might have wrong?",
+      "prompt": "Is there anything about how I listen that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -11013,7 +11013,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "What’s one little thing I do that makes listening to you easier for you?",
+      "prompt": "What’s one little thing I do that makes you feel more listened to?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -11033,7 +11033,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 2,
-      "prompt": "What’s one thing about how I listen to you that you’d like us to try?",
+      "prompt": "What’s one thing about how we listen to each other that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -11335,7 +11335,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 1,
-      "prompt": "What could I do to make starting hard conversations easier for you?",
+      "prompt": "What could I do to make things easier for you around starting hard conversations?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -11355,7 +11355,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "What part of starting hard conversations are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around starting hard conversations?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -11417,7 +11417,7 @@
       "module": "life",
       "category": "Communication & Boundaries",
       "intensity": 1,
-      "prompt": "When listening to each other gets tough, what do you want from me: listening, ideas, or a hand?",
+      "prompt": "When things get tough around listening to each other, what do you want from me: listening, ideas, or a hand?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12301,7 +12301,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 1,
-      "prompt": "What could I do to make being yourself with me easier for you?",
+      "prompt": "What could I do to make things easier for you around being yourself with me?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12321,7 +12321,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 3,
-      "prompt": "What part of being yourself with me are you curious to try with me?",
+      "prompt": "What part of being fully yourself are you curious to explore together?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12383,7 +12383,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 1,
-      "prompt": "When trusting each other gets tough, what do you want from me: listening, ideas, or a hand?",
+      "prompt": "When things get tough around trusting each other, what do you want from me: listening, ideas, or a hand?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -12715,7 +12715,7 @@
       "module": "life",
       "category": "Values & Identity",
       "intensity": 3,
-      "prompt": "What is something specific about values & identity that matters more to you than I might realize?",
+      "prompt": "What is something specific about values and identity that matters more to you than I might realize?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13549,7 +13549,7 @@
       "module": "life",
       "category": "Values & Identity",
       "intensity": 1,
-      "prompt": "Do you think differently about traditions we want to keep now than you did when we first got together?",
+      "prompt": "Do you think differently about our traditions now than you did when we first got together?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13559,7 +13559,7 @@
       "module": "life",
       "category": "Values & Identity",
       "intensity": 2,
-      "prompt": "What’s one recent win for us around traditions we want to keep?",
+      "prompt": "What’s one recent win for us around our traditions?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13599,7 +13599,7 @@
       "module": "life",
       "category": "Values & Identity",
       "intensity": 3,
-      "prompt": "What would make traditions we want to keep work better for both of us?",
+      "prompt": "What would make our traditions work better for both of us?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -13681,7 +13681,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 3,
-      "prompt": "What has your experience with conflict & repair taught you about yourself?",
+      "prompt": "What has your experience with conflict and repair taught you about yourself?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14183,7 +14183,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "How would you like us to figure out handling disagreements together?",
+      "prompt": "How would you like us to figure out how we handle disagreements?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14243,7 +14243,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "What could I do to make feeling heard after a fight easier for you?",
+      "prompt": "What could I do to make things easier for you around feeling heard after a fight?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14263,7 +14263,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 3,
-      "prompt": "What part of feeling heard after a fight are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around feeling heard after a fight?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14325,7 +14325,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "When handling disagreements gets tough, what do you want from me: listening, ideas, or a hand?",
+      "prompt": "When things get tough around handling disagreements, what do you want from me: listening, ideas, or a hand?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14495,7 +14495,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "What is one thing about conflict & repair you wish we understood better as a couple?",
+      "prompt": "What is one thing about conflict and repair that you wish we understood better as a couple?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14555,7 +14555,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "What do you most want me to understand about decisions we see differently?",
+      "prompt": "What do you most want me to understand when we see a decision differently?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14565,7 +14565,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 2,
-      "prompt": "How could I make decisions we see differently easier for you day to day?",
+      "prompt": "How could I make it easier for you when we see a decision differently?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14585,7 +14585,7 @@
       "module": "life",
       "category": "Conflict & Repair",
       "intensity": 1,
-      "prompt": "Is there something new about decisions we see differently you’d like us to try together?",
+      "prompt": "Is there something new you’d like us to try when we see a decision differently?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
@@ -14657,7 +14657,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 3,
-      "prompt": "What is something specific about money & work that matters more to you than I might realize?",
+      "prompt": "What is something specific about money and work that matters more to you than I might realize?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -14877,7 +14877,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 2,
-      "prompt": "Is there anything about money I might have wrong?",
+      "prompt": "Is there anything about money that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -14887,7 +14887,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 3,
-      "prompt": "What’s one little thing I do that makes money easier for you?",
+      "prompt": "What’s one little thing I do that takes some of the pressure off money for you?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -14907,7 +14907,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 2,
-      "prompt": "What’s one thing about money you’d like us to try?",
+      "prompt": "What’s one thing about money that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15209,7 +15209,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 1,
-      "prompt": "What could I do to make your work goals easier for you?",
+      "prompt": "What could I do to make things easier for you around your work goals?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15229,7 +15229,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 3,
-      "prompt": "What part of your work goals are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around your work goals?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15301,7 +15301,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 2,
-      "prompt": "What is one thing about home & daily life you wish we understood better as a couple?",
+      "prompt": "What is one thing about home and daily life that you wish we understood better as a couple?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15521,7 +15521,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "Is there anything about a peaceful home I might have wrong?",
+      "prompt": "Is there anything about a peaceful home that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15531,7 +15531,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 2,
-      "prompt": "What’s one little thing I do that makes a peaceful home easier for you?",
+      "prompt": "What’s one little thing I do that helps our home feel more peaceful?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15551,7 +15551,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "What’s one thing about a peaceful home you’d like us to try?",
+      "prompt": "What’s one thing about a peaceful home that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15853,7 +15853,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 3,
-      "prompt": "What could I do to make chores and daily stuff easier for you?",
+      "prompt": "What could I do to make things easier for you around chores and daily stuff?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15873,7 +15873,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 2,
-      "prompt": "What part of chores and daily stuff are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around chores and daily stuff?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -15945,7 +15945,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 1,
-      "prompt": "What has your experience with family & community taught you about yourself?",
+      "prompt": "What has your experience with family and community taught you about yourself?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16165,7 +16165,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 3,
-      "prompt": "Is there anything about family I might have wrong?",
+      "prompt": "Is there anything about family that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16175,7 +16175,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 1,
-      "prompt": "What’s one little thing I do that makes family easier for you?",
+      "prompt": "What’s one little thing I do that helps you feel supported when it comes to family?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16195,7 +16195,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 3,
-      "prompt": "What’s one thing about family you’d like us to try?",
+      "prompt": "What’s one thing about family that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16497,7 +16497,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 2,
-      "prompt": "What could I do to make friends and community easier for you?",
+      "prompt": "What could I do to make things easier for you around friends and community?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16517,7 +16517,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 1,
-      "prompt": "What part of friends and community are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around friends and community?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16527,7 +16527,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 2,
-      "prompt": "How could we make family time and friends a little easier for both of us?",
+      "prompt": "How could we make time with family and friends easier for both of us?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16809,7 +16809,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 2,
-      "prompt": "Is there anything about our adventures I might have wrong?",
+      "prompt": "Is there anything about our adventures that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16819,7 +16819,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 3,
-      "prompt": "What’s one little thing I do that makes our adventures easier for you?",
+      "prompt": "What’s one little thing I do that makes our adventures smoother for you?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -16839,7 +16839,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 2,
-      "prompt": "What’s one thing about our adventures you’d like us to try?",
+      "prompt": "What’s one thing about our adventures that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17131,7 +17131,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 3,
-      "prompt": "Is there something I tend to misread about places we want to go?",
+      "prompt": "Is there something I tend to misread about where you want to go?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17141,7 +17141,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 1,
-      "prompt": "What could I do to make places we want to go easier for you?",
+      "prompt": "What could I do to make planning places we want to go easier for you?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "spark"
@@ -17161,7 +17161,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 3,
-      "prompt": "What part of places we want to go are you curious to try with me?",
+      "prompt": "What new place or kind of trip are you curious to try with me?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17171,7 +17171,7 @@
       "module": "life",
       "category": "Adventure & Travel",
       "intensity": 1,
-      "prompt": "How could we make travel and little adventures a little easier for both of us?",
+      "prompt": "How could we make travel and little adventures easier for both of us?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "spark"
@@ -17233,7 +17233,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "What is something specific about health & support that matters more to you than I might realize?",
+      "prompt": "What is something specific about health and support that matters more to you than I might realize?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17453,7 +17453,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 1,
-      "prompt": "Is there anything about support when life gets stressful I might have wrong?",
+      "prompt": "Is there anything about how we support each other when life gets stressful that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17463,7 +17463,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "What’s one little thing I do that makes support when life gets stressful easier for you?",
+      "prompt": "What’s one little thing I do that helps you most when life gets stressful?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17483,7 +17483,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 1,
-      "prompt": "What’s one thing about support when life gets stressful you’d like us to try?",
+      "prompt": "What’s one thing about how we support each other when life gets stressful that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17785,7 +17785,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "What could I do to make looking after each other easier for you?",
+      "prompt": "What could I do to make things easier for you around looking after each other?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17805,7 +17805,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "What part of looking after each other are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around looking after each other?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17857,7 +17857,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 2,
-      "prompt": "What’s one part of our future you’re excited to wake up to?",
+      "prompt": "What’s one part of our future that you’re excited to wake up to?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -17877,7 +17877,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 1,
-      "prompt": "What is one thing about future & growth you wish we understood better as a couple?",
+      "prompt": "What is one thing about growing together that you wish we understood better as a couple?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18087,7 +18087,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 3,
-      "prompt": "Is there anything about our future I might have wrong?",
+      "prompt": "Is there anything about our future that I might have wrong?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18097,7 +18097,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 1,
-      "prompt": "What’s one little thing I do that makes our future easier for you?",
+      "prompt": "What’s one little thing I do that helps you feel good about where we’re headed?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18117,7 +18117,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 3,
-      "prompt": "What’s one thing about our future you’d like us to try?",
+      "prompt": "What’s one thing about our future that you’d like us to try?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18409,7 +18409,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 2,
-      "prompt": "What could I do to make your goals and growth easier for you?",
+      "prompt": "What could I do to make things easier for you around your goals and growth?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18429,7 +18429,7 @@
       "module": "life",
       "category": "Future & Growth",
       "intensity": 1,
-      "prompt": "What part of your goals and growth are you curious to try with me?",
+      "prompt": "What would you be curious to try with me around your goals and growth?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "together"
@@ -18501,7 +18501,7 @@
       "module": "life",
       "category": "Joy & Appreciation",
       "intensity": 3,
-      "prompt": "What has your experience with joy & appreciation taught you about yourself?",
+      "prompt": "What has your experience with joy and appreciation taught you about yourself?",
       "contextType": "alignment",
       "promptStyle": "question",
       "pillar": "closer"
