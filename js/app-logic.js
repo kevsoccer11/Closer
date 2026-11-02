@@ -994,6 +994,11 @@ function openRoundBuilder(isEditing = false) {
         ? 'Change the filters for a new round. Your current progress will be reset.'
         : 'Pick a curated pack or build your own custom conversation below.';
     if (startButton) startButton.textContent = isEditing ? 'Apply & restart round' : 'Start conversation';
+    modal.dataset.selectedPack = '';
+    document.querySelectorAll('#curatedTab .pack-card').forEach(packCard => {
+        packCard.classList.remove('selected');
+        packCard.setAttribute('aria-pressed', 'false');
+    });
     // Reset tabs to Curated
     document.querySelectorAll('.round-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
     const curatedTabBtn = document.querySelector('.round-tab[data-tab="curated"]');
@@ -2529,7 +2534,7 @@ function renderCardBrowserDrawerContent(content, initialView = 'list') {
     content.replaceChildren();
     const intro = document.createElement('p');
     intro.className = 'drawer-intro';
-    intro.textContent = 'Preview each question, then add the cards you want to a custom deck.';
+    intro.textContent = 'Preview each question, then add or remove cards from your custom deck.';
     content.appendChild(intro);
 
     const deckRow = document.createElement('div');
@@ -2814,17 +2819,19 @@ function renderCardBrowserDrawerContent(content, initialView = 'list') {
             addBtn.className = cardView ? 'btn-primary card-browser-add-card' : 'drawer-action-btn';
             addBtn.type = 'button';
             const already = deck ? deck.cardIds.includes(card.id) : false;
-            addBtn.textContent = already ? 'Added' : 'Add to deck';
-            addBtn.disabled = !deck || already;
+            addBtn.textContent = already ? 'Remove from deck' : 'Add to deck';
+            addBtn.disabled = !deck;
             addBtn.onclick = () => {
                 if (!deck) return;
-                if (!deck.cardIds.includes(card.id)) deck.cardIds.push(card.id);
+                const cardIndex = deck.cardIds.indexOf(card.id);
+                if (cardIndex >= 0) deck.cardIds.splice(cardIndex, 1);
+                else deck.cardIds.push(card.id);
                 localStorage.setItem('closer_custom_decks', JSON.stringify(customDecks));
                 renderMyDecks();
                 refreshDeckOptions();
                 deckSelect.value = deck.id;
                 renderList();
-                showToast('Added to deck.');
+                showToast(cardIndex >= 0 ? 'Removed from deck.' : 'Added to deck.');
             };
             actions.appendChild(addBtn);
             if (footer) footer.appendChild(actions);
@@ -3669,6 +3676,12 @@ function renderPairManagement() {
         startButton.onclick = () => {
             closeDrawer();
             openRoundBuilder();
+            if (window.pendingPackKey) {
+                const pendingPack = [...document.querySelectorAll('#curatedTab .pack-card')]
+                    .find(card => card.dataset.pack === window.pendingPackKey);
+                if (pendingPack) pendingPack.click();
+                window.pendingPackKey = null;
+            }
         };
         startSection.append(prompt, startButton);
         pairManagementContainer.appendChild(startSection);
@@ -4694,15 +4707,26 @@ async function renderGuessMe(gm) {
             }
         })();
     }
+    const revealAnswer = gm.answer?.value;
+    const revealGuess = gm.guess?.value;
+    const revealOptions = q?.options;
+    const revealReady = ss.resolved
+        && Array.isArray(revealOptions)
+        && Number.isInteger(revealAnswer)
+        && Number.isInteger(revealGuess)
+        && revealAnswer >= 0 && revealAnswer < revealOptions.length
+        && revealGuess >= 0 && revealGuess < revealOptions.length;
     const qCard = document.createElement('section'); qCard.className='app-hero';
     const qp = document.createElement('p'); qp.className='round-builder-intro';
     const answererName = roomDisplayNames[hostIsAnswerer ? 'host' : 'partner']?.name || (hostIsAnswerer ? 'Player A' : 'Player B');
-    qp.textContent = iAmAnswerer
-        ? `Your turn to choose, ${answererName}.`
-        : 'Guess what your partner will say.';
-    const qText = document.createElement('h2'); qText.textContent = q ? (iAmAnswerer ? q.prompt : 'Guess: ' + q.prompt) : 'Loading question…';
+    const predictorName = roomDisplayNames[hostIsAnswerer ? 'partner' : 'host']?.name || (hostIsAnswerer ? 'Player B' : 'Player A');
+    qp.textContent = ss.resolved ? 'Both choices are locked in. Here’s how they compare!'
+        : iAmAnswerer ? `Your turn to choose, ${answererName}.`
+            : 'Guess what your partner will say.';
+    const qText = document.createElement('h2');
+    qText.textContent = q ? (ss.resolved || iAmAnswerer ? q.prompt : 'Guess: ' + q.prompt) : 'Loading question…';
     qCard.append(qp, qText);
-    if (q && Array.isArray(q.options) && q.options.length === 4) {
+    if (!ss.resolved && q && Array.isArray(q.options) && q.options.length === 4) {
         const opts = document.createElement('div');
         opts.style.display='flex'; opts.style.flexDirection='column'; opts.style.gap='8px'; opts.style.marginTop='12px';
         const alreadySubmitted = iAmAnswerer ? ss.answerSubmitted : ss.guessSubmitted;
@@ -4772,24 +4796,55 @@ async function renderGuessMe(gm) {
     }
     view.appendChild(qCard);
     if (ss.resolved) {
-        const reveal = document.createElement('section'); reveal.className='continue-card';
-        const content = document.createElement('div'); content.className='continue-content';
-        const label = document.createElement('span'); label.className='continue-label'; label.textContent='Reveal';
-        const t = document.createElement('h2'); t.className='continue-title';
-        const actual = gm.answer?.value;
-        const guessv = gm.guess?.value;
-        const correct = actual === guessv;
-        t.textContent = correct ? 'You know your person!' : 'A little surprise!';
-        const aLine = document.createElement('p'); aLine.textContent = 'Actual answer: ' + (q?.options?.[actual] ?? '?');
-        const gLine = document.createElement('p'); gLine.textContent = 'Guess: ' + (q?.options?.[guessv] ?? '?');
-        content.append(label, t, aLine, gLine);
+        const reveal = document.createElement('section');
+        reveal.className = 'continue-card guess-me-reveal';
+        reveal.setAttribute('aria-labelledby', 'guessMeRevealTitle');
+        const content = document.createElement('div');
+        content.className = 'continue-content guess-me-reveal-content';
+        const label = document.createElement('span');
+        label.className = 'continue-label';
+        label.textContent = 'The big reveal';
+        const t = document.createElement('h2');
+        t.className = 'continue-title';
+        t.id = 'guessMeRevealTitle';
+        const correct = revealReady && revealAnswer === revealGuess;
+        t.textContent = !revealReady ? 'Your choices are on their way…'
+            : correct ? 'You’re in sync! ✨' : 'A fun surprise! 💛';
+        const comparison = document.createElement('div');
+        comparison.className = 'guess-me-answer-comparison';
+        comparison.setAttribute('role', 'group');
+        comparison.setAttribute('aria-label', 'Both players’ choices');
+        const createAnswerTile = (name, heading, value, className) => {
+            const tile = document.createElement('article');
+            tile.className = `guess-me-answer-tile ${className}`;
+            const who = document.createElement('h3');
+            who.textContent = `${name} ${heading}`;
+            const answer = document.createElement('p');
+            answer.className = 'guess-me-answer-value';
+            answer.textContent = revealReady ? revealOptions[value] : 'Loading both choices…';
+            tile.append(who, answer);
+            return tile;
+        };
+        comparison.append(
+            createAnswerTile(answererName, 'chose', revealAnswer, 'guess-me-answer-actual'),
+            createAnswerTile(predictorName, 'predicted', revealGuess, 'guess-me-answer-guess')
+        );
+        const result = document.createElement('p');
+        result.className = 'guess-me-reveal-result';
+        result.setAttribute('aria-live', 'polite');
+        result.textContent = revealReady
+            ? correct ? 'Nailed it! Take a moment to celebrate your match.' : 'Different picks, and something new to learn about each other.'
+            : 'Waiting for both choices to load before continuing.';
+        content.append(label, t, comparison, result);
         reveal.appendChild(content);
-        const nextBtn = document.createElement('button'); nextBtn.className='btn-primary'; nextBtn.textContent='Next question';
-        nextBtn.disabled = gm.status === 'paused' || !ss.scored;
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'btn-primary';
+        nextBtn.textContent = isHost ? 'Next question' : 'Waiting for host';
+        nextBtn.disabled = gm.status === 'paused' || !ss.scored || !revealReady || !isHost;
         if (gm.status === 'paused') nextBtn.textContent = 'Resume to continue';
-        else if (!ss.scored) nextBtn.textContent = 'Revealing…';
+        else if (!revealReady || !ss.scored) nextBtn.textContent = 'Revealing…';
         nextBtn.onclick = async () => {
-            if (!isHost) { if (typeof showToast==='function') showToast('Waiting for host…'); return; }
+            if (!isHost || !revealReady || !ss.scored || gm.status !== 'playing') return;
             const nextIdx = (gm.currentIndex||0) + 1;
             if (nextIdx >= (gm.length||0)) {
                 try {

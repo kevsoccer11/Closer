@@ -294,6 +294,32 @@ check('bottom navigation closes open overlays before navigating', () => {
     }
 });
 
+check('Explore and card browser controls clear the fixed bottom navigation', () => {
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!styles.includes('padding: 16px 18px calc(var(--app-bottom-nav-height) + 48px + env(safe-area-inset-bottom, 0px));')
+        || !styles.includes('padding: calc(16px + env(safe-area-inset-top, 0px)) 18px calc(var(--app-bottom-nav-height) + 24px + env(safe-area-inset-bottom, 0px));')) {
+        throw new Error('page and drawer scrolling do not reserve enough space above the fixed bottom navigation');
+    }
+});
+
+check('paired pack selection remains in the connected round builder until the host starts', () => {
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const builderPackSelection = app.match(/if \(btn\.closest\('#curatedTab'\)\) \{([\s\S]*?)\n            \}\n            startPackByKey/);
+    const pairedStart = logic.match(/startButton\.onclick = \(\) => \{([\s\S]*?)\n        \};\n        startSection\.append/);
+    if (!builderPackSelection
+        || !builderPackSelection[1].includes('applyPack(packKey);')
+        || !builderPackSelection[1].includes('updateRoundMatchCount();')
+        || builderPackSelection[1].includes('startPackByKey(')
+        || !app.includes("document.querySelector('.round-tab[data-tab=\"custom\"]')?.addEventListener('click'")
+        || !pairedStart
+        || !pairedStart[1].includes('openRoundBuilder();')
+        || !pairedStart[1].includes('if (pendingPack) pendingPack.click();')
+        || !pairedStart[1].includes('window.pendingPackKey = null;')) {
+        throw new Error('paired pack selection restarts mode selection or loses the selected pack before starting');
+    }
+});
+
 check('card browser includes searchable deck, intensity, type, and category filters', () => {
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const styles = fs.readFileSync('css/styles.css', 'utf8');
@@ -874,7 +900,7 @@ check('You Get Me reveals for both players and supports shared pause, resume, an
     const ruleTests = fs.readFileSync('tests/database-rules.test.js', 'utf8');
     if (!logic.includes("if (gm.status === 'playing' && ss.answerSubmitted && ss.guessSubmitted && !ss.resolved && isHost)")
         || !logic.includes('if (ss.resolved && !ss.scored && isHost) {\n        (async () => {')
-        || !logic.includes('nextBtn.disabled = gm.status === \'paused\' || !ss.scored;')
+        || !logic.includes('nextBtn.disabled = gm.status === \'paused\' || !ss.scored || !revealReady || !isHost;')
         || !logic.includes("gm.status === 'paused' ? 'Resume game' : 'Pause game'")
         || !logic.includes("textContent = 'End game';")
         || !logic.includes("if (gm.status === 'ended')")) {
@@ -885,6 +911,23 @@ check('You Get Me reveals for both players and supports shared pause, resume, an
         || !rules['.validate'].includes("newData.val() === 'ended'")
         || !ruleTests.includes("guessMe/status`), 'paused'"))
         throw new Error('shared game state transitions are not covered by database rules tests');
+});
+
+check('You Get Me compares both locked choices before the host can continue', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const styles = fs.readFileSync('css/styles.css', 'utf8');
+    if (!logic.includes("qp.textContent = ss.resolved ? 'Both choices are locked in.")
+        || !logic.includes('if (!ss.resolved && q && Array.isArray(q.options)')
+        || !logic.includes("comparison.className = 'guess-me-answer-comparison';")
+        || !logic.includes("createAnswerTile(answererName, 'chose', revealAnswer")
+        || !logic.includes("createAnswerTile(predictorName, 'predicted', revealGuess")
+        || !logic.includes('const revealReady = ss.resolved')
+        || !logic.includes('|| !revealReady || !isHost;')
+        || !logic.includes("if (!isHost || !revealReady || !ss.scored || gm.status !== 'playing') return;")
+        || !styles.includes('#guessMeView .guess-me-answer-comparison {')
+        || !styles.includes('@media (prefers-reduced-motion: reduce)')) {
+        throw new Error('You Get Me should reveal both locked choices together before the host advances');
+    }
 });
 
 check('approved private rooms direct the host to choose a pack', () => {
@@ -1214,7 +1257,10 @@ check('preview mode displays progress and keeps its label inside the card header
         || !app.includes("openCustomDeckCardBrowser('card')")
         || !app.includes("openCustomDeckCardBrowser('list')")
         || !app.includes("renderCardBrowserDrawerContent(document.getElementById('drawerContent'), view)")
-        || !cardBrowser?.[1].includes("addBtn.textContent = already ? 'Added' : 'Add to deck';")
+        || !cardBrowser?.[1].includes("intro.textContent = 'Preview each question, then add or remove cards from your custom deck.';")
+        || !cardBrowser?.[1].includes("addBtn.textContent = already ? 'Remove from deck' : 'Add to deck';")
+        || !cardBrowser[1].includes("if (cardIndex >= 0) deck.cardIds.splice(cardIndex, 1);")
+        || !cardBrowser[1].includes("showToast(cardIndex >= 0 ? 'Removed from deck.' : 'Added to deck.');")
         || !cardBrowser[1].includes("createDeckBtn.textContent = 'New deck';")
         || !cardBrowser[1].includes("listViewButton.textContent = 'List view';")
         || !cardBrowser[1].includes("cardViewButton.textContent = 'Card view';")
@@ -1240,6 +1286,25 @@ check('preview mode displays progress and keeps its label inside the card header
 
 check('validate cards.json', () => { execSync('node validate-cards.js cards.json', { stdio: 'pipe' }); });
 check('validate explicit-cards.json', () => { execSync('node validate-cards.js explicit-cards.json', { stdio: 'pipe' }); });
+check('rephrased explicit prompt templates stay varied and retain their cards', () => {
+    const bank = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8'));
+    const cardsById = new Map(bank.cards.map(card => [card.id, card]));
+    const expectedIds = [
+        '0001 0051 0076 0101 0126 0151 0176 0201 0251 0276 0301 0326 0351 0376 0401 0426 0451 0476',
+        '0003 0053 0078 0103 0128 0153 0178 0203 0253 0278 0303 0328 0353 0378 0403 0428 0453 0478',
+        '0005 0030 0055 0080 0105 0130 0155 0180 0205 0230 0255 0280 0305 0330 0355 0380 0405 0430 0455 0480',
+        '0009 0059 0084 0109 0134 0159 0184 0209 0234 0259 0284 0309 0334 0359 0384 0409 0434 0459 0484',
+        '0024 0074 0099 0124 0149 0174 0199 0224 0249 0274 0299 0324 0349 0374 0399 0424 0449 0474 0499',
+        '0015 0040 0065 0090 0115 0140 0165 0190 0215 0240 0265 0290 0315 0340 0365 0390 0415 0440 0465 0490'
+    ].flatMap(group => group.split(' ').map(id => `explicit-${id}`));
+    const repeatedTemplates = /would you be into it\s*[—–-]\s*or save that for later|slow and teasing or straight to the good stuff|who.?s calling the shots during|director.?s cut|if you get quiet while|position or setup you’ve been wanting to try for/i;
+    if (expectedIds.length !== 114
+        || expectedIds.some(id => !cardsById.has(id))
+        || expectedIds.some(id => repeatedTemplates.test(cardsById.get(id).prompt))
+        || bank.cards.some(card => repeatedTemplates.test(card.prompt))) {
+        throw new Error('targeted explicit prompts should retain their IDs without restoring repeated templates');
+    }
+});
 check('oral-sex prompts use invitational, non-pressuring language', () => {
     const bank = JSON.parse(fs.readFileSync('explicit-cards.json', 'utf8'));
     const recentOralPrompts = bank.cards.filter(card => card.category === 'Oral Sex' && card.id.startsWith('new-'));

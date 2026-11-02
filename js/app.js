@@ -136,7 +136,44 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card').forEach(btn => {
         if (btn.classList.contains('category-card')) return;
         btn.addEventListener('click', () => {
+            if (btn.closest('#curatedTab')) {
+                const packKey = btn.dataset.pack;
+                const roundBuilder = document.getElementById('roundBuilderModal');
+                if (!packKey || !roundBuilder) return;
+                roundBuilder.dataset.selectedPack = packKey;
+                document.querySelectorAll('#curatedTab .pack-card').forEach(packCard => {
+                    const selected = packCard === btn;
+                    packCard.classList.toggle('selected', selected);
+                    packCard.setAttribute('aria-pressed', String(selected));
+                });
+                if (packKey === 'escalation') {
+                    const status = document.getElementById('roundBuilderStatus');
+                    if (status) status.textContent = window.roomRef
+                        ? 'Slow Burn is not available in a paired room yet. Choose another pack to play together.'
+                        : 'Slow Burn uses its own progressive round length.';
+                    const matchCount = document.getElementById('roundMatchCount');
+                    if (matchCount) matchCount.textContent = window.roomRef
+                        ? 'Choose another pack for this paired room.'
+                        : 'Slow Burn uses a progressive round.';
+                    const startButton = document.getElementById('startRoundBtn');
+                    if (startButton) startButton.disabled = Boolean(window.roomRef);
+                    return;
+                }
+                applyPack(packKey);
+                const status = document.getElementById('roundBuilderStatus');
+                if (status) status.textContent = `${btn.querySelector('.pack-title')?.textContent || 'Pack'} selected. Set your question count, then start the conversation.`;
+                updateRoundMatchCount();
+                return;
+            }
             startPackByKey(btn.dataset.pack);
+        });
+    });
+    document.querySelector('.round-tab[data-tab="custom"]')?.addEventListener('click', () => {
+        const roundBuilder = document.getElementById('roundBuilderModal');
+        if (roundBuilder) roundBuilder.dataset.selectedPack = '';
+        document.querySelectorAll('#curatedTab .pack-card').forEach(packCard => {
+            packCard.classList.remove('selected');
+            packCard.setAttribute('aria-pressed', 'false');
         });
     });
     document.getElementById('warmUpNextBtn')?.addEventListener('click', () => {
@@ -533,14 +570,30 @@ setTimeout(() => {
 document.getElementById('startRoundBtn')?.addEventListener('click', () => {
         try {
             browseMode = false;
-            const sel = getRoundBuilderSelection();
-            if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
-            applyRoundSelection(sel).catch(error => {
-                console.error('Start round failed:', error);
-                alert('Could not start conversation: ' + error.message);
-            });
-            const browseIndicator = document.getElementById('browseIndicator');
-            if (browseIndicator) browseIndicator.classList.add('hidden');
+        const selectedPack = document.getElementById('roundBuilderModal')?.dataset.selectedPack;
+        if (selectedPack === 'escalation') {
+            if (window.roomRef) {
+                const status = document.getElementById('roundBuilderStatus');
+                if (status) status.textContent = 'Slow Burn is not available in a paired room yet. Choose another pack to play together.';
+                return;
+            }
+            closeRoundBuilder();
+            startProgressiveGame(true);
+            return;
+        }
+        const sel = getRoundBuilderSelection();
+        if (!sel.modules || sel.modules.length === 0) { sel.modules = ['spark']; }
+        const startButton = document.getElementById('startRoundBtn');
+        if (startButton) startButton.disabled = true;
+        applyRoundSelection(sel).then(started => {
+            if (!started && startButton) startButton.disabled = false;
+        }).catch(error => {
+            console.error('Start round failed:', error);
+            alert('Could not start conversation: ' + error.message);
+            if (startButton) startButton.disabled = false;
+        });
+        const browseIndicator = document.getElementById('browseIndicator');
+        if (browseIndicator) browseIndicator.classList.add('hidden');
         } catch (e) { console.error('Start round failed:', e); alert('Could not start conversation: ' + e.message); }
     });
     const gameModeSelect = document.getElementById('gameModeSelect');
