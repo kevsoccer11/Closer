@@ -793,11 +793,11 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
                 return;
             }
             const html = `
-                <div class="room-create-section">
+                <div class="room-create-section" id="pairCreateSection">
                     <p>Create a room as host. Your partner can request to join, and you decide whether to approve them. Rooms allow one host and one partner. You'll be asked for a name first; it's required to create or join a room.</p>
                     <button id="createRoomBtn" class="btn-primary" type="button">Create room</button>
                 </div>
-                <div class="room-join-section">
+                <div class="room-join-section" id="pairJoinSection">
                     <label for="roomCodeInput">Room code from the host</label>
                     <input type="text" id="roomCodeInput" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Paste the host’s room code" />
                     <button id="joinRoomBtn" class="btn-secondary" type="button">Request to join</button>

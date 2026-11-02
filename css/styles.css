@@ -4448,3 +4448,23 @@ main {
     transform: translateX(-50%);
     z-index: 10013;
 }
+
+/* In-app prompts (rejoin and You Get Me request) */
+.rejoin-banner {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    top: calc(env(safe-area-inset-top, 0px) + 12px);
+    max-width: 536px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: var(--card-bg, #fff);
+    color: var(--text-main, inherit);
+    border: 1px solid var(--card-border, rgba(128, 128, 128, .35));
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .22);
+    z-index: 10040;
+}
+.rejoin-banner p { margin: 0 0 10px; }
+.rejoin-banner div { display: flex; gap: 8px; }
+.rejoin-banner button { flex: 1; }

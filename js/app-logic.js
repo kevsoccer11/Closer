@@ -122,8 +122,59 @@ async function initDatabase() {
     const savedRole = readStoredValue('closer_room_role');
     // Do not auto-connect to a previous room on load; pairing is an explicit user action.
     // (Saved code/role are retained for manual reconnect.)
-    void savedCode; void savedRole;
+    offerRoomRejoin(savedCode, savedRole);
 
+}
+
+function offerRoomRejoin(code, role) {
+    if (!window.db || window.currentRoomRole || !/^[A-Za-z0-9_-]{22}$/.test(code || '') || !['host', 'partner'].includes(role)) return;
+    if (document.getElementById('rejoinBanner')) return;
+    const banner = document.createElement('div');
+    banner.id = 'rejoinBanner';
+    banner.className = 'rejoin-banner';
+    banner.setAttribute('role', 'alert');
+    const text = document.createElement('p');
+    text.textContent = 'You were in a room with your partner. Rejoin?';
+    const actions = document.createElement('div');
+    const forget = () => {
+        try { localStorage.removeItem('closer_room_code'); localStorage.removeItem('closer_room_role'); } catch (e) {}
+        banner.remove();
+    };
+    const rejoin = document.createElement('button');
+    rejoin.type = 'button';
+    rejoin.className = 'btn-primary';
+    rejoin.textContent = 'Rejoin';
+    rejoin.onclick = async () => {
+        rejoin.disabled = true;
+        try {
+            const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
+            const roomRef = window.db.ref(`rooms/${code}`);
+            const seat = await roomRef.child(`members/${role}`).once('value');
+            if (!user || seat.val() !== user.uid) {
+                forget();
+                showToast('That room is no longer available.');
+                return;
+            }
+            const [card, mode] = await Promise.all([roomRef.child('activeCard').once('value'), roomRef.child('gameMode').once('value')]);
+            banner.remove();
+            connectToRoom(code, role);
+            renderPairManagement();
+            if (card.exists() && mode.val() !== 'guess-me') showGameView();
+            showToast('Back in your room.');
+        } catch (error) {
+            console.error('Could not rejoin the room:', error);
+            rejoin.disabled = false;
+            showToast('Could not rejoin. Check your connection and try again.');
+        }
+    };
+    const leave = document.createElement('button');
+    leave.type = 'button';
+    leave.className = 'btn-secondary';
+    leave.textContent = 'Not now';
+    leave.onclick = forget;
+    actions.append(rejoin, leave);
+    banner.append(text, actions);
+    document.body.appendChild(banner);
 }
 
 function scheduleCommunityDeckLoad() {
@@ -739,15 +790,43 @@ function detachGuessMeListener() {
     guessMeListener = null;
 }
 function leaveGuessMeRoom() {
-    detachGuessMeListener();
+    leaveRoom();
+}
+
+function leaveRoom({ confirmFirst = true } = {}) {
+    if (!['host', 'partner', 'requesting'].includes(window.currentRoomRole)) return;
+    const seated = isSeatedRoomMember();
+    if (confirmFirst) {
+        const message = seated
+            ? 'Leave this room? Your partner will see you go offline. You can rejoin with the room code.'
+            : 'Cancel your request to join this room?';
+        if (!confirm(message)) return;
+    }
+    // Tell the partner right away instead of waiting for the connection to time out.
+    if (seated && presenceState.ref) presenceState.ref.set({ online: false, lastSeen: Date.now() }).catch(() => {});
+    if (!seated && pendingJoinRequestRef) pendingJoinRequestRef.remove().catch(() => {});
     detachRoomAccessListeners();
-    hideGuessMeView();
     window.roomRef = null;
     window.currentRoomCode = null;
     window.currentRoomRole = null;
-    showHomeView();
-    setPairStatus('You left the You Get Me session. The room remains available to its members.');
+    partnerConnected = false;
+    currentRoomGameMode = null;
+    currentRoomGameModeLoaded = false;
+    roomDisplayNames = {};
+    pendingJoinRequests = {};
+    try {
+        localStorage.removeItem('closer_room_code');
+        localStorage.removeItem('closer_room_role');
+    } catch (e) {}
+    document.getElementById('rejoinBanner')?.remove();
+    document.getElementById('guessMeRequestBanner')?.remove();
+    hideGuessMeView();
+    resetLocalConversation('You left the room.');
+    if (typeof updatePrivateShareUi === 'function') updatePrivateShareUi();
+    renderPairManagement();
+    renderPresenceIndicator();
 }
+window.leaveRoom = leaveRoom;
 window.showGuessMeView = showGuessMeView;
 window.hideGuessMeView = hideGuessMeView;
 window.attachGuessMeListener = attachGuessMeListener;
@@ -1854,7 +1933,15 @@ function canCurrentUserAdvanceCard() {
     if (isCompareFirstSessionActive()) return window.currentRoomRole === 'host';
     if (!turnTakingEnabled) return true; // turn-taking off: keep existing free-advance behavior
     const turnOwnerRole = activeTurn === 1 ? 'partner' : 'host';
-    return window.currentRoomRole === turnOwnerRole;
+    return window.currentRoomRole === turnOwnerRole || isSeatAwayLongEnough(turnOwnerRole);
+}
+
+const TURN_TAKEOVER_MS = 30000;
+// A partner who has been offline or backgrounded this long no longer blocks the game.
+function isSeatAwayLongEnough(seat) {
+    const presence = roomPresence[seat];
+    return Boolean(presence && presence.online === false && Number.isFinite(presence.lastSeen)
+        && Date.now() - presence.lastSeen >= TURN_TAKEOVER_MS);
 }
 
 function advanceCard(passed = false) {
@@ -1972,7 +2059,9 @@ function updateTurnIndicator() {
                     turnLabel = `${getPlayerIdentifier(activeTurn)} · Your turn`;
                 } else {
                     const offline = roomPresence[turnSeat] && roomPresence[turnSeat].online === false;
-                    turnLabel = `Waiting for ${getPlayerIdentifier(activeTurn)}${offline ? ' (offline)' : ''}`;
+                    turnLabel = isSeatAwayLongEnough(turnSeat)
+                        ? `${getPlayerIdentifier(activeTurn)} is away · you can continue`
+                        : `Waiting for ${getPlayerIdentifier(activeTurn)}${offline ? ' (offline)' : ''}`;
                 }
             }
             turnIndicator.textContent = pickedLabel || turnLabel;
@@ -3689,14 +3778,26 @@ function renderPairManagement() {
             ? `Partner connected · Host · ${window.currentRoomCode}`
             : `Room created and ready · Host · ${window.currentRoomCode}`;
     } else if (window.currentRoomRole === 'partner') {
-        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner. The host will choose a pack; the game will open here automatically.`;
+        statusText.textContent = `Connected to room ${window.currentRoomCode} · Partner. Either of you can choose what to play; the game opens automatically.`;
     } else if (window.currentRoomRole === 'requesting') {
         statusText.textContent = `Request pending · Room ${window.currentRoomCode}`;
     } else {
         statusText.textContent = 'Not connected to a room.';
     }
     roomStatus.appendChild(statusText);
+    const inRoom = ['host', 'partner', 'requesting'].includes(window.currentRoomRole);
+    if (inRoom) {
+        const leaveButton = document.createElement('button');
+        leaveButton.type = 'button';
+        leaveButton.className = 'btn-secondary';
+        leaveButton.id = 'leaveRoomBtn';
+        leaveButton.textContent = window.currentRoomRole === 'requesting' ? 'Cancel request' : 'Leave room';
+        leaveButton.onclick = () => leaveRoom();
+        roomStatus.appendChild(leaveButton);
+    }
     pairManagementContainer.appendChild(roomStatus);
+    document.getElementById('pairCreateSection')?.classList.toggle('hidden', inRoom);
+    document.getElementById('pairJoinSection')?.classList.toggle('hidden', inRoom);
 
     if (window.currentRoomRole === 'host' && window.currentRoomCode) {
         const invite = document.createElement('section');
@@ -3980,6 +4081,7 @@ function updateConnectionStatus() {
 }
 
 function stopRoomPresence() {
+    clearTimeout(presenceState.takeoverTimer);
     if (presenceState.ref) {
         presenceState.ref.onDisconnect().cancel().catch(() => {});
     }
@@ -4057,7 +4159,19 @@ function startRoomPresence(roomCode, role) {
     presenceState.listener = snapshot => {
         roomPresence = snapshot.val() || {};
         renderPresenceIndicator();
-        if (currentCard && !browseMode) updateTurnIndicator();
+        clearTimeout(presenceState.takeoverTimer);
+        const refreshTurn = () => {
+            if (!currentCard || browseMode) return;
+            updateTurnIndicator();
+            updateCompareFirstControls();
+            document.getElementById('skipHint')?.classList.toggle('hidden', !canCurrentUserAdvanceCard());
+        };
+        refreshTurn();
+        const awaySeat = ['host', 'partner'].find(seat => seat !== window.currentRoomRole);
+        const away = roomPresence[awaySeat];
+        if (away && away.online === false && Number.isFinite(away.lastSeen)) {
+            presenceState.takeoverTimer = setTimeout(refreshTurn, Math.max(0, TURN_TAKEOVER_MS - (Date.now() - away.lastSeen)) + 250);
+        }
     };
     presenceState.listenRef.on('value', presenceState.listener, error => {
         console.error('Could not read room presence:', error);
@@ -4118,6 +4232,7 @@ function detachRoomAccessListeners() {
 function connectToRoom(roomCode, role) {
     if (!window.db) throw new Error('Firebase pairing is not configured.');
     detachRoomAccessListeners();
+    document.getElementById('rejoinBanner')?.remove();
     window.currentRoomCode = roomCode;
     window.currentRoomRole = role;
     partnerConnected = role === 'partner';
@@ -4706,30 +4821,70 @@ window.startGuessMeInRoom = startGuessMeInRoom;
 async function requestGuessMeFromHost(selection) {
     if (!window.roomRef || window.currentRoomRole !== 'partner') throw new Error('You are not connected to a room.');
     const uid = window.firebase?.auth().currentUser?.uid;
-    await window.roomRef.child('guessMeRequest').set({ by: uid, length: selection.length, vibe: selection.vibe, at: Date.now() });
+    const ref = window.roomRef.child('guessMeRequest');
+    await ref.set({ by: uid, length: selection.length, vibe: selection.vibe, at: Date.now() });
+    // The host clears the request whether they accept or decline, so tell the guest when it was declined.
+    const handler = snapshot => {
+        if (snapshot.exists()) return;
+        ref.off('value', handler);
+        setTimeout(() => {
+            if (window.roomRef && currentRoomGameMode !== 'guess-me') showToast('Your partner is not ready for You Get Me yet.');
+        }, 1500);
+    };
+    setTimeout(() => ref.on('value', handler), 1000);
 }
 window.requestGuessMeFromHost = requestGuessMeFromHost;
+
+function showGuessMeRequestBanner(request, onAnswer) {
+    document.getElementById('guessMeRequestBanner')?.remove();
+    const other = roomDisplayNames.partner;
+    const who = `${other?.icon || ''} ${other?.name || 'Your partner'}`.trim();
+    const banner = document.createElement('div');
+    banner.id = 'guessMeRequestBanner';
+    banner.className = 'rejoin-banner';
+    banner.setAttribute('role', 'alert');
+    const text = document.createElement('p');
+    text.textContent = `${who} wants to play You Get Me (${request.length} questions, ${request.vibe}).`;
+    const actions = document.createElement('div');
+    const start = document.createElement('button');
+    start.type = 'button';
+    start.className = 'btn-primary';
+    start.textContent = 'Start';
+    const decline = document.createElement('button');
+    decline.type = 'button';
+    decline.className = 'btn-secondary';
+    decline.textContent = 'Not now';
+    const answer = accept => { banner.remove(); onAnswer(accept); };
+    start.onclick = () => answer(true);
+    decline.onclick = () => answer(false);
+    actions.append(start, decline);
+    banner.append(text, actions);
+    document.body.appendChild(banner);
+}
 
 function attachGuessMeRequestListener() {
     if (!window.roomRef || window.currentRoomRole !== 'host') return;
     const ref = window.roomRef.child('guessMeRequest');
-    const handler = async snapshot => {
+    const handler = snapshot => {
         const request = snapshot.val();
-        if (!request || !Number.isFinite(request.at) || Date.now() - request.at > 10 * 60 * 1000) return;
-        const other = roomDisplayNames.partner;
-        const who = `${other?.icon || ''} ${other?.name || 'Your partner'}`.trim();
-        const accept = window.confirm(`${who} wants to play You Get Me (${request.length} questions, ${request.vibe}). Start it now?`);
-        try {
-            await ref.remove();
-            if (accept) {
-                await startGuessMeInRoom({ length: request.length, vibe: request.vibe });
-                showGuessMeView();
-                attachGuessMeListener();
-            }
-        } catch (error) {
-            console.error('Could not handle the You Get Me request:', error);
-            showToast(`Could not start You Get Me: ${error.message}`);
+        if (!request) {
+            document.getElementById('guessMeRequestBanner')?.remove();
+            return;
         }
+        if (!Number.isFinite(request.at) || Date.now() - request.at > 10 * 60 * 1000) return;
+        showGuessMeRequestBanner(request, async accept => {
+            try {
+                await ref.remove();
+                if (accept) {
+                    await startGuessMeInRoom({ length: request.length, vibe: request.vibe });
+                    showGuessMeView();
+                    attachGuessMeListener();
+                }
+            } catch (error) {
+                console.error('Could not handle the You Get Me request:', error);
+                showToast(`Could not start You Get Me: ${error.message}`);
+            }
+        });
     };
     ref.on('value', handler, error => console.error('Could not read You Get Me requests:', error));
     guessMeRequestListener = { ref, handler };
