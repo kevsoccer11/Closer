@@ -3894,7 +3894,92 @@ function updateConnectionStatus() {
     btn.setAttribute('aria-label', connected ? 'Connected with partner' : 'Pair with partner');
 }
 
+function stopRoomPresence() {
+    if (presenceState.ref) {
+        presenceState.ref.onDisconnect().cancel().catch(() => {});
+    }
+    if (presenceState.connectedRef && presenceState.connectedHandler) {
+        presenceState.connectedRef.off('value', presenceState.connectedHandler);
+    }
+    if (presenceState.listenRef && presenceState.listener) {
+        presenceState.listenRef.off('value', presenceState.listener);
+    }
+    if (presenceState.visibilityHandler) {
+        document.removeEventListener('visibilitychange', presenceState.visibilityHandler);
+    }
+    presenceState = {};
+    roomPresence = {};
+    renderPresenceIndicator();
+}
+
+function renderPresenceIndicator() {
+    let pill = document.getElementById('roomPresence');
+    if (!window.currentRoomCode || !window.roomRef || !['host', 'partner'].includes(window.currentRoomRole)) {
+        pill?.remove();
+        return;
+    }
+    if (!pill) {
+        pill = document.createElement('div');
+        pill.id = 'roomPresence';
+        pill.className = 'room-presence';
+        pill.setAttribute('role', 'status');
+        pill.setAttribute('aria-live', 'polite');
+        document.body.appendChild(pill);
+    }
+    pill.replaceChildren();
+    ['host', 'partner'].forEach(seat => {
+        const identity = roomDisplayNames[seat];
+        const online = roomPresence[seat]?.online === true;
+        const label = identity?.name || (seat === 'host' ? 'Host' : 'Partner');
+        const item = document.createElement('span');
+        item.className = 'room-presence-item';
+        const dot = document.createElement('span');
+        dot.className = `presence-dot ${online ? 'online' : 'offline'}`;
+        dot.setAttribute('aria-hidden', 'true');
+        const text = document.createElement('span');
+        const who = seat === window.currentRoomRole ? `${label} (you)` : label;
+        text.textContent = `${identity?.icon || ''} ${who}`.trim();
+        item.title = online ? `${label} is connected` : `${label} is offline`;
+        const sr = document.createElement('span');
+        sr.className = 'sr-only';
+        sr.textContent = online ? ' connected' : ' offline';
+        item.append(dot, text, sr);
+        pill.appendChild(item);
+    });
+}
+
+function startRoomPresence(roomCode, role) {
+    stopRoomPresence();
+    if (!window.db || !window.roomRef) return;
+    const ref = window.roomRef.child(`presence/${role}`);
+    const connectedRef = window.db.ref('.info/connected');
+    presenceState = { ref, connectedRef, listenRef: window.roomRef.child('presence') };
+    const mark = online => {
+        if (!presenceState.ref) return;
+        presenceState.ref.set({ online, lastSeen: Date.now() }).catch(error => {
+            console.error('Could not update presence:', error);
+        });
+    };
+    presenceState.connectedHandler = snapshot => {
+        if (snapshot.val() !== true) return;
+        ref.onDisconnect().set({ online: false, lastSeen: firebase.database.ServerValue.TIMESTAMP })
+            .then(() => mark(document.visibilityState !== 'hidden'))
+            .catch(error => console.error('Could not register presence:', error));
+    };
+    connectedRef.on('value', presenceState.connectedHandler);
+    presenceState.visibilityHandler = () => mark(document.visibilityState !== 'hidden');
+    document.addEventListener('visibilitychange', presenceState.visibilityHandler);
+    presenceState.listener = snapshot => {
+        roomPresence = snapshot.val() || {};
+        renderPresenceIndicator();
+    };
+    presenceState.listenRef.on('value', presenceState.listener, error => {
+        console.error('Could not read room presence:', error);
+    });
+}
+
 function detachRoomAccessListeners() {
+    stopRoomPresence();
     detachGuessMeListener();
     detachCardAnswerListeners();
     cardAnswerSetupKey = null;
@@ -3952,8 +4037,10 @@ function connectToRoom(roomCode, role) {
     localStorage.setItem('closer_room_role', role);
     window.roomRef = window.db.ref(`rooms/${roomCode}`);
     roomDisplayNames = {};
+    startRoomPresence(roomCode, role);
     playerNamesListener = snapshot => {
         roomDisplayNames = snapshot.val() || {};
+        renderPresenceIndicator();
         if (currentCard) renderCard(currentCard);
     };
     window.roomRef.child('playerNames').on('value', playerNamesListener, error => {
@@ -4063,10 +4150,56 @@ function generateRoomCode() {
     return encodeBase64Url(bytes);
 }
 
+// Resolves with {name, icon}, or null if cancelled. The name is mandatory.
+function promptRoomIdentity(role) {
+    const index = role === 'host' ? 0 : 1;
+    const modal = document.getElementById('roomIdentityModal');
+    const form = document.getElementById('roomIdentityForm');
+    const nameInput = document.getElementById('roomIdentityName');
+    const iconSelect = document.getElementById('roomIdentityIcon');
+    const submit = document.getElementById('roomIdentitySubmit');
+    const cancel = document.getElementById('roomIdentityCancel');
+    const error = document.getElementById('roomIdentityError');
+    if (!modal || !form) return Promise.resolve({ name: playerNames[role]?.name || `Player ${index + 1}`, icon: playerNames[role]?.icon || PLAYER_ICONS[index] });
+    const clean = value => value.trim().replace(/\s+/g, ' ').slice(0, 24);
+    iconSelect.innerHTML = PLAYER_ICONS.map(icon => `<option value="${icon}">${icon}</option>`).join('');
+    const savedName = localStorage.getItem(`${index === 0 ? PLAYER_ONE_NAME_KEY : PLAYER_TWO_NAME_KEY}_name`) || '';
+    nameInput.value = savedName;
+    iconSelect.value = playerNames[role]?.icon || PLAYER_ICONS[index];
+    error.textContent = '';
+    const refresh = () => { submit.disabled = !clean(nameInput.value); };
+    refresh();
+    setModalOpen(modal, true);
+    nameInput.focus();
+    return new Promise(resolve => {
+        const finish = value => {
+            nameInput.removeEventListener('input', refresh);
+            form.onsubmit = null;
+            cancel.onclick = null;
+            setModalOpen(modal, false);
+            resolve(value);
+        };
+        nameInput.addEventListener('input', refresh);
+        form.onsubmit = event => {
+            event.preventDefault();
+            const name = clean(nameInput.value);
+            if (!name) {
+                error.textContent = 'Please enter your name to continue. It is required.';
+                return;
+            }
+            finish({ name, icon: iconSelect.value });
+        };
+        cancel.onclick = () => finish(null);
+    });
+}
+
 async function createRoom() {
     if (!window.db || !window.firebase) throw new Error('Firebase pairing is not configured.');
     const user = window.firebase.auth().currentUser || await window.firebaseAuthReady;
     if (!user) throw new Error('Firebase sign-in is required to create a room.');
+    const identity = await promptRoomIdentity('host');
+    if (!identity) throw new Error('A name is required to create a room.');
+    savePlayerIdentity(0, identity.name, identity.icon);
     const roomCode = generateRoomCode();
     const result = await window.db.ref(`rooms/${roomCode}/members/host`)
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
@@ -4108,6 +4241,10 @@ async function requestRoomAccess(roomCode, expectedGameMode = null) {
         return;
     }
     if (partnerSnapshot.val()) throw new Error('This room already has two people. The room is full.');
+
+    const identity = await promptRoomIdentity('partner');
+    if (!identity) throw new Error('A name is required to join a room.');
+    savePlayerIdentity(1, identity.name, identity.icon);
 
     detachRoomAccessListeners();
     window.currentRoomCode = roomCode;

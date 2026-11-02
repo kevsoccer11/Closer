@@ -855,6 +855,27 @@
     </section>
 </div>
 
+<!-- Required room identity modal -->
+<div class="modal-overlay hidden" id="roomIdentityModal">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="roomIdentityTitle">
+        <div class="round-builder-heading">
+            <div>
+                <h2 id="roomIdentityTitle">Who's joining?</h2>
+                <p>A name is <strong>required</strong>. It is shown to the other player and on your turns.</p>
+            </div>
+        </div>
+        <form id="roomIdentityForm" style="display:flex;flex-direction:column;gap:12px;margin-top:12px;" novalidate>
+            <label for="roomIdentityName">Your name <span aria-hidden="true">(required)</span></label>
+            <input id="roomIdentityName" type="text" maxlength="24" autocomplete="nickname" required aria-describedby="roomIdentityError">
+            <label for="roomIdentityIcon">Your emoji</label>
+            <select id="roomIdentityIcon"></select>
+            <p id="roomIdentityError" class="pair-status" role="alert" aria-live="assertive"></p>
+            <button class="btn-primary" id="roomIdentitySubmit" type="submit" disabled>Continue</button>
+            <button class="btn-secondary" id="roomIdentityCancel" type="button">Cancel</button>
+        </form>
+    </section>
+</div>
+
 <div class="modal-overlay hidden" id="playModeModal">
     <section class="modal-card play-mode-card" role="dialog" aria-modal="true" aria-labelledby="playModeTitle">
         <div class="round-builder-heading">

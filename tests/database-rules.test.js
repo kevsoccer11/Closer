@@ -126,6 +126,15 @@ async function main() {
         await assertFails(remove(ref(host, `${sharedDeckPath}/partner-new`)));
         await assertSucceeds(remove(ref(partner, `${sharedDeckPath}/partner-new`)));
 
+        const presencePath = `rooms/${roomCode}/presence`;
+        await assertSucceeds(set(ref(host, `${presencePath}/host`), { online: true, lastSeen: Date.now() }));
+        await assertSucceeds(set(ref(partner, `${presencePath}/partner`), { online: false, lastSeen: Date.now() }));
+        await assertFails(set(ref(partner, `${presencePath}/host`), { online: false, lastSeen: Date.now() }));
+        await assertFails(set(ref(outsider, `${presencePath}/partner`), { online: true, lastSeen: Date.now() }));
+        await assertFails(set(ref(host, `${presencePath}/host`), { online: 'yes', lastSeen: Date.now() }));
+        await assertSucceeds(get(ref(partner, presencePath)));
+        await assertFails(get(ref(outsider, presencePath)));
+
         console.log('Firebase Realtime Database rules tests passed.');
     } finally {
         await environment.cleanup();

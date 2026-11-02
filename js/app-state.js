@@ -169,6 +169,8 @@ let playerNames = {
     }
 };
 let roomDisplayNames = {};
+let roomPresence = {};
+let presenceState = {};
 let playerNamesListener = null;
 let compareFirstModules = ['sexuality'];
 let compareFirstLevels = ['1', '2', '3'];

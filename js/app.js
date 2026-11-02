@@ -803,7 +803,7 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
             }
             const html = `
                 <div class="room-create-section">
-                    <p>Create a room as host. Your partner can request to join, and you decide whether to approve them. Rooms allow one host and one partner.</p>
+                    <p>Create a room as host. Your partner can request to join, and you decide whether to approve them. Rooms allow one host and one partner. You'll be asked for a name first; it's required to create or join a room.</p>
                     <button id="createRoomBtn" class="btn-primary" type="button">Create room</button>
                 </div>
                 <div class="room-join-section">

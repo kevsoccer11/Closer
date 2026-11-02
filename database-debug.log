@@ -1,0 +1,20 @@
+13:45:04.077 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
+13:45:04.469 [main] INFO com.firebase.server.forge.App$ - Listening at 127.0.0.1:9000
+13:45:05.439 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - demo-closer-rules-default-rtdb successfully activated FBKV (SurveyIdle(0)) wait: 289ms, init: 0ms
+13:45:06.147 [NamespaceSystem-blocking-namespace-operation-dispatcher-7] INFO com.firebase.core.namespace.StateManager - Namespace demo-closer-rules-default-rtdb status Active to Active
+13:45:07.631 [FirebaseWorkerPool-1-3] WARN com.firebase.core.persistence.backend.dummy.EmulatorMetadataPersistence - Multiple projectIds are not recommended in single project mode. Requested 
+namespace demo-closer-rules, but the emulator is configured for demo-closer-rules-default-rtdb. To 
+opt-out of single project mode add/set the singleProjectMode: false property in 
+the firebase.json emulators config. 
+13:45:07.641 [NamespaceSystem-akka.actor.default-dispatcher-6] INFO com.firebase.core.namespace.NamespaceActor - demo-closer-rules successfully activated FBKV (SurveyIdle(0)) wait: 4ms, init: 0ms
+13:45:08.012 [NamespaceSystem-blocking-namespace-operation-dispatcher-9] INFO com.firebase.core.namespace.StateManager - Namespace demo-closer-rules status Active to Active
+13:45:09.052 [FirebaseWorkerPool-1-1] WARN com.firebase.server.forge.App$ - Received service account token eyJh...fX0., assuming ownership.
+13:45:09.193 [FirebaseWorkerPool-1-2] WARN com.firebase.server.forge.App$ - Received service account token eyJh...fX0., assuming ownership.
+13:45:09.334 [FirebaseWorkerPool-1-3] WARN com.firebase.server.forge.App$ - Received service account token eyJh...9fQ., assuming ownership.
+13:45:09.738 [FirebaseWorkerPool-1-4] WARN com.firebase.server.forge.App$ - Received service account token eyJh...9fQ., assuming ownership.
+13:45:09.774 [FirebaseWorkerPool-1-1] WARN com.firebase.server.forge.App$ - Received service account token eyJh...9fQ., assuming ownership.
+13:45:10.784 [Thread-0] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+13:45:10.796 [NamespaceSystem-akka.actor.default-dispatcher-12] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: demo-closer-rules-default-rtdb, demo-closer-rules
+13:45:10.802 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for demo-closer-rules-default-rtdb
+13:45:10.802 [NamespaceSystem-akka.actor.default-dispatcher-8] INFO com.firebase.core.namespace.NamespaceActor - stopped namespace actor for demo-closer-rules
+13:45:10.811 [Thread-0] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.

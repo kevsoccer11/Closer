@@ -91,6 +91,16 @@
             ".validate": false
           }
         },
+        "presence": {
+          ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+          "$seat": {
+            ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && ($seat === 'host' || $seat === 'partner') && auth.uid === root.child('rooms').child($roomCode).child('members').child($seat).val()",
+            ".validate": "newData.hasChildren(['online', 'lastSeen']) && newData.child('online').isBoolean() && newData.child('lastSeen').isNumber()",
+            "online": { ".validate": "newData.isBoolean()" },
+            "lastSeen": { ".validate": "newData.isNumber()" },
+            "$other": { ".validate": false }
+          }
+        },
         "joinRequests": {
           ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && root.child('rooms').child($roomCode).child('members/host').val() === auth.uid",
           "$requestUid": {
