@@ -135,7 +135,7 @@ check('Explore shows every curated pack and mood shortcuts filter matching packs
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const curatedGrid = html.match(/<div class="pack-grid compact">([\s\S]*?)<\/div>/);
     const curatedPacks = curatedGrid?.[1].match(/class="pack-card"/g) || [];
-    if (curatedPacks.length !== 15
+    if (curatedPacks.length !== 21
         || !app.includes("document.querySelector('#curatedTab .pack-grid')")
         || !app.includes("packsClone.className = 'pack-grid compact explore-curated-grid'")
         || !app.includes("document.querySelectorAll('#curatedTab .pack-card, #exploreContent .pack-card')")
@@ -845,6 +845,9 @@ check('deck health: pillar sizes, story density, unique prompts and clean wordin
         throw new Error('invalid followUp text');
     }
     if (new Set(followUps.map(card => card.followUp)).size !== followUps.length) throw new Error('followUp prompts must be unique per card');
+    if (!/PACK_SIZE_MIN = 8;\s*const PACK_SIZE_MAX = 15;/.test(logic) || !logic.includes('getRandomPackSize()') || !logic.includes('estimateCardMinutes')) {
+        throw new Error('packs should draw a random size with a time estimate');
+    }
     if (!html.includes('id="cardFollowUp"') || !logic.includes('card.followUp')) throw new Error('follow-up prompts are not rendered');
 });
 
