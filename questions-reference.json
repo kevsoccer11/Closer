@@ -1,5 +1,5 @@
 {
-  "total": 6811,
+  "total": 6929,
   "questions": [
     {
       "id": "sec-001",
@@ -36054,7 +36054,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a time you got lost, literally or otherwise.",
+      "prompt": "Take me back to a time you got lost, literally or otherwise.",
       "pillar": "spark"
     },
     {
@@ -36150,7 +36150,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a time you were in the wrong place at the right time.",
+      "prompt": "Share a time you were in the wrong place at the right time.",
       "pillar": "spark"
     },
     {
@@ -36166,7 +36166,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a time you tried to learn something new and what happened along the way.",
+      "prompt": "Think back to a time you tried to learn something new and what happened along the way.",
       "pillar": "spark"
     },
     {
@@ -36182,7 +36182,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a time a coincidence made you stop and think.",
+      "prompt": "Describe a time a coincidence made you stop and think.",
       "pillar": "spark"
     },
     {
@@ -36214,7 +36214,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a time you were part of something bigger than yourself, like a team, a crowd or a cause.",
+      "prompt": "Take me back to a time you were part of something bigger than yourself, like a team, a crowd or a cause.",
       "pillar": "spark"
     },
     {
@@ -36262,7 +36262,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Tell me about a time a friend set you up with someone.",
+      "prompt": "Share a time a friend set you up with someone.",
       "pillar": "spark"
     },
     {
@@ -36286,7 +36286,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 2,
-      "prompt": "Tell me about a time you gave someone a second chance.",
+      "prompt": "Think back to a time you gave someone a second chance.",
       "pillar": "spark"
     },
     {
@@ -36318,7 +36318,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Tell me about a time you met someone's friends and had to win them over.",
+      "prompt": "Describe a time you met someone's friends and had to win them over.",
       "pillar": "spark"
     },
     {
@@ -36374,7 +36374,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 2,
-      "prompt": "Tell me about a time you changed schools, moved, or lost a friend group.",
+      "prompt": "Take me back to a time you changed schools, moved, or lost a friend group.",
       "pillar": "closer"
     },
     {
@@ -36446,7 +36446,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Tell me about a time you were single and learned something about yourself.",
+      "prompt": "Share a time you were single and learned something about yourself.",
       "pillar": "closer"
     },
     {
@@ -36454,7 +36454,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Tell me about a time you chose to walk away from someone or something you wanted.",
+      "prompt": "Think back to a time you chose to walk away from someone or something you wanted.",
       "pillar": "closer"
     },
     {
@@ -36494,7 +36494,7 @@
       "module": "life",
       "category": "Our Story",
       "intensity": 2,
-      "prompt": "Tell me about a time when you saw me at my best.",
+      "prompt": "Describe a time when you saw me at my best.",
       "pillar": "closer"
     },
     {
@@ -36504,6 +36504,558 @@
       "intensity": 2,
       "prompt": "What's the story of a hard stretch we got through, and what do you remember about how we handled it?",
       "pillar": "closer"
+    },
+    {
+      "id": "sexstory-h-001",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about your first kiss that actually made your knees weak.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-002",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Walk me through the moment you first felt real chemistry with someone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-003",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about the first time you stayed up all night talking with someone you were attracted to.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-004",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about a time you were nervous about getting physical with someone for the first time.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-005",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Walk me through a moment when someone's touch surprised you.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-006",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Take me back to a time you flirted without meaning to, or didn't realize someone was flirting back.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-007",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "What's the story of your most memorable slow dance, or a moment close to someone on a dance floor?",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-008",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Tell me about the most charged moment you've had with someone where nothing happened.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-009",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Walk me through a time you got dressed up specifically to get someone's attention.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-010",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Share a time you were caught staring, or caught someone staring at you.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-011",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Think back to a time you wrote, sent or received a message that made your pulse jump.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-012",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Walk me through the first time you really noticed me physically.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-013",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "What's the story of the first time we kissed, from your point of view?",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-014",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Describe a time we almost kissed, or almost didn't.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-015",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Tell me about a time you took the lead and it paid off.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-016",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Take me back to a time someone took the lead with you and it was exactly right.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-017",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Walk me through a morning with someone that you still remember.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-018",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Share a time you were so into someone that you lost track of time.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-019",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Tell me about the most romantic night you've ever had.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-020",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Tell me about a hotel, a trip or a stay that turned into a memorable night.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-021",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Think back to a time you wanted someone badly and had to wait.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-022",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Walk me through the best dance, kiss or touch you've had in the rain, on a beach or in a place that felt like a movie.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-023",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Describe a time you felt really confident in your own skin around someone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-024",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Tell me about a time someone said something about your body that you've never forgotten.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-025",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Tell me about a moment when you felt wanted in a way that surprised you.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-026",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were embarrassed in front of someone you were attracted to, and how it turned out.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-027",
+      "module": "sexuality",
+      "category": "Affection & Touch",
+      "intensity": 2,
+      "prompt": "Tell me about a hug, a hand hold or a touch from someone that you still remember.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-028",
+      "module": "sexuality",
+      "category": "Affection & Touch",
+      "intensity": 2,
+      "prompt": "Walk me through a time you felt completely relaxed in someone's arms.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-029",
+      "module": "sexuality",
+      "category": "Affection & Touch",
+      "intensity": 2,
+      "prompt": "Share a time a massage or back rub turned into something more.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-030",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "Tell me about the best way you've ever been woken up by someone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-031",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "Tell me about a moment with someone where you felt completely in sync.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-032",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "Think back to a time a night out ended with the two of you barely making it home.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-033",
+      "module": "sexuality",
+      "category": "Sensual Curiosity",
+      "intensity": 2,
+      "prompt": "Walk me through a time you tried something new with someone and were glad you did.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-034",
+      "module": "sexuality",
+      "category": "Sensual Curiosity",
+      "intensity": 2,
+      "prompt": "Tell me about a scent, a song or a place that instantly takes you back to a sensual memory.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-035",
+      "module": "sexuality",
+      "category": "Intimacy Over Time",
+      "intensity": 2,
+      "prompt": "Describe a time our connection surprised you after we'd been together a while.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-036",
+      "module": "sexuality",
+      "category": "Intimacy Over Time",
+      "intensity": 2,
+      "prompt": "Walk me through a moment with me that you think about when you want to feel close.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-037",
+      "module": "sexuality",
+      "category": "Intimacy Over Time",
+      "intensity": 2,
+      "prompt": "Tell me about a night between us that you'd want to relive.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory-h-038",
+      "module": "sexuality",
+      "category": "Intimacy Over Time",
+      "intensity": 2,
+      "prompt": "Tell me about a time we reconnected physically after a stretch of being busy or stressed.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-001",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about the most nervous you've ever been before a first kiss with anyone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-002",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about a crush that turned into something real, from the first spark to the first move.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-003",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about a summer fling or a vacation romance, if you've had one.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-004",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "What's the story of the first time you got butterflies from someone's voice or laugh?",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-005",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Take me back to a time a friend told you they liked you, or you told them.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-006",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about a first date that ended with a kiss, or one where you wished it had.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-007",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Share a time you had a major crush on someone who didn't know it.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-008",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Think back to a time you were attracted to someone you really shouldn't have been.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-009",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 2,
+      "prompt": "Tell me about the first time you realized what you found attractive in other people.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-010",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Tell me about the best pickup line, or worst, that you've ever heard or used.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-011",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Tell me about a night out when someone's attention made you feel unstoppable.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-012",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Describe a time you were way too obvious about your interest in someone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-013",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Walk me through a time you shared a long, loaded look with someone.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-014",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Tell me about a time you were attracted to a friend's partner or someone who was taken. No names needed.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-015",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Tell me about a wedding, party or trip where the mood turned flirty.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-016",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Take me back to a time you felt electricity during something totally ordinary, like a handshake or a ride home.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-017",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Share a time you wanted to make a move and talked yourself out of it.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-018",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Think back to a time you felt like someone was reading your mind in a good way.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-019",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Walk me through a time you got a text or message that you couldn't stop thinking about.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-020",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "Describe a time you flirted by text, DM or phone and it escalated.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-021",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Tell me about a romantic gesture someone made for you that took you by surprise.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-022",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Tell me about a time you took a romantic risk, like a grand gesture or a confession.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-023",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were swept off your feet on a trip.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-024",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "Tell me about the most romantic song in your past, and who it belongs to in your memory.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-025",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Share a time you felt sexy for the first time.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-026",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Think back to a time your confidence in your body took a hit, and a time it came back.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-027",
+      "module": "sexuality",
+      "category": "Intimacy & Confidence",
+      "intensity": 2,
+      "prompt": "Tell me about a compliment from someone you were attracted to that you still remember.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-028",
+      "module": "sexuality",
+      "category": "Affection & Touch",
+      "intensity": 2,
+      "prompt": "Tell me about the way someone's kiss or touch changed how you felt about them.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-029",
+      "module": "sexuality",
+      "category": "Affection & Touch",
+      "intensity": 2,
+      "prompt": "Describe a time a simple touch on your hand, arm or back said everything.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-030",
+      "module": "sexuality",
+      "category": "Sensual Curiosity",
+      "intensity": 2,
+      "prompt": "Tell me about a time you were curious about someone's body, a scent or a texture and followed it.",
+      "pillar": "heat"
+    },
+    {
+      "id": "sexstory2-h-031",
+      "module": "sexuality",
+      "category": "Pleasure & Connection",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were with someone and everything else faded away.",
+      "pillar": "heat"
     },
     {
       "id": "explicit-0001",
@@ -54487,6 +55039,398 @@
       "category": "Kink Negotiation & Boundaries",
       "intensity": 4,
       "prompt": "Would you ever want to explore consensual non-consent play, agreed on ahead of time with limits and a safeword? Which scenarios might be okay or off-limits? You can pass.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-001",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about your first time. What do you remember, and what would you change?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-002",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Walk me through the most memorable night you've had with a past partner. Share only what feels comfortable.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-003",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Take me back to a time sex surprised you, in a good way.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-004",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Share a time sex felt awkward or didn't go as planned, and how you handled it.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-005",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Walk me through a night with someone when you felt completely uninhibited.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-006",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a place you've been intimate that you'd never forget.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-007",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the moment you realized you liked something you hadn't expected to like.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-008",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the first time you made someone lose control.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-009",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the first time someone made you lose control.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-010",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Think back to a time you were nervous to ask for something in bed.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-011",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe a time you faked being into it, or wanted to say something and didn't.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-012",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a quickie that you still think about.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-013",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a night that started casually and turned into something far more intense than either of you planned.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-014",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Tell me about a fantasy you've held onto for years. How did it first show up?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-015",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Tell me about a fantasy you acted out, and how it compared with what you imagined.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-016",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Tell me about the hottest dream you've ever had that you remember.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-017",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Walk me through a moment when you wanted me so badly it was hard to focus on anything else.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-018",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Tell me about the first time we really let go together.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-019",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Walk me through the best night we've had from your point of view.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-020",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Tell me about a time with me that surprised you in the best way.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-021",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Take me back to a time we did something new in bed that you're still thinking about.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-022",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Tell me about a moment when you caught yourself staring at me and wanted more.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-023",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Share a time you felt most desired by me.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-024",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Tell me about a moment when you found yourself wanting me in the middle of an ordinary day.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory-a-025",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Tell me about a night with me that you'd write into a story.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-001",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Think back to a time you were with someone who was clearly more experienced than you.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-002",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe a time you were the more experienced one, and what it was like to guide someone.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-003",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a hookup or a night that was nothing like what you expected going in.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-004",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a time that sex was emotional or overwhelming in a way you didn't see coming.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-005",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Take me back to a time you were so turned on that you could barely wait.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-006",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the hottest kiss you've ever had.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-007",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Share a time you tried to be sexy and it went comically wrong.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-008",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a moment from a past experience that you still replay when you're alone.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-009",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Think back to a time you were with someone who knew exactly what they were doing.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-010",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a place or setting that made a night with someone unforgettable.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-011",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe a time you couldn't keep your hands off someone in public.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-012",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the first time you really understood what you liked.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-013",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a time you were teased for a long time before anything happened.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-014",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a night with someone when the chemistry was unmistakable from the start.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-015",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Take me back to a time you tried something outside your comfort zone with a partner.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-016",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Share a time you were genuinely surprised by what you were capable of, or what someone brought out in you.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-017",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Think back to a time you thought of someone out of reach in a sexual way.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-018",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Describe a time a book, film or song put you in a mood you couldn't shake.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-019",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Tell me about the moment you first realized you had a type.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-020",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Tell me about a desire you had as a teenager that you didn't understand at the time.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-021",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Tell me about when you first learned what felt good for yourself.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-022",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Tell me about a time you were alone and an unexpected thought or memory turned you on.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-023",
+      "module": "explicit",
+      "category": "Upbringing, Shame & Sex Ed",
+      "intensity": 3,
+      "prompt": "Tell me about the first time you heard about sex, and how you reacted.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "sexstory2-a-024",
+      "module": "explicit",
+      "category": "Upbringing, Shame & Sex Ed",
+      "intensity": 3,
+      "prompt": "Take me back to a time you felt embarrassed or ashamed about desire and how you moved past it.",
       "pillar": "afterhours"
     }
   ]
