@@ -1,5 +1,5 @@
 {
-  "total": 6706,
+  "total": 6750,
   "questions": [
     {
       "id": "sec-001",
@@ -35714,6 +35714,310 @@
       "pillar": "spark"
     },
     {
+      "id": "req-001",
+      "module": "life",
+      "category": "Regrets & Do-Overs",
+      "intensity": 2,
+      "prompt": "What's something you did that felt out of character at the time, but looking back you'd happily do again?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-002",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What was your take on hookup culture back when you were single, or when you watched it from inside a relationship?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-003",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 3,
+      "prompt": "What are your honest thoughts on one-night stands?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-004",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 3,
+      "prompt": "How do you feel about people who keep a friends-with-benefits arrangement without the emotional connection?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-005",
+      "module": "life",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Have you ever been in a friends-with-benefits situation? If so, how did it make you feel? Share only what feels comfortable.",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-006",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "What's an experience you feel you missed out on because of your parents or family, that you still think about or took a while to get over?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-007",
+      "module": "life",
+      "category": "Growing Up & Firsts",
+      "intensity": 2,
+      "prompt": "Was there something you really wanted to try in the past but felt too nervous or scared to do?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-008",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 3,
+      "prompt": "What's your view on hall passes, and what would be the deciding factor for you?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-009",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Which childhood friend knows all your secrets, and whose secrets are you still guarding?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-010",
+      "module": "life",
+      "category": "Values & Identity",
+      "intensity": 2,
+      "prompt": "What are your thoughts on religion?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-011",
+      "module": "life",
+      "category": "Values & Identity",
+      "intensity": 2,
+      "prompt": "Do you think religion shaped who you are today, for better or for worse?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-012",
+      "module": "life",
+      "category": "Values & Identity",
+      "intensity": 1,
+      "prompt": "What's your definition of true love?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-013",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Before us, was there anyone you thought of as 'the one that got away'?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-014",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Did your parents or family ever try to break up a past relationship of yours? If so, why?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-015",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "What's the last thing someone did that broke your trust?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-016",
+      "module": "life",
+      "category": "Regrets & Do-Overs",
+      "intensity": 2,
+      "prompt": "If we weren't together in some alternate world, is there a period of your life you wish you could go back to?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-017",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Do you remember who your bullies were growing up?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-018",
+      "module": "life",
+      "category": "Values & Identity",
+      "intensity": 2,
+      "prompt": "What do you think is missing in your life right now?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-019",
+      "module": "life",
+      "category": "Joy & Appreciation",
+      "intensity": 1,
+      "prompt": "What are you most grateful for right now?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-020",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "What could you use more of, or less of, in your life right now?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-021",
+      "module": "life",
+      "category": "Joy & Appreciation",
+      "intensity": 2,
+      "prompt": "Do you feel like you take the little things for granted?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-022",
+      "module": "life",
+      "category": "Values & Identity",
+      "intensity": 1,
+      "prompt": "What does peace look like to you?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-023",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Have you ever gone out hoping to meet someone to hook up with? How did it end, and were you glad afterward?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-024",
+      "module": "life",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "What's a request someone once made of you that was an immediate hard no?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-025",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 3,
+      "prompt": "What's a request that was strange but intriguing enough that you went along with it? How did it turn out?",
+      "pillar": "closer"
+    },
+    {
+      "id": "req-026",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Where is your high school crush now, and do you ever think about them?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-027",
+      "module": "sexuality",
+      "category": "Past History & Sexual Firsts",
+      "intensity": 3,
+      "prompt": "Have you ever had a one-night stand? If so, how did you feel about it afterward?",
+      "pillar": "heat"
+    },
+    {
+      "id": "req-028",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 3,
+      "prompt": "Have you ever seen someone and thought you just wanted to experience being with them, even only once?",
+      "pillar": "heat"
+    },
+    {
+      "id": "req-029",
+      "module": "sexuality",
+      "category": "Desire & Initiation",
+      "intensity": 2,
+      "prompt": "What's the sexiest thing a person can do to get you going?",
+      "pillar": "heat"
+    },
+    {
+      "id": "req-030",
+      "module": "sexuality",
+      "category": "Romance & Imagination",
+      "intensity": 2,
+      "prompt": "What are your thoughts on being intimate out in nature?",
+      "pillar": "heat"
+    },
+    {
+      "id": "req-031",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 2,
+      "prompt": "Who's your celebrity crush? Do you have one of each: a man and a woman?",
+      "pillar": "heat"
+    },
+    {
+      "id": "req-032",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "What's your dream car, and where would we drive it first?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-033",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "What's the best ice cream combination ever?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-034",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "If you could be any animal for a day, which would you be and why?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-035",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "What are some of your 'icks', the tiny things that instantly turn you off?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-036",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "Which getaway sounds better?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-037",
+      "module": "life",
+      "category": "Fun & Random",
+      "intensity": 1,
+      "prompt": "Ideal day off?",
+      "pillar": "spark"
+    },
+    {
+      "id": "req-038",
+      "module": "life",
+      "category": "Cultural & Religious Differences",
+      "intensity": 2,
+      "prompt": "How much do you want religion or spirituality to be part of our home and family life?",
+      "pillar": "together"
+    },
+    {
       "id": "explicit-0001",
       "module": "explicit",
       "category": "Oral Sex",
@@ -53647,6 +53951,54 @@
       "category": "Kink & Exploration",
       "intensity": 3,
       "prompt": "What’s a direct question about your turn-ons you’d be excited—not pressured—to answer?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-039",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and been so turned on that you needed to take care of yourself afterward? Share only what you want to.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-040",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Do you make enough time to explore your own body and learn what you like? What would help?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-041",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and imagined letting them take the lead with you, however they wanted? You can always pass.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-042",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and imagined having them follow your lead, doing whatever you wanted? You can always pass.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-043",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Some fantasies involve being 'taken' or overpowered, even though in real life it would be fully agreed on. Have you ever had one? You can always pass.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-044",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 4,
+      "prompt": "Would you ever want to explore consensual non-consent play, agreed on ahead of time with limits and a safeword? Which scenarios might be okay or off-limits? You can pass.",
       "pillar": "afterhours"
     }
   ]

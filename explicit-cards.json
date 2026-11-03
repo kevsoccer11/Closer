@@ -18316,6 +18316,72 @@
     { "id": "exp-new-0497", "module": "explicit", "category": "BDSM & Power Exchange", "intensity": 4, "prompt": "How would you want to negotiate a scene where one partner follows the other’s lead?", "contextType": "consent", "promptStyle": "question", "pillar": "afterhours" },
     { "id": "exp-new-0498", "module": "explicit", "category": "Fetish & Object Play", "intensity": 3, "prompt": "Is there a texture or accessory you’d like to explore as part of a sensory-focused evening?", "contextType": "sensory", "promptStyle": "question", "pillar": "afterhours" },
     { "id": "exp-new-0499", "module": "explicit", "category": "Kink Negotiation & Boundaries", "intensity": 4, "prompt": "What would help you feel respected if a kink you enjoy is one your partner doesn’t share?", "contextType": "alignment", "promptStyle": "question", "pillar": "afterhours" },
-    { "id": "exp-new-0500", "module": "explicit", "category": "Kink & Exploration", "intensity": 3, "prompt": "What’s a direct question about your turn-ons you’d be excited—not pressured—to answer?", "contextType": "honesty", "promptStyle": "question", "pillar": "afterhours" }
+    { "id": "exp-new-0500", "module": "explicit", "category": "Kink & Exploration", "intensity": 3, "prompt": "What’s a direct question about your turn-ons you’d be excited—not pressured—to answer?", "contextType": "honesty", "promptStyle": "question", "pillar": "afterhours" },
+    {
+      "id": "req-039",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and been so turned on that you needed to take care of yourself afterward? Share only what you want to.",
+      "followUp": "What was it about them?",
+      "contextType": "honesty",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-040",
+      "module": "explicit",
+      "category": "Solo Play",
+      "intensity": 3,
+      "prompt": "Do you make enough time to explore your own body and learn what you like? What would help?",
+      "followUp": "What have you learned about yourself that I may not know?",
+      "contextType": "honesty",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-041",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and imagined letting them take the lead with you, however they wanted? You can always pass.",
+      "followUp": "What did the fantasy include, and where are the limits?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-042",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Have you ever seen a stranger and imagined having them follow your lead, doing whatever you wanted? You can always pass.",
+      "followUp": "What would you have asked for?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-043",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 3,
+      "prompt": "Some fantasies involve being 'taken' or overpowered, even though in real life it would be fully agreed on. Have you ever had one? You can always pass.",
+      "followUp": "What part appeals to you, the surrender or the intensity?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "req-044",
+      "module": "explicit",
+      "category": "Kink Negotiation & Boundaries",
+      "intensity": 4,
+      "prompt": "Would you ever want to explore consensual non-consent play, agreed on ahead of time with limits and a safeword? Which scenarios might be okay or off-limits? You can pass.",
+      "followUp": "What would we need in place to feel completely safe?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    }
   ]
 }
