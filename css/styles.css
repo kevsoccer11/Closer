@@ -4471,3 +4471,12 @@ main {
 
 /* The match count only applies to the Create new deck tab */
 #roundBuilderModal:has(#customTab.hidden) #roundMatchCount { display: none; }
+
+.card-category {
+    margin: 0 0 10px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}

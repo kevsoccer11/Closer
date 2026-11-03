@@ -1543,11 +1543,7 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
         currentCard.deckRoundId = sharedDeckRound.id;
         currentCard.deckIndex = sharedDeckRound.total - unspentDeck.length;
     }
-    if (currentCard?.id && !browseMode) {
-        playedCardIds.add(currentCard.id);
-        localStorage.setItem('closer_played_cards', JSON.stringify([...playedCardIds]));
-        syncPlayedCardsToRoom();
-    }
+    markCardPlayed(currentCard);
     roundStats.played += 1;
     if (activeGameMode === 'compare-first') {
         compareFirstRoundIndex += 1;
@@ -2073,6 +2069,17 @@ function updateTurnIndicator() {
     }
 }
 
+const PILLAR_LABELS = { spark: 'Spark', heat: 'Heat', closer: 'Closer', together: 'Life Together', afterhours: 'After Hours' };
+
+function renderCardCategory(card) {
+    const label = document.getElementById('cardCategory');
+    if (!label) return;
+    const pillar = PILLAR_LABELS[getPillar(card)];
+    const text = [pillar, card.category].filter(Boolean).join(' · ');
+    label.textContent = text;
+    label.classList.toggle('hidden', !text);
+}
+
 function renderCard(card) {
 const undoBtn = document.getElementById('undoBtn');
     if (undoBtn) undoBtn.disabled = undoStack.length === 0;
@@ -2091,6 +2098,8 @@ const undoBtn = document.getElementById('undoBtn');
     setCardActionStatus('');
     const prompt = document.getElementById('cardPrompt');
     if (prompt) prompt.innerText = card.prompt;
+    renderCardCategory(card);
+    markCardPlayed(card);
     const followUp = document.getElementById('cardFollowUp');
     if (followUp) {
         const followUpText = typeof card.followUp === 'string' ? card.followUp.trim() : '';
@@ -4027,15 +4036,20 @@ async function renderSharedDeck() {
     }
 }
 
-function syncPlayedCardsToRoom() {
-    if (!window.roomRef || !window.currentRoomCode) return;
-    try {
-        const payload = {};
-        playedCardIds.forEach(id => { payload[id] = true; });
-        window.roomRef.child('playedCards').set(payload).catch(() => {});
-    } catch (error) {
-        console.warn('Could not sync played cards:', error);
-    }
+// Marks drawn and received cards as played so a later round does not repeat them.
+function markCardPlayed(card) {
+    if (!card?.id || browseMode || card.compareFirstComplete) return;
+    const isNew = !playedCardIds.has(card.id);
+    playedCardIds.add(card.id);
+    if (!isNew) return;
+    try { localStorage.setItem('closer_played_cards', JSON.stringify([...playedCardIds])); } catch (error) {}
+    syncPlayedCardsToRoom(card.id);
+}
+
+function syncPlayedCardsToRoom(cardId) {
+    if (!window.roomRef || !window.currentRoomCode || !isSeatedRoomMember() || !cardId || cardId.length > 80) return;
+    // Merge one id at a time so the two players never overwrite each other's history.
+    window.roomRef.child(`playedCards/${cardId}`).set(true).catch(() => {});
 }
 
 async function loadPlayedCardsFromRoom() {
