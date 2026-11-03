@@ -31,3 +31,5 @@
 - Mild/moderate explicit prompts (added 30).
 - Kinky/explorative category expansion (added 62).
 - 97 new explicit cards added (explicit-1367 to explicit-1463): categories Past Experiences, Desire & Pleasure, Fantasy & Curiosity, Kink & Exploration, Communication & Boundaries, Us Together. ContextType adjusted from "question" to "story" for validity.
+- Story-format conversion: rewrite ~145 existing non-story questions as story prompts, keeping ids (yes/no "Have you ever" ~71, most/best/worst/first ~43, memory/time/moment ~23, learned/recall ~8). Skip desire-only cards like "have you ever wanted to try". Do Spark and Closer first, add follow-ups where missing, vary openers.
+- 165 gap-analysis story cards added (siblings, exes, trust and jealousy, phones, awkward dates, Spark life stories, Life Together stories, fears, crushes, After Hours past experiences).

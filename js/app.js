@@ -476,6 +476,7 @@ setTimeout(() => {
                 return;
             }
             const reuseRoom = window.roomRef && window.currentRoomRole === 'host';
+            if (reuseRoom && !(await confirmRoomSwitch('You Get Me'))) return;
             if (!reuseRoom) await createRoom();
             if (!window.roomRef) throw new Error('The room could not be opened.');
             await startGuessMeInRoom(sel);
@@ -834,7 +835,7 @@ const addSharedBtn = document.getElementById('addCurrentToSharedDeckBtn');
                     createButton.disabled = true;
                     try {
                         await createRoom();
-                        setPairStatus('Room created. Copy the code and share it with your partner.');
+                        setPairStatus('Room created. Tap Invite partner to send them a link.');
                     } catch (error) {
                         console.error('Could not create a room:', error);
                         setPairStatus(`Could not create a room: ${error.message}`);
@@ -1286,6 +1287,11 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         localStorage.setItem(EXPLICIT_AGE_CONFIRMATION_KEY, 'true');
         await loadExplicitCards();
         setModalOpen(document.getElementById('explicitAgeGate'), false);
+        if (pendingExplicitRoomConsent) {
+            pendingExplicitRoomConsent = false;
+            setExplicitConsent(true);
+            return;
+        }
         if (resumeExplicitCardBrowserFilter()) return;
         const deckCheckbox = document.querySelector('input[name="roundDeck"][value="explicit"]');
         if (deckCheckbox && !document.getElementById('roundBuilderModal')?.classList.contains('hidden')) {
@@ -1297,6 +1303,7 @@ document.getElementById('settingsShortcutsBtn').onclick = () => openDrawer('Keyb
         selectModule('explicit');
     });
     document.getElementById('cancelExplicitAccessBtn')?.addEventListener('click', () => {
+        pendingExplicitRoomConsent = false;
         cancelExplicitCardBrowserFilter();
         setModalOpen(document.getElementById('explicitAgeGate'), false);
     });

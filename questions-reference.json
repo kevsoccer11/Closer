@@ -1,5 +1,5 @@
 {
-  "total": 6929,
+  "total": 7109,
   "questions": [
     {
       "id": "sec-001",
@@ -70,7 +70,7 @@
       "module": "sexuality",
       "category": "Past History & Sexual Firsts",
       "intensity": 2,
-      "prompt": "When have things between us felt unexpectedly electric?",
+      "prompt": "Tell me about a time things between us felt unexpectedly electric.",
       "pillar": "heat"
     },
     {
@@ -78,7 +78,7 @@
       "module": "sexuality",
       "category": "Past History & Sexual Firsts",
       "intensity": 2,
-      "prompt": "What have you learned about your body since we got together?",
+      "prompt": "Tell me about something you learned about your body since we got together.",
       "pillar": "heat"
     },
     {
@@ -1206,7 +1206,7 @@
       "module": "life",
       "category": "Finances & Money",
       "intensity": 1,
-      "prompt": "What was the most stressful financial period you experienced before we met?",
+      "prompt": "Tell me about the most stressful financial period you lived through before we met.",
       "pillar": "together"
     },
     {
@@ -14286,7 +14286,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 3,
-      "prompt": "Have you ever had a near-miss getting caught during a solo session or intimate moment that got your heart racing?",
+      "prompt": "Tell me about a near-miss with getting caught during a solo session or intimate moment.",
       "pillar": "afterhours"
     },
     {
@@ -14302,7 +14302,7 @@
       "module": "life",
       "category": "Growing Up & Firsts",
       "intensity": 2,
-      "prompt": "Have you ever been interrupted by a pet, family member, or delivery driver during an intimate moment?",
+      "prompt": "Take me back to a time a pet, a family member or a delivery driver interrupted an intimate moment.",
       "pillar": "closer"
     },
     {
@@ -14326,7 +14326,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 3,
-      "prompt": "What’s a romantic memory from our past that you’d love to recreate or build upon with a new twist?",
+      "prompt": "Tell me about a romantic memory from our past that still stays with you.",
       "pillar": "closer"
     },
     {
@@ -14358,7 +14358,7 @@
       "module": "life",
       "category": "Joy & Appreciation",
       "intensity": 2,
-      "prompt": "Have you ever tried a romantic gesture like lighting candles that ended up setting off the smoke detector?",
+      "prompt": "Tell me about a romantic gesture of yours, like lighting candles, that went comically wrong.",
       "pillar": "closer"
     },
     {
@@ -14366,7 +14366,7 @@
       "module": "sexuality",
       "category": "Pleasure & Connection",
       "intensity": 2,
-      "prompt": "Have you ever laughed so hard during an intimate moment that it completely derailed the session into a giggling fit?",
+      "prompt": "Walk me through a time you laughed so hard in an intimate moment that the whole mood fell apart.",
       "pillar": "heat"
     },
     {
@@ -14822,7 +14822,7 @@
       "module": "life",
       "category": "Fun & Random",
       "intensity": 1,
-      "prompt": "What was the very first music album, CD, or digital track you ever purchased with your own money?",
+      "prompt": "Tell me about the first album or song you ever bought with your own money.",
       "pillar": "spark"
     },
     {
@@ -14878,7 +14878,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 2,
-      "prompt": "What is the funniest or most memorable family story from your upbringing that gets retold at every single gathering?",
+      "prompt": "Tell me the family story from your upbringing that gets retold at every gathering.",
       "pillar": "together"
     },
     {
@@ -14982,7 +14982,7 @@
       "module": "life",
       "category": "Fun & Random",
       "intensity": 1,
-      "prompt": "What was the absolute worst or most ridiculous style trend you enthusiastically adopted during your high school days?",
+      "prompt": "Tell me about the most ridiculous style trend you enthusiastically adopted in high school.",
       "pillar": "spark"
     },
     {
@@ -18294,7 +18294,7 @@
       "module": "life",
       "category": "Growing Up & Firsts",
       "intensity": 2,
-      "prompt": "What's the first thing about your body you were teased about, and does it still echo?",
+      "prompt": "Tell me about the first time you were teased about your body.",
       "pillar": "closer"
     },
     {
@@ -18326,7 +18326,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 2,
-      "prompt": "Have you ever felt guilt right after a perfectly good intimate moment — where do you think it came from?",
+      "prompt": "Describe a time you felt guilty right after a perfectly good intimate moment.",
       "pillar": "heat"
     },
     {
@@ -18350,7 +18350,7 @@
       "module": "life",
       "category": "Growing Up & Firsts",
       "intensity": 1,
-      "prompt": "What's the funniest thing a younger sibling or cousin once asked you that you had to answer carefully?",
+      "prompt": "Tell me about the funniest question a younger sibling or cousin ever asked you that you had to answer carefully.",
       "pillar": "spark"
     },
     {
@@ -18390,7 +18390,7 @@
       "module": "life",
       "category": "Growing Up & Firsts",
       "intensity": 1,
-      "prompt": "What's the worst dating advice an elder in your family ever gave you?",
+      "prompt": "Tell me about the worst dating advice an elder in your family ever gave you.",
       "pillar": "spark"
     },
     {
@@ -18422,7 +18422,7 @@
       "module": "life",
       "category": "Growing Up & Firsts",
       "intensity": 2,
-      "prompt": "What's the first song, book, or movie that made you feel something you didn't have words for yet?",
+      "prompt": "Tell me about the first song, book or movie that made you feel something you didn't have words for yet.",
       "pillar": "closer"
     },
     {
@@ -18446,7 +18446,7 @@
       "module": "life",
       "category": "Personal Growth & Boundaries",
       "intensity": 2,
-      "prompt": "When was the first time you felt shame about curiosity itself — not about anything you'd done?",
+      "prompt": "Tell me about the first time you felt shame about curiosity itself, not about anything you'd done.",
       "pillar": "closer"
     },
     {
@@ -18702,7 +18702,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Have you ever felt a flash of jealousy about someone in my past — and what did you do with it?",
+      "prompt": "Tell me about a time you felt a flash of jealousy about someone in my past.",
       "pillar": "closer"
     },
     {
@@ -19526,7 +19526,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever had an insecurity crash the party right in the middle of a good moment — and did you say so?",
+      "prompt": "Recall a time an insecurity crashed a perfectly good moment.",
       "pillar": "closer"
     },
     {
@@ -19590,7 +19590,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever compared your body to someone else’s, and what helped you work through that thought?",
+      "prompt": "Share a story about a time you compared your body to someone else's.",
       "pillar": "closer"
     },
     {
@@ -19686,7 +19686,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever postponed intimacy until you felt you 'looked better' — and what was that wait really about?",
+      "prompt": "Take me back to a time you put off intimacy until you felt you looked better.",
       "pillar": "closer"
     },
     {
@@ -20110,7 +20110,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever apologized for your body during intimacy — and would you take that apology back now?",
+      "prompt": "Walk me through a time you apologized for your body during intimacy.",
       "pillar": "closer"
     },
     {
@@ -20254,7 +20254,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "What's a scar, mark, or line on your body with a story you've never told me?",
+      "prompt": "Tell me the story behind a scar, mark or line on your body that you've never told me.",
       "pillar": "closer"
     },
     {
@@ -20278,7 +20278,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 1,
-      "prompt": "Have you ever faked feeling fine physically during intimacy because you didn't want to disappoint me?",
+      "prompt": "Tell me about a time you faked feeling fine physically during intimacy because you didn't want to disappoint me.",
       "pillar": "closer"
     },
     {
@@ -20286,7 +20286,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 1,
-      "prompt": "What is the funniest accidental injury or awkward mishap either of us has had during intimacy?",
+      "prompt": "Tell me about the funniest accidental injury or awkward mishap either of us has had during intimacy.",
       "pillar": "closer"
     },
     {
@@ -20374,7 +20374,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever felt pressure to perform when you really weren't feeling up to it?",
+      "prompt": "Describe a time you felt pressure to perform when you really weren't up to it.",
       "pillar": "together"
     },
     {
@@ -20406,7 +20406,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever blamed yourself when your body didn't respond the way you wanted it to?",
+      "prompt": "Recall a time you blamed yourself when your body didn't respond the way you wanted.",
       "pillar": "closer"
     },
     {
@@ -20438,7 +20438,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "What is the most memorable time we had to improvise because someone's body or health threw a wrench in the plans?",
+      "prompt": "Tell me about a time we had to improvise because someone's body or health threw a wrench in the plans.",
       "pillar": "closer"
     },
     {
@@ -20446,7 +20446,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Have you ever felt like you had to prove something physically that you weren't actually capable of?",
+      "prompt": "Share a story about a time you felt you had to prove something physically that you weren't actually capable of.",
       "pillar": "closer"
     },
     {
@@ -20518,7 +20518,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "Have you ever pushed through intimacy out of obligation when your body was begging you to stop?",
+      "prompt": "Take me back to a time you pushed through intimacy out of obligation while your body begged you to stop.",
       "pillar": "closer"
     },
     {
@@ -20542,7 +20542,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "Have you ever compared your current physical performance to your past self and felt like you lost?",
+      "prompt": "Walk me through a time you compared your current physical performance to your past self and felt you'd lost something.",
       "pillar": "closer"
     },
     {
@@ -20590,7 +20590,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "Have you ever felt that I was silently disappointed by a night when your body couldn't keep up?",
+      "prompt": "Tell me about a time you worried I was silently disappointed by a night when your body couldn't keep up.",
       "pillar": "closer"
     },
     {
@@ -20606,7 +20606,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "When was the last time you felt truly seen and accepted despite a physical limitation?",
+      "prompt": "Tell me about the last time you felt truly seen and accepted despite a physical limitation.",
       "pillar": "closer"
     },
     {
@@ -24790,7 +24790,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What small thing about me did you notice before you knew much about me?",
+      "prompt": "Tell me about the small thing about me you noticed before you knew much about me.",
       "pillar": "closer"
     },
     {
@@ -24798,7 +24798,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What was your first impression of my sense of humor?",
+      "prompt": "Take me back to your first impression of my sense of humor.",
       "pillar": "closer"
     },
     {
@@ -24814,7 +24814,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you feel curious about but hesitate to ask me at first?",
+      "prompt": "Tell me about something you were curious about but hesitated to ask me when we first met.",
       "pillar": "closer"
     },
     {
@@ -24822,7 +24822,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What ordinary detail from our early days do you still remember?",
+      "prompt": "Take me back to an ordinary moment from our early days that you still remember.",
       "pillar": "closer"
     },
     {
@@ -24830,7 +24830,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "When did being around me first feel easy?",
+      "prompt": "Walk me through the moment being around me first felt easy.",
       "pillar": "closer"
     },
     {
@@ -24838,7 +24838,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you misunderstand about me when we first met?",
+      "prompt": "Tell me about something you misunderstood about me when we first met.",
       "pillar": "closer"
     },
     {
@@ -24854,7 +24854,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What was the first sign that our connection might become important?",
+      "prompt": "Tell me about the first sign you felt that our connection might become important.",
       "pillar": "closer"
     },
     {
@@ -24862,7 +24862,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you learn about me that surprised you in a good way?",
+      "prompt": "Tell me about something you learned about me early on that surprised you in a good way.",
       "pillar": "closer"
     },
     {
@@ -24878,7 +24878,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "Which of my habits did you notice early and find endearing?",
+      "prompt": "Tell me about one of my habits you noticed early and found endearing.",
       "pillar": "closer"
     },
     {
@@ -24886,7 +24886,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did we have in common that helped us connect?",
+      "prompt": "Tell me about the moment you discovered what we had in common.",
       "pillar": "closer"
     },
     {
@@ -24918,7 +24918,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you feel most confident about when we started dating?",
+      "prompt": "Take me back to when we started dating and you felt most confident.",
       "pillar": "closer"
     },
     {
@@ -24942,7 +24942,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What was the first thing you wanted to do together again?",
+      "prompt": "Tell me about the first thing you wanted to do with me again.",
       "pillar": "closer"
     },
     {
@@ -24950,7 +24950,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you learn about my priorities in our first few conversations?",
+      "prompt": "Tell me what you learned about my priorities in our first few conversations.",
       "pillar": "closer"
     },
     {
@@ -24982,7 +24982,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you do to make a good impression on me?",
+      "prompt": "Tell me about something you did to make a good impression on me.",
       "pillar": "closer"
     },
     {
@@ -25014,7 +25014,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What was the first thing we laughed about together?",
+      "prompt": "Take me back to the first thing we laughed about together.",
       "pillar": "closer"
     },
     {
@@ -25022,7 +25022,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you discover we enjoyed doing at the same pace?",
+      "prompt": "Tell me about a time you discovered we enjoyed doing something at the same pace.",
       "pillar": "closer"
     },
     {
@@ -25046,7 +25046,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you find refreshing about how we communicated?",
+      "prompt": "Tell me about an early conversation where you found how we communicated refreshing.",
       "pillar": "closer"
     },
     {
@@ -25086,7 +25086,7 @@
       "module": "life",
       "category": "Early Relationship Discovery",
       "intensity": 1,
-      "prompt": "What did you learn about yourself while we were first connecting?",
+      "prompt": "Tell me what you learned about yourself while we were first connecting.",
       "pillar": "closer"
     },
     {
@@ -25286,7 +25286,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 1,
-      "prompt": "What is your favorite memory of us being a little ridiculous together?",
+      "prompt": "Tell me about your favorite memory of us being a little ridiculous together.",
       "pillar": "spark"
     },
     {
@@ -26462,7 +26462,7 @@
       "module": "life",
       "category": "Casual & Everyday",
       "intensity": 1,
-      "prompt": "What is the funniest thing you believed as a child?",
+      "prompt": "Tell me about the funniest thing you believed as a child.",
       "pillar": "spark"
     },
     {
@@ -27654,7 +27654,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 2,
-      "prompt": "What memory of us still gives you butterflies?",
+      "prompt": "Tell me about a memory of us that still gives you butterflies.",
       "pillar": "heat"
     },
     {
@@ -28806,7 +28806,7 @@
       "module": "life",
       "category": "Fun & Random",
       "intensity": 1,
-      "prompt": "What is the funniest misunderstanding you've had because you assumed you knew what someone meant?",
+      "prompt": "Tell me about a funny misunderstanding that happened because you assumed you knew what someone meant.",
       "pillar": "spark"
     },
     {
@@ -30486,7 +30486,7 @@
       "module": "life",
       "category": "Lightbulb Moments",
       "intensity": 2,
-      "prompt": "What is something about me that you understood more clearly after a small moment we shared?",
+      "prompt": "Tell me about a small moment we shared that helped you understand something about me.",
       "pillar": "closer"
     },
     {
@@ -32462,7 +32462,7 @@
       "module": "life",
       "category": "Past Experiences",
       "intensity": 2,
-      "prompt": "What is a memory that still influences you?",
+      "prompt": "Tell me about a memory that still influences you.",
       "pillar": "closer"
     },
     {
@@ -33030,7 +33030,7 @@
       "module": "life",
       "category": "Joy & Appreciation",
       "intensity": 2,
-      "prompt": "What is a memory that makes you feel warm?",
+      "prompt": "Tell me about a memory that makes you feel warm.",
       "pillar": "closer"
     },
     {
@@ -33646,7 +33646,7 @@
       "module": "life",
       "category": "Past History & Sexual Firsts",
       "intensity": 2,
-      "prompt": "What is a memory you want to revisit?",
+      "prompt": "Tell me about a memory you'd love to revisit.",
       "pillar": "closer"
     },
     {
@@ -33838,7 +33838,7 @@
       "module": "sexuality",
       "category": "Curiosities & Kinks",
       "intensity": 3,
-      "prompt": "Have you ever been curious about a kink that you later decided wasn’t for you?",
+      "prompt": "Tell me about a kink you got curious about and later decided wasn't for you.",
       "pillar": "afterhours"
     },
     {
@@ -35750,7 +35750,7 @@
       "module": "life",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever been in a friends-with-benefits situation? If so, how did it make you feel? Share only what feels comfortable.",
+      "prompt": "Tell me about a time you were in a friends-with-benefits situation. Share only what feels comfortable.",
       "pillar": "closer"
     },
     {
@@ -35926,7 +35926,7 @@
       "module": "sexuality",
       "category": "Past History & Sexual Firsts",
       "intensity": 3,
-      "prompt": "Have you ever had a one-night stand? If so, how did you feel about it afterward?",
+      "prompt": "Tell me about a one-night stand you had and how you felt about it afterward.",
       "pillar": "heat"
     },
     {
@@ -35934,7 +35934,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 3,
-      "prompt": "Have you ever seen someone and thought you just wanted to experience being with them, even only once?",
+      "prompt": "Tell me about a time you saw someone and just wanted to experience being with them, even only once.",
       "pillar": "heat"
     },
     {
@@ -37055,6 +37055,1326 @@
       "category": "Pleasure & Connection",
       "intensity": 2,
       "prompt": "Take me back to a time you were with someone and everything else faded away.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap1-001",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Tell me what it was like being the oldest, youngest, middle or only child in your house.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-002",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Walk me through the biggest fight you ever had with a brother, a sister or a cousin who felt like one.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-003",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Describe a time a sibling or close cousin got you out of trouble.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-004",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Take me back to a time you got blamed for something a sibling did.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-005",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Who was the family favorite in your eyes, and how could you tell?",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-006",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Share a story about a shared room, a shared bathroom or a hand-me-down you still remember.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-007",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a prank you pulled on a sibling or cousin, or one pulled on you.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-008",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Describe how you filled the quiet in your house growing up, whether you had siblings or not.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-009",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Recall the moment you realized a sibling or cousin had become your friend.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-010",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Share a story about a sibling milestone you showed up for, or missed.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-011",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time you were jealous of a brother or sister's life.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-012",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Describe the role your family handed you as a kid, like the funny one or the responsible one.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-013",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Take me back to a holiday or road trip squeezed in with siblings or cousins.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-014",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Walk me through how you and your siblings split up family duties as adults.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-015",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time a sibling surprised you by how they handled something hard.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-016",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Share a story about a secret you kept for a sibling.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-017",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Describe how birth order shaped the rules you grew up with.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-018",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Recall a time you taught a younger sibling something, or an older one taught you.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-019",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a long stretch when you and a sibling weren't close.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-020",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 1,
+      "prompt": "Describe what you hope kids in your life will understand about being siblings.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap1-021",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about the first person you ever called your boyfriend or girlfriend.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-022",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Walk me through the kindest breakup you ever had.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-023",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Describe the hardest breakup of your life.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-024",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Recall a time you stayed in a relationship longer than you should have.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-025",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Share a story about a time you were the one who ended things.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-026",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were broken up with and never saw it coming.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-027",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about an ex you stayed friends with, or wish you had.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-028",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Describe a time you ran into an ex unexpectedly.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-029",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Walk me through the last message you ever exchanged with an ex.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-030",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Share a lesson an ex taught you that you still carry.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-031",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Recall a relationship you once thought was the one.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-032",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about a time an ex changed how you saw yourself, for better or worse.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-033",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Describe how you healed after a relationship ended.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-034",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Take me back to a rebound, or the moment you almost had one.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-035",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Share a story about a time you got back together with someone.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-036",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about a relationship that looked good on the outside and wasn't.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-037",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Walk me through how friends and family reacted to the people you dated.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-038",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Recall a time a past partner kept something from you, or you kept something from them.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-039",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Describe something you wish you had said to an ex but never did.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-040",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about the moment you stopped measuring new relationships against an old one.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-041",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Tell me about a time someone broke your trust.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-042",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Describe a time you broke someone's trust and had to own it.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-043",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Walk me through a time you caught someone in a lie.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-044",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Recall a white lie of yours that grew bigger than you planned.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-045",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Share a story about a time jealousy surprised you.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-046",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Take me back to a time a friend or partner was jealous of you.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-047",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Tell me about a time infidelity touched your life, through a friend, a parent or a past partner.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-048",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Describe what cheating means to you and where you first learned that line.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-049",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Share a story about a time you were tempted to do something you knew was wrong.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-050",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Recall a time you forgave someone who never asked.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-051",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Walk me through a time honesty cost you something.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-052",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Tell me about a secret you carried for too long.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-053",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Describe a time someone was honest with you in a way that hurt but helped.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-054",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Take me back to the first time you wanted to check a partner's phone.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-055",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Share a story about learning to trust again after being hurt.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-056",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Recall a time you trusted your gut about someone and turned out to be right.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-057",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Tell me about a time you trusted your gut and turned out to be wrong.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-058",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Describe a time you were honest about something embarrassing and it brought you closer to someone.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-059",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Walk me through how you decide whether someone has earned your trust.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap1-060",
+      "module": "life",
+      "category": "Trust & Emotional Safety",
+      "intensity": 2,
+      "prompt": "Share a story about someone who kept their word when it was hard.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap2-001",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about the first phone you ever owned.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-002",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a time a text landed in the wrong chat.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-003",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through your most awkward group chat moment.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-004",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall the first social media profile you ever made.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-005",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Take me back to a time you posted something and instantly regretted it.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-006",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about a screenshot that got you into trouble, or out of it.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-007",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you went a whole day without your phone.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-008",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a voicemail or message you've kept for years.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-009",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall a time a message was read the wrong way.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-010",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Take me back to your first email address or username.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-011",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about falling down an online rabbit hole and losing hours.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-012",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a time autocorrect did you dirty.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-013",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about meeting someone in person you only knew online.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-014",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a viral moment or trend that caught you or a friend off guard.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-015",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall a time you scrolled through someone's profile for longer than you'd admit.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-016",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about your most awkward attempt at a first kiss.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-017",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Describe a time you called someone by the wrong name on a date.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-018",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Walk me through a date where the food or the restaurant went wrong.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-019",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Take me back to a time you spilled something on a date.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-020",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Recall a moment you froze when the bill came.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-021",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Share a story about a date where you ran out of things to say.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-022",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time you got caught staring at someone you liked.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-023",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Describe the strangest thing someone said to you on a first date.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-024",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Walk me through a date set up by a friend or family member.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-025",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Take me back to a moment you realized mid-date that it wasn't going anywhere.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-026",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Recall a time you tried to impress someone and it backfired.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-027",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Share a story about showing up overdressed or underdressed for a date.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-028",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time you got a date's attention for all the wrong reasons.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-029",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Describe a date that was interrupted by an unexpected guest.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-030",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Walk me through a crush where you totally misread the signals.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-031",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Take me back to a time you tried to be smooth and tripped, literally or otherwise.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-032",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Recall a time someone's roommate or family walked in at the worst moment.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-033",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Share a story about laughing at the wrong moment on a date.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-034",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about the most awkward goodnight of your life.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-035",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Describe a date that went so badly it became a good story.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-036",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you got completely lost.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-037",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe the best meal you ever had by accident.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-038",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a time you tried a new hobby and were terrible at it.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-039",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall a time you won something unexpectedly.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-040",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Take me back to a stranger who was kind to you out of nowhere.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-041",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about getting the giggles at the worst possible moment.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-042",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a gift you gave that completely missed.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-043",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a time you pretended to know something you didn't.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-044",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through the worst haircut or outfit you ever committed to.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-045",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall a trip or outing that went wrong and turned out better than planned.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-046",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about meeting someone famous, or almost meeting them.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-047",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a job you had that taught you something odd.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-048",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a time you were mistaken for someone else.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-049",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Take me back to a car ride you'll never forget.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-050",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a time you were far too confident about something.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-051",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall your best you-had-to-be-there moment.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-052",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about running into someone from your past.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-053",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you were the only one who didn't get the joke.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-054",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe the wildest weather you've ever lived through.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-055",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Take me back to something you ate and immediately regretted.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-056",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a morning when everything went wrong.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-057",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Recall a time you helped a stranger who was in a jam.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-058",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Share a story about an animal that crossed your path in a memorable way.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-059",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a second chance you got at something you'd blown.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap2-060",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a small thing that made your day when you least expected it.",
+      "pillar": "spark"
+    },
+    {
+      "id": "gap3-001",
+      "module": "life",
+      "category": "Money & Work",
+      "intensity": 1,
+      "prompt": "Tell me about the first paycheck you ever earned.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-002",
+      "module": "life",
+      "category": "Money & Work",
+      "intensity": 2,
+      "prompt": "Walk me through a money mistake that taught you a lesson.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-003",
+      "module": "life",
+      "category": "Money & Work",
+      "intensity": 2,
+      "prompt": "Describe a time work stress followed you home.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-004",
+      "module": "life",
+      "category": "Money & Work",
+      "intensity": 2,
+      "prompt": "Recall a job or career change that scared you.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-005",
+      "module": "life",
+      "category": "Family & Community",
+      "intensity": 2,
+      "prompt": "Take me back to a family gathering where tensions ran high.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-006",
+      "module": "life",
+      "category": "Family & Community",
+      "intensity": 1,
+      "prompt": "Share a story about a neighbor or community member who left a mark on you.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-007",
+      "module": "life",
+      "category": "Family & Community",
+      "intensity": 2,
+      "prompt": "Tell me about a time you cared for a family member.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-008",
+      "module": "life",
+      "category": "Family & Community",
+      "intensity": 1,
+      "prompt": "Describe a family tradition you'd want to keep alive.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-009",
+      "module": "life",
+      "category": "Home & Daily Life",
+      "intensity": 1,
+      "prompt": "Walk me through the home you remember most fondly.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-010",
+      "module": "life",
+      "category": "Home & Daily Life",
+      "intensity": 2,
+      "prompt": "Tell me about a move that changed your life.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-011",
+      "module": "life",
+      "category": "Home & Daily Life",
+      "intensity": 1,
+      "prompt": "Describe a chore you hated as a kid and how you feel about it now.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-012",
+      "module": "life",
+      "category": "Home & Daily Life",
+      "intensity": 1,
+      "prompt": "Recall a daily routine that once grounded you.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-013",
+      "module": "life",
+      "category": "Health & Support",
+      "intensity": 2,
+      "prompt": "Share a story about a time you were sick and someone took care of you.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-014",
+      "module": "life",
+      "category": "Health & Support",
+      "intensity": 2,
+      "prompt": "Tell me about leaning on someone during a hard stretch.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-015",
+      "module": "life",
+      "category": "Health & Support",
+      "intensity": 2,
+      "prompt": "Describe how your family handled illness when you were growing up.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-016",
+      "module": "life",
+      "category": "Life Stages & Change",
+      "intensity": 2,
+      "prompt": "Take me back to the moment you realized you'd grown up.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-017",
+      "module": "life",
+      "category": "Life Stages & Change",
+      "intensity": 2,
+      "prompt": "Walk me through a big change you didn't choose.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-018",
+      "module": "life",
+      "category": "Life Stages & Change",
+      "intensity": 2,
+      "prompt": "Recall a time your plans for your life shifted completely.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-019",
+      "module": "life",
+      "category": "Friends & Social Life",
+      "intensity": 1,
+      "prompt": "Tell me about a friendship that shaped who you became.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-020",
+      "module": "life",
+      "category": "Technology & Digital Boundaries",
+      "intensity": 1,
+      "prompt": "Describe a time you set a boundary with technology or social media.",
+      "pillar": "together"
+    },
+    {
+      "id": "gap3-021",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Tell me about a fear from childhood that stuck around.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-022",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Describe a moment you felt like you didn't belong.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-023",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Walk me through a time you felt like an impostor.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-024",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Recall a time insecurity made you act in a way you're not proud of.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-025",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Share a story about a compliment you couldn't accept.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-026",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were afraid to ask for help.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-027",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Tell me about a risk you took that scared you silly.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-028",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Describe a time you felt self-conscious about how you looked.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-029",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Walk me through a moment you were afraid of being judged.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-030",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Recall a time you compared yourself to someone and came up short.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-031",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Share a story about a fear you faced on purpose.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-032",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Tell me about a time you felt left out.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-033",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Describe a time you were afraid to be vulnerable.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-034",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Take me back to a time you were afraid of failing in front of others.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-035",
+      "module": "life",
+      "category": "Personal Growth & Boundaries",
+      "intensity": 2,
+      "prompt": "Walk me through a time you worried you'd never be good enough.",
+      "pillar": "closer"
+    },
+    {
+      "id": "gap3-036",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Tell me about your first celebrity crush.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-037",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Describe the type you were drawn to as a teenager.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-038",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Walk me through a character from a movie or show you couldn't stop thinking about.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-039",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Recall a famous person you'd love to have dinner with.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-040",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Take me back to a poster or picture that hung on your wall as a kid.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-041",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Share a story about a crush that came out of nowhere.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-042",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Tell me about a voice, laugh or smile that once got to you.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-043",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Describe a quality that makes someone instantly attractive to you.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-044",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Walk me through a time you were surprised by who you found attractive.",
+      "pillar": "heat"
+    },
+    {
+      "id": "gap3-045",
+      "module": "sexuality",
+      "category": "Flirting & Chemistry",
+      "intensity": 1,
+      "prompt": "Recall the first time you felt butterflies around someone.",
       "pillar": "heat"
     },
     {
@@ -40974,7 +42294,7 @@
       "module": "explicit",
       "category": "Humor & Blunders",
       "intensity": 2,
-      "prompt": "What is the funniest or most awkward thing that has ever gone wrong mid-act during a sexual experience?",
+      "prompt": "Tell me about the funniest or most awkward thing that ever went wrong mid-act during a sexual experience.",
       "pillar": "afterhours"
     },
     {
@@ -40990,7 +42310,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever tried an unusual toy, object, or solo technique that you immediately regretted or laughed about afterward?",
+      "prompt": "Tell me about an unusual toy, object or solo technique you tried and immediately regretted or laughed about.",
       "pillar": "afterhours"
     },
     {
@@ -41046,7 +42366,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever bought a solo toy that was so intense or unusual you were actually intimidated to try it the first time?",
+      "prompt": "Tell me about a solo toy you bought that was so intense or unusual you were intimidated to try it.",
       "pillar": "afterhours"
     },
     {
@@ -41078,7 +42398,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 2,
-      "prompt": "When was the last time you masturbated simply because you were bored or couldn't sleep rather than being genuinely horny?",
+      "prompt": "Tell me about the last time you masturbated simply because you were bored or couldn't sleep, not because you were truly in the mood.",
       "pillar": "afterhours"
     },
     {
@@ -41094,7 +42414,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever masturbated while in the same room as someone else without them realizing what you were doing?",
+      "prompt": "Tell me about a time you masturbated in the same room as someone else without them realizing.",
       "pillar": "afterhours"
     },
     {
@@ -41182,7 +42502,7 @@
       "module": "explicit",
       "category": "Pleasure Triggers",
       "intensity": 4,
-      "prompt": "Have you ever had an intense climax triggered entirely by dirty talk or mental imagery alone without touch?",
+      "prompt": "Tell me about a time you had an intense climax triggered by dirty talk or mental imagery alone, without touch.",
       "pillar": "afterhours"
     },
     {
@@ -41198,7 +42518,7 @@
       "module": "explicit",
       "category": "Humor & Blunders",
       "intensity": 2,
-      "prompt": "Have you ever had a physical mishap mid-act—like a muscle cramp or falling off furniture—that completely halted the mood?",
+      "prompt": "Tell me about a physical mishap mid-act, like a cramp or a fall off the furniture, that halted the mood.",
       "pillar": "afterhours"
     },
     {
@@ -41230,7 +42550,7 @@
       "module": "explicit",
       "category": "Humor & Blunders",
       "intensity": 2,
-      "prompt": "Have you ever accidentally called out something ridiculous or mispronounced something in the heat of passion?",
+      "prompt": "Tell me about a time you accidentally called out something ridiculous or mispronounced something in the heat of passion.",
       "pillar": "afterhours"
     },
     {
@@ -41310,7 +42630,7 @@
       "module": "explicit",
       "category": "Turn-Offs & Dislikes",
       "intensity": 3,
-      "prompt": "Have you ever tried a popular sex toy that you felt was completely overhyped or genuinely uncomfortable?",
+      "prompt": "Tell me about a popular sex toy you tried that turned out to be overhyped or genuinely uncomfortable.",
       "pillar": "afterhours"
     },
     {
@@ -41342,7 +42662,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever tried restraint or light bondage in the past, and what was your immediate reaction to losing control?",
+      "prompt": "Tell me about a time you tried restraint or light bondage and how you reacted to losing control.",
       "pillar": "afterhours"
     },
     {
@@ -41358,7 +42678,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever tried temperature play with ice cubes or warm wax, and did you enjoy the sensation?",
+      "prompt": "Tell me about a time you tried temperature play with ice cubes or warm wax.",
       "pillar": "afterhours"
     },
     {
@@ -41374,7 +42694,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever experimented with mirror play or watching the action from a different angle?",
+      "prompt": "Tell me about a time you experimented with mirror play or watching from a different angle.",
       "pillar": "afterhours"
     },
     {
@@ -41390,7 +42710,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever experimented with blindfolds or sensory deprivation, and how did it change your touch sensitivity?",
+      "prompt": "Tell me about a time you experimented with blindfolds or sensory deprivation.",
       "pillar": "afterhours"
     },
     {
@@ -41662,7 +42982,7 @@
       "module": "explicit",
       "category": "Sensory & Atmosphere",
       "intensity": 3,
-      "prompt": "Have you ever tried using temperature gels or sensations, and what was your immediate reaction?",
+      "prompt": "Tell me about a time you tried a temperature gel or sensation product and how you reacted.",
       "pillar": "afterhours"
     },
     {
@@ -41774,7 +43094,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever tried audio-only erotica or voice clips during solo play, and how effective were they compared to visual stimuli?",
+      "prompt": "Tell me about a time you tried audio-only erotica or voice clips during solo play.",
       "pillar": "afterhours"
     },
     {
@@ -41790,7 +43110,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever used a toy or device during solo play that completely ruined your sensitivity for normal touch the next day?",
+      "prompt": "Tell me about a time a toy or device during solo play left you less sensitive to normal touch the next day.",
       "pillar": "afterhours"
     },
     {
@@ -41814,7 +43134,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Have you ever masturbated in a moving vehicle—like as a passenger on a long road trip—while trying to keep it completely secret?",
+      "prompt": "Tell me about a time you masturbated in a moving vehicle, like on a long road trip, while keeping it completely secret.",
       "pillar": "afterhours"
     },
     {
@@ -41862,7 +43182,7 @@
       "module": "explicit",
       "category": "Pleasure Triggers",
       "intensity": 4,
-      "prompt": "Have you ever experienced involuntary full-body spasms or shaking from an orgasm so intense it felt overwhelming?",
+      "prompt": "Tell me about a time an orgasm was so intense it brought on full-body spasms or shaking.",
       "pillar": "afterhours"
     },
     {
@@ -41902,7 +43222,7 @@
       "module": "explicit",
       "category": "Pleasure Triggers",
       "intensity": 4,
-      "prompt": "Have you ever had an orgasm triggered purely by intense emotional vulnerability or feeling deeply seen and safe?",
+      "prompt": "Tell me about a time an orgasm was triggered by feeling deeply seen and safe.",
       "pillar": "afterhours"
     },
     {
@@ -41934,7 +43254,7 @@
       "module": "explicit",
       "category": "Humor & Blunders",
       "intensity": 2,
-      "prompt": "Have you ever had a hilarious wardrobe malfunction right when you were trying to look your absolute most seductive?",
+      "prompt": "Tell me about a hilarious wardrobe malfunction that happened right when you were trying to look your most seductive.",
       "pillar": "afterhours"
     },
     {
@@ -41950,7 +43270,7 @@
       "module": "explicit",
       "category": "Humor & Blunders",
       "intensity": 2,
-      "prompt": "Have you ever tried to watch something explicit on a screen and accidentally cast it to the wrong device in the house?",
+      "prompt": "Tell me about a time you tried to watch something explicit and accidentally cast it to the wrong device in the house.",
       "pillar": "afterhours"
     },
     {
@@ -42038,7 +43358,7 @@
       "module": "explicit",
       "category": "Turn-Offs & Dislikes",
       "intensity": 3,
-      "prompt": "Have you ever tried using edible products or flavored lubricants that turned out to have a chemical taste you completely hated?",
+      "prompt": "Tell me about a time an edible product or flavored lubricant turned out to taste awful.",
       "pillar": "afterhours"
     },
     {
@@ -43134,7 +44454,7 @@
       "module": "explicit",
       "category": "Upbringing, Shame & Sex Ed",
       "intensity": 2,
-      "prompt": "What's the first thing you learned about sex that genuinely surprised you?",
+      "prompt": "Tell me about the first thing you learned about sex that genuinely surprised you.",
       "pillar": "afterhours"
     },
     {
@@ -43190,7 +44510,7 @@
       "module": "explicit",
       "category": "Upbringing, Shame & Sex Ed",
       "intensity": 2,
-      "prompt": "Have you ever wished you’d been kinder to your younger self about sexual curiosity or masturbation?",
+      "prompt": "Tell me about a time you wished you'd been kinder to your younger self about sexual curiosity or masturbation.",
       "pillar": "afterhours"
     },
     {
@@ -43518,7 +44838,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever felt undesired for a long stretch — and did you name it out loud or wait to be noticed?",
+      "prompt": "Tell me about a long stretch when you felt undesired.",
       "pillar": "afterhours"
     },
     {
@@ -43558,7 +44878,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever felt pressure to perform interest you didn't feel — and what did that cost you?",
+      "prompt": "Tell me about a time you felt pressure to perform interest you didn't feel.",
       "pillar": "afterhours"
     },
     {
@@ -43782,7 +45102,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever hidden how attracted you still are because showing it felt risky during a dry spell?",
+      "prompt": "Tell me about a time you hid how attracted you still were because showing it felt risky during a dry spell.",
       "pillar": "afterhours"
     },
     {
@@ -43902,7 +45222,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever resented a partner over a desire mismatch — and what did you do with the resentment?",
+      "prompt": "Tell me about a time you resented a partner over a desire mismatch.",
       "pillar": "afterhours"
     },
     {
@@ -43974,7 +45294,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever felt relieved when your partner said 'not tonight' — and what did that relief tell you?",
+      "prompt": "Tell me about a time you felt relieved when a partner said not tonight.",
       "pillar": "afterhours"
     },
     {
@@ -44110,7 +45430,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever worried the mismatch was about you specifically — and what finally quieted that voice?",
+      "prompt": "Tell me about a time you worried that a desire mismatch was about you specifically.",
       "pillar": "afterhours"
     },
     {
@@ -44166,7 +45486,7 @@
       "module": "explicit",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 2,
-      "prompt": "Have you ever felt your desire was used as a measure of the relationship — and what did that pressure do?",
+      "prompt": "Tell me about a time you felt your desire was being used as a measure of the relationship.",
       "pillar": "afterhours"
     },
     {
@@ -44222,7 +45542,7 @@
       "module": "explicit",
       "category": "Health, Pain & Performance",
       "intensity": 1,
-      "prompt": "When was the last time you felt physically self-conscious during sex, and what caused it?",
+      "prompt": "Tell me about the last time you felt physically self-conscious during sex.",
       "pillar": "afterhours"
     },
     {
@@ -44262,7 +45582,7 @@
       "module": "explicit",
       "category": "Health, Pain & Performance",
       "intensity": 2,
-      "prompt": "Have you ever experienced pain during sex that you pushed through rather than mention in the moment?",
+      "prompt": "Tell me about a time you felt pain during sex and pushed through rather than mention it in the moment.",
       "pillar": "afterhours"
     },
     {
@@ -44462,7 +45782,7 @@
       "module": "explicit",
       "category": "Health, Pain & Performance",
       "intensity": 3,
-      "prompt": "Have you ever grieved a version of your sexual self that you can't get back?",
+      "prompt": "Tell me about a version of your sexual self that you grieve and can't get back.",
       "pillar": "afterhours"
     },
     {
@@ -44622,7 +45942,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 2,
-      "prompt": "Have you ever discovered that the anticipation of trying something was more exciting than the activity itself?",
+      "prompt": "Tell me about a time the anticipation of trying something was more exciting than the activity itself.",
       "pillar": "afterhours"
     },
     {
@@ -44886,7 +46206,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Have you ever discovered that an assumption about your own sexual preferences was not quite right? What are you comfortable sharing about that?",
+      "prompt": "Tell me about a time you discovered an assumption about your own sexual preferences wasn't quite right. Share what you're comfortable with.",
       "pillar": "afterhours"
     },
     {
@@ -54998,7 +56318,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 3,
-      "prompt": "Have you ever seen a stranger and been so turned on that you needed to take care of yourself afterward? Share only what you want to.",
+      "prompt": "Tell me about a time you saw a stranger and were so turned on you needed to take care of yourself afterward. Share only what you want to.",
       "pillar": "afterhours"
     },
     {
@@ -55431,6 +56751,126 @@
       "category": "Upbringing, Shame & Sex Ed",
       "intensity": 3,
       "prompt": "Take me back to a time you felt embarrassed or ashamed about desire and how you moved past it.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-001",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about the most awkward sexual moment you ever had with a past partner.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-002",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe a time a past partner's expectations about sex didn't match yours.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-003",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Walk me through how you first talked about sex with someone you were dating.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-004",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Recall a time sex with an ex was better or worse than you expected.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-005",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Take me back to a moment during sex when something unexpected happened and you both had to laugh.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-006",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Share a story about a time you faked enthusiasm and later wished you'd been honest.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-007",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about something you learned about your own body from a past relationship.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-008",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe the first time you felt truly comfortable being naked with someone.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-009",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Walk me through a time a past partner made you feel judged about your desires.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-010",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Recall a time you were nervous before sex with someone new.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-011",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Share a story about a fling that taught you what you didn't want.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-012",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Tell me about a time a past partner surprised you in bed in a good way.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-013",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe the most awkward thing that has happened right before or after sex.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-014",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Take me back to a time you wished you'd said yes, or no, more clearly.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "gap-a-015",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 3,
+      "prompt": "Describe how your feelings about a past lover changed over the years.",
       "pillar": "afterhours"
     }
   ]

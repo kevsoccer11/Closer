@@ -307,7 +307,7 @@ check('paired pack selection remains in the connected round builder until the ho
     const app = fs.readFileSync('js/app.js', 'utf8');
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const builderPackSelection = app.match(/if \(btn\.closest\('#curatedTab'\)\) \{([\s\S]*?)\n            \}\n            startPackByKey/);
-    const pairedStart = logic.match(/startButton\.onclick = \(\) => \{([\s\S]*?)\n        \};\n        startSection\.append/);
+    const pairedStart = logic.match(/addChoice\('Conversation pack'[^\n]*\n([\s\S]*?)\n        \}, true\);/);
     if (!builderPackSelection
         || !builderPackSelection[1].includes('applyPack(packKey);')
         || !builderPackSelection[1].includes('updateRoundMatchCount();')
@@ -484,7 +484,7 @@ check('starting a round resets the game view scroll position', () => {
     }
 });
 
-check('custom deck play ignores unrelated filters and opens the game view', () => {
+check('custom deck play ignores unrelated filters and opens the game view', async () => {
     class TestElement {
         constructor() {
             this.children = [];
@@ -553,7 +553,7 @@ check('custom deck play ignores unrelated filters and opens the game view', () =
 
     context.renderMyDecks();
     const playButton = deckList.children[0].children[1].children[0];
-    playButton.onclick();
+    await playButton.onclick();
 
     const selectedIds = vm.runInContext('unspentDeck.map(card => card.id)', context);
     if (selectedIds.length !== 1 || selectedIds[0] !== 'deck-card') {
@@ -995,10 +995,32 @@ check('You Get Me compares both locked choices before the host can continue', ()
     }
 });
 
+check('After Hours cards sync by id only and need both players to consent', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const rules = JSON.parse(fs.readFileSync('database.rules.json', 'utf8')).rules.rooms.$roomCode;
+    if (!logic.includes('buildSharedCardPayload(currentCard)')
+        || !logic.includes("SHARED_CARD_SYNC_KEYS = ['id', 'module'")
+        || !logic.includes('isRoomExplicitAllowed()')
+        || logic.includes('Explicit cards cannot be started in a paired room')
+        || !rules.explicitConsent?.$seat?.['.write']) {
+        throw new Error('After Hours room sync is not id-only or not gated on consent');
+    }
+});
+
+check('starting a different game mid-game needs the partner to agree', () => {
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const rules = JSON.parse(fs.readFileSync('database.rules.json', 'utf8')).rules.rooms.$roomCode;
+    const gates = (logic.match(/await confirmRoomSwitch\(/g) || []).length;
+    if (gates < 3 || !app.includes("confirmRoomSwitch('You Get Me')") || !rules.switchRequest?.['.write']) {
+        throw new Error('pack, deck, Compare First and You Get Me starts are not all gated on partner confirmation');
+    }
+});
+
 check('approved private rooms direct the host to choose a pack', () => {
     const logic = fs.readFileSync('js/app-logic.js', 'utf8');
     const state = fs.readFileSync('js/app-state.js', 'utf8');
-    if (!logic.includes("startButton.textContent = 'Choose a pack and start';")
+    if (!logic.includes("addChoice('Conversation pack'")
         || !logic.includes('closeDrawer();\n            openRoundBuilder();')
         || !/partnerConnected && currentRoomGameModeLoaded\) \{/.test(logic)
         || !logic.includes('renderPairManagement();\n            }\n        };\n        window.roomRef.child(\'members/partner\')')

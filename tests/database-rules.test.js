@@ -105,6 +105,68 @@ async function main() {
         await assertSucceeds(get(ref(partnerForJoin, `rooms/${joinRoomCode}/gameMode`)));
         await assertSucceeds(set(ref(partnerForJoin, `rooms/${joinRoomCode}/guessMe/partnerReady`), true));
 
+        const inviteRoom = 'cdefghijklmnopqrstuvwx';
+        const inviteHost = environment.authenticatedContext('invite-host').database();
+        const guestA = environment.authenticatedContext('invite-guest-a').database();
+        const guestB = environment.authenticatedContext('invite-guest-b').database();
+        const base = `rooms/${inviteRoom}`;
+        const token = 'tokentokentokentoken1234';
+        const joinWithToken = (db, uid, inviteToken) => update(ref(db, base), {
+            [`joinRequests/${uid}`]: { requesterUid: uid, status: 'pending', requestedAt: Date.now(), name: 'Alex', icon: '⭐', inviteToken },
+            'invite/claimedBy': uid
+        });
+        await assertSucceeds(set(ref(inviteHost, `${base}/members/host`), 'invite-host'));
+        await assertSucceeds(set(ref(inviteHost, `${base}/invite`), { token, expiresAt: Date.now() + 60000 }));
+        await assertFails(get(ref(guestA, `${base}/invite/token`)));
+        await assertSucceeds(get(ref(guestA, `${base}/invite/expiresAt`)));
+        await assertFails(joinWithToken(guestA, 'invite-guest-a', 'wrongtokenwrongtoken1234'));
+        await assertSucceeds(joinWithToken(guestA, 'invite-guest-a', token));
+        await assertFails(joinWithToken(guestB, 'invite-guest-b', token));
+        await assertSucceeds(set(ref(inviteHost, `${base}/invite`), { token: 'newtokennewtokennew5678', expiresAt: Date.now() + 60000 }));
+        await assertSucceeds(joinWithToken(guestB, 'invite-guest-b', 'newtokennewtokennew5678'));
+        await assertSucceeds(set(ref(inviteHost, `${base}/invite`), { token: 'expiredexpiredexpired12', expiresAt: Date.now() - 1000 }));
+        const guestC = environment.authenticatedContext('invite-guest-c').database();
+        await assertFails(joinWithToken(guestC, 'invite-guest-c', 'expiredexpiredexpired12'));
+        await assertFails(set(ref(guestC, `${base}/invite`), { token: 'stolenstolenstolen1234', expiresAt: Date.now() + 60000 }));
+        // The plain room code without a token still works and still waits for host approval.
+        await assertSucceeds(set(ref(guestC, `${base}/joinRequests/invite-guest-c`), { requesterUid: 'invite-guest-c', status: 'pending', requestedAt: Date.now() }));
+
+        const consentPath = `rooms/${roomCode}/explicitConsent`;
+        await assertSucceeds(set(ref(host, `${consentPath}/host`), true));
+        await assertSucceeds(set(ref(partner, `${consentPath}/partner`), true));
+        await assertFails(set(ref(host, `${consentPath}/partner`), true));
+        await assertFails(set(ref(partner, `${consentPath}/host`), false));
+        await assertFails(set(ref(outsider, `${consentPath}/host`), true));
+        await assertFails(set(ref(host, `${consentPath}/host`), 'yes'));
+        await assertSucceeds(get(ref(partner, consentPath)));
+        await assertFails(get(ref(outsider, consentPath)));
+        await assertSucceeds(set(ref(host, activeCardPath), { id: 'explicit-1', module: 'explicit', roundId: 'r2', sharedRoundStartedAt: Date.now() }));
+
+        const switchPath = `rooms/${roomCode}/switchRequest`;
+        await assertSucceeds(set(ref(host, switchPath), { by: 'host-uid', label: 'Spark pack', at: Date.now() }));
+        await assertFails(set(ref(partner, switchPath), { by: 'host-uid', label: 'Spark pack', at: Date.now(), status: 'approved', extra: 1 }));
+        await assertSucceeds(update(ref(partner, switchPath), { status: 'approved' }));
+        await assertFails(update(ref(partner, switchPath), { label: 'Changed' }));
+        await assertFails(set(ref(outsider, switchPath), null));
+        await assertSucceeds(remove(ref(host, switchPath)));
+        await assertFails(set(ref(partner, switchPath), { by: 'host-uid', label: 'Spoof', at: Date.now() }));
+        await assertSucceeds(set(ref(partner, switchPath), { by: 'partner-uid', label: 'Heat pack', at: Date.now() }));
+        await assertSucceeds(update(ref(host, switchPath), { status: 'declined' }));
+        await assertSucceeds(remove(ref(partner, switchPath)));
+
+        const lockPath = `rooms/${roomCode}/roundStart`;
+        await assertSucceeds(set(ref(host, lockPath), { by: 'host-uid', at: Date.now() }));
+        await assertFails(set(ref(partner, lockPath), { by: 'partner-uid', at: Date.now() }));
+        await assertFails(set(ref(outsider, lockPath), { by: 'host-uid', at: Date.now() }));
+        await assertSucceeds(get(ref(partner, lockPath)));
+        await assertSucceeds(remove(ref(host, lockPath)));
+        await assertFails(set(ref(host, lockPath), { by: 'partner-uid', at: Date.now() }));
+        await assertSucceeds(set(ref(partner, lockPath), { by: 'partner-uid', at: Date.now() }));
+        await assertSucceeds(remove(ref(partner, lockPath)));
+        await assertSucceeds(set(ref(host, lockPath), { by: 'host-uid', at: Date.now() - 60000 }));
+        await assertSucceeds(set(ref(partner, lockPath), { by: 'partner-uid', at: Date.now() }));
+        await assertSucceeds(remove(ref(partner, lockPath)));
+
         const scoreTransaction = await runTransaction(
             ref(host, `rooms/${roomCode}/guessMe/scores/partner`),
             score => (Number(score) || 0) + 1

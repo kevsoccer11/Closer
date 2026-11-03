@@ -123,6 +123,7 @@ async function initDatabase() {
     // Do not auto-connect to a previous room on load; pairing is an explicit user action.
     // (Saved code/role are retained for manual reconnect.)
     offerRoomRejoin(savedCode, savedRole);
+    handleInviteLink();
 
 }
 
@@ -804,6 +805,7 @@ function leaveRoom({ confirmFirst = true } = {}) {
     }
     // Tell the partner right away instead of waiting for the connection to time out.
     if (seated && presenceState.ref) presenceState.ref.set({ online: false, lastSeen: Date.now() }).catch(() => {});
+    if (seated && window.roomRef) window.roomRef.child(`explicitConsent/${window.currentRoomRole}`).set(false).catch(() => {});
     if (!seated && pendingJoinRequestRef) pendingJoinRequestRef.remove().catch(() => {});
     detachRoomAccessListeners();
     window.roomRef = null;
@@ -819,6 +821,8 @@ function leaveRoom({ confirmFirst = true } = {}) {
         localStorage.removeItem('closer_room_role');
     } catch (e) {}
     document.getElementById('rejoinBanner')?.remove();
+    document.getElementById('joinWaitBanner')?.remove();
+    document.getElementById('joinApprovalBanner')?.remove();
     document.getElementById('guessMeRequestBanner')?.remove();
     hideGuessMeView();
     resetLocalConversation('You left the room.');
@@ -955,10 +959,31 @@ function updateRoundIntensityVisibility() {
     if (group) group.classList.toggle('hidden', onlyDeepConnection);
 }
 
+function describeRoundForSwitch() {
+    const key = document.getElementById('roundBuilderModal')?.dataset.selectedPack;
+    const title = key && document.querySelector(`#curatedTab .pack-card[data-pack="${key}"]`)
+        ?.querySelector('h3, h4, strong, .pack-title')?.textContent?.trim();
+    return title ? `the ${title} pack` : 'a new round';
+}
+
 async function applyRoundSelection(selection, startLight = false, questionCount = null) {
     if (selection.modules.length === 0) {
         const status = document.getElementById('roundBuilderStatus');
         if (status) status.textContent = 'Choose at least one deck to start.';
+        return false;
+    }
+    if (!browseMode && window.roomRef && isSeatedRoomMember()
+        && selection.modules.includes('afterhours') && !isRoomExplicitAllowed()) {
+        const message = 'Both of you need to allow After Hours cards in this room first. Open the Room panel and tap Allow.';
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = message;
+        showToast(message);
+        return false;
+    }
+    if (!browseMode && window.roomRef && isSeatedRoomMember()
+        && !(await confirmRoomSwitch(describeRoundForSwitch()))) {
+        const status = document.getElementById('roundBuilderStatus');
+        if (status) status.textContent = 'Your partner is still playing the current game. Nothing changed.';
         return false;
     }
     if (activeDeckId) {
@@ -1024,8 +1049,8 @@ roundStats = { played: 0, passed: 0 };
         showToast(message);
         return false;
     }
-    if (sharedHostStart && currentCard.module === 'explicit') {
-        const message = 'Explicit cards cannot be started in a paired room.';
+    if (sharedHostStart && currentCard.module === 'explicit' && !isRoomExplicitAllowed()) {
+        const message = 'Both of you need to allow After Hours cards in this room first. Open the Room panel and tap Allow.';
         const status = document.getElementById('roundBuilderStatus');
         if (status) status.textContent = message;
         showToast(message);
@@ -1035,7 +1060,7 @@ roundStats = { played: 0, passed: 0 };
         try {
             if (currentRoomGameMode === 'guess-me') await window.roomRef.child('gameMode').set('conversation');
             await window.roomRef.child('activeCard').set({
-                ...currentCard,
+                ...buildSharedCardPayload(currentCard),
                 sharedRoundStartedAt: Date.now(),
                 startedBy: window.firebase?.auth().currentUser?.uid || null
             });
@@ -1289,6 +1314,174 @@ async function adoptSharedRoundDeck(card) {
     } catch (error) {
         console.error('Could not load the shared round deck:', error);
     }
+}
+
+function isRoomExplicitAllowed() {
+    return roomExplicitConsent.host === true && roomExplicitConsent.partner === true;
+}
+
+const SHARED_CARD_SYNC_KEYS = ['id', 'module', 'roundId', 'turnIndex', 'deckRoundId', 'deckIndex'];
+
+// Built-in After Hours cards sync as an id only; each phone rebuilds the text from its own card file.
+function buildSharedCardPayload(card) {
+    const isBuiltIn = card.module === 'explicit' && !customUserCards.some(custom => custom.id === card.id);
+    if (!isBuiltIn) return { ...card };
+    const payload = {};
+    SHARED_CARD_SYNC_KEYS.forEach(key => { if (card[key] !== undefined) payload[key] = card[key]; });
+    return payload;
+}
+
+async function setExplicitConsent(allowed) {
+    if (!window.roomRef || !isSeatedRoomMember()) return;
+    if (allowed && !hasExplicitAgeConfirmation()) {
+        pendingExplicitRoomConsent = true;
+        setModalOpen(document.getElementById('explicitAgeGate'), true);
+        return;
+    }
+    try {
+        if (allowed) await loadExplicitCards();
+        await window.roomRef.child(`explicitConsent/${window.currentRoomRole}`).set(allowed);
+        showToast(allowed ? 'After Hours cards allowed for you. They start once your partner allows them too.' : 'After Hours cards turned off for this room.');
+    } catch (error) {
+        console.error('Could not update After Hours consent:', error);
+        showToast(`Could not update that setting: ${error.message}`);
+    }
+}
+
+const SWITCH_REQUEST_TIMEOUT_MS = 60 * 1000;
+
+async function isRoomGameInProgress() {
+    if (!window.roomRef) return false;
+    if (currentRoomGameMode === 'guess-me') {
+        const status = (await window.roomRef.child('guessMe/status').once('value')).val();
+        return ['playing', 'revealing', 'paused'].includes(status);
+    }
+    if (!currentCard || currentCard.compareFirstComplete) return false;
+    return (await window.roomRef.child('activeCard').once('value')).exists();
+}
+
+// Resolves true when no game is running or the partner agrees to switch; false if declined, cancelled or timed out.
+const ROUND_START_LOCK_MS = 15 * 1000;
+
+// Atomically claims a short-lived "I'm choosing a game" lock so both players can't start at once.
+async function acquireRoundStartLock() {
+    const uid = window.firebase?.auth().currentUser?.uid;
+    const result = await window.roomRef.child('roundStart').transaction(current => {
+        if (current && current.by !== uid && Date.now() - current.at < ROUND_START_LOCK_MS) return undefined;
+        return { by: uid, at: firebase.database.ServerValue.TIMESTAMP };
+    }, undefined, false);
+    return result.committed;
+}
+
+async function confirmRoomSwitch(label) {
+    if (!window.roomRef || !isSeatedRoomMember() || !partnerConnected) return true;
+    const other = window.currentRoomRole === 'host' ? 'partner' : 'host';
+    const otherName = roomDisplayNames[other]?.name || 'Your partner';
+    let locked = false;
+    try {
+        locked = await acquireRoundStartLock();
+    } catch (error) {
+        // Fail open so a missing rule or network blip never blocks starting a game.
+        console.error('Could not claim the start lock:', error);
+        locked = true;
+    }
+    if (!locked) {
+        showToast(`${otherName} is choosing a game right now. Try again in a moment.`);
+        return false;
+    }
+    let ok = false;
+    try {
+        ok = await confirmRoomSwitchApproval(label);
+    } finally {
+        // Keep the lock briefly on success so the start can finish writing the shared card.
+        const release = () => window.roomRef?.child('roundStart').remove().catch(() => {});
+        if (ok) setTimeout(release, 4000); else release();
+    }
+    return ok;
+}
+
+async function confirmRoomSwitchApproval(label) {
+    if (!window.roomRef || !isSeatedRoomMember() || !partnerConnected) return true;
+    const me = window.currentRoomRole;
+    const other = me === 'host' ? 'partner' : 'host';
+    if (roomPresence[other]?.online !== true) return true;
+    if (!(await isRoomGameInProgress())) return true;
+    const uid = window.firebase?.auth().currentUser?.uid;
+    const ref = window.roomRef.child('switchRequest');
+    const otherName = roomDisplayNames[other]?.name || 'your partner';
+    await ref.set({ by: uid, label, at: Date.now() });
+    return new Promise(resolve => {
+        const banner = document.createElement('div');
+        banner.id = 'switchWaitBanner';
+        banner.className = 'rejoin-banner';
+        banner.setAttribute('role', 'status');
+        const text = document.createElement('p');
+        text.textContent = `Waiting for ${otherName} to agree to switch to ${label}…`;
+        const actions = document.createElement('div');
+        const cancel = document.createElement('button');
+        cancel.type = 'button';
+        cancel.className = 'btn-secondary';
+        cancel.textContent = 'Cancel';
+        actions.appendChild(cancel);
+        banner.append(text, actions);
+        document.body.appendChild(banner);
+        let done = false;
+        const finish = (result, message) => {
+            if (done) return;
+            done = true;
+            clearTimeout(timer);
+            ref.off('value', handler);
+            banner.remove();
+            ref.remove().catch(() => {});
+            if (message) showToast(message);
+            resolve(result);
+        };
+        const handler = snapshot => {
+            const request = snapshot.val();
+            if (!request) return;
+            if (request.status === 'approved') finish(true);
+            else if (request.status === 'declined') finish(false, `${otherName} wants to keep playing the current game.`);
+        };
+        const timer = setTimeout(() => finish(false, `${otherName} did not answer. Your current game continues.`), SWITCH_REQUEST_TIMEOUT_MS);
+        cancel.onclick = () => finish(false);
+        ref.on('value', handler);
+    });
+}
+
+function renderSwitchRequestBanner(request) {
+    document.getElementById('switchApprovalBanner')?.remove();
+    const uid = window.firebase?.auth().currentUser?.uid;
+    if (!request || request.status || request.by === uid
+        || !Number.isFinite(request.at) || Date.now() - request.at > SWITCH_REQUEST_TIMEOUT_MS) return;
+    const other = window.currentRoomRole === 'host' ? 'partner' : 'host';
+    const name = roomDisplayNames[other]?.name || 'Your partner';
+    const banner = document.createElement('div');
+    banner.id = 'switchApprovalBanner';
+    banner.className = 'rejoin-banner';
+    banner.setAttribute('role', 'alert');
+    const text = document.createElement('p');
+    text.textContent = `${name} wants to switch to ${request.label}. Switch now?`;
+    const actions = document.createElement('div');
+    const respond = status => {
+        banner.remove();
+        window.roomRef?.child('switchRequest').update({ status }).catch(error => {
+            console.error('Could not answer the switch request:', error);
+            showToast('Could not send your answer. Check your connection.');
+        });
+    };
+    const accept = document.createElement('button');
+    accept.type = 'button';
+    accept.className = 'btn-primary';
+    accept.textContent = 'Switch';
+    accept.onclick = () => respond('approved');
+    const decline = document.createElement('button');
+    decline.type = 'button';
+    decline.className = 'btn-secondary';
+    decline.textContent = 'Keep playing';
+    decline.onclick = () => respond('declined');
+    actions.append(accept, decline);
+    banner.append(text, actions);
+    document.body.appendChild(banner);
 }
 
 function isSeatedRoomMember() {
@@ -1564,9 +1757,9 @@ function drawNextCard(isRemoteUpdate = false, syncSharedCard = true) {
     updateCompareFirstControls();
 
     if (syncSharedCard && window.roomRef && isSeatedRoomMember() && !browseMode
-        && !isRemoteUpdate && currentCard.module !== 'explicit') {
+        && !isRemoteUpdate && (currentCard.module !== 'explicit' || isRoomExplicitAllowed())) {
         window.roomRef.child('activeCard').set({
-            ...currentCard,
+            ...buildSharedCardPayload(currentCard),
             sharedRoundStartedAt: Date.now(),
             startedBy: window.firebase?.auth().currentUser?.uid || null
         }).catch(error => {
@@ -1802,6 +1995,7 @@ async function startCompareFirstSession() {
         if (status) status.textContent = 'Connect to your partner in a room before starting Compare First.';
         return;
     }
+    if (!(await confirmRoomSwitch('Compare First'))) return;
 
     try {
         const partnerSnapshot = await window.roomRef.child(window.currentRoomRole === 'host' ? 'members/partner' : 'members/host').once('value');
@@ -2986,7 +3180,7 @@ function renderCardBrowserDrawerContent(content, initialView = 'list') {
             prompt.textContent = card.prompt;
             const meta = document.createElement('p');
             meta.className = 'drawer-item-meta';
-            meta.textContent = `${card.module || 'general'} · ${card.category || 'General'} · intensity ${card.intensity || 1}`;
+            meta.textContent = [PILLAR_LABELS[getPillar(card)], card.category || 'General'].filter(Boolean).join(' · ');
             if (body) body.appendChild(prompt);
             else item.append(prompt, meta);
             if (Array.isArray(card.options) && card.options.length >= 2) {
@@ -3137,7 +3331,7 @@ function renderMyDecks() {
             playBtn.setAttribute('aria-label', `Add cards to ${deck.name} before playing.`);
             playBtn.title = 'Add cards to this deck before playing.';
         }
-        playBtn.onclick = () => {
+        playBtn.onclick = async () => {
             const deckCards = masterDatabase.filter(card => deck.cardIds.includes(card.id));
             if (deckCards.length === 0) {
                 showToast(deck.cardIds.length
@@ -3145,6 +3339,7 @@ function renderMyDecks() {
                     : 'Add cards to this deck before playing.');
                 return;
             }
+            if (!(await confirmRoomSwitch(deck.name ? `your deck “${deck.name}”` : 'a custom deck'))) return;
             activeDeckId = deck.id;
             localStorage.setItem('closer_active_deck', deck.id);
             if (activeGameMode === 'compare-first') exitCompareFirstMode();
@@ -3810,13 +4005,15 @@ function renderPairManagement() {
     pairManagementContainer.appendChild(roomStatus);
     document.getElementById('pairCreateSection')?.classList.toggle('hidden', inRoom);
     document.getElementById('pairJoinSection')?.classList.toggle('hidden', inRoom);
+    const createRoomButton = document.getElementById('createRoomBtn');
+    if (createRoomButton && !inRoom) createRoomButton.disabled = false;
 
     if (window.currentRoomRole === 'host' && window.currentRoomCode) {
         const invite = document.createElement('section');
         invite.className = 'room-invite-section';
         const label = document.createElement('label');
         label.htmlFor = 'roomInviteCode';
-        label.textContent = 'Share this room code with your partner';
+        label.textContent = 'Or share the room code manually';
         const row = document.createElement('div');
         row.className = 'room-invite-row';
         const codeInput = document.createElement('input');
@@ -3861,24 +4058,47 @@ function renderPairManagement() {
             }
         };
         row.append(codeInput, copyButton);
-        invite.append(label, row);
+        const linkRow = document.createElement('div');
+        linkRow.className = 'room-invite-row';
+        const inviteButton = document.createElement('button');
+        inviteButton.type = 'button';
+        inviteButton.id = 'invitePartnerBtn';
+        inviteButton.className = 'btn-primary';
+        inviteButton.textContent = 'Invite partner';
+        inviteButton.onclick = () => inviteBtnHandler(inviteButton, false);
+        const newLinkButton = document.createElement('button');
+        newLinkButton.type = 'button';
+        newLinkButton.className = 'btn-secondary';
+        newLinkButton.textContent = 'New link';
+        newLinkButton.onclick = () => inviteBtnHandler(newLinkButton, true);
+        linkRow.append(inviteButton, newLinkButton);
+        const linkNote = document.createElement('p');
+        linkNote.className = 'pair-status';
+        linkNote.textContent = 'The link works once and expires in 30 minutes. You still approve your partner before they join.';
+        invite.append(linkRow, linkNote, label, row);
         pairManagementContainer.appendChild(invite);
     }
 
     if (['host', 'partner'].includes(window.currentRoomRole) && partnerConnected && currentRoomGameModeLoaded) {
         const startSection = document.createElement('section');
-        startSection.className = 'room-create-section';
+        startSection.className = 'room-create-section room-play-list';
         const heading = document.createElement('h4');
-        heading.textContent = 'Choose what to play';
+        heading.textContent = 'What do you want to play?';
         const prompt = document.createElement('p');
         prompt.textContent = currentRoomGameMode === 'guess-me'
-            ? 'You are playing You Get Me. Either of you can switch to a conversation pack at any time.'
-            : 'Either of you can pick a curated pack or build your own, then start. The other player follows automatically.';
-        const startButton = document.createElement('button');
-        startButton.type = 'button';
-        startButton.className = 'btn-primary';
-        startButton.textContent = 'Choose a pack and start';
-        startButton.onclick = () => {
+            ? 'You are playing You Get Me. Either of you can switch at any time.'
+            : 'Either of you can pick. The other player follows automatically.';
+        const addChoice = (label, detail, handler, primary = false) => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = primary ? 'btn-primary' : 'btn-secondary';
+            button.textContent = label;
+            if (detail) button.title = detail;
+            button.onclick = handler;
+            startSection.appendChild(button);
+        };
+        startSection.append(heading, prompt);
+        addChoice('Conversation pack', 'Pick a curated pack and start', () => {
             closeDrawer();
             openRoundBuilder();
             if (window.pendingPackKey) {
@@ -3887,29 +4107,42 @@ function renderPairManagement() {
                 if (pendingPack) pendingPack.click();
                 window.pendingPackKey = null;
             }
-        };
-        const deckButton = document.createElement('button');
-        deckButton.type = 'button';
-        deckButton.className = 'btn-secondary';
-        deckButton.textContent = 'Play one of my custom decks';
-        deckButton.onclick = () => {
+        }, true);
+        addChoice('My custom deck', 'Play one of your own decks', () => {
             closeDrawer();
             document.getElementById('userProfileBtn')?.click();
             showToast('Tap Play next to a deck under My decks. Your partner will get the same cards.');
-        };
-        const guessButton = document.createElement('button');
-        guessButton.type = 'button';
-        guessButton.className = 'btn-secondary';
-        guessButton.textContent = currentRoomGameMode === 'guess-me' ? 'Restart You Get Me' : 'Play You Get Me';
-        guessButton.onclick = () => {
+        });
+        addChoice(currentRoomGameMode === 'guess-me' ? 'Restart You Get Me' : 'You Get Me', 'Predict each other\'s answers', () => {
             closeDrawer();
             openGuessMeSetup();
-        };
-        startSection.append(heading, prompt, startButton, deckButton, guessButton);
+        });
+        const me = window.currentRoomRole;
+        const other = me === 'host' ? 'partner' : 'host';
+        const otherName = roomDisplayNames[other]?.name || 'Your partner';
+        const consent = document.createElement('div');
+        consent.className = 'room-consent';
+        const consentText = document.createElement('p');
+        consentText.className = 'pair-status';
+        consentText.textContent = isRoomExplicitAllowed()
+            ? 'After Hours cards are allowed in this room by both of you. Either of you can turn them off at any time.'
+            : roomExplicitConsent[me] === true
+                ? `After Hours cards: waiting for ${otherName} to allow them too.`
+                : roomExplicitConsent[other] === true
+                    ? `${otherName} allowed After Hours cards. They start once you allow them too.`
+                    : 'After Hours cards (18+) can be played here only when both of you allow them. Card text is never stored in the room.';
+        const consentButton = document.createElement('button');
+        consentButton.type = 'button';
+        consentButton.id = 'explicitConsentBtn';
+        consentButton.className = 'btn-secondary';
+        consentButton.textContent = roomExplicitConsent[me] === true ? 'Turn off After Hours' : 'Allow After Hours';
+        consentButton.onclick = () => setExplicitConsent(roomExplicitConsent[me] !== true);
+        consent.append(consentText, consentButton);
+        startSection.appendChild(consent);
         if (window.currentRoomRole !== 'host') {
             const note = document.createElement('p');
             note.className = 'pair-status';
-            note.textContent = 'The host starts You Get Me since they keep score. Tapping it sends them a request.';
+            note.textContent = 'The host keeps score in You Get Me, so choosing it sends them a request.';
             startSection.appendChild(note);
         }
         pairManagementContainer.appendChild(startSection);
@@ -3919,6 +4152,125 @@ function renderPairManagement() {
     pairManagementContainer.appendChild(createJoinRequestsSection(
         'No pending requests. Only one partner can be approved.'
     ));
+}
+
+const INVITE_LIFETIME_MS = 30 * 60 * 1000;
+
+function describeJoinRequester(uid) {
+    const request = pendingJoinRequests[uid] || {};
+    const name = typeof request.name === 'string' && request.name ? `${request.icon || ''} ${request.name}`.trim() : '';
+    return name ? `${name} wants to join your room.` : `Someone is requesting to join (${uid.slice(0, 8)}…).`;
+}
+
+async function createInviteLink() {
+    if (window.currentRoomRole !== 'host' || !window.roomRef) throw new Error('Only the host can create an invite link.');
+    const token = generateRoomCode();
+    await window.roomRef.child('invite').set({ token, expiresAt: Date.now() + INVITE_LIFETIME_MS });
+    const base = `${window.location.origin}${window.location.pathname}`;
+    return `${base}#room=${window.currentRoomCode}&invite=${token}`;
+}
+
+async function shareInviteLink(url) {
+    const name = playerNames.host?.name || 'Your partner';
+    if (navigator.share) {
+        try {
+            await navigator.share({ title: 'Join me on Closer', text: `${name} invited you to a Closer room.`, url });
+            return 'shared';
+        } catch (error) {
+            if (error?.name === 'AbortError') return 'cancelled';
+        }
+    }
+    try {
+        await navigator.clipboard.writeText(url);
+        return 'copied';
+    } catch (error) {
+        window.prompt('Copy this invite link:', url);
+        return 'prompted';
+    }
+}
+
+async function inviteBtnHandler(button, forceNew) {
+    button.disabled = true;
+    try {
+        const url = await createInviteLink();
+        const result = await shareInviteLink(url);
+        const message = result === 'copied'
+            ? 'Invite link copied. It works once for 30 minutes.'
+            : result === 'cancelled' ? 'Invite link ready. Tap Invite partner to share it.'
+            : forceNew ? 'New invite link created. Earlier links no longer work.' : 'Invite link ready. It works once for 30 minutes.';
+        setPairStatus(message);
+        showToast(message);
+    } catch (error) {
+        console.error('Could not create the invite link:', error);
+        showToast(`Could not create an invite link: ${error.message}`);
+    } finally {
+        button.disabled = false;
+    }
+}
+
+function renderJoinApprovalBanner() {
+    document.getElementById('joinApprovalBanner')?.remove();
+    if (window.currentRoomRole !== 'host') return;
+    const pending = Object.entries(pendingJoinRequests).filter(([, request]) => request?.status === 'pending');
+    if (!pending.length) return;
+    const [uid] = pending[0];
+    const banner = document.createElement('div');
+    banner.id = 'joinApprovalBanner';
+    banner.className = 'rejoin-banner';
+    banner.setAttribute('role', 'alert');
+    const text = document.createElement('p');
+    text.textContent = describeJoinRequester(uid);
+    const actions = document.createElement('div');
+    const approve = document.createElement('button');
+    approve.type = 'button';
+    approve.className = 'btn-primary';
+    approve.textContent = 'Approve';
+    approve.onclick = () => resolveJoinRequest(uid, true);
+    const deny = document.createElement('button');
+    deny.type = 'button';
+    deny.className = 'btn-secondary';
+    deny.textContent = 'Deny';
+    deny.onclick = () => resolveJoinRequest(uid, false);
+    actions.append(approve, deny);
+    banner.append(text, actions);
+    document.body.appendChild(banner);
+}
+
+function showJoinWaitBanner() {
+    document.getElementById('joinWaitBanner')?.remove();
+    const banner = document.createElement('div');
+    banner.id = 'joinWaitBanner';
+    banner.className = 'rejoin-banner';
+    banner.setAttribute('role', 'status');
+    const text = document.createElement('p');
+    text.textContent = 'Waiting for the host to approve you…';
+    const actions = document.createElement('div');
+    const cancel = document.createElement('button');
+    cancel.type = 'button';
+    cancel.className = 'btn-secondary';
+    cancel.textContent = 'Cancel';
+    cancel.onclick = () => { banner.remove(); leaveRoom({ confirmFirst: false }); };
+    actions.appendChild(cancel);
+    banner.append(text, actions);
+    document.body.appendChild(banner);
+}
+
+// Reads #room=CODE&invite=TOKEN, removes it from the address bar, and requests access.
+async function handleInviteLink() {
+    const params = new URLSearchParams((window.location.hash || '').replace(/^#/, ''));
+    const code = params.get('room');
+    const token = params.get('invite');
+    if (!code || !token) return;
+    try { history.replaceState(null, '', window.location.pathname + window.location.search); } catch (e) {}
+    if (!window.db) { showToast('Rooms are unavailable right now.'); return; }
+    document.getElementById('rejoinBanner')?.remove();
+    try {
+        await requestRoomAccess(code, null, token);
+        if (window.currentRoomRole === 'partner') showToast('You are in the room.');
+    } catch (error) {
+        console.error('Could not use the invite link:', error);
+        showToast(error.message);
+    }
 }
 
 function createJoinRequestsSection(emptyMessage, statusId = null) {
@@ -3938,7 +4290,7 @@ function createJoinRequestsSection(emptyMessage, statusId = null) {
         const item = document.createElement('div');
         item.className = 'room-request-item';
         const label = document.createElement('p');
-        label.textContent = `Someone is requesting to join (${uid.slice(0, 8)}…).`;
+        label.textContent = describeJoinRequester(uid);
         const actions = document.createElement('div');
         actions.className = 'room-request-actions';
         const approveButton = document.createElement('button');
@@ -3986,6 +4338,7 @@ async function resolveJoinRequest(uid, approved) {
             status: approved ? 'approved' : 'denied',
             resolvedAt: Date.now()
         });
+        document.getElementById('joinApprovalBanner')?.remove();
         setJoinRequestStatus(approved
             ? 'Partner approved. They can now enter the room.'
             : 'Join request denied.');
@@ -4222,6 +4575,17 @@ function detachRoomAccessListeners() {
         window.roomRef.child('activeCard').off('value', activeCardSyncListener);
         activeCardSyncListener = null;
     }
+    if (switchRequestListener && window.roomRef) {
+        window.roomRef.child('switchRequest').off('value', switchRequestListener);
+        switchRequestListener = null;
+    }
+    document.getElementById('switchApprovalBanner')?.remove();
+    document.getElementById('switchWaitBanner')?.remove();
+    if (explicitConsentListener && window.roomRef) {
+        window.roomRef.child('explicitConsent').off('value', explicitConsentListener);
+        explicitConsentListener = null;
+    }
+    roomExplicitConsent = {};
     if (playerNamesListener && window.roomRef) {
         window.roomRef.child('playerNames').off('value', playerNamesListener);
         playerNamesListener = null;
@@ -4283,13 +4647,35 @@ function connectToRoom(roomCode, role) {
 
     let sharedRoundStartedBeforeModeLoaded = false;
     activeCardSyncListener = snapshot => {
-        const remoteCard = snapshot.val();
+        let remoteCard = snapshot.val();
         if (!remoteCard) {
             const gameVisible = !document.querySelector('main')?.classList.contains('hidden');
             if (currentCard && gameVisible && !browseMode) resetLocalConversation('Your partner ended the conversation.');
             return;
         }
-        if (remoteCard?.module === 'explicit' && !hasExplicitAgeConfirmation()) return;
+        if (remoteCard?.module === 'explicit') {
+            if (!hasExplicitAgeConfirmation()) {
+                showToast('Your partner started an After Hours card. Confirm you are 18+ in Allow After Hours to see it.');
+                return;
+            }
+            if (roomExplicitConsent[role] !== true) {
+                showToast('Your partner started an After Hours card. Tap Allow After Hours in the Room panel to see it.');
+                return;
+            }
+            if (!remoteCard.prompt) {
+                const findLocal = () => masterDatabase.find(item => item.id === remoteCard.id && item.module === 'explicit');
+                if (!findLocal()) {
+                    if (!snapshot.__retried) {
+                        showToast('Loading your partner\'s card…');
+                        loadExplicitCards().then(() => activeCardSyncListener({ val: () => snapshot.val(), __retried: true }));
+                    } else {
+                        showToast('Could not load that card. Refresh the app and try again.');
+                    }
+                    return;
+                }
+                remoteCard = { ...findLocal(), ...remoteCard };
+            }
+        }
         const myUid = window.firebase?.auth().currentUser?.uid;
         const startedByOther = remoteCard?.startedBy ? remoteCard.startedBy !== myUid : role === 'partner';
         const isNewRemoteCard = !!remoteCard && (!currentCard
@@ -4319,11 +4705,21 @@ function connectToRoom(roomCode, role) {
     attachPrivateRevealListener();
     attachPartnerCardListener();
 
+    switchRequestListener = snapshot => renderSwitchRequestBanner(snapshot.val());
+    window.roomRef.child('switchRequest').on('value', switchRequestListener);
+    roomExplicitConsent = {};
+    explicitConsentListener = snapshot => {
+        roomExplicitConsent = snapshot.val() || {};
+        renderPairManagement();
+    };
+    window.roomRef.child('explicitConsent').on('value', explicitConsentListener, error => console.error('Could not load After Hours consent:', error));
+
     attachGuessMeRequestListener();
     if (role === 'host') {
         roomJoinRequestsListener = snapshot => {
             pendingJoinRequests = snapshot.val() || {};
             renderPairManagement();
+            renderJoinApprovalBanner();
             if (!document.getElementById('guessMeView')?.classList.contains('hidden')) {
                 refreshGuessMeState();
             }
@@ -4449,11 +4845,11 @@ async function createRoom() {
         .transaction(currentUid => currentUid === null ? user.uid : undefined);
     if (!result.committed) throw new Error('Could not reserve a new room. Please try again.');
     connectToRoom(roomCode, 'host');
-    setPairStatus('Room created. Share the room code with your partner; you decide whether to approve their request.');
+    setPairStatus('Room created. Tap Invite partner to send a link; you approve them before they join.');
     renderPairManagement();
 }
 
-async function requestRoomAccess(roomCode, expectedGameMode = null) {
+async function requestRoomAccess(roomCode, expectedGameMode = null, inviteToken = null) {
     if (!window.db || !window.firebase) throw new Error('Firebase pairing is not configured.');
     if (!/^[A-Za-z0-9_-]{22}$/.test(roomCode)) {
         throw new Error('Enter a valid room code from the host.');
@@ -4485,6 +4881,14 @@ async function requestRoomAccess(roomCode, expectedGameMode = null) {
         return;
     }
     if (partnerSnapshot.val()) throw new Error('This room already has two people. The room is full.');
+    if (inviteToken) {
+        const [expiry, claimed] = await Promise.all([
+            roomRef.child('invite/expiresAt').once('value'),
+            roomRef.child('invite/claimedBy').once('value')
+        ]);
+        if (!expiry.exists() || expiry.val() < Date.now()) throw new Error('This invite link has expired. Ask your partner for a new one.');
+        if (claimed.exists() && claimed.val() !== user.uid) throw new Error('This invite link has already been used. Ask your partner for a new one.');
+    }
 
     const identity = await promptRoomIdentity('partner');
     if (!identity) throw new Error('A name is required to join a room.');
@@ -4499,12 +4903,23 @@ async function requestRoomAccess(roomCode, expectedGameMode = null) {
     const requestRef = roomRef.child(`joinRequests/${user.uid}`);
     pendingJoinRequestRef = requestRef;
     try {
-        await requestRef.set({
+        const request = {
             requesterUid: user.uid,
             status: 'pending',
-            requestedAt: Date.now()
-        });
+            requestedAt: Date.now(),
+            name: identity.name,
+            icon: identity.icon
+        };
+        if (inviteToken) {
+            request.inviteToken = inviteToken;
+            await roomRef.update({ [`joinRequests/${user.uid}`]: request, 'invite/claimedBy': user.uid });
+        } else {
+            await requestRef.set(request);
+        }
     } catch (error) {
+        if (inviteToken && /permission/i.test(error.message || '')) {
+            error = new Error('This invite link is no longer valid. Ask your partner for a new one.');
+        }
         pendingJoinRequestRef = null;
         window.currentRoomCode = null;
         window.currentRoomRole = null;
@@ -4512,12 +4927,16 @@ async function requestRoomAccess(roomCode, expectedGameMode = null) {
         throw error;
     }
     setPairStatus('Request sent. You will join only if the host approves you.');
+    showJoinWaitBanner();
     joinRequestListener = snapshot => {
         const request = snapshot.val();
         if (!request) return;
         if (request.status === 'denied') {
             setPairStatus('The host denied your request. You are not in the room.');
+            document.getElementById('joinWaitBanner')?.remove();
+            showToast('The host did not approve the request.');
         } else if (request.status === 'approved') {
+            document.getElementById('joinWaitBanner')?.remove();
             Promise.all([
                 roomRef.child('members/partner').once('value'),
                 expectedGameMode ? roomRef.child('gameMode').once('value') : Promise.resolve(null)
