@@ -1,5 +1,5 @@
 {
-  "total": 6750,
+  "total": 6811,
   "questions": [
     {
       "id": "sec-001",
@@ -34366,7 +34366,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Tell me about your first real date. Where did you go, and how nervous were you?",
+      "prompt": "Tell me about your first real date. Where did you go, and what do you remember most?",
       "pillar": "spark"
     },
     {
@@ -35638,7 +35638,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a perfect, ordinary day from your past. What made it perfect?",
+      "prompt": "Describe an ordinary day from your past that you'd happily relive. What do you remember about it?",
       "pillar": "spark"
     },
     {
@@ -35662,7 +35662,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me about a mishap in the kitchen, on a hike or at a wedding that you'll never live down.",
+      "prompt": "Tell me about a moment in your life that people still bring up and tease you about.",
       "pillar": "spark"
     },
     {
@@ -35670,7 +35670,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Tell me a story about a time you were convinced you were right and totally wrong.",
+      "prompt": "Tell me about a time you were certain about something and it turned out differently.",
       "pillar": "spark"
     },
     {
@@ -35678,7 +35678,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe the best concert, game or show you've ever been to. What made it unforgettable?",
+      "prompt": "Tell me about a concert, game or show you still think about. What do you remember from it?",
       "pillar": "spark"
     },
     {
@@ -36016,6 +36016,494 @@
       "intensity": 2,
       "prompt": "How much do you want religion or spirituality to be part of our home and family life?",
       "pillar": "together"
+    },
+    {
+      "id": "story2-001",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about the best meal you've ever had. Where were you and who was there?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-002",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a trip that didn't go to plan. What happened next?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-003",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a stranger who left a mark on you, even though you only met once.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-004",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's the story behind a scar, a tattoo or a habit you have?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-005",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you got lost, literally or otherwise.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-006",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's a family tradition you grew up with that you'd tell me the full story of?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-007",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a job you had that taught you something unexpected.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-008",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's the story of a nickname you've had?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-009",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a gift you gave or received that you still remember.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-010",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Describe a moment when a small decision changed the direction of your life.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-011",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a place you lived or visited that you'd like to show me someday.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-012",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's a rule you broke as a kid? Walk me through what happened.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-013",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about someone who believed in you before you believed in yourself.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-014",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's a risk you took that you still think about?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-015",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a day you remember in sharp detail, even though nothing major happened.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-016",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's the story of how you got your first pet, or why you never had one?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-017",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you were in the wrong place at the right time.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-018",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Walk me through a day from your childhood summers.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-019",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you tried to learn something new and what happened along the way.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-020",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's a story about your family that gets told at every gathering?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-021",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time a coincidence made you stop and think.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-022",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's the longest you've ever gone without something you rely on, and what was that like?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-023",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you helped a stranger or a stranger helped you.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-024",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "What's a memory from your teen years that you'd put in a time capsule?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-025",
+      "module": "life",
+      "category": "Story Time",
+      "intensity": 1,
+      "prompt": "Tell me about a time you were part of something bigger than yourself, like a team, a crowd or a cause.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-026",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a date you've never told anyone about.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-027",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Walk me through the moment you first noticed me. Where were we and what do you remember?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-028",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about the first time you met a partner's family.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-029",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the story of the first message or call you sent someone you liked?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-030",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about the best first impression you ever made, and the worst.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-031",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time a friend set you up with someone.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-032",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a relationship you look back on differently now than you did then.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-033",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "What's the story of how one of your past relationships ended?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-034",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a time you gave someone a second chance.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-035",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Tell me about the moment you knew a past relationship was over.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-036",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about the first time you said 'I love you' to anyone, and how it went.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-037",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Walk me through a date night from your past that went completely differently than planned.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-038",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a time you met someone's friends and had to win them over.",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-039",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the story of the last time you were really nervous before seeing someone?",
+      "pillar": "spark"
+    },
+    {
+      "id": "story2-040",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a moment from your childhood that you think shaped how you handle conflict.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-041",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about the adult you looked up to most when you were growing up.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-042",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Walk me through what a normal evening looked like at home when you were ten.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-043",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a time you felt really seen as a kid.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-044",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "What's a story about money from your childhood that you still remember?",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-045",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a time you changed schools, moved, or lost a friend group.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-046",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a moment when your family went through something hard.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-047",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "What's a story about a grandparent or older relative that you'd want our future family to know?",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-048",
+      "module": "life",
+      "category": "Growing Up Stories",
+      "intensity": 2,
+      "prompt": "Tell me about the first time you stood up for yourself.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-049",
+      "module": "life",
+      "category": "College & Early Career Stories",
+      "intensity": 1,
+      "prompt": "Tell me about your first week living on your own.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-050",
+      "module": "life",
+      "category": "College & Early Career Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a failure early in your career or schooling that you're glad happened.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-051",
+      "module": "life",
+      "category": "College & Early Career Stories",
+      "intensity": 1,
+      "prompt": "Walk me through the day you got your first paycheck or first big result.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-052",
+      "module": "life",
+      "category": "College & Early Career Stories",
+      "intensity": 2,
+      "prompt": "Tell me about a mentor, boss or teacher who changed how you work.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-053",
+      "module": "life",
+      "category": "College & Early Career Stories",
+      "intensity": 1,
+      "prompt": "Tell me about a friend from your early adult years who shaped who you became.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-054",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about a time you were single and learned something about yourself.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-055",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about a time you chose to walk away from someone or something you wanted.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-056",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What's a story from a past relationship that you've never been able to laugh about, until now?",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-057",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "Tell me about a moment when you realized what you actually needed from a partner.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-058",
+      "module": "life",
+      "category": "Our Story",
+      "intensity": 1,
+      "prompt": "Tell me your version of how we got together, starting from before we met.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-059",
+      "module": "life",
+      "category": "Our Story",
+      "intensity": 1,
+      "prompt": "Walk me through a day with me that you'd choose to relive.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-060",
+      "module": "life",
+      "category": "Our Story",
+      "intensity": 2,
+      "prompt": "Tell me about a time when you saw me at my best.",
+      "pillar": "closer"
+    },
+    {
+      "id": "story2-061",
+      "module": "life",
+      "category": "Our Story",
+      "intensity": 2,
+      "prompt": "What's the story of a hard stretch we got through, and what do you remember about how we handled it?",
+      "pillar": "closer"
     },
     {
       "id": "explicit-0001",
