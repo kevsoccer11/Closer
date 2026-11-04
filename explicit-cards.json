@@ -20562,6 +20562,556 @@
       "contextType": "consent",
       "promptStyle": "question",
       "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-001",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 4,
+      "prompt": "What's the dirtiest thing you've ever whispered to someone across a crowded room?",
+      "contextType": "flirting",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-002",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 4,
+      "prompt": "If I only had one minute to make you desperate for me later, what would I say or do?",
+      "contextType": "flirting",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-003",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 4,
+      "prompt": "What's a look I give you that tells you exactly what I'm thinking?",
+      "contextType": "flirting",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-004",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 4,
+      "prompt": "Send me a text right now that would make me leave work early.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-005",
+      "module": "explicit",
+      "category": "Flirting & Chemistry",
+      "intensity": 4,
+      "prompt": "What's the most shameless stunt you've pulled to get me looking at you?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-006",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 4,
+      "prompt": "What does it sound like when you want me so badly you can't wait for the bedroom?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-007",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 4,
+      "prompt": "Pull me in right now the way you wish I would pull you in, and show me what comes next.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-008",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 4,
+      "prompt": "When you want it rough and fast, how do you tell me to stop being gentle?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-009",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 4,
+      "prompt": "What would you do if I walked in and told you to take your clothes off right now?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-010",
+      "module": "explicit",
+      "category": "Desire & Initiation",
+      "intensity": 4,
+      "prompt": "When have you been so turned on that you couldn't hide it? Where were you?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-011",
+      "module": "explicit",
+      "category": "Sensory & Atmosphere",
+      "intensity": 4,
+      "prompt": "What sound turns you on the most when we're having sex: breathing, moaning, or words?",
+      "contextType": "sensory",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-012",
+      "module": "explicit",
+      "category": "Sensory & Atmosphere",
+      "intensity": 4,
+      "prompt": "What would the room need to look, smell and sound like for the hottest night we've ever had?",
+      "contextType": "sensory",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-013",
+      "module": "explicit",
+      "category": "Sensory & Atmosphere",
+      "intensity": 4,
+      "prompt": "Blindfold me and choose three things to make me feel. What are they?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-014",
+      "module": "explicit",
+      "category": "Sensory & Atmosphere",
+      "intensity": 4,
+      "prompt": "What does my skin taste or smell like when you're most turned on by me?",
+      "contextType": "sensory",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-015",
+      "module": "explicit",
+      "category": "Sensory & Atmosphere",
+      "intensity": 4,
+      "prompt": "If we had a whole weekend in a dark hotel room, what would we do with the first hour?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-016",
+      "module": "explicit",
+      "category": "Sexual Positions & Movement",
+      "intensity": 4,
+      "prompt": "What position makes you lose control the fastest, and what is it about it?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-017",
+      "module": "explicit",
+      "category": "Sexual Positions & Movement",
+      "intensity": 4,
+      "prompt": "Show me the position you'd pick if you wanted me to see your face the whole time.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-018",
+      "module": "explicit",
+      "category": "Sexual Positions & Movement",
+      "intensity": 4,
+      "prompt": "Do you like being on top, on the bottom, or somewhere rougher in between?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-019",
+      "module": "explicit",
+      "category": "Sexual Positions & Movement",
+      "intensity": 4,
+      "prompt": "Which position are you dying to try but too shy to request?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-020",
+      "module": "explicit",
+      "category": "Sexual Positions & Movement",
+      "intensity": 4,
+      "prompt": "Which position would you want to end the night in, with nothing left in the tank?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-021",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 4,
+      "prompt": "If I controlled a toy on you in public, what would you want me to do and how would you hold it together?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-022",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 4,
+      "prompt": "Pick a toy and tell me how you want me to use it on you tonight.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-023",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 4,
+      "prompt": "What do you want me to buy for us that we'd both be a bit embarrassed to open at the door?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-024",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 4,
+      "prompt": "What toy have you always been curious about but never told me?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-025",
+      "module": "explicit",
+      "category": "Sex Toys & Props",
+      "intensity": 4,
+      "prompt": "Would you want to sit back and watch me use a toy on myself, hands off?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-026",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 4,
+      "prompt": "Pick a spot where you can watch me touch myself, and tell me what you'd want to see.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-027",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 4,
+      "prompt": "If we both got off without touching each other, who would finish first and who would hold out?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-028",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 4,
+      "prompt": "Do you want me to talk dirty to you while we both touch ourselves, or stay quiet and watch?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-029",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 4,
+      "prompt": "What have you wanted to see me do to myself that you've never asked for?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-030",
+      "module": "explicit",
+      "category": "Mutual Masturbation",
+      "intensity": 4,
+      "prompt": "Take turns telling each other what to do. What's your first order?",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-031",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 4,
+      "prompt": "What's a fantasy you've never told anyone that I'd be shocked to hear?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-032",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 4,
+      "prompt": "If a night could be as filthy as you wanted with zero consequences, what would you ask for?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-033",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 4,
+      "prompt": "What's the fantasy you go back to when you're alone?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-034",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 4,
+      "prompt": "What's a fantasy you'd only ever want to say out loud and never do?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-035",
+      "module": "explicit",
+      "category": "Fantasies & Desires",
+      "intensity": 4,
+      "prompt": "Which fantasy do you think I'd be happy to try if you just asked?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-036",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 4,
+      "prompt": "What's something new you want to try that you'd need a check-in every ten minutes for?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-037",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 4,
+      "prompt": "If we tried something rough for the first time, how would you want me to start and ease up?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-038",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 4,
+      "prompt": "What's something we've talked about but never done, and what's stopping us?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-039",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 4,
+      "prompt": "What would be a clear green light from you when you want me to push further?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-040",
+      "module": "explicit",
+      "category": "Consensual Boundaries & New Experiences",
+      "intensity": 4,
+      "prompt": "What new thing would you try only if I went first?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-041",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 4,
+      "prompt": "What do you wish I knew about how you like it when I use my mouth on you?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-042",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 4,
+      "prompt": "Show me with your hands exactly how you want my mouth to move.",
+      "contextType": "action",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-043",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 4,
+      "prompt": "Would you rather be eaten out for an hour or be teased and told to wait?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-044",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 4,
+      "prompt": "If I was on my knees for you and you had all the time in the world, what would you ask for?",
+      "contextType": "fantasy",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-045",
+      "module": "explicit",
+      "category": "Oral Sex",
+      "intensity": 4,
+      "prompt": "What's the best oral you've ever had and what made it unforgettable?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-046",
+      "module": "explicit",
+      "category": "Health, Pain & Performance",
+      "intensity": 4,
+      "prompt": "What's something about your body or stamina you wish I could be more patient with in bed?",
+      "contextType": "vulnerability",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-047",
+      "module": "explicit",
+      "category": "Health, Pain & Performance",
+      "intensity": 4,
+      "prompt": "What happens in your head when things don't go as planned, and how can I help?",
+      "contextType": "vulnerability",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-048",
+      "module": "explicit",
+      "category": "Health, Pain & Performance",
+      "intensity": 4,
+      "prompt": "How should we handle it if one of us can't finish, so it feels okay and not like a failure?",
+      "contextType": "consent",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-049",
+      "module": "explicit",
+      "category": "Health, Pain & Performance",
+      "intensity": 4,
+      "prompt": "What's something that used to be easy in bed that's harder now, and how can we adapt?",
+      "contextType": "discovery",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-050",
+      "module": "explicit",
+      "category": "Health, Pain & Performance",
+      "intensity": 4,
+      "prompt": "What's your favorite way to keep going when you're tired but still want me?",
+      "contextType": "preference",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-051",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 4,
+      "prompt": "What's the hottest night you've ever had before me, and what made it so intense?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-052",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 4,
+      "prompt": "Tell me about a time you were so turned on you did something you hadn't planned.",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-053",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 4,
+      "prompt": "What was the most daring thing you did in bed with a past partner?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-054",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 4,
+      "prompt": "Is there something a past lover did to you that you've never forgotten, in a good way?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah3-055",
+      "module": "explicit",
+      "category": "Past Experiences",
+      "intensity": 4,
+      "prompt": "What's something you tried in a past relationship that you'd love to try again with me?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "afterhours"
     }
   ]
 }
