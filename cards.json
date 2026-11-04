@@ -49876,6 +49876,171 @@
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "heat"
+    },
+    {
+      "id": "ons-m-001",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "What do you think turned people off from you in your high school years?",
+      "followUp": "Looking back, was it true or just a story you believed?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-002",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "Before college, what did you think made you unattractive that you now see differently?",
+      "followUp": "What would you tell that version of you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-003",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "During college, what do you think kept some people from asking you out?",
+      "followUp": "Did you try to change anything, or let it go?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-004",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "After college, what habits do you think put people off on dates?",
+      "followUp": "Which one did you fix?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-005",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "What do you wish you'd done differently to seem more appealing when you were younger?",
+      "followUp": "What would the younger you say back?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-006",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What did you try changing about yourself to be more appealing, and did it work?",
+      "followUp": "Would you try it again today?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-007",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Share a time you asked someone out and got turned down.",
+      "followUp": "How did you pick yourself back up?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-008",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Have you ever had to let someone down gently after they asked you out?",
+      "followUp": "How did you say it?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-009",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the kindest way anyone has ever said no to a date with you?",
+      "followUp": "What about the way they said it made it easy to hear?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-010",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the best thing that came out of a night you went out hoping to meet someone?",
+      "followUp": "Was it who you expected?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-011",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the biggest confidence boost you've ever gotten from a stranger's compliment?",
+      "followUp": "Why did it hit so hard?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-012",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "Which dating phase, before college, during, or after, made you feel the most attractive?",
+      "followUp": "What changed around then?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-013",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Share a time you realized someone had lost interest before they said so.",
+      "followUp": "Which small clue made it obvious to you?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-014",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What did someone once say was unattractive about you that turned out to be their issue, not yours?",
+      "followUp": "How did you figure that out?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-015",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Share a night you were sure you'd meet someone and went home with just a good story.",
+      "followUp": "What was the story?",
+      "contextType": "story",
+      "promptStyle": "question",
+      "pillar": "spark"
     }
   ]
 }

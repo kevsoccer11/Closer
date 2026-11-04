@@ -1,5 +1,5 @@
 {
-  "total": 7308,
+  "total": 7368,
   "questions": [
     {
       "id": "sec-001",
@@ -38378,6 +38378,126 @@
       "pillar": "heat"
     },
     {
+      "id": "ons-m-001",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "What do you think turned people off from you in your high school years?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-002",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "Before college, what did you think made you unattractive that you now see differently?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-003",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "During college, what do you think kept some people from asking you out?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-004",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "After college, what habits do you think put people off on dates?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-005",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "What do you wish you'd done differently to seem more appealing when you were younger?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-006",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What did you try changing about yourself to be more appealing, and did it work?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-007",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Share a time you asked someone out and got turned down.",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-008",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Have you ever had to let someone down gently after they asked you out?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-009",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the kindest way anyone has ever said no to a date with you?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-010",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the best thing that came out of a night you went out hoping to meet someone?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-011",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "What's the biggest confidence boost you've ever gotten from a stranger's compliment?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-012",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 1,
+      "prompt": "Which dating phase, before college, during, or after, made you feel the most attractive?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-013",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 2,
+      "prompt": "Share a time you realized someone had lost interest before they said so.",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-014",
+      "module": "life",
+      "category": "Dating Through the Years",
+      "intensity": 2,
+      "prompt": "What did someone once say was unattractive about you that turned out to be their issue, not yours?",
+      "pillar": "spark"
+    },
+    {
+      "id": "ons-m-015",
+      "module": "life",
+      "category": "Dating Stories",
+      "intensity": 1,
+      "prompt": "Share a night you were sure you'd meet someone and went home with just a good story.",
+      "pillar": "spark"
+    },
+    {
       "id": "explicit-0001",
       "module": "explicit",
       "category": "Oral Sex",
@@ -58463,6 +58583,366 @@
       "category": "Past Experiences",
       "intensity": 4,
       "prompt": "What's something you tried in a past relationship that you'd love to try again with me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-001",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Take me back to a night you were about to go home with someone and backed out at the last second.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-002",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What was going through your head on the walk or ride over when you almost turned around?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-003",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Have you ever gone out for the night planning to leave with someone? How did you get ready?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-004",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What's the signal that told you a stranger was just as interested as you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-005",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Share a time you wanted to hook up but talked yourself out of it before anything started.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-006",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What rules did you set for yourself before a one-night hookup, and which ones did you break?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-007",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Remember a night you said yes after telling yourself no all evening?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-008",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What did you do to feel safe before going home with someone you barely knew?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-009",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Share a time you proposed a hookup and got a clear no.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-010",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What's the smoothest way someone ever turned you down for a hookup?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-011",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Take me through a time you turned someone down who really wanted you.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-012",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Have you ever been shot down and then watched that person flirt with someone else?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-013",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Think of a time a no stung more than you expected. What did it touch?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-014",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Have you ever said no, then changed your mind later in the night?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-015",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Tell me about a time someone's no didn't come out as a word.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-016",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What did you tell your friends after getting turned down, and what was the real story?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-017",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Share a night that looked like it was heading to bed but ended with talking until sunrise.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-018",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Was there a hookup that ended in cuddling and sleep instead of sex?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-019",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Remember a night things stopped because one of you got nervous, too drunk, or too tired?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-020",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Has a one-night plan ever turned into an unexpected friendship?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-021",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Share a time you went home with someone and ended up laughing instead of having sex.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-022",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What's the most tender moment you've had with someone you barely knew?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-023",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Have you ever felt like someone only wanted you for sex? When did you realize?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-024",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "If you've never felt used, do you think you would have enjoyed the attention back then?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-025",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "Looking back, would you have enjoyed using someone for sex with no strings, if you'd had the nerve?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-026",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "Share a time you knew you were just a fun night for someone and went along with it anyway.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-027",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Have you ever used someone for fun and felt guilty about it later?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-028",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What does \"just fun\" mean to you now compared to when you were younger?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-029",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Was there a time you wanted more than one night and they didn't?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-030",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What's the difference, for you, between being wanted and being used?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-031",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Who usually left first after a hookup, and how did you handle the morning?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-032",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What's the strangest thing you woke up to the morning after a hookup?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-033",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Which one-night stand are you glad happened, and why?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-034",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Which one do you wish you could take back, and what would you change?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-035",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "Did you ever see a one-night partner again? How did it go?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-036",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What did you tell yourself on the way home the next morning?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-037",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "What would your younger self be shocked to hear about your hookup years?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-038",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "Who is someone you only had to glance at to feel desire hit, and what exactly set it off?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-039",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "What's a detail, like a voice, hands or a walk, that can turn you on from across the room?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-040",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "Share a time a stranger's eye contact made you lose your train of thought.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-041",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 4,
+      "prompt": "Remember a time you had to excuse yourself to cool down after seeing someone?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-042",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 2,
+      "prompt": "Would you rather have one unforgettable night with someone you'd never see again, or a slow build over months?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-043",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 2,
+      "prompt": "Which sounds hotter: being picked from across the room, or doing the picking?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-044",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 2,
+      "prompt": "Would you rather be the one who leaves before morning or the one who stays for breakfast?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ons-a-045",
+      "module": "explicit",
+      "category": "One-Night Stands & Hookups",
+      "intensity": 3,
+      "prompt": "If you could relive one hookup night exactly as it happened, would you?",
       "pillar": "afterhours"
     }
   ]
