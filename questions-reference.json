@@ -1,5 +1,5 @@
 {
-  "total": 7109,
+  "total": 7253,
   "questions": [
     {
       "id": "sec-001",
@@ -350,7 +350,7 @@
       "module": "sexuality",
       "category": "Curiosities & Kinks",
       "intensity": 4,
-      "prompt": "Describe a fantasy you have about us in vivid detail right now.",
+      "prompt": "Paint me a fantasy you have about us, in vivid detail, right now.",
       "pillar": "afterhours"
     },
     {
@@ -3078,7 +3078,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What could we laugh about more around making the first move?",
+      "prompt": "What's the funniest failed attempt at starting something you've ever seen, yours or mine?",
       "pillar": "heat"
     },
     {
@@ -3086,7 +3086,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What part of making the first move do you wish we made more time for?",
+      "prompt": "When was the last time you wished I had reached for you first, and what would you have liked me to do?",
       "pillar": "heat"
     },
     {
@@ -3094,7 +3094,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s a playful way we could approach making the first move?",
+      "prompt": "What's a playful way I could let you know I'm interested without saying a word?",
       "pillar": "heat"
     },
     {
@@ -3102,7 +3102,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What’s something about making the first move that you’d like us to try?",
+      "prompt": "Would you try a signal between us, like a look or a phrase, that means \"I'm in the mood\"?",
       "pillar": "heat"
     },
     {
@@ -3110,7 +3110,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s a fun idea we could try around making the first move?",
+      "prompt": "What's a sneaky way you could start the evening that would make me smile?",
       "pillar": "heat"
     },
     {
@@ -3118,7 +3118,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "When did making the first move last feel especially good?",
+      "prompt": "When did one of us starting things last feel just right?",
       "pillar": "heat"
     },
     {
@@ -3126,7 +3126,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What would a really good day around making the first move look like for you?",
+      "prompt": "What would a day look like that ends with you wanting to start something with me?",
       "pillar": "heat"
     },
     {
@@ -3134,7 +3134,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Which part of making the first move do you think we haven’t explored enough?",
+      "prompt": "What's a way of starting things that we've never tried?",
       "pillar": "heat"
     },
     {
@@ -3142,7 +3142,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s one thing I could do this week to make making the first move easier?",
+      "prompt": "What's one small thing I could do this week to make it easier for you to start something?",
       "pillar": "heat"
     },
     {
@@ -3150,7 +3150,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "How has your take on making the first move changed over time?",
+      "prompt": "Did you used to feel more or less confident about starting things than you do now?",
       "pillar": "heat"
     },
     {
@@ -3158,7 +3158,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What do you value most when it comes to making the first move?",
+      "prompt": "What do you love most about the moment one of us leans in first?",
       "pillar": "heat"
     },
     {
@@ -3166,7 +3166,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What helps you feel good when we talk about making the first move?",
+      "prompt": "What do I do right before things start that makes you feel relaxed and wanted?",
       "pillar": "heat"
     },
     {
@@ -3174,7 +3174,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "Is there anything about making the first move you’d like to check in on or change?",
+      "prompt": "Is there anything about who starts things between us that you'd like to talk about?",
       "pillar": "heat"
     },
     {
@@ -3182,7 +3182,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Is there anything about making the first move we might be assuming about each other?",
+      "prompt": "What do you think I assume about who should start things that might not be true?",
       "pillar": "heat"
     },
     {
@@ -3190,7 +3190,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s a part of making the first move that you’re glad we have?",
+      "prompt": "What's something about how we get started that you hope we never lose?",
       "pillar": "heat"
     },
     {
@@ -3198,7 +3198,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What would you change about how we handle making the first move?",
+      "prompt": "If you could change one thing about how we start something, what would it be?",
       "pillar": "heat"
     },
     {
@@ -3206,7 +3206,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What feels best to you about making the first move right now?",
+      "prompt": "Right now, what makes you feel most invited to start something?",
       "pillar": "heat"
     },
     {
@@ -3214,7 +3214,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What do you most want me to understand about making the first move?",
+      "prompt": "What do you most want me to know about how you feel when you're the one to start?",
       "pillar": "heat"
     },
     {
@@ -3222,7 +3222,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What would you like to see more of when it comes to making the first move?",
+      "prompt": "What would you like me to do more of to show you I'm ready?",
       "pillar": "heat"
     },
     {
@@ -3230,7 +3230,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What would the best-case scenario for making the first move look like?",
+      "prompt": "What's your dream way for an evening to begin?",
       "pillar": "heat"
     },
     {
@@ -3238,7 +3238,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What do we already do around making the first move that you hope never gets lost?",
+      "prompt": "What's one way we already start things that you'd be sad to see disappear?",
       "pillar": "heat"
     },
     {
@@ -3246,7 +3246,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What do you suspect we’d answer differently about making the first move?",
+      "prompt": "Who do you think starts things more, and would you be surprised by my answer?",
       "pillar": "heat"
     },
     {
@@ -3254,7 +3254,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Where do your current views on making the first move come from?",
+      "prompt": "Where did you first learn who is supposed to start things?",
       "pillar": "heat"
     },
     {
@@ -3262,7 +3262,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s a moment involving making the first move that still makes you smile?",
+      "prompt": "What's a time someone made a move on you that still makes you smile?",
       "pillar": "heat"
     },
     {
@@ -3270,7 +3270,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What’s a little tradition we could start around making the first move?",
+      "prompt": "What's a tiny ritual we could start that means \"come closer\"?",
       "pillar": "heat"
     },
     {
@@ -3278,7 +3278,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Where do you think we see showing you I want you differently?",
+      "prompt": "How do you show me you want me, and how do you wish I noticed it more?",
       "pillar": "heat"
     },
     {
@@ -3286,7 +3286,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s one thing I could do this week to make showing you I want you easier?",
+      "prompt": "What's one thing I could do this week to show you I want you?",
       "pillar": "heat"
     },
     {
@@ -3294,7 +3294,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "What’s one small adjustment that could improve making the first move for both of us?",
+      "prompt": "What small adjustment would make starting things feel easier for both of us?",
       "pillar": "heat"
     },
     {
@@ -3302,7 +3302,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s something about showing you I want you that you’d like us to try?",
+      "prompt": "What's one new way you'd like me to show you I want you?",
       "pillar": "heat"
     },
     {
@@ -3310,7 +3310,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What’s one small thing we could do together around making the first move this month?",
+      "prompt": "What's a little move we could try this month to surprise each other?",
       "pillar": "heat"
     },
     {
@@ -3358,7 +3358,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What kind of date night would make you want to steal a kiss?",
+      "prompt": "What kind of date night would make you want to steal a kiss first?",
       "pillar": "heat"
     },
     {
@@ -3366,7 +3366,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "What would make making the first move feel playful rather than pressured?",
+      "prompt": "What would make taking the first step feel playful instead of pressured?",
       "pillar": "heat"
     },
     {
@@ -3374,7 +3374,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 1,
-      "prompt": "Is there an aspect of making the first move we tend to skip over?",
+      "prompt": "What do we usually skip over right at the beginning that you'd like us to slow down for?",
       "pillar": "heat"
     },
     {
@@ -18326,7 +18326,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 2,
-      "prompt": "Describe a time you felt guilty right after a perfectly good intimate moment.",
+      "prompt": "Take me back to a time you felt guilty right after a perfectly good intimate moment.",
       "pillar": "heat"
     },
     {
@@ -20374,7 +20374,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Describe a time you felt pressure to perform when you really weren't up to it.",
+      "prompt": "Think of a time you felt pressure to perform when you really weren't up to it. What happened?",
       "pillar": "together"
     },
     {
@@ -20662,7 +20662,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 3,
-      "prompt": "Describe a time when being honest about a physical issue actually brought us closer.",
+      "prompt": "Remember a time being honest about a physical issue actually brought us closer?",
       "pillar": "closer"
     },
     {
@@ -22806,7 +22806,7 @@
       "module": "sexuality",
       "category": "Libido, Mismatch & Life Phases",
       "intensity": 3,
-      "prompt": "What would help us talk about a long stretch with little sexual activity in a way that feels honest and kind?",
+      "prompt": "What would help us talk about a long stretch with little sex in a way that feels honest and kind?",
       "pillar": "heat"
     },
     {
@@ -26158,7 +26158,7 @@
       "module": "sexuality",
       "category": "Intimacy Over Time",
       "intensity": 2,
-      "prompt": "How do you prefer to communicate when you want closeness but not sexual activity?",
+      "prompt": "How do you prefer to tell me you want closeness but not sex?",
       "pillar": "heat"
     },
     {
@@ -29870,7 +29870,7 @@
       "module": "life",
       "category": "Fresh Formats & Couple Games",
       "intensity": 1,
-      "prompt": "Describe our relationship as a board game: what are the rules and the bonus points?",
+      "prompt": "If our relationship were a board game, what would the rules and the bonus points be?",
       "pillar": "spark"
     },
     {
@@ -29918,7 +29918,7 @@
       "module": "life",
       "category": "Fresh Formats & Couple Games",
       "intensity": 1,
-      "prompt": "Describe your perfect day off as a movie trailer voice-over.",
+      "prompt": "Narrate your perfect day off in a movie trailer voice-over.",
       "pillar": "spark"
     },
     {
@@ -34502,7 +34502,7 @@
       "module": "life",
       "category": "Ideal Dates",
       "intensity": 1,
-      "prompt": "Describe your dream date night from start to finish, including what we'd eat.",
+      "prompt": "Walk me through your dream date night from start to finish, including what we'd eat.",
       "pillar": "spark"
     },
     {
@@ -35598,7 +35598,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe the best night out you've ever had. Who was there, where did it start, where did it end?",
+      "prompt": "What's the best night out you've ever had? Who was there, where did it start, where did it end?",
       "pillar": "spark"
     },
     {
@@ -35638,7 +35638,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe an ordinary day from your past that you'd happily relive. What do you remember about it?",
+      "prompt": "Which ordinary day from your past would you happily relive? What do you remember about it?",
       "pillar": "spark"
     },
     {
@@ -36094,7 +36094,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a moment when a small decision changed the direction of your life.",
+      "prompt": "Take me to a moment when a small decision changed the direction of your life.",
       "pillar": "spark"
     },
     {
@@ -36182,7 +36182,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a time a coincidence made you stop and think.",
+      "prompt": "Share a time a coincidence made you stop and think.",
       "pillar": "spark"
     },
     {
@@ -36318,7 +36318,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Describe a time you met someone's friends and had to win them over.",
+      "prompt": "Walk me through meeting someone's friends and having to win them over.",
       "pillar": "spark"
     },
     {
@@ -36494,7 +36494,7 @@
       "module": "life",
       "category": "Our Story",
       "intensity": 2,
-      "prompt": "Describe a time when you saw me at my best.",
+      "prompt": "Take me back to a time you saw me at my best.",
       "pillar": "closer"
     },
     {
@@ -36614,7 +36614,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 2,
-      "prompt": "Describe a time we almost kissed, or almost didn't.",
+      "prompt": "Remember a time we almost kissed, or almost didn't?",
       "pillar": "heat"
     },
     {
@@ -36686,7 +36686,7 @@
       "module": "sexuality",
       "category": "Intimacy & Confidence",
       "intensity": 2,
-      "prompt": "Describe a time you felt really confident in your own skin around someone.",
+      "prompt": "Think of a moment you felt really confident in your own skin around someone.",
       "pillar": "heat"
     },
     {
@@ -36782,7 +36782,7 @@
       "module": "sexuality",
       "category": "Intimacy Over Time",
       "intensity": 2,
-      "prompt": "Describe a time our connection surprised you after we'd been together a while.",
+      "prompt": "Share a moment our connection surprised you after we'd been together a while.",
       "pillar": "heat"
     },
     {
@@ -36902,7 +36902,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 2,
-      "prompt": "Describe a time you were way too obvious about your interest in someone.",
+      "prompt": "What's the story of you being way too obvious about your interest in someone?",
       "pillar": "heat"
     },
     {
@@ -36966,7 +36966,7 @@
       "module": "sexuality",
       "category": "Desire & Initiation",
       "intensity": 2,
-      "prompt": "Describe a time you flirted by text, DM or phone and it escalated.",
+      "prompt": "Walk me through a time you flirted by text, DM or phone and it escalated.",
       "pillar": "heat"
     },
     {
@@ -37038,7 +37038,7 @@
       "module": "sexuality",
       "category": "Affection & Touch",
       "intensity": 2,
-      "prompt": "Describe a time a simple touch on your hand, arm or back said everything.",
+      "prompt": "Think of a time a simple touch on your hand, arm or back said everything.",
       "pillar": "heat"
     },
     {
@@ -37078,7 +37078,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 1,
-      "prompt": "Describe a time a sibling or close cousin got you out of trouble.",
+      "prompt": "Share the time a sibling or close cousin got you out of trouble.",
       "pillar": "spark"
     },
     {
@@ -37118,7 +37118,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 1,
-      "prompt": "Describe how you filled the quiet in your house growing up, whether you had siblings or not.",
+      "prompt": "How did you fill the quiet in your house growing up, whether you had siblings or not?",
       "pillar": "spark"
     },
     {
@@ -37150,7 +37150,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 1,
-      "prompt": "Describe the role your family handed you as a kid, like the funny one or the responsible one.",
+      "prompt": "What role did your family hand you as a kid, like the funny one or the responsible one?",
       "pillar": "spark"
     },
     {
@@ -37190,7 +37190,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 1,
-      "prompt": "Describe how birth order shaped the rules you grew up with.",
+      "prompt": "How did birth order shape the rules you grew up with?",
       "pillar": "spark"
     },
     {
@@ -37214,7 +37214,7 @@
       "module": "life",
       "category": "Growing Up Stories",
       "intensity": 1,
-      "prompt": "Describe what you hope kids in your life will understand about being siblings.",
+      "prompt": "What do you hope kids in your life will understand about being siblings?",
       "pillar": "spark"
     },
     {
@@ -37238,7 +37238,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Describe the hardest breakup of your life.",
+      "prompt": "Take me through the hardest breakup of your life.",
       "pillar": "closer"
     },
     {
@@ -37278,7 +37278,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Describe a time you ran into an ex unexpectedly.",
+      "prompt": "Remember running into an ex unexpectedly? What happened?",
       "pillar": "closer"
     },
     {
@@ -37318,7 +37318,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Describe how you healed after a relationship ended.",
+      "prompt": "How did you heal after a relationship ended?",
       "pillar": "closer"
     },
     {
@@ -37366,7 +37366,7 @@
       "module": "life",
       "category": "Dating Through the Years",
       "intensity": 2,
-      "prompt": "Describe something you wish you had said to an ex but never did.",
+      "prompt": "What do you wish you had said to an ex but never did?",
       "pillar": "closer"
     },
     {
@@ -37390,7 +37390,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Describe a time you broke someone's trust and had to own it.",
+      "prompt": "Walk me through a time you broke someone's trust and had to own it.",
       "pillar": "closer"
     },
     {
@@ -37438,7 +37438,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Describe what cheating means to you and where you first learned that line.",
+      "prompt": "What does cheating mean to you, and where did you first learn that line?",
       "pillar": "closer"
     },
     {
@@ -37478,7 +37478,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Describe a time someone was honest with you in a way that hurt but helped.",
+      "prompt": "Think of a time someone was honest with you in a way that hurt but helped.",
       "pillar": "closer"
     },
     {
@@ -37518,7 +37518,7 @@
       "module": "life",
       "category": "Trust & Emotional Safety",
       "intensity": 2,
-      "prompt": "Describe a time you were honest about something embarrassing and it brought you closer to someone.",
+      "prompt": "Share a time you were honest about something embarrassing and it brought you closer to someone.",
       "pillar": "closer"
     },
     {
@@ -37550,7 +37550,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a time a text landed in the wrong chat.",
+      "prompt": "What's the story of a text landing in the wrong chat?",
       "pillar": "spark"
     },
     {
@@ -37598,7 +37598,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a voicemail or message you've kept for years.",
+      "prompt": "Is there a voicemail or message you've kept for years? What's the story?",
       "pillar": "spark"
     },
     {
@@ -37646,7 +37646,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a viral moment or trend that caught you or a friend off guard.",
+      "prompt": "Share a viral moment or trend that caught you or a friend off guard.",
       "pillar": "spark"
     },
     {
@@ -37670,7 +37670,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Describe a time you called someone by the wrong name on a date.",
+      "prompt": "Remember calling someone by the wrong name on a date?",
       "pillar": "spark"
     },
     {
@@ -37718,7 +37718,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Describe the strangest thing someone said to you on a first date.",
+      "prompt": "What's the strangest thing someone said to you on a first date?",
       "pillar": "spark"
     },
     {
@@ -37766,7 +37766,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Describe a date that was interrupted by an unexpected guest.",
+      "prompt": "Share a date that was interrupted by an unexpected guest.",
       "pillar": "spark"
     },
     {
@@ -37814,7 +37814,7 @@
       "module": "life",
       "category": "Dating Stories",
       "intensity": 1,
-      "prompt": "Describe a date that went so badly it became a good story.",
+      "prompt": "What's the story of a date that went so badly it became a good story?",
       "pillar": "spark"
     },
     {
@@ -37830,7 +37830,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe the best meal you ever had by accident.",
+      "prompt": "What's the best meal you ever had by accident?",
       "pillar": "spark"
     },
     {
@@ -37878,7 +37878,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a time you pretended to know something you didn't.",
+      "prompt": "Confess a time you pretended to know something you didn't.",
       "pillar": "spark"
     },
     {
@@ -37918,7 +37918,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a time you were mistaken for someone else.",
+      "prompt": "Take me to a time you were mistaken for someone else.",
       "pillar": "spark"
     },
     {
@@ -37966,7 +37966,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe the wildest weather you've ever lived through.",
+      "prompt": "What's the wildest weather you've ever lived through?",
       "pillar": "spark"
     },
     {
@@ -38014,7 +38014,7 @@
       "module": "life",
       "category": "Story Time",
       "intensity": 1,
-      "prompt": "Describe a small thing that made your day when you least expected it.",
+      "prompt": "What small thing made your day when you least expected it?",
       "pillar": "spark"
     },
     {
@@ -38038,7 +38038,7 @@
       "module": "life",
       "category": "Money & Work",
       "intensity": 2,
-      "prompt": "Describe a time work stress followed you home.",
+      "prompt": "Share a time work stress followed you home.",
       "pillar": "together"
     },
     {
@@ -38078,7 +38078,7 @@
       "module": "life",
       "category": "Family & Community",
       "intensity": 1,
-      "prompt": "Describe a family tradition you'd want to keep alive.",
+      "prompt": "Which family tradition would you want to keep alive, and why?",
       "pillar": "together"
     },
     {
@@ -38102,7 +38102,7 @@
       "module": "life",
       "category": "Home & Daily Life",
       "intensity": 1,
-      "prompt": "Describe a chore you hated as a kid and how you feel about it now.",
+      "prompt": "What chore did you hate as a kid, and how do you feel about it now?",
       "pillar": "together"
     },
     {
@@ -38134,7 +38134,7 @@
       "module": "life",
       "category": "Health & Support",
       "intensity": 2,
-      "prompt": "Describe how your family handled illness when you were growing up.",
+      "prompt": "How did your family handle illness when you were growing up?",
       "pillar": "together"
     },
     {
@@ -38174,7 +38174,7 @@
       "module": "life",
       "category": "Technology & Digital Boundaries",
       "intensity": 1,
-      "prompt": "Describe a time you set a boundary with technology or social media.",
+      "prompt": "Walk me through a time you set a boundary with technology or social media.",
       "pillar": "together"
     },
     {
@@ -38190,7 +38190,7 @@
       "module": "life",
       "category": "Personal Growth & Boundaries",
       "intensity": 2,
-      "prompt": "Describe a moment you felt like you didn't belong.",
+      "prompt": "Think of a moment you felt like you didn't belong.",
       "pillar": "closer"
     },
     {
@@ -38238,7 +38238,7 @@
       "module": "life",
       "category": "Personal Growth & Boundaries",
       "intensity": 2,
-      "prompt": "Describe a time you felt self-conscious about how you looked.",
+      "prompt": "Share a time you felt self-conscious about how you looked.",
       "pillar": "closer"
     },
     {
@@ -38278,7 +38278,7 @@
       "module": "life",
       "category": "Personal Growth & Boundaries",
       "intensity": 2,
-      "prompt": "Describe a time you were afraid to be vulnerable.",
+      "prompt": "Take me back to a time you were afraid to be vulnerable.",
       "pillar": "closer"
     },
     {
@@ -38310,7 +38310,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 1,
-      "prompt": "Describe the type you were drawn to as a teenager.",
+      "prompt": "What type were you drawn to as a teenager?",
       "pillar": "heat"
     },
     {
@@ -38358,7 +38358,7 @@
       "module": "sexuality",
       "category": "Flirting & Chemistry",
       "intensity": 1,
-      "prompt": "Describe a quality that makes someone instantly attractive to you.",
+      "prompt": "What quality makes someone instantly attractive to you?",
       "pillar": "heat"
     },
     {
@@ -38518,7 +38518,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 1,
-      "prompt": "Anything about you getting oral that’s a hard pass or a “check with me first”?",
+      "prompt": "Is there anything about getting oral that you'd rather skip, or want me to ask about first?",
       "pillar": "afterhours"
     },
     {
@@ -38550,7 +38550,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "If I go down on you, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Walk me through your perfect version of me going down on you, from the first touch to the last shiver.",
       "pillar": "afterhours"
     },
     {
@@ -38622,7 +38622,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "Anything about you going down on me that’s a hard pass or a “check with me first”?",
+      "prompt": "What's off the table when you go down on me, and what should I check with you before doing?",
       "pillar": "afterhours"
     },
     {
@@ -38638,7 +38638,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 1,
-      "prompt": "What thoughts do you have about receiving cunnilingus? Curiosity, uncertainty, or not for you are all okay.",
+      "prompt": "How do you feel about me going down on you? Curious, unsure, or not your thing are all fine answers.",
       "pillar": "afterhours"
     },
     {
@@ -38646,7 +38646,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 1,
-      "prompt": "Okay, be honest: what’s your favorite part of cunnilingus?",
+      "prompt": "Okay, be honest: what's your favorite thing about me going down on you?",
       "pillar": "afterhours"
     },
     {
@@ -38654,7 +38654,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 1,
-      "prompt": "With cunnilingus, what pace or change in rhythm helps you stay comfortable and enjoy it?",
+      "prompt": "When I'm going down on you, what pace or change in rhythm keeps you relaxed and loving it?",
       "pillar": "afterhours"
     },
     {
@@ -38662,7 +38662,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 1,
-      "prompt": "Pick the mood for cunnilingus: sweet, filthy, playful, or all three?",
+      "prompt": "Pick the mood for oral on you: sweet, filthy, playful, or all three?",
       "pillar": "afterhours"
     },
     {
@@ -38670,7 +38670,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 1,
-      "prompt": "What makes it easy to communicate preferences while receiving cunnilingus?",
+      "prompt": "What makes it easy to tell me what you like while my mouth is on you?",
       "pillar": "afterhours"
     },
     {
@@ -38702,7 +38702,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 2,
-      "prompt": "If you could shape cunnilingus around your comfort and pleasure, what would you want included or avoided?",
+      "prompt": "If you could design the perfect oral session for you, what would you want in it and what would you skip?",
       "pillar": "afterhours"
     },
     {
@@ -38718,7 +38718,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 2,
-      "prompt": "What’s one thing I should never skip when we get into cunnilingus?",
+      "prompt": "What's one thing I should never skip when I go down on you?",
       "pillar": "afterhours"
     },
     {
@@ -38750,7 +38750,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 2,
-      "prompt": "For cunnilingus, do you have a favorite position, or would you rather choose in the moment?",
+      "prompt": "When I go down on you, do you have a favorite position, or would you rather pick in the moment?",
       "pillar": "afterhours"
     },
     {
@@ -38774,7 +38774,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 4,
-      "prompt": "Anything about cunnilingus that’s a hard pass or a “check with me first”?",
+      "prompt": "When I go down on you, what's a firm no and what needs a quick check-in first?",
       "pillar": "afterhours"
     },
     {
@@ -38798,7 +38798,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 4,
-      "prompt": "What’s a spicy detail you’ve pictured about cunnilingus but haven’t said out loud?",
+      "prompt": "What's a dirty detail you've pictured about me going down on you but haven't said out loud?",
       "pillar": "afterhours"
     },
     {
@@ -38806,7 +38806,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 4,
-      "prompt": "If I tease your clit with my mouth, talk me through your dream version—from the first move to the finish.",
+      "prompt": "When my mouth is on your clit, how do you want it to build, and what makes you lose it?",
       "pillar": "afterhours"
     },
     {
@@ -38822,7 +38822,7 @@
       "module": "explicit",
       "category": "Cunnilingus",
       "intensity": 4,
-      "prompt": "During cunnilingus, if words stop, what signal should mean pause and check in before continuing?",
+      "prompt": "If words stop while I'm going down on you, what signal should mean pause and check in?",
       "pillar": "afterhours"
     },
     {
@@ -38838,7 +38838,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 1,
-      "prompt": "Would you be curious to discuss receiving fellatio, even if you decided you didn't want to try it?",
+      "prompt": "Would you be curious to talk about getting a blowjob, even if you decided you didn't want to try it?",
       "pillar": "afterhours"
     },
     {
@@ -38854,7 +38854,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 1,
-      "prompt": "If receiving fellatio is something you enjoy, what kind of pace would you want to guide?",
+      "prompt": "If you love getting a blowjob, what kind of pace would you want to set?",
       "pillar": "afterhours"
     },
     {
@@ -38870,7 +38870,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 1,
-      "prompt": "If you are giving fellatio, how would you like us to share feedback and check in?",
+      "prompt": "When you're going down on me, how would you like us to share feedback and check in?",
       "pillar": "afterhours"
     },
     {
@@ -38902,7 +38902,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 2,
-      "prompt": "What would help fellatio feel connected and enjoyable for you, beyond technique?",
+      "prompt": "What would make a blowjob feel connected and good for you, beyond technique?",
       "pillar": "afterhours"
     },
     {
@@ -38974,7 +38974,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 4,
-      "prompt": "Anything about you taking me into your mouth that’s a hard pass or a “check with me first”?",
+      "prompt": "Is there anything about taking me in your mouth you'd want to rule out or talk through first?",
       "pillar": "afterhours"
     },
     {
@@ -39006,7 +39006,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 4,
-      "prompt": "If I take you into my mouth, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Take me through how you'd love me to take you in my mouth, slow start to the finish.",
       "pillar": "afterhours"
     },
     {
@@ -39022,7 +39022,7 @@
       "module": "explicit",
       "category": "Fellatio",
       "intensity": 4,
-      "prompt": "If you're receiving fellatio and become quiet, how would you like me to check that everything still feels okay?",
+      "prompt": "If you're getting a blowjob and go quiet, how would you like me to check that everything still feels good?",
       "pillar": "afterhours"
     },
     {
@@ -39038,7 +39038,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 1,
-      "prompt": "How does the idea of manual stimulation from me land for you? What would make it comfortable, if anything?",
+      "prompt": "How does the idea of me touching you with my hands land for you? What would make it feel comfortable, if anything?",
       "pillar": "afterhours"
     },
     {
@@ -39174,7 +39174,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 4,
-      "prompt": "Anything about me using my hands on you that’s a hard pass or a “check with me first”?",
+      "prompt": "Are there places or ways I touch you with my hands that you'd rather I ask about first?",
       "pillar": "afterhours"
     },
     {
@@ -39206,7 +39206,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 4,
-      "prompt": "If I use my hands on you, talk me through your dream version—from the first move to the finish.",
+      "prompt": "If I only used my hands on you, what would the perfect ten minutes look like?",
       "pillar": "afterhours"
     },
     {
@@ -39374,7 +39374,7 @@
       "module": "explicit",
       "category": "Mutual Masturbation",
       "intensity": 4,
-      "prompt": "Anything about mutual masturbation that’s a hard pass or a “check with me first”?",
+      "prompt": "What about touching ourselves in front of each other is a no for you, and what just needs a heads-up?",
       "pillar": "afterhours"
     },
     {
@@ -39406,7 +39406,7 @@
       "module": "explicit",
       "category": "Mutual Masturbation",
       "intensity": 4,
-      "prompt": "If we touch ourselves together, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Picture us touching ourselves side by side: who starts, who watches, and how does it end?",
       "pillar": "afterhours"
     },
     {
@@ -39574,7 +39574,7 @@
       "module": "explicit",
       "category": "Vaginal Sex",
       "intensity": 4,
-      "prompt": "Anything about vaginal sex that’s a hard pass or a “check with me first”?",
+      "prompt": "Is anything about vaginal sex off-limits for you, or something you'd like me to check on first?",
       "pillar": "afterhours"
     },
     {
@@ -39606,7 +39606,7 @@
       "module": "explicit",
       "category": "Vaginal Sex",
       "intensity": 4,
-      "prompt": "If we have sex, talk me through your dream version—from the first move to the finish.",
+      "prompt": "What would the best sex of your life look like with me, beginning to end?",
       "pillar": "afterhours"
     },
     {
@@ -39774,7 +39774,7 @@
       "module": "explicit",
       "category": "Anal Sex",
       "intensity": 4,
-      "prompt": "Anything about anal that’s a hard pass or a “check with me first”?",
+      "prompt": "Where's your line with anal: what's a no, and what's a maybe if we go slow?",
       "pillar": "afterhours"
     },
     {
@@ -39806,7 +39806,7 @@
       "module": "explicit",
       "category": "Anal Sex",
       "intensity": 4,
-      "prompt": "If we try anal, talk me through your dream version—from the first move to the finish.",
+      "prompt": "If we tried anal, how would you want it to unfold, from prep to afterward?",
       "pillar": "afterhours"
     },
     {
@@ -39974,7 +39974,7 @@
       "module": "explicit",
       "category": "Fingering",
       "intensity": 4,
-      "prompt": "Anything about fingering that’s a hard pass or a “check with me first”?",
+      "prompt": "Is there anything about fingering you want me to avoid or ask about before I do it?",
       "pillar": "afterhours"
     },
     {
@@ -40006,7 +40006,7 @@
       "module": "explicit",
       "category": "Fingering",
       "intensity": 4,
-      "prompt": "If I finger you, talk me through your dream version—from the first move to the finish.",
+      "prompt": "What does the ideal way for me to finger you look like, from the first brush to the end?",
       "pillar": "afterhours"
     },
     {
@@ -40174,7 +40174,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 4,
-      "prompt": "Anything about you using your hand on me that’s a hard pass or a “check with me first”?",
+      "prompt": "When you use your hand on me, what should you never do, and what should you check first?",
       "pillar": "afterhours"
     },
     {
@@ -40206,7 +40206,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 4,
-      "prompt": "If you use your hand on me, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Tell me exactly how you'd want to use your hand on me for the best possible ending.",
       "pillar": "afterhours"
     },
     {
@@ -40374,7 +40374,7 @@
       "module": "explicit",
       "category": "Vibrators",
       "intensity": 4,
-      "prompt": "Anything about using a vibrator that’s a hard pass or a “check with me first”?",
+      "prompt": "What's your no or ask-first list when a vibrator comes out?",
       "pillar": "afterhours"
     },
     {
@@ -40406,7 +40406,7 @@
       "module": "explicit",
       "category": "Vibrators",
       "intensity": 4,
-      "prompt": "If we use a vibrator, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Set the scene for a perfect vibrator night with us. Who holds it, and what happens as it builds?",
       "pillar": "afterhours"
     },
     {
@@ -40574,7 +40574,7 @@
       "module": "explicit",
       "category": "Sex Toys & Props",
       "intensity": 4,
-      "prompt": "Anything about using a toy on you that’s a hard pass or a “check with me first”?",
+      "prompt": "When I use a toy on you, what's a hard stop and what do you want me to ask about first?",
       "pillar": "afterhours"
     },
     {
@@ -40606,7 +40606,7 @@
       "module": "explicit",
       "category": "Sex Toys & Props",
       "intensity": 4,
-      "prompt": "If I use a toy on you, talk me through your dream version—from the first move to the finish.",
+      "prompt": "If I used a toy on you, what would you want it to do and how should I use it from start to finish?",
       "pillar": "afterhours"
     },
     {
@@ -40774,7 +40774,7 @@
       "module": "explicit",
       "category": "Butt Plugs",
       "intensity": 4,
-      "prompt": "Anything about trying a butt plug that’s a hard pass or a “check with me first”?",
+      "prompt": "What are your doubts or limits about a butt plug, and what would you need us to talk through first?",
       "pillar": "afterhours"
     },
     {
@@ -40806,7 +40806,7 @@
       "module": "explicit",
       "category": "Butt Plugs",
       "intensity": 4,
-      "prompt": "If we try a butt plug, talk me through your dream version—from the first move to the finish.",
+      "prompt": "If we tried a butt plug, how would you want the whole evening to go?",
       "pillar": "afterhours"
     },
     {
@@ -40974,7 +40974,7 @@
       "module": "explicit",
       "category": "Prostate Play",
       "intensity": 4,
-      "prompt": "Anything about prostate play that’s a hard pass or a “check with me first”?",
+      "prompt": "What would make prostate play a no for you, and what would just need a conversation?",
       "pillar": "afterhours"
     },
     {
@@ -41006,7 +41006,7 @@
       "module": "explicit",
       "category": "Prostate Play",
       "intensity": 4,
-      "prompt": "If I massage your prostate, talk me through your dream version—from the first move to the finish.",
+      "prompt": "How would you want me to approach massaging your prostate, from the first minute to the finish?",
       "pillar": "afterhours"
     },
     {
@@ -41174,7 +41174,7 @@
       "module": "explicit",
       "category": "Nipple Play",
       "intensity": 4,
-      "prompt": "Anything about nipple play that’s a hard pass or a “check with me first”?",
+      "prompt": "What kind of nipple attention is a no for you, and what do you want me to ask about first?",
       "pillar": "afterhours"
     },
     {
@@ -41206,7 +41206,7 @@
       "module": "explicit",
       "category": "Nipple Play",
       "intensity": 4,
-      "prompt": "If I play with your nipples, talk me through your dream version—from the first move to the finish.",
+      "prompt": "What's the most intense version of me playing with your nipples, and how does it build?",
       "pillar": "afterhours"
     },
     {
@@ -41374,7 +41374,7 @@
       "module": "explicit",
       "category": "Breast Play",
       "intensity": 3,
-      "prompt": "Anything about breast play that’s a hard pass or a “check with me first”?",
+      "prompt": "Is any kind of attention to your breasts a no, or something you'd like me to check on?",
       "pillar": "afterhours"
     },
     {
@@ -41406,7 +41406,7 @@
       "module": "explicit",
       "category": "Breast Play",
       "intensity": 3,
-      "prompt": "If I play with your breasts, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Tell me how you'd want me to worship your breasts if I had all night.",
       "pillar": "afterhours"
     },
     {
@@ -41574,7 +41574,7 @@
       "module": "explicit",
       "category": "Grinding",
       "intensity": 3,
-      "prompt": "Anything about grinding together that’s a hard pass or a “check with me first”?",
+      "prompt": "Is there a way of grinding together that you don't like or want to talk about first?",
       "pillar": "afterhours"
     },
     {
@@ -41606,7 +41606,7 @@
       "module": "explicit",
       "category": "Grinding",
       "intensity": 3,
-      "prompt": "If we grind together, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Take me through the hottest grind you can imagine with us, clothes on or off.",
       "pillar": "afterhours"
     },
     {
@@ -41774,7 +41774,7 @@
       "module": "explicit",
       "category": "Edging",
       "intensity": 4,
-      "prompt": "Anything about edging that’s a hard pass or a “check with me first”?",
+      "prompt": "Where does edging stop being fun for you, and what should I ask before we try?",
       "pillar": "afterhours"
     },
     {
@@ -41806,7 +41806,7 @@
       "module": "explicit",
       "category": "Edging",
       "intensity": 4,
-      "prompt": "If I keep you right on the edge, talk me through your dream version—from the first move to the finish.",
+      "prompt": "If I kept you right on the edge, how would you want me to do it, and when would you want to finish?",
       "pillar": "afterhours"
     },
     {
@@ -41974,7 +41974,7 @@
       "module": "explicit",
       "category": "Orgasm Control",
       "intensity": 4,
-      "prompt": "Anything about making you wait for your orgasm that’s a hard pass or a “check with me first”?",
+      "prompt": "When I make you wait to finish, what's too much, and what would you want me to check first?",
       "pillar": "afterhours"
     },
     {
@@ -42006,7 +42006,7 @@
       "module": "explicit",
       "category": "Orgasm Control",
       "intensity": 4,
-      "prompt": "If I make you wait for your orgasm, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Give me the plan for making you wait for your orgasm in the best possible way.",
       "pillar": "afterhours"
     },
     {
@@ -42174,7 +42174,7 @@
       "module": "explicit",
       "category": "Role-Play & Fantasy",
       "intensity": 3,
-      "prompt": "Anything about a sexy role-play that’s a hard pass or a “check with me first”?",
+      "prompt": "What would be off-limits in a sexy role-play, and what would you want to agree on before we start?",
       "pillar": "afterhours"
     },
     {
@@ -42206,7 +42206,7 @@
       "module": "explicit",
       "category": "Role-Play & Fantasy",
       "intensity": 3,
-      "prompt": "If we act out a sexy role-play, talk me through your dream version—from the first move to the finish.",
+      "prompt": "Write the perfect role-play scene for us: who we are, where we are, and how it ends.",
       "pillar": "afterhours"
     },
     {
@@ -43422,7 +43422,7 @@
       "module": "explicit",
       "category": "Pleasure Triggers",
       "intensity": 4,
-      "prompt": "Which specific zone on your skin, outside of the standard erogenous areas, causes a physical surge of arousal when bit or scratched softly?",
+      "prompt": "Which spot on your skin, outside the obvious ones, sends a rush through you when it's bitten or scratched softly?",
       "pillar": "afterhours"
     },
     {
@@ -44110,7 +44110,7 @@
       "module": "explicit",
       "category": "Solo Play",
       "intensity": 4,
-      "prompt": "Describe in highly explicit detail the exact sequence of movements, speeds, and mental images you used during your last solo masturbation session.",
+      "prompt": "Walk me through your last solo session in explicit detail: the movements, the speed, and the pictures in your head.",
       "pillar": "afterhours"
     },
     {
@@ -45950,7 +45950,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 2,
-      "prompt": "What is a sexual activity you became more comfortable discussing as you grew older?",
+      "prompt": "What's something in bed you got more comfortable talking about as you got older?",
       "pillar": "afterhours"
     },
     {
@@ -45958,7 +45958,7 @@
       "module": "explicit",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "What helped you learn to say “not like that” or “let’s stop” during sexual activity?",
+      "prompt": "What helped you learn to say \"not like that\" or \"let's stop\" in bed?",
       "pillar": "afterhours"
     },
     {
@@ -45982,7 +45982,7 @@
       "module": "explicit",
       "category": "Sensual Touch & Body Exploration",
       "intensity": 2,
-      "prompt": "What would you want to know about a new sexual activity before deciding whether it interests you?",
+      "prompt": "What would you want to know about something new in bed before deciding whether it interests you?",
       "pillar": "afterhours"
     },
     {
@@ -46150,7 +46150,7 @@
       "module": "explicit",
       "category": "Health, Pain & Performance",
       "intensity": 3,
-      "prompt": "How do you prefer to communicate if a sexual activity becomes uncomfortable or painful?",
+      "prompt": "How do you prefer to tell me when something in bed becomes uncomfortable or painful?",
       "pillar": "afterhours"
     },
     {
@@ -46238,7 +46238,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "What helped you recognize that a sexual activity was or was not right for you?",
+      "prompt": "What helped you realize that something in bed was or wasn't right for you?",
       "pillar": "afterhours"
     },
     {
@@ -46286,7 +46286,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "How can we make it easy to change our minds about a sexual activity even after we have agreed to try it?",
+      "prompt": "How can we make it easy to change our minds about something in bed even after we've agreed to try it?",
       "pillar": "afterhours"
     },
     {
@@ -46318,7 +46318,7 @@
       "module": "explicit",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "If a sexual activity feels different than expected, what words would help you pause comfortably?",
+      "prompt": "If something in bed feels different than you expected, what words would help you pause comfortably?",
       "pillar": "afterhours"
     },
     {
@@ -46382,7 +46382,7 @@
       "module": "explicit",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "How would you like us to talk about soreness, discomfort, or fatigue after sexual activity?",
+      "prompt": "How would you like us to talk about soreness, discomfort, or tiredness after sex?",
       "pillar": "afterhours"
     },
     {
@@ -46390,7 +46390,7 @@
       "module": "explicit",
       "category": "Communication & Boundaries",
       "intensity": 3,
-      "prompt": "What would help you communicate that a sexual activity is enjoyable but you would not want it every time?",
+      "prompt": "How could you tell me something in bed is great but you wouldn't want it every time?",
       "pillar": "afterhours"
     },
     {
@@ -46822,7 +46822,7 @@
       "module": "explicit",
       "category": "Explicit Truth or Dare",
       "intensity": 4,
-      "prompt": "TRUTH: What helps you feel desired before sexual activity begins?",
+      "prompt": "TRUTH: What helps you feel desired before we even start?",
       "pillar": "afterhours"
     },
     {
@@ -47294,7 +47294,7 @@
       "module": "explicit",
       "category": "Explicit Multiple Choice",
       "intensity": 2,
-      "prompt": "What would make a new sexual activity a no for you?",
+      "prompt": "What would make something new in bed a no for you?",
       "pillar": "afterhours"
     },
     {
@@ -47558,7 +47558,7 @@
       "module": "explicit",
       "category": "Consensual Boundaries & New Experiences",
       "intensity": 3,
-      "prompt": "What information about comfort, preparation, or cleanup would help you evaluate an unfamiliar sexual activity?",
+      "prompt": "What would you want to know about comfort, prep, or cleanup before deciding on something new in bed?",
       "pillar": "afterhours"
     },
     {
@@ -47742,7 +47742,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "What helps you feel free to say no or pause during sexual activity?",
+      "prompt": "What helps you feel free to say no or pause in the middle of sex?",
       "pillar": "afterhours"
     },
     {
@@ -47878,7 +47878,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "How should we check that a new sexual activity feels good for both of us?",
+      "prompt": "How should we check that something new in bed feels good for both of us?",
       "pillar": "afterhours"
     },
     {
@@ -48030,7 +48030,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "What would help you feel comfortable stopping sexual activity at any point?",
+      "prompt": "What would help you feel comfortable stopping at any point during sex?",
       "pillar": "afterhours"
     },
     {
@@ -48054,7 +48054,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "What would you want us to agree on before exploring a new sexual activity?",
+      "prompt": "What would you want us to agree on before exploring something new in bed?",
       "pillar": "afterhours"
     },
     {
@@ -48222,7 +48222,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "How can we make it easy for either of us to pause or stop sexual activity?",
+      "prompt": "How can we make it easy for either of us to pause or stop in the middle of sex?",
       "pillar": "afterhours"
     },
     {
@@ -48246,7 +48246,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "What would you want us to agree on before trying a new sexual activity?",
+      "prompt": "What would you want us to agree on before we try something new together in bed?",
       "pillar": "afterhours"
     },
     {
@@ -48390,7 +48390,7 @@
       "module": "explicit",
       "category": "Explicit Sexual Communication & Exploration",
       "intensity": 3,
-      "prompt": "How should we talk about discomfort or pain during sexual activity in the moment?",
+      "prompt": "How should we handle it in the moment if something hurts or feels uncomfortable during sex?",
       "pillar": "afterhours"
     },
     {
@@ -48606,7 +48606,7 @@
       "module": "explicit",
       "category": "Manual Sexual Stimulation",
       "intensity": 2,
-      "prompt": "Ask your partner to show you, using your hand or a demonstration on their own hand, the pressure they prefer during manual stimulation.",
+      "prompt": "Ask your partner to show you on your own hand the kind of pressure and speed they like when you touch them.",
       "pillar": "afterhours"
     },
     {
@@ -49182,7 +49182,7 @@
       "module": "explicit",
       "category": "Oral Sex",
       "intensity": 4,
-      "prompt": "Discuss one comfort detail before deciding whether to continue.",
+      "prompt": "Name one comfort detail we should sort out before deciding whether to keep going.",
       "pillar": "afterhours"
     },
     {
@@ -49494,7 +49494,7 @@
       "module": "explicit",
       "category": "Sex Toys & Props",
       "intensity": 2,
-      "prompt": "Discuss how you would clean and store a toy before trying it.",
+      "prompt": "How would you want to clean and store a toy before trying it?",
       "pillar": "afterhours"
     },
     {
@@ -50806,7 +50806,7 @@
       "module": "explicit",
       "category": "Anal Sex",
       "intensity": 1,
-      "prompt": "Discuss comfort level.",
+      "prompt": "Tell me your comfort level right now, honestly.",
       "pillar": "afterhours"
     },
     {
@@ -50894,7 +50894,7 @@
       "module": "explicit",
       "category": "Kink Negotiation & Boundaries",
       "intensity": 2,
-      "prompt": "Discuss one boundary.",
+      "prompt": "Name one boundary you want me to know about.",
       "pillar": "afterhours"
     },
     {
@@ -50934,7 +50934,7 @@
       "module": "explicit",
       "category": "Voyeurism & Exhibitionism",
       "intensity": 1,
-      "prompt": "Describe a fantasy that involves being noticed or admired.",
+      "prompt": "Paint me a fantasy that involves being noticed or admired.",
       "pillar": "afterhours"
     },
     {
@@ -50974,7 +50974,7 @@
       "module": "explicit",
       "category": "Group & Multi-Partner Play",
       "intensity": 2,
-      "prompt": "Discuss comfort levels.",
+      "prompt": "Trade comfort levels with me: where are you each right now?",
       "pillar": "afterhours"
     },
     {
@@ -56446,7 +56446,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe a time you faked being into it, or wanted to say something and didn't.",
+      "prompt": "Remember a time you faked being into it, or wanted to say something and didn't?",
       "pillar": "afterhours"
     },
     {
@@ -56574,7 +56574,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe a time you were the more experienced one, and what it was like to guide someone.",
+      "prompt": "Take me to a time you were the more experienced one, and what it was like to guide someone.",
       "pillar": "afterhours"
     },
     {
@@ -56646,7 +56646,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe a time you couldn't keep your hands off someone in public.",
+      "prompt": "What's the story of a time you couldn't keep your hands off someone in public?",
       "pillar": "afterhours"
     },
     {
@@ -56702,7 +56702,7 @@
       "module": "explicit",
       "category": "Fantasies & Desires",
       "intensity": 3,
-      "prompt": "Describe a time a book, film or song put you in a mood you couldn't shake.",
+      "prompt": "Think of a book, film or song that put you in a mood you couldn't shake.",
       "pillar": "afterhours"
     },
     {
@@ -56766,7 +56766,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe a time a past partner's expectations about sex didn't match yours.",
+      "prompt": "Share a time a past partner's expectations about sex didn't match yours.",
       "pillar": "afterhours"
     },
     {
@@ -56814,7 +56814,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe the first time you felt truly comfortable being naked with someone.",
+      "prompt": "Take me back to the first time you felt truly comfortable being naked with someone.",
       "pillar": "afterhours"
     },
     {
@@ -56854,7 +56854,7 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe the most awkward thing that has happened right before or after sex.",
+      "prompt": "What's the most awkward thing that has happened right before or after sex?",
       "pillar": "afterhours"
     },
     {
@@ -56870,7 +56870,1159 @@
       "module": "explicit",
       "category": "Past Experiences",
       "intensity": 3,
-      "prompt": "Describe how your feelings about a past lover changed over the years.",
+      "prompt": "How did your feelings about a past lover change over the years?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-001",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 2,
+      "prompt": "Which role-play would you pick for a night when you want to feel a little reckless: stranger at a bar, hotel fling, or something else?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-002",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 3,
+      "prompt": "If I showed up at the door in character tonight, who would you want me to be, and what's the first thing I say?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-003",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 3,
+      "prompt": "Which uniform or costume would make you stop what you're doing and pull me closer?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-004",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 3,
+      "prompt": "Give me a character, a place and a first line, and I'll play it with you tonight. What do you give me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-005",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 4,
+      "prompt": "What's the filthiest scene you've ever wanted to act out with me that you haven't had the nerve to ask for?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-006",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 4,
+      "prompt": "If we play a role where one of us is in charge, what's the word that stops everything the second it needs to?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-007",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 4,
+      "prompt": "Would you rather play the one who gives the orders or the one who's tempted into breaking the rules? Why?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-008",
+      "module": "explicit",
+      "category": "Role-Play Scenarios",
+      "intensity": 4,
+      "prompt": "Pick a role-play where we pretend we just met and can't keep our hands off each other. Where does it start?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-009",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 2,
+      "prompt": "When you picture a third person in the room with us, is it a fantasy you like thinking about or one you'd never want real?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-010",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "If a third person ever came up as an idea, what rules would you need us to agree on before anyone says yes?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-011",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "Is there a version of this fantasy that's just you and me watching or being watched, and nothing more?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-012",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 3,
+      "prompt": "What would worry you most about bringing someone else into our bed, and what would turn you on?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-013",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 4,
+      "prompt": "Who in your imagination joins us, a stranger, a made-up person, or no one? What are they doing?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-014",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 4,
+      "prompt": "What would be a clear dealbreaker for you if we ever explored this together?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-015",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 4,
+      "prompt": "Would you rather this stay a dirty story we tell each other or something we might try one day?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-016",
+      "module": "explicit",
+      "category": "Group & Multi-Partner Play",
+      "intensity": 4,
+      "prompt": "If we used it only as pillow talk, what part of the fantasy would you want me to tell you in detail?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-017",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 2,
+      "prompt": "Do you like being watched, watching, or both? Be honest about which one gets you going more.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-018",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 3,
+      "prompt": "If I undressed slowly just for you right now, how would you want to watch me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-019",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 3,
+      "prompt": "Describe the pose, the light and the music you'd want for me to put on a little show for you.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-020",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 3,
+      "prompt": "Would you rather catch me getting ready, or have me catch you? What happens next?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-021",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 4,
+      "prompt": "What's the hottest thing you could imagine me doing while you sit there and only watch?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-022",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 4,
+      "prompt": "Tonight, one of us performs and the other can't touch. Who goes first, and what do they do?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-023",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 4,
+      "prompt": "Would you want me to watch you touch yourself? What would you want me to say or not say?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-024",
+      "module": "explicit",
+      "category": "Voyeurism & Exhibitionism",
+      "intensity": 4,
+      "prompt": "What are the lines for you if we ever filmed or photographed ourselves, even just for one night and then deleted it?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-025",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 2,
+      "prompt": "Does waiting make it better for you, or does it just make you impatient?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-026",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 3,
+      "prompt": "Let me be in charge of when you finish tonight. What's the one thing you'd beg me not to do?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-027",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 3,
+      "prompt": "Would you rather be told to wait or told to come right now? Why?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-028",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 3,
+      "prompt": "How long could you hold on if I kept you right on the edge, and would you want to find out?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-029",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 4,
+      "prompt": "What's the word you'd use if you needed me to stop and let you finish?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-030",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 4,
+      "prompt": "If I took control of your pleasure for a whole evening, what would you hope I'd do first?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-031",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 4,
+      "prompt": "What does it feel like when you're desperate to finish and I won't let you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-032",
+      "module": "explicit",
+      "category": "Orgasm Control & Denial",
+      "intensity": 4,
+      "prompt": "After a long tease, would you want a loud finish, a slow one, or a messy one?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-033",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 2,
+      "prompt": "What's the sexiest thing someone has ever said to you in bed?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-034",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 3,
+      "prompt": "What do you love hearing me say when I'm turned on: soft and sweet or low and dirty?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-035",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 3,
+      "prompt": "If you like being talked down to in bed, what words are fine and which are off-limits?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-036",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 3,
+      "prompt": "Tell me one thing you want me to call you tonight, and one thing you'd call me.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-037",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 4,
+      "prompt": "What names or phrases do you want to hear while I have you pinned down?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-038",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 4,
+      "prompt": "Does being praised or being put in your place turn you on more? Where does it start to be too much?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-039",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 4,
+      "prompt": "How should we check in afterward so it still feels good and not just rough?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-040",
+      "module": "explicit",
+      "category": "Praise & Degradation",
+      "intensity": 4,
+      "prompt": "What's something you've wanted to be called in bed but never admitted?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-041",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 2,
+      "prompt": "Does the idea of being tied up excite you, scare you, or both?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-042",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 3,
+      "prompt": "Would you rather be the one holding the rope or the one who can't move? Why?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-043",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 3,
+      "prompt": "Pick what we'd use first: a scarf, cuffs, a belt, or my hands. How tight is too tight?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-044",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 3,
+      "prompt": "What would a safe word look like for you if your mouth was busy or covered?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-045",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 4,
+      "prompt": "If I tied you to the bed and took my time, what would you want me to do to you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-046",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 4,
+      "prompt": "Which part gets you going more: the helplessness, the trust, or the anticipation?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-047",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 4,
+      "prompt": "Show me exactly where on your body you want my hands once you can't move.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-048",
+      "module": "explicit",
+      "category": "Bondage & Restraints",
+      "intensity": 4,
+      "prompt": "With your wrists bound, what would I have to do or say to keep you feeling safe?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-049",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 2,
+      "prompt": "Spanking, light slaps, hair pulling: what turns you on and what doesn't?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-050",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 3,
+      "prompt": "How hard do you want it: barely there, a good sting, or a lot? Show me with your hand on my arm.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-051",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 3,
+      "prompt": "Pick one: ice, hot wax, feathers, or fingertips. Where do you want it first?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-052",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 3,
+      "prompt": "Where on your body is a firm no for any kind of impact?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-053",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 4,
+      "prompt": "What's the dirtiest scene you can imagine involving a bit of pain and a lot of pleasure?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-054",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 4,
+      "prompt": "Does it turn you on more to give it or get it? What do you feel in the moment?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-055",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 4,
+      "prompt": "What do you want me to do right after a spank: rub, kiss, or do it again?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-056",
+      "module": "explicit",
+      "category": "Impact & Sensation Play",
+      "intensity": 4,
+      "prompt": "Rate from one to ten how hard you'd want me to grip your hair while we kiss. Then show me.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-057",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 3,
+      "prompt": "What's something you only want to try if it's a spontaneous moment, not planned?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-058",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 3,
+      "prompt": "What does an enthusiastic yes look like on your face when you're in the mood?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-059",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 3,
+      "prompt": "If I tried something and your gut said no, how would you want to tell me without breaking the mood?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-060",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 3,
+      "prompt": "What do you want me to ask about before I touch you somewhere new?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-061",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 4,
+      "prompt": "What's a boundary you set that you're proud of, and what did it protect?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-062",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 4,
+      "prompt": "Is there something you say yes to now but secretly want to say no to? What would help you speak up?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-063",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 4,
+      "prompt": "What would you want me to do if you freeze and can't find the words in the moment?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-064",
+      "module": "explicit",
+      "category": "Boundaries & No Scripts",
+      "intensity": 4,
+      "prompt": "Is there something you're curious about that you'd only try with a firm no-pressure agreement?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-065",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 2,
+      "prompt": "What kind of kiss makes your knees go weak: slow and deep, hungry, or teasing?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-066",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 3,
+      "prompt": "Where do you love to be kissed that you wish I did more?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-067",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 3,
+      "prompt": "Kiss me the way you wish I kissed you right now, and then tell me what changed.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-068",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 3,
+      "prompt": "What was the best make-out session you've ever had, and what made it so good?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-069",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 4,
+      "prompt": "Would you rather be pinned against a wall or pulled onto a bed mid-kiss?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-070",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 4,
+      "prompt": "How much do you want teeth, tongue, and lips when things start to heat up?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-071",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 4,
+      "prompt": "Kiss me for a full minute without touching anything else. What do you notice?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-072",
+      "module": "explicit",
+      "category": "Kissing & Physical Chemistry",
+      "intensity": 4,
+      "prompt": "What does a kiss do to your body when you're really turned on?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-073",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 2,
+      "prompt": "What does being in control mean to you: responsibility, power, or just fun?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-074",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 3,
+      "prompt": "Would you rather lead, follow, or switch tonight? What would that look like?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-075",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 3,
+      "prompt": "What should the very first power-exchange experiment between us look like, and how long should it last?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-076",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 3,
+      "prompt": "What turns you on more: giving up control or taking it?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-077",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 4,
+      "prompt": "Give me three rules for tonight that I have to follow, and one reward for following them.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-078",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 4,
+      "prompt": "Describe a night where I'm yours to command and I follow every order. What do you ask first?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-079",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 4,
+      "prompt": "What are the hard limits, soft limits, and green lights you'd want in a power scene?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-080",
+      "module": "explicit",
+      "category": "BDSM & Power Exchange",
+      "intensity": 4,
+      "prompt": "What does being called by a title or name, like sir, mistress or good boy, do for you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-081",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 2,
+      "prompt": "What's the sexiest thing I could text you at lunch to make the rest of your day hard to focus through?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-082",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 3,
+      "prompt": "Tease me all evening without touching. What are you going to do or say?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-083",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 3,
+      "prompt": "How long can you stay in the build-up before you can't stand it?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-084",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 3,
+      "prompt": "Give me a slow, cruel plan for how you'd tease me tonight.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-085",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 4,
+      "prompt": "Whisper one thing in my ear right now that you want to do to me later.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-086",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 4,
+      "prompt": "Do you like being teased in public with just a look, or only when we're alone?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-087",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 4,
+      "prompt": "Which tease ever had you nearly begging, and how did it unfold?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-088",
+      "module": "explicit",
+      "category": "Teasing & Anticipation",
+      "intensity": 4,
+      "prompt": "If you could build the perfect night of anticipation, what would happen every hour until we finally get to bed?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-089",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 2,
+      "prompt": "After something intense, do you want a blanket, water, a snack, or just quiet next to me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-090",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 3,
+      "prompt": "How soon after a rough scene should we talk about what worked and what didn't?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-091",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 3,
+      "prompt": "What emotions come up for you after something intense, and how can I help with them?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-092",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 3,
+      "prompt": "What does the best aftercare look like for you: talking, cuddling, a shower, or sleep?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-093",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 3,
+      "prompt": "If you feel a drop or sadness the day after, what do you want me to say or do?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-094",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 4,
+      "prompt": "Make a short aftercare kit list with me: what would you want in it?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-095",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 4,
+      "prompt": "Is there anything I've done after a scene that felt too clingy or not enough?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-096",
+      "module": "explicit",
+      "category": "Aftercare for Kink",
+      "intensity": 4,
+      "prompt": "What signs would tell you I need more care after an intense night even if I say I'm fine?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-097",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 2,
+      "prompt": "Where on your body do you love to be touched slowly, and where do you want it harder?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-098",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 3,
+      "prompt": "Close your eyes and let me touch you for two minutes. Tell me what you feel, and what you want more of.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-099",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 3,
+      "prompt": "What's your favorite kind of touch: fingertips, nails, lips, or a full palm?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-100",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 3,
+      "prompt": "What's a spot on your body you think I've ignored?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-101",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 4,
+      "prompt": "Take my hand and put it where you want it right now.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-102",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 4,
+      "prompt": "If I spent a whole evening just exploring your body with my mouth and hands, where would you want me to linger?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-103",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 4,
+      "prompt": "How wet, how warm, how slow: tell me what you'd like me to do with oil or lotion on my hands.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-104",
+      "module": "explicit",
+      "category": "Sensual Touch & Body Exploration",
+      "intensity": 4,
+      "prompt": "What part of your body feels the most sensitive when you're really turned on?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-105",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 2,
+      "prompt": "What's the riskiest place you've kissed or touched someone, and would you want to do it again?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-106",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 3,
+      "prompt": "If we could sneak off at a party for ten minutes, where would we go and what would we do?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-107",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 3,
+      "prompt": "Would you rather be quick and quiet in a car, or slow and risky somewhere private-ish?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-108",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 3,
+      "prompt": "What would make a public tease feel exciting instead of stressful for you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-109",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 4,
+      "prompt": "Send me a signal I can use at dinner that means we are leaving early.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-110",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 4,
+      "prompt": "Where is somewhere you've always wanted to get away with something with me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-111",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 4,
+      "prompt": "What part of the fear of being caught is a turn-on for you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-112",
+      "module": "explicit",
+      "category": "Public / Semi-Public Play",
+      "intensity": 4,
+      "prompt": "What are your hard limits on anything involving being seen or heard by strangers?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-113",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 2,
+      "prompt": "What's the most memorable night we've had in bed, and what made it stand out?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-114",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "What's something I do that always gets you in the mood, even when you're tired?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-115",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "Which of our nights would you replay if you could?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-116",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 3,
+      "prompt": "If we had a weekend with no obligations, what would the first sex we have look like?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-117",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 4,
+      "prompt": "Tell me one thing you want me to do tonight that we haven't done in a while.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-118",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 4,
+      "prompt": "What's the dirtiest thing we've done together that you still think about?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-119",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 4,
+      "prompt": "What do you wish we did more of, even if it feels a bit selfish?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-120",
+      "module": "explicit",
+      "category": "Us Together",
+      "intensity": 4,
+      "prompt": "What's a scene from our past you'd want to do again with new rules?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-121",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 3,
+      "prompt": "How can I tell from your body alone that you're ready for me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-122",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 3,
+      "prompt": "What part of sex do you chase the most: the build-up, the moment, or the afterglow?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-123",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 3,
+      "prompt": "Tell me three things that would get you from zero to ready in ten minutes.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-124",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 3,
+      "prompt": "What gets you in the mood when you've had a bad day?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-125",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 4,
+      "prompt": "What is a night where I did everything right and you couldn't think straight? What happened?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-126",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 4,
+      "prompt": "What do you want me to do more of when I'm inside you or you're inside me?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-127",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 4,
+      "prompt": "Show me how you touch yourself when you want to finish fast, or tell me if you'd rather not.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-128",
+      "module": "explicit",
+      "category": "Desire & Pleasure",
+      "intensity": 4,
+      "prompt": "What's the most intense thing you've felt during sex, and what made it so?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-129",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 2,
+      "prompt": "What's the most embarrassing sound you've ever made in bed, and how did you handle it?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-130",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 3,
+      "prompt": "Have you ever laughed in the middle of sex? What was the joke?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-131",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 3,
+      "prompt": "What's the funniest nickname you've heard in the bedroom?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-132",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 3,
+      "prompt": "What's the worst pickup line you've actually used or had used on you?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-133",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 3,
+      "prompt": "What's your most ridiculous position gone wrong, and who ended up on the floor?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-134",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 4,
+      "prompt": "Re-enact your funniest bedroom mishap for me right now.",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-135",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 4,
+      "prompt": "What's the dirtiest thing you've accidentally said out loud?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-136",
+      "module": "explicit",
+      "category": "Humor & Blunders",
+      "intensity": 4,
+      "prompt": "What kind of humor works in bed for you, and what kills the mood fast?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-137",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 2,
+      "prompt": "What's a small thing that kills the mood for you every time?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-138",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 3,
+      "prompt": "What sexual cliché in movies makes you cringe?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-139",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 3,
+      "prompt": "How would you like me to tell you if something turned me off without hurting your feelings?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-140",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 3,
+      "prompt": "What do you wish people would stop doing in bed?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-141",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 3,
+      "prompt": "Is there something you used to like and now can't stand?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-142",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 4,
+      "prompt": "What's a thing you pretended to like for too long?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-143",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 4,
+      "prompt": "What smell, sound or habit shuts you down quickly?",
+      "pillar": "afterhours"
+    },
+    {
+      "id": "ah2-144",
+      "module": "explicit",
+      "category": "Turn-Offs & Dislikes",
+      "intensity": 4,
+      "prompt": "What can I do to bring you back when you feel disconnected mid-moment?",
       "pillar": "afterhours"
     }
   ]
