@@ -2829,6 +2829,39 @@ function renderFavoritesDrawerContent(content) {
     content.appendChild(intro);
     const favCards = masterDatabase.filter(card => favoriteIds.includes(card.id));
 
+    if (flaggedIds.length > 0) {
+        const flagBox = document.createElement('div');
+        flagBox.className = 'drawer-item';
+        const flagText = document.createElement('p');
+        flagText.textContent = `${flaggedIds.length} card${flaggedIds.length === 1 ? '' : 's'} flagged for a rewrite.`;
+        const flagActions = document.createElement('div');
+        flagActions.className = 'drawer-item-actions';
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'drawer-remove-btn';
+        copyBtn.type = 'button';
+        copyBtn.textContent = 'Copy flagged list';
+        copyBtn.onclick = async () => {
+            const text = flaggedIds.map(id => {
+                const card = masterDatabase.find(c => c.id === id);
+                return card ? `${id} | ${card.prompt}` : id;
+            }).join('\n');
+            try { await navigator.clipboard.writeText(text); showToast('Flagged list copied.'); }
+            catch (e) { showToast('Copy failed.'); }
+        };
+        const clearFlagsBtn = document.createElement('button');
+        clearFlagsBtn.className = 'drawer-remove-btn';
+        clearFlagsBtn.type = 'button';
+        clearFlagsBtn.textContent = 'Clear flags';
+        clearFlagsBtn.onclick = () => {
+            flaggedIds = [];
+            localStorage.setItem('closer_flags', '[]');
+            renderFavoritesDrawerContent(content);
+        };
+        flagActions.append(copyBtn, clearFlagsBtn);
+        flagBox.append(flagText, flagActions);
+        content.appendChild(flagBox);
+    }
+
     if (favCards.length === 0) {
         appendDrawerMessage(content, 'No favorites saved yet. Tap the bookmark icon on any card to save it here!');
         return;

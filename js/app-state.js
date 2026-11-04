@@ -140,6 +140,7 @@ let journalEntries = readStoredJSON('closer_journal', [], isObjectArray);
 let privateRevealEntries = readStoredJSON('closer_private_reveals', [], isObjectArray);
 let privateShareKey = readStoredValue('closer_private_share_key', '', 'session');
 let favoriteIds = readStoredJSON('closer_favs', [], value => Array.isArray(value) && value.every(id => typeof id === 'string'));
+let flaggedIds = readStoredJSON('closer_flags', [], value => Array.isArray(value) && value.every(id => typeof id === 'string'));
 
 let unspentDeck = [];
 let currentCard = null;

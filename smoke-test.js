@@ -1111,6 +1111,15 @@ check('partner card receiver accepts supported Level 4 cards', async () => {
     if (!removed) throw new Error('received partner card was not removed from the room');
 });
 
+check('card flag menu and flagged list are wired up', () => {
+    const app = fs.readFileSync('js/app.js', 'utf8');
+    const logic = fs.readFileSync('js/app-logic.js', 'utf8');
+    const state = fs.readFileSync('js/app-state.js', 'utf8');
+    if (!state.includes("'closer_flags'") || !app.includes('flagCheck') || !logic.includes('Copy flagged list')) {
+        throw new Error('flag-this-card feature is not fully wired');
+    }
+});
+
 check('malformed saved arrays are backed up and reported without replacing the original', () => {
     const values = new Map([['closer_custom_cards', '{broken-json']]);
     const storage = {

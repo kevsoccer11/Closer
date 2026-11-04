@@ -698,6 +698,8 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
             };
             const favCheck = makeCheck('Favorites', favoriteIds.includes(currentCard.id));
             menu.appendChild(favCheck.wrap);
+            const flagCheck = makeCheck('Flag: needs a rewrite', flaggedIds.includes(currentCard.id));
+            menu.appendChild(flagCheck.wrap);
             const deckChecks = [];
             if (customDecks.length === 0) {
                 const note = document.createElement('p');
@@ -739,6 +741,10 @@ document.getElementById('startRoundBtn')?.addEventListener('click', () => {
                         favCardBtn.setAttribute('aria-pressed', 'false');
                     }
                 }
+                const flagIdx = flaggedIds.indexOf(currentCard.id);
+                if (flagCheck.cb.checked && flagIdx === -1) flaggedIds.push(currentCard.id);
+                else if (!flagCheck.cb.checked && flagIdx > -1) flaggedIds.splice(flagIdx, 1);
+                localStorage.setItem('closer_flags', JSON.stringify(flaggedIds));
                 // Custom decks
                 deckChecks.forEach(({ deck, cb }) => {
                     if (cb.checked) {
