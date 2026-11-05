@@ -50041,6 +50041,776 @@
       "contextType": "story",
       "promptStyle": "question",
       "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-001",
+      "category": "Life History & Goals",
+      "intensity": 2,
+      "prompt": "What is something from your past that you have outgrown, but still carry with you in some way?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-002",
+      "category": "Life History & Goals",
+      "intensity": 2,
+      "prompt": "Where do you see yourself in five years, not just professionally but personally?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-003",
+      "category": "Life History & Goals",
+      "intensity": 3,
+      "prompt": "What is a dream you had before your current relationship that you have recently started to revisit?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-004",
+      "category": "Life History & Goals",
+      "intensity": 3,
+      "prompt": "What is a goal you have set for yourself that you would be excited to share with your partner and possibly work toward together?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-005",
+      "category": "Life History & Goals",
+      "intensity": 3,
+      "prompt": "What does having it all figured out look like to you, and how is that different from your life right now?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-006",
+      "category": "Life History & Goals",
+      "intensity": 4,
+      "prompt": "What is a version of yourself from the past that you no longer recognize in your current life?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-007",
+      "category": "Life History & Goals",
+      "intensity": 3,
+      "prompt": "Is there a skill or hobby you have let go of that you would like to pick back up, and why do you think it mattered to you?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-008",
+      "category": "Life History & Goals",
+      "intensity": 3,
+      "prompt": "What is something you believed about yourself five years ago that you no longer believe, and how did that shift happen?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-016",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "In your current relationship, is there anything you wish you had said or done sooner, and why did it take so long?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-017",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "What is something you are holding back from your partner that you wish you could say, and what is stopping you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-018",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "What is a moment in your current relationship where you wish you had handled yourself differently, and what would you have wanted to happen?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-019",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "What is one thing you wish your partner understood about how you process regret, and would you be open to them asking about it?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-020",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "Is there a conversation you have been avoiding that, if it happened, might change how you feel about the relationship?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-021",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "What is a hope you had for your current relationship when you started that you feel you have not been able to express clearly?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-009",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "What is a regret you carry from a past relationship, and what did it teach you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-010",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "Is there something you wish you had said or done in a past relationship, but never found the courage to?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-011",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "What is a lesson from a past relationship that you try to apply in your current one?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-012",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "What would you tell your past self about love and relationships if you could go back?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-013",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "Is there a pattern in your past relationships that you noticed only after it ended, and what did it teach you about what you want now?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-014",
+      "category": "Regrets & Reflection",
+      "intensity": 3,
+      "prompt": "What is something you apologized for in a past relationship that you still wonder if it was the right thing to apologize for?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-015",
+      "category": "Regrets & Reflection",
+      "intensity": 4,
+      "prompt": "What is a relationship decision you made that you now realize you were not ready to make, and what did it cost you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-022",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What is something you wished was different between you and a family member, and how do you think that could change?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-023",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "Is there a friend you have drifted from over the years? What do you think caused the distance, and do you miss them?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-024",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What family tradition or dynamic do you wish you could change, and what would make it healthier for you?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-025",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What is a quality you admire in a friend that you want to intentionally cultivate in yourself?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-026",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What is a relationship pattern you have noticed in your family that you are determined to break?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-027",
+      "category": "Family & Friends",
+      "intensity": 2,
+      "prompt": "What is a family member you feel most comfortable around, and what is it about them that makes you feel safe?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-028",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What is something a friend has said or done that changed how you see yourself, and how has that stayed with you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-029",
+      "category": "Family & Friends",
+      "intensity": 3,
+      "prompt": "What is a relationship you have with a friend or family member that you feel is unbalanced, and how do you want it to be?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-030",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is a story from high school that your friends still tease you about today?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-031",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is a funny or embarrassing moment from college that still comes up when you are with your old friends?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-032",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is the funniest memory you share with your high school or college friends?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-033",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "When did you first meet your closest high school friend? What was that moment like, and what happened next?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-034",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is a group you used to be part of that you have since drifted from, and how did that change?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-035",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is something your best friend from high school or college knows about you that few other people know?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-036",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "Who was a mentor or friend from school that influenced you the most, and how did they affect your path?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-037",
+      "category": "Friends History",
+      "intensity": 2,
+      "prompt": "What is a friendship you had that you wish had lasted longer, and why do you think it ended?",
+      "contextType": "story",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-038",
+      "category": "Sex Drive & Libido",
+      "intensity": 2,
+      "prompt": "How would you describe your current sex drive? Do you feel it is higher, lower, or consistent with what you expected?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-039",
+      "category": "Sex Drive & Libido",
+      "intensity": 2,
+      "prompt": "What do you think contributes most to your fluctuating sex drive?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-040",
+      "category": "Sex Drive & Libido",
+      "intensity": 2,
+      "prompt": "When was the last time your sex drive surprised you, either higher or lower than expected?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-041",
+      "category": "Sex Drive & Libido",
+      "intensity": 3,
+      "prompt": "Are there times of the month or seasons of the year when your drive shifts noticeably?",
+      "contextType": "reflection",
+      "pillar": "spark",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-042",
+      "category": "Sex Drive & Libido",
+      "intensity": 2,
+      "prompt": "What is something you have noticed about your libido that you have never talked about with anyone before?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-043",
+      "category": "Sex Drive & Libido",
+      "intensity": 2,
+      "prompt": "If you could change one thing about your sex drive, would you increase it, decrease it, or keep it the same, and why?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-044",
+      "category": "Sex Drive & Libido",
+      "intensity": 3,
+      "prompt": "What is something outside of your partner that usually boosts your desire, and what is something that tends to drain it?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-045",
+      "category": "Sex Drive & Libido",
+      "intensity": 3,
+      "prompt": "How do you know when your drive is higher or lower than usual? What are the signs you look for?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-046",
+      "category": "Attraction & Chemistry",
+      "intensity": 2,
+      "prompt": "What is something about your partner that never fails to catch you off guard?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-047",
+      "category": "Attraction & Chemistry",
+      "intensity": 2,
+      "prompt": "Is there a small quirk of theirs that you find endlessly attractive?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-048",
+      "category": "Attraction & Chemistry",
+      "intensity": 3,
+      "prompt": "What is a physical trait you did not notice at first, but now find deeply attractive?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-049",
+      "category": "Attraction & Chemistry",
+      "intensity": 3,
+      "prompt": "What is a quality about your partner that makes you feel safe or calm?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-050",
+      "category": "Attraction & Chemistry",
+      "intensity": 3,
+      "prompt": "What is something about them that still surprises you even after all this time?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-051",
+      "category": "Attraction & Chemistry",
+      "intensity": 2,
+      "prompt": "What is a part of your partner that you took for granted but now notice more?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-052",
+      "category": "Attraction & Chemistry",
+      "intensity": 3,
+      "prompt": "What is the first thing you notice about your partner when you see them?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-053",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is one thing you wish your partner understood about you that they might not yet?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-054",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is a need you have in your relationship that you have not communicated clearly yet, and what makes it hard to say out loud?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-055",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What would feeling cared for look like to you specifically, and how is that different from what you might be receiving now?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-056",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is a wish you have for your partner that might not be fully realistic, and how could you share that wish without putting pressure on them?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-057",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is something you need from a partner that is non-negotiable for you, and what happens when it is missing?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-058",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is a want you have that you can share with your partner without expecting them to fulfill it alone?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-059",
+      "category": "Wants & Needs",
+      "intensity": 4,
+      "prompt": "What is a need you have that, if spoken about openly, might feel vulnerable, and why is it important to you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-060",
+      "category": "Wants & Needs",
+      "intensity": 3,
+      "prompt": "What is something you want from a partner that they might already be meeting, even if you have not noticed it?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-061",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 1,
+      "prompt": "If we could only speak in compliments for the next ten minutes, what would you say first?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-062",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 1,
+      "prompt": "What is a small thing someone has done that made you feel seen and loved?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-063",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 1,
+      "prompt": "What is a playful dare you would actually laugh about later?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-064",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 1,
+      "prompt": "What is a memory of us that always makes you smile?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-065",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 2,
+      "prompt": "What is something you love about how we argue or resolve conflicts?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-066",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 2,
+      "prompt": "What is a little thing you have noticed that shows you I am into you?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-067",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 2,
+      "prompt": "What is a fantasy you have never acted on but would love to explore someday?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-068",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 1,
+      "prompt": "What is a silly thing you would do together just for fun?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-069",
+      "module": "life",
+      "category": "Playful & Cute",
+      "intensity": 2,
+      "prompt": "What is a song or phrase you wish you could say to your partner?",
+      "contextType": "playful",
+      "promptStyle": "question",
+      "pillar": "spark"
+    },
+    {
+      "id": "rel-NEW-070",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "How do you currently take care of your physical health, and what is one thing you would like to improve?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-071",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is your relationship with sleep like, and how does it affect your mood and energy during the day?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-072",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is a stress you have been carrying that you would like to release, and what would help you let it go?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-073",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "How does your mental health show up in your relationships? Is there a pattern you notice when you are stressed or overwhelmed?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-074",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is a wellness practice that actually works for you, not what is trendy but what is real and sustainable for you?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-075",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is something you have learned about your body or health recently that changed your perspective on how you take care of yourself?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-076",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is a habit you have that makes you feel good about yourself, and what is a habit you would like to start?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
+    },
+    {
+      "id": "rel-NEW-077",
+      "category": "Health & Wellness",
+      "intensity": 2,
+      "prompt": "What is something you need to feel your best physically, emotionally, or mentally, and how can we support that?",
+      "contextType": "reflection",
+      "pillar": "closer",
+      "module": "life",
+      "promptStyle": "question"
     }
   ]
 }
