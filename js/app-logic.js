@@ -5251,7 +5251,7 @@ async function loadGuessMeQuestion(requestedIndex) {
         'guessMe/currentIndex': idx,
         'guessMe/answer': null,
         'guessMe/guess': null,
-        'guessMe/question': { id: card.id, prompt: card.question, options: card.options },
+        'guessMe/question': { id: card.id, prompt: card.question, options: card.options, category: card.category },
         'guessMe/answererUid': answererUid,
         'guessMe/predictorUid': predictorUid,
         'guessMe/submissionStatus/answerSubmitted': false,
@@ -5284,6 +5284,7 @@ async function startGuessMeInRoom(selection) {
     // Replay votes can only be cleared once a game is complete, so clearing them must not block starting.
     await Promise.all(['host', 'partner'].map(seat =>
         window.roomRef.child(`guessMe/replayVotes/${seat}`).remove().catch(() => {})));
+    await window.roomRef.child('guessMe/results').remove().catch(() => {});
 }
 window.startGuessMeInRoom = startGuessMeInRoom;
 
@@ -5387,6 +5388,7 @@ async function startGuessMeReplay(gm) {
             'guessMe/replayVotes/host': null,
             'guessMe/replayVotes/partner': null
         });
+        await window.roomRef.child('guessMe/results').remove().catch(() => {});
     } catch (error) {
         reportGuessMeError(error);
     } finally {
@@ -5620,7 +5622,78 @@ async function renderGuessMe(gm) {
         const hostName = roomDisplayNames.host?.name || 'Player A';
         const partnerName = roomDisplayNames.partner?.name || 'Player B';
         summary.textContent = `Played ${played} questions. ${hostName}: ${hostScore} predictions correct · ${partnerName}: ${partnerScore} predictions correct.`;
-        content.append(label, t, summary);
+        // Fetch per-question results for score history + hardest-to-predict categories.
+        let ygmResults = [];
+        try {
+            const resultsSnapshot = await window.roomRef.child('guessMe/results').once('value');
+            const resultsVal = resultsSnapshot.val() || {};
+            ygmResults = Object.keys(resultsVal)
+                .sort((a, b) => Number(a) - Number(b))
+                .map(key => ({ index: Number(key), ...resultsVal[key] }));
+        } catch (error) {
+            console.error('Could not load You Get Me results:', error);
+        }
+        try { await ensureGuessMeQuestionBank(); } catch (e) { /* bank optional */ }
+        const ygmBank = Array.isArray(window.ygmQuestionBank) ? window.ygmQuestionBank : [];
+        // Score history
+        const historySection = document.createElement('section');
+        historySection.className = 'categories-section';
+        const historyTitle = document.createElement('h3');
+        historyTitle.textContent = 'Score history';
+        historySection.appendChild(historyTitle);
+        if (ygmResults.length === 0) {
+            const empty = document.createElement('p');
+            empty.className = 'round-builder-intro';
+            empty.textContent = 'No per-question results were saved for this round.';
+            historySection.appendChild(empty);
+        } else {
+            ygmResults.forEach((result, i) => {
+                const bankQuestion = ygmBank.find(q => q.id === result.questionId);
+                const prompt = bankQuestion?.question || result.questionId;
+                const answerText = Number.isInteger(result.answer) && bankQuestion?.options?.[result.answer]
+                    ? bankQuestion.options[result.answer] : (result.answer ?? '—');
+                const guessText = Number.isInteger(result.guess) && bankQuestion?.options?.[result.guess]
+                    ? bankQuestion.options[result.guess] : (result.guess ?? '—');
+                const item = document.createElement('p');
+                item.className = 'round-builder-intro';
+                item.style.margin = '4px 0';
+                item.textContent = `Q${i + 1} · ${result.category || 'unknown'} · ${result.correct ? '✅' : '❌'} — ${prompt} (chose “${answerText}”, predicted “${guessText}”)`;
+                historySection.appendChild(item);
+            });
+        }
+        content.append(label, t, summary, historySection);
+        // Hardest to predict categories
+        const byCategory = {};
+        ygmResults.forEach(result => {
+            const category = result.category || 'unknown';
+            if (!byCategory[category]) byCategory[category] = { total: 0, correct: 0 };
+            byCategory[category].total += 1;
+            if (result.correct) byCategory[category].correct += 1;
+        });
+        const hardest = Object.entries(byCategory)
+            .map(([category, stats]) => ({ category, ...stats, accuracy: stats.total ? stats.correct / stats.total : 0 }))
+            .sort((a, b) => a.accuracy - b.accuracy)
+            .slice(0, 3);
+        if (hardest.length > 0) {
+            const hardestSection = document.createElement('section');
+            hardestSection.className = 'categories-section';
+            const hardestTitle = document.createElement('h3');
+            hardestTitle.textContent = 'Hardest to predict';
+            hardestSection.appendChild(hardestTitle);
+            hardest.forEach(entry => {
+                const item = document.createElement('p');
+                item.className = 'round-builder-intro';
+                item.style.margin = '4px 0';
+                item.textContent = `${entry.category}: ${entry.correct}/${entry.total} correct (${Math.round(entry.accuracy * 100)}%)`;
+                hardestSection.appendChild(item);
+            });
+            const tip = document.createElement('p');
+            tip.className = 'round-builder-intro';
+            tip.style.marginTop = '8px';
+            tip.textContent = 'Lower accuracy means more surprises there — great topics for deeper conversations.';
+            hardestSection.appendChild(tip);
+            content.appendChild(hardestSection);
+        }
         card.appendChild(content);
         const replayVotes = gm.replayVotes || {};
         const myRole = isHost ? 'host' : 'partner';
@@ -5684,10 +5757,27 @@ async function renderGuessMe(gm) {
             try {
                 const scoreLock = await window.roomRef.child('guessMe/submissionStatus/scored')
                     .transaction(current => current === true ? undefined : true);
-                if (scoreLock.committed && gm.answer?.value === gm.guess?.value) {
-                    const hostIsPredictor = idx % 2 !== 0;
-                    const scorePath = `guessMe/scores/${hostIsPredictor ? 'host' : 'partner'}`;
-                    await window.roomRef.child(scorePath).transaction(current => (Number(current) || 0) + 1);
+                if (scoreLock.committed) {
+                    const correct = gm.answer?.value === gm.guess?.value;
+                    if (correct) {
+                        const hostIsPredictor = idx % 2 !== 0;
+                        const scorePath = `guessMe/scores/${hostIsPredictor ? 'host' : 'partner'}`;
+                        await window.roomRef.child(scorePath).transaction(current => (Number(current) || 0) + 1);
+                    }
+                    try {
+                        await window.roomRef.child(`guessMe/results/${idx}`).set({
+                            questionId: gm.question?.id || '',
+                            category: gm.question?.category || 'unknown',
+                            answererUid: gm.answererUid || '',
+                            predictorUid: gm.predictorUid || '',
+                            answer: Number.isInteger(gm.answer?.value) ? gm.answer.value : null,
+                            guess: Number.isInteger(gm.guess?.value) ? gm.guess.value : null,
+                            correct,
+                            completedAt: Date.now()
+                        });
+                    } catch (resultError) {
+                        console.error('Could not save You Get Me result:', resultError);
+                    }
                 }
             } catch (error) {
                 reportGuessMeError(error);
@@ -5823,6 +5913,13 @@ async function renderGuessMe(gm) {
             ? correct ? 'Nailed it! Take a moment to celebrate your match.' : 'Different picks, and something new to learn about each other.'
             : 'Waiting for both choices to load before continuing.';
         content.append(label, t, comparison, result);
+        if (revealReady && !correct) {
+            const followUp = document.createElement('p');
+            followUp.className = 'guess-me-reveal-result';
+            followUp.style.marginTop = '8px';
+            followUp.textContent = 'Talk about it: what made you land on different choices? Is there a version of this you’d both enjoy?';
+            content.appendChild(followUp);
+        }
         reveal.appendChild(content);
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn-primary';

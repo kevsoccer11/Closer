@@ -277,6 +277,7 @@
               ".validate": "newData.hasChildren(['0', '1', '2', '3'])",
               "$optionIndex": { ".validate": "$optionIndex.matches(/^[0-3]$/) && newData.isString() && newData.val().length > 0 && newData.val().length <= 120" }
             },
+            "category": { ".validate": "newData.isString() && newData.val().length <= 80" },
             "$other": { ".validate": false }
           },
           "answererUid": { 
@@ -326,6 +327,22 @@
               ".validate": "newData.isBoolean()"
             },
             "$other": { ".validate": false }
+          },
+          "results": {
+            ".read": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && (auth.uid === root.child('rooms').child($roomCode).child('members/host').val() || auth.uid === root.child('rooms').child($roomCode).child('members/partner').val())",
+            "$resultIndex": {
+              ".write": "auth != null && $roomCode.matches(/^[A-Za-z0-9_-]{22}$/) && auth.uid === root.child('rooms').child($roomCode).child('members/host').val()",
+              ".validate": "newData.hasChildren(['questionId', 'category', 'answererUid', 'predictorUid', 'answer', 'guess', 'correct', 'completedAt'])",
+              "questionId": { ".validate": "newData.isString()" },
+              "category": { ".validate": "newData.isString() && newData.val().length <= 80" },
+              "answererUid": { ".validate": "newData.isString()" },
+              "predictorUid": { ".validate": "newData.isString()" },
+              "answer": { ".validate": "newData.isNumber() || newData.val() === null" },
+              "guess": { ".validate": "newData.isNumber() || newData.val() === null" },
+              "correct": { ".validate": "newData.isBoolean()" },
+              "completedAt": { ".validate": "newData.isNumber()" },
+              "$other": { ".validate": false }
+            }
           },
           "$other": { ".validate": false }
         },
